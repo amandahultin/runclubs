@@ -7,6 +7,29 @@
   <meta name="description" content="Hitta din run club i Sverige. Vi listar run clubs i Stockholm, Göteborg och Malmö — med beskrivningar, tider och filtreringssystem.">
   <meta property="og:title" content="Swedish Run Clubs — Hitta din run club i Sverige">
   <meta property="og:description" content="Hitta din run club i Sverige. Vi listar run clubs i Stockholm, Göteborg och Malmö.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://amandahultin.github.io/runclubs/">
+  <meta property="og:image" content="https://amandahultin.github.io/runclubs/hero.jpg">
+  <link rel="canonical" href="https://amandahultin.github.io/runclubs/">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Swedish Run Clubs",
+    "url": "https://amandahultin.github.io/runclubs/",
+    "description": "Hitta din run club i Sverige. Vi listar run clubs i Stockholm, Göteborg och Malmö.",
+    "author": {
+      "@type": "Person",
+      "name": "Amanda Hultin",
+      "url": "https://amandahultin.se"
+    },
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://amandahultin.github.io/runclubs/{search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
+  }
+  </script>
   <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Oswald:wght@500;700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -406,7 +429,8 @@
     <a href="om-oss.html">Om oss</a>
   </div>
 
-  <div class="hero">
+  <main>
+  <header class="hero" role="banner">
     <div class="hero-content">
       <div class="hero-tag">Hitta din run club</div>
       <h1>Swedish<br>Run Clubs</h1>
@@ -415,7 +439,7 @@
       <p>Alla run clubs i Sverige — sorterade, beskrivna och enkla att hitta. Välj stad och filtrera på nivå, dag och typ.</p>
       <a href="#cities" class="hero-cta">Välj din stad →</a>
     </div>
-  </div>
+  </header>
 
   <div class="cities-section" id="cities">
     <div class="section-label">Välj stad</div>
@@ -481,6 +505,7 @@
     </div>
     <button class="newsletter-btn">Prenumerera gratis</button>
   </div>
+  </main>
 
   <footer>
     <div>
