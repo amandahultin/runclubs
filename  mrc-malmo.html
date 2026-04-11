@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MRC Malmö — Swedish Run Clubs</title>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Oswald:wght@500;700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'DM Sans', sans-serif; color: #1C2A45; background: #FDFAF9; }
+    nav { display: flex; justify-content: space-between; align-items: center; padding: 1rem 1.5rem; border-bottom: 1px solid #F0E0DC; background: #FDFAF9; }
+    .logo { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 18px; text-transform: uppercase; letter-spacing: 0.5px; color: #1C2A45; text-decoration: none; }
+    .nav-links { display: flex; gap: 1.5rem; font-size: 13px; }
+    .nav-links a { text-decoration: none; color: #888; }
+    .nav-links a:hover { color: #1C2A45; }
+    .hero { background: #1C2A45; padding: 3rem 1.5rem 2.5rem; }
+    .breadcrumb { font-size: 12px; color: rgba(255,255,255,0.4); margin-bottom: 0.75rem; }
+    .breadcrumb a { color: rgba(255,255,255,0.4); text-decoration: none; }
+    .breadcrumb a:hover { color: #EEAA96; }
+    .hero-tag { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #EEAA96; margin-bottom: 0.75rem; }
+    .hero h1 { font-family: 'Archivo Black', sans-serif; font-size: 42px; line-height: 1.05; text-transform: uppercase; color: #FDFAF9; letter-spacing: 2px; margin-bottom: 0.75rem; }
+    .badge { display: inline-block; background: #D4715E; color: #FDFAF9; font-size: 11px; font-weight: 500; padding: 4px 12px; border-radius: 3px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1.25rem; }
+    .hero-meta { display: flex; gap: 2rem; flex-wrap: wrap; }
+    .hero-meta-item { font-size: 13px; color: rgba(255,255,255,0.6); }
+    .hero-meta-item strong { color: #EEAA96; display: block; font-size: 10px; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 2px; font-weight: 500; }
+    .info-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin: 2rem 1.5rem; }
+    .info-card { background: #F7E8E4; border: 1px solid #F0D8D3; border-radius: 12px; padding: 1.25rem; }
+    .info-card-label { font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: #D4715E; margin-bottom: 6px; font-weight: 500; }
+    .info-card-value { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 18px; text-transform: uppercase; color: #1C2A45; }
+    .divider { height: 1px; background: #F0E0DC; margin: 0 1.5rem 2rem; }
+    .content { padding: 0 1.5rem 2rem; max-width: 680px; }
+    .section-label { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #aaa; margin-bottom: 1rem; }
+    .content p { font-size: 15px; line-height: 1.8; color: #444; margin-bottom: 1.25rem; }
+    .facts { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 1.5rem 2rem; }
+    .fact-tag { font-size: 11px; padding: 4px 12px; border-radius: 10px; font-weight: 500; }
+    .tag-social { background: #E8EEF5; color: #1C2A45; }
+    .tag-gratis { background: #C6EFCE; color: #276221; }
+    .tag-after { background: #F0E6FF; color: #5B2D8E; }
+    .highlight { background: #F7E8E4; border-left: 3px solid #D4715E; border-radius: 0 8px 8px 0; padding: 1rem 1.25rem; margin-bottom: 1.25rem; font-size: 15px; line-height: 1.8; color: #444; }
+    .schedule { display: flex; flex-direction: column; gap: 10px; margin-bottom: 1.5rem; }
+    .schedule-item { background: #F7E8E4; border: 1px solid #F0D8D3; border-radius: 10px; padding: 1rem 1.25rem; }
+    .schedule-day { font-weight: 500; color: #1C2A45; font-size: 14px; margin-bottom: 3px; }
+    .schedule-info { font-size: 13px; color: #666; line-height: 1.6; }
+    .cta { background: #1C2A45; padding: 2rem 1.5rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+    .cta-text strong { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 20px; text-transform: uppercase; color: #FDFAF9; display: block; margin-bottom: 4px; }
+    .cta-text p { font-size: 13px; color: rgba(255,255,255,0.6); }
+    .cta-btn { background: #D4715E; color: #FDFAF9; font-size: 13px; font-weight: 500; padding: 10px 22px; border-radius: 4px; text-decoration: none; white-space: nowrap; }
+    .cta-btn:hover { background: #C8604A; }
+    .back { font-size: 13px; color: #D4715E; text-decoration: none; padding: 1.5rem; display: block; }
+    .back:hover { color: #C8604A; }
+    footer { background: #F7E8E4; border-top: 1px solid #F0D8D3; padding: 2rem 1.5rem; display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; font-size: 13px; }
+    footer h4 { font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: #aaa; margin-bottom: 0.75rem; font-weight: 500; }
+    footer a { display: block; color: #1C2A45; text-decoration: none; margin-bottom: 6px; }
+    footer a:hover { color: #D4715E; }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="logo">Swedish Run Clubs</a>
+    <div class="nav-links">
+      <a href="stockholm.html">Stockholm</a>
+      <a href="goteborg.html">Göteborg</a>
+      <a href="malmo.html" class="active">Malmö</a>
+      <a href="nyheter.html">Nyheter</a>
+      <a href="om-oss.html">Om oss</a>
+    </div>
+  </nav>
+
+  <div class="hero">
+    <div class="breadcrumb">
+      <a href="index.html">Start</a> →
+      <a href="malmo.html">Malmö</a> →
+      MRC Malmö
+    </div>
+    <div class="hero-tag">Run Club i Malmö</div>
+    <h1>MRC<br>Malmö</h1>
+    <div class="badge">Gratis · Social</div>
+    <div class="hero-meta">
+      <div class="hero-meta-item">
+        <strong>Onsdagar</strong>
+        Ramen to Bíiru, Möllevångstorget
+      </div>
+      <div class="hero-meta-item">
+        <strong>Tid</strong>
+        18:30
+      </div>
+      <div class="hero-meta-item">
+        <strong>Grundades</strong>
+        2018
+      </div>
+      <div class="hero-meta-item">
+        <strong>Kostnad</strong>
+        Gratis
+      </div>
+    </div>
+  </div>
+
+  <div class="info-grid">
+    <div class="info-card">
+      <div class="info-card-label">Nivå</div>
+      <div class="info-card-value">Alla nivåer</div>
+    </div>
+    <div class="info-card">
+      <div class="info-card-label">Träningsdagar</div>
+      <div class="info-card-value">Ons & Lör</div>
+    </div>
+    <div class="info-card">
+      <div class="info-card-label">Mötesplats</div>
+      <div class="info-card-value">Möllevångstorget</div>
+    </div>
+    <div class="info-card">
+      <div class="info-card-label">Kostnad</div>
+      <div class="info-card-value">Gratis</div>
+    </div>
+  </div>
+
+  <div class="facts">
+    <span class="fact-tag tag-gratis">Gratis</span>
+    <span class="fact-tag tag-social">Alla nivåer</span>
+    <span class="fact-tag tag-social">Social</span>
+    <span class="fact-tag tag-after">Öl efter löpning</span>
+    <span class="fact-tag tag-after">Köpenhamnsresor</span>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="content">
+    <div class="section-label">Om klubben</div>
+    <p>MRC Malmö är den lokala grenen av Mikkeller Running Club — ett globalt löparcommunity med över 100 chapters världen över som bygger på en enkel filosofi: spring, och fira med en öl efteråt. Malmö-chapret startades i september 2018 och träffas varje onsdag och lördag.</p>
+    <p>Filosofin är lika enkel som den är genialisk — ingen lämnas ensam. Oavsett tempo eller kondition ser MRC Malmö till att alla springer ihop och kommer i mål tillsammans. Det finns alltid två grupper: "Ghost vision style" för dig som springer runt 5:45/km och "Malmö i love you" för dig som föredrar 6:30/km eller lugnare.</p>
+
+    <div class="highlight">
+      🍺 Första lördagen varje månad åker hela gänget till Köpenhamn för att springa med moderklubben på Warpigs. Första ölen är gratis i Köpenhamn — det är den typen av detalj som gör MRC till något mer än en löpargrupp.
+    </div>
+
+    <div class="section-label">Träningsschema</div>
+    <div class="schedule">
+      <div class="schedule-item">
+        <div class="schedule-day">Onsdag 18:30</div>
+        <div class="schedule-info">Ramen to Bíiru, Möllevångstorget · 5,5 km eller 7 km · Öl efteråt</div>
+      </div>
+      <div class="schedule-item">
+        <div class="schedule-day">Lördag (höst/vinter/vår) 13:00</div>
+        <div class="schedule-info">Hyllie Brewery · 7,5 km eller 10 km · Två tempo-grupper</div>
+      </div>
+      <div class="schedule-item">
+        <div class="schedule-day">Första lördagen varje månad</div>
+        <div class="schedule-info">Köpenhamn, Warpigs · Spring med moderklubben · Första ölen gratis!</div>
+      </div>
+    </div>
+
+    <p>All löpning med MRC Malmö är helt gratis. Du betalar bara för din egen dryck efteråt om du vill. Inga medlemsavgifter, inga krav — bara löpning och gemenskap.</p>
+  </div>
+
+  <div class="cta">
+    <div class="cta-text">
+      <strong>Häng med på onsdag!</strong>
+      <p>Följ MRC Malmö på Instagram eller Facebook för schema och uppdateringar</p>
+    </div>
+    <a href="https://www.instagram.com/mrc_malmo/" class="cta-btn" target="_blank">Till Instagram →</a>
+  </div>
+
+  <a href="malmo.html" class="back">← Tillbaka till Malmö</a>
+
+  <footer>
+    <div>
+      <h4>Städer</h4>
+      <a href="stockholm.html">Stockholm</a>
+      <a href="goteborg.html">Göteborg</a>
+      <a href="malmo.html">Malmö</a>
+    </div>
+    <div>
+      <h4>Om sajten</h4>
+      <a href="om-oss.html">Om oss</a>
+      <a href="nyheter.html">Nyheter</a>
+      <a href="kontakt.html">Kontakt</a>
+    </div>
+  </footer>
+
+</body>
+</html>

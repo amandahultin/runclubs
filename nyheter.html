@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nyheter om run clubs i Sverige — Swedish Run Clubs</title>
+  <meta name="description" content="Senaste nytt från den svenska löparvärlden — run club-trender, lopp och nyheter från Stockholm, Göteborg och Malmö.">
+  <meta property="og:title" content="Nyheter — Swedish Run Clubs">
+  <meta property="og:description" content="Senaste nytt från den svenska löparvärlden — run club-trender, lopp och nyheter.">
+  <meta property="og:type" content="website">
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Oswald:wght@500;700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'DM Sans', sans-serif; color: #1C2A45; background: #FDFAF9; }
+
+    /* NAV */
+    nav { display: flex; justify-content: space-between; align-items: center; padding: 1rem 1.5rem; border-bottom: 1px solid #F0E0DC; background: #FDFAF9; position: sticky; top: 0; z-index: 100; }
+    .logo { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 18px; text-transform: uppercase; letter-spacing: 0.5px; color: #1C2A45; text-decoration: none; }
+    .nav-links { display: flex; gap: 1.5rem; font-size: 13px; }
+    .nav-links a { text-decoration: none; color: #888; text-transform: uppercase; font-weight: 500; letter-spacing: 0.5px; transition: color 0.15s; }
+    .nav-links a:hover { color: #1C2A45; }
+    .nav-links a.active { color: #D4715E; }
+    .nav-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+    .nav-toggle span { display: block; width: 22px; height: 2px; background: #1C2A45; }
+    .mobile-menu { display: none; flex-direction: column; background: #FDFAF9; border-bottom: 1px solid #F0E0DC; padding: 1rem 1.5rem; gap: 0; }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a { font-size: 13px; letter-spacing: 1px; text-decoration: none; color: #1C2A45; text-transform: uppercase; font-weight: 500; padding: 0.75rem 0; border-bottom: 1px solid #F0E0DC; }
+    .mobile-menu a:last-child { border-bottom: none; }
+
+    /* HERO */
+    .hero { background: #1C2A45; padding: 3rem 1.5rem 2.5rem; }
+    .hero-tag { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #EEAA96; margin-bottom: 0.75rem; }
+    .hero h1 { font-family: 'Archivo Black', sans-serif; font-size: 48px; line-height: 1; text-transform: uppercase; color: #FDFAF9; letter-spacing: 2px; }
+    .hero p { font-size: 15px; color: rgba(255,255,255,0.6); max-width: 420px; line-height: 1.7; margin-top: 0.75rem; }
+
+    /* ARTICLES */
+    .section { padding: 2rem 1.5rem; max-width: 720px; }
+    .featured-article { margin-bottom: 3rem; }
+    .article-tag { display: inline-block; font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 600; padding: 3px 10px; border-radius: 10px; margin-bottom: 0.75rem; }
+    .tag-trend { background: #F0E6FF; color: #5B2D8E; }
+    .tag-stockholm { background: #C6EFCE; color: #276221; }
+    .tag-goteborg { background: #E8EEF5; color: #1C2A45; }
+    .tag-tips { background: #FFEB9C; color: #7d6608; }
+    .tag-malmo { background: #F7E8E4; color: #D4715E; border: 1px solid #F0D8D3; }
+    .featured-article h2 { font-family: 'Archivo Black', sans-serif; font-size: 26px; line-height: 1.15; text-transform: uppercase; color: #1C2A45; letter-spacing: 1px; margin-bottom: 0.75rem; }
+    .featured-article h2 a { text-decoration: none; color: inherit; }
+    .featured-article h2 a:hover { color: #D4715E; }
+    .article-meta { font-size: 12px; color: #aaa; margin-bottom: 1.25rem; }
+    .article-intro { font-size: 16px; line-height: 1.8; color: #333; margin-bottom: 1.25rem; font-weight: 500; }
+    .article-body { font-size: 15px; line-height: 1.8; color: #555; }
+    .article-body p { margin-bottom: 1.1rem; }
+    .article-body strong { color: #1C2A45; }
+    .article-body em { font-style: italic; color: #444; }
+    .article-body a { color: #D4715E; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 2px; }
+    .article-body a:hover { color: #C8604A; }
+    .article-image { width: 100%; height: 220px; border-radius: 12px; margin: 1.5rem 0 0.5rem; overflow: hidden; }
+    .article-image img { width: 100%; height: 100%; object-fit: cover; border-radius: 12px; }
+    .image-caption { font-size: 12px; color: #aaa; margin-bottom: 1.5rem; font-style: italic; }
+    .divider { height: 1px; background: #F0E0DC; margin: 2.5rem 0; }
+    .section-label { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #aaa; margin-bottom: 1.5rem; }
+
+    /* NEWSLETTER MID-PAGE */
+    .newsletter-mid { background: #F7E8E4; border: 1px solid #F0D8D3; border-radius: 16px; padding: 1.75rem; margin: 2.5rem 0; }
+    .newsletter-mid h3 { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 20px; text-transform: uppercase; color: #1C2A45; margin-bottom: 0.5rem; }
+    .newsletter-mid p { font-size: 14px; color: #666; line-height: 1.7; margin-bottom: 1.25rem; }
+    .newsletter-form { display: flex; gap: 8px; flex-wrap: wrap; }
+    .newsletter-input { flex: 1; min-width: 200px; padding: 10px 14px; border: 1px solid #F0D8D3; border-radius: 4px; font-size: 13px; font-family: 'DM Sans', sans-serif; color: #1C2A45; background: #FDFAF9; outline: none; }
+    .newsletter-input:focus { border-color: #D4715E; }
+    .newsletter-btn { background: #D4715E; color: #FDFAF9; font-size: 13px; font-weight: 500; padding: 10px 22px; border-radius: 4px; border: none; cursor: pointer; font-family: 'DM Sans', sans-serif; white-space: nowrap; transition: background 0.15s; }
+    .newsletter-btn:hover { background: #C8604A; }
+
+    /* ARTICLE LIST */
+    .article-list { display: flex; flex-direction: column; gap: 0; }
+    .article-list-item { padding: 1.5rem 0; border-bottom: 1px solid #F0E0DC; text-decoration: none; color: #1C2A45; display: block; }
+    .article-list-item:last-child { border-bottom: none; }
+    .article-list-item:hover h3 { color: #D4715E; }
+    .article-list-item h3 { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 18px; text-transform: uppercase; color: #1C2A45; margin: 0.5rem 0; line-height: 1.2; transition: color 0.15s; }
+    .article-list-item p { font-size: 14px; color: #666; line-height: 1.7; margin-bottom: 0.5rem; }
+    .article-list-meta { font-size: 12px; color: #aaa; }
+
+    /* STICKY NEWSLETTER */
+    .sticky-newsletter { position: fixed; bottom: 0; left: 0; right: 0; background: #1C2A45; padding: 0.875rem 1.5rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; z-index: 200; border-top: 1px solid rgba(255,255,255,0.1); flex-wrap: wrap; }
+    .sticky-newsletter p { font-size: 13px; color: rgba(255,255,255,0.7); }
+    .sticky-newsletter strong { color: #EEAA96; }
+    .sticky-newsletter-btn { background: #D4715E; color: #FDFAF9; font-size: 12px; font-weight: 500; padding: 8px 18px; border-radius: 3px; text-decoration: none; white-space: nowrap; transition: background 0.15s; }
+    .sticky-newsletter-btn:hover { background: #C8604A; }
+    .sticky-close { background: none; border: none; color: rgba(255,255,255,0.4); font-size: 18px; cursor: pointer; padding: 0 4px; line-height: 1; flex-shrink: 0; }
+    .sticky-close:hover { color: #FDFAF9; }
+
+    /* FOOTER */
+    footer { background: #F7E8E4; border-top: 1px solid #F0D8D3; padding: 2rem 1.5rem 5rem; display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; font-size: 13px; }
+    footer h4 { font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: #aaa; margin-bottom: 0.75rem; font-weight: 500; }
+    footer a { display: block; color: #1C2A45; text-decoration: none; margin-bottom: 6px; }
+    footer a:hover { color: #D4715E; }
+
+    /* MOBILE */
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.25rem; }
+      .nav-links { display: none; }
+      .nav-toggle { display: flex; }
+      .hero { padding: 2rem 1.25rem; }
+      .hero h1 { font-size: 36px; }
+      .section { padding: 1.5rem 1.25rem; }
+      .article-image { height: 180px; }
+      .featured-article h2 { font-size: 20px; }
+      .newsletter-form { flex-direction: column; }
+      .newsletter-input { min-width: unset; width: 100%; }
+      .newsletter-btn { width: 100%; text-align: center; }
+      .sticky-newsletter { padding: 0.75rem 1.25rem; }
+      footer { grid-template-columns: 1fr; padding-bottom: 5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="logo">Swedish Run Clubs</a>
+    <div class="nav-links">
+      <a href="stockholm.html">Stockholm</a>
+      <a href="goteborg.html">Göteborg</a>
+      <a href="malmo.html">Malmö</a>
+      <a href="nyheter.html" class="active">Nyheter</a>
+      <a href="om-oss.html">Om oss</a>
+    </div>
+    <button class="nav-toggle" aria-label="Meny">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="mobile-menu">
+    <a href="stockholm.html">Stockholm</a>
+    <a href="goteborg.html">Göteborg</a>
+    <a href="malmo.html">Malmö</a>
+    <a href="nyheter.html">Nyheter</a>
+    <a href="om-oss.html">Om oss</a>
+  </div>
+
+  <div class="hero">
+    <div class="hero-tag">Senaste nytt</div>
+    <h1>Nyheter</h1>
+    <p>Det händer mycket i den svenska löparvärlden just nu. Här samlar vi det viktigaste.</p>
+  </div>
+
+  <div class="section">
+
+    <!-- ARTIKEL 1 -->
+    <div class="featured-article">
+      <span class="article-tag tag-trend">Trend</span>
+      <h2><a href="tjejer-tar-over-lopsparen.html">Tjejer tar över löpspåren — och gör det tillsammans</a></h2>
+      <div class="article-meta">April 2026</div>
+      <div class="article-image">
+        <img src="tjejer-och-run-clubs.jpg" alt="Tjejer springer i grupp i en run club">
+      </div>
+      <div class="image-caption">Foto: Unsplash</div>
+      <p class="article-intro">Aldrig har så många tjejer sprungit. Och aldrig har så många gjort det i grupp. Det som länge såg ut som en trend från New York och London har nu tagit rejält fäste i Sverige — och drivkraften är lika mycket social som atletisk.</p>
+      <div class="article-body">
+        <p>Siffrorna är svåra att ignorera. <strong>Lidingöloppet rapporterade 2025 en 86-procentig ökning</strong> av anmälda kvinnor i åldern 18–24. Ungefär <strong>var fjärde svensk löptränar</strong> idag, enligt Riksidrottsförbundet. Och löpning ligger på en tredjeplats bland Sveriges mest populära motionsformer.</p>
+        <p>Parallellt med det exploderar run clubs. Strava — appen där löpare loggar sina pass — <a href="https://press.strava.com/articles/strava-releases-annual-year-in-sport-trend" target="_blank">rapporterade i sin årliga trendrapport</a> en <strong>59-procentig ökning</strong> av löparklubbar globalt under 2024, och <strong>18 procent fler grupppass</strong> med tio eller fler deltagare. Bland de 5 000 tillfrågade i deras studie uppgav <strong>58 procent</strong> att de fått nya vänner via sin träningsgrupp.</p>
+        <p>Run clubs fyller ett hål som gymmet aldrig riktigt lyckades fylla — gemenskapen utan prestationspressen. SVT rapporterade i december 2025 om fenomenet och citerade Jonas Sandström, grundare av Fam Run Club i Umeå: <em>"Löpning är en fenomenal aktivitet för att vara social."</em></p>
+        <p>I Stockholm, Göteborg och Malmö märks det tydligt. Klubbar som <a href="yo-running-club.html">Yo Running Club</a>, <a href="dopest-runners.html">Dopest Runners</a> och <a href="goteborg-running-club.html">Göteborg Running Club</a> vittnar om allt fler deltagare per pass. Och helt nya grupper dyker upp hela tiden — som <a href="stockholm-frontrunners.html">Stockholm Frontrunners</a> som nyligen firade tio år, och <a href="mrc-malmo.html">MRC Malmö</a> som lockar löpare med afterrun-öl och månatliga resor till Köpenhamn.</p>
+        <p>Strava satte fingret på något när de summerade 2024 med meningen: <em>"We ditched night clubs for fitness clubs."</em> Det känns träffande.</p>
+      </div>
+    </div>
+
+    <!-- NYHETSBREV MITT I SIDAN -->
+    <div class="newsletter-mid">
+      <h3>Håll koll på löparvärlden</h3>
+      <p>Nya klubbar, löpartrender och nyheter från Sverige — direkt i din inkorg. Gratis, max ett mail i veckan.</p>
+      <div class="newsletter-form">
+        <input type="email" class="newsletter-input" placeholder="din@email.se">
+        <button class="newsletter-btn">Prenumerera gratis</button>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- ARTIKEL 2 -->
+    <div class="featured-article">
+      <span class="article-tag tag-stockholm">Stockholm</span>
+      <h2><a href="stockholm-marathon-2026-slutsalt.html">Stockholm Marathon 2026 slutsålt — på rekordtid</a></h2>
+      <div class="article-meta">November 2025</div>
+      <div class="article-image">
+        <img src="run-clubs-stockholm-marathon.jpeg" alt="Löpare i Stockholm Marathon">
+      </div>
+      <div class="image-caption">Foto: Unsplash</div>
+      <p class="article-intro">Det tog bara några veckor. Adidas Stockholm Marathon 2026 är slutsålt, och det långt innan startskottet går den 30 maj. Aldrig tidigare har loppet sålts ut så snabbt.</p>
+      <div class="article-body">
+        <p><a href="https://www.stockholmmarathon.se" target="_blank">Arrangören Marathongruppen</a> beskriver intresset som historiskt. I snitt såldes <strong>2 000 startplatser per vecka</strong> under de veckor anmälan var öppen — ett tempo de aldrig sett tidigare. Totalt är det <strong>25 000 startplatser</strong> som nu är slutsålda.</p>
+        <p><em>"Vi hade räknat med stort intresse, men det här är något helt annat"</em>, sa verksamhetschef Mats Hedenström när beskedet kom.</p>
+        <p>Maratonhelgen i Stockholm pågår <strong>29–31 maj</strong> och inleds med adidas Shake Out Run kvällen innan. På söndagen avslutas helgen med att cirka 7 000 barn springer Stockholm Mini Marathon. Det är med andra ord en hel helg i löpningens tecken — inte bara ett lopp.</p>
+        <p>Missade du platsen? Håll utkik på andrahandsmarknaden. Eller sätt <a href="https://www.stockholmmarathon.se/halvmarathon" target="_blank">Stockholm Halvmarathon den 29 augusti</a> som nästa mål — det finns fortfarande platser, och halvmaran längs Stockholms strandlinje är något alldeles extra.</p>
+        <p>Tränar du mot Stockholm Marathon med din run club? <a href="stockholm-run-club.html">Stockholm Run Club</a> och <a href="yo-running-club.html">Yo Running Club</a> är två av Stockholms mest aktiva grupper just nu.</p>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- KORTARE NYHETER -->
+    <div class="section-label">Fler nyheter</div>
+    <div class="article-list">
+
+      <a href="goteborg-running-club.html" class="article-list-item">
+        <span class="article-tag tag-goteborg">Göteborg</span>
+        <h3>Göteborgsvarvet 2026 — världens största halvmaraton går 23 maj</h3>
+        <p>Loppet är slutsålt men stämningen längs banan är öppen för alla — 200 000 åskådare, 50 musikstationer och en stad som förvandlas till en löparfest. Tränar du mot Göteborgsvarvet 2027? Börja med din lokala run club i Göteborg redan nu.</p>
+        <div class="article-list-meta">Mars 2026</div>
+      </a>
+
+      <a href="stockholm-frontrunners.html" class="article-list-item">
+        <span class="article-tag tag-stockholm">Stockholm</span>
+        <h3>Tjejmilen startar run club — gratis träning varje torsdag</h3>
+        <p>Tjejmilen, Sveriges största löparevenemang för kvinnor, har startat en egen run club inför loppet den 5 september. Träffas varje torsdag vid Sankt Eriksplan i Stockholm. Gratis och öppen för alla tjejer — du behöver inte ens vara anmäld till loppet.</p>
+        <div class="article-list-meta">Februari 2026</div>
+      </a>
+
+      <a href="stockholm.html" class="article-list-item">
+        <span class="article-tag tag-tips">Tips</span>
+        <h3>Hur hittar du rätt run club för dig?</h3>
+        <p>Tempo, dag, plats — eller känsla? Det löpare i Stockholm, Göteborg och Malmö berättar om vad som faktiskt fick dem att fastna för sin klubb överraskar: det handlar nästan aldrig om träningsupplägget.</p>
+        <div class="article-list-meta">Januari 2026</div>
+      </a>
+
+      <a href="malmo-ribersborg-parkrun.html" class="article-list-item">
+        <span class="article-tag tag-malmo">Malmö</span>
+        <h3>Midnattsloppet Stockholm — 15 augusti 2026</h3>
+        <p>En av Sveriges mest ikoniska löparkvällar är tillbaka. Midnattsloppet Stockholm går den 15 augusti med start kl 21:15 för 10 km. Perfekt säsongsmål för dig som just hittat din run club och vill ha något att träna mot i sommar.</p>
+        <div class="article-list-meta">Januari 2026</div>
+      </a>
+
+    </div>
+  </div>
+
+  <footer>
+    <div>
+      <h4>Städer</h4>
+      <a href="stockholm.html">Stockholm</a>
+      <a href="goteborg.html">Göteborg</a>
+      <a href="malmo.html">Malmö</a>
+    </div>
+    <div>
+      <h4>Om sajten</h4>
+      <a href="om-oss.html">Om oss</a>
+      <a href="nyheter.html">Nyheter</a>
+      <a href="kontakt.html">Kontakt</a>
+    </div>
+  </footer>
+
+  <!-- STICKY NYHETSBREV BANNER -->
+  <div class="sticky-newsletter" id="sticky-newsletter">
+    <p><strong>Nyhetsbrevet</strong> — nyheter och nya klubbar direkt i inkorgen</p>
+    <a href="#" class="sticky-newsletter-btn">Prenumerera gratis</a>
+    <button class="sticky-close" onclick="document.getElementById('sticky-newsletter').style.display='none'" aria-label="Stäng">×</button>
+  </div>
+
+  <script>
+    document.querySelector('.nav-toggle').addEventListener('click', function() {
+      document.querySelector('.mobile-menu').classList.toggle('open');
+    });
+  </script>
+
+</body>
+</html>

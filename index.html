@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Swedish Run Clubs — Hitta din run club i Sverige</title>
+  <meta name="description" content="Hitta din run club i Sverige. Vi listar run clubs i Stockholm, Göteborg och Malmö — med beskrivningar, tider och filtreringssystem.">
+  <meta property="og:title" content="Swedish Run Clubs — Hitta din run club i Sverige">
+  <meta property="og:description" content="Hitta din run club i Sverige. Vi listar run clubs i Stockholm, Göteborg och Malmö.">
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Oswald:wght@500;700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'DM Sans', sans-serif; color: #1C2A45; background: #FDFAF9; }
+
+    /* NAV */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.25rem 2rem;
+      background: #FDFAF9;
+      border-bottom: 1px solid #F0E0DC;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .logo {
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: #1C2A45;
+      text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 2rem; }
+    .nav-links a {
+      font-size: 12px;
+      letter-spacing: 0.5px;
+      text-decoration: none;
+      color: #888;
+      text-transform: uppercase;
+      font-weight: 500;
+      transition: color 0.15s;
+    }
+    .nav-links a:hover { color: #1C2A45; }
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+    .nav-toggle span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: #1C2A45;
+      transition: all 0.2s;
+    }
+    .mobile-menu {
+      display: none;
+      flex-direction: column;
+      background: #FDFAF9;
+      border-bottom: 1px solid #F0E0DC;
+      padding: 1rem 2rem;
+      gap: 1rem;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      font-size: 13px;
+      letter-spacing: 1px;
+      text-decoration: none;
+      color: #1C2A45;
+      text-transform: uppercase;
+      font-weight: 500;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid #F0E0DC;
+    }
+    .mobile-menu a:last-child { border-bottom: none; }
+
+    /* HERO */
+    .hero {
+      position: relative;
+      height: 90vh;
+      min-height: 500px;
+      background: #1C2A45 url('hero.jpg') center/cover no-repeat;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 3rem 2rem;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(28,42,69,0.95) 0%, rgba(28,42,69,0.3) 60%, transparent 100%);
+    }
+    .hero-content { position: relative; z-index: 1; max-width: 800px; }
+    .hero-tag {
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #EEAA96;
+      margin-bottom: 1rem;
+      font-weight: 500;
+    }
+    .hero h1 {
+      font-family: 'Archivo Black', sans-serif;
+      font-size: clamp(52px, 8vw, 96px);
+      line-height: 0.95;
+      text-transform: uppercase;
+      color: #FDFAF9;
+      letter-spacing: -1px;
+      margin-bottom: 1.5rem;
+    }
+    .hero-bottom {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+    .hero p {
+      font-size: 15px;
+      color: rgba(255,255,255,0.6);
+      max-width: 380px;
+      line-height: 1.7;
+    }
+    .hero-cta {
+      display: inline-block;
+      background: #D4715E;
+      color: #FDFAF9;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 12px 28px;
+      border-radius: 3px;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: background 0.15s;
+    }
+    .hero-cta:hover { background: #C8604A; }
+
+    /* CITIES */
+    .cities-section { padding: 4rem 2rem; }
+    .section-label {
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #aaa;
+      margin-bottom: 2rem;
+      font-weight: 500;
+    }
+    .cities {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-bottom: 1.25rem;
+    }
+    .city {
+      background: #F7E8E4;
+      border: 1px solid #F0D8D3;
+      border-radius: 16px;
+      padding: 2rem 1.75rem;
+      text-decoration: none;
+      color: #1C2A45;
+      display: block;
+      transition: all 0.2s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .city::after {
+      content: '→';
+      position: absolute;
+      right: 1.75rem;
+      bottom: 2rem;
+      font-size: 20px;
+      color: #D4715E;
+      opacity: 0;
+      transform: translateX(-8px);
+      transition: all 0.2s ease;
+    }
+    .city:hover {
+      border-color: #D4715E;
+      background: #F2DDD9;
+      transform: translateY(-2px);
+    }
+    .city:hover::after { opacity: 1; transform: translateX(0); }
+    .city-number {
+      font-family: 'Archivo Black', sans-serif;
+      font-size: 48px;
+      color: rgba(212, 113, 94, 0.15);
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+    .city-name {
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+      font-size: 24px;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+      letter-spacing: 0.5px;
+    }
+    .city-count { font-size: 12px; color: #D4715E; font-weight: 500; }
+    .cities-hint { font-size: 13px; color: #bbb; }
+
+    /* DIVIDER */
+    .divider { height: 1px; background: #F0E0DC; margin: 0 2rem; }
+
+    /* NEWS */
+    .news-section { padding: 4rem 2rem; }
+    .news-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+    .news-featured {
+      grid-column: 1 / -1;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid #F0E0DC;
+      margin-bottom: 0.5rem;
+    }
+    .news-featured .news-title {
+      font-family: 'Archivo Black', sans-serif;
+      font-size: 22px;
+      text-transform: uppercase;
+      color: #1C2A45;
+      line-height: 1.15;
+      margin-bottom: 0.5rem;
+      letter-spacing: 0.5px;
+    }
+    .news-featured .news-title a { text-decoration: none; color: inherit; }
+    .news-featured .news-title a:hover { color: #D4715E; }
+    .news-item { padding: 1.25rem 0; border-bottom: 1px solid #F0E0DC; }
+    .news-item:last-child { border-bottom: none; }
+    .news-tag {
+      display: inline-block;
+      font-size: 9px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 3px;
+      margin-bottom: 8px;
+    }
+    .tag-stockholm { background: #C6EFCE; color: #276221; }
+    .tag-goteborg { background: #E8EEF5; color: #1C2A45; }
+    .tag-tips { background: #FFEB9C; color: #7d6608; }
+    .tag-trend { background: #F0E6FF; color: #5B2D8E; }
+    .news-item .news-title {
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 1.5;
+      color: #1C2A45;
+      margin-bottom: 4px;
+    }
+    .news-item .news-title a { text-decoration: none; color: inherit; }
+    .news-item .news-title a:hover { color: #D4715E; }
+    .news-date { font-size: 11px; color: #bbb; letter-spacing: 0.5px; }
+    .news-link {
+      display: inline-block;
+      margin-top: 2rem;
+      font-size: 12px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: #D4715E;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .news-link:hover { color: #C8604A; }
+
+    /* NEWSLETTER */
+    .newsletter {
+      background: #1C2A45;
+      color: #FDFAF9;
+      padding: 4rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+    .newsletter-label {
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #EEAA96;
+      margin-bottom: 0.75rem;
+      font-weight: 500;
+    }
+    .newsletter-title {
+      font-family: 'Archivo Black', sans-serif;
+      font-size: 28px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 0.5rem;
+    }
+    .newsletter p {
+      font-size: 14px;
+      color: rgba(255,255,255,0.5);
+      max-width: 380px;
+      line-height: 1.6;
+    }
+    .newsletter-btn {
+      background: #D4715E;
+      color: #FDFAF9;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 14px 32px;
+      border-radius: 3px;
+      border: none;
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      transition: background 0.15s;
+      white-space: nowrap;
+    }
+    .newsletter-btn:hover { background: #C8604A; }
+
+    /* FOOTER */
+    footer {
+      background: #F7E8E4;
+      border-top: 1px solid #F0D8D3;
+      padding: 3rem 2rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      font-size: 13px;
+    }
+    footer h4 {
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #aaa;
+      margin-bottom: 1rem;
+      font-weight: 500;
+    }
+    footer a { display: block; color: #1C2A45; text-decoration: none; margin-bottom: 8px; }
+    footer a:hover { color: #D4715E; }
+
+    /* ── MOBILE ─────────────────────────────── */
+    @media (max-width: 768px) {
+
+      /* Nav */
+      nav { padding: 1rem 1.25rem; }
+      .nav-links { display: none; }
+      .nav-toggle { display: flex; }
+
+      /* Hero */
+      .hero { height: 85vh; padding: 2rem 1.25rem; }
+      .hero h1 { font-size: clamp(44px, 12vw, 72px); }
+      .hero-bottom { flex-direction: column; align-items: flex-start; gap: 1.25rem; }
+      .hero p { font-size: 14px; }
+
+      /* Cities */
+      .cities-section { padding: 2.5rem 1.25rem; }
+      .cities { grid-template-columns: 1fr; gap: 12px; }
+      .city { padding: 1.5rem 1.25rem; }
+      .city-number { font-size: 36px; }
+      .city::after { opacity: 1; transform: translateX(0); }
+
+      /* Divider */
+      .divider { margin: 0 1.25rem; }
+
+      /* News */
+      .news-section { padding: 2.5rem 1.25rem; }
+      .news-grid { grid-template-columns: 1fr; gap: 0; }
+      .news-featured { padding-bottom: 1.5rem; }
+      .news-featured .news-title { font-size: 18px; }
+
+      /* Newsletter */
+      .newsletter { padding: 2.5rem 1.25rem; flex-direction: column; align-items: flex-start; }
+      .newsletter-title { font-size: 22px; }
+      .newsletter-btn { width: 100%; text-align: center; padding: 14px; }
+
+      /* Footer */
+      footer { padding: 2rem 1.25rem; grid-template-columns: 1fr; gap: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="logo">Swedish Run Clubs</a>
+    <div class="nav-links">
+      <a href="stockholm.html">Stockholm</a>
+      <a href="goteborg.html">Göteborg</a>
+      <a href="malmo.html">Malmö</a>
+      <a href="nyheter.html">Nyheter</a>
+      <a href="om-oss.html">Om oss</a>
+    </div>
+    <button class="nav-toggle" onclick="document.querySelector('.mobile-menu').classList.toggle('open')" aria-label="Meny">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="mobile-menu">
+    <a href="stockholm.html">Stockholm</a>
+    <a href="goteborg.html">Göteborg</a>
+    <a href="malmo.html">Malmö</a>
+    <a href="nyheter.html">Nyheter</a>
+    <a href="om-oss.html">Om oss</a>
+  </div>
+
+  <div class="hero">
+    <div class="hero-content">
+      <div class="hero-tag">Hitta din run club</div>
+      <h1>Swedish<br>Run Clubs</h1>
+    </div>
+    <div class="hero-bottom">
+      <p>Alla run clubs i Sverige — sorterade, beskrivna och enkla att hitta. Välj stad och filtrera på nivå, dag och typ.</p>
+      <a href="#cities" class="hero-cta">Välj din stad →</a>
+    </div>
+  </div>
+
+  <div class="cities-section" id="cities">
+    <div class="section-label">Välj stad</div>
+    <div class="cities">
+      <a href="stockholm.html" class="city">
+        <div class="city-number">01</div>
+        <div class="city-name">Stockholm</div>
+        <div class="city-count">15 klubbar listade</div>
+      </a>
+      <a href="goteborg.html" class="city">
+        <div class="city-number">02</div>
+        <div class="city-name">Göteborg</div>
+        <div class="city-count">8 klubbar listade</div>
+      </a>
+      <a href="malmo.html" class="city">
+        <div class="city-number">03</div>
+        <div class="city-name">Malmö</div>
+        <div class="city-count">8 klubbar listade</div>
+      </a>
+    </div>
+    <p class="cities-hint">Filtrera på nivå, typ och träningsdag när du väljer din stad →</p>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="news-section">
+    <div class="section-label">Senaste nytt</div>
+    <div class="news-grid">
+
+      <div class="news-featured">
+        <span class="news-tag tag-trend">Trend</span>
+        <div class="news-title">
+          <a href="tjejer-tar-over-lopsparen.html">Tjejer tar över löpspåren — och gör det tillsammans</a>
+        </div>
+        <div class="news-date">April 2026</div>
+      </div>
+
+      <div class="news-item">
+        <span class="news-tag tag-stockholm">Stockholm</span>
+        <div class="news-title">
+          <a href="stockholm-marathon-2026-slutsalt.html">Stockholm Marathon 2026 slutsålt — på rekordtid</a>
+        </div>
+        <div class="news-date">November 2025</div>
+      </div>
+
+      <div class="news-item">
+        <span class="news-tag tag-goteborg">Göteborg</span>
+        <div class="news-title">
+          <a href="nyheter.html">Göteborgsvarvet 2026 — världens största halvmaraton går 23 maj</a>
+        </div>
+        <div class="news-date">Mars 2026</div>
+      </div>
+
+    </div>
+    <a href="nyheter.html" class="news-link">Alla nyheter →</a>
+  </div>
+
+  <div class="newsletter">
+    <div class="newsletter-text">
+      <div class="newsletter-label">Nyhetsbrevet</div>
+      <div class="newsletter-title">Håll koll på<br>löparvärlden</div>
+      <p>Nyheter, nya klubbar och tips direkt i din inkorg.</p>
+    </div>
+    <button class="newsletter-btn">Prenumerera gratis</button>
+  </div>
+
+  <footer>
+    <div>
+      <h4>Städer</h4>
+      <a href="stockholm.html">Stockholm</a>
+      <a href="goteborg.html">Göteborg</a>
+      <a href="malmo.html">Malmö</a>
+    </div>
+    <div>
+      <h4>Om sajten</h4>
+      <a href="om-oss.html">Om oss</a>
+      <a href="nyheter.html">Nyheter</a>
+      <a href="kontakt.html">Kontakt</a>
+    </div>
+  </footer>
+
+  <script>
+    document.querySelector('.nav-toggle').addEventListener('click', function() {
+      document.querySelector('.mobile-menu').classList.toggle('open');
+    });
+  </script>
+
+</body>
+</html>

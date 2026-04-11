@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sweden Runners Göteborg — Swedish Run Clubs</title>
+  <meta name="description" content="Sweden Runners Göteborg — ledarledda löparpass i Änggårdsbergen varje torsdag kl 18:00. Alla nivåer välkomna. 649 kr/år, täcks av friskvårdsbidrag.">
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Oswald:wght@500;700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'DM Sans', sans-serif; color: #1C2A45; background: #FDFAF9; }
+    nav { display: flex; justify-content: space-between; align-items: center; padding: 1rem 1.5rem; border-bottom: 1px solid #F0E0DC; background: #FDFAF9; position: sticky; top: 0; z-index: 100; }
+    .logo { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 18px; text-transform: uppercase; letter-spacing: 0.5px; color: #1C2A45; text-decoration: none; }
+    .nav-links { display: flex; gap: 1.5rem; font-size: 13px; }
+    .nav-links a { text-decoration: none; color: #888; text-transform: uppercase; font-weight: 500; letter-spacing: 0.5px; transition: color 0.15s; }
+    .nav-links a:hover { color: #1C2A45; }
+    .nav-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+    .nav-toggle span { display: block; width: 22px; height: 2px; background: #1C2A45; }
+    .mobile-menu { display: none; flex-direction: column; background: #FDFAF9; border-bottom: 1px solid #F0E0DC; padding: 1rem 1.5rem; gap: 0; }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a { font-size: 13px; letter-spacing: 1px; text-decoration: none; color: #1C2A45; text-transform: uppercase; font-weight: 500; padding: 0.75rem 0; border-bottom: 1px solid #F0E0DC; }
+    .mobile-menu a:last-child { border-bottom: none; }
+    .hero { background: #1C2A45; padding: 3rem 1.5rem 2.5rem; }
+    .breadcrumb { font-size: 12px; color: rgba(255,255,255,0.4); margin-bottom: 0.75rem; }
+    .breadcrumb a { color: rgba(255,255,255,0.4); text-decoration: none; }
+    .breadcrumb a:hover { color: #EEAA96; }
+    .hero-tag { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #EEAA96; margin-bottom: 0.75rem; }
+    .hero h1 { font-family: 'Archivo Black', sans-serif; font-size: 42px; line-height: 1.05; text-transform: uppercase; color: #FDFAF9; letter-spacing: 2px; margin-bottom: 0.75rem; }
+    .badge { display: inline-block; background: #D4715E; color: #FDFAF9; font-size: 11px; font-weight: 500; padding: 4px 12px; border-radius: 3px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1.25rem; }
+    .hero-meta { display: flex; gap: 2rem; flex-wrap: wrap; }
+    .hero-meta-item { font-size: 13px; color: rgba(255,255,255,0.6); }
+    .hero-meta-item strong { color: #EEAA96; display: block; font-size: 10px; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 2px; font-weight: 500; }
+    .club-image { width: 100%; height: 260px; background: #F0D8D3; overflow: hidden; }
+    .club-image img { width: 100%; height: 100%; object-fit: cover; }
+    .club-image-placeholder { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #aaa; letter-spacing: 1px; text-transform: uppercase; }
+    .info-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin: 2rem 1.5rem; }
+    .info-card { background: #F7E8E4; border: 1px solid #F0D8D3; border-radius: 12px; padding: 1.25rem; }
+    .info-card-label { font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: #D4715E; margin-bottom: 6px; font-weight: 500; }
+    .info-card-value { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 18px; text-transform: uppercase; color: #1C2A45; }
+    .facts { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 1.5rem 2rem; }
+    .fact-tag { font-size: 11px; padding: 4px 12px; border-radius: 10px; font-weight: 500; }
+    .tag-social { background: #E8EEF5; color: #1C2A45; }
+    .tag-niva { background: #FFEB9C; color: #7d6608; }
+    .tag-after { background: #F0E6FF; color: #5B2D8E; }
+    .tag-gratis { background: #C6EFCE; color: #276221; }
+    .tag-paid { background: #FFEB9C; color: #7d6608; }
+    .map-link { display: inline-flex; align-items: center; gap: 6px; background: #F7E8E4; border: 1px solid #F0D8D3; border-radius: 8px; padding: 10px 16px; font-size: 13px; color: #D4715E; text-decoration: none; font-weight: 500; margin: 0 1.5rem 2rem; transition: background 0.15s; }
+    .map-link:hover { background: #F0D8D3; }
+    .divider { height: 1px; background: #F0E0DC; margin: 0 1.5rem 2rem; }
+    .content { padding: 0 1.5rem 2rem; max-width: 680px; }
+    .section-label { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #aaa; margin-bottom: 1rem; display: block; }
+    .content p { font-size: 15px; line-height: 1.8; color: #444; margin-bottom: 1.25rem; }
+    .content strong { color: #1C2A45; }
+    .content em { font-style: italic; color: #555; }
+    .highlight { background: #F7E8E4; border-left: 3px solid #D4715E; border-radius: 0 8px 8px 0; padding: 1rem 1.25rem; margin-bottom: 1.25rem; font-size: 15px; line-height: 1.8; color: #444; font-style: italic; }
+    .includes { display: flex; flex-direction: column; gap: 8px; margin-bottom: 1.5rem; }
+    .include-item { display: flex; align-items: center; gap: 10px; font-size: 14px; color: #444; }
+    .include-item::before { content: '✓'; color: #D4715E; font-weight: 700; flex-shrink: 0; }
+    .cta { background: #1C2A45; padding: 2rem 1.5rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+    .cta-text strong { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 20px; text-transform: uppercase; color: #FDFAF9; display: block; margin-bottom: 4px; }
+    .cta-text p { font-size: 13px; color: rgba(255,255,255,0.6); }
+    .cta-btn { background: #D4715E; color: #FDFAF9; font-size: 13px; font-weight: 500; padding: 10px 22px; border-radius: 4px; text-decoration: none; white-space: nowrap; }
+    .cta-btn:hover { background: #C8604A; }
+    .back { font-size: 13px; color: #D4715E; text-decoration: none; padding: 1.5rem; display: block; margin-bottom: 1rem; }
+    .back:hover { color: #C8604A; }
+    footer { background: #F7E8E4; border-top: 1px solid #F0D8D3; padding: 2rem 1.5rem; display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; font-size: 13px; }
+    footer h4 { font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: #aaa; margin-bottom: 0.75rem; font-weight: 500; }
+    footer a { display: block; color: #1C2A45; text-decoration: none; margin-bottom: 6px; }
+    footer a:hover { color: #D4715E; }
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.25rem; }
+      .nav-links { display: none; }
+      .nav-toggle { display: flex; }
+      .hero { padding: 2rem 1.25rem; }
+      .hero h1 { font-size: 32px; }
+      .hero-meta { gap: 1rem; }
+      .info-grid { margin: 1.5rem 1.25rem; }
+      .facts { margin: 0 1.25rem 1.5rem; }
+      .divider { margin: 0 1.25rem 1.5rem; }
+      .content { padding: 0 1.25rem 1.5rem; }
+      .map-link { margin: 0 1.25rem 1.5rem; }
+      .cta { flex-direction: column; align-items: flex-start; }
+      .cta-btn { width: 100%; text-align: center; }
+      footer { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="logo">Swedish Run Clubs</a>
+    <div class="nav-links">
+      <a href="stockholm.html">Stockholm</a>
+      <a href="goteborg.html">Göteborg</a>
+      <a href="malmo.html">Malmö</a>
+      <a href="nyheter.html">Nyheter</a>
+      <a href="om-oss.html">Om oss</a>
+    </div>
+    <button class="nav-toggle" aria-label="Meny">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="mobile-menu">
+    <a href="stockholm.html">Stockholm</a>
+    <a href="goteborg.html">Göteborg</a>
+    <a href="malmo.html">Malmö</a>
+    <a href="nyheter.html">Nyheter</a>
+    <a href="om-oss.html">Om oss</a>
+  </div>
+
+  <div class="hero">
+    <div class="breadcrumb">
+      <a href="index.html">Start</a> →
+      <a href="goteborg.html">Göteborg</a> →
+      Sweden Runners Göteborg
+    </div>
+    <div class="hero-tag">Löparklubb i Göteborg</div>
+    <h1>Sweden Runners<br>Göteborg</h1>
+    <div class="badge">Alla nivåer</div>
+    <div class="hero-meta">
+      <div class="hero-meta-item">
+        <strong>Mötesplats</strong>
+        Änggårdsbergen
+      </div>
+      <div class="hero-meta-item">
+        <strong>Träningsdag</strong>
+        Torsdag
+      </div>
+      <div class="hero-meta-item">
+        <strong>Tid</strong>
+        18:00–19:00
+      </div>
+      <div class="hero-meta-item">
+        <strong>Kostnad</strong>
+        649 kr/år
+      </div>
+    </div>
+  </div>
+
+  <div class="club-image">
+    <!-- Byt ut mot: <img src="sweden-runners-goteborg.jpg" alt="Sweden Runners Göteborg i Änggårdsbergen"> -->
+    <div class="club-image-placeholder">Foto kommer</div>
+  </div>
+
+  <div class="info-grid">
+    <div class="info-card">
+      <div class="info-card-label">Nivå</div>
+      <div class="info-card-value">Alla nivåer</div>
+    </div>
+    <div class="info-card">
+      <div class="info-card-label">Träningsdag</div>
+      <div class="info-card-value">Tor 18:00</div>
+    </div>
+    <div class="info-card">
+      <div class="info-card-label">Plats</div>
+      <div class="info-card-value">Änggårdsbergen</div>
+    </div>
+    <div class="info-card">
+      <div class="info-card-label">Kostnad</div>
+      <div class="info-card-value">649 kr/år</div>
+    </div>
+  </div>
+
+  <div class="facts">
+    <span class="fact-tag tag-paid">649 kr/år</span>
+    <span class="fact-tag tag-gratis">Provträna gratis</span>
+    <span class="fact-tag tag-niva">Alla nivåer</span>
+    <span class="fact-tag tag-social">Intervall</span>
+    <span class="fact-tag tag-after">Friskvårdsbidrag</span>
+  </div>
+
+  <a href="https://maps.google.com/?q=Änggårdsbergen+Göteborg" target="_blank" class="map-link">
+    📍 Änggårdsbergen, Göteborg — Öppna i kartappen
+  </a>
+
+  <div class="divider"></div>
+
+  <div class="content">
+    <span class="section-label">Om klubben</span>
+    <p>Sweden Runners Göteborg tränar varje <em>torsdag kl 18:00–19:00</em> i <strong>Änggårdsbergen</strong> — ett av Göteborgs vackraste naturområden med stigar och kuperad terräng som passar löpning utmärkt. Ledarna Richard Celius och Jörgen Reppling håller i passen som varierar mellan intervaller, fartlek och tempopass.</p>
+
+    <p>Du behöver <strong>inga förkunskaper</strong> för att vara med. Klarar du av att jogga 500 meter i lugnt tempo är du välkommen — passen är upplagda efter tid så att du springer i din egen takt. Nybörjare och erfarna löpare tränar sida vid sida.</p>
+
+    <div class="highlight">
+      🌲 Änggårdsbergen är ett av Göteborgs mest omtyckta naturområden för löpning — varierade stigar, skog och en känsla av att vara långt från staden trots att du är mitt i den.
+    </div>
+
+    <span class="section-label">Vad ingår i medlemskapet?</span>
+    <div class="includes">
+      <div class="include-item">Ca 45 ledarledda träningspass per år</div>
+      <div class="include-item">Sweden Runners medlemströja</div>
+      <div class="include-item">25% rabatt på Hoka skor</div>
+      <div class="include-item">20% rabatt på Craft och Injinji</div>
+      <div class="include-item">Täcks av friskvårdsbidrag</div>
+    </div>
+
+    <p>Medlemskapet kostar <strong>649 kr per år</strong> och täcks ofta av friskvårdsbidraget. Du är alltid välkommen att provträna ett pass helt gratis innan du bestämmer dig.</p>
+  </div>
+
+  <div class="cta">
+    <div class="cta-text">
+      <strong>Provträna helt gratis!</strong>
+      <p>Anmäl dig till ett provpass på Sweden Runners hemsida</p>
+    </div>
+    <a href="https://swedenrunners.se/pages/provtrana" class="cta-btn" target="_blank">Provträna gratis →</a>
+  </div>
+
+  <a href="goteborg.html" class="back">← Tillbaka till Göteborg</a>
+
+  <footer>
+    <div>
+      <h4>Städer</h4>
+      <a href="stockholm.html">Stockholm</a>
+      <a href="goteborg.html">Göteborg</a>
+      <a href="malmo.html">Malmö</a>
+    </div>
+    <div>
+      <h4>Om sajten</h4>
+      <a href="om-oss.html">Om oss</a>
+      <a href="nyheter.html">Nyheter</a>
+      <a href="kontakt.html">Kontakt</a>
+    </div>
+  </footer>
+
+  <script>
+    document.querySelector('.nav-toggle').addEventListener('click', function() {
+      document.querySelector('.mobile-menu').classList.toggle('open');
+    });
+  </script>
+
+</body>
+</html>
