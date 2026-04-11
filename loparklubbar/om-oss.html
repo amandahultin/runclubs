@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Om oss — Swedish Run Clubs</title>
+  <meta name="description" content="Swedish Run Clubs är sajten jag saknade när jag skulle börja springa igen efter att ha blivit mamma. Byggt av Amanda Hultin, marknadsföringskonsult inom hälsa och livsstil.">
+  <meta property="og:title" content="Om oss — Swedish Run Clubs">
+  <meta property="og:description" content="Lär känna personen bakom Swedish Run Clubs — och varför sajten finns.">
+  <meta property="og:type" content="website">
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Oswald:wght@500;700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'DM Sans', sans-serif; color: #1C2A45; background: #FDFAF9; }
+
+    /* NAV */
+    nav { display: flex; justify-content: space-between; align-items: center; padding: 1rem 1.5rem; border-bottom: 1px solid #F0E0DC; background: #FDFAF9; position: sticky; top: 0; z-index: 100; }
+    .logo { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 18px; text-transform: uppercase; letter-spacing: 0.5px; color: #1C2A45; text-decoration: none; }
+    .nav-links { display: flex; gap: 1.5rem; font-size: 13px; }
+    .nav-links a { text-decoration: none; color: #888; text-transform: uppercase; font-weight: 500; letter-spacing: 0.5px; transition: color 0.15s; }
+    .nav-links a:hover { color: #1C2A45; }
+    .nav-links a.active { color: #D4715E; }
+    .nav-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+    .nav-toggle span { display: block; width: 22px; height: 2px; background: #1C2A45; }
+    .mobile-menu { display: none; flex-direction: column; background: #FDFAF9; border-bottom: 1px solid #F0E0DC; padding: 1rem 1.5rem; gap: 0; }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a { font-size: 13px; letter-spacing: 1px; text-decoration: none; color: #1C2A45; text-transform: uppercase; font-weight: 500; padding: 0.75rem 0; border-bottom: 1px solid #F0E0DC; }
+    .mobile-menu a:last-child { border-bottom: none; }
+
+    /* HERO */
+    .hero { background: #1C2A45; padding: 3rem 1.5rem 2.5rem; }
+    .hero-tag { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #EEAA96; margin-bottom: 0.75rem; }
+    .hero h1 { font-family: 'Archivo Black', sans-serif; font-size: 48px; line-height: 1; text-transform: uppercase; color: #FDFAF9; letter-spacing: 2px; }
+    .hero p { font-size: 15px; color: rgba(255,255,255,0.6); max-width: 480px; line-height: 1.7; margin-top: 0.75rem; }
+
+    /* CONTENT */
+    .content { padding: 2.5rem 1.5rem; max-width: 680px; }
+    .content p { font-size: 15px; line-height: 1.85; color: #444; margin-bottom: 1.25rem; }
+    .content p a { color: #D4715E; text-decoration: underline; text-underline-offset: 2px; }
+    .content strong { color: #1C2A45; }
+    .content em { font-style: italic; color: #555; }
+    .section-label { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #aaa; margin-bottom: 1rem; margin-top: 2rem; display: block; }
+
+    /* PROFILE */
+    .profile { display: flex; gap: 1.5rem; align-items: flex-start; background: #F7E8E4; border: 1px solid #F0D8D3; border-radius: 16px; padding: 1.5rem; margin: 2rem 0; }
+    .profile-image { width: 80px; height: 80px; border-radius: 50%; background: #F0D8D3; flex-shrink: 0; overflow: hidden; }
+    .profile-image img { width: 100%; height: 100%; object-fit: cover; }
+    .profile-text h3 { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 18px; text-transform: uppercase; color: #1C2A45; margin-bottom: 4px; }
+    .profile-text p { font-size: 14px; color: #666; line-height: 1.7; margin-bottom: 0.5rem; }
+    .profile-text a { color: #D4715E; text-decoration: none; font-size: 13px; font-weight: 500; }
+
+    /* HIGHLIGHT */
+    .highlight { background: #F7E8E4; border-left: 3px solid #D4715E; border-radius: 0 8px 8px 0; padding: 1rem 1.25rem; margin: 1.5rem 0; font-size: 15px; line-height: 1.8; color: #444; font-style: italic; }
+
+    /* VALUES */
+    .values { display: flex; flex-direction: column; gap: 12px; margin: 1.5rem 0 2rem; }
+    .value-item { border-left: 3px solid #D4715E; padding: 0.75rem 1rem; background: #F7E8E4; border-radius: 0 8px 8px 0; }
+    .value-title { font-weight: 600; font-size: 14px; color: #1C2A45; margin-bottom: 3px; }
+    .value-desc { font-size: 13px; color: #666; line-height: 1.6; }
+
+    /* NEWSLETTER BOX */
+    .newsletter-box { background: #F7E8E4; border: 1px solid #F0D8D3; border-radius: 16px; padding: 1.75rem; margin: 2rem 0; }
+    .newsletter-box h3 { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 20px; text-transform: uppercase; color: #1C2A45; margin-bottom: 0.5rem; }
+    .newsletter-box p { font-size: 14px; color: #666; line-height: 1.7; margin-bottom: 1.25rem; }
+    .newsletter-form { display: flex; gap: 8px; flex-wrap: wrap; }
+    .newsletter-input { flex: 1; min-width: 200px; padding: 10px 14px; border: 1px solid #F0D8D3; border-radius: 4px; font-size: 13px; font-family: 'DM Sans', sans-serif; color: #1C2A45; background: #FDFAF9; outline: none; }
+    .newsletter-input:focus { border-color: #D4715E; }
+    .newsletter-btn { background: #D4715E; color: #FDFAF9; font-size: 13px; font-weight: 500; padding: 10px 22px; border-radius: 4px; border: none; cursor: pointer; font-family: 'DM Sans', sans-serif; white-space: nowrap; transition: background 0.15s; }
+    .newsletter-btn:hover { background: #C8604A; }
+
+    /* CTA BOX */
+    .cta-box { background: #1C2A45; border-radius: 16px; padding: 2rem; margin: 2rem 0; }
+    .cta-box h3 { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 20px; text-transform: uppercase; color: #FDFAF9; margin-bottom: 0.75rem; }
+    .cta-box p { font-size: 14px; color: rgba(255,255,255,0.6); line-height: 1.7; margin-bottom: 1.25rem; }
+    .cta-btn { display: inline-block; background: #D4715E; color: #FDFAF9; font-size: 13px; font-weight: 500; padding: 10px 22px; border-radius: 4px; text-decoration: none; }
+    .cta-btn:hover { background: #C8604A; }
+
+    /* STICKY NEWSLETTER BANNER */
+    .sticky-newsletter { position: fixed; bottom: 0; left: 0; right: 0; background: #1C2A45; padding: 0.875rem 1.5rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; z-index: 200; border-top: 1px solid rgba(255,255,255,0.1); flex-wrap: wrap; }
+    .sticky-newsletter p { font-size: 13px; color: rgba(255,255,255,0.7); }
+    .sticky-newsletter strong { color: #EEAA96; }
+    .sticky-newsletter-btn { background: #D4715E; color: #FDFAF9; font-size: 12px; font-weight: 500; padding: 8px 18px; border-radius: 3px; text-decoration: none; white-space: nowrap; transition: background 0.15s; }
+    .sticky-newsletter-btn:hover { background: #C8604A; }
+    .sticky-close { background: none; border: none; color: rgba(255,255,255,0.4); font-size: 18px; cursor: pointer; padding: 0 4px; line-height: 1; flex-shrink: 0; }
+    .sticky-close:hover { color: #FDFAF9; }
+
+    /* FOOTER */
+    footer { background: #F7E8E4; border-top: 1px solid #F0D8D3; padding: 2rem 1.5rem 5rem; display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; font-size: 13px; }
+    footer h4 { font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: #aaa; margin-bottom: 0.75rem; font-weight: 500; }
+    footer a { display: block; color: #1C2A45; text-decoration: none; margin-bottom: 6px; }
+    footer a:hover { color: #D4715E; }
+
+    /* MOBILE */
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.25rem; }
+      .nav-links { display: none; }
+      .nav-toggle { display: flex; }
+      .hero { padding: 2rem 1.25rem; }
+      .hero h1 { font-size: 36px; }
+      .content { padding: 2rem 1.25rem; }
+      .profile { flex-direction: column; align-items: center; text-align: center; }
+      .profile-text a { display: block; margin-top: 0.25rem; }
+      .newsletter-form { flex-direction: column; }
+      .newsletter-input { min-width: unset; width: 100%; }
+      .newsletter-btn { width: 100%; text-align: center; }
+      .sticky-newsletter { padding: 0.75rem 1.25rem; }
+      footer { grid-template-columns: 1fr; padding-bottom: 5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="logo">Swedish Run Clubs</a>
+    <div class="nav-links">
+      <a href="stockholm.html">Stockholm</a>
+      <a href="goteborg.html">Göteborg</a>
+      <a href="malmo.html">Malmö</a>
+      <a href="nyheter.html">Nyheter</a>
+      <a href="om-oss.html" class="active">Om oss</a>
+    </div>
+    <button class="nav-toggle" aria-label="Meny">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="mobile-menu">
+    <a href="stockholm.html">Stockholm</a>
+    <a href="goteborg.html">Göteborg</a>
+    <a href="malmo.html">Malmö</a>
+    <a href="nyheter.html">Nyheter</a>
+    <a href="om-oss.html">Om oss</a>
+  </div>
+
+  <div class="hero">
+    <div class="hero-tag">Om Swedish Run Clubs</div>
+    <h1>Alla Sveriges<br>run clubs —<br>på ett ställe</h1>
+    <p>Swedish Run Clubs är sajten jag saknade när jag skulle börja springa igen efter att ha blivit mamma. Jag byggde helt enkelt det verktyg jag själv hade velat ha.</p>
+  </div>
+
+  <div class="content">
+
+    <span class="section-label">Bakgrunden</span>
+    <p>Run clubs är ett av de <strong>snabbast växande fenomenen</strong> i den svenska träningsvärlden just nu. Ändå är det förvånansvärt svårt att hitta en plats där alla klubbar finns samlade. En Google-sökning ger spretiga resultat och Instagram kräver att du redan vet vad du letar efter.</p>
+
+    <span class="section-label">Vad sajten gör</span>
+    <p>Swedish Run Clubs är en <strong>oberoende katalog</strong> över run clubs i Sverige. Här hittar du klubbar i <a href="stockholm.html">Stockholm</a>, <a href="goteborg.html">Göteborg</a> och <a href="malmo.html">Malmö</a> — med beskrivningar, tider och platser. Det finns också ett filtreringssystem som gör att du kan hitta rätt klubb baserat på nivå, typ av löpning och vilken dag som passar dig.</p>
+
+    <p>Sajten är inte kopplad till någon klubb och säljer inga startplatser. <strong>Sajten är oberoende och finansieras genom nyhetsbrev och samarbeten med aktörer vi tror på.</strong> Målet är att fler löpare ska hitta sin gemenskap — oavsett om du springer din första kilometer eller laddar mot nästa maraton.</p>
+
+    <span class="section-label">Personen bakom</span>
+
+    <div class="profile">
+      <div class="profile-image">
+        <img src="amanda-charlie.jpeg" alt="Amanda Hultin och Charlie">
+      </div>
+      <div class="profile-text">
+        <h3>Amanda Hultin</h3>
+        <p>Löpare, mamma och marknadsföringskonsult med bakgrund inom journalistik och reklam.</p>
+        <a href="https://amandahultin.se" target="_blank">amandahultin.se →</a>
+      </div>
+    </div>
+
+    <p>Löpning har funnits med i flera av de mest livsomvälvande ögonblicken i mitt liv. Det var efter ett maraton i Paris — <em>42 kilometer genom världens kanske vackraste stad</em> — som min sambo friade till mig. Några månader senare blev jag gravid med vår dotter Charlie.</p>
+
+    <p>Efter att ha blivit mamma var det löpningen som fick mig att komma i form igen — och att hitta tillbaka till att vara <strong>mer än bara mamma</strong>. Och det var under föräldraledigheten som jag insåg att det faktiskt går att kombinera mitt jobb med mitt stora intresse för livsstil och hälsa.</p>
+
+    <div class="highlight">
+      Det var när jag försökte hitta en run club som passade min nya vardag som jag insåg att det saknades ett bra sätt att hitta dem. Swedish Run Clubs är mitt svar på det problemet.
+    </div>
+
+    <p>Idag arbetar jag som konsult inom <strong>content strategy och marknadsföring</strong>, framför allt mot företag inom just hälsa och livsstil. Swedish Run Clubs är ett projekt som kombinerar det jag kan med det jag älskar — och ett konkret sätt att visa resultatet av bra innehåll, rätt struktur och kreativa lösningar.</p>
+
+    <span class="section-label">Det här tror jag på</span>
+    <div class="values">
+      <div class="value-item">
+        <div class="value-title">Oberoende</div>
+        <div class="value-desc">Alla klubbar listas oavsett om de betalar eller inte. Ingen kan köpa sig en bättre placering.</div>
+      </div>
+      <div class="value-item">
+        <div class="value-title">Äkthet</div>
+        <div class="value-desc">Klubbarna beskrivs som de faktiskt är — med de detaljer som gör dem unika, inte bara fakta från deras hemsida.</div>
+      </div>
+      <div class="value-item">
+        <div class="value-title">Gemenskap</div>
+        <div class="value-desc">Run clubs handlar om mer än löpning. Rörelse är ett sätt att träffa folk, hitta sammanhang och må bra.</div>
+      </div>
+    </div>
+
+    <!-- NYHETSBREV BOX -->
+    <div class="newsletter-box">
+      <h3>Håll koll på löparvärlden</h3>
+      <p>Nya klubbar, löpartrender och nyheter från Sverige — direkt i din inkorg. Gratis, max ett mail i veckan.</p>
+      <div class="newsletter-form">
+        <input type="email" class="newsletter-input" placeholder="din@email.se">
+        <button class="newsletter-btn">Prenumerera gratis</button>
+      </div>
+    </div>
+
+    <div class="cta-box">
+      <h3>Är du ledare för en run club?</h3>
+      <p>Jag vill gärna lyfta fram din klubb med en egen sida på Swedish Run Clubs — med beskrivning, rätt information och en länk till er Instagram.</p>
+      <a href="kontakt.html" class="cta-btn">Hör av dig →</a>
+    </div>
+
+  </div>
+
+  <footer>
+    <div>
+      <h4>Städer</h4>
+      <a href="stockholm.html">Stockholm</a>
+      <a href="goteborg.html">Göteborg</a>
+      <a href="malmo.html">Malmö</a>
+    </div>
+    <div>
+      <h4>Om sajten</h4>
+      <a href="om-oss.html">Om oss</a>
+      <a href="nyheter.html">Nyheter</a>
+      <a href="kontakt.html">Kontakt</a>
+    </div>
+  </footer>
+
+  <!-- STICKY NYHETSBREV BANNER -->
+  <div class="sticky-newsletter" id="sticky-newsletter">
+    <p><strong>Nyhetsbrevet</strong> — nyheter och nya klubbar direkt i inkorgen</p>
+    <a href="#" class="sticky-newsletter-btn">Prenumerera gratis</a>
+    <button class="sticky-close" onclick="document.getElementById('sticky-newsletter').style.display='none'" aria-label="Stäng">×</button>
+  </div>
+
+  <script>
+    document.querySelector('.nav-toggle').addEventListener('click', function() {
+      document.querySelector('.mobile-menu').classList.toggle('open');
+    });
+  </script>
+
+</body>
+</html>

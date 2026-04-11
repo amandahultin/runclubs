@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stockholm Marathon 2026 slutsålt — Swedish Run Clubs</title>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Oswald:wght@500;700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'DM Sans', sans-serif; color: #1C2A45; background: #FDFAF9; }
+    nav { display: flex; justify-content: space-between; align-items: center; padding: 1rem 1.5rem; border-bottom: 1px solid #F0E0DC; background: #FDFAF9; }
+    .logo { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 18px; text-transform: uppercase; letter-spacing: 0.5px; color: #1C2A45; text-decoration: none; }
+    .nav-links { display: flex; gap: 1.5rem; font-size: 13px; }
+    .nav-links a { text-decoration: none; color: #888; }
+    .nav-links a:hover { color: #1C2A45; }
+    .hero { background: #1C2A45; padding: 3rem 1.5rem 2.5rem; }
+    .breadcrumb { font-size: 12px; color: rgba(255,255,255,0.4); margin-bottom: 0.75rem; }
+    .breadcrumb a { color: rgba(255,255,255,0.4); text-decoration: none; }
+    .breadcrumb a:hover { color: #EEAA96; }
+    .hero-tag { display: inline-block; font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 600; padding: 3px 10px; border-radius: 10px; margin-bottom: 0.75rem; background: rgba(198,239,206,0.2); color: #EEAA96; }
+    .hero h1 { font-family: 'Archivo Black', sans-serif; font-size: 36px; line-height: 1.1; text-transform: uppercase; color: #FDFAF9; letter-spacing: 1px; margin-bottom: 0.75rem; max-width: 560px; }
+    .hero-meta { font-size: 12px; color: rgba(255,255,255,0.4); margin-top: 1rem; }
+    .article-image { width: 100%; height: 260px; background: #F0D8D3; overflow: hidden; }
+    .article-image img { width: 100%; height: 100%; object-fit: cover; }
+    .image-caption { font-size: 12px; color: #aaa; padding: 0.5rem 1.5rem; font-style: italic; }
+    .content { padding: 2rem 1.5rem; max-width: 680px; }
+    .intro { font-size: 17px; line-height: 1.8; color: #333; margin-bottom: 1.5rem; font-weight: 500; }
+    .content p { font-size: 15px; line-height: 1.85; color: #444; margin-bottom: 1.25rem; }
+    .content strong { color: #1C2A45; }
+    .content em { font-style: italic; color: #555; }
+    .content a { color: #D4715E; text-decoration: underline; text-underline-offset: 2px; }
+    .content a:hover { color: #C8604A; }
+    .highlight { background: #F7E8E4; border-left: 3px solid #D4715E; border-radius: 0 8px 8px 0; padding: 1rem 1.25rem; margin: 1.5rem 0; font-size: 15px; line-height: 1.8; color: #444; font-style: italic; }
+    .fact-box { background: #1C2A45; border-radius: 12px; padding: 1.5rem; margin: 1.5rem 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+    .fact { text-align: center; }
+    .fact-value { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 24px; color: #EEAA96; display: block; }
+    .fact-label { font-size: 11px; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 1px; margin-top: 3px; display: block; }
+    .back { font-size: 13px; color: #D4715E; text-decoration: none; padding: 1.5rem; display: block; }
+    .back:hover { color: #C8604A; }
+    .back { font-size: 13px; color: #D4715E; text-decoration: none; padding: 1.5rem; display: block; margin-bottom: 1rem; }
+.related { background: #F7E8E4; border-top: 1px solid #F0D8D3; padding: 2rem 1.5rem 1rem; }
+.related-label { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #aaa; margin-bottom: 1rem; display: block; }
+.related-links { display: flex; flex-direction: column; }
+.related-link { text-decoration: none; color: #1C2A45; font-size: 14px; font-weight: 500; padding: 0.6rem 0; border-bottom: 1px solid #F0D8D3; display: flex; align-items: center; gap: 8px; transition: color 0.15s; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.related-link:last-child { border-bottom: none; }
+.related-link:hover { color: #D4715E; }
+.related-link::before { content: '→'; color: #D4715E; flex-shrink: 0; }
+.related-link::before { content: '→'; color: #D4715E; flex-shrink: 0; }
+.related { background: #F7E8E4; border-top: 1px solid #F0D8D3; padding: 2rem 1.5rem 1rem; margin-bottom: 2rem; }
+    footer { background: #F7E8E4; border-top: 1px solid #F0D8D3; padding: 2rem 1.5rem; display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; font-size: 13px; }
+    footer h4 { font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: #aaa; margin-bottom: 0.75rem; font-weight: 500; }
+    footer a { display: block; color: #1C2A45; text-decoration: none; margin-bottom: 6px; }
+    footer a:hover { color: #D4715E; }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="logo">Swedish Run Clubs</a>
+    <div class="nav-links">
+      <a href="stockholm.html">Stockholm</a>
+      <a href="goteborg.html">Göteborg</a>
+      <a href="malmo.html">Malmö</a>
+      <a href="nyheter.html">Nyheter</a>
+      <a href="om-oss.html">Om oss</a>
+    </div>
+  </nav>
+
+  <div class="hero">
+    <div class="breadcrumb"><a href="index.html">Start</a> → <a href="nyheter.html">Nyheter</a> → Stockholm</div>
+    <div class="hero-tag">Stockholm</div>
+    <h1>Stockholm Marathon 2026 slutsålt — på rekordtid</h1>
+    <div class="hero-meta">November 2025</div>
+  </div>
+
+  <div class="article-image">
+<img src="run-clubs-stockholm-marathon.jpeg" alt="Stockholm Marathon"> 
+  </div>
+  <div class="image-caption">Foto: Unsplash</div>
+
+  <div class="content">
+    <p class="intro">Det tog bara några veckor. Adidas Stockholm Marathon 2026 är slutsålt, och det långt innan startskottet går den 30 maj. Aldrig tidigare har loppet sålts ut så snabbt.</p>
+
+    <div class="fact-box">
+      <div class="fact">
+        <span class="fact-value">25 000</span>
+        <span class="fact-label">Startplatser</span>
+      </div>
+      <div class="fact">
+        <span class="fact-value">2 000</span>
+        <span class="fact-label">Sålda per vecka</span>
+      </div>
+      <div class="fact">
+        <span class="fact-value">30 maj</span>
+        <span class="fact-label">Startdatum</span>
+      </div>
+    </div>
+
+    <p><a href="https://www.stockholmmarathon.se" target="_blank">Arrangören Marathongruppen</a> beskriver intresset som historiskt. I snitt såldes <strong>2 000 startplatser per vecka</strong> under de veckor anmälan var öppen — ett tempo de aldrig sett tidigare. Totalt är det <strong>25 000 startplatser</strong> som nu är slutsålda.</p>
+
+    <p><em>"Vi hade räknat med stort intresse, men det här är något helt annat"</em>, sa verksamhetschef Mats Hedenström när beskedet kom i november 2025.</p>
+
+    <div class="highlight">
+      Stockholm Marathon 2024 sålde slut kvällen innan loppet. 2025 stängde anmälan i februari. 2026 var allt borta inom några veckor efter att anmälan öppnade.
+    </div>
+
+    <p>Maratonhelgen i Stockholm pågår <strong>29–31 maj</strong> och inleds med adidas Shake Out Run kvällen innan. På söndagen avslutas helgen med att cirka 7 000 barn springer Stockholm Mini Marathon. Det är med andra ord en hel helg i löpningens tecken — inte bara ett lopp.</p>
+
+    <p>Missade du platsen? Håll utkik på andrahandsmarknaden. Eller sätt <a href="https://www.stockholmmarathon.se" target="_blank">Stockholm Halvmarathon den 29 augusti</a> som nästa mål — en halvmara längs Stockholms strandlinje är något alldeles extra, och det finns fortfarande platser.</p>
+
+    <p>Tränar du mot Stockholm Marathon med din run club? <a href="stockholm-run-club.html">Stockholm Run Club</a> och <a href="yo-running-club.html">Yo Running Club</a> är två av Stockholms mest aktiva grupper inför säsongens stora lopp.</p>
+  </div>
+
+  <a href="nyheter.html" class="back">← Tillbaka till nyheter</a>
+
+  <div class="related">
+    <span class="related-label">Läs också</span>
+    <div class="related-links">
+      <a href="tjejer-tar-over-lopsparen.html" class="related-link">Tjejer tar över löpspåren — och gör det tillsammans</a>
+      <a href="stockholm-run-club.html" class="related-link">Stockholm Run Club — träna mot årets lopp</a>
+      <a href="yo-running-club.html" class="related-link">Yo Running Club — en av Stockholms mest populära klubbar</a>
+      <a href="stockholm.html" class="related-link">Alla run clubs i Stockholm</a>
+    </div>
+  </div>
+
+  <footer>
+    <div>
+      <h4>Städer</h4>
+      <a href="stockholm.html">Stockholm</a>
+      <a href="goteborg.html">Göteborg</a>
+      <a href="malmo.html">Malmö</a>
+    </div>
+    <div>
+      <h4>Om sajten</h4>
+      <a href="om-oss.html">Om oss</a>
+      <a href="nyheter.html">Nyheter</a>
+      <a href="kontakt.html">Kontakt</a>
+    </div>
+  </footer>
+
+</body>
+</html>

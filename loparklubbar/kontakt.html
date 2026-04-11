@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kontakt — Swedish Run Clubs</title>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Oswald:wght@500;700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'DM Sans', sans-serif; color: #1C2A45; background: #FDFAF9; }
+    nav { display: flex; justify-content: space-between; align-items: center; padding: 1rem 1.5rem; border-bottom: 1px solid #F0E0DC; background: #FDFAF9; }
+    .logo { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 18px; text-transform: uppercase; letter-spacing: 0.5px; color: #1C2A45; text-decoration: none; }
+    .nav-links { display: flex; gap: 1.5rem; font-size: 13px; }
+    .nav-links a { text-decoration: none; color: #888; }
+    .nav-links a:hover { color: #1C2A45; }
+    .nav-links a.active { color: #D4715E; font-weight: 500; }
+    .hero { background: #1C2A45; padding: 3rem 1.5rem 2.5rem; }
+    .breadcrumb { font-size: 12px; color: rgba(255,255,255,0.4); margin-bottom: 0.75rem; }
+    .breadcrumb a { color: rgba(255,255,255,0.4); text-decoration: none; }
+    .breadcrumb a:hover { color: #EEAA96; }
+    .hero-tag { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #EEAA96; margin-bottom: 0.75rem; }
+    .hero h1 { font-family: 'Archivo Black', sans-serif; font-size: 42px; line-height: 1.05; text-transform: uppercase; color: #FDFAF9; letter-spacing: 2px; }
+    .hero p { font-size: 15px; color: rgba(255,255,255,0.6); max-width: 480px; line-height: 1.7; margin-top: 1rem; }
+    .section { padding: 2.5rem 1.5rem; }
+    .section-label { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #aaa; margin-bottom: 1.25rem; }
+    .contact-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-bottom: 2.5rem; }
+    .contact-card { background: #F7E8E4; border: 1px solid #F0D8D3; border-radius: 12px; padding: 1.5rem; }
+    .contact-card-icon { font-size: 20px; margin-bottom: 0.75rem; }
+    .contact-card-title { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 16px; text-transform: uppercase; margin-bottom: 6px; color: #1C2A45; }
+    .contact-card-text { font-size: 13px; color: #666; line-height: 1.6; }
+    .contact-card-link { font-size: 13px; color: #D4715E; text-decoration: none; display: block; margin-top: 6px; }
+    .contact-card-link:hover { color: #C8604A; }
+    .divider { height: 1px; background: #F0E0DC; margin-bottom: 2.5rem; }
+    .form-section { max-width: 580px; }
+    .form-group { margin-bottom: 1.25rem; }
+    .form-label { display: block; font-size: 12px; font-weight: 500; text-transform: uppercase; letter-spacing: 1px; color: #888; margin-bottom: 6px; }
+    .form-input { width: 100%; padding: 10px 14px; border: 1px solid #F0D8D3; border-radius: 8px; font-size: 14px; font-family: 'DM Sans', sans-serif; color: #1C2A45; background: #FDFAF9; }
+    .form-input:focus { outline: none; border-color: #D4715E; }
+    textarea.form-input { height: 140px; resize: vertical; }
+    .form-btn { background: #D4715E; color: #FDFAF9; font-size: 13px; font-weight: 500; padding: 10px 24px; border-radius: 4px; border: none; cursor: pointer; font-family: 'DM Sans', sans-serif; }
+    .form-btn:hover { background: #C8604A; }
+    .form-note { font-size: 12px; color: #aaa; margin-top: 0.75rem; line-height: 1.6; }
+    footer { background: #F7E8E4; border-top: 1px solid #F0D8D3; padding: 2rem 1.5rem; display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; font-size: 13px; }
+    footer h4 { font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: #aaa; margin-bottom: 0.75rem; font-weight: 500; }
+    footer a { display: block; color: #1C2A45; text-decoration: none; margin-bottom: 6px; }
+    footer a:hover { color: #D4715E; }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="logo">Swedish Run Clubs</a>
+    <div class="nav-links">
+      <a href="stockholm.html">Stockholm</a>
+      <a href="goteborg.html">Göteborg</a>
+      <a href="malmo.html">Malmö</a>
+      <a href="nyheter.html">Nyheter</a>
+      <a href="om-oss.html">Om oss</a>
+    </div>
+  </nav>
+
+  <div class="hero">
+    <div class="breadcrumb"><a href="index.html">Start</a> → Kontakt</div>
+    <div class="hero-tag">Hör av dig</div>
+    <h1>Kontakt</h1>
+    <p>Saknas din klubb? Vill du tipsa om nyheter eller samarbeta med oss? Vi hör gärna från dig.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Så når du oss</div>
+    <div class="contact-grid">
+      <div class="contact-card">
+        <div class="contact-card-icon">✉️</div>
+        <div class="contact-card-title">Mail</div>
+        <div class="contact-card-text">Enklaste sättet att nå oss.</div>
+        <a href="mailto:hej@svenskaloparklubbar.se" class="contact-card-link">hej@svenskaloparklubbar.se</a>
+      </div>
+      <div class="contact-card">
+        <div class="contact-card-icon">📍</div>
+        <div class="contact-card-title">Lägg till klubb</div>
+        <div class="contact-card-text">Saknas din klubb i vår katalog? Hör av dig så lägger vi till den.</div>
+        <a href="mailto:hej@svenskaloparklubbar.se?subject=Lägg till klubb" class="contact-card-link">Skicka klubbinfo →</a>
+      </div>
+      <div class="contact-card">
+        <div class="contact-card-icon">📰</div>
+        <div class="contact-card-title">Nyhetstips</div>
+        <div class="contact-card-text">Har du ett tips på något vi borde skriva om?</div>
+        <a href="mailto:hej@svenskaloparklubbar.se?subject=Nyhetstips" class="contact-card-link">Skicka tips →</a>
+      </div>
+      <div class="contact-card">
+        <div class="contact-card-icon">🤝</div>
+        <div class="contact-card-title">Samarbete</div>
+        <div class="contact-card-text">Intresserad av att synas i vårt nyhetsbrev eller på sajten?</div>
+        <a href="mailto:hej@svenskaloparklubbar.se?subject=Samarbete" class="contact-card-link">Hör av dig →</a>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="section-label">Skicka ett meddelande</div>
+    <div class="form-section">
+      <div class="form-group">
+        <label class="form-label">Namn</label>
+        <input type="text" class="form-input" placeholder="Ditt namn">
+      </div>
+      <div class="form-group">
+        <label class="form-label">E-post</label>
+        <input type="email" class="form-input" placeholder="din@epost.se">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Ämne</label>
+        <input type="text" class="form-input" placeholder="Vad gäller det?">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Meddelande</label>
+        <textarea class="form-input" placeholder="Skriv ditt meddelande här..."></textarea>
+      </div>
+      <button class="form-btn">Skicka meddelande →</button>
+      <p class="form-note">Vi svarar vanligtvis inom 1–2 arbetsdagar.</p>
+    </div>
+  </div>
+
+  <footer>
+    <div>
+      <h4>Städer</h4>
+      <a href="stockholm.html">Stockholm</a>
+      <a href="goteborg.html">Göteborg</a>
+      <a href="malmo.html">Malmö</a>
+    </div>
+    <div>
+      <h4>Om sajten</h4>
+      <a href="om-oss.html">Om oss</a>
+      <a href="nyheter.html">Nyheter</a>
+      <a href="kontakt.html">Kontakt</a>
+    </div>
+  </footer>
+
+</body>
+</html>
