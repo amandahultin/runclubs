@@ -11,83 +11,218 @@
   <meta property="og:url" content="https://amandahultin.github.io/runclubs/goteborg.html">
   <meta property="og:image" content="https://amandahultin.github.io/runclubs/goteborg-run-clubs.jpeg">
   <link rel="canonical" href="https://amandahultin.github.io/runclubs/goteborg.html">
-  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Oswald:wght@500;700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Oswald:wght@500;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'DM Sans', sans-serif; color: #1C2A45; background: #FDFAF9; }
-    nav { display: flex; justify-content: space-between; align-items: center; padding: 1rem 1.5rem; border-bottom: 1px solid #F0E0DC; background: #FDFAF9; position: sticky; top: 0; z-index: 100; }
-    .logo { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 18px; text-transform: uppercase; letter-spacing: 0.5px; color: #1C2A45; text-decoration: none; }
-    .nav-links { display: flex; gap: 1.5rem; font-size: 13px; }
-    .nav-links a { text-decoration: none; color: #888; text-transform: uppercase; font-weight: 500; letter-spacing: 0.5px; transition: color 0.15s; }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; color: #1C2A45; background: #FDFAF9; -webkit-font-smoothing: antialiased; }
+
+    /* ── SKIP LINK ─────────────────────── */
+    .skip-link { position: absolute; top: -100%; left: 1rem; background: #D4715E; color: #fff; padding: 8px 16px; border-radius: 0 0 6px 6px; font-size: 13px; font-weight: 500; z-index: 1000; text-decoration: none; }
+    .skip-link:focus { top: 0; }
+
+    /* ── NAV ────────────────────────────── */
+    nav {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.25rem 2rem;
+      background: rgba(253,250,249,0.92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid #F0E0DC;
+      position: sticky; top: 0; z-index: 100;
+    }
+    .logo { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 16px; text-transform: uppercase; letter-spacing: 2px; color: #1C2A45; text-decoration: none; }
+    .nav-links { display: flex; gap: 2rem; }
+    .nav-links a {
+      font-size: 12px; letter-spacing: 0.5px; text-decoration: none;
+      color: #888; text-transform: uppercase; font-weight: 500;
+      transition: color 0.2s; position: relative;
+    }
+    .nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1.5px; background: #D4715E; transition: width 0.2s ease; }
     .nav-links a:hover { color: #1C2A45; }
+    .nav-links a:hover::after { width: 100%; }
     .nav-links a.active { color: #D4715E; }
+    .nav-links a.active::after { width: 100%; }
     .nav-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
-    .nav-toggle span { display: block; width: 22px; height: 2px; background: #1C2A45; }
-    .mobile-menu { display: none; flex-direction: column; background: #FDFAF9; border-bottom: 1px solid #F0E0DC; padding: 1rem 1.5rem; gap: 0; }
+    .nav-toggle span { display: block; width: 22px; height: 2px; background: #1C2A45; transition: all 0.3s ease; }
+    .nav-toggle.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .nav-toggle.open span:nth-child(2) { opacity: 0; }
+    .nav-toggle.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+    .mobile-menu { display: none; flex-direction: column; background: rgba(253,250,249,0.98); backdrop-filter: blur(12px); border-bottom: 1px solid #F0E0DC; padding: 1rem 2rem; gap: 0; }
     .mobile-menu.open { display: flex; }
-    .mobile-menu a { font-size: 13px; letter-spacing: 1px; text-decoration: none; color: #1C2A45; text-transform: uppercase; font-weight: 500; padding: 0.75rem 0; border-bottom: 1px solid #F0E0DC; }
+    .mobile-menu a { font-size: 13px; letter-spacing: 1px; text-decoration: none; color: #1C2A45; text-transform: uppercase; font-weight: 500; padding: 0.75rem 0; border-bottom: 1px solid #F0E0DC; transition: color 0.15s; }
     .mobile-menu a:last-child { border-bottom: none; }
-    .hero { background: #1C2A45; padding: 3rem 1.5rem 2.5rem; }
+    .mobile-menu a:hover { color: #D4715E; }
+
+    /* ── HERO ───────────────────────────── */
+    .hero {
+      position: relative; min-height: 320px;
+      background: #1C2A45 url('goteborg-run-clubs.jpeg') center/cover no-repeat;
+      display: flex; flex-direction: column; justify-content: flex-end;
+      padding: 3rem 2rem; overflow: hidden;
+    }
+    .hero::before {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(28,42,69,0.92) 0%, rgba(28,42,69,0.5) 50%, rgba(28,42,69,0.3) 100%);
+    }
+    .hero-content { position: relative; z-index: 1; }
     .breadcrumb { font-size: 12px; color: rgba(255,255,255,0.4); margin-bottom: 0.75rem; }
-    .breadcrumb a { color: rgba(255,255,255,0.4); text-decoration: none; }
+    .breadcrumb a { color: rgba(255,255,255,0.4); text-decoration: none; transition: color 0.15s; }
     .breadcrumb a:hover { color: #EEAA96; }
     .hero-tag { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #EEAA96; margin-bottom: 0.75rem; }
-    .hero h1 { font-family: 'Archivo Black', sans-serif; font-size: 48px; line-height: 1; text-transform: uppercase; color: #FDFAF9; letter-spacing: 2px; }
-    .hero p { font-size: 15px; color: rgba(255,255,255,0.6); max-width: 420px; line-height: 1.7; margin-top: 0.75rem; }
-    .filters { padding: 1.5rem; border-bottom: 1px solid #F0E0DC; background: #FDFAF9; }
-    .filter-group { margin-bottom: 1rem; }
-    .filter-group:last-child { margin-bottom: 0; }
-    .filter-label { font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: #aaa; margin-bottom: 8px; display: block; }
+    .hero h1 { font-family: 'Archivo Black', sans-serif; font-size: clamp(42px, 6vw, 64px); line-height: 1; text-transform: uppercase; color: #FDFAF9; letter-spacing: 2px; }
+    .hero p { font-size: 15px; color: rgba(255,255,255,0.6); max-width: 460px; line-height: 1.7; margin-top: 0.75rem; }
+    .hero-stats {
+      display: flex; gap: 2rem; margin-top: 1.25rem;
+    }
+    .hero-stat { display: flex; flex-direction: column; }
+    .hero-stat-number { font-family: 'Archivo Black', sans-serif; font-size: 28px; color: #EEAA96; }
+    .hero-stat-label { font-size: 11px; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 1px; }
+
+    /* ── FILTERS ────────────────────────── */
+    .filters {
+      padding: 1.5rem 2rem; border-bottom: 1px solid #F0E0DC;
+      background: #FDFAF9; position: sticky; top: 57px; z-index: 90;
+    }
+    .filters-inner {
+      display: flex; gap: 2rem; align-items: flex-start; flex-wrap: wrap;
+    }
+    .filter-group { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+    .filter-label { font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: #aaa; font-weight: 500; white-space: nowrap; }
     .filter-pills { display: flex; flex-wrap: wrap; gap: 6px; }
-    .pill { font-size: 12px; font-weight: 500; padding: 5px 14px; border-radius: 20px; border: 1px solid #F0D8D3; background: #FDFAF9; color: #1C2A45; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: all 0.15s; }
+    .pill {
+      font-size: 12px; font-weight: 500; padding: 6px 14px;
+      border-radius: 20px; border: 1px solid #E8D8D3;
+      background: #FDFAF9; color: #1C2A45; cursor: pointer;
+      font-family: 'DM Sans', sans-serif; transition: all 0.2s;
+    }
     .pill:hover { border-color: #D4715E; color: #D4715E; }
     .pill.active { background: #D4715E; color: #FDFAF9; border-color: #D4715E; }
-    .results-bar { padding: 0.75rem 1.5rem; font-size: 12px; color: #aaa; border-bottom: 1px solid #F0E0DC; }
-    .section { padding: 1.5rem; }
-    .section-label { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #aaa; margin-bottom: 1.25rem; }
+    .clear-filters {
+      font-size: 11px; color: #D4715E; background: none; border: none;
+      cursor: pointer; font-family: 'DM Sans', sans-serif; font-weight: 500;
+      padding: 6px 0; display: none; text-decoration: underline;
+      text-underline-offset: 2px; transition: color 0.15s;
+    }
+    .clear-filters.show { display: inline-block; }
+    .clear-filters:hover { color: #C8604A; }
+
+    /* ── RESULTS BAR ───────────────────── */
+    .results-bar {
+      padding: 0.75rem 2rem; font-size: 12px; color: #aaa;
+      border-bottom: 1px solid #F0E0DC; background: #FDFAF9;
+      display: flex; align-items: center; gap: 6px;
+    }
+    .results-count { font-weight: 600; color: #D4715E; }
+
+    /* ── CARDS ──────────────────────────── */
+    .section { padding: 2rem; }
+    .section-label { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: #aaa; margin-bottom: 1.5rem; font-weight: 500; }
     .clubs-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
-    .club-card { position: relative; background: #F7E8E4; border: 1px solid #F0D8D3; border-radius: 12px; padding: 1.5rem; text-decoration: none; color: #1C2A45; display: block; transition: border-color 0.15s; }
-    .club-card:hover { border-color: #D4715E; }
+    .club-card {
+      position: relative; background: #fff;
+      border: 1px solid #F0E0DC; border-radius: 16px;
+      padding: 1.5rem; text-decoration: none; color: #1C2A45;
+      display: flex; flex-direction: column;
+      transition: all 0.25s ease;
+    }
+    .club-card:hover {
+      border-color: #D4715E;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(28,42,69,0.08);
+    }
     .club-card.hidden { display: none; }
-    .club-card[data-new="true"]::before { content: 'NY KLUBB'; position: absolute; top: -1px; right: 14px; background: #D4715E; color: #FDFAF9; font-size: 9px; font-weight: 700; letter-spacing: 1.5px; padding: 3px 10px; border-radius: 0 0 6px 6px; font-family: 'DM Sans', sans-serif; }
-    .card-tags { display: flex; gap: 4px; flex-wrap: wrap; margin-bottom: 10px; }
-    .card-tag { font-size: 10px; padding: 2px 8px; border-radius: 10px; font-weight: 500; }
+    .club-card[data-new="true"]::before {
+      content: 'NY'; position: absolute; top: 12px; right: 12px;
+      background: #D4715E; color: #FDFAF9;
+      font-size: 9px; font-weight: 700; letter-spacing: 1.5px;
+      padding: 3px 10px; border-radius: 10px; font-family: 'DM Sans', sans-serif;
+    }
+    .card-tags { display: flex; gap: 4px; flex-wrap: wrap; margin-bottom: 12px; }
+    .card-tag { font-size: 10px; padding: 3px 10px; border-radius: 10px; font-weight: 500; }
     .tag-nybörjare { background: #C6EFCE; color: #276221; }
     .tag-mellannivå { background: #FFEB9C; color: #7d6608; }
     .tag-avancerad { background: #FFC7CE; color: #9C0006; }
-    .tag-typ { background: #E8EEF5; color: #1C2A45; }
-    .tag-dag { background: #F7E8E4; color: #D4715E; border: 1px solid #F0D8D3; }
+    .tag-typ { background: #E8EEF5; color: #3a5a8c; }
+    .tag-dag { background: #F7E8E4; color: #D4715E; }
     .tag-special { background: #F0E6FF; color: #5B2D8E; }
-    .card-name { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 20px; text-transform: uppercase; margin-bottom: 4px; }
-    .card-desc { font-size: 13px; color: #666; line-height: 1.5; margin-bottom: 6px; }
-    .card-meta { font-size: 12px; color: #888; line-height: 1.6; }
-    .no-results { display: none; padding: 3rem 1.5rem; text-align: center; color: #aaa; font-size: 14px; }
-    .divider { height: 1px; background: #F0E0DC; margin: 1.5rem 0; }
+    .card-name {
+      font-family: 'Oswald', sans-serif; font-weight: 700;
+      font-size: 22px; text-transform: uppercase;
+      margin-bottom: 6px; letter-spacing: 0.5px;
+    }
+    .card-desc { font-size: 13px; color: #666; line-height: 1.6; margin-bottom: 10px; flex: 1; }
+    .card-meta {
+      font-size: 12px; color: #888; line-height: 1.6;
+      padding-top: 10px; border-top: 1px solid #F0E0DC;
+      display: flex; align-items: center; gap: 4px;
+    }
+    .card-meta svg { color: #D4715E; flex-shrink: 0; }
+    .no-results {
+      display: none; padding: 3rem 2rem; text-align: center;
+      color: #aaa; font-size: 15px;
+    }
+
+    /* ── DIVIDER ────────────────────────── */
+    .divider { height: 1px; background: #F0E0DC; margin: 2rem 0; }
+
+    /* ── LIST ───────────────────────────── */
     .club-list { display: flex; flex-direction: column; }
-    .club-list-item { display: flex; justify-content: space-between; align-items: center; padding: 14px 0; border-bottom: 1px solid #F0E0DC; text-decoration: none; color: #1C2A45; }
+    .club-list-item {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 16px 0; border-bottom: 1px solid #F0E0DC;
+      text-decoration: none; color: #1C2A45;
+      transition: padding-left 0.2s;
+    }
     .club-list-item:last-child { border-bottom: none; }
+    .club-list-item:hover { padding-left: 8px; }
     .club-list-item:hover .club-list-name { color: #D4715E; }
-    .club-list-name { font-size: 15px; font-weight: 500; margin-bottom: 3px; }
+    .club-list-name { font-size: 15px; font-weight: 600; margin-bottom: 3px; transition: color 0.15s; }
     .club-list-meta { font-size: 12px; color: #aaa; }
-    .club-list-arrow { color: #D4715E; font-size: 16px; flex-shrink: 0; margin-left: 1rem; }
-    .club-list-tags { display: flex; gap: 4px; margin-top: 4px; flex-wrap: wrap; }
-    footer { background: #F7E8E4; border-top: 1px solid #F0D8D3; padding: 2rem 1.5rem; display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; font-size: 13px; }
-    footer h4 { font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: #aaa; margin-bottom: 0.75rem; font-weight: 500; }
-    footer a { display: block; color: #1C2A45; text-decoration: none; margin-bottom: 6px; }
+    .club-list-arrow {
+      color: #D4715E; font-size: 16px; flex-shrink: 0; margin-left: 1rem;
+      transition: transform 0.2s;
+    }
+    .club-list-item:hover .club-list-arrow { transform: translateX(4px); }
+    .club-list-tags { display: flex; gap: 4px; margin-top: 6px; flex-wrap: wrap; }
+
+    /* ── FOOTER ─────────────────────────── */
+    footer {
+      background: #F7E8E4; border-top: 1px solid #F0D8D3;
+      padding: 3.5rem 2rem; display: grid;
+      grid-template-columns: 2fr 1fr 1fr; gap: 2rem; font-size: 13px;
+    }
+    .footer-brand .logo { font-size: 14px; letter-spacing: 1.5px; display: block; margin-bottom: 0.75rem; }
+    .footer-brand p { font-size: 13px; color: #888; line-height: 1.6; max-width: 280px; }
+    footer h4 { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #aaa; margin-bottom: 1rem; font-weight: 500; }
+    footer a { display: block; color: #1C2A45; text-decoration: none; margin-bottom: 8px; transition: color 0.15s; }
     footer a:hover { color: #D4715E; }
+    .footer-bottom { grid-column: 1 / -1; padding-top: 1.5rem; border-top: 1px solid #F0D8D3; font-size: 12px; color: #aaa; }
+
+    /* ── FADE IN ────────────────────────── */
+    .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── MOBILE ─────────────────────────── */
     @media (max-width: 768px) {
       nav { padding: 1rem 1.25rem; }
       .nav-links { display: none; }
       .nav-toggle { display: flex; }
-      .hero { padding: 2rem 1.25rem; }
-      .hero h1 { font-size: 36px; }
+      .hero { min-height: 260px; padding: 2rem 1.25rem; }
+      .hero h1 { font-size: 38px; }
+      .hero-stats { gap: 1.5rem; }
+      .hero-stat-number { font-size: 22px; }
+      .filters { padding: 1.25rem; top: 49px; }
+      .filters-inner { gap: 1rem; }
+      .filter-group { width: 100%; }
+      .results-bar { padding: 0.75rem 1.25rem; }
+      .section { padding: 1.5rem 1.25rem; }
       .clubs-grid { grid-template-columns: 1fr; }
-      .filters { padding: 1.25rem; }
-      footer { grid-template-columns: 1fr; }
+      footer { padding: 2rem 1.25rem; grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
+
+  <a href="#main-content" class="skip-link">Hoppa till innehåll</a>
 
   <nav>
     <a href="index.html" class="logo">Swedish Run Clubs</a>
@@ -98,12 +233,12 @@
       <a href="nyheter.html">Nyheter</a>
       <a href="om-oss.html">Om oss</a>
     </div>
-    <button class="nav-toggle" aria-label="Meny">
+    <button class="nav-toggle" aria-label="Öppna meny" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
   </nav>
 
-  <div class="mobile-menu">
+  <div class="mobile-menu" role="navigation" aria-label="Mobilmeny">
     <a href="stockholm.html">Stockholm</a>
     <a href="goteborg.html">Göteborg</a>
     <a href="malmo.html">Malmö</a>
@@ -111,50 +246,70 @@
     <a href="om-oss.html">Om oss</a>
   </div>
 
-  <main>
-  <div class="hero">
-    <div class="breadcrumb"><a href="index.html">Start</a> → Göteborg</div>
-    <div class="hero-tag">Run Clubs i</div>
-    <h1>Göteborg</h1>
-    <p>Här hittar du alla run clubs i Göteborg — välj nivå, typ och dag för att hitta din perfekta klubb.</p>
+  <main id="main-content">
+
+  <header class="hero">
+    <div class="hero-content">
+      <div class="breadcrumb"><a href="index.html">Start</a> → Göteborg</div>
+      <div class="hero-tag">Run Clubs i</div>
+      <h1>Göteborg</h1>
+      <p>Här hittar du alla run clubs i Göteborg — välj nivå, typ och dag för att hitta din perfekta klubb.</p>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="hero-stat-number">8</div>
+          <div class="hero-stat-label">Klubbar</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-number">4</div>
+          <div class="hero-stat-label">Stadsdelar</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-number">5</div>
+          <div class="hero-stat-label">Dagar/vecka</div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="filters" id="filters">
+    <div class="filters-inner">
+      <div class="filter-group">
+        <span class="filter-label">Nivå</span>
+        <div class="filter-pills">
+          <button class="pill" data-filter="niva" data-value="nybörjare">Nybörjare</button>
+          <button class="pill" data-filter="niva" data-value="mellannivå">Mellannivå</button>
+          <button class="pill" data-filter="niva" data-value="avancerad">Avancerad</button>
+        </div>
+      </div>
+      <div class="filter-group">
+        <span class="filter-label">Typ</span>
+        <div class="filter-pills">
+          <button class="pill" data-filter="typ" data-value="väg">Väg</button>
+          <button class="pill" data-filter="typ" data-value="trail">Trail</button>
+          <button class="pill" data-filter="typ" data-value="intervall">Intervall</button>
+          <button class="pill" data-filter="typ" data-value="långpass">Långpass</button>
+          <button class="pill" data-filter="typ" data-value="social">Social</button>
+        </div>
+      </div>
+      <div class="filter-group">
+        <span class="filter-label">Dag</span>
+        <div class="filter-pills">
+          <button class="pill" data-filter="dag" data-value="mån">Mån</button>
+          <button class="pill" data-filter="dag" data-value="tis">Tis</button>
+          <button class="pill" data-filter="dag" data-value="ons">Ons</button>
+          <button class="pill" data-filter="dag" data-value="tor">Tor</button>
+          <button class="pill" data-filter="dag" data-value="fre">Fre</button>
+          <button class="pill" data-filter="dag" data-value="lör">Lör</button>
+          <button class="pill" data-filter="dag" data-value="sön">Sön</button>
+        </div>
+      </div>
+      <button class="clear-filters" id="clear-filters">Rensa filter</button>
+    </div>
   </div>
 
-  <div class="filters">
-    <div class="filter-group">
-      <span class="filter-label">Nivå</span>
-      <div class="filter-pills">
-        <button class="pill" data-filter="niva" data-value="nybörjare">Nybörjare</button>
-        <button class="pill" data-filter="niva" data-value="mellannivå">Mellannivå</button>
-        <button class="pill" data-filter="niva" data-value="avancerad">Avancerad</button>
-      </div>
-    </div>
-    <div class="filter-group">
-      <span class="filter-label">Typ</span>
-      <div class="filter-pills">
-        <button class="pill" data-filter="typ" data-value="väg">Väg</button>
-        <button class="pill" data-filter="typ" data-value="trail">Trail</button>
-        <button class="pill" data-filter="typ" data-value="intervall">Intervall</button>
-        <button class="pill" data-filter="typ" data-value="långpass">Långpass</button>
-        <button class="pill" data-filter="typ" data-value="social">Social</button>
-      </div>
-    </div>
-    <div class="filter-group">
-      <span class="filter-label">Dag</span>
-      <div class="filter-pills">
-        <button class="pill" data-filter="dag" data-value="mån">Mån</button>
-        <button class="pill" data-filter="dag" data-value="tis">Tis</button>
-        <button class="pill" data-filter="dag" data-value="ons">Ons</button>
-        <button class="pill" data-filter="dag" data-value="tor">Tor</button>
-        <button class="pill" data-filter="dag" data-value="fre">Fre</button>
-        <button class="pill" data-filter="dag" data-value="lör">Lör</button>
-        <button class="pill" data-filter="dag" data-value="sön">Sön</button>
-      </div>
-    </div>
-  </div>
+  <div class="results-bar" id="results-bar">Visar <span class="results-count">4</span> utvalda klubbar</div>
 
-  <div class="results-bar" id="results-bar">Visar 4 utvalda klubbar</div>
-
-  <div class="section">
+  <section class="section fade-in">
     <div class="section-label">Utvalda klubbar</div>
     <div class="clubs-grid" id="clubs-grid">
 
@@ -167,7 +322,10 @@
         </div>
         <div class="card-name">Göteborg Running Club</div>
         <div class="card-desc">Grundad 2011 och en av Göteborgs mest välkomnande löparklubbar. Gratis, ingen anmälan — bara dyka upp och springa.</div>
-        <div class="card-meta">Slottsskogen · Tis 18:00</div>
+        <div class="card-meta">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Slottsskogen · Tis 18:00
+        </div>
       </a>
 
       <a href="solvikingarna.html" class="club-card" data-niva="mellannivå avancerad" data-typ="trail intervall långpass" data-dag="mån tor lör">
@@ -179,7 +337,10 @@
         </div>
         <div class="card-name">Solvikingarna</div>
         <div class="card-desc">Etablerad klubb med fokus på trail, intervaller och långpass. Tränar från Skatås — Göteborgs mest klassiska löparområde.</div>
-        <div class="card-meta">Skatås · Mån & Tor 18:00, Lör 10:00</div>
+        <div class="card-meta">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Skatås · Mån & Tor 18:00, Lör 10:00
+        </div>
       </a>
 
       <a href="sweden-runners-goteborg.html" class="club-card" data-niva="nybörjare mellannivå avancerad" data-typ="intervall väg social" data-dag="tor">
@@ -191,7 +352,10 @@
         </div>
         <div class="card-name">Sweden Runners Göteborg</div>
         <div class="card-desc">Ledarledda pass i Änggårdsbergen varje torsdag. Alla nivåer välkomna — du behöver bara klara 500 meter i lugnt tempo.</div>
-        <div class="card-meta">Änggårdsbergen · Tor 18:00–19:00</div>
+        <div class="card-meta">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Änggårdsbergen · Tor 18:00–19:00
+        </div>
       </a>
 
       <a href="sprang-trail-club.html" class="club-card" data-niva="mellannivå avancerad" data-typ="trail långpass" data-dag="mån tor">
@@ -203,7 +367,10 @@
         </div>
         <div class="card-name">Språng Trail Club</div>
         <div class="card-desc">Göteborgsk trailklubb med tre säsonger, hemlig tävling varje säsong och träningsresor till Norge och andra destinationer.</div>
-        <div class="card-meta">Göteborg · Mån & Tor</div>
+        <div class="card-meta">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Göteborg · Mån & Tor
+        </div>
       </a>
 
     </div>
@@ -267,10 +434,15 @@
       </a>
 
     </div>
-  </div>
+  </section>
+
   </main>
 
   <footer>
+    <div class="footer-brand">
+      <span class="logo">Swedish Run Clubs</span>
+      <p>Alla run clubs i Sverige — sorterade, beskrivna och enkla att hitta.</p>
+    </div>
     <div>
       <h4>Städer</h4>
       <a href="stockholm.html">Stockholm</a>
@@ -283,13 +455,32 @@
       <a href="nyheter.html">Nyheter</a>
       <a href="kontakt.html">Kontakt</a>
     </div>
+    <div class="footer-bottom">
+      &copy; 2026 Swedish Run Clubs. Byggd med kärlek av <a href="https://amandahultin.se" style="display:inline; margin:0;">Amanda Hultin</a>.
+    </div>
   </footer>
 
   <script>
-    document.querySelector('.nav-toggle').addEventListener('click', function() {
-      document.querySelector('.mobile-menu').classList.toggle('open');
+    // ── Mobile menu ──
+    const navToggle = document.querySelector('.nav-toggle');
+    const mobileMenu = document.querySelector('.mobile-menu');
+    navToggle.addEventListener('click', function() {
+      const isOpen = mobileMenu.classList.toggle('open');
+      navToggle.classList.toggle('open');
+      navToggle.setAttribute('aria-expanded', isOpen);
+      navToggle.setAttribute('aria-label', isOpen ? 'Stäng meny' : 'Öppna meny');
     });
+
+    // ── Fade in ──
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+    // ── Filters ──
     const active = { niva: null, typ: null, dag: null };
+    const clearBtn = document.getElementById('clear-filters');
+
     document.querySelectorAll('.pill').forEach(pill => {
       pill.addEventListener('click', () => {
         const filter = pill.dataset.filter;
@@ -305,6 +496,13 @@
         filterClubs();
       });
     });
+
+    clearBtn.addEventListener('click', () => {
+      active.niva = null; active.typ = null; active.dag = null;
+      document.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
+      filterClubs();
+    });
+
     function filterClubs() {
       const cards = document.querySelectorAll('.club-card');
       let visible = 0;
@@ -319,8 +517,11 @@
           card.classList.add('hidden');
         }
       });
-      document.getElementById('results-bar').textContent = `Visar ${visible} utvalda klubbar`;
+      document.querySelector('.results-count').textContent = visible;
       document.getElementById('no-results').style.display = visible === 0 ? 'block' : 'none';
+
+      const hasFilters = active.niva || active.typ || active.dag;
+      clearBtn.classList.toggle('show', hasFilters);
     }
   </script>
 
