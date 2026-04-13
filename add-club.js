@@ -1,5 +1,5 @@
 // ── Lägg till klubb — modal + Google Sheets ──
-const CLUB_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyHCKDbZsRqiqsrUzCgwxesovWHo91_0ZK1Y5g3MGFCx4bh8pLzihE4Hm2_pyk-o0Jd/exec';
+const CLUB_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyRh7Kka0LchiWdVKUvKx0pjcElITKeObJ6axvKToMpIRlHvuqbqZZ2bHNv00nAgyoEuQ/exec';
 
 (function () {
   // Inject modal
