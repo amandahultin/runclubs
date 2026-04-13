@@ -4,15 +4,35 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Stockholm Marathon 2026 slutsålt — Swedish Run Clubs</title>
-  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Oswald:wght@500;700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+  <meta name="description" content="Stockholm Marathon 2026 är slutsålt på rekordtid — 25 000 startplatser fyllda. Läs mer om loppet den 30 maj.">
+  <meta property="og:title" content="Stockholm Marathon 2026 slutsålt — Swedish Run Clubs">
+  <meta property="og:description" content="Stockholm Marathon 2026 är slutsålt på rekordtid — 25 000 startplatser fyllda.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://amandahultin.github.io/runclubs/stockholm-marathon-2026-slutsalt.html">
+  <link rel="canonical" href="https://amandahultin.github.io/runclubs/stockholm-marathon-2026-slutsalt.html">
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Oswald:wght@500;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
+    .skip-link { position: absolute; top: -100%; left: 1rem; background: #D4715E; color: #fff; padding: 8px 16px; border-radius: 0 0 6px 6px; font-size: 13px; font-weight: 500; z-index: 1000; text-decoration: none; }
+    .skip-link:focus { top: 0; }
     body { font-family: 'DM Sans', sans-serif; color: #1C2A45; background: #FDFAF9; }
-    nav { display: flex; justify-content: space-between; align-items: center; padding: 1rem 1.5rem; border-bottom: 1px solid #F0E0DC; background: #FDFAF9; }
-    .logo { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 18px; text-transform: uppercase; letter-spacing: 0.5px; color: #1C2A45; text-decoration: none; }
+    nav { display: flex; justify-content: space-between; align-items: center; padding: 1.25rem 2rem; background: rgba(253,250,249,0.92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid #F0E0DC; position: sticky; top: 0; z-index: 100; }
+    .logo { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 16px; text-transform: uppercase; letter-spacing: 2px; color: #1C2A45; text-decoration: none; }
     .nav-links { display: flex; gap: 1.5rem; font-size: 13px; }
-    .nav-links a { text-decoration: none; color: #888; }
+    .nav-links a { text-decoration: none; color: #888; position: relative; }
     .nav-links a:hover { color: #1C2A45; }
+    .nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1.5px; background: #D4715E; transition: width 0.2s ease; }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-links a.active::after { width: 100%; }
+    .nav-toggle { display: none; flex-direction: column; gap: 4px; background: none; border: none; cursor: pointer; padding: 4px; }
+    .nav-toggle span { display: block; width: 20px; height: 2px; background: #1C2A45; border-radius: 2px; transition: transform 0.3s ease, opacity 0.3s ease; }
+    .nav-toggle.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .nav-toggle.open span:nth-child(2) { opacity: 0; }
+    .nav-toggle.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+    .mobile-menu { display: none; flex-direction: column; background: rgba(253,250,249,0.98); backdrop-filter: blur(12px); border-bottom: 1px solid #F0E0DC; padding: 1rem 2rem; gap: 0; }
+    .mobile-menu a { text-decoration: none; color: #1C2A45; font-size: 14px; padding: 0.6rem 0; border-bottom: 1px solid #F0E0DC; }
+    .mobile-menu a:last-child { border-bottom: none; }
+    .mobile-menu a:hover { color: #D4715E; }
     .hero { background: #1C2A45; padding: 3rem 1.5rem 2.5rem; }
     .breadcrumb { font-size: 12px; color: rgba(255,255,255,0.4); margin-bottom: 0.75rem; }
     .breadcrumb a { color: rgba(255,255,255,0.4); text-decoration: none; }
@@ -35,25 +55,35 @@
     .fact { text-align: center; }
     .fact-value { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 24px; color: #EEAA96; display: block; }
     .fact-label { font-size: 11px; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 1px; margin-top: 3px; display: block; }
-    .back { font-size: 13px; color: #D4715E; text-decoration: none; padding: 1.5rem; display: block; }
-    .back:hover { color: #C8604A; }
     .back { font-size: 13px; color: #D4715E; text-decoration: none; padding: 1.5rem; display: block; margin-bottom: 1rem; }
-.related { background: #F7E8E4; border-top: 1px solid #F0D8D3; padding: 2rem 1.5rem 1rem; }
-.related-label { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #aaa; margin-bottom: 1rem; display: block; }
-.related-links { display: flex; flex-direction: column; }
-.related-link { text-decoration: none; color: #1C2A45; font-size: 14px; font-weight: 500; padding: 0.6rem 0; border-bottom: 1px solid #F0D8D3; display: flex; align-items: center; gap: 8px; transition: color 0.15s; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
-.related-link:last-child { border-bottom: none; }
-.related-link:hover { color: #D4715E; }
-.related-link::before { content: '→'; color: #D4715E; flex-shrink: 0; }
-.related-link::before { content: '→'; color: #D4715E; flex-shrink: 0; }
-.related { background: #F7E8E4; border-top: 1px solid #F0D8D3; padding: 2rem 1.5rem 1rem; margin-bottom: 2rem; }
-    footer { background: #F7E8E4; border-top: 1px solid #F0D8D3; padding: 2rem 1.5rem; display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; font-size: 13px; }
-    footer h4 { font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: #aaa; margin-bottom: 0.75rem; font-weight: 500; }
-    footer a { display: block; color: #1C2A45; text-decoration: none; margin-bottom: 6px; }
+    .back:hover { color: #C8604A; }
+    .related { background: #F7E8E4; border-top: 1px solid #F0D8D3; padding: 2rem 1.5rem 1rem; margin-bottom: 2rem; }
+    .related-label { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #aaa; margin-bottom: 1rem; display: block; }
+    .related-links { display: flex; flex-direction: column; }
+    .related-link { text-decoration: none; color: #1C2A45; font-size: 14px; font-weight: 500; padding: 0.6rem 0; border-bottom: 1px solid #F0D8D3; display: flex; align-items: center; gap: 8px; transition: color 0.15s; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+    .related-link:last-child { border-bottom: none; }
+    .related-link:hover { color: #D4715E; }
+    .related-link::before { content: '→'; color: #D4715E; flex-shrink: 0; }
+    footer { background: #F7E8E4; border-top: 1px solid #F0D8D3; padding: 3.5rem 2rem; display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 2rem; font-size: 13px; }
+    .footer-brand .logo { font-size: 14px; letter-spacing: 1.5px; display: block; margin-bottom: 0.75rem; }
+    .footer-brand p { font-size: 13px; color: #888; line-height: 1.6; max-width: 280px; }
+    footer h4 { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #aaa; margin-bottom: 1rem; font-weight: 500; }
+    footer a { display: block; color: #1C2A45; text-decoration: none; margin-bottom: 8px; transition: color 0.15s; }
     footer a:hover { color: #D4715E; }
+    .footer-bottom { grid-column: 1 / -1; padding-top: 1.5rem; border-top: 1px solid #F0D8D3; font-size: 12px; color: #aaa; }
+    .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+    @media (max-width: 700px) {
+      .nav-links { display: none; }
+      .nav-toggle { display: flex; }
+      .mobile-menu.open { display: flex; }
+      footer { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
 <body>
+
+  <a href="#main-content" class="skip-link">Hoppa till innehåll</a>
 
   <nav>
     <a href="index.html" class="logo">Swedish Run Clubs</a>
@@ -64,7 +94,19 @@
       <a href="nyheter.html">Nyheter</a>
       <a href="om-oss.html">Om oss</a>
     </div>
+    <button class="nav-toggle" aria-label="Meny">
+      <span></span><span></span><span></span>
+    </button>
   </nav>
+  <div class="mobile-menu">
+    <a href="stockholm.html">Stockholm</a>
+    <a href="goteborg.html">Göteborg</a>
+    <a href="malmo.html">Malmö</a>
+    <a href="nyheter.html">Nyheter</a>
+    <a href="om-oss.html">Om oss</a>
+  </div>
+
+  <main id="main-content">
 
   <div class="hero">
     <div class="breadcrumb"><a href="index.html">Start</a> → <a href="nyheter.html">Nyheter</a> → Stockholm</div>
@@ -74,7 +116,7 @@
   </div>
 
   <div class="article-image">
-<img src="run-clubs-stockholm-marathon.jpeg" alt="Stockholm Marathon"> 
+<img src="run-clubs-stockholm-marathon.jpeg" alt="Stockholm Marathon">
   </div>
   <div class="image-caption">Foto: Unsplash</div>
 
@@ -123,7 +165,13 @@
     </div>
   </div>
 
+  </main>
+
   <footer>
+    <div class="footer-brand">
+      <a href="index.html" class="logo">Swedish Run Clubs</a>
+      <p>En oberoende guide till Sveriges bästa run clubs. Hitta din gemenskap.</p>
+    </div>
     <div>
       <h4>Städer</h4>
       <a href="stockholm.html">Stockholm</a>
@@ -136,7 +184,22 @@
       <a href="nyheter.html">Nyheter</a>
       <a href="kontakt.html">Kontakt</a>
     </div>
+    <div class="footer-bottom">© 2026 Swedish Run Clubs</div>
   </footer>
+
+  <script>
+    document.querySelector('.nav-toggle').addEventListener('click', function() {
+      this.classList.toggle('open');
+      document.querySelector('.mobile-menu').classList.toggle('open');
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) { entry.target.classList.add('visible'); }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  </script>
 
 </body>
 </html>
