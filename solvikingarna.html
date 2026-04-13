@@ -195,6 +195,49 @@
     .instagram-cta .ig-arrow { margin-left: auto; transition: transform 0.2s; }
     .instagram-cta:hover .ig-arrow { transform: translateX(3px); }
 
+    /* ── RELATED CLUBS ─────────────────── */
+    .related-section {
+      padding: 3.5rem 2rem;
+      background: #F3EBE8;
+      border-top: 1px solid #E8D8D3;
+    }
+    .related-section .section-label {
+      font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
+      color: #888; margin-bottom: 1.5rem; font-weight: 500; display: block;
+    }
+    .related-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+    }
+    .related-card {
+      background: #fff; border: 1px solid #F0E0DC; border-radius: 14px;
+      padding: 1.5rem; text-decoration: none; color: #1C2A45;
+      display: flex; flex-direction: column; gap: 10px;
+      transition: all 0.25s ease;
+    }
+    .related-card:hover {
+      border-color: #D4715E; transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(28,42,69,0.08);
+    }
+    .related-card-name {
+      font-family: 'Oswald', sans-serif; font-weight: 700;
+      font-size: 18px; text-transform: uppercase; letter-spacing: 0.5px;
+    }
+    .related-card-meta {
+      font-size: 12px; color: #888; display: flex; align-items: center; gap: 4px;
+    }
+    .related-card-meta svg { color: #D4715E; flex-shrink: 0; }
+    .related-card-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+    .related-tag {
+      font-size: 10px; font-weight: 500; padding: 3px 10px;
+      border-radius: 10px; background: #F7E8E4; color: #D4715E;
+    }
+    .related-card-arrow {
+      font-size: 12px; color: #D4715E; font-weight: 600;
+      margin-top: auto; display: flex; align-items: center; gap: 4px;
+      transition: gap 0.2s;
+    }
+    .related-card:hover .related-card-arrow { gap: 8px; }
+
     /* ── CTA SECTION ───────────────────── */
     .cta-section {
       background: #1C2A45; padding: 4rem 2rem;
@@ -253,6 +296,8 @@
       .club-content { grid-template-columns: 1fr; }
       .club-about { padding: 2rem 1.25rem; border-right: none; border-bottom: 1px solid #F0E0DC; }
       .club-sidebar { padding: 2rem 1.25rem; }
+      .related-section { padding: 2rem 1.25rem; }
+      .related-grid { grid-template-columns: 1fr; }
       .cta-section { padding: 2.5rem 1.25rem; flex-direction: column; align-items: flex-start; }
       .cta-title { font-size: 22px; }
       .cta-btn { width: 100%; justify-content: center; }
@@ -397,6 +442,52 @@
       </div>
     </aside>
   </div>
+
+  <section class="related-section fade-in">
+    <span class="section-label">Andra liknande löpargrupper i Göteborg</span>
+    <div class="related-grid">
+
+      <a href="goteborg-running-club.html" class="related-card">
+        <div class="related-card-name">Göteborg Running Club</div>
+        <div class="related-card-meta">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Slottsskogen · Tis
+        </div>
+        <div class="related-card-tags">
+          <span class="related-tag">Gratis</span>
+          <span class="related-tag">Alla nivåer</span>
+        </div>
+        <span class="related-card-arrow">Läs mer →</span>
+      </a>
+
+      <a href="sweden-runners-goteborg.html" class="related-card">
+        <div class="related-card-name">Sweden Runners Göteborg</div>
+        <div class="related-card-meta">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Änggårdsbergen · Tor
+        </div>
+        <div class="related-card-tags">
+          <span class="related-tag">Intervall</span>
+          <span class="related-tag">Ledarledda pass</span>
+        </div>
+        <span class="related-card-arrow">Läs mer →</span>
+      </a>
+
+      <a href="sprang-trail-club.html" class="related-card">
+        <div class="related-card-name">Språng Trail Club</div>
+        <div class="related-card-meta">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Göteborg · Mån & Tor
+        </div>
+        <div class="related-card-tags">
+          <span class="related-tag">Trail</span>
+          <span class="related-tag">Terränglöpning</span>
+        </div>
+        <span class="related-card-arrow">Läs mer →</span>
+      </a>
+
+    </div>
+  </section>
 
   <section class="cta-section fade-in">
     <div class="cta-content">
