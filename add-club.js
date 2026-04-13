@@ -105,14 +105,13 @@ const CLUB_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyRh7Kka0LchiWd
   modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
   closeBtn.addEventListener('click', closeModal);
 
-  // Open trigger
-  const trigger = document.getElementById('add-club-link');
-  if (trigger) {
+  // Open triggers — both #add-club-link and all .cta-btn linking to kontakt.html
+  document.querySelectorAll('#add-club-link, a.cta-btn[href="kontakt.html"]').forEach((trigger) => {
     trigger.addEventListener('click', (e) => {
       e.preventDefault();
       openModal();
     });
-  }
+  });
 
   // Submit
   submitBtn.addEventListener('click', async () => {
