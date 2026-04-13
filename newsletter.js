@@ -2,7 +2,7 @@
 // Kopplar alla .newsletter-btn knappar till Google Sheets via Apps Script.
 // Byt ut GOOGLE_SCRIPT_URL nedan mot din egen URL efter deploy.
 
-const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwHZCC2Ac8vCMK4ejGmlBnbWJ5AbL7J6Gx_2rqg1e7FtjuiCq7T7gDH9Po5hIqyEeR6ng/exec';
+const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyHCKDbZsRqiqsrUzCgwxesovWHo91_0ZK1Y5g3MGFCx4bh8pLzihE4Hm2_pyk-o0Jd/exec';
 
 (function () {
   // Inject modal HTML + CSS
@@ -92,12 +92,12 @@ const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwHZCC2Ac8vCM
 
       try {
         if (GOOGLE_SCRIPT_URL !== 'PASTE_YOUR_GOOGLE_SCRIPT_URL_HERE') {
-          await fetch(GOOGLE_SCRIPT_URL, {
-            method: 'POST',
-            mode: 'no-cors',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ email: email, page: window.location.pathname, date: new Date().toISOString() }),
+          const params = new URLSearchParams({
+            email: email,
+            page: window.location.pathname,
+            date: new Date().toISOString(),
           });
+          await fetch(GOOGLE_SCRIPT_URL + '?' + params.toString(), { mode: 'no-cors' });
         }
         input.value = '';
         showModal();
