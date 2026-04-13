@@ -1,0 +1,131 @@
+// ── Newsletter signup handler ──
+// Kopplar alla .newsletter-btn knappar till Google Sheets via Apps Script.
+// Byt ut GOOGLE_SCRIPT_URL nedan mot din egen URL efter deploy.
+
+const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwHZCC2Ac8vCMK4ejGmlBnbWJ5AbL7J6Gx_2rqg1e7FtjuiCq7T7gDH9Po5hIqyEeR6ng/exec';
+
+(function () {
+  // Inject modal HTML + CSS
+  const modalHTML = `
+    <div id="newsletter-modal" style="
+      display:none; position:fixed; inset:0; z-index:9999;
+      background:rgba(28,42,69,0.5); backdrop-filter:blur(4px);
+      align-items:center; justify-content:center;
+    ">
+      <div style="
+        background:#FDFAF9; border-radius:16px; padding:2.5rem 2rem;
+        max-width:380px; width:90%; text-align:center;
+        box-shadow:0 20px 60px rgba(0,0,0,0.2); position:relative;
+        animation: modalIn 0.3s ease;
+      ">
+        <div style="font-size:48px; margin-bottom:1rem;">🎉</div>
+        <h3 style="
+          font-family:'Archivo Black',sans-serif; font-size:22px;
+          text-transform:uppercase; color:#1C2A45; margin-bottom:0.5rem;
+        ">Tack!</h3>
+        <p style="
+          font-family:'DM Sans',sans-serif; font-size:14px;
+          color:#666; line-height:1.7; margin-bottom:1.5rem;
+        ">Du är nu anmäld till nyhetsbrevet. Vi hör av oss snart!</p>
+        <button id="newsletter-modal-close" style="
+          background:#D4715E; color:#FDFAF9; border:none; border-radius:8px;
+          padding:12px 32px; font-family:'DM Sans',sans-serif;
+          font-size:13px; font-weight:600; cursor:pointer;
+          letter-spacing:0.5px; transition:background 0.2s;
+        ">Stäng</button>
+      </div>
+    </div>
+    <style>
+      @keyframes modalIn {
+        from { opacity:0; transform:scale(0.9) translateY(10px); }
+        to { opacity:1; transform:scale(1) translateY(0); }
+      }
+    </style>
+  `;
+  document.body.insertAdjacentHTML('beforeend', modalHTML);
+
+  const modal = document.getElementById('newsletter-modal');
+  const closeBtn = document.getElementById('newsletter-modal-close');
+
+  closeBtn.addEventListener('click', () => {
+    modal.style.display = 'none';
+  });
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) modal.style.display = 'none';
+  });
+
+  function showModal() {
+    modal.style.display = 'flex';
+  }
+
+  function isValidEmail(email) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  }
+
+  // Attach to all newsletter forms on the page
+  document.querySelectorAll('.newsletter-btn').forEach((btn) => {
+    btn.addEventListener('click', async (e) => {
+      e.preventDefault();
+
+      // Find the sibling input (in same .newsletter-form container)
+      const form = btn.closest('.newsletter-form') || btn.parentElement;
+      const input = form.querySelector('.newsletter-input');
+      if (!input) return;
+
+      const email = input.value.trim();
+
+      if (!email || !isValidEmail(email)) {
+        input.style.borderColor = '#e74c3c';
+        input.setAttribute('placeholder', 'Ange en giltig e-postadress');
+        input.focus();
+        setTimeout(() => {
+          input.style.borderColor = '';
+          input.setAttribute('placeholder', 'din@email.se');
+        }, 2000);
+        return;
+      }
+
+      // Disable button while sending
+      const originalText = btn.textContent;
+      btn.textContent = 'Skickar...';
+      btn.disabled = true;
+
+      try {
+        if (GOOGLE_SCRIPT_URL !== 'PASTE_YOUR_GOOGLE_SCRIPT_URL_HERE') {
+          await fetch(GOOGLE_SCRIPT_URL, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email: email, page: window.location.pathname, date: new Date().toISOString() }),
+          });
+        }
+        input.value = '';
+        showModal();
+      } catch (err) {
+        // Show modal anyway — no-cors won't return status
+        input.value = '';
+        showModal();
+      } finally {
+        btn.textContent = originalText;
+        btn.disabled = false;
+      }
+    });
+  });
+
+  // Also handle sticky newsletter button on nyheter.html
+  const stickyBtn = document.querySelector('.sticky-newsletter-btn');
+  if (stickyBtn) {
+    stickyBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      // Scroll to the mid-page newsletter form
+      const midForm = document.querySelector('.newsletter-mid');
+      if (midForm) {
+        midForm.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        setTimeout(() => {
+          const input = midForm.querySelector('.newsletter-input');
+          if (input) input.focus();
+        }, 500);
+      }
+    });
+  }
+})();
