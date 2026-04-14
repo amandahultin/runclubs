@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Amanda Hultin — Hjälper småföretag att synas</title>
+  <meta name="description" content="Jag hjälper mindre företag att synas — från hemsida och storytelling till annonsering och nyhetsbrev. Kontakta mig för en kostnadsfri rådgivning.">
+  <meta property="og:title" content="Amanda Hultin — Hjälper småföretag att synas">
+  <meta property="og:description" content="Jag hjälper mindre företag att synas — från hemsida och storytelling till annonsering och nyhetsbrev.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://amandahultin.se">
+  <link rel="canonical" href="https://amandahultin.se">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "Amanda Hultin",
+    "url": "https://amandahultin.se",
+    "description": "Marknadsföringskonsult som hjälper mindre företag att synas genom hemsidor, storytelling, annonsering och nyhetsbrev.",
+    "founder": {
+      "@type": "Person",
+      "name": "Amanda Hultin",
+      "jobTitle": "Marknadsföringskonsult"
+    },
+    "areaServed": "SE",
+    "serviceType": ["Webbdesign", "Content marketing", "Annonsering", "Nyhetsbrev", "Storytelling"]
+  }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    :root {
+      --gold: #E8A87C;
+      --peach: #F7D1BA;
+      --warm-bg: #FFF8F3;
+      --cream: #FFFAF5;
+      --text: #3D2C2C;
+      --text-light: #7A6565;
+      --accent: #D4815E;
+      --soft-pink: #F5E6DC;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--text);
+      background: var(--warm-bg);
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.7;
+    }
+
+    /* ── NAV ── */
+    nav {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.5rem 2.5rem;
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(255,248,243,0.9);
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      transition: box-shadow 0.3s;
+    }
+    nav.scrolled { box-shadow: 0 2px 30px rgba(212,129,94,0.08); }
+    .nav-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem; font-weight: 600;
+      color: var(--text); text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 2rem; align-items: center; }
+    .nav-links a {
+      font-size: 0.85rem; font-weight: 500; text-decoration: none;
+      color: var(--text-light); transition: color 0.3s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+    .nav-cta {
+      background: var(--accent) !important; color: #fff !important;
+      padding: 0.6rem 1.5rem; border-radius: 50px;
+      font-weight: 500 !important; transition: transform 0.2s, box-shadow 0.2s !important;
+    }
+    .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 4px 15px rgba(212,129,94,0.3); }
+
+    /* Mobile nav */
+    .nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 4px; }
+    .nav-toggle span { display: block; width: 24px; height: 2px; background: var(--text); margin: 5px 0; transition: 0.3s; }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex; align-items: center;
+      padding: 8rem 2.5rem 4rem;
+      position: relative; overflow: hidden;
+    }
+    .hero-blob {
+      position: absolute; top: -10%; right: -5%;
+      width: 55vw; height: 55vw; max-width: 700px; max-height: 700px;
+      background: linear-gradient(135deg, var(--peach) 0%, var(--gold) 50%, #F0C27F 100%);
+      border-radius: 60% 40% 55% 45% / 55% 60% 40% 45%;
+      opacity: 0.25; animation: blobFloat 12s ease-in-out infinite;
+      z-index: 0;
+    }
+    @keyframes blobFloat {
+      0%, 100% { border-radius: 60% 40% 55% 45% / 55% 60% 40% 45%; }
+      33% { border-radius: 45% 55% 40% 60% / 60% 45% 55% 40%; }
+      66% { border-radius: 55% 45% 60% 40% / 40% 55% 45% 60%; }
+    }
+    .hero-content { max-width: 650px; position: relative; z-index: 1; }
+    .hero-label {
+      font-size: 0.8rem; font-weight: 600; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--accent);
+      margin-bottom: 1.5rem;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 700; line-height: 1.15;
+      margin-bottom: 1.5rem;
+    }
+    .hero h1 em {
+      font-style: italic; color: var(--accent);
+    }
+    .hero p {
+      font-size: 1.15rem; color: var(--text-light);
+      max-width: 500px; margin-bottom: 2.5rem; line-height: 1.8;
+    }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: var(--accent); color: #fff;
+      padding: 1rem 2.2rem; border-radius: 50px;
+      text-decoration: none; font-weight: 600; font-size: 1rem;
+      transition: transform 0.2s, box-shadow 0.3s;
+      border: none; cursor: pointer;
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(212,129,94,0.3);
+    }
+    .btn-primary svg { width: 18px; height: 18px; }
+    .btn-secondary {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: transparent; color: var(--text);
+      padding: 1rem 2rem; border-radius: 50px;
+      text-decoration: none; font-weight: 500; font-size: 1rem;
+      border: 1.5px solid var(--soft-pink);
+      transition: border-color 0.3s, background 0.3s;
+      margin-left: 1rem;
+    }
+    .btn-secondary:hover { border-color: var(--accent); background: rgba(212,129,94,0.05); }
+
+    /* ── SECTION DEFAULTS ── */
+    section { padding: 6rem 2.5rem; }
+    .section-label {
+      font-size: 0.75rem; font-weight: 600; letter-spacing: 2.5px;
+      text-transform: uppercase; color: var(--accent);
+      margin-bottom: 1rem;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      font-weight: 700; line-height: 1.2;
+      margin-bottom: 1.5rem;
+    }
+
+    /* ── SERVICES ── */
+    .services { background: var(--cream); }
+    .services-header { text-align: center; max-width: 600px; margin: 0 auto 4rem; }
+    .services-header p { color: var(--text-light); font-size: 1.05rem; margin-top: 1rem; }
+    .services-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2rem; max-width: 1000px; margin: 0 auto;
+    }
+    .service-card {
+      background: #fff; border-radius: 20px;
+      padding: 2.5rem 2rem;
+      transition: transform 0.3s, box-shadow 0.3s;
+      position: relative; overflow: hidden;
+    }
+    .service-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 15px 40px rgba(212,129,94,0.1);
+    }
+    .service-icon {
+      width: 56px; height: 56px; border-radius: 16px;
+      background: linear-gradient(135deg, var(--peach), var(--gold));
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1.5rem; font-size: 1.5rem;
+    }
+    .service-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem; font-weight: 600;
+      margin-bottom: 0.75rem;
+    }
+    .service-card p { color: var(--text-light); font-size: 0.95rem; line-height: 1.7; }
+
+    /* ── ABOUT / STORY ── */
+    .about {
+      display: flex; gap: 4rem; align-items: center;
+      max-width: 1000px; margin: 0 auto;
+    }
+    .about-image {
+      flex: 0 0 380px; height: 480px;
+      border-radius: 30px; overflow: hidden;
+      background: linear-gradient(135deg, var(--peach), var(--gold));
+      display: flex; align-items: center; justify-content: center;
+      position: relative;
+    }
+    .about-image-placeholder {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem; color: #fff; text-align: center;
+      padding: 2rem; opacity: 0.8;
+    }
+    .about-text { flex: 1; }
+    .about-text p { color: var(--text-light); font-size: 1.05rem; margin-bottom: 1.5rem; }
+    .about-signature {
+      font-family: 'Playfair Display', serif;
+      font-style: italic; font-size: 1.5rem;
+      color: var(--accent); margin-top: 1rem;
+    }
+
+    /* ── PROCESS ── */
+    .process { background: var(--cream); }
+    .process-header { text-align: center; max-width: 600px; margin: 0 auto 4rem; }
+    .process-header p { color: var(--text-light); font-size: 1.05rem; margin-top: 1rem; }
+    .process-steps {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2rem; max-width: 900px; margin: 0 auto;
+    }
+    .process-step { text-align: center; padding: 1.5rem; }
+    .step-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem; font-weight: 700;
+      color: var(--peach); margin-bottom: 1rem;
+    }
+    .process-step h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem; font-weight: 600; margin-bottom: 0.75rem;
+    }
+    .process-step p { color: var(--text-light); font-size: 0.9rem; }
+
+    /* ── SHOWCASE ── */
+    .showcase-section { text-align: center; }
+    .showcase-header { max-width: 600px; margin: 0 auto 3rem; }
+    .showcase-header p { color: var(--text-light); font-size: 1.05rem; margin-top: 1rem; }
+    .showcase-card {
+      max-width: 800px; margin: 0 auto;
+      background: linear-gradient(135deg, var(--peach) 0%, var(--gold) 100%);
+      border-radius: 24px; padding: 3rem;
+      color: #fff; text-align: left;
+      display: flex; gap: 2.5rem; align-items: center;
+    }
+    .showcase-card-text { flex: 1; }
+    .showcase-card-text h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem; font-weight: 600; margin-bottom: 1rem;
+    }
+    .showcase-card-text p { opacity: 0.9; line-height: 1.7; margin-bottom: 1.5rem; }
+    .showcase-link {
+      color: #fff; font-weight: 600; text-decoration: none;
+      border-bottom: 2px solid rgba(255,255,255,0.5);
+      padding-bottom: 2px; transition: border-color 0.3s;
+    }
+    .showcase-link:hover { border-color: #fff; }
+    .showcase-mockup {
+      flex: 0 0 280px; height: 200px;
+      background: rgba(255,255,255,0.15); border-radius: 16px;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Playfair Display', serif; font-size: 0.9rem;
+    }
+
+    /* ── CTA ── */
+    .cta-section {
+      text-align: center;
+      background: linear-gradient(180deg, var(--warm-bg) 0%, var(--soft-pink) 100%);
+      padding: 8rem 2.5rem;
+    }
+    .cta-section .section-title { margin-bottom: 1rem; }
+    .cta-section p {
+      color: var(--text-light); font-size: 1.15rem;
+      max-width: 500px; margin: 0 auto 2.5rem;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center; padding: 3rem 2.5rem;
+      border-top: 1px solid var(--soft-pink);
+    }
+    footer p { color: var(--text-light); font-size: 0.85rem; }
+    footer a { color: var(--accent); text-decoration: none; }
+
+    /* ── ANIMATIONS ── */
+    .fade-in {
+      opacity: 0; transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── MOBILE ── */
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      .nav-links.open {
+        display: flex; flex-direction: column;
+        position: absolute; top: 100%; left: 0; right: 0;
+        background: var(--warm-bg); padding: 2rem;
+        gap: 1.5rem; border-bottom: 1px solid var(--soft-pink);
+      }
+      .nav-toggle { display: flex; flex-direction: column; }
+      .hero { padding: 7rem 1.5rem 3rem; min-height: auto; }
+      .hero h1 { font-size: 2.2rem; }
+      section { padding: 4rem 1.5rem; }
+      .about { flex-direction: column; gap: 2rem; }
+      .about-image { flex: none; width: 100%; height: 300px; }
+      .showcase-card { flex-direction: column; text-align: center; }
+      .showcase-mockup { flex: none; width: 100%; height: 150px; }
+      .btn-secondary { margin-left: 0; margin-top: 1rem; display: inline-flex; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav id="navbar">
+    <a href="#" class="nav-name">Amanda Hultin</a>
+    <button class="nav-toggle" aria-label="Meny" onclick="document.querySelector('.nav-links').classList.toggle('open')">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-links">
+      <a href="#tjanster">Tjänster</a>
+      <a href="#om">Om mig</a>
+      <a href="#process">Så jobbar jag</a>
+      <a href="#kontakt" class="nav-cta">Kontakta mig</a>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero" id="start">
+    <div class="hero-blob"></div>
+    <div class="hero-content fade-in">
+      <div class="hero-label">Marknadsföring &amp; storytelling</div>
+      <h1>Jag hjälper ditt företag att <em>synas</em> och växa</h1>
+      <p>Från hemsida och innehåll till annonsering och nyhetsbrev — jag tar hand om helheten så att du kan fokusera på det du gör bäst.</p>
+      <div>
+        <a href="#kontakt" class="btn-primary">
+          Kontakta mig
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+        </a>
+        <a href="#tjanster" class="btn-secondary">Se vad jag erbjuder</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section class="services" id="tjanster">
+    <div class="services-header fade-in">
+      <div class="section-label">Tjänster</div>
+      <h2 class="section-title">Allt du behöver för att synas online</h2>
+      <p>Jag erbjuder helhetslösningar anpassade för mindre företag — oavsett var du befinner dig på din digitala resa.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card fade-in">
+        <div class="service-icon">🌐</div>
+        <h3>Hemsida</h3>
+        <p>En snygg, snabb och mobilanpassad hemsida som speglar ditt varumärke och gör det enkelt för kunder att hitta dig.</p>
+      </div>
+      <div class="service-card fade-in">
+        <div class="service-icon">✍️</div>
+        <h3>Storytelling &amp; innehåll</h3>
+        <p>Engagerande texter och berättelser som fångar din målgrupp och bygger förtroende kring ditt varumärke.</p>
+      </div>
+      <div class="service-card fade-in">
+        <div class="service-icon">📣</div>
+        <h3>Annonsering</h3>
+        <p>Riktade annonser på sociala medier och Google som når rätt personer vid rätt tillfälle.</p>
+      </div>
+      <div class="service-card fade-in">
+        <div class="service-icon">💌</div>
+        <h3>Nyhetsbrev</h3>
+        <p>Nyhetsbrev som bygger relationer med dina kunder och driver trafik tillbaka till din verksamhet.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="om">
+    <div class="about fade-in">
+      <div class="about-image">
+        <div class="about-image-placeholder">Bild på Amanda<br><small>(Lägg till foto här)</small></div>
+      </div>
+      <div class="about-text">
+        <div class="section-label">Om mig</div>
+        <h2 class="section-title">Hej, jag heter Amanda!</h2>
+        <p>Jag är marknadsföringskonsult med bakgrund inom journalistik och reklam. Jag brinner för att hjälpa mindre företag att nå ut till fler — med äkta storytelling och smart digital marknadsföring.</p>
+        <p>Just nu är jag föräldraledig och driver bland annat <strong>Swedish Run Clubs</strong> — ett eget projekt som visar hur bra innehåll, rätt struktur och kreativa lösningar skapar resultat.</p>
+        <div class="about-signature">/ Amanda</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process -->
+  <section class="process" id="process">
+    <div class="process-header fade-in">
+      <div class="section-label">Så jobbar jag</div>
+      <h2 class="section-title">Från idé till resultat</h2>
+      <p>En enkel process där vi tillsammans hittar rätt väg framåt.</p>
+    </div>
+    <div class="process-steps">
+      <div class="process-step fade-in">
+        <div class="step-number">01</div>
+        <h3>Vi pratar</h3>
+        <p>Ett kostnadsfritt samtal där vi går igenom dina behov och mål.</p>
+      </div>
+      <div class="process-step fade-in">
+        <div class="step-number">02</div>
+        <h3>Jag tar fram en plan</h3>
+        <p>Du får ett konkret förslag med tydliga steg och tidsramar.</p>
+      </div>
+      <div class="process-step fade-in">
+        <div class="step-number">03</div>
+        <h3>Vi skapar</h3>
+        <p>Jag bygger, skriver och lanserar — du är med i varje steg.</p>
+      </div>
+      <div class="process-step fade-in">
+        <div class="step-number">04</div>
+        <h3>Du växer</h3>
+        <p>Din digitala närvaro tar fart och du når fler kunder.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Showcase -->
+  <section class="showcase-section">
+    <div class="showcase-header fade-in">
+      <div class="section-label">Case</div>
+      <h2 class="section-title">Swedish Run Clubs</h2>
+      <p>Ett exempel på vad jag kan göra — byggt från grunden med content, SEO och design.</p>
+    </div>
+    <div class="showcase-card fade-in">
+      <div class="showcase-card-text">
+        <h3>Från idé till levande plattform</h3>
+        <p>Swedish Run Clubs är en digital guide till löparklubbar i Sverige som jag skapade under min föräldraledighet. Sajten visar hur genomtänkt innehåll, sökmotoroptimering och kreativ design kan bygga en plattform som engagerar.</p>
+        <a href="https://runclubs.se/" class="showcase-link" target="_blank" rel="noopener">Besök Swedish Run Clubs &rarr;</a>
+      </div>
+      <div class="showcase-mockup">runclubs.se</div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section" id="kontakt">
+    <div class="fade-in">
+      <div class="section-label">Redo att ta nästa steg?</div>
+      <h2 class="section-title">Låt oss prata om ditt företag</h2>
+      <p>Boka ett kostnadsfritt samtal så berättar jag hur jag kan hjälpa dig att synas mer.</p>
+      <a href="mailto:amanda@amandahultin.se" class="btn-primary">
+        Kontakta mig
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2026 Amanda Hultin · <a href="mailto:amanda@amandahultin.se">amanda@amandahultin.se</a></p>
+  </footer>
+
+  <script>
+    // Navbar scroll effect
+    window.addEventListener('scroll', () => {
+      document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    // Fade-in on scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  </script>
+<script
+  id="CookieDeclaration"
+  src="https://consent.cookiebot.com/c82ce3af-bded-4069-9aea-22493d3d7e2d/cd.js"
+  type="text/javascript"
+></script>
+</body>
+</html>
