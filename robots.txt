@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://amandahultin.github.io/runclubs/sitemap.xml
+Sitemap: https://runclubs.se/sitemap.xml
