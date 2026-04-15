@@ -174,29 +174,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       color: #aaa; font-size: 15px;
     }
 
-    /* ── DIVIDER ────────────────────────── */
-    .divider { height: 1px; background: #F0E0DC; margin: 2rem 0; }
-
-    /* ── LIST ───────────────────────────── */
-    .club-list { display: flex; flex-direction: column; }
-    .club-list-item {
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 16px 0; border-bottom: 1px solid #F0E0DC;
-      text-decoration: none; color: #1C2A45;
-      transition: padding-left 0.2s;
-    }
-    .club-list-item:last-child { border-bottom: none; }
-    .club-list-item:hover { padding-left: 8px; }
-    .club-list-item:hover .club-list-name { color: #D4715E; }
-    .club-list-name { font-size: 15px; font-weight: 600; margin-bottom: 3px; transition: color 0.15s; }
-    .club-list-meta { font-size: 12px; color: #aaa; }
-    .club-list-arrow {
-      color: #D4715E; font-size: 16px; flex-shrink: 0; margin-left: 1rem;
-      transition: transform 0.2s;
-    }
-    .club-list-item:hover .club-list-arrow { transform: translateX(4px); }
-    .club-list-tags { display: flex; gap: 4px; margin-top: 6px; flex-wrap: wrap; }
-
     /* ── FEATURED SECTION ─────────────── */
     .featured-section { padding: 3rem 2rem; background: #FDFAF9; }
 
@@ -204,9 +181,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .card-image { width: 100%; height: 160px; object-fit: cover; background: #F3EBE8; display: block; }
     .card-body { padding: 1.25rem 1.5rem 1.5rem; display: flex; flex-direction: column; flex: 1; }
 
-    /* ── ALL CLUBS SECTION ─────────────── */
-    .all-clubs-section { padding: 3rem 2rem; background: #F3EBE8; border-top: 1px solid #E8D8D3; }
-    .all-clubs-section .section-label { color: #888; }
+    .new-badge {
+      display: inline-block; font-size: 9px; font-weight: 700;
+      letter-spacing: 1px; text-transform: uppercase;
+      background: #D4715E; color: #fff;
+      padding: 2px 8px; border-radius: 10px;
+      margin-left: 8px; vertical-align: middle;
+    }
     .new-badge { display: inline-block; font-size: 9px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; background: #D4715E; color: #fff; padding: 2px 8px; border-radius: 10px; margin-left: 8px; vertical-align: middle; }
 
     /* ── CTA SECTION ───────────────────── */
@@ -253,7 +234,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       .section { padding: 1.5rem 1.25rem; }
       .clubs-grid { grid-template-columns: 1fr; }
       .featured-section { padding: 2rem 1.25rem; }
-      .all-clubs-section { padding: 2rem 1.25rem; }
       .cta-section { padding: 2.5rem 1.25rem; flex-direction: column; align-items: flex-start; }
       .cta-title { font-size: 22px; }
       .cta-btn { width: 100%; justify-content: center; }
@@ -301,7 +281,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <p>Här hittar du alla run clubs i Göteborg — välj nivå, typ och dag för att hitta din perfekta klubb.</p>
       <div class="hero-stats">
         <div class="hero-stat">
-          <div class="hero-stat-number">8</div>
+          <div class="hero-stat-number">9</div>
           <div class="hero-stat-label">Klubbar</div>
         </div>
         <div class="hero-stat">
@@ -352,10 +332,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </div>
 
-  <div class="results-bar" id="results-bar">Visar <span class="results-count">4</span> utvalda klubbar</div>
+  <div class="results-bar" id="results-bar">Visar <span class="results-count">9</span> klubbar</div>
 
   <section class="featured-section fade-in">
-    <div class="section-label">Utvalda klubbar</div>
+    <div class="section-label">Alla klubbar i Göteborg</div>
     <div class="clubs-grid" id="clubs-grid">
 
       <a href="goteborg-running-club.html" class="club-card" data-niva="nybörjare mellannivå avancerad" data-typ="väg social långpass" data-dag="tis">
@@ -430,68 +410,96 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
       </a>
 
-    </div>
+      <a href="klubb.html" class="club-card" data-niva="nybörjare mellannivå" data-typ="social väg" data-dag="">
+        <img class="card-image" src="https://images.unsplash.com/photo-1571008887538-b36bb32f4571?w=600&h=320&fit=crop&crop=center" alt="Löpare springer i stadsmiljö" loading="lazy">
+        <div class="card-body">
+          <div class="card-tags">
+            <span class="card-tag tag-nybörjare">Nybörjare</span>
+            <span class="card-tag tag-mellannivå">Mellannivå</span>
+            <span class="card-tag tag-typ">Social</span>
+            <span class="card-tag tag-special">Ny klubb</span>
+          </div>
+          <div class="card-name">Aero Boys Club</div>
+          <div class="card-desc">Ny löparklubb i Göteborg. Mer information kommer snart — håll utkik på deras sociala medier.</div>
+          <div class="card-meta">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Göteborg
+          </div>
+        </div>
+      </a>
 
-    <div class="no-results" id="no-results">Inga klubbar matchar dina filter. Prova att ta bort ett filter.</div>
-  </section>
-
-  <section class="all-clubs-section fade-in">
-    <div class="section-label">Alla klubbar i Göteborg</div>
-    <div class="club-list">
-
-      <a href="klubb.html" class="club-list-item">
-        <div>
-          <div class="club-list-name">Team Nordic Trail Göteborg <span class="new-badge">Ny</span></div>
-          <div class="club-list-meta">Göteborg · Flera dagar i veckan</div>
-          <div class="club-list-tags">
+      <a href="klubb.html" class="club-card" data-niva="mellannivå avancerad" data-typ="trail" data-dag="mån tis ons tor fre lör sön">
+        <img class="card-image" src="https://images.unsplash.com/photo-1702449414685-1ed9316b7253?w=600&h=320&fit=crop&crop=center" alt="Trailrunning i skog" loading="lazy">
+        <div class="card-body">
+          <div class="card-tags">
             <span class="card-tag tag-mellannivå">Mellannivå</span>
             <span class="card-tag tag-avancerad">Avancerad</span>
             <span class="card-tag tag-typ">Trail</span>
           </div>
+          <div class="card-name">Team Nordic Trail Göteborg</div>
+          <div class="card-desc">Trailgemenskap med pass flera dagar i veckan. Stiglöpning i Göteborgsområdets skogar och natur.</div>
+          <div class="card-meta">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Göteborg · Flera dagar i veckan
+          </div>
         </div>
-        <span class="club-list-arrow">→</span>
       </a>
 
-      <a href="klubb.html" class="club-list-item">
-        <div>
-          <div class="club-list-name">Majornas IK <span class="new-badge">Ny</span></div>
-          <div class="club-list-meta">Majorna, Göteborg</div>
-          <div class="club-list-tags">
+      <a href="klubb.html" class="club-card" data-niva="nybörjare mellannivå" data-typ="väg" data-dag="">
+        <img class="card-image" src="https://images.unsplash.com/photo-1486218119243-13883505764c?w=600&h=320&fit=crop&crop=center" alt="Löpare springer på gata" loading="lazy">
+        <div class="card-body">
+          <div class="card-tags">
             <span class="card-tag tag-nybörjare">Nybörjare</span>
             <span class="card-tag tag-mellannivå">Mellannivå</span>
             <span class="card-tag tag-typ">Väg</span>
           </div>
+          <div class="card-name">Majornas IK</div>
+          <div class="card-desc">Lokal idrottsklubb i Majorna med löpargrupp. Välkomnande för alla nivåer i en klassisk Göteborgs-stadsdel.</div>
+          <div class="card-meta">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Majorna, Göteborg
+          </div>
         </div>
-        <span class="club-list-arrow">→</span>
       </a>
 
-      <a href="klubb.html" class="club-list-item">
-        <div>
-          <div class="club-list-name">Runacademy Skatås</div>
-          <div class="club-list-meta">Skatås, Göteborg · Flera dagar i veckan</div>
-          <div class="club-list-tags">
+      <a href="klubb.html" class="club-card" data-niva="nybörjare mellannivå" data-typ="intervall" data-dag="">
+        <img class="card-image" src="https://images.unsplash.com/photo-1714176966782-854fa86faf1a?w=600&h=320&fit=crop&crop=center" alt="Löpare på friidrottsbana" loading="lazy">
+        <div class="card-body">
+          <div class="card-tags">
             <span class="card-tag tag-nybörjare">Nybörjare</span>
             <span class="card-tag tag-mellannivå">Mellannivå</span>
             <span class="card-tag tag-typ">Intervall</span>
           </div>
+          <div class="card-name">Runacademy Skatås</div>
+          <div class="card-desc">Ledarledda löppass från Skatås med fokus på teknik och intervaller. Flera pass i veckan för alla nivåer.</div>
+          <div class="card-meta">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Skatås, Göteborg · Flera dagar i veckan
+          </div>
         </div>
-        <span class="club-list-arrow">→</span>
       </a>
 
-      <a href="klubb.html" class="club-list-item">
-        <div>
-          <div class="club-list-name">Skatås Parkrun</div>
-          <div class="club-list-meta">Skatås, Göteborg · Lör 09:30 · Gratis</div>
-          <div class="club-list-tags">
+      <a href="klubb.html" class="club-card" data-niva="nybörjare" data-typ="social väg" data-dag="lör">
+        <img class="card-image" src="https://images.unsplash.com/photo-1452626038306-9aae5e071dd3?w=600&h=320&fit=crop&crop=center" alt="Löpare i parkrun" loading="lazy">
+        <div class="card-body">
+          <div class="card-tags">
             <span class="card-tag tag-nybörjare">Nybörjare</span>
             <span class="card-tag tag-typ">Social</span>
             <span class="card-tag tag-typ">Väg</span>
+            <span class="card-tag tag-dag">Lördag</span>
+          </div>
+          <div class="card-name">Skatås Parkrun</div>
+          <div class="card-desc">Gratis 5 km varje lördag vid Skatås. Registrera dig en gång — spring för alltid. Öppet för alla.</div>
+          <div class="card-meta">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Skatås, Göteborg · Lör 09:30 · Gratis
           </div>
         </div>
-        <span class="club-list-arrow">→</span>
       </a>
 
     </div>
+
+    <div class="no-results" id="no-results">Inga klubbar matchar dina filter. Prova att ta bort ett filter.</div>
   </section>
 
   <section class="cta-section fade-in">

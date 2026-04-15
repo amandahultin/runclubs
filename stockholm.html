@@ -16,7 +16,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Run Clubs Stockholm — Swedish Run Clubs</title>
-  <meta name="description" content="Hitta din run club i Stockholm. Vi listar 15 run clubs i Stockholm med beskrivningar, tider och filtreringssystem.">
+  <meta name="description" content="Hitta din run club i Stockholm. Vi listar 20 run clubs i Stockholm med beskrivningar, tider och filtreringssystem.">
   <meta property="og:title" content="Run Clubs Stockholm — Swedish Run Clubs">
   <meta property="og:description" content="Hitta din run club i Stockholm. Vi listar alla run clubs med beskrivningar, tider och filtreringssystem.">
   <meta property="og:type" content="website">
@@ -176,13 +176,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       color: #aaa; font-size: 15px;
     }
 
-    /* ── ALL CLUBS SECTION ─────────────── */
-    .all-clubs-section {
-      padding: 3rem 2rem;
-      background: #F3EBE8;
-      border-top: 1px solid #E8D8D3;
-    }
-    .all-clubs-section .section-label { color: #888; }
     .new-badge {
       display: inline-block; font-size: 9px; font-weight: 700;
       letter-spacing: 1px; text-transform: uppercase;
@@ -190,26 +183,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       padding: 2px 8px; border-radius: 10px;
       margin-left: 8px; vertical-align: middle;
     }
-
-    /* ── LIST ───────────────────────────── */
-    .club-list { display: flex; flex-direction: column; }
-    .club-list-item {
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 16px 0; border-bottom: 1px solid #DDD0CB;
-      text-decoration: none; color: #1C2A45;
-      transition: padding-left 0.2s;
-    }
-    .club-list-item:last-child { border-bottom: none; }
-    .club-list-item:hover { padding-left: 8px; }
-    .club-list-item:hover .club-list-name { color: #D4715E; }
-    .club-list-name { font-size: 15px; font-weight: 600; margin-bottom: 3px; transition: color 0.15s; }
-    .club-list-meta { font-size: 12px; color: #999; }
-    .club-list-arrow {
-      color: #D4715E; font-size: 16px; flex-shrink: 0; margin-left: 1rem;
-      transition: transform 0.2s;
-    }
-    .club-list-item:hover .club-list-arrow { transform: translateX(4px); }
-    .club-list-tags { display: flex; gap: 4px; margin-top: 6px; flex-wrap: wrap; }
 
     /* ── CTA SECTION ───────────────────── */
     .cta-section {
@@ -271,7 +244,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       .results-bar { padding: 0.75rem 1.25rem; }
       .featured-section { padding: 2rem 1.25rem; }
       .clubs-grid { grid-template-columns: 1fr; }
-      .all-clubs-section { padding: 2rem 1.25rem; }
       .cta-section { padding: 2.5rem 1.25rem; flex-direction: column; align-items: flex-start; }
       .cta-title { font-size: 22px; }
       .cta-btn { width: 100%; justify-content: center; }
@@ -319,7 +291,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <p>Här hittar du alla run clubs i Stockholm — välj nivå, typ och dag för att hitta din perfekta klubb.</p>
       <div class="hero-stats">
         <div class="hero-stat">
-          <div class="hero-stat-number">15</div>
+          <div class="hero-stat-number">20</div>
           <div class="hero-stat-label">Klubbar</div>
         </div>
         <div class="hero-stat">
@@ -370,10 +342,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </div>
 
-  <div class="results-bar" id="results-bar">Visar <span class="results-count">4</span> utvalda klubbar</div>
+  <div class="results-bar" id="results-bar">Visar <span class="results-count">20</span> klubbar</div>
 
   <section class="featured-section fade-in">
-    <div class="section-label">Utvalda klubbar</div>
+    <div class="section-label">Alla klubbar i Stockholm</div>
     <div class="clubs-grid" id="clubs-grid">
 
       <a href="yo-running-club.html" class="club-card" data-niva="nybörjare mellannivå avancerad" data-typ="intervall väg social" data-dag="tis lör">
@@ -449,156 +421,293 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
       </a>
 
-    </div>
-    <div class="no-results" id="no-results">Inga klubbar matchar dina filter. Prova att ta bort ett filter.</div>
-  </section>
-
-  <section class="all-clubs-section fade-in">
-    <div class="section-label">Alla klubbar i Stockholm</div>
-    <div class="club-list">
-
-      <a href="klubb.html" class="club-list-item">
-        <div>
-          <div class="club-list-name">Saucony Run Club <span class="new-badge">Ny</span></div>
-          <div class="club-list-meta">Zinkensdamms IP, Södermalm</div>
-          <div class="club-list-tags">
+      <a href="klubb.html" class="club-card" data-niva="nybörjare mellannivå avancerad" data-typ="väg social" data-dag="ons lör">
+        <img src="https://images.unsplash.com/photo-1552674605-db6ffd4facb5?w=600&h=320&fit=crop&crop=center" alt="Löpare springer i soluppgång" class="card-image" loading="lazy">
+        <div class="card-body">
+          <div class="card-tags">
             <span class="card-tag tag-nybörjare">Nybörjare</span>
             <span class="card-tag tag-mellannivå">Mellannivå</span>
             <span class="card-tag tag-typ">Social</span>
+            <span class="card-tag tag-dag">Ons & Lör</span>
+          </div>
+          <div class="card-name">Triple Threshold RC</div>
+          <div class="card-desc">Running communion grundad 2023 på Södermalm. Fokus på gemenskap före prestation — alla nivåer springer tillsammans. "First struggle, then snuggle" med pizza och häng efteråt.</div>
+          <div class="card-meta">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Reimersholmsgatan 5 · Ons 18:00, Lör 10:00
           </div>
         </div>
-        <span class="club-list-arrow">→</span>
       </a>
 
-      <a href="klubb.html" class="club-list-item">
-        <div>
-          <div class="club-list-name">Söderlöparna Stockholm <span class="new-badge">Ny</span></div>
-          <div class="club-list-meta">Gullmarsplan, Södermalm · Lör</div>
-          <div class="club-list-tags">
+      <a href="klubb.html" class="club-card" data-niva="nybörjare mellannivå" data-typ="social väg" data-dag="">
+        <img src="https://images.unsplash.com/photo-1571008887538-b36bb32f4571?w=600&h=320&fit=crop&crop=center" alt="Löpare springer i stadsmiljö" class="card-image" loading="lazy">
+        <div class="card-body">
+          <div class="card-tags">
+            <span class="card-tag tag-nybörjare">Nybörjare</span>
+            <span class="card-tag tag-mellannivå">Mellannivå</span>
+            <span class="card-tag tag-typ">Social</span>
+            <span class="card-tag tag-special">Ny klubb</span>
+          </div>
+          <div class="card-name">Fast Track Run Club</div>
+          <div class="card-desc">Ny run club i Stockholm. Mer information kommer snart — håll utkik på deras sociala medier.</div>
+          <div class="card-meta">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Stockholm
+          </div>
+        </div>
+      </a>
+
+      <a href="klubb.html" class="club-card" data-niva="nybörjare mellannivå" data-typ="social väg" data-dag="tis">
+        <img src="https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?w=600&h=320&fit=crop&crop=center" alt="Löpare i kvällsljus" class="card-image" loading="lazy">
+        <div class="card-body">
+          <div class="card-tags">
+            <span class="card-tag tag-nybörjare">Nybörjare</span>
+            <span class="card-tag tag-mellannivå">Mellannivå</span>
+            <span class="card-tag tag-typ">Social</span>
+            <span class="card-tag tag-dag">Tisdag</span>
+          </div>
+          <div class="card-name">Running Around Club</div>
+          <div class="card-desc">Social löparklubb som ses på olika platser runt om i Stockholm. Varje vecka en ny mötesplats — kolla deras sociala medier för aktuell info.</div>
+          <div class="card-meta">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Olika platser, Stockholm · Tis 18:00
+          </div>
+        </div>
+      </a>
+
+      <a href="klubb.html" class="club-card" data-niva="mellannivå avancerad" data-typ="intervall väg" data-dag="tor">
+        <img src="https://images.unsplash.com/photo-1532444458054-01a7dd3e9fca?w=600&h=320&fit=crop&crop=center" alt="Sprinters på löparbana" class="card-image" loading="lazy">
+        <div class="card-body">
+          <div class="card-tags">
+            <span class="card-tag tag-mellannivå">Mellannivå</span>
+            <span class="card-tag tag-avancerad">Avancerad</span>
+            <span class="card-tag tag-typ">Intervall</span>
+            <span class="card-tag tag-special">Endast inbjudan</span>
+            <span class="card-tag tag-dag">Torsdag</span>
+          </div>
+          <div class="card-name">RTC</div>
+          <div class="card-desc">Löparklubb på inbjudan. Intervallträning på torsdagar från Stadium — en tight grupp med fokus på utveckling och fart.</div>
+          <div class="card-meta">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Stadium, Stockholm · Tor 18:00
+          </div>
+        </div>
+      </a>
+
+      <a href="klubb.html" class="club-card" data-niva="nybörjare mellannivå" data-typ="social väg" data-dag="ons">
+        <img src="https://images.unsplash.com/photo-1596460658047-1826d5921c56?w=600&h=320&fit=crop&crop=center" alt="Löpare springer i grupp på väg" class="card-image" loading="lazy">
+        <div class="card-body">
+          <div class="card-tags">
+            <span class="card-tag tag-nybörjare">Nybörjare</span>
+            <span class="card-tag tag-mellannivå">Mellannivå</span>
+            <span class="card-tag tag-typ">Social</span>
+            <span class="card-tag tag-dag">Onsdag</span>
+          </div>
+          <div class="card-name">ZLK — Zinken Löpklubb</div>
+          <div class="card-desc">Lokal löparklubb med bas vid Zinkendams IP. Social stämning och träning i grupp varje onsdag.</div>
+          <div class="card-meta">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Zinkendams IP, Södermalm · Ons 17:30
+          </div>
+        </div>
+      </a>
+
+      <a href="klubb.html" class="club-card" data-niva="nybörjare mellannivå" data-typ="social väg" data-dag="">
+        <img src="https://images.unsplash.com/photo-1594882645126-14020914d58d?w=600&h=320&fit=crop&crop=center" alt="Löpare springer i grupp" class="card-image" loading="lazy">
+        <div class="card-body">
+          <div class="card-tags">
+            <span class="card-tag tag-nybörjare">Nybörjare</span>
+            <span class="card-tag tag-mellannivå">Mellannivå</span>
+            <span class="card-tag tag-typ">Social</span>
+            <span class="card-tag tag-special">Ny klubb</span>
+          </div>
+          <div class="card-name">Saucony Run Club</div>
+          <div class="card-desc">Social löparklubb med bas vid Zinkensdamms IP. Välkomnande stämning för alla nivåer.</div>
+          <div class="card-meta">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Zinkensdamms IP, Södermalm
+          </div>
+        </div>
+      </a>
+
+      <a href="klubb.html" class="club-card" data-niva="nybörjare" data-typ="social långpass" data-dag="lör">
+        <img src="https://images.unsplash.com/photo-1667781838690-5f32ea0ccea6?w=600&h=320&fit=crop&crop=center" alt="Löpare i maraton" class="card-image" loading="lazy">
+        <div class="card-body">
+          <div class="card-tags">
             <span class="card-tag tag-nybörjare">Nybörjare</span>
             <span class="card-tag tag-typ">Social</span>
             <span class="card-tag tag-typ">Långpass</span>
+            <span class="card-tag tag-dag">Lördag</span>
+          </div>
+          <div class="card-name">Söderlöparna Stockholm</div>
+          <div class="card-desc">Lördagslöpning från Gullmarsplan. Social och avslappnad stämning för alla som vill ut och springa.</div>
+          <div class="card-meta">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Gullmarsplan, Södermalm · Lör
           </div>
         </div>
-        <span class="club-list-arrow">→</span>
       </a>
 
-      <a href="klubb.html" class="club-list-item">
-        <div>
-          <div class="club-list-name">Hagaparken Parkrun <span class="new-badge">Ny</span></div>
-          <div class="club-list-meta">Hagaparken, Solna · Lör · 09:30 · Gratis</div>
-          <div class="club-list-tags">
+      <a href="klubb.html" class="club-card" data-niva="nybörjare" data-typ="social väg" data-dag="lör">
+        <img src="https://images.unsplash.com/photo-1719299246416-b4c069be9caf?w=600&h=320&fit=crop&crop=center" alt="Löpare i parkrun" class="card-image" loading="lazy">
+        <div class="card-body">
+          <div class="card-tags">
             <span class="card-tag tag-nybörjare">Nybörjare</span>
             <span class="card-tag tag-typ">Social</span>
             <span class="card-tag tag-typ">Väg</span>
+            <span class="card-tag tag-dag">Lördag</span>
+          </div>
+          <div class="card-name">Hagaparken Parkrun</div>
+          <div class="card-desc">Gratis 5 km varje lördag i Hagaparken. Registrera dig en gång — spring för alltid. Öppet för alla.</div>
+          <div class="card-meta">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Hagaparken, Solna · Lör 09:30 · Gratis
           </div>
         </div>
-        <span class="club-list-arrow">→</span>
       </a>
 
-      <a href="klubb.html" class="club-list-item">
-        <div>
-          <div class="club-list-name">Adidas Runners Stockholm</div>
-          <div class="club-list-meta">Sveavägen 44 (Urban Deli) · Tis & Tor · 18:15</div>
-          <div class="club-list-tags">
+      <a href="klubb.html" class="club-card" data-niva="mellannivå" data-typ="intervall väg" data-dag="tis tor">
+        <img src="https://images.unsplash.com/photo-1486218119243-13883505764c?w=600&h=320&fit=crop&crop=center" alt="Löpare springer på gata" class="card-image" loading="lazy">
+        <div class="card-body">
+          <div class="card-tags">
             <span class="card-tag tag-mellannivå">Mellannivå</span>
             <span class="card-tag tag-typ">Intervall</span>
             <span class="card-tag tag-typ">Väg</span>
+            <span class="card-tag tag-dag">Tis & Tor</span>
+          </div>
+          <div class="card-name">Adidas Runners Stockholm</div>
+          <div class="card-desc">Intervallträning och distanspass från Sveavägen. Två pass i veckan med fokus på utveckling och community.</div>
+          <div class="card-meta">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Sveavägen 44 (Urban Deli) · Tis & Tor 18:15
           </div>
         </div>
-        <span class="club-list-arrow">→</span>
       </a>
 
-      <a href="klubb.html" class="club-list-item">
-        <div>
-          <div class="club-list-name">Runday</div>
-          <div class="club-list-meta">Östermalms IP · Mån · 18:00 · Gratis</div>
-          <div class="club-list-tags">
+      <a href="klubb.html" class="club-card" data-niva="nybörjare mellannivå" data-typ="social" data-dag="mån">
+        <img src="https://images.unsplash.com/photo-1719299180483-90a4b609a946?w=600&h=320&fit=crop&crop=center" alt="Löpargrupp springer i stad" class="card-image" loading="lazy">
+        <div class="card-body">
+          <div class="card-tags">
             <span class="card-tag tag-nybörjare">Nybörjare</span>
             <span class="card-tag tag-mellannivå">Mellannivå</span>
             <span class="card-tag tag-typ">Social</span>
+            <span class="card-tag tag-dag">Måndag</span>
+          </div>
+          <div class="card-name">Runday</div>
+          <div class="card-desc">Gratis och social löpning varje måndag från Östermalms IP. Alla välkomna oavsett nivå.</div>
+          <div class="card-meta">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Östermalms IP · Mån 18:00 · Gratis
           </div>
         </div>
-        <span class="club-list-arrow">→</span>
       </a>
 
-      <a href="klubb.html" class="club-list-item">
-        <div>
-          <div class="club-list-name">Run Collective Stockholm</div>
-          <div class="club-list-meta">Bacchi Syre · Tis 18:15 & Lör 10:15</div>
-          <div class="club-list-tags">
+      <a href="klubb.html" class="club-card" data-niva="nybörjare" data-typ="social väg" data-dag="tis lör">
+        <img src="https://images.unsplash.com/photo-1513593771513-7b58b6c4af38?w=600&h=320&fit=crop&crop=center" alt="Löpare springer i grupp" class="card-image" loading="lazy">
+        <div class="card-body">
+          <div class="card-tags">
             <span class="card-tag tag-nybörjare">Nybörjare</span>
             <span class="card-tag tag-typ">Social</span>
             <span class="card-tag tag-typ">Väg</span>
+            <span class="card-tag tag-dag">Tis & Lör</span>
+          </div>
+          <div class="card-name">Run Collective Stockholm</div>
+          <div class="card-desc">Social löparklubb med start från Bacchi Syre. Två pass i veckan — tisdag kväll och lördag förmiddag.</div>
+          <div class="card-meta">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Bacchi Syre · Tis 18:15, Lör 10:15
           </div>
         </div>
-        <span class="club-list-arrow">→</span>
       </a>
 
-      <a href="klubb.html" class="club-list-item">
-        <div>
-          <div class="club-list-name">Founders Running Club</div>
-          <div class="club-list-meta">Blå Porten, Djurgården · Lör</div>
-          <div class="club-list-tags">
+      <a href="klubb.html" class="club-card" data-niva="mellannivå" data-typ="social långpass" data-dag="lör">
+        <img src="https://images.unsplash.com/photo-1502904550040-7534597429ae?w=600&h=320&fit=crop&crop=center" alt="Löpare vid Djurgården" class="card-image" loading="lazy">
+        <div class="card-body">
+          <div class="card-tags">
             <span class="card-tag tag-mellannivå">Mellannivå</span>
             <span class="card-tag tag-typ">Social</span>
             <span class="card-tag tag-typ">Långpass</span>
+            <span class="card-tag tag-dag">Lördag</span>
+          </div>
+          <div class="card-name">Founders Running Club</div>
+          <div class="card-desc">Lördagslöpning för entreprenörer och grundare. Start vid Blå Porten på Djurgården — nätverka under löprundan.</div>
+          <div class="card-meta">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Blå Porten, Djurgården · Lör
           </div>
         </div>
-        <span class="club-list-arrow">→</span>
       </a>
 
-      <a href="klubb.html" class="club-list-item">
-        <div>
-          <div class="club-list-name">IF Linnéa löpning</div>
-          <div class="club-list-meta">Zinkensdamms IP, Södermalm · Tis & Tor · 18:30</div>
-          <div class="club-list-tags">
+      <a href="klubb.html" class="club-card" data-niva="nybörjare avancerad" data-typ="intervall" data-dag="tis tor">
+        <img src="https://images.unsplash.com/photo-1526676537331-7747bf8278fc?w=600&h=320&fit=crop&crop=center" alt="Löpare på friidrottsbana" class="card-image" loading="lazy">
+        <div class="card-body">
+          <div class="card-tags">
             <span class="card-tag tag-nybörjare">Nybörjare</span>
             <span class="card-tag tag-avancerad">Avancerad</span>
             <span class="card-tag tag-typ">Intervall</span>
+            <span class="card-tag tag-dag">Tis & Tor</span>
+          </div>
+          <div class="card-name">IF Linnéa löpning</div>
+          <div class="card-desc">Traditionsrik friidrottsförening vid Zinkensdamms IP. Intervallträning för alla — från nybörjare till elitlöpare.</div>
+          <div class="card-meta">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Zinkensdamms IP, Södermalm · Tis & Tor 18:30
           </div>
         </div>
-        <span class="club-list-arrow">→</span>
       </a>
 
-      <a href="klubb.html" class="club-list-item">
-        <div>
-          <div class="club-list-name">Team Nordic Trail</div>
-          <div class="club-list-meta">Stockholm · Alla veckodagar</div>
-          <div class="club-list-tags">
+      <a href="klubb.html" class="club-card" data-niva="mellannivå avancerad" data-typ="trail" data-dag="mån tis ons tor fre lör sön">
+        <img src="https://images.unsplash.com/photo-1623390003553-4fa3f9fceb89?w=600&h=320&fit=crop&crop=center" alt="Trailrunning i skog" class="card-image" loading="lazy">
+        <div class="card-body">
+          <div class="card-tags">
             <span class="card-tag tag-mellannivå">Mellannivå</span>
             <span class="card-tag tag-avancerad">Avancerad</span>
             <span class="card-tag tag-typ">Trail</span>
           </div>
-        </div>
-        <span class="club-list-arrow">→</span>
-      </a>
-
-      <a href="klubb.html" class="club-list-item">
-        <div>
-          <div class="club-list-name">YMR Track Club</div>
-          <div class="club-list-meta">Grevgatan 27, Östermalm · Ons</div>
-          <div class="club-list-tags">
-            <span class="card-tag tag-avancerad">Avancerad</span>
-            <span class="card-tag tag-typ">Intervall</span>
+          <div class="card-name">Team Nordic Trail</div>
+          <div class="card-desc">Trailgemenskap med pass alla veckodagar. Fokus på skog, stigar och äventyr i Stockholmsområdet.</div>
+          <div class="card-meta">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Stockholm · Alla veckodagar
           </div>
         </div>
-        <span class="club-list-arrow">→</span>
       </a>
 
-      <a href="klubb.html" class="club-list-item">
-        <div>
-          <div class="club-list-name">Mikkeller Running Club</div>
-          <div class="club-list-meta">Östgötagatan 33, Södermalm</div>
-          <div class="club-list-tags">
+      <a href="klubb.html" class="club-card" data-niva="avancerad" data-typ="intervall" data-dag="ons">
+        <img src="https://images.unsplash.com/photo-1461897104016-0b3b00cc81ee?w=600&h=320&fit=crop&crop=center" alt="Sprinters på bana" class="card-image" loading="lazy">
+        <div class="card-body">
+          <div class="card-tags">
+            <span class="card-tag tag-avancerad">Avancerad</span>
+            <span class="card-tag tag-typ">Intervall</span>
+            <span class="card-tag tag-dag">Onsdag</span>
+          </div>
+          <div class="card-name">YMR Track Club</div>
+          <div class="card-desc">Intervallklubb för erfarna löpare med bas på Östermalm. Strukturerade bankpass med hög kvalitet.</div>
+          <div class="card-meta">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Grevgatan 27, Östermalm · Ons
+          </div>
+        </div>
+      </a>
+
+      <a href="klubb.html" class="club-card" data-niva="nybörjare" data-typ="social" data-dag="">
+        <img src="https://images.unsplash.com/photo-1529795533870-ea8020391255?w=600&h=320&fit=crop&crop=center" alt="Löpare i stadsmiljö" class="card-image" loading="lazy">
+        <div class="card-body">
+          <div class="card-tags">
             <span class="card-tag tag-nybörjare">Nybörjare</span>
             <span class="card-tag tag-typ">Social</span>
           </div>
+          <div class="card-name">Mikkeller Running Club</div>
+          <div class="card-desc">Världens löparklubb med öl efteråt. Stockholmskapitlet springer från Östgötagatan på Södermalm.</div>
+          <div class="card-meta">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Östgötagatan 33, Södermalm
+          </div>
         </div>
-        <span class="club-list-arrow">→</span>
       </a>
 
     </div>
+    <div class="no-results" id="no-results">Inga klubbar matchar dina filter. Prova att ta bort ett filter.</div>
   </section>
 
   <section class="cta-section fade-in">
