@@ -1,0 +1,169 @@
+/* ── Cookiebot Custom Styling ──────────────────────
+   Matches Swedish Run Clubs design system:
+   - Fonts: DM Sans, Oswald
+   - Primary: #D4715E (coral)
+   - Dark: #1C2A45
+   - Background: #FDFAF9
+   - Border: #F0E0DC
+   ─────────────────────────────────────────────── */
+
+/* Main dialog container */
+#CybotCookiebotDialog {
+  font-family: 'DM Sans', -apple-system, sans-serif !important;
+  border-radius: 16px !important;
+  border: 1px solid #F0E0DC !important;
+  box-shadow: 0 20px 60px rgba(28, 42, 69, 0.15) !important;
+  background: #FDFAF9 !important;
+  overflow: hidden !important;
+}
+
+/* Dialog body */
+#CybotCookiebotDialogBody {
+  background: #FDFAF9 !important;
+}
+
+#CybotCookiebotDialogBodyContent {
+  padding: 1.5rem !important;
+}
+
+/* Title */
+#CybotCookiebotDialogBodyContentTitle {
+  font-family: 'Oswald', sans-serif !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+  color: #1C2A45 !important;
+  font-size: 18px !important;
+}
+
+/* Description text */
+#CybotCookiebotDialogBodyContentText {
+  font-family: 'DM Sans', sans-serif !important;
+  color: #666 !important;
+  font-size: 13px !important;
+  line-height: 1.6 !important;
+}
+
+#CybotCookiebotDialogBodyContentText a {
+  color: #D4715E !important;
+  text-decoration: underline !important;
+  text-underline-offset: 2px !important;
+}
+
+#CybotCookiebotDialogBodyContentText a:hover {
+  color: #C8604A !important;
+}
+
+/* ── Buttons ────────────────────────────── */
+#CybotCookiebotDialogBodyButtons {
+  padding: 0 1.5rem 1.5rem !important;
+}
+
+.CybotCookiebotDialogBodyButton {
+  font-family: 'DM Sans', sans-serif !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.5px !important;
+  text-transform: uppercase !important;
+  border-radius: 6px !important;
+  padding: 12px 24px !important;
+  transition: all 0.2s ease !important;
+  cursor: pointer !important;
+  line-height: 1.2 !important;
+}
+
+/* Accept / Allow All — primary coral button */
+#CybotCookiebotDialogBodyLevelButtonLevelOptinAllowAll,
+#CybotCookiebotDialogBodyLevelButtonAccept,
+#CybotCookiebotDialogBodyButtonAccept {
+  background: #D4715E !important;
+  color: #FDFAF9 !important;
+  border: none !important;
+}
+
+#CybotCookiebotDialogBodyLevelButtonLevelOptinAllowAll:hover,
+#CybotCookiebotDialogBodyLevelButtonAccept:hover,
+#CybotCookiebotDialogBodyButtonAccept:hover {
+  background: #C8604A !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 4px 16px rgba(212, 113, 94, 0.35) !important;
+}
+
+/* Allow Selection — outlined button */
+#CybotCookiebotDialogBodyLevelButtonLevelOptinAllowallSelection {
+  background: transparent !important;
+  color: #1C2A45 !important;
+  border: 1px solid #E8D8D3 !important;
+}
+
+#CybotCookiebotDialogBodyLevelButtonLevelOptinAllowallSelection:hover {
+  border-color: #D4715E !important;
+  color: #D4715E !important;
+}
+
+/* Decline — subtle text style */
+#CybotCookiebotDialogBodyButtonDecline,
+a#CybotCookiebotDialogBodyLevelButtonLevelOptinDeclineAll,
+#CybotCookiebotDialogBodyLevelButtonLevelOptinDeclineAll {
+  background: transparent !important;
+  color: #888 !important;
+  border: 1px solid #E8D8D3 !important;
+}
+
+#CybotCookiebotDialogBodyButtonDecline:hover,
+a#CybotCookiebotDialogBodyLevelButtonLevelOptinDeclineAll:hover,
+#CybotCookiebotDialogBodyLevelButtonLevelOptinDeclineAll:hover {
+  border-color: #D4715E !important;
+  color: #D4715E !important;
+}
+
+/* ── Tabs / Details ────────────────────── */
+.CybotCookiebotDialogNavItemLink {
+  font-family: 'DM Sans', sans-serif !important;
+  color: #888 !important;
+  font-size: 12px !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+}
+
+.CybotCookiebotDialogNavItemLink.CybotCookiebotDialogActive {
+  color: #D4715E !important;
+  border-bottom-color: #D4715E !important;
+}
+
+/* ── Toggle switches ───────────────────── */
+.CybotCookiebotDialogBodyLevelButtonSlider {
+  background: #E8D8D3 !important;
+}
+
+input:checked + .CybotCookiebotDialogBodyLevelButtonSlider {
+  background: #D4715E !important;
+}
+
+/* ── Poweredby / Footer ────────────────── */
+#CybotCookiebotDialogPoweredByText {
+  font-family: 'DM Sans', sans-serif !important;
+  color: #aaa !important;
+}
+
+/* ── Detail categories ─────────────────── */
+.CybotCookiebotDialogDetailBodyContentCookieTypeIntro {
+  font-family: 'DM Sans', sans-serif !important;
+  color: #666 !important;
+  font-size: 13px !important;
+  line-height: 1.6 !important;
+}
+
+/* ── Scrollbar in dialog ───────────────── */
+#CybotCookiebotDialogBody::-webkit-scrollbar {
+  width: 4px;
+}
+
+#CybotCookiebotDialogBody::-webkit-scrollbar-track {
+  background: #F3EBE8;
+}
+
+#CybotCookiebotDialogBody::-webkit-scrollbar-thumb {
+  background: #D4715E;
+  border-radius: 2px;
+}
