@@ -1,12 +1,6 @@
 <!DOCTYPE html>
 <html lang="sv">
 <head>
-<script
-  id="CookieDeclaration"
-  src="https://consent.cookiebot.com/c82ce3af-bded-4069-9aea-22493d3d7e2d/cd.js"
-  type="text/javascript"
-></script>
-  <link rel="stylesheet" href="cookiebot-style.css">
 <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -21,8 +15,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <meta property="og:title" content="Nyheter — Swedish Run Clubs">
   <meta property="og:description" content="Senaste nytt från den svenska löparvärlden — run club-trender, lopp och nyheter.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://runclubs.se/nyheter.html">
+  <meta property="og:url" content="https://runclubs.se/nyheter">
   <meta property="og:image" content="https://runclubs.se/tjejer-och-run-clubs.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Nyheter — Swedish Run Clubs">
+  <meta name="twitter:description" content="Senaste nytt från den svenska löparvärlden — run club-trender, lopp och nyheter.">
+  <meta name="twitter:image" content="https://runclubs.se/tjejer-och-run-clubs.jpg">
   <link rel="canonical" href="https://runclubs.se/nyheter">
   <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Oswald:wght@500;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
@@ -324,6 +322,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       footer { padding: 2rem 1.25rem; grid-template-columns: 1fr; }
     }
   </style>
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
@@ -372,7 +372,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="section-label">Utvald artikel</span>
         <div class="featured-card fade-in">
           <div class="featured-image">
-            <img src="tjejer-och-run-clubs.jpg" alt="Tjejer springer tillsammans i en run club i Sverige" loading="lazy">
+            <picture><source srcset="tjejer-och-run-clubs.webp" type="image/webp"><img src="tjejer-och-run-clubs.jpg" alt="Tjejer springer tillsammans i en run club i Sverige" loading="lazy"></picture>
           </div>
           <div class="featured-body">
             <span class="article-tag tag-trend">Trend</span>
@@ -393,7 +393,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
           <a href="stockholm-marathon-2026-slutsalt" class="article-card fade-in">
             <div class="article-card-image">
-              <img src="run-clubs-stockholm-marathon.jpeg" alt="Löpare springer Stockholm Marathon genom Stockholms gator" loading="lazy">
+              <picture><source srcset="run-clubs-stockholm-marathon.webp" type="image/webp"><img src="run-clubs-stockholm-marathon.jpeg" alt="Löpare springer Stockholm Marathon genom Stockholms gator" loading="lazy"></picture>
             </div>
             <div class="article-card-body">
               <span class="article-tag tag-stockholm">Stockholm</span>
@@ -470,7 +470,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="section-label">Nyhetsbrevet</span>
         <h2>Håll koll på<br>löparvärlden</h2>
         <p>Nya klubbar, löpartrender och nyheter från Sverige — direkt i din inkorg. Gratis, max ett mail i veckan.</p>
-        <div class="newsletter-form">
+        <form class="newsletter-form" onsubmit="return false;">
           <input type="email" class="newsletter-input" placeholder="din@email.se">
           <button class="newsletter-btn">Prenumerera</button>
         </div>
@@ -534,5 +534,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </script>
   <script src="newsletter.js"></script>
 
+
+    <link rel="stylesheet" href="cookiebot-style.css">
+  <script
+  id="CookieDeclaration"
+  src="https://consent.cookiebot.com/c82ce3af-bded-4069-9aea-22493d3d7e2d/cd.js"
+  type="text/javascript"
+></script>
 </body>
 </html>
