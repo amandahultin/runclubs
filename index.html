@@ -421,6 +421,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       transition: all 0.2s; white-space: nowrap;
     }
     .newsletter-btn:hover { background: #C8604A; transform: translateY(-1px); box-shadow: 0 4px 16px rgba(212,113,94,0.35); }
+    .newsletter-compact { padding: 3rem 2rem; }
+    .newsletter-compact .newsletter-title { font-size: 22px; }
 
     /* ── FOOTER ─────────────────────────── */
     footer {
@@ -482,6 +484,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
       .newsletter { padding: 3rem 1.25rem; flex-direction: column; align-items: flex-start; }
       .newsletter-title { font-size: 22px; }
+      .newsletter-compact { padding: 2.5rem 1.25rem; }
+      .newsletter-compact .newsletter-title { font-size: 20px; }
       .newsletter-form { flex-direction: column; width: 100%; }
       .newsletter-input { min-width: unset; width: 100%; }
       .newsletter-btn { width: 100%; text-align: center; padding: 14px; }
@@ -586,6 +590,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <p class="cities-hint">Filtrera på nivå, typ och träningsdag när du väljer din stad</p>
   </section>
 
+  <!-- NEWSLETTER -->
+  <section class="newsletter newsletter-compact fade-in">
+    <div class="newsletter-text">
+      <div class="newsletter-label">Nyhetsbrevet</div>
+      <div class="newsletter-title">Håll koll på<br>löparvärlden</div>
+      <p>Nya klubbar och event direkt i din inkorg. Gratis, max ett mail i veckan.</p>
+    </div>
+    <form class="newsletter-form" onsubmit="return false;">
+      <input type="email" class="newsletter-input" placeholder="din@email.se" aria-label="E-postadress">
+      <button class="newsletter-btn">Prenumerera</button>
+    </form>
+  </section>
+
   <!-- DAGENS PASS -->
   <section class="schedule-section fade-in" id="schedule">
     <div class="schedule-header">
@@ -657,19 +674,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       Alla nyheter
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
     </a>
-  </section>
-
-  <!-- NEWSLETTER -->
-  <section class="newsletter fade-in">
-    <div class="newsletter-text">
-      <div class="newsletter-label">Nyhetsbrevet</div>
-      <div class="newsletter-title">Håll koll på<br>löparvärlden</div>
-      <p>Nyheter, nya klubbar och tips direkt i din inkorg. Gratis, max ett mail i veckan.</p>
-    </div>
-    <form class="newsletter-form" onsubmit="return false;">
-      <input type="email" class="newsletter-input" placeholder="din@email.se" aria-label="E-postadress">
-      <button class="newsletter-btn">Prenumerera</button>
-    </form>
   </section>
 
   </main>
