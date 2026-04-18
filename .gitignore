@@ -1,0 +1,18 @@
+# macOS
+.DS_Store
+._*
+
+# IDE / editor
+.claude/
+.vscode/
+.idea/
+
+# Säkerhetskopior från städningsskript
+backup-cleanup-*/
+*.backup-*.xlsx
+*.backup-*.xlsm
+
+# Temporära filer
+*.tmp
+*.swp
+*~
