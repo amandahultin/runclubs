@@ -199,18 +199,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
     /* ── NEWSLETTER ─────────────────────── */
     .newsletter {
-      background: linear-gradient(135deg, #1C2A45 0%, #2a3d5e 100%);
-      color: #FDFAF9; padding: 4rem 2rem;
+      background: #F3EBE8; border-top: 1px solid #E8D8D3;
+      color: #1C2A45; padding: 4rem 2rem;
       display: flex; align-items: center; justify-content: space-between;
       gap: 2rem; flex-wrap: wrap;
     }
-    .newsletter-label { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: #EEAA96; margin-bottom: 0.75rem; font-weight: 500; }
-    .newsletter-title { font-family: 'Archivo Black', sans-serif; font-size: 24px; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.5rem; }
-    .newsletter p { font-size: 14px; color: rgba(255,255,255,0.5); max-width: 400px; line-height: 1.7; }
+    .newsletter-label { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: #D4715E; margin-bottom: 0.75rem; font-weight: 500; }
+    .newsletter-title { font-family: 'Archivo Black', sans-serif; font-size: 24px; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.5rem; color: #1C2A45; }
+    .newsletter p { font-size: 14px; color: #666; max-width: 400px; line-height: 1.7; }
     .newsletter-form { display: flex; gap: 10px; flex-wrap: wrap; }
-    .newsletter-input { padding: 14px 18px; border: 1px solid rgba(255,255,255,0.15); border-radius: 6px; font-size: 14px; font-family: 'DM Sans', sans-serif; color: #FDFAF9; background: rgba(255,255,255,0.08); outline: none; min-width: 260px; transition: border-color 0.2s; }
-    .newsletter-input::placeholder { color: rgba(255,255,255,0.3); }
-    .newsletter-input:focus { border-color: #EEAA96; }
+    .newsletter-input { padding: 14px 18px; border: 1px solid #E8D8D3; border-radius: 6px; font-size: 14px; font-family: 'DM Sans', sans-serif; color: #1C2A45; background: #fff; outline: none; min-width: 260px; transition: border-color 0.2s; }
+    .newsletter-input::placeholder { color: #bbb; }
+    .newsletter-input:focus { border-color: #D4715E; }
     .newsletter-btn { background: #D4715E; color: #FDFAF9; font-size: 13px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; padding: 14px 32px; border-radius: 6px; border: none; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: all 0.2s; white-space: nowrap; }
     .newsletter-btn:hover { background: #C8604A; transform: translateY(-1px); box-shadow: 0 4px 16px rgba(212,113,94,0.35); }
 
@@ -452,15 +452,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="no-results" id="no-results">Inga klubbar matchar dina filter. Prova att ta bort ett filter.</div>
   </section>
 
-  <section class="cta-section fade-in">
-    <div class="cta-content">
-      <div class="cta-label">Saknas din klubb?</div>
-      <h2 class="cta-title">Lägg till din<br>run club</h2>
-      <p class="cta-text">Vill du att din klubb ska finnas med på Swedish Run Clubs? Eller vill du uppdatera information om en befintlig klubb? Hör av dig till oss!</p>
-    </div>
-    <a href="kontakt" class="cta-btn">Kontakta oss <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
-  </section>
-
   <!-- NEWSLETTER -->
   <section class="newsletter fade-in">
     <div class="newsletter-text">
@@ -472,6 +463,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <input type="email" class="newsletter-input" placeholder="din@email.se" aria-label="E-postadress">
       <button class="newsletter-btn">Prenumerera</button>
     </form>
+  </section>
+
+  <section class="cta-section fade-in">
+    <div class="cta-content">
+      <div class="cta-label">Saknas din klubb?</div>
+      <h2 class="cta-title">Lägg till din<br>run club</h2>
+      <p class="cta-text">Vill du att din klubb ska finnas med på Swedish Run Clubs? Eller vill du uppdatera information om en befintlig klubb? Hör av dig till oss!</p>
+    </div>
+    <a href="kontakt" class="cta-btn">Kontakta oss <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
   </section>
 
   </main>
