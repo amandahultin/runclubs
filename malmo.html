@@ -257,6 +257,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       .newsletter-btn { width: 100%; text-align: center; padding: 14px; }
       footer { padding: 2rem 1.25rem; grid-template-columns: 1fr; }
     }
+  
+    /* ── Brand-filter på kortfoton ──────────────── */
+    .card-image--branded { position: relative; overflow: hidden; width: 100%; height: 220px; display: block; }
+    .card-image--branded img { width: 100%; height: 100%; object-fit: cover; display: block; filter: saturate(0.85) contrast(1.05) brightness(0.98); }
+    .card-image--branded::after { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(238,170,150,0.20) 0%, rgba(28,42,69,0.10) 100%); mix-blend-mode: multiply; pointer-events: none; }
+
+    /* ── Typografisk placeholder ─────────────────── */
+    .card-image--placeholder { background: #1C2A45; position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden; width: 100%; height: 220px; }
+    .card-image--placeholder::before { content: ''; position: absolute; width: 260px; height: 260px; border-radius: 50%; background: radial-gradient(circle, rgba(212,113,94,0.25) 0%, transparent 70%); top: -70px; right: -70px; }
+    .placeholder-initial { font-family: 'Archivo Black', sans-serif; font-size: 88px; color: #D4715E; line-height: 1; opacity: 0.9; position: relative; z-index: 1; }
+    .placeholder-tag { position: absolute; bottom: 10px; left: 14px; font-family: 'Oswald', sans-serif; font-size: 9px; letter-spacing: 2.5px; text-transform: uppercase; color: rgba(253,250,249,0.55); z-index: 1; }
+
   </style>
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -359,7 +371,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="clubs-grid" id="clubs-grid">
 
       <a href="mrc-malmo" class="club-card" data-niva="nybörjare mellannivå avancerad" data-typ="intervall väg social" data-dag="ons lör">
-        <img class="card-image" src="https://images.unsplash.com/photo-1596727362302-b8d891c42ab8?w=400&h=220&fit=crop&crop=center" alt="Löpare i maraton sett ovanifrån" loading="eager" decoding="async" width="400" height="220" fetchpriority="high">
+        <div class="card-image card-image--branded">
+          <img src="https://images.unsplash.com/photo-1596727362302-b8d891c42ab8?w=400&h=220&fit=crop&crop=center" alt="Löpare i maraton sett ovanifrån" loading="eager" decoding="async" width="400" height="220" fetchpriority="high">
+        </div>
         <div class="card-body">
           <div class="card-tags">
             <span class="card-tag tag-nybörjare">Nybörjare</span>
@@ -378,7 +392,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </a>
 
       <a href="klubb" class="club-card" data-niva="mellannivå avancerad" data-typ="trail" data-dag="">
-        <img class="card-image" src="https://images.unsplash.com/photo-1590646299178-1b26ab821e34?w=400&h=220&fit=crop&crop=center" alt="Trailrunning i natur" loading="lazy" decoding="async" width="400" height="220">
+        <div class="card-image card-image--placeholder">
+          <span class="placeholder-initial">T</span>
+          <span class="placeholder-tag">Team Nordic Trail Ma…</span>
+        </div>
         <div class="card-body">
           <div class="card-tags">
             <span class="card-tag tag-mellannivå">Mellannivå</span>
@@ -395,7 +412,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </a>
 
       <a href="klubb" class="club-card" data-niva="nybörjare" data-typ="väg" data-dag="tis">
-        <img class="card-image" src="https://images.unsplash.com/photo-1486218119243-13883505764c?w=400&h=220&fit=crop&crop=center" alt="Löpare springer på gata" loading="lazy" decoding="async" width="400" height="220">
+        <div class="card-image card-image--placeholder">
+          <span class="placeholder-initial">V</span>
+          <span class="placeholder-tag">VarjeSteg</span>
+        </div>
         <div class="card-body">
           <div class="card-tags">
             <span class="card-tag tag-nybörjare">Nybörjare</span>
@@ -412,7 +432,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </a>
 
       <a href="klubb" class="club-card" data-niva="mellannivå avancerad" data-typ="intervall" data-dag="mån tis lör">
-        <img class="card-image" src="https://images.unsplash.com/photo-1720799360595-e2650c94f832?w=400&h=220&fit=crop&crop=center" alt="Löpare på friidrottsbana" loading="lazy" decoding="async" width="400" height="220">
+        <div class="card-image card-image--placeholder">
+          <span class="placeholder-initial">H</span>
+          <span class="placeholder-tag">Heleneholms IF</span>
+        </div>
         <div class="card-body">
           <div class="card-tags">
             <span class="card-tag tag-mellannivå">Mellannivå</span>
@@ -430,7 +453,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </a>
 
       <a href="klubb" class="club-card" data-niva="nybörjare" data-typ="social väg" data-dag="">
-        <img class="card-image" src="https://images.unsplash.com/photo-1719299180483-90a4b609a946?w=400&h=220&fit=crop&crop=center" alt="Löpare springer i lugnt tempo" loading="lazy" decoding="async" width="400" height="220">
+        <div class="card-image card-image--placeholder">
+          <span class="placeholder-initial">S</span>
+          <span class="placeholder-tag">Slowrunners Malmö</span>
+        </div>
         <div class="card-body">
           <div class="card-tags">
             <span class="card-tag tag-nybörjare">Nybörjare</span>

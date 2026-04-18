@@ -267,6 +267,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       .newsletter-btn { width: 100%; text-align: center; padding: 14px; }
       footer { padding: 2rem 1.25rem; grid-template-columns: 1fr; }
     }
+  
+    /* ── Brand-filter på kortfoton ──────────────── */
+    .card-image--branded { position: relative; overflow: hidden; width: 100%; height: 220px; display: block; }
+    .card-image--branded img { width: 100%; height: 100%; object-fit: cover; display: block; filter: saturate(0.85) contrast(1.05) brightness(0.98); }
+    .card-image--branded::after { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(238,170,150,0.20) 0%, rgba(28,42,69,0.10) 100%); mix-blend-mode: multiply; pointer-events: none; }
+
+    /* ── Typografisk placeholder ─────────────────── */
+    .card-image--placeholder { background: #1C2A45; position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden; width: 100%; height: 220px; }
+    .card-image--placeholder::before { content: ''; position: absolute; width: 260px; height: 260px; border-radius: 50%; background: radial-gradient(circle, rgba(212,113,94,0.25) 0%, transparent 70%); top: -70px; right: -70px; }
+    .placeholder-initial { font-family: 'Archivo Black', sans-serif; font-size: 88px; color: #D4715E; line-height: 1; opacity: 0.9; position: relative; z-index: 1; }
+    .placeholder-tag { position: absolute; bottom: 10px; left: 14px; font-family: 'Oswald', sans-serif; font-size: 9px; letter-spacing: 2.5px; text-transform: uppercase; color: rgba(253,250,249,0.55); z-index: 1; }
+
   </style>
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -369,7 +381,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="clubs-grid" id="clubs-grid">
 
       <a href="goteborg-running-club" class="club-card" data-niva="nybörjare mellannivå avancerad" data-typ="väg social långpass" data-dag="tis">
-        <img class="card-image" src="https://images.unsplash.com/photo-1739368732843-800f36a9b7d0?w=400&h=220&fit=crop&crop=center" alt="Grupp löpare springer längs floden i solnedgång" loading="eager" decoding="async" width="400" height="220" fetchpriority="high">
+        <div class="card-image card-image--branded">
+          <img src="https://images.unsplash.com/photo-1739368732843-800f36a9b7d0?w=400&h=220&fit=crop&crop=center" alt="Grupp löpare springer längs floden i solnedgång" loading="eager" decoding="async" width="400" height="220" fetchpriority="high">
+        </div>
         <div class="card-body">
           <div class="card-tags">
             <span class="card-tag tag-nybörjare">Nybörjare</span>
@@ -387,7 +401,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </a>
 
       <a href="sweden-runners-goteborg" class="club-card" data-niva="nybörjare mellannivå avancerad" data-typ="intervall väg social" data-dag="tor">
-        <img class="card-image" src="https://images.unsplash.com/photo-1596727362302-b8d891c42ab8?w=400&h=220&fit=crop&crop=center" alt="Löpare i maraton sett ovanifrån" loading="eager" decoding="async" width="400" height="220" fetchpriority="high">
+        <div class="card-image card-image--branded">
+          <img src="https://images.unsplash.com/photo-1596727362302-b8d891c42ab8?w=400&h=220&fit=crop&crop=center" alt="Löpare i maraton sett ovanifrån" loading="eager" decoding="async" width="400" height="220" fetchpriority="high">
+        </div>
         <div class="card-body">
           <div class="card-tags">
             <span class="card-tag tag-nybörjare">Nybörjare</span>
@@ -404,8 +420,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
       </a>
 
-            <a href="https://www.instagram.com/aeroboysclub/" class="club-card" data-niva="" data-typ="social" data-dag="" target="_blank" rel="noopener">
-        <img class="card-image" src="https://images.unsplash.com/photo-1571008887538-b36bb32f4571?w=400&h=220&fit=crop&crop=center" alt="Löpare springer i stadsmiljö" loading="lazy" decoding="async" width="400" height="220">
+            <a href="aero-boys-club" class="club-card" data-niva="" data-typ="social" data-dag="">
+        <div class="card-image card-image--placeholder">
+          <span class="placeholder-initial">A</span>
+          <span class="placeholder-tag">Aero Boys Club</span>
+        </div>
         <div class="card-body">
           <div class="card-tags">
             <span class="card-tag tag-typ">Social</span>
@@ -419,8 +438,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
       </a>
 
-            <a href="https://www.instagram.com/eastrunclubgbg/" class="club-card" data-niva="" data-typ="social" data-dag="" target="_blank" rel="noopener">
-        <img class="card-image" src="https://images.unsplash.com/photo-1667781838690-5f32ea0ccea6?w=400&h=220&fit=crop&crop=center" alt="Löpare springer i grupp" loading="lazy" decoding="async" width="400" height="220">
+            <a href="east-run-club" class="club-card" data-niva="" data-typ="social" data-dag="">
+        <div class="card-image card-image--placeholder">
+          <span class="placeholder-initial">E</span>
+          <span class="placeholder-tag">East</span>
+        </div>
         <div class="card-body">
           <div class="card-tags">
             <span class="card-tag tag-typ">Social</span>
@@ -435,8 +457,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
       </a>
 
-            <a href="https://www.instagram.com/slowrunnersgoteborg/" class="club-card" data-niva="nybörjare" data-typ="social" data-dag="sön" target="_blank" rel="noopener">
-        <img class="card-image" src="https://images.unsplash.com/photo-1719299180483-90a4b609a946?w=400&h=220&fit=crop&crop=center" alt="Löpare springer i lugnt tempo" loading="lazy" decoding="async" width="400" height="220">
+            <a href="slowrunners-goteborg" class="club-card" data-niva="nybörjare" data-typ="social" data-dag="sön">
+        <div class="card-image card-image--placeholder">
+          <span class="placeholder-initial">S</span>
+          <span class="placeholder-tag">Slowrunners Göteborg</span>
+        </div>
         <div class="card-body">
           <div class="card-tags">
             <span class="card-tag tag-nybörjare">Nybörjare</span>
@@ -454,8 +479,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     
 
-            <a href="https://www.sherunsclub.com" class="club-card" data-niva="nybörjare mellannivå avancerad" data-typ="social" data-dag="" target="_blank" rel="noopener">
-        <img src="https://images.unsplash.com/photo-1667781838690-5f32ea0ccea6?w=400&h=220&fit=crop&crop=center" alt="Kvinnor som springer" class="card-image" loading="lazy" decoding="async" width="400" height="220">
+            <a href="she-runs-club" class="club-card" data-niva="nybörjare mellannivå avancerad" data-typ="social" data-dag="">
+        <div class="card-image card-image--placeholder">
+          <span class="placeholder-initial">S</span>
+          <span class="placeholder-tag">She Runs Club</span>
+        </div>
         <div class="card-body">
           <div class="card-tags">
             <span class="card-tag tag-typ">Social</span>
@@ -471,8 +499,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
       </a>
 
-            <a href="https://www.instagram.com/corerunclubgbg/" class="club-card" data-niva="mellannivå" data-typ="social tempo" data-dag="" target="_blank" rel="noopener">
-        <img src="https://images.unsplash.com/photo-1513593771513-7b58b6c4af38?w=400&h=220&fit=crop&crop=center" alt="Löpare springer i grupp" class="card-image" loading="lazy" decoding="async" width="400" height="220">
+            <a href="core-run-club" class="club-card" data-niva="mellannivå" data-typ="social tempo" data-dag="">
+        <div class="card-image card-image--placeholder">
+          <span class="placeholder-initial">C</span>
+          <span class="placeholder-tag">Core</span>
+        </div>
         <div class="card-body">
           <div class="card-tags">
             <span class="card-tag tag-typ">Social</span>
@@ -489,8 +520,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
       </a>
 
-            <a href="https://essgroup.events/essrunnersclub" class="club-card" data-niva="nybörjare mellannivå" data-typ="social" data-dag="tor" target="_blank" rel="noopener">
-        <img src="https://images.unsplash.com/photo-1719299180483-90a4b609a946?w=400&h=220&fit=crop&crop=center" alt="Löpargrupp springer i stad" class="card-image" loading="lazy" decoding="async" width="400" height="220">
+            <a href="ess-runners-club" class="club-card" data-niva="nybörjare mellannivå" data-typ="social" data-dag="tor">
+        <div class="card-image card-image--placeholder">
+          <span class="placeholder-initial">E</span>
+          <span class="placeholder-tag">ESS Runners Club</span>
+        </div>
         <div class="card-body">
           <div class="card-tags">
             <span class="card-tag tag-typ">Social</span>
@@ -507,7 +541,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </a>
 
       <a href="klubb" class="club-card" data-niva="nybörjare mellannivå" data-typ="social" data-dag="mån">
-        <img src="https://images.unsplash.com/photo-1552674605-db6ffd4facb5?w=400&h=220&fit=crop&crop=center" alt="Löpare vid soluppgång" class="card-image" loading="lazy" decoding="async" width="400" height="220">
+        <div class="card-image card-image--placeholder">
+          <span class="placeholder-initial">M</span>
+          <span class="placeholder-tag">Måndagsklubben_gbg</span>
+        </div>
         <div class="card-body">
           <div class="card-tags">
             <span class="card-tag tag-nybörjare">Nybörjare</span>

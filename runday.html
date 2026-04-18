@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<script
+  id="CookieDeclaration"
+  src="https://consent.cookiebot.com/c82ce3af-bded-4069-9aea-22493d3d7e2d/cd.js"
+  type="text/javascript"
+></script>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-TPSCMPZT');</script>
+<!-- End Google Tag Manager -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Runday — Swedish Run Clubs</title>
+  <meta name="description" content="Runday — löpargrupp i Stockholm. Intervaller och tröskelpass måndagar och onsdagar 18:00.">
+  <meta property="og:title" content="Runday — Swedish Run Clubs">
+  <meta property="og:description" content="Runday — löpargrupp i Stockholm. Intervaller och tröskelpass måndagar och onsdagar 18:00.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://runclubs.se/runday">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Runday — Swedish Run Clubs">
+  <meta name="twitter:description" content="Runday — löpargrupp i Stockholm. Intervaller och tröskelpass måndagar och onsdagar 18:00.">
+  <link rel="canonical" href="https://runclubs.se/runday">
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Oswald:wght@500;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; color: #1C2A45; background: #FDFAF9; -webkit-font-smoothing: antialiased; }
+
+    /* ── SKIP LINK ─────────────────────── */
+    .skip-link { position: absolute; top: -100%; left: 1rem; background: #D4715E; color: #fff; padding: 8px 16px; border-radius: 0 0 6px 6px; font-size: 13px; font-weight: 500; z-index: 1000; text-decoration: none; }
+    .skip-link:focus { top: 0; }
+
+    /* ── NAV ────────────────────────────── */
+    nav {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.25rem 2rem;
+      background: rgba(253,250,249,0.92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid #F0E0DC;
+      position: sticky; top: 0; z-index: 100;
+    }
+    .logo { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 16px; text-transform: uppercase; letter-spacing: 2px; color: #1C2A45; text-decoration: none; }
+    .nav-links { display: flex; gap: 2rem; }
+    .nav-links a {
+      font-size: 12px; letter-spacing: 0.5px; text-decoration: none;
+      color: #888; text-transform: uppercase; font-weight: 500;
+      transition: color 0.2s; position: relative;
+    }
+    .nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1.5px; background: #D4715E; transition: width 0.2s ease; }
+    .nav-links a:hover { color: #1C2A45; }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-links a.active { color: #D4715E; }
+    .nav-links a.active::after { width: 100%; }
+    .nav-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+    .nav-toggle span { display: block; width: 22px; height: 2px; background: #1C2A45; transition: all 0.3s ease; }
+    .nav-toggle.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .nav-toggle.open span:nth-child(2) { opacity: 0; }
+    .nav-toggle.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+    .mobile-menu { display: none; flex-direction: column; background: rgba(253,250,249,0.98); backdrop-filter: blur(12px); border-bottom: 1px solid #F0E0DC; padding: 1rem 2rem; gap: 0; }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a { font-size: 13px; letter-spacing: 1px; text-decoration: none; color: #1C2A45; text-transform: uppercase; font-weight: 500; padding: 0.75rem 0; border-bottom: 1px solid #F0E0DC; transition: color 0.15s; }
+    .mobile-menu a:last-child { border-bottom: none; }
+    .mobile-menu a:hover { color: #D4715E; }
+
+    /* ── HERO ───────────────────────────── */
+    .hero {
+      position: relative; min-height: 400px;
+      background: #1C2A45 url('https://images.unsplash.com/photo-1739368732843-800f36a9b7d0?w=1200&h=600&fit=crop&crop=center') center/cover no-repeat;
+      display: flex; flex-direction: column; justify-content: flex-end;
+      padding: 3rem 2rem; overflow: hidden;
+    }
+    .hero::before {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(28,42,69,0.95) 0%, rgba(28,42,69,0.6) 40%, rgba(28,42,69,0.3) 100%);
+    }
+    .hero-content { position: relative; z-index: 1; max-width: 700px; }
+    .breadcrumb { font-size: 12px; color: rgba(255,255,255,0.4); margin-bottom: 1rem; }
+    .breadcrumb a { color: rgba(255,255,255,0.4); text-decoration: none; transition: color 0.15s; }
+    .breadcrumb a:hover { color: #EEAA96; }
+    .breadcrumb .sep { margin: 0 6px; }
+    .hero-tag { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #EEAA96; margin-bottom: 0.75rem; }
+    .hero h1 { font-family: 'Archivo Black', sans-serif; font-size: clamp(38px, 5vw, 56px); line-height: 1; text-transform: uppercase; color: #FDFAF9; letter-spacing: 2px; }
+    .hero-subtitle { font-size: 16px; color: rgba(255,255,255,0.6); line-height: 1.7; margin-top: 1rem; max-width: 500px; }
+
+    /* ── INFO STRIP ─────────────────────── */
+    .info-strip {
+      display: flex; gap: 0; border-bottom: 1px solid #F0E0DC;
+      background: #fff; flex-wrap: wrap;
+    }
+    .info-strip-item {
+      flex: 1; min-width: 160px;
+      padding: 1.25rem 2rem;
+      border-right: 1px solid #F0E0DC;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .info-strip-item:last-child { border-right: none; }
+    .info-strip-icon {
+      width: 36px; height: 36px; border-radius: 10px;
+      background: #F7E8E4; display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .info-strip-icon svg { color: #D4715E; }
+    .info-strip-label { font-size: 10px; letter-spacing: 1px; text-transform: uppercase; color: #aaa; font-weight: 500; margin-bottom: 2px; }
+    .info-strip-value { font-size: 14px; font-weight: 600; color: #1C2A45; }
+
+    /* ── MAIN CONTENT ──────────────────── */
+    .club-content {
+      display: grid; grid-template-columns: 1fr 320px; gap: 0;
+      min-height: 400px;
+    }
+
+    /* Left column - about */
+    .club-about {
+      padding: 3rem 2.5rem;
+      border-right: 1px solid #F0E0DC;
+    }
+    .club-about .section-label {
+      font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
+      color: #aaa; margin-bottom: 1.5rem; font-weight: 500; display: block;
+    }
+    .club-about p {
+      font-size: 15px; line-height: 1.9; color: #555; margin-bottom: 1.5rem;
+      max-width: 600px;
+    }
+    .club-about strong { color: #1C2A45; }
+    .club-about em { font-style: italic; color: #666; }
+
+    .pull-quote {
+      position: relative;
+      background: linear-gradient(135deg, #F7E8E4 0%, #FDFAF9 100%);
+      border-radius: 12px;
+      padding: 1.75rem 2rem;
+      margin: 2rem 0;
+      font-size: 15px; line-height: 1.8; color: #555;
+      font-style: italic;
+    }
+    .pull-quote::before {
+      content: '\201C'; font-family: 'Archivo Black', sans-serif;
+      font-size: 48px; color: #D4715E; opacity: 0.3;
+      position: absolute; top: 8px; left: 16px;
+      line-height: 1; font-style: normal;
+    }
+    .pull-quote p { padding-left: 1.5rem; }
+
+    /* Right column - sidebar */
+    .club-sidebar {
+      padding: 3rem 2rem;
+      background: #FDFAF9;
+    }
+    .sidebar-section { margin-bottom: 2.5rem; }
+    .sidebar-section:last-child { margin-bottom: 0; }
+    .sidebar-label {
+      font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
+      color: #aaa; margin-bottom: 1.25rem; font-weight: 500; display: block;
+    }
+
+    /* Highlights list - replaces clickable-looking pills */
+    .highlights-list { list-style: none; }
+    .highlights-list li {
+      display: flex; align-items: center; gap: 10px;
+      padding: 10px 0;
+      border-bottom: 1px solid #F0E0DC;
+      font-size: 14px; color: #444;
+    }
+    .highlights-list li:last-child { border-bottom: none; }
+    .highlight-icon {
+      width: 28px; height: 28px; border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px; flex-shrink: 0;
+    }
+    .highlight-icon.green { background: #E8F5E9; }
+    .highlight-icon.coral { background: #F7E8E4; }
+    .highlight-icon.blue { background: #E8EEF5; }
+    .highlight-icon.purple { background: #F0E6FF; }
+
+    /* Map button */
+    .map-btn {
+      display: flex; align-items: center; gap: 10px;
+      width: 100%; padding: 14px 16px;
+      background: #fff; border: 1px solid #F0E0DC; border-radius: 12px;
+      text-decoration: none; color: #1C2A45;
+      font-size: 13px; font-weight: 500;
+      transition: all 0.2s ease;
+    }
+    .map-btn:hover { border-color: #D4715E; background: #FFF9F8; }
+    .map-btn .map-icon {
+      width: 32px; height: 32px; border-radius: 8px;
+      background: #D4715E; display: flex; align-items: center; justify-content: center;
+    }
+    .map-btn .map-icon svg { color: #fff; }
+    .map-btn .map-arrow { margin-left: auto; color: #D4715E; transition: transform 0.2s; }
+    .map-btn:hover .map-arrow { transform: translateX(3px); }
+
+    /* Instagram CTA */
+    .instagram-cta {
+      display: flex; align-items: center; gap: 10px;
+      width: 100%; padding: 14px 16px;
+      background: linear-gradient(135deg, #833AB4 0%, #E1306C 50%, #F77737 100%);
+      border-radius: 12px;
+      text-decoration: none; color: #fff;
+      font-size: 13px; font-weight: 600;
+      transition: all 0.2s ease;
+      margin-top: 12px;
+    }
+    .instagram-cta:hover { transform: translateY(-1px); box-shadow: 0 4px 16px rgba(225,48,108,0.3); }
+    .instagram-cta .ig-arrow { margin-left: auto; transition: transform 0.2s; }
+    .instagram-cta:hover .ig-arrow { transform: translateX(3px); }
+
+    /* Strava CTA */
+    .strava-cta {
+      display: flex; align-items: center; gap: 10px;
+      width: 100%; padding: 14px 16px;
+      background: #FC4C02;
+      border-radius: 12px;
+      text-decoration: none; color: #fff;
+      font-size: 13px; font-weight: 600;
+      transition: all 0.2s ease;
+      margin-top: 8px;
+    }
+    .strava-cta:hover { transform: translateY(-1px); box-shadow: 0 4px 16px rgba(252,76,2,0.3); }
+    .strava-cta .strava-arrow { margin-left: auto; transition: transform 0.2s; }
+    .strava-cta:hover .strava-arrow { transform: translateX(3px); }
+
+    /* ── RELATED CLUBS ─────────────────── */
+    .related-section {
+      padding: 3.5rem 2rem;
+      background: #F3EBE8;
+      border-top: 1px solid #E8D8D3;
+    }
+    .related-section .section-label {
+      font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
+      color: #888; margin-bottom: 1.5rem; font-weight: 500; display: block;
+    }
+    .related-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+    }
+    .related-card {
+      background: #fff; border: 1px solid #F0E0DC; border-radius: 14px;
+      padding: 1.5rem; text-decoration: none; color: #1C2A45;
+      display: flex; flex-direction: column; gap: 10px;
+      transition: all 0.25s ease;
+    }
+    .related-card:hover {
+      border-color: #D4715E; transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(28,42,69,0.08);
+    }
+    .related-card-name {
+      font-family: 'Oswald', sans-serif; font-weight: 700;
+      font-size: 18px; text-transform: uppercase; letter-spacing: 0.5px;
+    }
+    .related-card-meta {
+      font-size: 12px; color: #888; display: flex; align-items: center; gap: 4px;
+    }
+    .related-card-meta svg { color: #D4715E; flex-shrink: 0; }
+    .related-card-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+    .related-tag {
+      font-size: 10px; font-weight: 500; padding: 3px 10px;
+      border-radius: 10px; background: #F7E8E4; color: #D4715E;
+    }
+    .related-card-arrow {
+      font-size: 12px; color: #D4715E; font-weight: 600;
+      margin-top: auto; display: flex; align-items: center; gap: 4px;
+      transition: gap 0.2s;
+    }
+    .related-card:hover .related-card-arrow { gap: 8px; }
+
+    /* ── CTA SECTION ───────────────────── */
+    .cta-section {
+      background: #1C2A45; padding: 4rem 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 2rem; flex-wrap: wrap;
+    }
+    .cta-content { max-width: 500px; }
+    .cta-label {
+      font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
+      color: #EEAA96; margin-bottom: 0.75rem; font-weight: 500;
+    }
+    .cta-title {
+      font-family: 'Archivo Black', sans-serif; font-size: 26px;
+      text-transform: uppercase; color: #FDFAF9; letter-spacing: 0.5px;
+      margin-bottom: 0.75rem;
+    }
+    .cta-text { font-size: 14px; color: rgba(255,255,255,0.5); line-height: 1.7; }
+    .cta-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: #D4715E; color: #FDFAF9;
+      font-size: 13px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase;
+      padding: 14px 30px; border-radius: 6px; text-decoration: none;
+      transition: all 0.2s ease; white-space: nowrap;
+    }
+    .cta-btn:hover { background: #C8604A; transform: translateY(-1px); box-shadow: 0 4px 16px rgba(212,113,94,0.35); }
+    .cta-btn svg { transition: transform 0.2s; }
+    .cta-btn:hover svg { transform: translateX(3px); }
+
+
+    /* ── NEWSLETTER ─────────────────────── */
+    .newsletter {
+      background: #F3EBE8; border-top: 1px solid #E8D8D3;
+      color: #1C2A45; padding: 4rem 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 2rem; flex-wrap: wrap;
+    }
+    .newsletter-label { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: #D4715E; margin-bottom: 0.75rem; font-weight: 500; }
+    .newsletter-title { font-family: 'Archivo Black', sans-serif; font-size: 24px; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.5rem; color: #1C2A45; }
+    .newsletter p { font-size: 14px; color: #666; max-width: 400px; line-height: 1.7; }
+    .newsletter-form { display: flex; gap: 10px; flex-wrap: wrap; }
+    .newsletter-input { padding: 14px 18px; border: 1px solid #E8D8D3; border-radius: 6px; font-size: 14px; font-family: 'DM Sans', sans-serif; color: #1C2A45; background: #fff; outline: none; min-width: 260px; transition: border-color 0.2s; }
+    .newsletter-input::placeholder { color: #bbb; }
+    .newsletter-input:focus { border-color: #D4715E; }
+    .newsletter-btn { background: #D4715E; color: #FDFAF9; font-size: 13px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; padding: 14px 32px; border-radius: 6px; border: none; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: all 0.2s; white-space: nowrap; }
+    .newsletter-btn:hover { background: #C8604A; transform: translateY(-1px); box-shadow: 0 4px 16px rgba(212,113,94,0.35); }
+
+    /* ── FOOTER ─────────────────────────── */
+    footer {
+      background: #F7E8E4; border-top: 1px solid #F0D8D3;
+      padding: 3.5rem 2rem; display: grid;
+      grid-template-columns: 2fr 1fr 1fr; gap: 2rem; font-size: 13px;
+    }
+    .footer-brand .logo { font-size: 14px; letter-spacing: 1.5px; display: block; margin-bottom: 0.75rem; }
+    .footer-brand p { font-size: 13px; color: #888; line-height: 1.6; max-width: 280px; }
+    footer h4 { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #aaa; margin-bottom: 1rem; font-weight: 500; }
+    footer a { display: block; color: #1C2A45; text-decoration: none; margin-bottom: 8px; transition: color 0.15s; }
+    footer a:hover { color: #D4715E; }
+    .footer-bottom { grid-column: 1 / -1; padding-top: 1.5rem; border-top: 1px solid #F0D8D3; font-size: 12px; color: #aaa; }
+
+    /* ── FADE IN ────────────────────────── */
+    .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── MOBILE ─────────────────────────── */
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.25rem; }
+      .nav-links { display: none; }
+      .nav-toggle { display: flex; }
+      .hero { min-height: 320px; padding: 2rem 1.25rem; }
+      .hero h1 { font-size: 36px; }
+      .info-strip { flex-direction: column; }
+      .info-strip-item { border-right: none; border-bottom: 1px solid #F0E0DC; padding: 1rem 1.25rem; }
+      .info-strip-item:last-child { border-bottom: none; }
+      .club-content { grid-template-columns: 1fr; }
+      .club-about { padding: 2rem 1.25rem; border-right: none; border-bottom: 1px solid #F0E0DC; }
+      .club-sidebar { padding: 2rem 1.25rem; }
+      .related-section { padding: 2rem 1.25rem; }
+      .related-grid { grid-template-columns: 1fr; }
+      .cta-section { padding: 2.5rem 1.25rem; flex-direction: column; align-items: flex-start; }
+      .cta-title { font-size: 22px; }
+      .cta-btn { width: 100%; justify-content: center; }
+      .newsletter { padding: 2.5rem 1.25rem; flex-direction: column; align-items: flex-start; }
+      .newsletter-title { font-size: 20px; }
+      .newsletter-form { flex-direction: column; width: 100%; }
+      .newsletter-input { min-width: unset; width: 100%; }
+      .newsletter-btn { width: 100%; text-align: center; padding: 14px; }
+
+      footer { padding: 2rem 1.25rem; grid-template-columns: 1fr; }
+    }
+  </style>
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TPSCMPZT"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+  <a href="#main-content" class="skip-link">Hoppa till innehåll</a>
+
+  <nav>
+    <a href="/" class="logo">Swedish Run Clubs</a>
+    <div class="nav-links">
+      <a href="stockholm" class="active">Stockholm</a>
+      <a href="goteborg">Göteborg</a>
+      <a href="malmo">Malmö</a>
+      <a href="nyheter">Nyheter</a>
+      <a href="om-oss">Om oss</a>
+    </div>
+    <button class="nav-toggle" aria-label="Öppna meny" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="mobile-menu" role="navigation" aria-label="Mobilmeny">
+    <a href="stockholm">Stockholm</a>
+    <a href="goteborg">Göteborg</a>
+    <a href="malmo">Malmö</a>
+    <a href="nyheter">Nyheter</a>
+    <a href="om-oss">Om oss</a>
+  </div>
+
+  <main id="main-content">
+
+  <header class="hero">
+    <div class="hero-content">
+      <div class="breadcrumb">
+        <a href="/">Start</a><span class="sep">/</span>
+        <a href="stockholm">Stockholm</a><span class="sep">/</span>
+        Runday
+      </div>
+      <div class="hero-tag">Löparklubb i Stockholm</div>
+      <h1>Runday</h1>
+      <p class="hero-subtitle">Löpargrupp för både dig som är nybörjare och för dig som är en van löpare.</p>
+    </div>
+  </header>
+
+  <div class="info-strip fade-in">
+    <div class="info-strip-item">
+      <div class="info-strip-icon">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      </div>
+      <div>
+        <div class="info-strip-label">Mötesplats</div>
+        <div class="info-strip-value">Scandic Park / Stadion</div>
+      </div>
+    </div>
+    <div class="info-strip-item">
+      <div class="info-strip-icon">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      </div>
+      <div>
+        <div class="info-strip-label">Träningsdagar</div>
+        <div class="info-strip-value">Måndag & Onsdag</div>
+      </div>
+    </div>
+    <div class="info-strip-item">
+      <div class="info-strip-icon">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      </div>
+      <div>
+        <div class="info-strip-label">Tid</div>
+        <div class="info-strip-value">18:00</div>
+      </div>
+    </div>
+    <div class="info-strip-item">
+      <div class="info-strip-icon">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+      </div>
+      <div>
+        <div class="info-strip-label">Kostnad</div>
+        <div class="info-strip-value">Gratis</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="club-content">
+    <article class="club-about fade-in">
+      <span class="section-label">Om klubben</span>
+
+      <p>Runday är en löpargrupp för både dig som är nybörjare och för dig som är en van löpare.</p>
+
+    </article>
+
+    <aside class="club-sidebar fade-in">
+      <div class="sidebar-section">
+        <span class="sidebar-label">Det här är klubben</span>
+        <ul class="highlights-list">
+          <li>
+            <span class="highlight-icon green">✓</span>
+            Gratis att delta
+          </li>
+          <li>
+            <span class="highlight-icon coral">♡</span>
+            Intervaller
+          </li>
+          <li>
+            <span class="highlight-icon blue">✴</span>
+            Tröskelpass
+          </li>
+        </ul>
+      </div>
+
+      <div class="sidebar-section">
+        <span class="sidebar-label">Hitta hit</span>
+        <a href="https://maps.google.com/?q=Scandic+Park+Stockholm" target="_blank" rel="noopener" class="map-btn">
+          <span class="map-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
+          Scandic Park / Stadion, Stockholm
+          <span class="map-arrow">&#8594;</span>
+        </a>
+      </div>
+
+      <div class="sidebar-section">
+        <span class="sidebar-label">Följ klubben</span>
+                <a href="https://www.instagram.com/rundaymonday/" target="_blank" rel="noopener" class="instagram-cta">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+          Följ på Instagram
+          <span class="ig-arrow">&#8594;</span>
+        </a>
+        <a href="https://www.facebook.com/RundaySweden/" target="_blank" rel="noopener" class="strava-cta" style="background:#1877F2;color:#fff;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          Hitta på Facebook
+          <span class="strava-arrow">&#8594;</span>
+        </a>
+      </div>
+
+      <div class="sidebar-section">
+        <span class="sidebar-label">Är du ledare?</span>
+        <a href="mailto:amanda@runclubs.se?subject=Uppdatera%20info%20om%20Runday" class="map-btn" style="background:#FDFAF9;">
+          <span class="map-icon" style="background:#1C2A45;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></span>
+          Uppdatera info om Runday
+          <span class="map-arrow">&#8594;</span>
+        </a>
+      </div>
+    </aside>
+  </div>
+
+
+  <!-- NEWSLETTER -->
+  <section class="newsletter fade-in">
+    <div class="newsletter-text">
+      <div class="newsletter-label">Nyhetsbrevet</div>
+      <div class="newsletter-title">Håll koll på<br>löparvärlden</div>
+      <p>Nya klubbar och event direkt i din inkorg. Gratis, max ett mail i veckan.</p>
+    </div>
+    <form class="newsletter-form" onsubmit="return false;">
+      <input type="email" class="newsletter-input" placeholder="din@email.se" aria-label="E-postadress">
+      <button class="newsletter-btn">Prenumerera</button>
+    </form>
+  </section>
+
+  </main>
+
+  <footer>
+    <div class="footer-brand">
+      <span class="logo">Swedish Run Clubs</span>
+      <p>Alla run clubs i Sverige — sorterade, beskrivna och enkla att hitta.</p>
+    </div>
+    <div>
+      <h4>Städer</h4>
+      <a href="stockholm">Stockholm</a>
+      <a href="goteborg">Göteborg</a>
+      <a href="malmo">Malmö</a>
+    </div>
+    <div>
+      <h4>Om sajten</h4>
+      <a href="om-oss">Om oss</a>
+      <a href="nyheter">Nyheter</a>
+      <a href="kontakt">Kontakt</a>
+      <a href="samarbeta">Samarbeta</a>
+    </div>
+    <div class="footer-bottom">
+      &copy; 2026 Swedish Run Clubs. Byggd med kärlek av <a href="https://amandahultin.se" style="display:inline; margin:0;">Amanda Hultin</a>.
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu
+    const navToggle = document.querySelector('.nav-toggle');
+    const mobileMenu = document.querySelector('.mobile-menu');
+    navToggle.addEventListener('click', function() {
+      const isOpen = mobileMenu.classList.toggle('open');
+      navToggle.classList.toggle('open');
+      navToggle.setAttribute('aria-expanded', isOpen);
+      navToggle.setAttribute('aria-label', isOpen ? 'Stäng meny' : 'Öppna meny');
+    });
+
+    // Fade in
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  </script>
+
+  <script src="add-club.js"></script>
+  <script src="newsletter.js"></script>
+</body>
+</html>
