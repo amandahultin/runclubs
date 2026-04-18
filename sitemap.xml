@@ -2,22 +2,22 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://runclubs.se/</loc>
-    <lastmod>2026-04-10</lastmod>
+    <lastmod>2026-04-18</lastmod>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://runclubs.se/stockholm</loc>
-    <lastmod>2026-04-10</lastmod>
+    <lastmod>2026-04-18</lastmod>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://runclubs.se/goteborg</loc>
-    <lastmod>2026-04-10</lastmod>
+    <lastmod>2026-04-18</lastmod>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://runclubs.se/malmo</loc>
-    <lastmod>2026-04-10</lastmod>
+    <lastmod>2026-04-18</lastmod>
     <priority>0.9</priority>
   </url>
   <url>
@@ -27,7 +27,12 @@
   </url>
   <url>
     <loc>https://runclubs.se/om-oss</loc>
-    <lastmod>2026-04-10</lastmod>
+    <lastmod>2026-04-18</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://runclubs.se/samarbeta</loc>
+    <lastmod>2026-04-18</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
@@ -37,62 +42,32 @@
   </url>
   <url>
     <loc>https://runclubs.se/yo-running-club</loc>
-    <lastmod>2026-04-10</lastmod>
+    <lastmod>2026-04-18</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://runclubs.se/stockholm-run-club</loc>
-    <lastmod>2026-04-10</lastmod>
+    <lastmod>2026-04-18</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://runclubs.se/dopest-runners</loc>
-    <lastmod>2026-04-10</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://runclubs.se/stockholm-frontrunners</loc>
-    <lastmod>2026-04-10</lastmod>
+    <lastmod>2026-04-18</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://runclubs.se/goteborg-running-club</loc>
-    <lastmod>2026-04-10</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://runclubs.se/solvikingarna</loc>
-    <lastmod>2026-04-10</lastmod>
+    <lastmod>2026-04-18</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://runclubs.se/sweden-runners-goteborg</loc>
-    <lastmod>2026-04-10</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://runclubs.se/sprang-trail-club</loc>
-    <lastmod>2026-04-10</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://runclubs.se/sweden-runners-malmo</loc>
-    <lastmod>2026-04-10</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://runclubs.se/mai-runners</loc>
-    <lastmod>2026-04-10</lastmod>
+    <lastmod>2026-04-18</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://runclubs.se/mrc-malmo</loc>
-    <lastmod>2026-04-10</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://runclubs.se/malmo-ribersborg-parkrun</loc>
-    <lastmod>2026-04-10</lastmod>
+    <lastmod>2026-04-18</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
