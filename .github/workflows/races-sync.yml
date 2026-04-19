@@ -2,7 +2,7 @@ name: Sync kommande lopp
 
 on:
   schedule:
-    - cron: "30 8 * * 1"   # Every Monday at 08:30 UTC (after runclubs-feed scrapes)
+    - cron: "30 8 * * 1"   # Every Monday at 08:30 UTC (after mikaelsto/runclubs-races-scraper at 05:00)
   workflow_dispatch:         # Allow manual runs from GitHub UI
 
 permissions:
@@ -27,7 +27,7 @@ jobs:
       - name: Generate kommande-lopp.html
         env:
           GOOGLE_SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}
-          GOOGLE_SHEET_ID: ${{ secrets.GOOGLE_SHEET_ID }}
+          GOOGLE_SHEET_ID: ${{ secrets.RACES_SHEET_ID }}
         run: python generate_kommande_lopp.py kommande-lopp.html
 
       - name: Commit and push if changed

@@ -1,7 +1,8 @@
-"""Generate kommande-lopp.html from the Races tab in Google Sheet.
+"""Generate kommande-lopp.html from the races Google Sheet.
 
-Reads race data, filters to 10 km+, and renders a self-contained HTML page
-matching the runclubs.se design system.
+Reads race data from the first tab of the Google Sheet populated by the
+runclubs-races-scraper, filters to 10 km+, and renders a self-contained
+HTML page matching the runclubs.se design system.
 
 Usage:
     python generate_kommande_lopp.py              # writes kommande-lopp.html
@@ -19,12 +20,9 @@ from datetime import date, datetime, timezone
 from pathlib import Path
 
 import gspread
-import yaml
 from google.oauth2.service_account import Credentials
 
 log = logging.getLogger(__name__)
-
-CONFIG_PATH = Path(__file__).resolve().parent / "config.yaml"
 
 # Distance category boundaries (km)
 _DIST_BUCKETS = [
@@ -37,9 +35,9 @@ _DIST_BUCKETS = [
 
 # County → display region
 _COUNTY_REGION = {
-    "stockholm":       "Stockholm",
-    "västra götaland": "Göteborg",
-    "skåne":           "Malmö",
+    "stockholms":       "Stockholm",
+    "västra götalands": "Göteborg",
+    "skåne":            "Malmö",
 }
 
 
@@ -65,12 +63,19 @@ def _dist_category(km: float) -> str | None:
 
 
 def _map_region(row: dict) -> str | None:
+    # If scraper already resolved the region, use it directly
+    region = (row.get("region") or "").strip()
+    if region in ("Stockholm", "Göteborg", "Malmö"):
+        return region
+
+    # Fall back to county mapping
     county = (row.get("county") or "").lower().strip()
-    city   = (row.get("city")   or "").lower().strip()
-    for key, region in _COUNTY_REGION.items():
-        if key in county or key in city:
-            return region
-    # Stockholm city names that might appear without county
+    for key, r in _COUNTY_REGION.items():
+        if key in county:
+            return r
+
+    # City-based fallback
+    city = (row.get("city") or "").lower().strip()
     if "stockholm" in city:
         return "Stockholm"
     if any(x in city for x in ("göteborg", "gothenburg", "mölndal")):
@@ -94,9 +99,9 @@ def _sheet_client() -> gspread.Client:
 def fetch_races(sheet_id: str) -> list[dict]:
     gc = _sheet_client()
     sh = gc.open_by_key(sheet_id)
-    ws = sh.worksheet("Races")
+    ws = sh.get_worksheet(0)   # first (and only) tab
     records = ws.get_all_records()
-    log.info("Fetched %d rows from Races tab", len(records))
+    log.info("Fetched %d rows from sheet", len(records))
     return records
 
 
@@ -119,13 +124,16 @@ def prepare_races(records: list[dict]) -> list[dict]:
         # Distance filtering — keep ≥ 10 km or unknown
         km = _parse_km(r.get("distance") or "")
         if km is not None and km < 9.5:
-            continue  # shorter than 10 k — exclude
+            continue
 
-        dist_cat = _dist_category(km) if km is not None else None
+        # Use dist_cat from sheet if present, otherwise derive
+        dist_cat = (r.get("dist_cat") or "").strip() or (
+            _dist_category(km) if km is not None else None
+        )
 
         region = _map_region(r)
         if not region:
-            continue  # outside the three target regions
+            continue
 
         races.append({
             "name":     (r.get("name") or "").strip(),
@@ -347,6 +355,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       transform: translateY(-4px);
       box-shadow: 0 12px 40px rgba(28,42,69,0.1);
       border-color: #D4715E;
+    }}
+
+    /* Cards without a registration link — not clickable */
+    .event-card--no-link {{
+      cursor: default;
+    }}
+    .event-card--no-link:hover {{
+      transform: none;
+      box-shadow: none;
+      border-color: #EFE4E0;
     }}
 
     .event-card-top {{ display: flex; align-items: stretch; }}
@@ -691,6 +709,50 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     let activeRegion = 'all';
     let activeDist   = 'all';
 
+    // ─── CARD BUILDER ────────────────────────────────────────────────────────────
+    function cardHTML(r) {{
+      const d          = parseDate(r.date);
+      const dayNum     = d.getDate();
+      const monthAbbr  = SV_MONTHS_SHORT[d.getMonth()];
+      const dayName    = SV_DAYS[d.getDay()].slice(0, 3);
+      const colorClass = REGION_COLOR[r.region] || '';
+      const regionTag  = REGION_TAG[r.region]   || '';
+      const distTag    = DIST_TAG[r.dist_cat]    || 'tag-dist';
+      const distLabel  = r.dist_cat || r.distance || 'Okänd distans';
+      const location   = r.city || r.region;
+      const hasLink    = r.link && r.link.trim() !== '';
+
+      const inner = `
+          <div class="event-card-top">
+            <div class="event-date-block ${{colorClass}}" aria-hidden="true">
+              <div class="event-day-num">${{dayNum}}</div>
+              <div class="event-month-abbr">${{monthAbbr}}</div>
+              <div class="event-day-name">${{dayName}}</div>
+            </div>
+            <div class="event-card-body">
+              <div class="event-tags">
+                <span class="event-tag ${{regionTag}}">${{r.region}}</span>
+                <span class="event-tag ${{distTag}}">${{distLabel}}</span>
+              </div>
+              <div class="event-title">${{r.name}}</div>
+              <div class="event-location">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                ${{location}}
+              </div>
+            </div>
+          </div>
+          <div class="event-card-footer">
+            <span class="event-distance">${{r.distance || '—'}}</span>
+            ${{hasLink ? `<span class="event-cta">Anmäl dig<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>` : ''}}
+          </div>`;
+
+      if (hasLink) {{
+        return `<a href="${{r.link}}" target="_blank" rel="noopener" class="event-card" aria-label="${{r.name}}, ${{dayNum}} ${{monthAbbr}}">${{inner}}</a>`;
+      }} else {{
+        return `<div class="event-card event-card--no-link" aria-label="${{r.name}}, ${{dayNum}} ${{monthAbbr}}">${{inner}}</div>`;
+      }}
+    }}
+
     // ─── RENDER ──────────────────────────────────────────────────────────────────
     function render() {{
       const container = document.getElementById('races-container');
@@ -741,49 +803,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       document.getElementById('stat-months').textContent = monthKeys.length;
     }}
 
-    function cardHTML(r) {{
-      const d          = parseDate(r.date);
-      const dayNum     = d.getDate();
-      const monthAbbr  = SV_MONTHS_SHORT[d.getMonth()];
-      const dayName    = SV_DAYS[d.getDay()].slice(0, 3);
-      const colorClass = REGION_COLOR[r.region] || '';
-      const regionTag  = REGION_TAG[r.region]   || '';
-      const distTag    = DIST_TAG[r.dist_cat]    || 'tag-dist';
-      const distLabel  = r.dist_cat || r.distance || 'Okänd distans';
-      const location   = r.city || r.region;
-      const href       = r.link || '#';
-
-      return `
-        <a href="${{href}}" target="_blank" rel="noopener" class="event-card" aria-label="${{r.name}}, ${{dayNum}} ${{monthAbbr}}">
-          <div class="event-card-top">
-            <div class="event-date-block ${{colorClass}}" aria-hidden="true">
-              <div class="event-day-num">${{dayNum}}</div>
-              <div class="event-month-abbr">${{monthAbbr}}</div>
-              <div class="event-day-name">${{dayName}}</div>
-            </div>
-            <div class="event-card-body">
-              <div class="event-tags">
-                <span class="event-tag ${{regionTag}}">${{r.region}}</span>
-                <span class="event-tag ${{distTag}}">${{distLabel}}</span>
-              </div>
-              <div class="event-title">${{r.name}}</div>
-              <div class="event-location">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                ${{location}}
-              </div>
-            </div>
-          </div>
-          <div class="event-card-footer">
-            <span class="event-distance">${{r.distance || '—'}}</span>
-            <span class="event-cta">
-              Anmäl dig
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </span>
-          </div>
-        </a>
-      `;
-    }}
-
     // ─── FILTERS ─────────────────────────────────────────────────────────────────
     document.querySelectorAll('[data-filter]').forEach(btn => {{
       btn.addEventListener('click', function () {{
@@ -832,15 +851,9 @@ def main() -> int:
 
     out_path = Path(sys.argv[1]) if len(sys.argv) > 1 else Path("kommande-lopp.html")
 
-    # Load config
-    config = {}
-    if CONFIG_PATH.exists():
-        with CONFIG_PATH.open() as f:
-            config = yaml.safe_load(f) or {}
-
-    sheet_id = os.environ.get("GOOGLE_SHEET_ID") or config.get("google_sheet_id")
+    sheet_id = os.environ.get("GOOGLE_SHEET_ID")
     if not sheet_id:
-        log.error("GOOGLE_SHEET_ID not set")
+        log.error("GOOGLE_SHEET_ID environment variable not set")
         return 1
 
     records = fetch_races(sheet_id)
