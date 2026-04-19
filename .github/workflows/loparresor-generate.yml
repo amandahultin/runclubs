@@ -1,22 +1,19 @@
-name: Sync löparresor
+name: Generate löparresor page
 
-# Runs every Sunday at 07:00 UTC:
-#   1. Scrape source sites → upsert into Google Sheet ("Loparresor" tab)
-#   2. Generate loparresor.html from the (now-updated) Sheet
-#   3. Commit + push if the file changed
+# Reads the "Loparresor" tab in the Google Sheet and regenerates loparresor.html.
+# Run this manually after you have reviewed and filtered the Sheet.
 #
-# You can also trigger a manual run from the GitHub Actions UI at any time.
+# Rows with publish=N are excluded from the page.
+# Rows with publish=Y or publish empty are included.
 
 on:
-  schedule:
-    - cron: "0 7 * * 0"    # Every Sunday at 07:00 UTC
-  workflow_dispatch:         # Allow manual runs from GitHub UI
+  workflow_dispatch:         # Manual run only — you decide when the page updates
 
 permissions:
-  contents: write            # Needed to commit the generated HTML
+  contents: write            # Needed to commit loparresor.html
 
 jobs:
-  sync:
+  generate:
     runs-on: ubuntu-latest
 
     steps:
@@ -30,12 +27,6 @@ jobs:
 
       - name: Install dependencies
         run: pip install -r requirements-loparresor.txt
-
-      - name: Scrape sites → Google Sheet
-        env:
-          GOOGLE_SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}
-          LOPARRESOR_SHEET_ID: ${{ secrets.LOPARRESOR_SHEET_ID }}
-        run: python scrape_loparresor.py
 
       - name: Generate loparresor.html from Sheet
         env:
