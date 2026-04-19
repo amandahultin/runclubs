@@ -87,6 +87,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .hero h1 { font-family: 'Archivo Black', sans-serif; font-size: clamp(38px, 5vw, 56px); line-height: 1; text-transform: uppercase; color: #FDFAF9; letter-spacing: 2px; }
     .hero-subtitle { font-size: 16px; color: rgba(255,255,255,0.6); line-height: 1.7; margin-top: 1rem; max-width: 500px; }
 
+    /* Hero logo badge */
+    .hero-logo {
+      position: absolute; top: 2rem; right: 2rem; z-index: 2;
+      width: 72px; height: 72px; border-radius: 14px;
+      background: #fff; padding: 4px;
+      box-shadow: 0 6px 24px rgba(0,0,0,0.35);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .hero-logo img { width: 100%; height: 100%; object-fit: contain; border-radius: 10px; }
+
     /* ── INFO STRIP ─────────────────────── */
     .info-strip {
       display: flex; gap: 0; border-bottom: 1px solid #F0E0DC;
@@ -366,6 +376,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       .nav-toggle { display: flex; }
       .hero { min-height: 320px; padding: 2rem 1.25rem; }
       .hero h1 { font-size: 36px; }
+      .hero-logo { top: 1rem; right: 1rem; width: 56px; height: 56px; }
       .info-strip { flex-direction: column; }
       .info-strip-item { border-right: none; border-bottom: 1px solid #F0E0DC; padding: 1rem 1.25rem; }
       .info-strip-item:last-child { border-bottom: none; }
@@ -423,6 +434,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <main id="main-content">
 
   <header class="hero">
+    <div class="hero-logo" aria-hidden="true">
+      <img src="slowrunners-logo.jpg" alt="" loading="eager" decoding="async">
+    </div>
     <div class="hero-content">
       <div class="breadcrumb">
         <a href="/">Start</a><span class="sep">/</span>
@@ -442,7 +456,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
       <div>
         <div class="info-strip-label">Mötesplats</div>
-        <div class="info-strip-value">Göteborg</div>
+        <div class="info-strip-value">Slottsskogen</div>
       </div>
     </div>
     <div class="info-strip-item">
@@ -482,13 +496,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       <p>Passen varar i 90 minuter och tempot är 08:00. Du väljer själv när du vill avsluta din runda. Slowrunners håller sig nära kollektivtrafiken så det är enkelt att anpassa rundan så att den passar just dig och din dagsform.</p>
 
-      <div class="team-image">
-        <figure>
-          <img src="slowrunners-logo.jpg" alt="Slowrunners Göteborg" loading="lazy" decoding="async">
-          <figcaption>Slowrunners Göteborg</figcaption>
-        </figure>
-      </div>
-
     </article>
 
     <aside class="club-sidebar fade-in">
@@ -516,9 +523,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       <div class="sidebar-section">
         <span class="sidebar-label">Hitta hit</span>
-        <a href="https://maps.google.com/?q=Göteborg" target="_blank" rel="noopener" class="map-btn">
+        <a href="https://maps.google.com/?q=Slottsskogen+Göteborg" target="_blank" rel="noopener" class="map-btn">
           <span class="map-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
-          Göteborg (varierar — se Instagram)
+          Slottsskogen, Göteborg
           <span class="map-arrow">&#8594;</span>
         </a>
       </div>
