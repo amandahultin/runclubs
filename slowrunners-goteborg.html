@@ -90,12 +90,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     /* Hero logo badge */
     .hero-logo {
       position: absolute; top: 2rem; right: 2rem; z-index: 2;
-      width: 72px; height: 72px; border-radius: 14px;
-      background: #fff; padding: 4px;
+      width: 80px; height: 80px; border-radius: 50%;
+      background: #fff;
       box-shadow: 0 6px 24px rgba(0,0,0,0.35);
-      display: flex; align-items: center; justify-content: center;
+      overflow: hidden;
+      border: 2px solid rgba(255,255,255,0.9);
     }
-    .hero-logo img { width: 100%; height: 100%; object-fit: contain; border-radius: 10px; }
+    .hero-logo img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
     /* ── INFO STRIP ─────────────────────── */
     .info-strip {
@@ -139,6 +140,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     }
     .club-about strong { color: #1C2A45; }
     .club-about em { font-style: italic; color: #666; }
+    .club-about .page-updated {
+      font-size: 12px; color: #b8b8b8; letter-spacing: 0.3px;
+      margin-top: 2rem; padding-top: 1rem;
+      border-top: 1px solid #F0E0DC;
+      font-weight: 500;
+    }
 
     .pull-quote {
       position: relative;
@@ -376,7 +383,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       .nav-toggle { display: flex; }
       .hero { min-height: 320px; padding: 2rem 1.25rem; }
       .hero h1 { font-size: 36px; }
-      .hero-logo { top: 1rem; right: 1rem; width: 56px; height: 56px; }
+      .hero-logo { top: 1rem; right: 1rem; width: 60px; height: 60px; }
       .info-strip { flex-direction: column; }
       .info-strip-item { border-right: none; border-bottom: 1px solid #F0E0DC; padding: 1rem 1.25rem; }
       .info-strip-item:last-child { border-bottom: none; }
@@ -465,7 +472,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
       <div>
         <div class="info-strip-label">Träningsdagar</div>
-        <div class="info-strip-value">Söndag + ibland</div>
+        <div class="info-strip-value">Söndag</div>
       </div>
     </div>
     <div class="info-strip-item">
@@ -495,6 +502,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <p>Spring långsamt med Slowrunners Göteborg. Slowrunners skapar ett sammanhang för dig som vill springa i ett lägre tempo. Att delta är gratis och gruppen har vanligtvis sina pass på söndagar men ibland även mitt i veckorna. Håll koll genom att följa Slowrunners på Instagram.</p>
 
       <p>Passen varar i 90 minuter och tempot är 08:00. Du väljer själv när du vill avsluta din runda. Slowrunners håller sig nära kollektivtrafiken så det är enkelt att anpassa rundan så att den passar just dig och din dagsform.</p>
+
+      <p class="page-updated">Sidan uppdaterades senast 2026-04-19</p>
 
     </article>
 
