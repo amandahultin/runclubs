@@ -16,9 +16,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Slowrunners Göteborg — Swedish Run Clubs</title>
-  <meta name="description" content="Slowrunners Göteborg — för dig som vill springa chill. Söndagar 10:00 från Redbergsplatsen. Inget tempokrav, bara bra sällskap.">
+  <meta name="description" content="Slowrunners Göteborg — löpargrupp i lägre tempo. Söndagar (ibland vardagar), 90 minuter i tempo 8:00 min/km. Gratis att delta.">
   <meta property="og:title" content="Slowrunners Göteborg — Swedish Run Clubs">
-  <meta property="og:description" content="Slowrunners Göteborg — för dig som vill springa chill. Söndagar 10:00 från Redbergsplatsen. Inget tempokrav, bara bra sällskap.">
+  <meta property="og:description" content="Slowrunners Göteborg — löpargrupp i lägre tempo. 90 minuter, tempo 8:00/km, nära kollektivtrafiken.">
+  <meta property="og:image" content="https://runclubs.se/slowrunners-hero.jpg">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://runclubs.se/slowrunners-goteborg">
   <meta name="twitter:card" content="summary_large_image">
@@ -69,7 +70,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     /* ── HERO ───────────────────────────── */
     .hero {
       position: relative; min-height: 400px;
-      background: #1C2A45 url('https://images.unsplash.com/photo-1739368732843-800f36a9b7d0?w=1200&h=600&fit=crop&crop=center') center/cover no-repeat;
+      background: #1C2A45 url('slowrunners-hero.jpg') center/cover no-repeat;
       display: flex; flex-direction: column; justify-content: flex-end;
       padding: 3rem 2rem; overflow: hidden;
     }
@@ -145,6 +146,33 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       line-height: 1; font-style: normal;
     }
     .pull-quote p { padding-left: 1.5rem; }
+
+    /* Inline brand image */
+    .team-image {
+      margin: 2.5rem 0 1rem;
+      max-width: 100%;
+      position: relative;
+    }
+    .team-image figure {
+      margin: 0; border-radius: 16px; overflow: hidden;
+      background: #1C2A45;
+      box-shadow: 0 12px 32px rgba(28,42,69,0.12);
+      position: relative;
+    }
+    .team-image img {
+      width: 100%; height: auto; display: block;
+      aspect-ratio: 3 / 4;
+      object-fit: cover;
+      max-height: 560px;
+    }
+    .team-image figcaption {
+      position: absolute; left: 0; right: 0; bottom: 0;
+      padding: 1.25rem 1.5rem;
+      background: linear-gradient(to top, rgba(28,42,69,0.92), rgba(28,42,69,0));
+      color: #FDFAF9;
+      font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase;
+      font-weight: 500;
+    }
 
     /* Right column - sidebar */
     .club-sidebar {
@@ -344,6 +372,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       .club-content { grid-template-columns: 1fr; }
       .club-about { padding: 2rem 1.25rem; border-right: none; border-bottom: 1px solid #F0E0DC; }
       .club-sidebar { padding: 2rem 1.25rem; }
+      .team-image img { aspect-ratio: 4 / 5; }
       .related-section { padding: 2rem 1.25rem; }
       .related-grid { grid-template-columns: 1fr; }
       .cta-section { padding: 2.5rem 1.25rem; flex-direction: column; align-items: flex-start; }
@@ -402,7 +431,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
       <div class="hero-tag">Löparklubb i Göteborg</div>
       <h1>Slowrunners<br>Göteborg</h1>
-      <p class="hero-subtitle">Spring långsamt med Slowrunners Göteborg. För dig som vill ta det lugnt.</p>
+      <p class="hero-subtitle">Spring långsamt med Slowrunners Göteborg. 90 minuter i lägre tempo — du väljer själv när du avslutar din runda.</p>
     </div>
   </header>
 
@@ -413,7 +442,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
       <div>
         <div class="info-strip-label">Mötesplats</div>
-        <div class="info-strip-value">Redbergsplatsen</div>
+        <div class="info-strip-value">Göteborg</div>
       </div>
     </div>
     <div class="info-strip-item">
@@ -422,7 +451,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
       <div>
         <div class="info-strip-label">Träningsdagar</div>
-        <div class="info-strip-value">Söndag</div>
+        <div class="info-strip-value">Söndag + ibland</div>
       </div>
     </div>
     <div class="info-strip-item">
@@ -430,8 +459,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
       </div>
       <div>
-        <div class="info-strip-label">Tid</div>
-        <div class="info-strip-value">10:00</div>
+        <div class="info-strip-label">Upplägg</div>
+        <div class="info-strip-value">90 min · 8:00/km</div>
       </div>
     </div>
     <div class="info-strip-item">
@@ -449,7 +478,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <article class="club-about fade-in">
       <span class="section-label">Om klubben</span>
 
-      <p>Spring långsamt med Slowrunners Göteborg. Slowrunners skapar ett sammanhang för dig som vill springa i ett lägre tempo. Gruppen har vanligtvis sina pass på söndagar, men ibland lägger de in ett bonuspass mitt i veckan.</p>
+      <p>Spring långsamt med Slowrunners Göteborg. Slowrunners skapar ett sammanhang för dig som vill springa i ett lägre tempo. Att delta är gratis och gruppen har vanligtvis sina pass på söndagar men ibland även mitt i veckorna. Håll koll genom att följa Slowrunners på Instagram.</p>
+
+      <p>Passen varar i 90 minuter och tempot är 08:00. Du väljer själv när du vill avsluta din runda. Slowrunners håller sig nära kollektivtrafiken så det är enkelt att anpassa rundan så att den passar just dig och din dagsform.</p>
+
+      <div class="team-image">
+        <figure>
+          <img src="slowrunners-logo.jpg" alt="Slowrunners Göteborg" loading="lazy" decoding="async">
+          <figcaption>Slowrunners Göteborg</figcaption>
+        </figure>
+      </div>
 
     </article>
 
@@ -463,20 +501,24 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           </li>
           <li>
             <span class="highlight-icon purple">🐌</span>
-            Lugnt tempo
+            Tempo 8:00/km
+          </li>
+          <li>
+            <span class="highlight-icon blue">⏱</span>
+            90 minuter
           </li>
           <li>
             <span class="highlight-icon coral">♡</span>
-            Social
+            Nära kollektivtrafiken
           </li>
         </ul>
       </div>
 
       <div class="sidebar-section">
         <span class="sidebar-label">Hitta hit</span>
-        <a href="https://maps.google.com/?q=Redbergsplatsen+Göteborg" target="_blank" rel="noopener" class="map-btn">
+        <a href="https://maps.google.com/?q=Göteborg" target="_blank" rel="noopener" class="map-btn">
           <span class="map-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
-          Redbergsplatsen, Göteborg
+          Göteborg (varierar — se Instagram)
           <span class="map-arrow">&#8594;</span>
         </a>
       </div>
