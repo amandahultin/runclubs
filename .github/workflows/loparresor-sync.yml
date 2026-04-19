@@ -1,0 +1,52 @@
+name: Sync löparresor
+
+# Runs every Sunday at 07:00 UTC:
+#   1. Scrape source sites → upsert into Google Sheet ("Loparresor" tab)
+#   2. Generate loparresor.html from the (now-updated) Sheet
+#   3. Commit + push if the file changed
+#
+# You can also trigger a manual run from the GitHub Actions UI at any time.
+
+on:
+  schedule:
+    - cron: "0 7 * * 0"    # Every Sunday at 07:00 UTC
+  workflow_dispatch:         # Allow manual runs from GitHub UI
+
+permissions:
+  contents: write            # Needed to commit the generated HTML
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: requirements-loparresor.txt
+
+      - name: Install dependencies
+        run: pip install -r requirements-loparresor.txt
+
+      - name: Scrape sites → Google Sheet
+        env:
+          GOOGLE_SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}
+          LOPARRESOR_SHEET_ID: ${{ secrets.LOPARRESOR_SHEET_ID }}
+        run: python scrape_loparresor.py
+
+      - name: Generate loparresor.html from Sheet
+        env:
+          GOOGLE_SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}
+          LOPARRESOR_SHEET_ID: ${{ secrets.LOPARRESOR_SHEET_ID }}
+        run: python generate_loparresor.py loparresor.html
+
+      - name: Commit and push if changed
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add loparresor.html
+          git diff --staged --quiet || git commit -m "Auto-update loparresor.html [skip ci]"
+          git push

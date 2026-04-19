@@ -1,0 +1,15 @@
+# runclubs.se configuration
+# --------------------------
+# Google Sheet ID for the Löparresor pipeline
+# Sheet: https://docs.google.com/spreadsheets/d/1xm77U0ltOUAw564vhViVdaUEq_q2x4WW_yjtiADwbwQ/
+loparresor_sheet_id: "1xm77U0ltOUAw564vhViVdaUEq_q2x4WW_yjtiADwbwQ"
+
+# Sites to scrape for running trips.
+# Add new sources here — each entry must have:
+#   name:  human-readable label written into the "source" column of the Sheet
+#   url:   the listing page to scrape
+#   type:  scraper implementation to use (currently: "springtime")
+loparresor_sources:
+  - name: "springtime.se"
+    url: "https://springtime.se/loparresor/"
+    type: "springtime"

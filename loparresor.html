@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-TPSCMPZT');</script>
+<!-- End Google Tag Manager -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Löparresor — Swedish Run Clubs</title>
+  <meta name="description" content="Hitta löparresor och löparsemestrar — maraton i Berlin, halvmaraton i Lissabon, löparveckor i Portugal och mycket mer.">
+  <meta property="og:title" content="Löparresor — Swedish Run Clubs">
+  <meta property="og:description" content="Löparresor och löparsemestrar — maraton, halvmaraton och löparveckor världen över.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://runclubs.se/loparresor">
+  <link rel="canonical" href="https://runclubs.se/loparresor">
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Oswald:wght@500;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; color: #1C2A45; background: #FDFAF9; -webkit-font-smoothing: antialiased; }
+
+    /* ── SKIP LINK ── */
+    .skip-link {
+      position: absolute; top: -100%; left: 1rem;
+      background: #D4715E; color: #fff; padding: 8px 16px;
+      border-radius: 0 0 6px 6px; font-size: 13px; font-weight: 500;
+      z-index: 1000; text-decoration: none;
+    }
+    .skip-link:focus { top: 0; }
+
+    /* ── NAV ── */
+    nav {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.25rem 2rem;
+      background: rgba(253,250,249,0.92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid #F0E0DC;
+      position: sticky; top: 0; z-index: 100;
+    }
+    .logo {
+      font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 16px;
+      text-transform: uppercase; letter-spacing: 2px;
+      color: #1C2A45; text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 2rem; }
+    .nav-links a {
+      font-size: 12px; letter-spacing: 0.5px; text-decoration: none;
+      color: #888; text-transform: uppercase; font-weight: 500;
+      transition: color 0.2s; position: relative;
+    }
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: -4px; left: 0;
+      width: 0; height: 1.5px; background: #D4715E;
+      transition: width 0.2s ease;
+    }
+    .nav-links a:hover { color: #1C2A45; }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-links a.active { color: #1C2A45; }
+    .nav-links a.active::after { width: 100%; }
+    .nav-toggle {
+      display: none; flex-direction: column; gap: 5px;
+      cursor: pointer; background: none; border: none; padding: 4px;
+    }
+    .nav-toggle span {
+      display: block; width: 22px; height: 2px;
+      background: #1C2A45; transition: all 0.3s ease;
+    }
+    .nav-toggle.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .nav-toggle.open span:nth-child(2) { opacity: 0; }
+    .nav-toggle.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+    .mobile-menu {
+      display: none; flex-direction: column;
+      background: rgba(253,250,249,0.98); backdrop-filter: blur(12px);
+      border-bottom: 1px solid #F0E0DC;
+      padding: 1rem 2rem; gap: 0;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      font-size: 13px; letter-spacing: 1px; text-decoration: none;
+      color: #1C2A45; text-transform: uppercase; font-weight: 500;
+      padding: 0.75rem 0; border-bottom: 1px solid #F0E0DC;
+      transition: color 0.15s;
+    }
+    .mobile-menu a:last-child { border-bottom: none; }
+    .mobile-menu a:hover { color: #D4715E; }
+
+    /* ── PAGE HEADER ── */
+    .page-header {
+      background: #1C2A45;
+      padding: 4rem 2rem 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .page-header::before {
+      content: 'RESOR';
+      font-family: 'Archivo Black', sans-serif;
+      font-size: clamp(80px, 18vw, 220px);
+      color: rgba(255,255,255,0.03);
+      position: absolute;
+      right: -1rem; bottom: -1rem;
+      line-height: 1;
+      letter-spacing: -4px;
+      pointer-events: none;
+      user-select: none;
+    }
+    .page-header-inner { max-width: 700px; position: relative; z-index: 1; }
+    .page-header-tag {
+      font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+      color: #EEAA96; margin-bottom: 1rem; font-weight: 500;
+    }
+    .page-header h1 {
+      font-family: 'Archivo Black', sans-serif;
+      font-size: clamp(36px, 6vw, 64px);
+      line-height: 0.95; text-transform: uppercase;
+      color: #FDFAF9; letter-spacing: -1px; margin-bottom: 1rem;
+    }
+    .page-header p {
+      font-size: 15px; color: rgba(255,255,255,0.5);
+      line-height: 1.7; max-width: 480px;
+    }
+
+    /* ── STATS BAR ── */
+    .stats-bar {
+      background: #D4715E;
+      padding: 1rem 2rem;
+      display: flex; gap: 2.5rem; flex-wrap: wrap;
+    }
+    .stat-item { display: flex; align-items: center; gap: 8px; }
+    .stat-number {
+      font-family: 'Archivo Black', sans-serif;
+      font-size: 22px; color: #FDFAF9; line-height: 1;
+    }
+    .stat-label {
+      font-size: 11px; letter-spacing: 1px; text-transform: uppercase;
+      color: rgba(255,255,255,0.65); font-weight: 500;
+    }
+    .stat-divider { width: 1px; background: rgba(255,255,255,0.2); align-self: stretch; }
+
+    /* ── FILTERS ── */
+    .filters-bar {
+      padding: 1.5rem 2rem;
+      border-bottom: 1px solid #F0E0DC;
+      display: flex; gap: 1.5rem; flex-wrap: wrap; align-items: center;
+    }
+    .filter-group { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
+    .filter-label {
+      font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
+      color: #bbb; font-weight: 500; margin-right: 4px;
+    }
+    .filter-pill {
+      font-size: 12px; font-weight: 600; padding: 6px 16px;
+      border-radius: 20px; border: 1px solid #E0D0CC;
+      background: transparent; color: #888;
+      cursor: pointer; font-family: 'DM Sans', sans-serif;
+      transition: all 0.2s; text-transform: uppercase; letter-spacing: 0.5px;
+    }
+    .filter-pill:hover { border-color: #D4715E; color: #D4715E; }
+    .filter-pill.active { background: #1C2A45; color: #FDFAF9; border-color: #1C2A45; }
+
+    /* ── MAIN LAYOUT ── */
+    .trips-layout { padding: 3rem 2rem; max-width: 1200px; margin: 0 auto; }
+
+    /* ── TRIP CARDS GRID ── */
+    .trips-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 20px;
+    }
+
+    /* ── TRIP CARD ── */
+    .trip-card {
+      background: #fff;
+      border: 1px solid #EFE4E0;
+      border-radius: 16px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+      text-decoration: none;
+      color: #1C2A45;
+    }
+    .trip-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(28,42,69,0.1);
+      border-color: #D4715E;
+    }
+
+    /* ── CARD IMAGE ── */
+    .trip-card-image {
+      width: 100%; height: 160px;
+      object-fit: cover; display: block;
+      background: #EFE4E0;
+    }
+    .trip-card-image-placeholder {
+      width: 100%; height: 160px;
+      background: linear-gradient(135deg, #1C2A45 0%, #2a3d5e 100%);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .trip-card-image-placeholder svg { opacity: 0.15; }
+
+    /* ── CARD BODY ── */
+    .trip-card-body {
+      padding: 1.25rem;
+      flex: 1; display: flex; flex-direction: column; gap: 8px;
+    }
+    .trip-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+    .trip-tag {
+      font-size: 9px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase;
+      padding: 3px 9px; border-radius: 10px;
+    }
+    .tag-norden  { background: #C6EFCE; color: #276221; }
+    .tag-europa  { background: #E8EEF5; color: #3a5a8c; }
+    .tag-varlden { background: #F7E8E4; color: #c25a47; }
+    .tag-source  { background: #F5F0FF; color: #5B2D8E; }
+    .tag-generic { background: #F0F0F0; color: #666; }
+
+    .trip-name {
+      font-family: 'Oswald', sans-serif; font-weight: 700;
+      font-size: 18px; text-transform: uppercase;
+      letter-spacing: 0.5px; line-height: 1.2; color: #1C2A45;
+    }
+    .trip-meta {
+      display: flex; flex-wrap: wrap; gap: 12px;
+      font-size: 12px; color: #999;
+    }
+    .trip-meta-item { display: flex; align-items: center; gap: 5px; }
+    .trip-meta-item svg { flex-shrink: 0; }
+
+    .trip-description {
+      font-size: 13px; color: #666; line-height: 1.6;
+      display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    /* ── CARD FOOTER ── */
+    .trip-card-footer {
+      padding: 0.75rem 1.25rem;
+      border-top: 1px solid #F5EBE8;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .trip-price {
+      font-size: 13px; font-weight: 600; color: #1C2A45; letter-spacing: 0.3px;
+    }
+    .trip-cta {
+      font-size: 11px; font-weight: 600; letter-spacing: 1px;
+      text-transform: uppercase; color: #D4715E;
+      display: flex; align-items: center; gap: 4px;
+      transition: gap 0.2s;
+    }
+    .trip-card:hover .trip-cta { gap: 8px; }
+
+    /* ── EMPTY STATE ── */
+    .no-trips {
+      grid-column: 1 / -1; text-align: center;
+      padding: 4rem 1rem; color: #bbb;
+    }
+    .no-trips-icon { font-size: 48px; display: block; margin-bottom: 1rem; filter: grayscale(1) opacity(0.3); }
+    .no-trips p { font-size: 15px; }
+
+    /* ── NEWSLETTER ── */
+    .newsletter {
+      background: linear-gradient(135deg, #1C2A45 0%, #2a3d5e 100%);
+      color: #FDFAF9; padding: 4rem 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 2rem; flex-wrap: wrap;
+    }
+    .newsletter-label {
+      font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
+      color: #EEAA96; margin-bottom: 0.75rem; font-weight: 500;
+    }
+    .newsletter-title {
+      font-family: 'Archivo Black', sans-serif; font-size: 26px;
+      text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.5rem;
+    }
+    .newsletter p { font-size: 14px; color: rgba(255,255,255,0.5); max-width: 400px; line-height: 1.7; }
+    .newsletter-form { display: flex; gap: 10px; flex-wrap: wrap; }
+    .newsletter-input {
+      padding: 14px 18px; border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 6px; font-size: 14px; font-family: 'DM Sans', sans-serif;
+      color: #FDFAF9; background: rgba(255,255,255,0.08);
+      outline: none; min-width: 260px; transition: border-color 0.2s;
+    }
+    .newsletter-input::placeholder { color: rgba(255,255,255,0.3); }
+    .newsletter-input:focus { border-color: #EEAA96; }
+    .newsletter-btn {
+      background: #D4715E; color: #FDFAF9;
+      font-size: 13px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase;
+      padding: 14px 32px; border-radius: 6px; border: none;
+      cursor: pointer; font-family: 'DM Sans', sans-serif;
+      transition: all 0.2s; white-space: nowrap;
+    }
+    .newsletter-btn:hover { background: #C8604A; transform: translateY(-1px); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #F7E8E4; border-top: 1px solid #F0D8D3;
+      padding: 3.5rem 2rem; display: grid;
+      grid-template-columns: 2fr 1fr 1fr; gap: 2rem;
+      font-size: 13px;
+    }
+    .footer-brand .logo { font-size: 14px; letter-spacing: 1.5px; display: block; margin-bottom: 0.75rem; }
+    .footer-brand p { font-size: 13px; color: #888; line-height: 1.6; max-width: 280px; }
+    footer h4 {
+      font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
+      color: #aaa; margin-bottom: 1rem; font-weight: 500;
+    }
+    footer a { display: block; color: #1C2A45; text-decoration: none; margin-bottom: 8px; transition: color 0.15s; }
+    footer a:hover { color: #D4715E; }
+    .footer-bottom {
+      grid-column: 1 / -1; padding-top: 1.5rem;
+      border-top: 1px solid #F0D8D3;
+      font-size: 12px; color: #aaa;
+    }
+    .footer-updated { font-size: 11px; color: #ccc; margin-top: 4px; }
+
+    /* ── FADE IN ── */
+    .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── MOBILE ── */
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.25rem; }
+      .nav-links { display: none; }
+      .nav-toggle { display: flex; }
+
+      .page-header { padding: 3rem 1.25rem 2.5rem; }
+      .page-header h1 { font-size: clamp(32px, 10vw, 52px); }
+
+      .stats-bar { padding: 1rem 1.25rem; gap: 1.25rem; }
+      .stat-divider { display: none; }
+
+      .filters-bar { padding: 1rem 1.25rem; gap: 1rem; }
+
+      .trips-layout { padding: 2rem 1.25rem; }
+      .trips-grid { grid-template-columns: 1fr; }
+
+      .newsletter { padding: 3rem 1.25rem; flex-direction: column; align-items: flex-start; }
+      .newsletter-title { font-size: 22px; }
+      .newsletter-form { flex-direction: column; width: 100%; }
+      .newsletter-input { min-width: unset; width: 100%; }
+      .newsletter-btn { width: 100%; text-align: center; padding: 14px; }
+
+      footer { padding: 2rem 1.25rem; grid-template-columns: 1fr; gap: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TPSCMPZT"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <a href="#main-content" class="skip-link">Hoppa till innehåll</a>
+
+  <nav>
+    <a href="/" class="logo">Swedish Run Clubs</a>
+    <div class="nav-links">
+      <a href="stockholm">Stockholm</a>
+      <a href="goteborg">Göteborg</a>
+      <a href="malmo">Malmö</a>
+      <a href="kommande-events">Events</a>
+      <a href="kommande-lopp">Lopp</a>
+      <a href="loparresor" class="active">Resor</a>
+      <a href="nyheter">Nyheter</a>
+      <a href="om-oss">Om oss</a>
+    </div>
+    <button class="nav-toggle" aria-label="Öppna meny" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="mobile-menu" role="navigation" aria-label="Mobilmeny">
+    <a href="stockholm">Stockholm</a>
+    <a href="goteborg">Göteborg</a>
+    <a href="malmo">Malmö</a>
+    <a href="kommande-events">Events</a>
+    <a href="kommande-lopp">Lopp</a>
+    <a href="loparresor">Resor</a>
+    <a href="nyheter">Nyheter</a>
+    <a href="om-oss">Om oss</a>
+  </div>
+
+  <main id="main-content">
+
+  <!-- PAGE HEADER -->
+  <header class="page-header">
+    <div class="page-header-inner">
+      <div class="page-header-tag">Löparresor &amp; löparsemestrar</div>
+      <h1>Löpar-<br>resor</h1>
+      <p>Kombinera löpning med resan — maraton i Berlin, halvmaraton i Lissabon, löparveckor i Portugal. Allt på ett ställe.</p>
+    </div>
+  </header>
+
+  <!-- STATS BAR -->
+  <div class="stats-bar">
+    <div class="stat-item">
+      <div>
+        <div class="stat-number" id="stat-total">—</div>
+        <div class="stat-label">Resor totalt</div>
+      </div>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-item">
+      <div>
+        <div class="stat-number" id="stat-countries">—</div>
+        <div class="stat-label">Destinationer</div>
+      </div>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-item">
+      <div>
+        <div class="stat-number" id="stat-sources">—</div>
+        <div class="stat-label">Arrangörer</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FILTERS -->
+  <div class="filters-bar">
+    <div class="filter-group">
+      <span class="filter-label">Region</span>
+      <button class="filter-pill active" data-filter="region" data-value="all">Alla</button>
+      <button class="filter-pill" data-filter="region" data-value="Norden">Norden</button>
+      <button class="filter-pill" data-filter="region" data-value="Europa">Europa</button>
+      <button class="filter-pill" data-filter="region" data-value="Världen">Världen</button>
+    </div>
+  </div>
+
+  <!-- TRIPS -->
+  <div class="trips-layout fade-in">
+    <div id="trips-container" class="trips-grid"></div>
+  </div>
+
+  <!-- NEWSLETTER -->
+  <section class="newsletter fade-in">
+    <div class="newsletter-text">
+      <div class="newsletter-label">Nyhetsbrevet</div>
+      <div class="newsletter-title">Missa ingen resa</div>
+      <p>Nya löparresor, loptips och run club-nyheter direkt i din inkorg.</p>
+    </div>
+    <form class="newsletter-form" onsubmit="return false;">
+      <input type="email" class="newsletter-input" placeholder="din@email.se" aria-label="E-postadress">
+      <button class="newsletter-btn">Prenumerera</button>
+    </form>
+  </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-brand">
+      <span class="logo">Swedish Run Clubs</span>
+      <p>Alla run clubs i Sverige — sorterade, beskrivna och enkla att hitta.</p>
+    </div>
+    <div>
+      <h4>Städer</h4>
+      <a href="stockholm">Stockholm</a>
+      <a href="goteborg">Göteborg</a>
+      <a href="malmo">Malmö</a>
+    </div>
+    <div>
+      <h4>Om sajten</h4>
+      <a href="om-oss">Om oss</a>
+      <a href="nyheter">Nyheter</a>
+      <a href="kontakt">Kontakt</a>
+      <a href="samarbeta">Samarbeta</a>
+    </div>
+    <div class="footer-bottom">
+      &copy; 2026 Swedish Run Clubs. Byggd med kärlek av <a href="https://amandahultin.se" style="display:inline; margin:0;">Amanda Hultin</a>.
+      <div class="footer-updated">Resedata uppdateras veckovis.</div>
+    </div>
+  </footer>
+
+  <script>
+    // ─── DATA ─────────────────────────────────────────────────────────────────
+    const trips = [];
+
+    // ─── HELPERS ──────────────────────────────────────────────────────────────
+    const SV_MONTHS_SHORT = ['jan','feb','mar','apr','maj','jun',
+                              'jul','aug','sep','okt','nov','dec'];
+
+    function formatDate(str) {
+      if (!str) return '';
+      const [y, m, d] = str.split('-').map(Number);
+      if (!y || !m) return str;
+      if (d && d !== 1) return `${d} ${SV_MONTHS_SHORT[m-1]} ${y}`;
+      return `${SV_MONTHS_SHORT[m-1]} ${y}`;
+    }
+
+    const REGION_TAG = {
+      'Norden':  'tag-norden',
+      'Europa':  'tag-europa',
+      'Världen': 'tag-varlden',
+      'Okänd':   'tag-generic',
+    };
+
+    // ─── STATE ────────────────────────────────────────────────────────────────
+    let activeRegion = 'all';
+
+    // ─── RENDER ───────────────────────────────────────────────────────────────
+    function render() {
+      const container = document.getElementById('trips-container');
+      container.innerHTML = '';
+
+      const filtered = trips.filter(t =>
+        activeRegion === 'all' || t.region === activeRegion
+      );
+
+      if (filtered.length === 0) {
+        container.innerHTML = `
+          <div class="no-trips">
+            <span class="no-trips-icon">✈️</span>
+            <p>Resor laddas snart — kom tillbaka om ett par dagar.</p>
+          </div>`;
+      } else {
+        container.innerHTML = filtered.map(cardHTML).join('');
+      }
+
+      document.getElementById('stat-total').textContent = filtered.length || '—';
+      const destinations = new Set(filtered.map(t => t.destination || t.country).filter(Boolean));
+      document.getElementById('stat-countries').textContent = destinations.size || '—';
+      const sources = new Set(filtered.map(t => t.source).filter(Boolean));
+      document.getElementById('stat-sources').textContent = sources.size || '—';
+    }
+
+    function cardHTML(t) {
+      const regionTagClass = REGION_TAG[t.region] || 'tag-generic';
+      const href = t.link || '#';
+      const imageEl = t.image_url
+        ? `<img class="trip-card-image" src="${t.image_url}" alt="${t.name}" loading="lazy">`
+        : `<div class="trip-card-image-placeholder">
+             <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><path d="M17.8 19.2L16 11l3.5-3.5C21 6 21 4 19.5 2.5S18 2 16.5 3.5L13 7 4.8 5.2C4.3 5.1 3.9 5.3 3.6 5.6L2 7.2l7 3.3L7.5 12H4l-1 1 4 2 2 4 1-1V14.5l1.5-1.5 3.3 7 1.6-1.6z"/></svg>
+           </div>`;
+      const destText = [t.destination, t.country].filter(Boolean).join(", ");
+      const dateText = [formatDate(t.date_start), t.date_end ? formatDate(t.date_end) : ''].filter(Boolean).join(' – ');
+      const descText = t.description ? `<p class="trip-description">${t.description}</p>` : '';
+      const sourceTag = t.source ? `<span class="trip-tag tag-source">${t.source}</span>` : '';
+
+      return `
+        <a href="${href}" target="_blank" rel="noopener" class="trip-card" aria-label="${t.name}">
+          ${imageEl}
+          <div class="trip-card-body">
+            <div class="trip-tags">
+              <span class="trip-tag ${regionTagClass}">${t.region}</span>
+              ${sourceTag}
+            </div>
+            <div class="trip-name">${t.name}</div>
+            <div class="trip-meta">
+              ${destText ? `<span class="trip-meta-item">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                ${destText}</span>` : ''}
+              ${dateText ? `<span class="trip-meta-item">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                ${dateText}</span>` : ''}
+            </div>
+            ${descText}
+          </div>
+          <div class="trip-card-footer">
+            <span class="trip-price">${t.price || ''}</span>
+            <span class="trip-cta">
+              Läs mer
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </span>
+          </div>
+        </a>
+      `;
+    }
+
+    // ─── FILTERS ──────────────────────────────────────────────────────────────
+    document.querySelectorAll('[data-filter]').forEach(btn => {
+      btn.addEventListener('click', function () {
+        const group = this.dataset.filter;
+        const value = this.dataset.value;
+        document.querySelectorAll(`[data-filter="${group}"]`).forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        if (group === 'region') activeRegion = value;
+        render();
+      });
+    });
+
+    // ─── MOBILE MENU ──────────────────────────────────────────────────────────
+    const navToggle  = document.querySelector('.nav-toggle');
+    const mobileMenu = document.querySelector('.mobile-menu');
+    navToggle.addEventListener('click', function () {
+      const isOpen = mobileMenu.classList.toggle('open');
+      navToggle.classList.toggle('open');
+      navToggle.setAttribute('aria-expanded', isOpen);
+      navToggle.setAttribute('aria-label', isOpen ? 'Stäng meny' : 'Öppna meny');
+    });
+
+    // ─── FADE IN ──────────────────────────────────────────────────────────────
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+    // ─── INIT ─────────────────────────────────────────────────────────────────
+    render();
+  </script>
+  <script src="newsletter.js"></script>
+</body>
+</html>
