@@ -102,6 +102,8 @@ def fetch_races(sheet_id: str) -> list[dict]:
     ws = sh.get_worksheet_by_id(114178703)
     records = ws.get_all_records()
     log.info("Fetched %d rows from sheet", len(records))
+    if records:
+        log.info("Sheet columns: %s", list(records[0].keys()))
     return records
 
 
