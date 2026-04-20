@@ -99,7 +99,7 @@ def _sheet_client() -> gspread.Client:
 def fetch_races(sheet_id: str) -> list[dict]:
     gc = _sheet_client()
     sh = gc.open_by_key(sheet_id)
-    ws = sh.worksheet("Races")
+    ws = sh.get_worksheet_by_id(114178703)
     records = ws.get_all_records()
     log.info("Fetched %d rows from sheet", len(records))
     return records
@@ -172,8 +172,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <meta property="og:title" content="Kommande Lopp — Swedish Run Clubs">
   <meta property="og:description" content="Kommande löptävlingar i Sverige — 10 km, halvmaraton och maraton.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://runclubs.se/kommande-lopp">
-  <link rel="canonical" href="https://runclubs.se/kommande-lopp">
+  <meta property="og:url" content="https://runclubs.se/loppkalender">
+  <link rel="canonical" href="https://runclubs.se/loppkalender">
   <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Oswald:wght@500;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -552,7 +552,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <a href="goteborg">Göteborg</a>
       <a href="malmo">Malmö</a>
       <a href="kommande-events">Events</a>
-      <a href="kommande-lopp" class="active">Lopp</a>
+      <a href="loppkalender" class="active">Lopp</a>
       <a href="nyheter">Nyheter</a>
       <a href="om-oss">Om oss</a>
     </div>
@@ -566,7 +566,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <a href="goteborg">Göteborg</a>
     <a href="malmo">Malmö</a>
     <a href="kommande-events">Events</a>
-    <a href="kommande-lopp">Lopp</a>
+    <a href="loppkalender">Lopp</a>
     <a href="nyheter">Nyheter</a>
     <a href="om-oss">Om oss</a>
   </div>
@@ -849,7 +849,7 @@ def main() -> int:
         format="%(asctime)s %(levelname)s %(name)s: %(message)s",
     )
 
-    out_path = Path(sys.argv[1]) if len(sys.argv) > 1 else Path("kommande-lopp.html")
+    out_path = Path(sys.argv[1]) if len(sys.argv) > 1 else Path("loppkalender.html")
 
     sheet_id = os.environ.get("GOOGLE_SHEET_ID")
     if not sheet_id:
