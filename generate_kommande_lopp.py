@@ -31,6 +31,7 @@ _DIST_BUCKETS = [
     ("Halvmaraton", 21.0,  22.49),
     ("30k",        22.5,  35.0),
     ("Maraton",    40.0,  43.5),
+    ("Ultra",      43.6, 9999.0),
 ]
 
 # County → display region
@@ -110,7 +111,7 @@ def _map_region(row: dict) -> str | None:
         return "Göteborg"
     if any(x in city for x in ("malmö", "lund", "helsingborg", "kristianstad")):
         return "Malmö"
-    return None
+    return "Övriga"
 
 
 # ── Google Sheets ─────────────────────────────────────────────────────────────
@@ -175,8 +176,6 @@ def prepare_races(records: list[dict]) -> list[dict]:
                 dist_cat = None
 
         region = _map_region(r)
-        if not region:
-            continue
 
         races.append({
             "name":     (r.get("name") or "").strip(),
@@ -423,6 +422,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .event-date-block.color-sthlm {{ background: #1a3a28; }}
     .event-date-block.color-gbg   {{ background: #1a2a45; }}
     .event-date-block.color-malm  {{ background: #3d1a14; }}
+    .event-date-block.color-ovr   {{ background: #2a2535; }}
 
     .event-day-num {{
       font-family: 'Archivo Black', sans-serif;
@@ -450,11 +450,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .tag-sthlm    {{ background: #C6EFCE; color: #276221; }}
     .tag-gbg      {{ background: #E8EEF5; color: #3a5a8c; }}
     .tag-malm     {{ background: #F7E8E4; color: #c25a47; }}
+    .tag-ovr      {{ background: #EBEBF0; color: #555570; }}
     .tag-10k      {{ background: #E8F4FD; color: #1565C0; }}
     .tag-11-20k   {{ background: #E8F4FD; color: #1565C0; }}
     .tag-half     {{ background: #E8F8EE; color: #1a6b3a; }}
     .tag-30k      {{ background: #FFF3CD; color: #856404; }}
     .tag-marathon {{ background: #FDECEA; color: #B71C1C; }}
+    .tag-ultra    {{ background: #2D1B2E; color: #D4A0FF; }}
     .tag-dist     {{ background: #F5F0FF; color: #5B2D8E; }}
 
     .event-title {{
@@ -643,7 +645,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="stat-divider"></div>
     <div class="stat-item">
       <div>
-        <div class="stat-number">3</div>
+        <div class="stat-number" id="stat-regions">—</div>
         <div class="stat-label">Regioner</div>
       </div>
     </div>
@@ -657,6 +659,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <button class="filter-pill" data-filter="region" data-value="Stockholm">Stockholm</button>
       <button class="filter-pill" data-filter="region" data-value="Göteborg">Göteborg</button>
       <button class="filter-pill" data-filter="region" data-value="Malmö">Malmö</button>
+      <button class="filter-pill" data-filter="region" data-value="Övriga">Övriga</button>
     </div>
     <div class="filter-group">
       <span class="filter-label">Distans</span>
@@ -666,6 +669,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <button class="filter-pill" data-filter="dist" data-value="Halvmaraton">Halvmaraton</button>
       <button class="filter-pill" data-filter="dist" data-value="30k">30 km</button>
       <button class="filter-pill" data-filter="dist" data-value="Maraton">Maraton</button>
+      <button class="filter-pill" data-filter="dist" data-value="Ultra">Ultra</button>
     </div>
   </div>
 
@@ -729,11 +733,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       'Stockholm': 'color-sthlm',
       'Göteborg':  'color-gbg',
       'Malmö':     'color-malm',
+      'Övriga':    'color-ovr',
     }};
     const REGION_TAG = {{
       'Stockholm': 'tag-sthlm',
       'Göteborg':  'tag-gbg',
       'Malmö':     'tag-malm',
+      'Övriga':    'tag-ovr',
     }};
     const DIST_TAG = {{
       '10k':         'tag-10k',
@@ -741,6 +747,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       'Halvmaraton': 'tag-half',
       '30k':         'tag-30k',
       'Maraton':     'tag-marathon',
+      'Ultra':       'tag-ultra',
     }};
 
     function parseDate(str) {{
@@ -844,8 +851,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         }});
       }}
 
-      document.getElementById('stat-total').textContent  = filtered.length;
-      document.getElementById('stat-months').textContent = monthKeys.length;
+      document.getElementById('stat-total').textContent   = filtered.length;
+      document.getElementById('stat-months').textContent  = monthKeys.length;
+      document.getElementById('stat-regions').textContent = new Set(filtered.map(r => r.region)).size;
     }}
 
     // ─── FILTERS ─────────────────────────────────────────────────────────────────
