@@ -686,7 +686,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     const active = { niva: null, typ: null, dag: null };
     const clearBtn = document.getElementById('clear-filters');
 
-    
+
     // Mobile filter toggle
     const filterToggle = document.getElementById('filter-toggle');
     const filtersEl = document.getElementById('filters');
@@ -698,15 +698,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     }
     // Update active filter count badge
     function updateFilterCount() {
-      const active = document.querySelectorAll('.pill.active').length;
+      const activeCount = document.querySelectorAll('.pill.active').length;
       const countEl = document.getElementById('filter-toggle-count');
       if (!countEl) return;
-      countEl.textContent = active;
-      countEl.classList.toggle('show', active > 0);
+      countEl.textContent = activeCount;
+      countEl.classList.toggle('show', activeCount > 0);
     }
     document.querySelectorAll('.pill').forEach(p => p.addEventListener('click', () => setTimeout(updateFilterCount, 0)));
-    const clearBtn = document.getElementById('clear-filters');
-    if (clearBtn) clearBtn.addEventListener('click', () => setTimeout(updateFilterCount, 0));
 
     document.querySelectorAll('.pill').forEach(pill => {
       pill.addEventListener('click', () => {
@@ -725,6 +723,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     });
 
     clearBtn.addEventListener('click', () => {
+      setTimeout(updateFilterCount, 0);
       active.niva = null; active.typ = null; active.dag = null;
       document.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
       filterClubs();
