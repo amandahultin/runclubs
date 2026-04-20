@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <title>Planerad variation — Swedish Run Clubs</title>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Oswald:wght@500;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: #FDFAF9;
+      color: #1C2A45;
+      padding: 3rem 2rem;
+    }
+    h1 {
+      font-family: 'Archivo Black', sans-serif;
+      font-size: 28px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 0.5rem;
+    }
+    h2 {
+      font-family: 'Oswald', sans-serif;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      color: #D4715E;
+      margin: 3rem 0 1.5rem;
+      font-weight: 700;
+    }
+    .intro {
+      color: #666;
+      max-width: 720px;
+      line-height: 1.7;
+      margin-bottom: 1rem;
+    }
+    .intro strong { color: #1C2A45; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+      max-width: 1400px;
+    }
+
+    /* ── Kort (gemensam bas) ──────────────────────────────────── */
+    .club-card {
+      display: block;
+      background: #fff;
+      border: 1px solid #F0E0DC;
+      border-radius: 14px;
+      overflow: hidden;
+      text-decoration: none;
+      color: inherit;
+      box-shadow: 0 2px 8px rgba(28,42,69,0.04);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .club-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(28,42,69,0.08);
+    }
+    .card-image {
+      position: relative;
+      width: 100%;
+      height: 180px;
+      overflow: hidden;
+    }
+    .card-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .card-body { padding: 1rem 1.25rem 1.25rem; }
+    .card-tags { display: flex; gap: 5px; flex-wrap: wrap; margin-bottom: 0.5rem; }
+    .card-tag {
+      font-size: 10px; letter-spacing: 0.3px;
+      padding: 2px 8px;
+      border-radius: 99px;
+      background: #F7E8E4;
+      color: #D4715E;
+      font-weight: 500;
+    }
+    .card-tag.tag-special { background: #E8EEF5; color: #5B7FB5; }
+    .card-name {
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+      color: #1C2A45;
+      margin-bottom: 3px;
+    }
+    .card-desc {
+      font-size: 12px;
+      color: #666;
+      line-height: 1.5;
+      margin-bottom: 0.5rem;
+    }
+    .card-meta {
+      display: flex; align-items: center; gap: 5px;
+      font-size: 11px; color: #888;
+    }
+
+    /* ══════════════════════════════════════════════════════════
+       BRAND-FILTER på vanliga foton (unified warm tone)
+       ══════════════════════════════════════════════════════════ */
+    .card-image--branded {
+      position: relative;
+    }
+    .card-image--branded img {
+      filter: saturate(0.85) contrast(1.05) brightness(0.98);
+    }
+    .card-image--branded::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(238,170,150,0.20) 0%, rgba(28,42,69,0.10) 100%);
+      mix-blend-mode: multiply;
+      pointer-events: none;
+    }
+
+    /* ══════════════════════════════════════════════════════════
+       PLACEHOLDER (Variant C) — typografisk initial
+       ══════════════════════════════════════════════════════════ */
+    .card-image--placeholder {
+      background: #1C2A45;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .card-image--placeholder::before {
+      content: '';
+      position: absolute;
+      width: 260px; height: 260px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(212,113,94,0.25) 0%, transparent 70%);
+      top: -70px; right: -70px;
+    }
+    .placeholder-initial {
+      font-family: 'Archivo Black', sans-serif;
+      font-size: 88px;
+      color: #D4715E;
+      line-height: 1;
+      opacity: 0.9;
+      position: relative;
+      z-index: 1;
+    }
+    .placeholder-tag {
+      position: absolute;
+      bottom: 10px; left: 14px;
+      font-family: 'Oswald', sans-serif;
+      font-size: 9px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: rgba(253,250,249,0.55);
+      z-index: 1;
+    }
+
+    /* ══════════════════════════════════════════════════════════
+       JÄMFÖRELSE: före/efter-sektioner
+       ══════════════════════════════════════════════════════════ */
+    .compare {
+      padding: 2rem;
+      background: #fff;
+      border-radius: 16px;
+      border: 1px solid #F0E0DC;
+      margin-bottom: 2rem;
+    }
+    .compare-label {
+      font-family: 'Oswald', sans-serif;
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #888;
+      margin-bottom: 1rem;
+      font-weight: 500;
+    }
+    .compare-verdict {
+      margin-top: 1.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px dashed #F0E0DC;
+      font-size: 13px;
+      color: #666;
+      line-height: 1.7;
+    }
+    .compare-verdict strong { color: #1C2A45; }
+  </style>
+</head>
+<body>
+
+  <h1>Planerad variation</h1>
+  <p class="intro">
+    Samma variation som nu — <strong>olika foton, olika klubbar</strong> — men med två ändringar
+    som får helheten att kännas planerad istället för rörig:
+  </p>
+  <p class="intro" style="margin-bottom:0;">
+    1) Ett <strong>subtilt brand-filter</strong> läggs på alla kort-foton så att varm korall-ton
+       binder ihop dem. Även om bilderna visar skog, stad eller löparben så hör de ihop i samma serie.<br>
+    2) De 10 nya klubbarna som saknar riktig bild får <strong>typografisk placeholder (Variant C)</strong>
+       istället för slumpade stockfoton.
+  </p>
+
+  <!-- ════════════════════════════════════════════════════════
+       JÄMFÖRELSE 1: nuvarande (slumpade foton) vs med filter
+       ════════════════════════════════════════════════════════ -->
+
+  <h2>Före: nuvarande (slumpade Unsplash-foton, ingen enhetlig ton)</h2>
+  <div class="compare">
+    <div class="grid">
+      <a href="#" class="club-card">
+        <div class="card-image"><img src="https://images.unsplash.com/photo-1552674605-db6ffd4facb5?w=400&h=220&fit=crop" alt=""></div>
+        <div class="card-body">
+          <div class="card-tags"><span class="card-tag">Mellannivå</span><span class="card-tag">Intervall</span></div>
+          <div class="card-name">Yo Running Club</div>
+          <div class="card-desc">Tränar från Torsgatan 40 i Vasastan.</div>
+          <div class="card-meta">📍 Vasastan · Tis & Lör</div>
+        </div>
+      </a>
+      <a href="#" class="club-card">
+        <div class="card-image"><img src="https://images.unsplash.com/photo-1623390003553-4fa3f9fceb89?w=400&h=220&fit=crop" alt=""></div>
+        <div class="card-body">
+          <div class="card-tags"><span class="card-tag">Avancerad</span><span class="card-tag">Trail</span></div>
+          <div class="card-name">Team Nordic Trail</div>
+          <div class="card-desc">Trailgemenskap i Stockholmsområdet.</div>
+          <div class="card-meta">📍 Stockholm · Alla dagar</div>
+        </div>
+      </a>
+      <a href="#" class="club-card">
+        <div class="card-image"><img src="https://images.unsplash.com/photo-1486218119243-13883505764c?w=400&h=220&fit=crop" alt=""></div>
+        <div class="card-body">
+          <div class="card-tags"><span class="card-tag">Nybörjare</span><span class="card-tag">Social</span></div>
+          <div class="card-name">Runday</div>
+          <div class="card-desc">Gratis social löpning varje måndag.</div>
+          <div class="card-meta">📍 Östermalms IP · Mån</div>
+        </div>
+      </a>
+      <a href="#" class="club-card">
+        <div class="card-image"><img src="https://images.unsplash.com/photo-1519861531473-9200262188bf?w=400&h=220&fit=crop" alt=""></div>
+        <div class="card-body">
+          <div class="card-tags"><span class="card-tag">Nybörjare</span><span class="card-tag">Social</span></div>
+          <div class="card-name">Pulse Pacers</div>
+          <div class="card-desc">Ny social löparklubb i Stockholm.</div>
+          <div class="card-meta">📍 Stockholm</div>
+        </div>
+      </a>
+      <a href="#" class="club-card">
+        <div class="card-image"><img src="https://images.unsplash.com/photo-1526676537331-7747bf8278fc?w=400&h=220&fit=crop" alt=""></div>
+        <div class="card-body">
+          <div class="card-tags"><span class="card-tag">Avancerad</span><span class="card-tag">Intervall</span></div>
+          <div class="card-name">IF Linnéa löpning</div>
+          <div class="card-desc">Traditionsrik friidrottsförening.</div>
+          <div class="card-meta">📍 Zinkensdamm · Tis & Tor</div>
+        </div>
+      </a>
+      <a href="#" class="club-card">
+        <div class="card-image"><img src="https://images.unsplash.com/photo-1513593771513-7b58b6c4af38?w=400&h=220&fit=crop" alt=""></div>
+        <div class="card-body">
+          <div class="card-tags"><span class="card-tag">Nybörjare</span><span class="card-tag">Social</span><span class="card-tag tag-special">Ny klubb</span></div>
+          <div class="card-name">Svedjans Löpsällskap</div>
+          <div class="card-desc">Löpsällskap med gemenskap i fokus.</div>
+          <div class="card-meta">📍 Stockholm</div>
+        </div>
+      </a>
+    </div>
+    <div class="compare-verdict">
+      <strong>Problem:</strong> Varje bild har sin egen färgton, mättnad och ljussättning. Ögat hoppar runt —
+      det känns som att man scrollar genom ett slumpmässigt fotoflöde snarare än en kurerad guide.
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════════════════════
+       EFTER: med brand-filter + placeholders på nya klubbar
+       ════════════════════════════════════════════════════════ -->
+
+  <h2>Efter: brand-filter på alla foton + typografisk placeholder för nya klubbar</h2>
+  <div class="compare">
+    <div class="grid">
+      <a href="#" class="club-card">
+        <div class="card-image card-image--branded"><img src="https://images.unsplash.com/photo-1552674605-db6ffd4facb5?w=400&h=220&fit=crop" alt=""></div>
+        <div class="card-body">
+          <div class="card-tags"><span class="card-tag">Mellannivå</span><span class="card-tag">Intervall</span></div>
+          <div class="card-name">Yo Running Club</div>
+          <div class="card-desc">Tränar från Torsgatan 40 i Vasastan.</div>
+          <div class="card-meta">📍 Vasastan · Tis & Lör</div>
+        </div>
+      </a>
+      <a href="#" class="club-card">
+        <div class="card-image card-image--branded"><img src="https://images.unsplash.com/photo-1623390003553-4fa3f9fceb89?w=400&h=220&fit=crop" alt=""></div>
+        <div class="card-body">
+          <div class="card-tags"><span class="card-tag">Avancerad</span><span class="card-tag">Trail</span></div>
+          <div class="card-name">Team Nordic Trail</div>
+          <div class="card-desc">Trailgemenskap i Stockholmsområdet.</div>
+          <div class="card-meta">📍 Stockholm · Alla dagar</div>
+        </div>
+      </a>
+      <a href="#" class="club-card">
+        <div class="card-image card-image--branded"><img src="https://images.unsplash.com/photo-1486218119243-13883505764c?w=400&h=220&fit=crop" alt=""></div>
+        <div class="card-body">
+          <div class="card-tags"><span class="card-tag">Nybörjare</span><span class="card-tag">Social</span></div>
+          <div class="card-name">Runday</div>
+          <div class="card-desc">Gratis social löpning varje måndag.</div>
+          <div class="card-meta">📍 Östermalms IP · Mån</div>
+        </div>
+      </a>
+      <!-- PLACEHOLDER för ny klubb -->
+      <a href="#" class="club-card">
+        <div class="card-image card-image--placeholder">
+          <span class="placeholder-initial">P</span>
+          <span class="placeholder-tag">Pulse Pacers</span>
+        </div>
+        <div class="card-body">
+          <div class="card-tags"><span class="card-tag">Nybörjare</span><span class="card-tag">Social</span><span class="card-tag tag-special">Ny klubb</span></div>
+          <div class="card-name">Pulse Pacers</div>
+          <div class="card-desc">Ny social löparklubb i Stockholm.</div>
+          <div class="card-meta">📍 Stockholm</div>
+        </div>
+      </a>
+      <a href="#" class="club-card">
+        <div class="card-image card-image--branded"><img src="https://images.unsplash.com/photo-1526676537331-7747bf8278fc?w=400&h=220&fit=crop" alt=""></div>
+        <div class="card-body">
+          <div class="card-tags"><span class="card-tag">Avancerad</span><span class="card-tag">Intervall</span></div>
+          <div class="card-name">IF Linnéa löpning</div>
+          <div class="card-desc">Traditionsrik friidrottsförening.</div>
+          <div class="card-meta">📍 Zinkensdamm · Tis & Tor</div>
+        </div>
+      </a>
+      <!-- PLACEHOLDER för ny klubb -->
+      <a href="#" class="club-card">
+        <div class="card-image card-image--placeholder">
+          <span class="placeholder-initial">S</span>
+          <span class="placeholder-tag">Svedjans</span>
+        </div>
+        <div class="card-body">
+          <div class="card-tags"><span class="card-tag">Nybörjare</span><span class="card-tag">Social</span><span class="card-tag tag-special">Ny klubb</span></div>
+          <div class="card-name">Svedjans Löpsällskap</div>
+          <div class="card-desc">Löpsällskap med gemenskap i fokus.</div>
+          <div class="card-meta">📍 Stockholm</div>
+        </div>
+      </a>
+      <a href="#" class="club-card">
+        <div class="card-image card-image--branded"><img src="https://images.unsplash.com/photo-1519861531473-9200262188bf?w=400&h=220&fit=crop" alt=""></div>
+        <div class="card-body">
+          <div class="card-tags"><span class="card-tag">Nybörjare</span><span class="card-tag">Väg</span></div>
+          <div class="card-name">Mellqvist Run Club</div>
+          <div class="card-desc">Kaffestoppsklubb från Liljeholmen.</div>
+          <div class="card-meta">📍 Liljeholmen · Ons</div>
+        </div>
+      </a>
+      <!-- PLACEHOLDER för ny klubb -->
+      <a href="#" class="club-card">
+        <div class="card-image card-image--placeholder">
+          <span class="placeholder-initial">&amp;</span>
+          <span class="placeholder-tag">&amp;morerunning</span>
+        </div>
+        <div class="card-body">
+          <div class="card-tags"><span class="card-tag">Nybörjare</span><span class="card-tag">Social</span><span class="card-tag tag-special">Ny klubb</span></div>
+          <div class="card-name">&amp;morerunning</div>
+          <div class="card-desc">Ny löparklubb — info kommer snart.</div>
+          <div class="card-meta">📍 Stockholm</div>
+        </div>
+      </a>
+    </div>
+    <div class="compare-verdict">
+      <strong>Resultat:</strong> Bilderna är fortfarande olika — skog, gata, ben, evenemang — men nu har de
+      samma varma underton. Placeholders syns tydligt som designade objekt (inte saknade bilder) och bryter
+      upp fotoflödet på ett genomtänkt sätt. Ögat uppfattar hela griden som ett kurerat utval.
+    </div>
+  </div>
+
+  <p class="intro" style="margin-top:2rem;">
+    Säger du till, applicerar jag detta på alla tre städsidor: brand-filter på samtliga befintliga foton + placeholder
+    (initialen + klubbnamnet) på de 10 nya klubbarna. Sen committar och pushar vi som förut.
+  </p>
+
+</body>
+</html>

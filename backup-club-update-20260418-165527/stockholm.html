@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<script
+  id="CookieDeclaration"
+  src="https://consent.cookiebot.com/c82ce3af-bded-4069-9aea-22493d3d7e2d/cd.js"
+  type="text/javascript"
+></script>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-TPSCMPZT');</script>
+<!-- End Google Tag Manager -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Run Clubs Stockholm — Swedish Run Clubs</title>
+  <meta name="description" content="Hitta din run club i Stockholm. Vi listar 23 run clubs i Stockholm med beskrivningar, tider och filtreringssystem.">
+  <meta property="og:title" content="Run Clubs Stockholm — Swedish Run Clubs">
+  <meta property="og:description" content="Hitta din run club i Stockholm. Vi listar alla run clubs med beskrivningar, tider och filtreringssystem.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://runclubs.se/stockholm">
+  <meta property="og:image" content="https://runclubs.se/stockholm-run-clubs.jpeg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Run Clubs Stockholm — Swedish Run Clubs">
+  <meta name="twitter:description" content="Hitta din run club i Stockholm. Vi listar alla run clubs med beskrivningar, tider och filtreringssystem.">
+  <meta name="twitter:image" content="https://runclubs.se/stockholm-run-clubs.jpeg">
+  <link rel="canonical" href="https://runclubs.se/stockholm">
+  <link rel="preconnect" href="https://images.unsplash.com" crossorigin>
+  <link rel="dns-prefetch" href="https://images.unsplash.com">
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Oswald:wght@500;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; color: #1C2A45; background: #FDFAF9; -webkit-font-smoothing: antialiased; }
+
+    /* ── SKIP LINK ─────────────────────── */
+    .skip-link { position: absolute; top: -100%; left: 1rem; background: #D4715E; color: #fff; padding: 8px 16px; border-radius: 0 0 6px 6px; font-size: 13px; font-weight: 500; z-index: 1000; text-decoration: none; }
+    .skip-link:focus { top: 0; }
+
+    /* ── NAV ────────────────────────────── */
+    nav {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.25rem 2rem;
+      background: rgba(253,250,249,0.92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid #F0E0DC;
+      position: sticky; top: 0; z-index: 100;
+    }
+    .logo { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 16px; text-transform: uppercase; letter-spacing: 2px; color: #1C2A45; text-decoration: none; }
+    .nav-links { display: flex; gap: 2rem; }
+    .nav-links a {
+      font-size: 12px; letter-spacing: 0.5px; text-decoration: none;
+      color: #888; text-transform: uppercase; font-weight: 500;
+      transition: color 0.2s; position: relative;
+    }
+    .nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1.5px; background: #D4715E; transition: width 0.2s ease; }
+    .nav-links a:hover { color: #1C2A45; }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-links a.active { color: #D4715E; }
+    .nav-links a.active::after { width: 100%; }
+    .nav-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+    .nav-toggle span { display: block; width: 22px; height: 2px; background: #1C2A45; transition: all 0.3s ease; }
+    .nav-toggle.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .nav-toggle.open span:nth-child(2) { opacity: 0; }
+    .nav-toggle.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+    .mobile-menu { display: none; flex-direction: column; background: rgba(253,250,249,0.98); backdrop-filter: blur(12px); border-bottom: 1px solid #F0E0DC; padding: 1rem 2rem; gap: 0; }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a { font-size: 13px; letter-spacing: 1px; text-decoration: none; color: #1C2A45; text-transform: uppercase; font-weight: 500; padding: 0.75rem 0; border-bottom: 1px solid #F0E0DC; transition: color 0.15s; }
+    .mobile-menu a:last-child { border-bottom: none; }
+    .mobile-menu a:hover { color: #D4715E; }
+
+    /* ── HERO ───────────────────────────── */
+    .hero {
+      position: relative; min-height: 320px;
+      background: #1C2A45 url('stockholm-run-clubs.jpeg') center/cover no-repeat;
+      display: flex; flex-direction: column; justify-content: flex-end;
+      padding: 3rem 2rem; overflow: hidden;
+    }
+    .hero::before {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(28,42,69,0.92) 0%, rgba(28,42,69,0.5) 50%, rgba(28,42,69,0.3) 100%);
+    }
+    .hero-content { position: relative; z-index: 1; }
+    .breadcrumb { font-size: 12px; color: rgba(255,255,255,0.4); margin-bottom: 0.75rem; }
+    .breadcrumb a { color: rgba(255,255,255,0.4); text-decoration: none; transition: color 0.15s; }
+    .breadcrumb a:hover { color: #EEAA96; }
+    .hero-tag { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #EEAA96; margin-bottom: 0.75rem; }
+    .hero h1 { font-family: 'Archivo Black', sans-serif; font-size: clamp(42px, 6vw, 64px); line-height: 1; text-transform: uppercase; color: #FDFAF9; letter-spacing: 2px; }
+    .hero p { font-size: 15px; color: rgba(255,255,255,0.6); max-width: 460px; line-height: 1.7; margin-top: 0.75rem; }
+    .hero-stats {
+      display: flex; gap: 2rem; margin-top: 1.25rem;
+    }
+    .hero-stat { display: flex; flex-direction: column; }
+    .hero-stat-number { font-family: 'Archivo Black', sans-serif; font-size: 28px; color: #EEAA96; }
+    .hero-stat-label { font-size: 11px; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 1px; }
+
+    /* ── FILTERS ────────────────────────── */
+    .filters {
+      padding: 1.5rem 2rem; border-bottom: 1px solid #F0E0DC;
+      background: #FDFAF9; position: sticky; top: 57px; z-index: 90;
+    }
+    .filters-inner {
+      display: flex; gap: 2rem; align-items: flex-start; flex-wrap: wrap;
+    }
+    .filter-group { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+    .filter-label { font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: #aaa; font-weight: 500; white-space: nowrap; }
+    .filter-pills { display: flex; flex-wrap: wrap; gap: 6px; }
+    .pill {
+      font-size: 12px; font-weight: 500; padding: 6px 14px;
+      border-radius: 20px; border: 1px solid #E8D8D3;
+      background: #FDFAF9; color: #1C2A45; cursor: pointer;
+      font-family: 'DM Sans', sans-serif; transition: all 0.2s;
+    }
+    .pill:hover { border-color: #D4715E; color: #D4715E; }
+    .pill.active { background: #D4715E; color: #FDFAF9; border-color: #D4715E; }
+    .clear-filters {
+      font-size: 11px; color: #D4715E; background: none; border: none;
+      cursor: pointer; font-family: 'DM Sans', sans-serif; font-weight: 500;
+      padding: 6px 0; display: none; text-decoration: underline;
+      text-underline-offset: 2px; transition: color 0.15s;
+    }
+    .clear-filters.show { display: inline-block; }
+    .clear-filters:hover { color: #C8604A; }
+
+    /* ── RESULTS BAR ───────────────────── */
+    .results-bar {
+      padding: 0.75rem 2rem; font-size: 12px; color: #aaa;
+      border-bottom: 1px solid #F0E0DC; background: #FDFAF9;
+      display: flex; align-items: center; gap: 6px;
+    }
+    .results-count { font-weight: 600; color: #D4715E; }
+
+    /* ── FEATURED SECTION ─────────────── */
+    .featured-section {
+      padding: 3rem 2rem;
+      background: #FDFAF9;
+    }
+    .section-label { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: #aaa; margin-bottom: 1.5rem; font-weight: 500; }
+    .clubs-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+    .club-card {
+      position: relative; background: #fff;
+      border: 1px solid #F0E0DC; border-radius: 16px;
+      text-decoration: none; color: #1C2A45;
+      display: flex; flex-direction: column;
+      transition: all 0.25s ease; overflow: hidden;
+    }
+    .club-card:hover {
+      border-color: #D4715E;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(28,42,69,0.08);
+    }
+    .club-card.hidden { display: none; }
+    .card-image {
+      width: 100%; height: 160px; object-fit: cover;
+      background: #F3EBE8;
+      display: block;
+    }
+    .card-body { padding: 1.25rem 1.5rem 1.5rem; display: flex; flex-direction: column; flex: 1; }
+    .card-tags { display: flex; gap: 4px; flex-wrap: wrap; margin-bottom: 10px; }
+    .card-tag { font-size: 10px; padding: 3px 10px; border-radius: 10px; font-weight: 500; }
+    .tag-nybörjare { background: #C6EFCE; color: #276221; }
+    .tag-mellannivå { background: #FFEB9C; color: #7d6608; }
+    .tag-avancerad { background: #FFC7CE; color: #9C0006; }
+    .tag-typ { background: #E8EEF5; color: #3a5a8c; }
+    .tag-dag { background: #F7E8E4; color: #D4715E; }
+    .tag-special { background: #F0E6FF; color: #5B2D8E; }
+    .card-name {
+      font-family: 'Oswald', sans-serif; font-weight: 700;
+      font-size: 22px; text-transform: uppercase;
+      margin-bottom: 6px; letter-spacing: 0.5px;
+    }
+    .card-desc { font-size: 13px; color: #666; line-height: 1.6; margin-bottom: 10px; flex: 1; }
+    .card-meta {
+      font-size: 12px; color: #888; line-height: 1.6;
+      padding-top: 10px; border-top: 1px solid #F0E0DC;
+      display: flex; align-items: center; gap: 4px;
+    }
+    .card-meta svg { color: #D4715E; flex-shrink: 0; }
+    .no-results {
+      display: none; padding: 3rem 2rem; text-align: center;
+      color: #aaa; font-size: 15px;
+    }
+
+    .new-badge {
+      display: inline-block; font-size: 9px; font-weight: 700;
+      letter-spacing: 1px; text-transform: uppercase;
+      background: #D4715E; color: #fff;
+      padding: 2px 8px; border-radius: 10px;
+      margin-left: 8px; vertical-align: middle;
+    }
+
+    /* ── CTA SECTION ───────────────────── */
+    .cta-section {
+      background: #1C2A45; padding: 4rem 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 2rem; flex-wrap: wrap;
+    }
+    .cta-content { max-width: 500px; }
+    .cta-label {
+      font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
+      color: #EEAA96; margin-bottom: 0.75rem; font-weight: 500;
+    }
+    .cta-title {
+      font-family: 'Archivo Black', sans-serif; font-size: 26px;
+      text-transform: uppercase; color: #FDFAF9; letter-spacing: 0.5px;
+      margin-bottom: 0.75rem;
+    }
+    .cta-text { font-size: 14px; color: rgba(255,255,255,0.5); line-height: 1.7; }
+    .cta-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: #D4715E; color: #FDFAF9;
+      font-size: 13px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase;
+      padding: 14px 30px; border-radius: 6px; text-decoration: none;
+      transition: all 0.2s ease; white-space: nowrap;
+    }
+    .cta-btn:hover { background: #C8604A; transform: translateY(-1px); box-shadow: 0 4px 16px rgba(212,113,94,0.35); }
+    .cta-btn svg { transition: transform 0.2s; }
+    .cta-btn:hover svg { transform: translateX(3px); }
+
+    /* ── NEWSLETTER ─────────────────────── */
+    .newsletter {
+      background: #F3EBE8; border-top: 1px solid #E8D8D3;
+      color: #1C2A45; padding: 4rem 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 2rem; flex-wrap: wrap;
+    }
+    .newsletter-label { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: #D4715E; margin-bottom: 0.75rem; font-weight: 500; }
+    .newsletter-title { font-family: 'Archivo Black', sans-serif; font-size: 24px; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.5rem; color: #1C2A45; }
+    .newsletter p { font-size: 14px; color: #666; max-width: 400px; line-height: 1.7; }
+    .newsletter-form { display: flex; gap: 10px; flex-wrap: wrap; }
+    .newsletter-input { padding: 14px 18px; border: 1px solid #E8D8D3; border-radius: 6px; font-size: 14px; font-family: 'DM Sans', sans-serif; color: #1C2A45; background: #fff; outline: none; min-width: 260px; transition: border-color 0.2s; }
+    .newsletter-input::placeholder { color: #bbb; }
+    .newsletter-input:focus { border-color: #D4715E; }
+    .newsletter-btn { background: #D4715E; color: #FDFAF9; font-size: 13px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; padding: 14px 32px; border-radius: 6px; border: none; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: all 0.2s; white-space: nowrap; }
+    .newsletter-btn:hover { background: #C8604A; transform: translateY(-1px); box-shadow: 0 4px 16px rgba(212,113,94,0.35); }
+
+    /* ── FOOTER ─────────────────────────── */
+    footer {
+      background: #F7E8E4; border-top: 1px solid #F0D8D3;
+      padding: 3.5rem 2rem; display: grid;
+      grid-template-columns: 2fr 1fr 1fr; gap: 2rem; font-size: 13px;
+    }
+    .footer-brand .logo { font-size: 14px; letter-spacing: 1.5px; display: block; margin-bottom: 0.75rem; }
+    .footer-brand p { font-size: 13px; color: #888; line-height: 1.6; max-width: 280px; }
+    footer h4 { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #aaa; margin-bottom: 1rem; font-weight: 500; }
+    footer a { display: block; color: #1C2A45; text-decoration: none; margin-bottom: 8px; transition: color 0.15s; }
+    footer a:hover { color: #D4715E; }
+    .footer-bottom { grid-column: 1 / -1; padding-top: 1.5rem; border-top: 1px solid #F0D8D3; font-size: 12px; color: #aaa; }
+
+    /* ── FADE IN ────────────────────────── */
+    .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── MOBILE ─────────────────────────── */
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.25rem; }
+      .nav-links { display: none; }
+      .nav-toggle { display: flex; }
+      .hero { min-height: 260px; padding: 2rem 1.25rem; }
+      .hero h1 { font-size: 38px; }
+      .hero-stats { gap: 1.5rem; }
+      .hero-stat-number { font-size: 22px; }
+      .filters { padding: 1.25rem; top: 49px; }
+      .filters-inner { gap: 1rem; }
+      .filter-group { width: 100%; }
+      .results-bar { padding: 0.75rem 1.25rem; }
+      .featured-section { padding: 2rem 1.25rem; }
+      .clubs-grid { grid-template-columns: 1fr; }
+      .cta-section { padding: 2.5rem 1.25rem; flex-direction: column; align-items: flex-start; }
+      .cta-title { font-size: 22px; }
+      .cta-btn { width: 100%; justify-content: center; }
+      .newsletter { padding: 2.5rem 1.25rem; flex-direction: column; align-items: flex-start; }
+      .newsletter-title { font-size: 20px; }
+      .newsletter-form { flex-direction: column; width: 100%; }
+      .newsletter-input { min-width: unset; width: 100%; }
+      .newsletter-btn { width: 100%; text-align: center; padding: 14px; }
+      footer { padding: 2rem 1.25rem; grid-template-columns: 1fr; }
+    }
+  </style>
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TPSCMPZT"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+  <a href="#main-content" class="skip-link">Hoppa till innehåll</a>
+
+  <nav>
+    <a href="/" class="logo">Swedish Run Clubs</a>
+    <div class="nav-links">
+      <a href="stockholm" class="active">Stockholm</a>
+      <a href="goteborg">Göteborg</a>
+      <a href="malmo">Malmö</a>
+      <a href="nyheter">Nyheter</a>
+      <a href="om-oss">Om oss</a>
+    </div>
+    <button class="nav-toggle" aria-label="Öppna meny" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="mobile-menu" role="navigation" aria-label="Mobilmeny">
+    <a href="stockholm">Stockholm</a>
+    <a href="goteborg">Göteborg</a>
+    <a href="malmo">Malmö</a>
+    <a href="nyheter">Nyheter</a>
+    <a href="om-oss">Om oss</a>
+  </div>
+
+  <main id="main-content">
+
+  <header class="hero">
+    <div class="hero-content">
+      <div class="breadcrumb"><a href="/">Start</a> → Stockholm</div>
+      <div class="hero-tag">Run Clubs i</div>
+      <h1>Stockholm</h1>
+      <p>Här hittar du alla run clubs i Stockholm — välj nivå, typ och dag för att hitta din perfekta klubb.</p>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="hero-stat-number">23</div>
+          <div class="hero-stat-label">Klubbar</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-number">7</div>
+          <div class="hero-stat-label">Stadsdelar</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-number">6</div>
+          <div class="hero-stat-label">Dagar/vecka</div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="filters" id="filters">
+    <div class="filters-inner">
+      <div class="filter-group">
+        <span class="filter-label">Nivå</span>
+        <div class="filter-pills">
+          <button class="pill" data-filter="niva" data-value="nybörjare">Nybörjare</button>
+          <button class="pill" data-filter="niva" data-value="mellannivå">Mellannivå</button>
+          <button class="pill" data-filter="niva" data-value="avancerad">Avancerad</button>
+        </div>
+      </div>
+      <div class="filter-group">
+        <span class="filter-label">Typ</span>
+        <div class="filter-pills">
+          <button class="pill" data-filter="typ" data-value="väg">Väg</button>
+          <button class="pill" data-filter="typ" data-value="trail">Trail</button>
+          <button class="pill" data-filter="typ" data-value="intervall">Intervall</button>
+          <button class="pill" data-filter="typ" data-value="långpass">Långpass</button>
+          <button class="pill" data-filter="typ" data-value="social">Social</button>
+        </div>
+      </div>
+      <div class="filter-group">
+        <span class="filter-label">Dag</span>
+        <div class="filter-pills">
+          <button class="pill" data-filter="dag" data-value="mån">Mån</button>
+          <button class="pill" data-filter="dag" data-value="tis">Tis</button>
+          <button class="pill" data-filter="dag" data-value="ons">Ons</button>
+          <button class="pill" data-filter="dag" data-value="tor">Tor</button>
+          <button class="pill" data-filter="dag" data-value="fre">Fre</button>
+          <button class="pill" data-filter="dag" data-value="lör">Lör</button>
+          <button class="pill" data-filter="dag" data-value="sön">Sön</button>
+        </div>
+      </div>
+      <button class="clear-filters" id="clear-filters">Rensa filter</button>
+    </div>
+  </div>
+
+  <div class="results-bar" id="results-bar">Visar <span class="results-count">23</span> klubbar</div>
+
+  <section class="featured-section">
+    <div class="section-label">Alla klubbar i Stockholm</div>
+    <div class="clubs-grid" id="clubs-grid">
+
+      <a href="yo-running-club" class="club-card" data-niva="nybörjare mellannivå avancerad" data-typ="intervall väg social" data-dag="tis lör">
+        <img src="https://images.unsplash.com/photo-1739368732843-800f36a9b7d0?w=400&h=220&fit=crop&crop=center" alt="Grupp löpare springer längs floden i solnedgång" class="card-image" loading="eager" decoding="async" width="400" height="220" fetchpriority="high">
+        <div class="card-body">
+          <div class="card-tags">
+            <span class="card-tag tag-nybörjare">Nybörjare</span>
+            <span class="card-tag tag-mellannivå">Mellannivå</span>
+            <span class="card-tag tag-typ">Social</span>
+            <span class="card-tag tag-dag">Tis & Lör</span>
+          </div>
+          <div class="card-name">Yo Running Club</div>
+          <div class="card-desc">En av Stockholms mest populära löparklubbar. Tränar i Vasastan med ett välkomnande och energigivande community.</div>
+          <div class="card-meta">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Torsgatan 40, Vasastan · 18:00
+          </div>
+        </div>
+      </a>
+
+      <a href="stockholm-run-club" class="club-card" data-niva="nybörjare mellannivå avancerad" data-typ="intervall långpass social väg" data-dag="tis sön">
+        <img src="https://images.unsplash.com/photo-1540539234-c14a20fb7c7b?w=400&h=220&fit=crop&crop=center" alt="Löpargrupp springer tillsammans på stranden" class="card-image" loading="eager" decoding="async" width="400" height="220" fetchpriority="high">
+        <div class="card-body">
+          <div class="card-tags">
+            <span class="card-tag tag-nybörjare">Nybörjare</span>
+            <span class="card-tag tag-mellannivå">Mellannivå</span>
+            <span class="card-tag tag-typ">Social</span>
+            <span class="card-tag tag-dag">Tis & Sön</span>
+          </div>
+          <div class="card-name">Stockholm Run Club</div>
+          <div class="card-desc">Grundades 2020 med målet att göra löpning tillgängligt för alla — gratis, inkluderande och på engelska.</div>
+          <div class="card-meta">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Östermalm · 18:00 (tis), 10:00 (sön)
+          </div>
+        </div>
+      </a>
+
+      <a href="dopest-runners" class="club-card" data-niva="nybörjare mellannivå avancerad" data-typ="intervall väg social" data-dag="tis tor sön">
+        <img src="https://images.unsplash.com/photo-1596727362302-b8d891c42ab8?w=400&h=220&fit=crop&crop=center" alt="Löpare i maraton sett ovanifrån" class="card-image" loading="eager" decoding="async" width="400" height="220" fetchpriority="high">
+        <div class="card-body">
+          <div class="card-tags">
+            <span class="card-tag tag-nybörjare">Nybörjare</span>
+            <span class="card-tag tag-mellannivå">Mellannivå</span>
+            <span class="card-tag tag-typ">Social</span>
+            <span class="card-tag tag-dag">Tis, Tor & Sön</span>
+          </div>
+          <div class="card-name">Dopest Runners</div>
+          <div class="card-desc">Grundades 2021 med målet att göra löpning rolig och inkluderande för alla. Bag drop på varje pass.</div>
+          <div class="card-meta">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Liljeholmshamnen 4, Liljeholmen · Tor 18:30
+          </div>
+        </div>
+      </a>
+
+      <a href="klubb" class="club-card" data-niva="nybörjare mellannivå avancerad" data-typ="väg social" data-dag="ons lör">
+        <img src="https://images.unsplash.com/photo-1552674605-db6ffd4facb5?w=400&h=220&fit=crop&crop=center" alt="Löpare springer i soluppgång" class="card-image" loading="lazy" decoding="async" width="400" height="220">
+        <div class="card-body">
+          <div class="card-tags">
+            <span class="card-tag tag-nybörjare">Nybörjare</span>
+            <span class="card-tag tag-mellannivå">Mellannivå</span>
+            <span class="card-tag tag-typ">Social</span>
+            <span class="card-tag tag-dag">Ons & Lör</span>
+          </div>
+          <div class="card-name">Triple Threshold RC</div>
+          <div class="card-desc">Running communion grundad 2023 på Södermalm. Fokus på gemenskap före prestation — alla nivåer springer tillsammans. "First struggle, then snuggle" med pizza och häng efteråt.</div>
+          <div class="card-meta">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Reimersholmsgatan 5 · Ons 18:00, Lör 10:00
+          </div>
+        </div>
+      </a>
+
+      <a href="klubb" class="club-card" data-niva="nybörjare mellannivå avancerad" data-typ="intervall social" data-dag="ons">
+        <img src="https://images.unsplash.com/photo-1529795533870-ea8020391255?w=400&h=220&fit=crop&crop=center" alt="Löpare i stadsmiljö" class="card-image" loading="lazy" decoding="async" width="400" height="220">
+        <div class="card-body">
+          <div class="card-tags">
+            <span class="card-tag tag-nybörjare">Nybörjare</span>
+            <span class="card-tag tag-mellannivå">Mellannivå</span>
+            <span class="card-tag tag-avancerad">Avancerad</span>
+            <span class="card-tag tag-typ">Intervall</span>
+            <span class="card-tag tag-typ">Social</span>
+            <span class="card-tag tag-dag">Onsdag</span>
+          </div>
+          <div class="card-name">Burgers 'N' Brew Run Crew</div>
+          <div class="card-desc">Intervallträning i centrala Stockholm varje onsdag sedan 2017. Alla nivåer springer i eget tempo — alltid tillsammans. Burgare och öl efteråt.</div>
+          <div class="card-meta">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Centrala Stockholm · Ons 18:20
+          </div>
+        </div>
+      </a>
+
+      <a href="klubb" class="club-card" data-niva="nybörjare mellannivå" data-typ="social väg" data-dag="">
+        <img src="https://images.unsplash.com/photo-1571008887538-b36bb32f4571?w=400&h=220&fit=crop&crop=center" alt="Löpare springer i stadsmiljö" class="card-image" loading="lazy" decoding="async" width="400" height="220">
+        <div class="card-body">
+          <div class="card-tags">
+            <span class="card-tag tag-nybörjare">Nybörjare</span>
+            <span class="card-tag tag-mellannivå">Mellannivå</span>
+            <span class="card-tag tag-typ">Social</span>
+            <span class="card-tag tag-special">Ny klubb</span>
+          </div>
+          <div class="card-name">Fast Track Run Club</div>
+          <div class="card-desc">Ny run club i Stockholm. Mer information kommer snart — håll utkik på deras sociala medier.</div>
+          <div class="card-meta">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Stockholm
+          </div>
+        </div>
+      </a>
+
+      <a href="klubb" class="club-card" data-niva="nybörjare mellannivå" data-typ="social väg" data-dag="tis">
+        <img src="https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?w=400&h=220&fit=crop&crop=center" alt="Löpare i kvällsljus" class="card-image" loading="lazy" decoding="async" width="400" height="220">
+        <div class="card-body">
+          <div class="card-tags">
+            <span class="card-tag tag-nybörjare">Nybörjare</span>
+            <span class="card-tag tag-mellannivå">Mellannivå</span>
+            <span class="card-tag tag-typ">Social</span>
+            <span class="card-tag tag-dag">Tisdag</span>
+          </div>
+          <div class="card-name">Running Around Club</div>
+          <div class="card-desc">Social löparklubb som ses på olika platser runt om i Stockholm. Varje vecka en ny mötesplats — kolla deras sociala medier för aktuell info.</div>
+          <div class="card-meta">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Olika platser, Stockholm · Tis 18:00
+          </div>
+        </div>
+      </a>
+
+      <a href="klubb" class="club-card" data-niva="mellannivå avancerad" data-typ="intervall väg" data-dag="tor">
+        <img src="https://images.unsplash.com/photo-1532444458054-01a7dd3e9fca?w=400&h=220&fit=crop&crop=center" alt="Sprinters på löparbana" class="card-image" loading="lazy" decoding="async" width="400" height="220">
+        <div class="card-body">
+          <div class="card-tags">
+            <span class="card-tag tag-mellannivå">Mellannivå</span>
+            <span class="card-tag tag-avancerad">Avancerad</span>
+            <span class="card-tag tag-typ">Intervall</span>
+            <span class="card-tag tag-special">Endast inbjudan</span>
+            <span class="card-tag tag-dag">Torsdag</span>
+          </div>
+          <div class="card-name">RTC</div>
+          <div class="card-desc">Löparklubb på inbjudan. Intervallträning på torsdagar från Stadium — en tight grupp med fokus på utveckling och fart.</div>
+          <div class="card-meta">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Stadium, Stockholm · Tor 18:00
+          </div>
+        </div>
+      </a>
+
+      <a href="klubb" class="club-card" data-niva="nybörjare mellannivå" data-typ="social väg" data-dag="ons">
+        <img src="https://images.unsplash.com/photo-1596460658047-1826d5921c56?w=400&h=220&fit=crop&crop=center" alt="Löpare springer i grupp på väg" class="card-image" loading="lazy" decoding="async" width="400" height="220">
+        <div class="card-body">
+          <div class="card-tags">
+            <span class="card-tag tag-nybörjare">Nybörjare</span>
+            <span class="card-tag tag-mellannivå">Mellannivå</span>
+            <span class="card-tag tag-typ">Social</span>
+            <span class="card-tag tag-dag">Onsdag</span>
+          </div>
+          <div class="card-name">ZLK — Zinken Löpklubb</div>
+          <div class="card-desc">Lokal löparklubb med bas vid Zinkendams IP. Social stämning och träning i grupp varje onsdag.</div>
+          <div class="card-meta">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Zinkendams IP, Södermalm · Ons 17:30
+          </div>
+        </div>
+      </a>
+
+      <a href="klubb" class="club-card" data-niva="nybörjare mellannivå" data-typ="social väg" data-dag="">
+        <img src="https://images.unsplash.com/photo-1594882645126-14020914d58d?w=400&h=220&fit=crop&crop=center" alt="Löpare springer i grupp" class="card-image" loading="lazy" decoding="async" width="400" height="220">
+        <div class="card-body">
+          <div class="card-tags">
+            <span class="card-tag tag-nybörjare">Nybörjare</span>
+            <span class="card-tag tag-mellannivå">Mellannivå</span>
+            <span class="card-tag tag-typ">Social</span>
+            <span class="card-tag tag-special">Ny klubb</span>
+          </div>
+          <div class="card-name">Saucony Run Club</div>
+          <div class="card-desc">Social löparklubb med bas vid Zinkensdamms IP. Välkomnande stämning för alla nivåer.</div>
+          <div class="card-meta">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Zinkensdamms IP, Södermalm
+          </div>
+        </div>
+      </a>
+
+      <a href="klubb" class="club-card" data-niva="nybörjare" data-typ="social långpass" data-dag="lör">
+        <img src="https://images.unsplash.com/photo-1667781838690-5f32ea0ccea6?w=400&h=220&fit=crop&crop=center" alt="Löpare i maraton" class="card-image" loading="lazy" decoding="async" width="400" height="220">
+        <div class="card-body">
+          <div class="card-tags">
+            <span class="card-tag tag-nybörjare">Nybörjare</span>
+            <span class="card-tag tag-typ">Social</span>
+            <span class="card-tag tag-typ">Långpass</span>
+            <span class="card-tag tag-dag">Lördag</span>
+          </div>
+          <div class="card-name">Söderlöparna Stockholm</div>
+          <div class="card-desc">Lördagslöpning från Gullmarsplan. Social och avslappnad stämning för alla som vill ut och springa.</div>
+          <div class="card-meta">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Gullmarsplan, Södermalm · Lör
+          </div>
+        </div>
+      </a>
+
+      <a href="klubb" class="club-card" data-niva="nybörjare mellannivå" data-typ="social" data-dag="mån">
+        <img src="https://images.unsplash.com/photo-1719299180483-90a4b609a946?w=400&h=220&fit=crop&crop=center" alt="Löpargrupp springer i stad" class="card-image" loading="lazy" decoding="async" width="400" height="220">
+        <div class="card-body">
+          <div class="card-tags">
+            <span class="card-tag tag-nybörjare">Nybörjare</span>
+            <span class="card-tag tag-mellannivå">Mellannivå</span>
+            <span class="card-tag tag-typ">Social</span>
+            <span class="card-tag tag-dag">Måndag</span>
+          </div>
+          <div class="card-name">Runday</div>
+          <div class="card-desc">Gratis och social löpning varje måndag från Östermalms IP. Alla välkomna oavsett nivå.</div>
+          <div class="card-meta">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Östermalms IP · Mån 18:00 · Gratis
+          </div>
+        </div>
+      </a>
+
+      <a href="klubb" class="club-card" data-niva="nybörjare" data-typ="social väg" data-dag="tis lör">
+        <img src="https://images.unsplash.com/photo-1513593771513-7b58b6c4af38?w=400&h=220&fit=crop&crop=center" alt="Löpare springer i grupp" class="card-image" loading="lazy" decoding="async" width="400" height="220">
+        <div class="card-body">
+          <div class="card-tags">
+            <span class="card-tag tag-nybörjare">Nybörjare</span>
+            <span class="card-tag tag-typ">Social</span>
+            <span class="card-tag tag-typ">Väg</span>
+            <span class="card-tag tag-dag">Tis & Lör</span>
+          </div>
+          <div class="card-name">Run Collective Stockholm</div>
+          <div class="card-desc">Social löparklubb med start från Bacchi Syre. Två pass i veckan — tisdag kväll och lördag förmiddag.</div>
+          <div class="card-meta">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Bacchi Syre · Tis 18:15, Lör 10:15
+          </div>
+        </div>
+      </a>
+
+      <a href="klubb" class="club-card" data-niva="nybörjare avancerad" data-typ="intervall" data-dag="tis tor">
+        <img src="https://images.unsplash.com/photo-1526676537331-7747bf8278fc?w=400&h=220&fit=crop&crop=center" alt="Löpare på friidrottsbana" class="card-image" loading="lazy" decoding="async" width="400" height="220">
+        <div class="card-body">
+          <div class="card-tags">
+            <span class="card-tag tag-nybörjare">Nybörjare</span>
+            <span class="card-tag tag-avancerad">Avancerad</span>
+            <span class="card-tag tag-typ">Intervall</span>
+            <span class="card-tag tag-dag">Tis & Tor</span>
+          </div>
+          <div class="card-name">IF Linnéa löpning</div>
+          <div class="card-desc">Traditionsrik friidrottsförening vid Zinkensdamms IP. Intervallträning för alla — från nybörjare till elitlöpare.</div>
+          <div class="card-meta">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Zinkensdamms IP, Södermalm · Tis & Tor 18:30
+          </div>
+        </div>
+      </a>
+
+      <a href="klubb" class="club-card" data-niva="mellannivå avancerad" data-typ="trail" data-dag="mån tis ons tor fre lör sön">
+        <img src="https://images.unsplash.com/photo-1623390003553-4fa3f9fceb89?w=400&h=220&fit=crop&crop=center" alt="Trailrunning i skog" class="card-image" loading="lazy" decoding="async" width="400" height="220">
+        <div class="card-body">
+          <div class="card-tags">
+            <span class="card-tag tag-mellannivå">Mellannivå</span>
+            <span class="card-tag tag-avancerad">Avancerad</span>
+            <span class="card-tag tag-typ">Trail</span>
+          </div>
+          <div class="card-name">Team Nordic Trail</div>
+          <div class="card-desc">Trailgemenskap med pass alla veckodagar. Fokus på skog, stigar och äventyr i Stockholmsområdet.</div>
+          <div class="card-meta">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Stockholm · Alla veckodagar
+          </div>
+        </div>
+      </a>
+
+      <a href="klubb" class="club-card" data-niva="avancerad" data-typ="intervall" data-dag="ons">
+        <img src="https://images.unsplash.com/photo-1461897104016-0b3b00cc81ee?w=400&h=220&fit=crop&crop=center" alt="Sprinters på bana" class="card-image" loading="lazy" decoding="async" width="400" height="220">
+        <div class="card-body">
+          <div class="card-tags">
+            <span class="card-tag tag-avancerad">Avancerad</span>
+            <span class="card-tag tag-typ">Intervall</span>
+            <span class="card-tag tag-dag">Onsdag</span>
+          </div>
+          <div class="card-name">YMR Track Club</div>
+          <div class="card-desc">Intervallklubb för erfarna löpare med bas på Östermalm. Strukturerade bankpass med hög kvalitet.</div>
+          <div class="card-meta">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Grevgatan 27, Östermalm · Ons
+          </div>
+        </div>
+      </a>
+
+      <a href="klubb" class="club-card" data-niva="nybörjare" data-typ="social" data-dag="">
+        <img src="https://images.unsplash.com/photo-1529795533870-ea8020391255?w=400&h=220&fit=crop&crop=center" alt="Löpare i stadsmiljö" class="card-image" loading="lazy" decoding="async" width="400" height="220">
+        <div class="card-body">
+          <div class="card-tags">
+            <span class="card-tag tag-nybörjare">Nybörjare</span>
+            <span class="card-tag tag-typ">Social</span>
+          </div>
+          <div class="card-name">Mikkeller Running Club</div>
+          <div class="card-desc">Världens löparklubb med öl efteråt. Stockholmskapitlet springer från Östgötagatan på Södermalm.</div>
+          <div class="card-meta">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Östgötagatan 33, Södermalm
+          </div>
+        </div>
+      </a>
+
+      <a href="klubb" class="club-card" data-niva="nybörjare mellannivå" data-typ="social" data-dag="">
+        <img src="https://images.unsplash.com/photo-1667781838690-5f32ea0ccea6?w=400&h=220&fit=crop&crop=center" alt="Löpare i stadsmiljö" class="card-image" loading="lazy" decoding="async" width="400" height="220">
+        <div class="card-body">
+          <div class="card-tags">
+            <span class="card-tag tag-nybörjare">Nybörjare</span>
+            <span class="card-tag tag-mellannivå">Mellannivå</span>
+            <span class="card-tag tag-typ">Social</span>
+            <span class="card-tag tag-special">Ny klubb</span>
+          </div>
+          <div class="card-name">Mellqvist Run Club</div>
+          <div class="card-desc">Ny run club i Stockholm. Mer information kommer snart — håll utkik på deras Instagram.</div>
+          <div class="card-meta">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Stockholm
+          </div>
+        </div>
+      </a>
+
+      <a href="klubb" class="club-card" data-niva="nybörjare" data-typ="social väg" data-dag="">
+        <img src="https://images.unsplash.com/photo-1719299180483-90a4b609a946?w=400&h=220&fit=crop&crop=center" alt="Löpare springer i lugnt tempo" class="card-image" loading="lazy" decoding="async" width="400" height="220">
+        <div class="card-body">
+          <div class="card-tags">
+            <span class="card-tag tag-nybörjare">Nybörjare</span>
+            <span class="card-tag tag-typ">Social</span>
+            <span class="card-tag tag-typ">Väg</span>
+            <span class="card-tag tag-special">Ny klubb</span>
+          </div>
+          <div class="card-name">Slowrunners Sthlm</div>
+          <div class="card-desc">Löpning utan press. Gratis löpargrupp för dig som vill springa långsamt i ett tryggt och lugnt tempo — gemenskap genom slowrun på dina villkor.</div>
+          <div class="card-meta">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Stockholm
+          </div>
+        </div>
+      </a>
+
+
+
+      <a href="klubb" class="club-card" data-niva="nybörjare mellannivå" data-typ="social" data-dag="">
+        <img src="https://images.unsplash.com/photo-1513593771513-7b58b6c4af38?w=400&h=220&fit=crop&crop=center" alt="Löpare springer i grupp" class="card-image" loading="lazy" decoding="async" width="400" height="220">
+        <div class="card-body">
+          <div class="card-tags">
+            <span class="card-tag tag-nybörjare">Nybörjare</span>
+            <span class="card-tag tag-mellannivå">Mellannivå</span>
+            <span class="card-tag tag-typ">Social</span>
+            <span class="card-tag tag-special">Ny klubb</span>
+          </div>
+          <div class="card-name">Svedjans Löpsällskap</div>
+          <div class="card-desc">Löpsällskap med gemenskap i fokus. Mer information kommer snart — håll utkik på deras Instagram.</div>
+          <div class="card-meta">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Stockholm
+          </div>
+        </div>
+      </a>
+
+      <a href="klubb" class="club-card" data-niva="nybörjare mellannivå" data-typ="social" data-dag="">
+        <img src="https://images.unsplash.com/photo-1719299180483-90a4b609a946?w=400&h=220&fit=crop&crop=center" alt="Löpargrupp springer i stad" class="card-image" loading="lazy" decoding="async" width="400" height="220">
+        <div class="card-body">
+          <div class="card-tags">
+            <span class="card-tag tag-nybörjare">Nybörjare</span>
+            <span class="card-tag tag-mellannivå">Mellannivå</span>
+            <span class="card-tag tag-typ">Social</span>
+            <span class="card-tag tag-special">Ny klubb</span>
+          </div>
+          <div class="card-name">&amp;morerunning</div>
+          <div class="card-desc">Ny löpargrupp i Stockholm. Följ dem på Instagram för tider och platser.</div>
+          <div class="card-meta">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Stockholm
+          </div>
+        </div>
+      </a>
+
+      <a href="klubb" class="club-card" data-niva="nybörjare mellannivå" data-typ="social" data-dag="">
+        <img src="https://images.unsplash.com/photo-1667781838690-5f32ea0ccea6?w=400&h=220&fit=crop&crop=center" alt="Kvinnor som springer" class="card-image" loading="lazy" decoding="async" width="400" height="220">
+        <div class="card-body">
+          <div class="card-tags">
+            <span class="card-tag tag-nybörjare">Nybörjare</span>
+            <span class="card-tag tag-mellannivå">Mellannivå</span>
+            <span class="card-tag tag-typ">Social</span>
+            <span class="card-tag tag-special">Tjejer</span>
+          </div>
+          <div class="card-name">Löpning för tjejer</div>
+          <div class="card-desc">Facebook-grupp för tjejer som vill springa tillsammans. Alla nivåer välkomna.</div>
+          <div class="card-meta">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Stockholm
+          </div>
+        </div>
+      </a>
+
+      <a href="klubb" class="club-card" data-niva="nybörjare mellannivå" data-typ="social" data-dag="">
+        <img src="https://images.unsplash.com/photo-1529795533870-ea8020391255?w=400&h=220&fit=crop&crop=center" alt="Löpare i stadsmiljö" class="card-image" loading="lazy" decoding="async" width="400" height="220">
+        <div class="card-body">
+          <div class="card-tags">
+            <span class="card-tag tag-nybörjare">Nybörjare</span>
+            <span class="card-tag tag-mellannivå">Mellannivå</span>
+            <span class="card-tag tag-typ">Social</span>
+            <span class="card-tag tag-special">Ny klubb</span>
+          </div>
+          <div class="card-name">Högdalen Run Club</div>
+          <div class="card-desc">Lokal löpargrupp från Högdalen. Mer information kommer snart — följ dem på Instagram.</div>
+          <div class="card-meta">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Högdalen, Stockholm
+          </div>
+        </div>
+      </a>
+
+      <a href="klubb" class="club-card" data-niva="mellannivå avancerad" data-typ="intervall" data-dag="">
+        <img src="https://images.unsplash.com/photo-1526676537331-7747bf8278fc?w=400&h=220&fit=crop&crop=center" alt="Löpare på friidrottsbana" class="card-image" loading="lazy" decoding="async" width="400" height="220">
+        <div class="card-body">
+          <div class="card-tags">
+            <span class="card-tag tag-mellannivå">Mellannivå</span>
+            <span class="card-tag tag-avancerad">Avancerad</span>
+            <span class="card-tag tag-typ">Intervall</span>
+            <span class="card-tag tag-special">Ny klubb</span>
+          </div>
+          <div class="card-name">Pulse Pacers</div>
+          <div class="card-desc">Löparklubb med fokus på tempo och intervaller. Följ dem på Instagram och Strava.</div>
+          <div class="card-meta">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Stockholm
+          </div>
+        </div>
+      </a>
+
+      <a href="klubb" class="club-card" data-niva="nybörjare mellannivå" data-typ="social" data-dag="">
+        <img src="https://images.unsplash.com/photo-1502904550040-7534597429ae?w=400&h=220&fit=crop&crop=center" alt="Löpare utomhus" class="card-image" loading="lazy" decoding="async" width="400" height="220">
+        <div class="card-body">
+          <div class="card-tags">
+            <span class="card-tag tag-nybörjare">Nybörjare</span>
+            <span class="card-tag tag-mellannivå">Mellannivå</span>
+            <span class="card-tag tag-typ">Social</span>
+            <span class="card-tag tag-special">Ny klubb</span>
+          </div>
+          <div class="card-name">Solmates Runclub</div>
+          <div class="card-desc">Ny social löparklubb i Stockholm. Mer information kommer snart — håll utkik på deras Instagram.</div>
+          <div class="card-meta">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Stockholm
+          </div>
+        </div>
+      </a>
+
+    </div>
+    <div class="no-results" id="no-results">Inga klubbar matchar dina filter. Prova att ta bort ett filter.</div>
+  </section>
+
+  <!-- NEWSLETTER -->
+  <section class="newsletter fade-in">
+    <div class="newsletter-text">
+      <div class="newsletter-label">Nyhetsbrevet</div>
+      <div class="newsletter-title">Håll koll på<br>löparvärlden</div>
+      <p>Nya klubbar och event direkt i din inkorg. Gratis, max ett mail i veckan.</p>
+    </div>
+    <form class="newsletter-form" onsubmit="return false;">
+      <input type="email" class="newsletter-input" placeholder="din@email.se" aria-label="E-postadress">
+      <button class="newsletter-btn">Prenumerera</button>
+    </form>
+  </section>
+
+  <section class="cta-section fade-in">
+    <div class="cta-content">
+      <div class="cta-label">Saknas din klubb?</div>
+      <h2 class="cta-title">Lägg till din<br>run club</h2>
+      <p class="cta-text">Vill du att din klubb ska finnas med på Swedish Run Clubs? Eller vill du uppdatera information om en befintlig klubb? Hör av dig till oss!</p>
+    </div>
+    <a href="kontakt" class="cta-btn">Kontakta oss <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+  </section>
+
+  </main>
+
+  <footer>
+    <div class="footer-brand">
+      <span class="logo">Swedish Run Clubs</span>
+      <p>Alla run clubs i Sverige — sorterade, beskrivna och enkla att hitta.</p>
+    </div>
+    <div>
+      <h4>Städer</h4>
+      <a href="stockholm">Stockholm</a>
+      <a href="goteborg">Göteborg</a>
+      <a href="malmo">Malmö</a>
+    </div>
+    <div>
+      <h4>Om sajten</h4>
+      <a href="om-oss">Om oss</a>
+      <a href="nyheter">Nyheter</a>
+      <a href="kontakt">Kontakt</a>
+      <a href="samarbeta">Samarbeta</a>
+    </div>
+    <div class="footer-bottom">
+      &copy; 2026 Swedish Run Clubs. Byggd med kärlek av <a href="https://amandahultin.se" style="display:inline; margin:0;">Amanda Hultin</a>.
+    </div>
+  </footer>
+
+  <script>
+    // ── Mobile menu ──
+    const navToggle = document.querySelector('.nav-toggle');
+    const mobileMenu = document.querySelector('.mobile-menu');
+    navToggle.addEventListener('click', function() {
+      const isOpen = mobileMenu.classList.toggle('open');
+      navToggle.classList.toggle('open');
+      navToggle.setAttribute('aria-expanded', isOpen);
+      navToggle.setAttribute('aria-label', isOpen ? 'Stäng meny' : 'Öppna meny');
+    });
+
+    // ── Fade in ──
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+    // ── Randomize club order ──
+    const grid = document.querySelector('.clubs-grid');
+    const cards = [...grid.querySelectorAll('.club-card')];
+    for (let i = cards.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      grid.appendChild(cards[j]);
+      cards[j] = cards[i];
+    }
+    grid.appendChild(cards[0]);
+
+    // ── Filters ──
+    const active = { niva: null, typ: null, dag: null };
+    const clearBtn = document.getElementById('clear-filters');
+
+    document.querySelectorAll('.pill').forEach(pill => {
+      pill.addEventListener('click', () => {
+        const filter = pill.dataset.filter;
+        const value = pill.dataset.value;
+        if (active[filter] === value) {
+          active[filter] = null;
+          pill.classList.remove('active');
+        } else {
+          document.querySelectorAll(`[data-filter="${filter}"]`).forEach(p => p.classList.remove('active'));
+          active[filter] = value;
+          pill.classList.add('active');
+        }
+        filterClubs();
+      });
+    });
+
+    clearBtn.addEventListener('click', () => {
+      active.niva = null; active.typ = null; active.dag = null;
+      document.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
+      filterClubs();
+    });
+
+    function filterClubs() {
+      const cards = document.querySelectorAll('.club-card');
+      let visible = 0;
+      cards.forEach(card => {
+        const nivaMatch = !active.niva || card.dataset.niva.includes(active.niva);
+        const typMatch = !active.typ || card.dataset.typ.includes(active.typ);
+        const dagMatch = !active.dag || card.dataset.dag.includes(active.dag);
+        if (nivaMatch && typMatch && dagMatch) {
+          card.classList.remove('hidden');
+          visible++;
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+      document.querySelector('.results-count').textContent = visible;
+      document.getElementById('no-results').style.display = visible === 0 ? 'block' : 'none';
+
+      const hasFilters = active.niva || active.typ || active.dag;
+      clearBtn.classList.toggle('show', hasFilters);
+    }
+  </script>
+
+  <script src="add-club.js"></script>
+  <script src="newsletter.js"></script>
+</body>
+</html>
