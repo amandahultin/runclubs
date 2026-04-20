@@ -99,7 +99,7 @@ def _sheet_client() -> gspread.Client:
 def fetch_races(sheet_id: str) -> list[dict]:
     gc = _sheet_client()
     sh = gc.open_by_key(sheet_id)
-    ws = sh.get_worksheet(0)   # first (and only) tab
+    ws = sh.worksheet("Races")
     records = ws.get_all_records()
     log.info("Fetched %d rows from sheet", len(records))
     return records
