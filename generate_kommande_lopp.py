@@ -627,7 +627,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 
   <!-- RACES -->
-  <div class="events-layout fade-in">
+  <div class="events-layout">
     <div id="races-container"></div>
   </div>
 
@@ -829,7 +829,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     // ─── FADE IN ─────────────────────────────────────────────────────────────────
     const observer = new IntersectionObserver(entries => {{
       entries.forEach(e => {{ if (e.isIntersecting) e.target.classList.add('visible'); }});
-    }}, {{ threshold: 0.1 }});
+    }}, {{ threshold: 0 }});
     document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
     // ─── INIT ─────────────────────────────────────────────────────────────────────
