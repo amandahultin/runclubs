@@ -11,9 +11,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Kommande Lopp — Swedish Run Clubs</title>
-  <meta name="description" content="Kommande löptävlingar i Sverige — 10 km, halvmaraton och marathon i Stockholm, Göteborg och Malmö. Hitta ditt nästa lopp.">
+  <meta name="description" content="Hitta kommande löptävlingar i Sverige — Stockholm, Göteborg och Malmö. 10 km, halvmaraton, maraton och mer.">
   <meta property="og:title" content="Kommande Lopp — Swedish Run Clubs">
-  <meta property="og:description" content="Kommande löptävlingar i Sverige — 10 km, halvmaraton och marathon i Stockholm, Göteborg och Malmö. Hitta ditt nästa lopp.">
+  <meta property="og:description" content="Kommande löptävlingar i Sverige — 10 km, halvmaraton och maraton.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://runclubs.se/kommande-lopp">
   <link rel="canonical" href="https://runclubs.se/kommande-lopp">
@@ -198,6 +198,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       transform: translateY(-4px);
       box-shadow: 0 12px 40px rgba(28,42,69,0.1);
       border-color: #D4715E;
+    }
+
+    /* Cards without a registration link — not clickable */
+    .event-card--no-link {
+      cursor: default;
+    }
+    .event-card--no-link:hover {
+      transform: none;
+      box-shadow: none;
+      border-color: #EFE4E0;
     }
 
     .event-card-top { display: flex; align-items: stretch; }
@@ -500,13 +510,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
     <div class="footer-bottom">
       &copy; 2026 Swedish Run Clubs. Byggd med kärlek av <a href="https://amandahultin.se" style="display:inline; margin:0;">Amanda Hultin</a>.
-      <div class="footer-updated">Loppdatan uppdaterades 19 April 2026.</div>
+      <div class="footer-updated">Loppdatan uppdaterades 20 April 2026.</div>
     </div>
   </footer>
 
   <script>
     // ─── DATA ────────────────────────────────────────────────────────────────────
-    const races = [{"name": "adidas Premiärhalvan", "date": "2026-04-25", "city": "Djurgården", "region": "Stockholm", "distance": "21.1 km", "dist_cat": "Halvmaraton", "link": "https://www.jogg.se/Tavling/Tavling.aspx?id=658953"}, {"name": "Retrovarvet 2026", "date": "2026-04-25", "city": "Göteborg", "region": "Göteborg", "distance": "21 km", "dist_cat": "Halvmaraton", "link": "https://www.jogg.se/Tavling/Tavling.aspx?id=659104"}, {"name": "Skrylleloppet 2026", "date": "2026-04-25", "city": "Skrylle", "region": "Malmö", "distance": "10 km", "dist_cat": "10k", "link": "https://www.jogg.se/Tavling/Tavling.aspx?id=659032"}, {"name": "Ältasjön runt 13 k", "date": "2026-04-25", "city": "Älta", "region": "Stockholm", "distance": "13.4 km", "dist_cat": "11-20k", "link": "https://www.jogg.se/Tavling/Tavling.aspx?id=659426"}, {"name": "Kinnekulletrampet", "date": "2026-04-26", "city": "Kinnekulle", "region": "Göteborg", "distance": "42 km", "dist_cat": "Maraton", "link": "https://www.jogg.se/Tavling/Tavling.aspx?id=659396"}, {"name": "Kvantumloppet", "date": "2026-04-26", "city": "Huddinge", "region": "Stockholm", "distance": "17 km", "dist_cat": "11-20k", "link": "https://www.jogg.se/Tavling/Tavling.aspx?id=659457"}, {"name": "Lilla Barnets lopp 10 km", "date": "2026-04-26", "city": "Haga Norra", "region": "Stockholm", "distance": "10 km", "dist_cat": "10k", "link": "https://www.jogg.se/Tavling/Tavling.aspx?id=659439"}, {"name": "Nordens Ark TrailRun 15k", "date": "2026-05-02", "city": "Hunnebostrand", "region": "Göteborg", "distance": "15 km", "dist_cat": "11-20k", "link": "https://www.jogg.se/Tavling/Tavling.aspx?id=659357"}, {"name": "Nordens Ark TrailRun 30k", "date": "2026-05-02", "city": "Hunnebostrand", "region": "Göteborg", "distance": "30 km", "dist_cat": "30k", "link": "https://www.jogg.se/Tavling/Tavling.aspx?id=659356"}, {"name": "Edsvarvet 10 km", "date": "2026-05-04", "city": "Ed", "region": "Göteborg", "distance": "10 km", "dist_cat": "10k", "link": "https://www.jogg.se/Tavling/Tavling.aspx?id=659437"}, {"name": "Kungsholmen Runt 10 km", "date": "2026-05-09", "city": "Kungsholmen", "region": "Stockholm", "distance": "10 km", "dist_cat": "10k", "link": "https://www.jogg.se/Tavling/Tavling.aspx?id=659152"}, {"name": "Kungsholmen Runt Halvmarathon", "date": "2026-05-09", "city": "Kungsholmen", "region": "Stockholm", "distance": "21.1 km", "dist_cat": "Halvmaraton", "link": "https://www.jogg.se/Tavling/Tavling.aspx?id=658982"}, {"name": "Lundaloppet 10 km", "date": "2026-05-09", "city": "Lund", "region": "Malmö", "distance": "10 km", "dist_cat": "10k", "link": "https://www.jogg.se/Tavling/Tavling.aspx?id=659430"}, {"name": "Lundaloppet 15 km", "date": "2026-05-09", "city": "Lund", "region": "Malmö", "distance": "15 km", "dist_cat": "11-20k", "link": "https://www.jogg.se/Tavling/Tavling.aspx?id=659417"}, {"name": "NTK Duathlon 2026", "date": "2026-05-15", "city": "Sturup Raceway, 20 km öster om Malmö, Skåne", "region": "Malmö", "distance": "27.5 km", "dist_cat": "30k", "link": "https://www.jogg.se/Tavling/Tavling.aspx?id=659298"}, {"name": "Scaniamilen 10 km", "date": "2026-05-21", "city": "Hälsocenter Gröndal", "region": "Stockholm", "distance": "10 km", "dist_cat": "10k", "link": "https://www.jogg.se/Tavling/Tavling.aspx?id=659446"}, {"name": "Göteborgsvarvet", "date": "2026-05-23", "city": "Göteborg", "region": "Göteborg", "distance": "21.1 km", "dist_cat": "Halvmaraton", "link": "https://www.jogg.se/Tavling/Tavling.aspx?id=658664"}, {"name": "Tolvanloppet 12km", "date": "2026-05-23", "city": "Bromma", "region": "Stockholm", "distance": "12 km", "dist_cat": "11-20k", "link": "https://www.jogg.se/Tavling/Tavling.aspx?id=658910"}, {"name": "Vikingbackyard", "date": "2026-05-23", "city": "Upplands Väsby", "region": "Stockholm", "distance": "Tidslopp", "dist_cat": null, "link": "https://www.jogg.se/Tavling/Tavling.aspx?id=659428"}, {"name": "S:t Hans Extreme 10 km", "date": "2026-05-28", "city": "S:t Hans Backar", "region": "Malmö", "distance": "10 km", "dist_cat": "10k", "link": "https://www.jogg.se/Tavling/Tavling.aspx?id=659002"}, {"name": "adidas Stockholm Marathon", "date": "2026-05-30", "city": "Stockholm", "region": "Stockholm", "distance": "42.2 km", "dist_cat": "Maraton", "link": "https://www.jogg.se/Tavling/Tavling.aspx?id=658675"}, {"name": "Hjoggen", "date": "2026-05-30", "city": "Hjo", "region": "Göteborg", "distance": "10 km", "dist_cat": "10k", "link": "https://www.jogg.se/Tavling/Tavling.aspx?id=659379"}, {"name": "Spring en mil vinn en bil", "date": "2026-06-05", "city": "Vänersborg", "region": "Göteborg", "distance": "10 km", "dist_cat": "10k", "link": "https://www.jogg.se/Tavling/Tavling.aspx?id=659378"}, {"name": "Fiskebäcksloppet", "date": "2026-06-06", "city": "Fiskebäck", "region": "Göteborg", "distance": "10 km", "dist_cat": "10k", "link": "https://www.jogg.se/Tavling/Tavling.aspx?id=659394"}, {"name": "Nationaldagsmilen", "date": "2026-06-06", "city": "Rinkeby", "region": "Stockholm", "distance": "10 km", "dist_cat": "10k", "link": "https://www.jogg.se/Tavling/Tavling.aspx?id=659459"}, {"name": "Malmö Run", "date": "2026-06-14", "city": "Malmö", "region": "Malmö", "distance": "21.1 km", "dist_cat": "Halvmaraton", "link": "https://www.jogg.se/Tavling/Tavling.aspx?id=659105"}, {"name": "Night Trail Run  Sommar 2025", "date": "2026-06-21", "city": "Sollentuna, Stockholm", "region": "Stockholm", "distance": "30 km", "dist_cat": "30k", "link": "https://www.jogg.se/Tavling/Tavling.aspx?id=658983"}, {"name": "Båstad Half Marathon", "date": "2026-07-04", "city": "Båstad", "region": "Malmö", "distance": "21.1 km", "dist_cat": "Halvmaraton", "link": "https://www.jogg.se/Tavling/Tavling.aspx?id=659143"}, {"name": "Båstad Marathon", "date": "2026-07-04", "city": "Båstad", "region": "Malmö", "distance": "42.2 km", "dist_cat": "Maraton", "link": "https://www.jogg.se/Tavling/Tavling.aspx?id=659142"}, {"name": "Kräftivalloppet", "date": "2026-08-08", "city": "Tidaholm", "region": "Göteborg", "distance": "10 km", "dist_cat": "10k", "link": "https://www.jogg.se/Tavling/Tavling.aspx?id=659382"}, {"name": "Midnattsloppet Stockholm 5,10,21,1km", "date": "2026-08-15", "city": "Söder", "region": "Stockholm", "distance": "10 km", "dist_cat": "10k", "link": "https://www.jogg.se/Tavling/Tavling.aspx?id=658961"}, {"name": "Borstahusloppet 10 km", "date": "2026-08-22", "city": "Landskrona", "region": "Malmö", "distance": "10 km", "dist_cat": "10k", "link": "https://www.jogg.se/Tavling/Tavling.aspx?id=659162"}, {"name": "Landskrona halvmarathon", "date": "2026-08-22", "city": "Landskrona", "region": "Malmö", "distance": "21.1 km", "dist_cat": "Halvmaraton", "link": "https://www.jogg.se/Tavling/Tavling.aspx?id=659161"}, {"name": "Mariestads Marathon", "date": "2026-08-22", "city": "Mariestad", "region": "Göteborg", "distance": "42.2 km", "dist_cat": "Maraton", "link": "https://www.jogg.se/Tavling/Tavling.aspx?id=659107"}, {"name": "Stockholm Trail", "date": "2026-08-22", "city": "Stockholm", "region": "Stockholm", "distance": "21 km", "dist_cat": "Halvmaraton", "link": "https://www.jogg.se/Tavling/Tavling.aspx?id=659371"}, {"name": "Säve Trail Run 12 km", "date": "2026-08-22", "city": "Säve", "region": "Göteborg", "distance": "12 km", "dist_cat": "11-20k", "link": "https://www.jogg.se/Tavling/Tavling.aspx?id=659399"}, {"name": "Mölndalsloppet", "date": "2026-08-29", "city": "Mölndal", "region": "Göteborg", "distance": "10 km", "dist_cat": "10k", "link": "https://www.jogg.se/Tavling/Tavling.aspx?id=659413"}, {"name": "Stockholm Halvmaraton 2026", "date": "2026-08-29", "city": "Kungsträdgården", "region": "Stockholm", "distance": "21.1 km", "dist_cat": "Halvmaraton", "link": "https://www.jogg.se/Tavling/Tavling.aspx?id=658954"}, {"name": "Helsingborg Marathon", "date": "2026-09-05", "city": "Helsingborg", "region": "Malmö", "distance": "42.2 km", "dist_cat": "Maraton", "link": "https://www.jogg.se/Tavling/Tavling.aspx?id=659095"}, {"name": "HOKA Helsingborg Half Marathon", "date": "2026-09-05", "city": "Helsingborg", "region": "Malmö", "distance": "21.1 km", "dist_cat": "Halvmaraton", "link": "https://www.jogg.se/Tavling/Tavling.aspx?id=659096"}, {"name": "Lydinge Resort Stafett", "date": "2026-09-05", "city": "Helsingborg", "region": "Malmö", "distance": "42 km", "dist_cat": "Maraton", "link": "https://www.jogg.se/Tavling/Tavling.aspx?id=659097"}, {"name": "Midnattsloppet Göteborg", "date": "2026-09-05", "city": "Göteborg", "region": "Göteborg", "distance": "10 km", "dist_cat": "10k", "link": "https://www.jogg.se/Tavling/Tavling.aspx?id=659415"}, {"name": "Grebbestadsloppet", "date": "2026-09-06", "city": "Grebbestad", "region": "Göteborg", "distance": "11.2 km", "dist_cat": "11-20k", "link": "https://www.jogg.se/Tavling/Tavling.aspx?id=659384"}, {"name": "Mälarömilen", "date": "2026-09-13", "city": "Ekerö", "region": "Stockholm", "distance": "10 km", "dist_cat": "10k", "link": "https://www.jogg.se/Tavling/Tavling.aspx?id=659406"}, {"name": "Kretsloppet i Borås", "date": "2026-09-19", "city": "BORÅS", "region": "Göteborg", "distance": "10 km", "dist_cat": "10k", "link": "https://www.jogg.se/Tavling/Tavling.aspx?id=659198"}, {"name": "Hökensås Trail", "date": "2026-09-20", "city": "Hökensås", "region": "Göteborg", "distance": "19 km", "dist_cat": "11-20k", "link": "https://www.jogg.se/Tavling/Tavling.aspx?id=659387"}, {"name": "TCS Lidingöloppet Junior & Veteran 10 k...", "date": "2026-09-26", "city": "Lidingö", "region": "Stockholm", "distance": "10 km", "dist_cat": "10k", "link": "https://www.jogg.se/Tavling/Tavling.aspx?id=658919"}];
+    const races = [{"name": "Retrovarvet 2026", "date": "2026-04-25", "city": "Göteborg", "region": "Göteborg", "distance": "21 km", "dist_cat": "Halvmaraton", "link": "https://www.jogg.se/Tavling/Tavling.aspx?id=659104"}, {"name": "Skrylleloppet 2026", "date": "2026-04-25", "city": "Skrylle", "region": "Malmö", "distance": "10 km", "dist_cat": "10k", "link": "https://www.jogg.se/Tavling/Tavling.aspx?id=659032"}, {"name": "Lundaloppet 10 km", "date": "2026-05-09", "city": "Lund", "region": "Malmö", "distance": "10 km", "dist_cat": "10k", "link": "https://www.jogg.se/Tavling/Tavling.aspx?id=659430"}, {"name": "Lundaloppet 15 km", "date": "2026-05-09", "city": "Lund", "region": "Malmö", "distance": "15 km", "dist_cat": "11-20k", "link": "https://www.jogg.se/Tavling/Tavling.aspx?id=659417"}, {"name": "NTK Duathlon 2026", "date": "2026-05-15", "city": "Sturup Raceway, 20 km öster om Malmö, Skåne", "region": "Malmö", "distance": "27.5 km", "dist_cat": "30k", "link": "https://www.jogg.se/Tavling/Tavling.aspx?id=659298"}, {"name": "Göteborgsvarvet", "date": "2026-05-23", "city": "Göteborg", "region": "Göteborg", "distance": "21.1 km", "dist_cat": "Halvmaraton", "link": "https://www.jogg.se/Tavling/Tavling.aspx?id=658664"}, {"name": "S:t Hans Extreme 10 km", "date": "2026-05-28", "city": "S:t Hans Backar", "region": "Malmö", "distance": "10 km", "dist_cat": "10k", "link": "https://www.jogg.se/Tavling/Tavling.aspx?id=659002"}, {"name": "adidas Stockholm Marathon", "date": "2026-05-30", "city": "Stockholm", "region": "Stockholm", "distance": "42.2 km", "dist_cat": "Maraton", "link": "https://www.jogg.se/Tavling/Tavling.aspx?id=658675"}, {"name": "Malmö Run", "date": "2026-06-14", "city": "Malmö", "region": "Malmö", "distance": "21.1 km", "dist_cat": "Halvmaraton", "link": "https://www.jogg.se/Tavling/Tavling.aspx?id=659105"}, {"name": "Night Trail Run  Sommar 2025", "date": "2026-06-21", "city": "Sollentuna, Stockholm", "region": "Stockholm", "distance": "30 km", "dist_cat": "30k", "link": "https://www.jogg.se/Tavling/Tavling.aspx?id=658983"}, {"name": "Båstad Half Marathon", "date": "2026-07-04", "city": "Båstad", "region": "Malmö", "distance": "21.1 km", "dist_cat": "Halvmaraton", "link": "https://www.jogg.se/Tavling/Tavling.aspx?id=659143"}, {"name": "Båstad Marathon", "date": "2026-07-04", "city": "Båstad", "region": "Malmö", "distance": "42.2 km", "dist_cat": "Maraton", "link": "https://www.jogg.se/Tavling/Tavling.aspx?id=659142"}, {"name": "Borstahusloppet 10 km", "date": "2026-08-22", "city": "Landskrona", "region": "Malmö", "distance": "10 km", "dist_cat": "10k", "link": "https://www.jogg.se/Tavling/Tavling.aspx?id=659162"}, {"name": "Landskrona halvmarathon", "date": "2026-08-22", "city": "Landskrona", "region": "Malmö", "distance": "21.1 km", "dist_cat": "Halvmaraton", "link": "https://www.jogg.se/Tavling/Tavling.aspx?id=659161"}, {"name": "Stockholm Trail", "date": "2026-08-22", "city": "Stockholm", "region": "Stockholm", "distance": "21 km", "dist_cat": "Halvmaraton", "link": "https://www.jogg.se/Tavling/Tavling.aspx?id=659371"}, {"name": "Mölndalsloppet", "date": "2026-08-29", "city": "Mölndal", "region": "Göteborg", "distance": "10 km", "dist_cat": "10k", "link": "https://www.jogg.se/Tavling/Tavling.aspx?id=659413"}, {"name": "Helsingborg Marathon", "date": "2026-09-05", "city": "Helsingborg", "region": "Malmö", "distance": "42.2 km", "dist_cat": "Maraton", "link": "https://www.jogg.se/Tavling/Tavling.aspx?id=659095"}, {"name": "HOKA Helsingborg Half Marathon", "date": "2026-09-05", "city": "Helsingborg", "region": "Malmö", "distance": "21.1 km", "dist_cat": "Halvmaraton", "link": "https://www.jogg.se/Tavling/Tavling.aspx?id=659096"}, {"name": "Lydinge Resort Stafett", "date": "2026-09-05", "city": "Helsingborg", "region": "Malmö", "distance": "42 km", "dist_cat": "Maraton", "link": "https://www.jogg.se/Tavling/Tavling.aspx?id=659097"}, {"name": "Midnattsloppet Göteborg", "date": "2026-09-05", "city": "Göteborg", "region": "Göteborg", "distance": "10 km", "dist_cat": "10k", "link": "https://www.jogg.se/Tavling/Tavling.aspx?id=659415"}];
 
     // ─── HELPERS ─────────────────────────────────────────────────────────────────
     const SV_MONTHS       = ['Januari','Februari','Mars','April','Maj','Juni',
@@ -541,6 +551,50 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     // ─── STATE ───────────────────────────────────────────────────────────────────
     let activeRegion = 'all';
     let activeDist   = 'all';
+
+    // ─── CARD BUILDER ────────────────────────────────────────────────────────────
+    function cardHTML(r) {
+      const d          = parseDate(r.date);
+      const dayNum     = d.getDate();
+      const monthAbbr  = SV_MONTHS_SHORT[d.getMonth()];
+      const dayName    = SV_DAYS[d.getDay()].slice(0, 3);
+      const colorClass = REGION_COLOR[r.region] || '';
+      const regionTag  = REGION_TAG[r.region]   || '';
+      const distTag    = DIST_TAG[r.dist_cat]    || 'tag-dist';
+      const distLabel  = r.dist_cat || r.distance || 'Okänd distans';
+      const location   = r.city || r.region;
+      const hasLink    = r.link && r.link.trim() !== '';
+
+      const inner = `
+          <div class="event-card-top">
+            <div class="event-date-block ${colorClass}" aria-hidden="true">
+              <div class="event-day-num">${dayNum}</div>
+              <div class="event-month-abbr">${monthAbbr}</div>
+              <div class="event-day-name">${dayName}</div>
+            </div>
+            <div class="event-card-body">
+              <div class="event-tags">
+                <span class="event-tag ${regionTag}">${r.region}</span>
+                <span class="event-tag ${distTag}">${distLabel}</span>
+              </div>
+              <div class="event-title">${r.name}</div>
+              <div class="event-location">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                ${location}
+              </div>
+            </div>
+          </div>
+          <div class="event-card-footer">
+            <span class="event-distance">${r.distance || '—'}</span>
+            ${hasLink ? `<span class="event-cta">Anmäl dig<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>` : ''}
+          </div>`;
+
+      if (hasLink) {
+        return `<a href="${r.link}" target="_blank" rel="noopener" class="event-card" aria-label="${r.name}, ${dayNum} ${monthAbbr}">${inner}</a>`;
+      } else {
+        return `<div class="event-card event-card--no-link" aria-label="${r.name}, ${dayNum} ${monthAbbr}">${inner}</div>`;
+      }
+    }
 
     // ─── RENDER ──────────────────────────────────────────────────────────────────
     function render() {
@@ -590,49 +644,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       document.getElementById('stat-total').textContent  = filtered.length;
       document.getElementById('stat-months').textContent = monthKeys.length;
-    }
-
-    function cardHTML(r) {
-      const d          = parseDate(r.date);
-      const dayNum     = d.getDate();
-      const monthAbbr  = SV_MONTHS_SHORT[d.getMonth()];
-      const dayName    = SV_DAYS[d.getDay()].slice(0, 3);
-      const colorClass = REGION_COLOR[r.region] || '';
-      const regionTag  = REGION_TAG[r.region]   || '';
-      const distTag    = DIST_TAG[r.dist_cat]    || 'tag-dist';
-      const distLabel  = r.dist_cat || r.distance || 'Okänd distans';
-      const location   = r.city || r.region;
-      const href       = r.link || '#';
-
-      return `
-        <a href="${href}" target="_blank" rel="noopener" class="event-card" aria-label="${r.name}, ${dayNum} ${monthAbbr}">
-          <div class="event-card-top">
-            <div class="event-date-block ${colorClass}" aria-hidden="true">
-              <div class="event-day-num">${dayNum}</div>
-              <div class="event-month-abbr">${monthAbbr}</div>
-              <div class="event-day-name">${dayName}</div>
-            </div>
-            <div class="event-card-body">
-              <div class="event-tags">
-                <span class="event-tag ${regionTag}">${r.region}</span>
-                <span class="event-tag ${distTag}">${distLabel}</span>
-              </div>
-              <div class="event-title">${r.name}</div>
-              <div class="event-location">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                ${location}
-              </div>
-            </div>
-          </div>
-          <div class="event-card-footer">
-            <span class="event-distance">${r.distance || '—'}</span>
-            <span class="event-cta">
-              Anmäl dig
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </span>
-          </div>
-        </a>
-      `;
     }
 
     // ─── FILTERS ─────────────────────────────────────────────────────────────────
