@@ -91,26 +91,27 @@ def _dist_category(km: float) -> str | None:
     return None
 
 
-def _map_region(row: dict) -> str | None:
-    # If scraper already resolved the region, use it directly
+def _map_region(row: dict) -> str:
+    city   = (row.get("city")   or "").strip().lower()
+    county = (row.get("county") or "").strip().lower()
     region = (row.get("region") or "").strip()
+
+    # City name (col C) is the primary signal
+    if "stockholm" in city:
+        return "Stockholm"
+    if "göteborg" in city or "gothenburg" in city:
+        return "Göteborg"
+    if "malmö" in city:
+        return "Malmö"
+
+    # Pre-computed region (col G) catches neighbourhood names inside the big three
     if region in ("Stockholm", "Göteborg", "Malmö"):
         return region
 
-    # Fall back to county mapping
-    county = (row.get("county") or "").lower().strip()
-    for key, r in _COUNTY_REGION.items():
-        if key in county:
-            return r
-
-    # City-based fallback
-    city = (row.get("city") or "").lower().strip()
-    if "stockholm" in city:
+    # Stockholm county (col D) as last-resort for suburbs without city name
+    if "stockholms" in county:
         return "Stockholm"
-    if any(x in city for x in ("göteborg", "gothenburg", "mölndal")):
-        return "Göteborg"
-    if any(x in city for x in ("malmö", "lund", "helsingborg", "kristianstad")):
-        return "Malmö"
+
     return "Övriga"
 
 
