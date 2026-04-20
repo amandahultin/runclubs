@@ -560,8 +560,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       const dayName    = SV_DAYS[d.getDay()].slice(0, 3);
       const colorClass = REGION_COLOR[r.region] || '';
       const regionTag  = REGION_TAG[r.region]   || '';
-      const distTag    = DIST_TAG[r.dist_cat]    || 'tag-dist';
-      const distLabel  = r.dist_cat || r.distance || 'Okänd distans';
+      const distCats   = Array.isArray(r.dist_cat) ? r.dist_cat : (r.dist_cat ? [r.dist_cat] : []);
+      const distTagsHTML = distCats.length > 0
+        ? distCats.map(dc => `<span class="event-tag ${DIST_TAG[dc] || 'tag-dist'}">${dc}</span>`).join('')
+        : `<span class="event-tag tag-dist">${r.distance || 'Okänd distans'}</span>`;
       const location   = r.city || r.region;
       const hasLink    = r.link && r.link.trim() !== '';
 
@@ -575,7 +577,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <div class="event-card-body">
               <div class="event-tags">
                 <span class="event-tag ${regionTag}">${r.region}</span>
-                <span class="event-tag ${distTag}">${distLabel}</span>
+                ${distTagsHTML}
               </div>
               <div class="event-title">${r.name}</div>
               <div class="event-location">
@@ -603,7 +605,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       const filtered = races.filter(r => {
         const regionOk = activeRegion === 'all' || r.region === activeRegion;
-        const distOk   = activeDist === 'all'   || r.dist_cat === activeDist;
+        const distOk   = activeDist === 'all'   || (Array.isArray(r.dist_cat) ? r.dist_cat.includes(activeDist) : r.dist_cat === activeDist);
         return regionOk && distOk;
       });
 

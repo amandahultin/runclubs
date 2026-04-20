@@ -55,6 +55,34 @@ def _parse_km(distance_str: str) -> float | None:
         return None
 
 
+def _parse_km_list(distance_str: str) -> list[float]:
+    """Parse multi-distance strings like '5,10,21,1km' -> [5.0, 10.0, 21.1]."""
+    if not distance_str:
+        return []
+    s = re.sub(r'\s*km\s*', '', distance_str, flags=re.IGNORECASE).strip().rstrip(',')
+    parts = [p.strip() for p in s.split(',') if p.strip()]
+    values: list[float] = []
+    i = 0
+    while i < len(parts):
+        try:
+            val = float(parts[i])
+        except ValueError:
+            i += 1
+            continue
+        # If next part is a single digit, treat as decimal: "21","1" -> 21.1
+        if i + 1 < len(parts) and len(parts[i + 1].strip()) == 1:
+            try:
+                combined = float(f"{int(val)}.{parts[i + 1].strip()}")
+                values.append(combined)
+                i += 2
+                continue
+            except ValueError:
+                pass
+        values.append(val)
+        i += 1
+    return [v for v in values if v >= 1]
+
+
 def _dist_category(km: float) -> str | None:
     for label, lo, hi in _DIST_BUCKETS:
         if lo <= km <= hi:
@@ -122,14 +150,29 @@ def prepare_races(records: list[dict]) -> list[dict]:
             continue
 
         # Distance filtering — keep ≥ 10 km or unknown
-        km = _parse_km(r.get("distance") or "")
+        distance_str = r.get("distance") or ""
+        km = _parse_km(distance_str)
         if km is not None and km < 9.5:
             continue
 
         # Use dist_cat from sheet if present, otherwise derive
-        dist_cat = (r.get("dist_cat") or "").strip() or (
-            _dist_category(km) if km is not None else None
-        )
+        dist_cat_raw = (r.get("dist_cat") or "").strip()
+        if dist_cat_raw:
+            dist_cat: str | list | None = dist_cat_raw
+        elif km is not None:
+            dist_cat = _dist_category(km)
+        else:
+            # Try multi-distance parsing
+            km_values = [v for v in _parse_km_list(distance_str) if v >= 9.5]
+            cats = list(dict.fromkeys(
+                c for v in km_values for c in [_dist_category(v)] if c
+            ))
+            if len(cats) == 1:
+                dist_cat = cats[0]
+            elif len(cats) > 1:
+                dist_cat = cats
+            else:
+                dist_cat = None
 
         region = _map_region(r)
         if not region:
@@ -717,8 +760,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       const dayName    = SV_DAYS[d.getDay()].slice(0, 3);
       const colorClass = REGION_COLOR[r.region] || '';
       const regionTag  = REGION_TAG[r.region]   || '';
-      const distTag    = DIST_TAG[r.dist_cat]    || 'tag-dist';
-      const distLabel  = r.dist_cat || r.distance || 'Okänd distans';
+      const distCats   = Array.isArray(r.dist_cat) ? r.dist_cat : (r.dist_cat ? [r.dist_cat] : []);
+      const distTagsHTML = distCats.length > 0
+        ? distCats.map(dc => `<span class="event-tag ${{DIST_TAG[dc] || 'tag-dist'}}">${{dc}}</span>`).join('')
+        : `<span class="event-tag tag-dist">${{r.distance || 'Okänd distans'}}</span>`;
       const location   = r.city || r.region;
       const hasLink    = r.link && r.link.trim() !== '';
 
@@ -732,7 +777,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <div class="event-card-body">
               <div class="event-tags">
                 <span class="event-tag ${{regionTag}}">${{r.region}}</span>
-                <span class="event-tag ${{distTag}}">${{distLabel}}</span>
+                ${{distTagsHTML}}
               </div>
               <div class="event-title">${{r.name}}</div>
               <div class="event-location">
@@ -760,7 +805,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       const filtered = races.filter(r => {{
         const regionOk = activeRegion === 'all' || r.region === activeRegion;
-        const distOk   = activeDist === 'all'   || r.dist_cat === activeDist;
+        const distOk   = activeDist === 'all'   || (Array.isArray(r.dist_cat) ? r.dist_cat.includes(activeDist) : r.dist_cat === activeDist);
         return regionOk && distOk;
       }});
 
