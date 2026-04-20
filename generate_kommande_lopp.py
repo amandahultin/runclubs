@@ -102,8 +102,6 @@ def fetch_races(sheet_id: str) -> list[dict]:
     ws = sh.get_worksheet_by_id(114178703)
     records = ws.get_all_records()
     log.info("Fetched %d rows from sheet", len(records))
-    if records:
-        log.info("Sheet columns: %s", list(records[0].keys()))
     return records
 
 
@@ -144,7 +142,7 @@ def prepare_races(records: list[dict]) -> list[dict]:
             "region":   region,
             "distance": (r.get("distance") or "").strip(),
             "dist_cat": dist_cat,
-            "link":     (r.get("official_url") or "").strip(),
+            "link":     (r.get("link") or "").strip(),
         })
 
     races.sort(key=lambda x: x["date"])
@@ -745,7 +743,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           </div>
           <div class="event-card-footer">
             <span class="event-distance">${{r.distance || '—'}}</span>
-            ${{hasLink ? `<span class="event-cta">Anmäl dig<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>` : ''}}
+            ${{hasLink ? `<span class="event-cta">Officiell sida<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>` : ''}}
           </div>`;
 
       if (hasLink) {{
