@@ -383,46 +383,104 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .news-link:hover { color: #C8604A; gap: 10px; }
 
     /* ── NEWSLETTER ─────────────────────── */
-    .newsletter {
-      background: linear-gradient(135deg, #1C2A45 0%, #2a3d5e 100%);
-      color: #FDFAF9; padding: 5rem 2rem;
+    .nl-section { background: #fff; overflow: hidden; }
+    .nl-ticker-wrap { background: #D4715E; padding: 11px 0; overflow: hidden; white-space: nowrap; }
+    .nl-ticker-track {
+      display: inline-flex; gap: 0;
+      animation: nl-scroll 30s linear infinite;
+    }
+    .nl-ticker-track span {
+      color: #fff; font-size: 11px; font-weight: 700;
+      letter-spacing: 1.5px; text-transform: uppercase;
+      padding: 0 2rem;
+    }
+    .nl-ticker-track span::after { content: '·'; margin-left: 2rem; color: rgba(255,255,255,0.5); }
+    @keyframes nl-scroll {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+    .nl-body {
       display: flex; align-items: center; justify-content: space-between;
-      gap: 2rem; flex-wrap: wrap;
+      gap: 4rem; padding: 5rem 2rem; flex-wrap: wrap;
     }
-    .newsletter-label {
-      font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
-      color: #EEAA96; margin-bottom: 0.75rem; font-weight: 500;
+    .nl-left { flex: 1; min-width: 280px; }
+    .nl-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: #FFF0ED; color: #D4715E;
+      font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+      padding: 6px 14px; border-radius: 100px; margin-bottom: 1.5rem;
     }
-    .newsletter-title {
-      font-family: 'Archivo Black', sans-serif; font-size: 28px;
-      text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.5rem;
+    .nl-live-dot {
+      width: 7px; height: 7px; background: #D4715E; border-radius: 50%;
+      animation: nl-pulse-dot 1.5s ease-in-out infinite;
     }
-    .newsletter p {
-      font-size: 14px; color: rgba(255,255,255,0.5);
-      max-width: 400px; line-height: 1.7;
+    @keyframes nl-pulse-dot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.6); }
     }
-    .newsletter-form {
-      display: flex; gap: 10px; flex-wrap: wrap;
+    .nl-title {
+      font-family: 'Archivo Black', sans-serif;
+      font-size: clamp(36px, 5vw, 58px);
+      color: #1C2A45; line-height: 1; text-transform: uppercase;
+      letter-spacing: -1px; margin-bottom: 1.25rem;
     }
-    .newsletter-input {
-      padding: 14px 18px; border: 1px solid rgba(255,255,255,0.15);
-      border-radius: 6px; font-size: 14px; font-family: 'DM Sans', sans-serif;
-      color: #FDFAF9; background: rgba(255,255,255,0.08);
-      outline: none; min-width: 260px;
-      transition: border-color 0.2s;
+    .nl-title em { color: #D4715E; font-style: normal; }
+    .nl-desc { font-size: 15px; color: #777; line-height: 1.75; max-width: 400px; margin-bottom: 1.75rem; }
+    .nl-social-proof { display: flex; align-items: center; gap: 10px; font-size: 13px; color: #999; }
+    .nl-avatars { display: flex; }
+    .nl-avatar {
+      width: 30px; height: 30px; border-radius: 50%;
+      background: linear-gradient(135deg, #F0E0DC, #EEAA96);
+      border: 2px solid #fff; margin-left: -8px;
+      display: flex; align-items: center; justify-content: center; font-size: 13px;
     }
-    .newsletter-input::placeholder { color: rgba(255,255,255,0.3); }
-    .newsletter-input:focus { border-color: #EEAA96; }
-    .newsletter-btn {
-      background: #D4715E; color: #FDFAF9;
-      font-size: 13px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase;
-      padding: 14px 32px; border-radius: 6px; border: none;
+    .nl-avatar:first-child { margin-left: 0; }
+    .nl-right { flex: 0 0 360px; }
+    .nl-card {
+      background: #FDFAF9; border: 1.5px solid #F0E0DC;
+      border-radius: 20px; padding: 2rem;
+      box-shadow: 0 12px 48px rgba(28,42,69,0.09);
+      animation: nl-float 5s ease-in-out infinite;
+    }
+    @keyframes nl-float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-8px); }
+    }
+    .nl-notif {
+      display: flex; align-items: center; gap: 12px;
+      background: #fff; border: 1px solid #F0E0DC;
+      border-radius: 12px; padding: 12px 14px; margin-bottom: 1.5rem;
+    }
+    .nl-notif-icon { font-size: 24px; flex-shrink: 0; }
+    .nl-notif-text strong { display: block; font-size: 13px; color: #1C2A45; font-weight: 700; }
+    .nl-notif-text span { font-size: 12px; color: #aaa; }
+    .nl-form { display: flex; flex-direction: column; gap: 10px; }
+    .nl-input {
+      padding: 14px 16px; border: 1.5px solid #E8D8D4; border-radius: 10px;
+      font-size: 14px; font-family: 'DM Sans', sans-serif;
+      color: #1C2A45; background: #fff; outline: none;
+      transition: border-color 0.2s; width: 100%; box-sizing: border-box;
+    }
+    .nl-input::placeholder { color: #bbb; }
+    .nl-input:focus { border-color: #D4715E; }
+    .nl-btn {
+      background: #D4715E; color: #fff;
+      font-size: 14px; font-weight: 700; letter-spacing: 0.3px;
+      padding: 15px; border-radius: 10px; border: none;
       cursor: pointer; font-family: 'DM Sans', sans-serif;
-      transition: all 0.2s; white-space: nowrap;
+      transition: all 0.2s; position: relative;
     }
-    .newsletter-btn:hover { background: #C8604A; transform: translateY(-1px); box-shadow: 0 4px 16px rgba(212,113,94,0.35); }
-    .newsletter-compact { padding: 3rem 2rem; }
-    .newsletter-compact .newsletter-title { font-size: 22px; }
+    .nl-btn::after {
+      content: ''; position: absolute; inset: 0; border-radius: 10px;
+      animation: nl-pulse-ring 2.5s ease-out infinite;
+    }
+    @keyframes nl-pulse-ring {
+      0% { box-shadow: 0 0 0 0 rgba(212,113,94,0.45); }
+      70% { box-shadow: 0 0 0 12px rgba(212,113,94,0); }
+      100% { box-shadow: 0 0 0 0 rgba(212,113,94,0); }
+    }
+    .nl-btn:hover { background: #C8604A; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(212,113,94,0.35); }
+    .nl-disclaimer { font-size: 11px; color: #ccc; text-align: center; margin-top: 0.75rem; }
 
     /* ── FOOTER ─────────────────────────── */
     footer {
@@ -482,13 +540,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       .news-card.featured .news-card-title { font-size: 20px; }
       .news-card.featured .news-card-content { padding: 1.5rem; }
 
-      .newsletter { padding: 3rem 1.25rem; flex-direction: column; align-items: flex-start; }
-      .newsletter-title { font-size: 22px; }
-      .newsletter-compact { padding: 2.5rem 1.25rem; }
-      .newsletter-compact .newsletter-title { font-size: 20px; }
-      .newsletter-form { flex-direction: column; width: 100%; }
-      .newsletter-input { min-width: unset; width: 100%; }
-      .newsletter-btn { width: 100%; text-align: center; padding: 14px; }
+      .nl-body { padding: 3rem 1.25rem; gap: 2.5rem; }
+      .nl-right { flex: 1 1 100%; }
+      .nl-title { font-size: clamp(32px, 10vw, 48px); }
 
       footer { padding: 2rem 1.25rem; grid-template-columns: 1fr; gap: 1.5rem; }
     }
@@ -592,16 +646,44 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </section>
 
   <!-- NEWSLETTER -->
-  <section class="newsletter newsletter-compact fade-in">
-    <div class="newsletter-text">
-      <div class="newsletter-label">Nyhetsbrevet</div>
-      <div class="newsletter-title">Veckans rundor<br>+ kommande events</div>
-      <p>Events dyker upp sporadiskt och är svåra att hålla koll på. Varje söndag samlar jag allt du behöver veta — veckans tre pass, kommande lopp och events, plus en reflektion från min löparvecka. Gratis, max ett mejl.</p>
+  <section class="nl-section fade-in">
+    <div class="nl-ticker-wrap">
+      <div class="nl-ticker-track">
+        <span>Ny run club i Stockholm</span><span>3 nya events i helgen</span><span>Lördag: ASICS Run Club</span><span>Göteborg: Nattlöpning fredag</span><span>Stockholm Marathon 2026</span><span>Malmö: Ny running event</span><span>Ny run club i Stockholm</span><span>3 nya events i helgen</span><span>Lördag: ASICS Run Club</span><span>Göteborg: Nattlöpning fredag</span><span>Stockholm Marathon 2026</span><span>Malmö: Ny running event</span>
+      </div>
     </div>
-    <form class="newsletter-form" data-placement="home-mid" onsubmit="return false;">
-      <input type="email" class="newsletter-input" placeholder="din@email.se" aria-label="E-postadress">
-      <button class="newsletter-btn">Prenumerera</button>
-    </form>
+    <div class="nl-body">
+      <div class="nl-left">
+        <div class="nl-badge"><span class="nl-live-dot"></span>Nyhetsbrevet</div>
+        <h2 class="nl-title">Missa inte<br><em>ett enda</em><br>event.</h2>
+        <p class="nl-desc">Events dyker upp sporadiskt och är svåra att hålla koll på. Varje söndag samlar jag allt du behöver veta — veckans pass, kommande lopp och events. Gratis, max ett mejl.</p>
+        <div class="nl-social-proof">
+          <div class="nl-avatars">
+            <div class="nl-avatar">🏃</div>
+            <div class="nl-avatar">👟</div>
+            <div class="nl-avatar">⚡</div>
+            <div class="nl-avatar">🌟</div>
+          </div>
+          <span>+240 löpare prenumererar redan</span>
+        </div>
+      </div>
+      <div class="nl-right">
+        <div class="nl-card">
+          <div class="nl-notif">
+            <div class="nl-notif-icon">📬</div>
+            <div class="nl-notif-text">
+              <strong>Veckans events är ute!</strong>
+              <span>Prenumerera för att se dem →</span>
+            </div>
+          </div>
+          <form class="nl-form" data-placement="home-mid" onsubmit="return false;">
+            <input type="email" class="nl-input" placeholder="din@email.se" aria-label="E-postadress">
+            <button class="nl-btn">Anmäl mig nu →</button>
+          </form>
+          <p class="nl-disclaimer">Gratis. Avsluta när du vill.</p>
+        </div>
+      </div>
+    </div>
   </section>
 
   <!-- DAGENS PASS -->
