@@ -420,38 +420,21 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       display: flex; align-items: center; justify-content: center; font-size: 13px;
     }
     .nl-avatar:first-child { margin-left: 0; }
-    .nl-right { flex: 0 0 360px; }
-    .nl-card {
-      background: #fff; border: 1.5px solid #C8DCBA;
-      border-radius: 20px; padding: 2rem;
-      box-shadow: 0 12px 48px rgba(28,42,69,0.09);
-      animation: nl-float 5s ease-in-out infinite;
-    }
-    @keyframes nl-float {
-      0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(-8px); }
-    }
-    .nl-notif {
-      display: flex; align-items: center; gap: 12px;
-      background: #fff; border: 1px solid #F0E0DC;
-      border-radius: 12px; padding: 12px 14px; margin-bottom: 1.5rem;
-    }
-    .nl-notif-icon { font-size: 24px; flex-shrink: 0; }
-    .nl-notif-text strong { display: block; font-size: 13px; color: #1C2A45; font-weight: 700; }
-    .nl-notif-text span { font-size: 12px; color: #aaa; }
-    .nl-form { display: flex; flex-direction: column; gap: 10px; }
+    .nl-right { flex: 0 0 380px; }
+    .nl-form { display: flex; flex-direction: column; gap: 12px; }
     .nl-input {
-      padding: 14px 16px; border: 1.5px solid #E8D8D4; border-radius: 10px;
-      font-size: 14px; font-family: 'DM Sans', sans-serif;
+      padding: 16px 20px; border: 2px solid rgba(255,255,255,0.7); border-radius: 12px;
+      font-size: 15px; font-family: 'DM Sans', sans-serif;
       color: #1C2A45; background: #fff; outline: none;
-      transition: border-color 0.2s; width: 100%; box-sizing: border-box;
+      transition: border-color 0.2s, box-shadow 0.2s; width: 100%; box-sizing: border-box;
+      box-shadow: 0 2px 12px rgba(28,42,69,0.08);
     }
-    .nl-input::placeholder { color: #bbb; }
-    .nl-input:focus { border-color: #D4715E; }
+    .nl-input::placeholder { color: #aaa; }
+    .nl-input:focus { border-color: #D4715E; box-shadow: 0 4px 20px rgba(212,113,94,0.15); }
     .nl-btn {
       background: #D4715E; color: #fff;
-      font-size: 14px; font-weight: 700; letter-spacing: 0.3px;
-      padding: 15px; border-radius: 10px; border: none;
+      font-size: 15px; font-weight: 700; letter-spacing: 0.3px;
+      padding: 17px; border-radius: 12px; border: none;
       cursor: pointer; font-family: 'DM Sans', sans-serif;
       transition: all 0.2s; position: relative;
     }
@@ -636,9 +619,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <section class="nl-section fade-in">
     <div class="nl-body">
       <div class="nl-left">
-        <div class="nl-badge"><span class="nl-live-dot"></span>Nyhetsbrevet</div>
-        <h2 class="nl-title">Missa inte<br><em>ett enda</em><br>event.</h2>
-        <p class="nl-desc">Events dyker upp sporadiskt och är svåra att hålla koll på. Varje söndag samlar jag allt du behöver veta — veckans pass, kommande lopp och events. Gratis, max ett mejl.</p>
+        <div class="nl-badge"><span class="nl-live-dot"></span>Prenumerera på RunClubs veckobrev</div>
+        <h2 class="nl-title">Inbjudningar,<br><em>events</em> och<br>promo runs.</h2>
+        <p class="nl-desc">Varje söndag får du en sammanställning av vad som händer kommande vecka — veckans pass, nyheter, intervjuer och events. Gratis så klart!</p>
         <div class="nl-social-proof">
           <div class="nl-avatars">
             <div class="nl-avatar">🏃</div>
@@ -650,20 +633,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
       </div>
       <div class="nl-right">
-        <div class="nl-card">
-          <div class="nl-notif">
-            <div class="nl-notif-icon">📬</div>
-            <div class="nl-notif-text">
-              <strong>Veckans events är ute!</strong>
-              <span>Prenumerera för att se dem →</span>
-            </div>
-          </div>
-          <form class="nl-form" data-placement="home-mid" onsubmit="return false;">
-            <input type="email" class="nl-input" placeholder="din@email.se" aria-label="E-postadress">
-            <button class="nl-btn">Anmäl mig nu →</button>
-          </form>
-          <p class="nl-disclaimer">Gratis. Avsluta när du vill.</p>
-        </div>
+        <form class="nl-form" data-placement="home-mid" onsubmit="return false;">
+          <input type="email" class="nl-input" placeholder="din@email.se" aria-label="E-postadress">
+          <button class="nl-btn">Anmäl mig nu →</button>
+        </form>
+        <p class="nl-disclaimer">Gratis. Avsluta när du vill.</p>
       </div>
     </div>
   </section>
