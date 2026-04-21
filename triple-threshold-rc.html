@@ -54,7 +54,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   ]
 }
 </script>
-  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Oswald:wght@500;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:ital,wght@1,900&family=Oswald:wght@500;700&family=DM+Sans:wght@400;500;600&family=Playfair+Display:wght@400&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
@@ -72,7 +72,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       border-bottom: 1px solid #F0E0DC;
       position: sticky; top: 0; z-index: 100;
     }
-    .logo { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 16px; text-transform: uppercase; letter-spacing: 2px; color: #1C2A45; text-decoration: none; }
+    .run-clubs-logo { display: inline-flex; align-items: baseline; font-size: 18px; color: #1a1a1a; text-decoration: none; }
+    .run-clubs-logo .run { font-family: 'Inter', sans-serif; font-weight: 900; font-style: italic; letter-spacing: -0.04em; padding-right: 2px; }
+    .run-clubs-logo .clubs { font-family: 'Playfair Display', serif; font-weight: 400; letter-spacing: -0.02em; }
+    .run-clubs-logo .suffix { font-family: 'Playfair Display', serif; font-size: 0.45em; font-weight: 400; text-transform: lowercase; margin-left: 2px; }
     .nav-links { display: flex; gap: 2rem; }
     .nav-links a {
       font-size: 12px; letter-spacing: 0.5px; text-decoration: none;
@@ -348,7 +351,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       padding: 3.5rem 2rem; display: grid;
       grid-template-columns: 2fr 1fr 1fr; gap: 2rem; font-size: 13px;
     }
-    .footer-brand .logo { font-size: 14px; letter-spacing: 1.5px; display: block; margin-bottom: 0.75rem; }
+    .footer-brand .run-clubs-logo { font-size: 14px; display: block; margin-bottom: 0.75rem; }
     .footer-brand p { font-size: 13px; color: #888; line-height: 1.6; max-width: 280px; }
     footer h4 { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #aaa; margin-bottom: 1rem; font-weight: 500; }
     footer a { display: block; color: #1C2A45; text-decoration: none; margin-bottom: 8px; transition: color 0.15s; }
@@ -398,12 +401,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <a href="#main-content" class="skip-link">Hoppa till innehåll</a>
 
   <nav>
-    <a href="/" class="logo">Swedish Run Clubs</a>
+    <a href="/" class="run-clubs-logo"><span class="run">RUN</span><span class="clubs">CLUBS</span><span class="suffix">.se</span></a>
     <div class="nav-links">
       <a href="stockholm" class="active">Stockholm</a>
       <a href="goteborg">Göteborg</a>
       <a href="malmo">Malmö</a>
       <a href="nyheter">Nyheter</a>
+      <a href="loppkalender">Loppkalender</a>
       <a href="om-oss">Om oss</a>
     </div>
     <button class="nav-toggle" aria-label="Öppna meny" aria-expanded="false">
@@ -416,6 +420,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <a href="goteborg">Göteborg</a>
     <a href="malmo">Malmö</a>
     <a href="nyheter">Nyheter</a>
+    <a href="loppkalender">Loppkalender</a>
     <a href="om-oss">Om oss</a>
   </div>
 
@@ -598,7 +603,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <footer>
     <div class="footer-brand">
-      <span class="logo">Swedish Run Clubs</span>
+      <span class="run-clubs-logo"><span class="run">RUN</span><span class="clubs">CLUBS</span><span class="suffix">.se</span></span>
       <p>Alla run clubs i Sverige — sorterade, beskrivna och enkla att hitta.</p>
     </div>
     <div>
@@ -611,6 +616,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <h4>Om sajten</h4>
       <a href="om-oss">Om oss</a>
       <a href="nyheter">Nyheter</a>
+      <a href="loppkalender">Loppkalender</a>
       <a href="kontakt">Kontakt</a>
       <a href="samarbeta">Samarbeta</a>
     </div>

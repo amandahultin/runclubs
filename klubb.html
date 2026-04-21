@@ -22,7 +22,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { font-family: 'DM Sans', sans-serif; color: #1C2A45; background: #FDFAF9; }
     nav { display: flex; justify-content: space-between; align-items: center; padding: 1rem 1.5rem; border-bottom: 1px solid #F0E0DC; background: #FDFAF9; }
-    .logo { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 18px; text-transform: uppercase; letter-spacing: 0.5px; color: #1C2A45; text-decoration: none; }
+    .run-clubs-logo { display: inline-flex; align-items: baseline; font-size: 18px; color: #1a1a1a; text-decoration: none; }
+    .run-clubs-logo .run { font-family: 'Inter', sans-serif; font-weight: 900; font-style: italic; letter-spacing: -0.04em; padding-right: 2px; }
+    .run-clubs-logo .clubs { font-family: 'Playfair Display', serif; font-weight: 400; letter-spacing: -0.02em; }
+    .run-clubs-logo .suffix { font-family: 'Playfair Display', serif; font-size: 0.45em; font-weight: 400; text-transform: lowercase; margin-left: 2px; }
     .nav-links { display: flex; gap: 1.5rem; font-size: 13px; }
     .nav-links a { text-decoration: none; color: #888; }
     .nav-links a:hover { color: #1C2A45; }
@@ -84,12 +87,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 
   <nav>
-    <a href="/" class="logo">Swedish Run Clubs</a>
+    <a href="/" class="run-clubs-logo"><span class="run">RUN</span><span class="clubs">CLUBS</span><span class="suffix">.se</span></a>
     <div class="nav-links">
       <a href="stockholm">Stockholm</a>
       <a href="goteborg">Göteborg</a>
       <a href="malmo">Malmö</a>
       <a href="nyheter">Nyheter</a>
+      <a href="loppkalender">Loppkalender</a>
       <a href="om-oss">Om oss</a>
     </div>
   </nav>
@@ -142,6 +146,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <h4>Om sajten</h4>
       <a href="om-oss">Om oss</a>
       <a href="nyheter">Nyheter</a>
+      <a href="loppkalender">Loppkalender</a>
       <a href="kontakt">Kontakt</a>
       <a href="samarbeta">Samarbeta</a>
     </div>
