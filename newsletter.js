@@ -63,13 +63,13 @@ const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyHCKDbZsRqiq
   }
 
   // Attach to all newsletter forms on the page
-  document.querySelectorAll('.newsletter-btn').forEach((btn) => {
+  document.querySelectorAll('.newsletter-btn, .nl-btn').forEach((btn) => {
     btn.addEventListener('click', async (e) => {
       e.preventDefault();
 
       // Find the sibling input (in same .newsletter-form container)
       const form = btn.closest('.newsletter-form') || btn.parentElement;
-      const input = form.querySelector('.newsletter-input');
+      const input = form.querySelector('.newsletter-input, .nl-input');
       if (!input) return;
 
       const email = input.value.trim();
