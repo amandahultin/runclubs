@@ -25,6 +25,35 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <meta name="twitter:title" content="Söderlöparna Stockholm — Swedish Run Clubs">
   <meta name="twitter:description" content="Söderlöparna Stockholm — lugn lördagslöpning från Gullmarsplan med fikastopp efteråt.">
   <link rel="canonical" href="https://runclubs.se/soderloparna-stockholm">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SportsOrganization",
+  "name": "Söderlöparna",
+  "description": "Söderlöparna Stockholm — chill lördagslöpning från Gullmarsplan med fikastopp efteråt. Bra sällskap, alla välkomna.",
+  "url": "https://runclubs.se/soderloparna-stockholm",
+  "image": "https://runclubs.se/hero.jpg",
+  "sport": "Running",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Stockholm",
+    "addressCountry": "SE",
+    "streetAddress": "Gullmarsplan t-bana"
+  },
+  "areaServed": {
+    "@type": "City",
+    "name": "Stockholm"
+  },
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "Swedish Run Clubs",
+    "url": "https://runclubs.se/"
+  },
+  "sameAs": [
+    "https://www.instagram.com/runclubs.se"
+  ]
+}
+</script>
   <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Oswald:wght@500;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -551,10 +580,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <section class="newsletter fade-in">
     <div class="newsletter-text">
       <div class="newsletter-label">Nyhetsbrevet</div>
-      <div class="newsletter-title">Håll koll på<br>löparvärlden</div>
-      <p>Nya löpargrupper och event direkt i din inkorg. Gratis, max ett mail i veckan.</p>
+      <div class="newsletter-title">Veckans rundor<br>+ kommande events</div>
+      <p>Events dyker upp sporadiskt och är svåra att hålla koll på. Varje söndag samlar jag allt du behöver veta — veckans tre pass, kommande lopp och events, plus en reflektion från min löparvecka. Gratis, max ett mejl.</p>
     </div>
-    <form class="newsletter-form" onsubmit="return false;">
+    <form class="newsletter-form" data-placement="page-bottom" onsubmit="return false;">
       <input type="email" class="newsletter-input" placeholder="din@email.se" aria-label="E-postadress">
       <button class="newsletter-btn">Prenumerera</button>
     </form>

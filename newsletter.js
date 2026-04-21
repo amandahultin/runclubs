@@ -92,12 +92,51 @@ const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyHCKDbZsRqiq
 
       try {
         if (GOOGLE_SCRIPT_URL !== 'PASTE_YOUR_GOOGLE_SCRIPT_URL_HERE') {
+          // Capture UTM parameters + referrer + placement for attribution.
+          // UTM-parametrarna läses först från nuvarande URL, annars från sessionStorage
+          // (så att en besökare som klickade en UTM-länk på IG och sen surfar runt
+          //  ändå attribueras korrekt när de till slut signar up).
+          const urlParams = new URLSearchParams(window.location.search);
+          const utmKeys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'];
+          const utms = {};
+          utmKeys.forEach((k) => {
+            const fromUrl = urlParams.get(k);
+            if (fromUrl) {
+              try { sessionStorage.setItem(k, fromUrl); } catch (e) {}
+              utms[k] = fromUrl;
+            } else {
+              try { utms[k] = sessionStorage.getItem(k) || ''; } catch (e) { utms[k] = ''; }
+            }
+          });
+
+          // Identifiera vilket formulär på sidan som triggade signup (hero / mid / footer etc.)
+          const placement =
+            form.dataset.placement ||
+            (form.closest('[data-placement]') && form.closest('[data-placement]').dataset.placement) ||
+            'unknown';
+
           const params = new URLSearchParams({
             email: email,
             page: window.location.pathname,
             date: new Date().toISOString(),
+            referrer: document.referrer || '',
+            placement: placement,
+            utm_source: utms.utm_source || '',
+            utm_medium: utms.utm_medium || '',
+            utm_campaign: utms.utm_campaign || '',
+            utm_content: utms.utm_content || '',
+            utm_term: utms.utm_term || '',
           });
           await fetch(GOOGLE_SCRIPT_URL + '?' + params.toString(), { mode: 'no-cors' });
+
+          // Skicka också event till dataLayer så att GTM/GA4 kan mäta signups.
+          if (window.dataLayer) {
+            window.dataLayer.push({
+              event: 'newsletter_signup',
+              signup_placement: placement,
+              signup_page: window.location.pathname,
+            });
+          }
         }
         input.value = '';
         showModal();
