@@ -383,73 +383,40 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .news-link:hover { color: #C8604A; gap: 10px; }
 
     /* ── NEWSLETTER ─────────────────────── */
-    .nl-section { background: #ffffff; border-top: 1px solid #E8E8E8; border-bottom: 1px solid #E8E8E8; overflow: hidden; }
-    .nl-body {
-      display: flex; align-items: center; justify-content: space-between;
-      gap: 3rem; padding: 3.5rem 2rem; flex-wrap: wrap;
-    }
-    .nl-left { flex: 1; min-width: 280px; }
+    .nl-section { background: #ffffff; border-top: 1px solid #E8E8E8; border-bottom: 1px solid #E8E8E8; }
+    .nl-body { max-width: 560px; margin: 0 auto; padding: 4rem 2rem; text-align: center; }
     .nl-badge {
       display: inline-flex; align-items: center; gap: 8px;
       background: #FFF0ED; color: #D4715E;
       font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
       padding: 6px 14px; border-radius: 100px; margin-bottom: 1.5rem;
     }
-    .nl-live-dot {
-      width: 7px; height: 7px; background: #D4715E; border-radius: 50%;
-      animation: nl-pulse-dot 1.5s ease-in-out infinite;
-    }
-    @keyframes nl-pulse-dot {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.4; transform: scale(0.6); }
-    }
     .nl-title {
       font-family: 'Archivo Black', sans-serif;
-      font-size: clamp(36px, 5vw, 58px);
-      color: #1C2A45; line-height: 1; text-transform: uppercase;
-      letter-spacing: -1px; margin-bottom: 1.25rem;
+      font-size: clamp(28px, 4vw, 42px);
+      color: #1C2A45; line-height: 1.1; text-transform: uppercase;
+      letter-spacing: -1px; margin-bottom: 1rem;
     }
     .nl-title em { color: #D4715E; font-style: normal; }
-    .nl-desc { font-size: 15px; color: #777; line-height: 1.75; max-width: 400px; margin-bottom: 1.75rem; }
-    .nl-social-proof { display: flex; align-items: center; gap: 10px; font-size: 13px; color: #999; }
-    .nl-avatars { display: flex; }
-    .nl-avatar {
-      width: 30px; height: 30px; border-radius: 50%;
-      background: linear-gradient(135deg, #F0E0DC, #EEAA96);
-      border: 2px solid #fff; margin-left: -8px;
-      display: flex; align-items: center; justify-content: center; font-size: 13px;
-    }
-    .nl-avatar:first-child { margin-left: 0; }
-    .nl-right { flex: 0 0 380px; }
-    .nl-form { display: flex; flex-direction: column; gap: 12px; }
-    .nl-input {
-      padding: 16px 20px; border: 2px solid rgba(255,255,255,0.7); border-radius: 12px;
+    .nl-desc { font-size: 15px; color: #777; line-height: 1.75; margin-bottom: 2rem; }
+    .newsletter-form { display: flex; flex-direction: column; gap: 12px; }
+    .newsletter-input {
+      padding: 16px 20px; border: 2px solid #E8E8E8; border-radius: 12px;
       font-size: 15px; font-family: 'DM Sans', sans-serif;
       color: #1C2A45; background: #fff; outline: none;
-      transition: border-color 0.2s, box-shadow 0.2s; width: 100%; box-sizing: border-box;
-      box-shadow: 0 2px 12px rgba(28,42,69,0.08);
+      transition: border-color 0.2s; width: 100%; box-sizing: border-box;
     }
-    .nl-input::placeholder { color: #aaa; }
-    .nl-input:focus { border-color: #D4715E; box-shadow: 0 4px 20px rgba(212,113,94,0.15); }
-    .nl-btn {
+    .newsletter-input::placeholder { color: #aaa; }
+    .newsletter-input:focus { border-color: #D4715E; }
+    .newsletter-btn {
       background: #D4715E; color: #fff;
       font-size: 15px; font-weight: 700; letter-spacing: 0.3px;
       padding: 17px; border-radius: 12px; border: none;
       cursor: pointer; font-family: 'DM Sans', sans-serif;
-      transition: all 0.2s; position: relative;
+      transition: background 0.2s;
     }
-    .nl-btn::after {
-      content: ''; position: absolute; inset: 0; border-radius: 10px;
-      animation: nl-pulse-ring 2.5s ease-out infinite;
-      pointer-events: none;
-    }
-    @keyframes nl-pulse-ring {
-      0% { box-shadow: 0 0 0 0 rgba(212,113,94,0.45); }
-      70% { box-shadow: 0 0 0 12px rgba(212,113,94,0); }
-      100% { box-shadow: 0 0 0 0 rgba(212,113,94,0); }
-    }
-    .nl-btn:hover { background: #C8604A; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(212,113,94,0.35); }
-    .nl-disclaimer { font-size: 11px; color: #ccc; text-align: center; margin-top: 0.75rem; }
+    .newsletter-btn:hover { background: #C8604A; }
+    .nl-disclaimer { font-size: 11px; color: #bbb; text-align: center; margin-top: 0.75rem; }
 
     /* ── FOOTER ─────────────────────────── */
     footer {
@@ -619,27 +586,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- NEWSLETTER -->
   <section class="nl-section fade-in">
     <div class="nl-body">
-      <div class="nl-left">
-        <div class="nl-badge"><span class="nl-live-dot"></span>Prenumerera på <span class="run-clubs-logo" style="font-size:1em;color:#D4715E;"><span class="run">RUN</span><span class="clubs">CLUBS</span><span class="suffix">.se</span></span> veckobrev</div>
-        <h2 class="nl-title">Inbjudningar,<br><em>events</em> och<br>promo runs.</h2>
-        <p class="nl-desc">Varje söndag får du en sammanställning av vad som händer kommande vecka — veckans pass, nyheter, intervjuer och events. Gratis så klart!</p>
-        <div class="nl-social-proof">
-          <div class="nl-avatars">
-            <div class="nl-avatar">🏃</div>
-            <div class="nl-avatar">👟</div>
-            <div class="nl-avatar">⚡</div>
-            <div class="nl-avatar">🌟</div>
-          </div>
-          <span>+240 löpare prenumererar redan</span>
-        </div>
-      </div>
-      <div class="nl-right">
-        <form class="nl-form" data-placement="home-mid" onsubmit="return false;">
-          <input type="email" class="nl-input" placeholder="din@email.se" aria-label="E-postadress">
-          <button class="nl-btn newsletter-btn">Anmäl mig nu →</button>
-        </form>
-        <p class="nl-disclaimer">Gratis. Avsluta när du vill.</p>
-      </div>
+      <div class="nl-badge">Prenumerera på <span class="run-clubs-logo" style="font-size:1em;color:#D4715E;"><span class="run">RUN</span><span class="clubs">CLUBS</span><span class="suffix">.se</span></span> veckobrev</div>
+      <h2 class="nl-title">Inbjudningar,<br><em>events</em> och<br>promo runs.</h2>
+      <p class="nl-desc">Varje söndag får du en sammanställning av vad som händer kommande vecka — veckans pass, nyheter, intervjuer och events. Gratis så klart!</p>
+      <form class="newsletter-form" data-placement="home-mid" onsubmit="return false;">
+        <input type="email" class="newsletter-input" placeholder="din@email.se" aria-label="E-postadress">
+        <button class="newsletter-btn">Anmäl mig nu →</button>
+      </form>
+      <p class="nl-disclaimer">Gratis. Avsluta när du vill.</p>
     </div>
   </section>
 
