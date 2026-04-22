@@ -18,7 +18,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <meta property="og:url" content="https://runclubs.se/stockholm-running-events">
   <meta property="og:image" content="https://runclubs.se/stockholm-run-clubs.jpeg">
   <link rel="canonical" href="https://runclubs.se/stockholm-running-events">
-  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Oswald:wght@500;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:ital,wght@1,900&family=Oswald:wght@500;700&family=DM+Sans:wght@400;500;600&family=Playfair+Display:wght@400&display=swap" rel="stylesheet">
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <style>
@@ -41,11 +41,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       border-bottom: 1px solid #F0E0DC;
       position: sticky; top: 0; z-index: 100;
     }
-    .logo {
-      font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 16px;
-      text-transform: uppercase; letter-spacing: 2px;
-      color: #1C2A45; text-decoration: none;
-    }
+    .run-clubs-logo { display: inline-flex; align-items: baseline; font-size: 36px; color: #1a1a1a; text-decoration: none; }
+    .run-clubs-logo .run { font-family: 'Inter', sans-serif; font-weight: 900; font-style: italic; letter-spacing: -0.04em; padding-right: 2px; }
+    .run-clubs-logo .clubs { font-family: 'Playfair Display', serif; font-weight: 400; letter-spacing: -0.02em; }
+    .run-clubs-logo .suffix { font-family: 'Playfair Display', serif; font-size: 0.45em; font-weight: 400; text-transform: lowercase; margin-left: 2px; }
     .nav-links { display: flex; gap: 2rem; }
     .nav-links a {
       font-size: 12px; letter-spacing: 0.5px; text-decoration: none;
@@ -366,7 +365,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <a href="#main-content" class="skip-link">Hoppa till innehåll</a>
 
   <nav>
-    <a href="/" class="logo">Swedish Run Clubs</a>
+    <a href="/" class="run-clubs-logo"><span class="run">RUN</span><span class="clubs">CLUBS</span><span class="suffix">.se</span></a>
     <div class="nav-links">
       <a href="stockholm">Stockholm</a>
       <a href="goteborg">Göteborg</a>
