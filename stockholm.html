@@ -383,7 +383,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="breadcrumb"><a href="/">Start</a> → Stockholm</div>
       <div class="hero-tag">Löpargrupper i</div>
       <h1>Stockholm</h1>
-      <p>Här hittar du alla löpargrupper i Stockholm — välj nivå, typ och dag för att hitta din perfekta klubb.</p>
+      <p>Här hittar du löpargrupper i Stockholm — välj nivå, typ och dag för att hitta din perfekta klubb.</p>
       <div class="hero-stats">
         <div class="hero-stat">
           <div class="hero-stat-number">23</div>
@@ -456,10 +456,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </div>
 
-  <div class="results-bar" id="results-bar">Visar <span class="results-count">27</span> klubbar</div>
+  <div class="results-bar" id="results-bar">Visar <span class="results-count">23</span> klubbar</div>
 
   <section class="featured-section">
-    <div class="section-label">Alla klubbar i Stockholm</div>
+    <div class="section-label">Klubbar i Stockholm</div>
     <div class="clubs-grid" id="clubs-grid">
 
       <a href="yo-running-club" class="club-card" data-niva="nybörjare mellannivå avancerad" data-typ="intervall väg social" data-dag="tis lör" data-stadsdel="vasastan">
@@ -1109,6 +1109,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       const hasFilters = active.niva || active.typ || active.dag || active.stadsdel;
       clearBtn.classList.toggle('show', hasFilters);
     }
+    filterClubs();
   </script>
 
   <script src="add-club.js"></script>
