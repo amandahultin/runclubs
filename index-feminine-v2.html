@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Löpargrupper i Sverige — Stockholm, Göteborg, Malmö | Swedish Run Clubs</title>
+  <meta name="description" content="Hitta din löpargäng i Sverige. Run clubs i Stockholm, Göteborg och Malmö — för alla som vill springa tillsammans.">
+  <meta name="robots" content="noindex">
+  <link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@1,900&family=Playfair+Display:wght@400&display=swap" rel="stylesheet">
+  <style>
+    /* ─────────────────────────────────────────
+       PALETTE
+       Cream:        #F5EFE3
+       Forest:       #1F2D24
+       Sage:         #7A9168
+       Sage deep:    #4A5C3E
+       Coral:        #D4715E (brand-CTA)
+       Butter:       #F2D58A
+       Rose:         #E8C4B8
+       ───────────────────────────────────────── */
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      color: #1F2D24;
+      background: #F5EFE3;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    .skip-link {
+      position: absolute; top: -100%; left: 1rem;
+      background: #1F2D24; color: #F5EFE3; padding: 8px 16px;
+      font-size: 13px; font-weight: 600;
+      z-index: 1000; text-decoration: none;
+    }
+    .skip-link:focus { top: 0; }
+
+    /* ── NAV ────────────────────────────── */
+    nav {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.25rem 2.5rem;
+      background: #F5EFE3;
+      border-bottom: 1.5px solid #1F2D24;
+      position: sticky; top: 0; z-index: 100;
+    }
+    .run-clubs-logo { display: inline-flex; align-items: baseline; font-size: 36px; color: #1a1a1a; text-decoration: none; }
+    .run-clubs-logo .run { font-family: 'Inter', sans-serif; font-weight: 900; font-style: italic; letter-spacing: -0.04em; padding-right: 2px; }
+    .run-clubs-logo .clubs { font-family: 'Playfair Display', serif; font-weight: 400; letter-spacing: -0.02em; }
+    .run-clubs-logo .suffix { font-family: 'Playfair Display', serif; font-size: 0.45em; font-weight: 400; text-transform: lowercase; margin-left: 2px; }
+    .nav-links { display: flex; gap: 2rem; align-items: center; }
+    .nav-links a {
+      font-size: 14px; text-decoration: none;
+      color: #1F2D24; font-weight: 600;
+      transition: color 0.2s; position: relative;
+    }
+    .nav-links a:hover { color: #D4715E; }
+    .nav-cta {
+      background: #1F2D24; color: #F5EFE3 !important;
+      padding: 10px 18px;
+      font-size: 13px; font-weight: 700;
+      transition: all 0.2s;
+    }
+    .nav-cta:hover { background: #D4715E; color: #F5EFE3 !important; }
+    .nav-toggle {
+      display: none; flex-direction: column; gap: 5px;
+      cursor: pointer; background: none; border: none; padding: 4px;
+    }
+    .nav-toggle span {
+      display: block; width: 24px; height: 2px;
+      background: #1F2D24; transition: all 0.3s ease;
+    }
+    .nav-toggle.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .nav-toggle.open span:nth-child(2) { opacity: 0; }
+    .nav-toggle.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+    .mobile-menu {
+      display: none; flex-direction: column;
+      background: #F5EFE3;
+      border-bottom: 1.5px solid #1F2D24;
+      padding: 1rem 2rem; gap: 0;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      font-size: 16px; text-decoration: none;
+      color: #1F2D24; font-weight: 600;
+      padding: 1rem 0; border-bottom: 1px solid rgba(31,45,36,0.12);
+    }
+    .mobile-menu a:last-child { border-bottom: none; }
+
+    /* ── METADATA BAR (magazine-style) ── */
+    .meta-bar {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 0.65rem 2.5rem;
+      background: #1F2D24; color: #F5EFE3;
+      font-size: 11px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase;
+      gap: 1rem; flex-wrap: wrap;
+    }
+    .meta-bar span { display: inline-flex; align-items: center; gap: 6px; }
+    .meta-bar .dot { width: 6px; height: 6px; background: #F2D58A; border-radius: 50%; }
+
+    /* ── HERO ───────────────────────────── */
+    .hero {
+      display: grid; grid-template-columns: 1.1fr 1fr;
+      min-height: 80vh;
+      border-bottom: 1.5px solid #1F2D24;
+    }
+    .hero-text {
+      padding: 4rem 3.5rem;
+      display: flex; flex-direction: column; justify-content: space-between;
+      background: #F5EFE3;
+      position: relative;
+    }
+    .hero-issue {
+      font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+      color: #4A5C3E;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .hero-issue::before, .hero-issue::after {
+      content: ''; height: 1px; background: #4A5C3E; flex: 1;
+    }
+    .hero-headline {
+      font-family: 'Funnel Display', sans-serif;
+      font-weight: 800;
+      font-size: clamp(56px, 7vw, 112px);
+      line-height: 0.92;
+      letter-spacing: -3px;
+      color: #1F2D24;
+      margin: 2rem 0;
+    }
+    .hero-headline em {
+      font-style: normal; color: #7A9168;
+      position: relative; display: inline-block;
+    }
+    .hero-headline em::after {
+      content: ''; position: absolute;
+      bottom: 4px; left: -4px; right: -4px; height: 18%;
+      background: #F2D58A; opacity: 0.55; z-index: -1;
+    }
+    .hero-sub {
+      font-size: 17px; line-height: 1.55;
+      color: #4A5C3E; max-width: 460px;
+      margin-bottom: 2.5rem;
+    }
+    .hero-bottom {
+      display: flex; justify-content: space-between; align-items: flex-end;
+      gap: 2rem; flex-wrap: wrap;
+    }
+    .hero-ctas { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 12px;
+      background: #D4715E; color: #F5EFE3;
+      font-size: 15px; font-weight: 700;
+      padding: 18px 28px; text-decoration: none;
+      transition: all 0.15s ease; border: none; cursor: pointer;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      border: 1.5px solid #1F2D24;
+      box-shadow: 4px 4px 0 #1F2D24;
+    }
+    .btn-primary:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 #1F2D24; }
+    .btn-primary:active { transform: translate(2px, 2px); box-shadow: 1px 1px 0 #1F2D24; }
+    .btn-secondary {
+      display: inline-flex; align-items: center; gap: 8px;
+      color: #1F2D24; font-size: 15px; font-weight: 600;
+      text-decoration: none; padding: 18px 8px;
+      border-bottom: 1.5px solid #1F2D24;
+    }
+    .btn-secondary:hover { color: #D4715E; border-color: #D4715E; }
+    .hero-stats {
+      font-size: 13px; color: #4A5C3E; font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+    .hero-stats strong { font-family: 'Funnel Display', sans-serif; font-size: 28px; color: #1F2D24; display: block; line-height: 1; margin-bottom: 4px; font-weight: 800; }
+
+    .hero-image {
+      background: #7A9168 url('tjejer-och-run-clubs.jpg') center/cover no-repeat;
+      background-blend-mode: multiply;
+      position: relative;
+      border-left: 1.5px solid #1F2D24;
+    }
+    .hero-image::after {
+      content: '#01';
+      position: absolute; top: 2rem; right: 2rem;
+      font-family: 'Funnel Display', sans-serif; font-weight: 800;
+      font-size: 80px; color: #F5EFE3;
+      letter-spacing: -3px; line-height: 1;
+      opacity: 0.85;
+    }
+    .hero-image-caption {
+      position: absolute; bottom: 2rem; left: 2rem; right: 2rem;
+      color: #F5EFE3; font-size: 12px; font-weight: 600;
+      letter-spacing: 1.5px; text-transform: uppercase;
+      display: flex; justify-content: space-between; align-items: end; gap: 1rem;
+    }
+    .hero-image-caption .ed {
+      font-family: 'Funnel Display', sans-serif;
+      font-size: 14px; letter-spacing: 0; text-transform: none; font-weight: 600;
+      max-width: 60%; line-height: 1.4;
+    }
+
+    /* ── SECTION SHARED ──────────────────────── */
+    .section {
+      padding: 5rem 2.5rem;
+      border-bottom: 1.5px solid #1F2D24;
+    }
+    .section-head {
+      display: flex; justify-content: space-between; align-items: flex-end;
+      gap: 2rem; flex-wrap: wrap;
+      margin-bottom: 3rem;
+      padding-bottom: 1.25rem;
+      border-bottom: 1.5px solid #1F2D24;
+    }
+    .section-num {
+      font-family: 'Funnel Display', sans-serif; font-weight: 800;
+      font-size: 14px; color: #D4715E;
+      letter-spacing: 1px;
+    }
+    .section-title {
+      font-family: 'Funnel Display', sans-serif; font-weight: 700;
+      font-size: clamp(36px, 4.5vw, 60px);
+      line-height: 0.95; letter-spacing: -1.5px;
+      color: #1F2D24; margin-top: 0.5rem;
+    }
+    .section-meta {
+      font-size: 12px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase;
+      color: #4A5C3E; text-align: right;
+    }
+
+    /* ── CITIES ─────────────────────────── */
+    .cities-section { background: #F5EFE3; }
+    .cities {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 0; border-top: 1.5px solid #1F2D24; border-left: 1.5px solid #1F2D24;
+    }
+    .city {
+      position: relative; overflow: hidden;
+      text-decoration: none; color: #F5EFE3; display: block;
+      aspect-ratio: 4/5;
+      border-right: 1.5px solid #1F2D24; border-bottom: 1.5px solid #1F2D24;
+      transition: transform 0.3s ease;
+    }
+    .city-image {
+      position: absolute; inset: 0;
+      background-size: cover; background-position: center;
+      transition: transform 0.5s ease;
+    }
+    .city:hover .city-image { transform: scale(1.06); }
+    .city-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(31,45,36,0.85) 0%, rgba(31,45,36,0.15) 55%, rgba(31,45,36,0.05) 100%);
+      transition: background 0.3s;
+    }
+    .city:hover .city-overlay {
+      background: linear-gradient(to top, rgba(122,145,104,0.92) 0%, rgba(31,45,36,0.2) 55%, rgba(31,45,36,0.05) 100%);
+    }
+    .city-num {
+      position: absolute; top: 1.5rem; left: 1.5rem;
+      font-family: 'Funnel Display', sans-serif; font-weight: 800;
+      font-size: 64px; color: #F5EFE3;
+      letter-spacing: -2px; line-height: 1; opacity: 0.7;
+    }
+    .city-content {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 2rem; z-index: 1;
+    }
+    .city-name {
+      font-family: 'Funnel Display', sans-serif; font-weight: 700;
+      font-size: 38px; letter-spacing: -1px; line-height: 1;
+      margin-bottom: 8px;
+    }
+    .city-count {
+      font-size: 13px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase;
+      color: rgba(245,239,227,0.85);
+      display: flex; align-items: center; gap: 8px;
+    }
+    .city-count .arrow {
+      display: inline-flex; width: 28px; height: 28px;
+      align-items: center; justify-content: center;
+      background: #F2D58A; color: #1F2D24; border-radius: 50%;
+      transition: transform 0.2s;
+    }
+    .city:hover .city-count .arrow { transform: translateX(4px) rotate(-12deg); }
+
+    /* ── DAGENS PASS ───────────────────── */
+    .schedule-section {
+      background: #4A5C3E; color: #F5EFE3;
+    }
+    .schedule-section .section-head { border-bottom-color: rgba(245,239,227,0.25); }
+    .schedule-section .section-num { color: #F2D58A; }
+    .schedule-section .section-title { color: #F5EFE3; }
+    .schedule-section .section-meta { color: rgba(245,239,227,0.65); }
+    .schedule-day-pills {
+      display: flex; gap: 0; flex-wrap: wrap;
+      border: 1.5px solid #F5EFE3;
+    }
+    .day-pill {
+      font-size: 13px; font-weight: 700; padding: 10px 18px;
+      background: transparent; color: #F5EFE3;
+      cursor: pointer; font-family: 'Plus Jakarta Sans', sans-serif;
+      transition: all 0.15s; letter-spacing: 0.5px;
+      border: none; border-right: 1.5px solid #F5EFE3;
+    }
+    .day-pill:last-child { border-right: none; }
+    .day-pill:hover { background: rgba(245,239,227,0.1); }
+    .day-pill.active { background: #F2D58A; color: #1F2D24; }
+    .schedule-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 0;
+      border-top: 1.5px solid rgba(245,239,227,0.3);
+      border-left: 1.5px solid rgba(245,239,227,0.3);
+    }
+    .pass-card {
+      background: transparent;
+      padding: 1.5rem 1.75rem;
+      text-decoration: none; color: #F5EFE3;
+      display: flex; gap: 1.25rem; align-items: flex-start;
+      transition: background 0.15s;
+      border-right: 1.5px solid rgba(245,239,227,0.3);
+      border-bottom: 1.5px solid rgba(245,239,227,0.3);
+    }
+    .pass-card:hover { background: rgba(245,239,227,0.08); }
+    .pass-time {
+      font-family: 'Funnel Display', sans-serif; font-weight: 800;
+      font-size: 26px; color: #F2D58A;
+      min-width: 64px; line-height: 1;
+      letter-spacing: -1px;
+    }
+    .pass-info { flex: 1; }
+    .pass-name {
+      font-family: 'Funnel Display', sans-serif; font-weight: 700;
+      font-size: 19px; color: #F5EFE3;
+      margin-bottom: 4px; letter-spacing: -0.3px;
+    }
+    .pass-detail {
+      font-size: 13px; color: rgba(245,239,227,0.65);
+      line-height: 1.5;
+    }
+    .pass-city-tag {
+      display: inline-block; font-size: 10px; font-weight: 700;
+      padding: 4px 10px; margin-top: 10px;
+      letter-spacing: 1px; text-transform: uppercase;
+      border: 1px solid rgba(245,239,227,0.4); color: rgba(245,239,227,0.85);
+    }
+    .no-pass {
+      grid-column: 1 / -1; text-align: center;
+      padding: 4rem 1rem; color: rgba(245,239,227,0.6);
+      font-size: 16px;
+      border-right: 1.5px solid rgba(245,239,227,0.3);
+      border-bottom: 1.5px solid rgba(245,239,227,0.3);
+    }
+    .schedule-footer {
+      margin-top: 2.5rem; display: flex; justify-content: flex-end;
+    }
+    .schedule-cta {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: 14px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+      color: #F2D58A; text-decoration: none;
+      padding-bottom: 4px; border-bottom: 1.5px solid #F2D58A;
+      transition: gap 0.2s;
+    }
+    .schedule-cta:hover { gap: 14px; }
+
+    /* ── FEATURED ARTICLE ──────────────── */
+    .featured-section {
+      background: #F5EFE3;
+      padding: 5rem 2.5rem;
+      border-bottom: 1.5px solid #1F2D24;
+    }
+    .featured {
+      display: grid; grid-template-columns: 1.2fr 1fr;
+      gap: 0;
+      border: 1.5px solid #1F2D24;
+      background: #E8C4B8;
+      overflow: hidden;
+    }
+    .featured-image {
+      aspect-ratio: 5/4;
+      background-size: cover; background-position: center;
+      border-right: 1.5px solid #1F2D24;
+    }
+    .featured-content {
+      padding: 3rem 2.5rem;
+      display: flex; flex-direction: column; justify-content: center; gap: 1.25rem;
+    }
+    .featured-tag {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+      color: #1F2D24; align-self: flex-start;
+    }
+    .featured-tag::before {
+      content: ''; width: 8px; height: 8px; border-radius: 50%; background: #D4715E;
+    }
+    .featured-title {
+      font-family: 'Funnel Display', sans-serif; font-weight: 700;
+      font-size: clamp(28px, 3.5vw, 44px);
+      line-height: 1.02; letter-spacing: -1.2px;
+      color: #1F2D24;
+    }
+    .featured-excerpt {
+      font-size: 16px; line-height: 1.55; color: #1F2D24; opacity: 0.8;
+      max-width: 460px;
+    }
+    .featured-meta {
+      display: flex; gap: 2rem;
+      font-size: 12px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase;
+      color: #1F2D24; opacity: 0.7;
+      padding-top: 1rem; border-top: 1px solid rgba(31,45,36,0.2);
+    }
+    .featured-link {
+      display: inline-flex; align-items: center; gap: 10px;
+      align-self: flex-start;
+      background: #1F2D24; color: #F5EFE3; text-decoration: none;
+      padding: 14px 22px; font-size: 14px; font-weight: 700;
+      letter-spacing: 0.5px;
+      transition: all 0.15s;
+      border: 1.5px solid #1F2D24;
+    }
+    .featured-link:hover { background: #D4715E; border-color: #D4715E; }
+
+    /* ── NEWS GRID ──────────────────────── */
+    .news-section { background: #F5EFE3; }
+    .news-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 0;
+      border-top: 1.5px solid #1F2D24; border-left: 1.5px solid #1F2D24;
+    }
+    .news-card {
+      position: relative;
+      text-decoration: none; color: #1F2D24; display: block;
+      background: #F5EFE3;
+      padding: 2rem;
+      border-right: 1.5px solid #1F2D24; border-bottom: 1.5px solid #1F2D24;
+      transition: background 0.2s;
+    }
+    .news-card:hover { background: #F2D58A; }
+    .news-card-tag {
+      font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+      color: #4A5C3E; margin-bottom: 1.25rem; display: block;
+    }
+    .news-card-title {
+      font-family: 'Funnel Display', sans-serif; font-weight: 700;
+      font-size: 26px; line-height: 1.05; letter-spacing: -0.8px;
+      color: #1F2D24; margin-bottom: 1rem;
+    }
+    .news-card-excerpt {
+      font-size: 14px; color: #4A5C3E; line-height: 1.5;
+      margin-bottom: 1.5rem;
+    }
+    .news-card-meta {
+      font-size: 12px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase;
+      color: #4A5C3E;
+    }
+    .news-link-row {
+      margin-top: 2.5rem; display: flex; justify-content: flex-end;
+    }
+    .news-link {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: 14px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+      color: #1F2D24; text-decoration: none;
+      padding-bottom: 4px; border-bottom: 1.5px solid #1F2D24;
+      transition: gap 0.2s;
+    }
+    .news-link:hover { gap: 14px; color: #D4715E; border-color: #D4715E; }
+
+    /* ── NEWSLETTER ─────────────────────── */
+    .newsletter {
+      background: #D4715E; color: #F5EFE3;
+      padding: 5rem 2.5rem;
+      border-bottom: 1.5px solid #1F2D24;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;
+      align-items: center;
+    }
+    .newsletter-text .section-num { color: #F2D58A; margin-bottom: 1rem; display: block; }
+    .newsletter-title {
+      font-family: 'Funnel Display', sans-serif; font-weight: 700;
+      font-size: clamp(32px, 4vw, 52px);
+      line-height: 0.95; letter-spacing: -1.5px;
+      margin-bottom: 1.25rem;
+    }
+    .newsletter p {
+      font-size: 16px; line-height: 1.55;
+      color: rgba(245,239,227,0.9);
+      max-width: 380px;
+    }
+    .newsletter-form {
+      display: flex; flex-direction: column; gap: 12px;
+    }
+    .newsletter-input {
+      padding: 18px 22px; border: 1.5px solid #F5EFE3;
+      font-size: 16px; font-family: 'Plus Jakarta Sans', sans-serif;
+      color: #F5EFE3; background: transparent;
+      outline: none;
+    }
+    .newsletter-input::placeholder { color: rgba(245,239,227,0.5); }
+    .newsletter-input:focus { background: rgba(245,239,227,0.08); }
+    .newsletter-btn {
+      background: #1F2D24; color: #F5EFE3;
+      font-size: 15px; font-weight: 700;
+      padding: 18px 28px; border: 1.5px solid #1F2D24;
+      cursor: pointer; font-family: 'Plus Jakarta Sans', sans-serif;
+      transition: all 0.15s;
+      display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+    }
+    .newsletter-btn:hover { background: #F2D58A; color: #1F2D24; border-color: #F2D58A; }
+
+    /* ── FOOTER ─────────────────────────── */
+    footer {
+      background: #1F2D24; color: #F5EFE3;
+      padding: 4rem 2.5rem 2rem;
+    }
+    .footer-top {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 2.5rem; padding-bottom: 3rem;
+      border-bottom: 1px solid rgba(245,239,227,0.2);
+    }
+    .footer-brand .run-clubs-logo { font-size: 28px; display: block; margin-bottom: 0.75rem; }
+    .footer-brand .logo span { color: #F2D58A; }
+    .footer-brand p { font-size: 15px; color: rgba(245,239,227,0.7); line-height: 1.55; max-width: 320px; }
+    footer h4 {
+      font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+      color: #F2D58A; margin-bottom: 1.25rem;
+    }
+    footer a { display: block; color: #F5EFE3; text-decoration: none; margin-bottom: 10px; font-size: 15px; transition: color 0.15s; }
+    footer a:hover { color: #F2D58A; }
+    .footer-bottom {
+      padding-top: 1.5rem; margin-top: 2rem;
+      display: flex; justify-content: space-between; align-items: center;
+      gap: 1rem; flex-wrap: wrap;
+      font-size: 13px; color: rgba(245,239,227,0.5);
+      border-top: 1px solid rgba(245,239,227,0.2);
+    }
+    .footer-bottom a { display: inline; color: rgba(245,239,227,0.85); margin: 0; }
+
+    /* ── MOBILE ─────────────────────────── */
+    @media (max-width: 900px) {
+      nav { padding: 1rem 1.25rem; }
+      .nav-links { display: none; }
+      .nav-toggle { display: flex; }
+      .meta-bar { padding: 0.5rem 1.25rem; font-size: 10px; }
+      .meta-bar span:nth-child(2), .meta-bar span:nth-child(3) { display: none; }
+
+      .hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-text { padding: 2.5rem 1.5rem 3rem; }
+      .hero-headline { font-size: clamp(48px, 13vw, 80px); margin: 1.5rem 0; letter-spacing: -2px; }
+      .hero-image { min-height: 50vh; border-left: none; border-top: 1.5px solid #1F2D24; }
+      .hero-image::after { font-size: 56px; }
+
+      .section { padding: 3.5rem 1.5rem; }
+      .section-head { gap: 1rem; }
+      .section-meta { text-align: left; }
+
+      .cities { grid-template-columns: 1fr; }
+      .city { aspect-ratio: 16/10; }
+      .featured { grid-template-columns: 1fr; }
+      .featured-image { border-right: none; border-bottom: 1.5px solid #1F2D24; aspect-ratio: 16/10; }
+      .featured-content { padding: 2rem 1.5rem; }
+
+      .news-grid { grid-template-columns: 1fr; }
+      .news-card { padding: 1.75rem 1.5rem; }
+      .news-card-title { font-size: 22px; }
+
+      .schedule-grid { grid-template-columns: 1fr; }
+
+      .newsletter { grid-template-columns: 1fr; gap: 2.5rem; padding: 3.5rem 1.5rem; }
+
+      footer { padding: 3rem 1.5rem 1.5rem; }
+      .footer-top { grid-template-columns: 1fr 1fr; gap: 2rem; }
+      .footer-brand { grid-column: 1 / -1; }
+    }
+  </style>
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Hoppa till innehåll</a>
+
+  <!-- META BAR -->
+  <div class="meta-bar">
+    <span><span class="dot"></span>Issue 04 / April 2026</span>
+    <span>44 klubbar listade</span>
+    <span>3 städer</span>
+    <span>Spring tillsammans →</span>
+  </div>
+
+  <nav>
+    <a href="/" class="run-clubs-logo"><span class="run">RUN</span><span class="clubs">CLUBS</span><span class="suffix">.se</span></a>
+    <div class="nav-links">
+      <a href="stockholm">Stockholm</a>
+      <a href="goteborg">Göteborg</a>
+      <a href="malmo">Malmö</a>
+      <a href="nyheter">Nyheter</a>
+      <a href="stockholm-running-events">Events</a>
+      <a href="loppkalender">Loppkalender</a>
+      <a href="om-oss">Om oss</a>
+    </div>
+    <button class="nav-toggle" aria-label="Öppna meny" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="mobile-menu" role="navigation" aria-label="Mobilmeny">
+    <a href="stockholm">Stockholm</a>
+    <a href="goteborg">Göteborg</a>
+    <a href="malmo">Malmö</a>
+    <a href="nyheter">Nyheter</a>
+    <a href="stockholm-running-events">Events</a>
+    <a href="loppkalender">Loppkalender</a>
+    <a href="om-oss">Om oss</a>
+  </div>
+
+  <main id="main-content">
+
+  <!-- HERO -->
+  <header class="hero" role="banner">
+    <div class="hero-text">
+      <div class="hero-issue">Volym 04 — Våren 2026</div>
+      <div>
+        <h1 class="hero-headline">spring<br>din stad,<br><em>tillsammans</em>.</h1>
+        <p class="hero-sub">Sveriges löpargrupper på ett ställe. Kartlagda, kategoriserade och utvalda för dig som hellre snör skorna med någon vid sin sida.</p>
+        <div class="hero-ctas">
+          <a href="#cities" class="btn-primary">
+            Hitta din klubb
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="#schedule" class="btn-secondary">Veckans schema</a>
+        </div>
+      </div>
+      <div class="hero-bottom">
+        <div class="hero-stats">
+          <strong>44</strong>
+          klubbar listade
+        </div>
+        <div class="hero-stats">
+          <strong>3</strong>
+          städer
+        </div>
+        <div class="hero-stats">
+          <strong>120+</strong>
+          pass i veckan
+        </div>
+      </div>
+    </div>
+    <div class="hero-image" role="img" aria-label="Tjejer som springer tillsammans">
+      <div class="hero-image-caption">
+        <span class="ed">"Det fanns ingen plats där man kunde se alla klubbar — så jag byggde en."</span>
+        <span>— Foto: Stockholm 2026</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- CITIES -->
+  <section class="section cities-section" id="cities">
+    <div class="section-head">
+      <div>
+        <span class="section-num">SEKTION 01 — STÄDER</span>
+        <h2 class="section-title">Var ska du<br>springa idag?</h2>
+      </div>
+      <div class="section-meta">
+        Tre städer<br>fler på väg →
+      </div>
+    </div>
+    <div class="cities">
+      <a href="stockholm" class="city" aria-label="Se run clubs i Stockholm">
+        <div class="city-image" style="background-image: url('stockholm-run-clubs.jpeg');"></div>
+        <div class="city-overlay"></div>
+        <div class="city-num">01</div>
+        <div class="city-content">
+          <div class="city-name">Stockholm</div>
+          <div class="city-count">
+            23 klubbar
+            <span class="arrow">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </span>
+          </div>
+        </div>
+      </a>
+      <a href="goteborg" class="city" aria-label="Se run clubs i Göteborg">
+        <div class="city-image" style="background-image: url('goteborg-run-clubs.jpeg');"></div>
+        <div class="city-overlay"></div>
+        <div class="city-num">02</div>
+        <div class="city-content">
+          <div class="city-name">Göteborg</div>
+          <div class="city-count">
+            11 klubbar
+            <span class="arrow">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </span>
+          </div>
+        </div>
+      </a>
+      <a href="malmo" class="city" aria-label="Se run clubs i Malmö">
+        <div class="city-image" style="background-image: url('malmo-run-clubs.jpeg');"></div>
+        <div class="city-overlay"></div>
+        <div class="city-num">03</div>
+        <div class="city-content">
+          <div class="city-name">Malmö</div>
+          <div class="city-count">
+            10 klubbar
+            <span class="arrow">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </span>
+          </div>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- DAGENS PASS -->
+  <section class="section schedule-section" id="schedule">
+    <div class="section-head">
+      <div>
+        <span class="section-num">SEKTION 02 — SCHEMA</span>
+        <h2 class="section-title" id="schedule-title">Dagens pass</h2>
+      </div>
+      <div class="schedule-day-pills" role="tablist" aria-label="Välj dag">
+        <button class="day-pill" data-day="0" role="tab">Mån</button>
+        <button class="day-pill" data-day="1" role="tab">Tis</button>
+        <button class="day-pill" data-day="2" role="tab">Ons</button>
+        <button class="day-pill" data-day="3" role="tab">Tor</button>
+        <button class="day-pill" data-day="4" role="tab">Fre</button>
+        <button class="day-pill" data-day="5" role="tab">Lör</button>
+        <button class="day-pill" data-day="6" role="tab">Sön</button>
+      </div>
+    </div>
+    <div class="schedule-grid" id="schedule-grid" role="tabpanel">
+      <!-- Fylls av JavaScript -->
+    </div>
+    <div class="schedule-footer">
+      <a href="stockholm" class="schedule-cta">
+        Hela veckan
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- FEATURED ARTICLE -->
+  <section class="featured-section">
+    <div class="section-head">
+      <div>
+        <span class="section-num">SEKTION 03 — REPORTAGE</span>
+        <h2 class="section-title">Veckans läsning</h2>
+      </div>
+      <div class="section-meta">
+        Trend / april 2026<br>4 min läsning
+      </div>
+    </div>
+    <a href="tjejer-tar-over-lopsparen" class="featured" style="text-decoration:none;">
+      <div class="featured-image" style="background-image: url('tjejer-och-run-clubs.jpg');"></div>
+      <div class="featured-content">
+        <span class="featured-tag">Cover Story</span>
+        <h3 class="featured-title">Tjejer tar över löpspåren — och gör det tillsammans.</h3>
+        <p class="featured-excerpt">På bara fem år har antalet kvinnor i svenska run clubs mer än fördubblats. Vi tittar närmare på rörelsen som ändrar löparkulturen i grunden.</p>
+        <div class="featured-meta">
+          <span>April 2026</span>
+          <span>4 min</span>
+          <span>Av Amanda Hultin</span>
+        </div>
+        <span class="featured-link">
+          Läs reportaget
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </span>
+      </div>
+    </a>
+  </section>
+
+  <!-- NEWS -->
+  <section class="section news-section">
+    <div class="section-head">
+      <div>
+        <span class="section-num">SEKTION 04 — JOURNAL</span>
+        <h2 class="section-title">Senaste från<br>löparvärlden</h2>
+      </div>
+      <div class="section-meta">
+        Uppdateras<br>varje vecka
+      </div>
+    </div>
+    <div class="news-grid">
+
+      <a href="stockholm-marathon-2026-slutsalt" class="news-card">
+        <span class="news-card-tag">Stockholm — november 2025</span>
+        <div class="news-card-title">Stockholm Marathon 2026 slutsålt — på rekordtid.</div>
+        <p class="news-card-excerpt">Alla startplatser till årets upplaga försvann på under tre timmar. Vi tittar på vad det säger om svensk löparkultur.</p>
+        <div class="news-card-meta">3 min läsning →</div>
+      </a>
+
+      <a href="nyheter" class="news-card">
+        <span class="news-card-tag">Göteborg — mars 2026</span>
+        <div class="news-card-title">Göteborgsvarvet 2026 — världens största halvmaraton.</div>
+        <p class="news-card-excerpt">60 000 startande från 80 länder gör Göteborgsvarvet till den absolut största halvmaran i världen.</p>
+        <div class="news-card-meta">5 min läsning →</div>
+      </a>
+
+    </div>
+    <div class="news-link-row">
+      <a href="nyheter" class="news-link">
+        Hela journalen
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- NEWSLETTER -->
+  <section class="newsletter">
+    <div class="newsletter-text">
+      <span class="section-num">SEKTION 05 — POSTGÅNG</span>
+      <h2 class="newsletter-title">Brevet från<br>löparvärlden.</h2>
+      <p>Nya klubbar, kommande lopp och en handplockad läsning — direkt i din inkorg. Gratis. Max ett mail i veckan.</p>
+    </div>
+    <form class="newsletter-form" data-placement="page-bottom" onsubmit="return false;">
+      <input type="email" class="newsletter-input" placeholder="din@email.se" aria-label="E-postadress">
+      <button class="newsletter-btn">
+        Prenumerera
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </button>
+    </form>
+  </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-top">
+      <div class="footer-brand">
+        <span class="run-clubs-logo"><span class="run">RUN</span><span class="clubs">CLUBS</span><span class="suffix">.se</span></span>
+        <p>Sveriges run clubs — kartlagda, kategoriserade och samlade på ett ställe. För dig som hellre springer i sällskap.</p>
+      </div>
+      <div>
+        <h4>Städer</h4>
+        <a href="stockholm">Stockholm</a>
+        <a href="goteborg">Göteborg</a>
+        <a href="malmo">Malmö</a>
+      </div>
+      <div>
+        <h4>Sajten</h4>
+        <a href="om-oss">Om oss</a>
+        <a href="nyheter">Journal</a>
+        <a href="kontakt">Kontakt</a>
+        <a href="samarbeta">Samarbeta</a>
+      </div>
+      <div>
+        <h4>Sociala</h4>
+        <a href="https://www.instagram.com/runclubs.se/" target="_blank" rel="noopener">Instagram</a>
+        <a href="kontakt">Newsletter</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Swedish Run Clubs — byggd av <a href="https://amandahultin.se">Amanda Hultin</a>.</span>
+      <span>Volym 04 / April 2026</span>
+    </div>
+  </footer>
+
+  <script>
+    // ── Mobile menu toggle ──
+    const navToggle = document.querySelector('.nav-toggle');
+    const mobileMenu = document.querySelector('.mobile-menu');
+    navToggle.addEventListener('click', function() {
+      const isOpen = mobileMenu.classList.toggle('open');
+      navToggle.classList.toggle('open');
+      navToggle.setAttribute('aria-expanded', isOpen);
+      navToggle.setAttribute('aria-label', isOpen ? 'Stäng meny' : 'Öppna meny');
+    });
+
+    // ── Schedule data ──
+    const clubs = [
+      // Stockholm
+      { name: 'Runday', time: '18:00', location: 'Scandic Park / Stadion', city: 'Stockholm', days: [0, 2], link: 'runday.html' },
+      { name: 'Svedjans Löpsällskap', time: '17:30', location: 'Svedjan Bageri', city: 'Stockholm', days: [0], link: 'svedjans-lopsallskap.html' },
+      { name: 'Yo Running Club', time: '08:00', location: 'Torsgatan 40, Vasastan', city: 'Stockholm', days: [5], link: 'yo-running-club.html' },
+      { name: 'Stockholm Run Club', time: '18:00', location: 'Östermalm', city: 'Stockholm', days: [1], link: 'stockholm-run-club.html' },
+      { name: 'Stockholm Run Club', time: '10:00', location: 'Östermalm', city: 'Stockholm', days: [6], link: 'stockholm-run-club.html' },
+      { name: 'Dopest Runners', time: '18:30', location: 'Liljeholmen', city: 'Stockholm', days: [1, 3], link: 'dopest-runners.html' },
+      { name: 'Dopest Runners', time: '10:00', location: 'Liljeholmen', city: 'Stockholm', days: [6], link: 'dopest-runners.html' },
+      { name: 'Run Collective Stockholm', time: '18:15', location: 'Biscuitkonditoriet, Södermalm', city: 'Stockholm', days: [1], link: 'run-collective-stockholm.html' },
+      { name: 'Run Collective Stockholm', time: '10:15', location: 'Biscuitkonditoriet, Södermalm', city: 'Stockholm', days: [5], link: 'run-collective-stockholm.html' },
+      { name: 'Solemates Runclub', time: '19:30', location: 'Karlavägen 4', city: 'Stockholm', days: [1], link: 'solemates-runclub.html' },
+      { name: 'Triple Threshold RC', time: '18:00', location: 'Reimersholmsgatan 5', city: 'Stockholm', days: [2], link: 'triple-threshold-rc.html' },
+      { name: 'Mikkeller Running Club', time: '18:00', location: 'Mikkeller Bar, Östgötagatan', city: 'Stockholm', days: [1], link: 'mikkeller-running-club-sthlm.html' },
+      { name: 'Triple Threshold RC', time: '09:00', location: 'Reimersholmsgatan 5', city: 'Stockholm', days: [5], link: 'triple-threshold-rc.html' },
+      { name: 'Pulse Pacers', time: '18:30', location: "The King's Fox, Kungsgatan 24", city: 'Stockholm', days: [2], link: 'pulse-pacers.html' },
+      { name: 'Söderlöparna Stockholm', time: '10:00', location: 'Gullmarsplan t-bana', city: 'Stockholm', days: [5], link: 'soderloparna-stockholm.html' },
+      { name: 'Slowrunners Sthlm', time: '10:00', location: 'Tanto utegym, Södermalm', city: 'Stockholm', days: [6], link: 'slowrunners-sthlm.html' },
+      { name: '&morerunning', time: '11:00', location: 'Stockholm (plats på IG)', city: 'Stockholm', days: [6], link: 'andmorerunning.html' },
+      // Göteborg
+      { name: 'Göteborg Running Club', time: '18:00', location: 'Slottsskogen', city: 'Göteborg', days: [1], link: 'goteborg-running-club.html' },
+      { name: 'ESS Runners Club', time: '07:00', location: 'Göteborg (plats varierar)', city: 'Göteborg', days: [3], link: 'ess-runners-club.html' },
+      { name: 'Sweden Runners Göteborg', time: '18:00', location: 'Änggårdsbergen', city: 'Göteborg', days: [3], link: 'sweden-runners-goteborg.html' },
+      { name: 'Slowrunners Göteborg', time: '10:00', location: 'Redbergsplatsen', city: 'Göteborg', days: [6], link: 'slowrunners-goteborg.html' },
+      // Malmö
+      { name: 'VarjeSteg', time: '18:00', location: 'Pildammsparken', city: 'Malmö', days: [1], link: 'malmo.html' },
+      { name: 'MRC Malmö', time: '18:30', location: 'Möllevångstorget', city: 'Malmö', days: [2], link: 'mrc-malmo.html' },
+    ];
+
+    const dayNames = ['Måndag', 'Tisdag', 'Onsdag', 'Torsdag', 'Fredag', 'Lördag', 'Söndag'];
+    const jsToSchedule = [6, 0, 1, 2, 3, 4, 5];
+
+    function getToday() { return jsToSchedule[new Date().getDay()]; }
+
+    function renderSchedule(dayIndex) {
+      const grid = document.getElementById('schedule-grid');
+      const title = document.getElementById('schedule-title');
+      const today = getToday();
+
+      title.textContent = (dayIndex === today) ? 'Dagens pass' : dayNames[dayIndex] + 'ens pass';
+
+      const todaysClubs = clubs
+        .filter(c => c.days.includes(dayIndex))
+        .sort((a, b) => a.time.localeCompare(b.time));
+
+      if (todaysClubs.length === 0) {
+        grid.innerHTML = '<div class="no-pass">Inga schemalagda pass den här dagen — kolla en annan dag.</div>';
+        return;
+      }
+
+      grid.innerHTML = todaysClubs.map(c => `
+        <a href="${c.link}" class="pass-card">
+          <div class="pass-time">${c.time}</div>
+          <div class="pass-info">
+            <div class="pass-name">${c.name}</div>
+            <div class="pass-detail">${c.location}</div>
+            <span class="pass-city-tag">${c.city}</span>
+          </div>
+        </a>
+      `).join('');
+    }
+
+    const pills = document.querySelectorAll('.day-pill');
+    const today = getToday();
+    pills.forEach(pill => {
+      const day = parseInt(pill.dataset.day);
+      if (day === today) pill.classList.add('active');
+      pill.addEventListener('click', () => {
+        pills.forEach(p => p.classList.remove('active'));
+        pill.classList.add('active');
+        renderSchedule(day);
+      });
+    });
+    renderSchedule(today);
+  </script>
+</body>
+</html>

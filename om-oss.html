@@ -225,39 +225,42 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .website-cta .cta-arrow { margin-left: auto; color: #D4715E; transition: transform 0.2s; }
     .website-cta:hover .cta-arrow { transform: translateX(3px); }
 
-    /* ── NEWSLETTER SECTION ─────────────── */
-    .newsletter-section {
-      background: #F3EBE8; border-top: 1px solid #E8D8D3;
-      padding: 4rem 2rem;
+        /* ── NEWSLETTER ─────────────────────── */
+    .nl-section { background: #ffffff; border-top: 1px solid #E8E8E8; border-bottom: 1px solid #E8E8E8; }
+    .nl-body { max-width: 560px; margin: 0 auto; padding: 4rem 2rem; text-align: center; }
+    .nl-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: #FFF0ED; color: #D4715E;
+      font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+      padding: 6px 14px; border-radius: 100px; margin-bottom: 1.5rem;
     }
-    .newsletter-inner {
-      max-width: 600px; margin: 0 auto; text-align: center;
+    .nl-title {
+      font-family: 'Archivo Black', sans-serif;
+      font-size: clamp(28px, 4vw, 42px);
+      color: #1C2A45; line-height: 1.1; text-transform: uppercase;
+      letter-spacing: -1px; margin-bottom: 1rem;
     }
-    .newsletter-inner .section-label { margin-bottom: 1rem; color: #888; }
-    .newsletter-inner h2 {
-      font-family: 'Archivo Black', sans-serif; font-size: 28px;
-      text-transform: uppercase; color: #1C2A45; letter-spacing: 1px;
-      margin-bottom: 0.75rem;
-    }
-    .newsletter-inner p { font-size: 15px; color: #666; line-height: 1.7; margin-bottom: 2rem; }
-    .newsletter-form { display: flex; gap: 8px; max-width: 440px; margin: 0 auto; }
+    .nl-title em { color: #D4715E; font-style: normal; }
+    .nl-desc { font-size: 15px; color: #777; line-height: 1.75; margin-bottom: 2rem; }
+    .newsletter-form { display: flex; flex-direction: column; gap: 12px; }
     .newsletter-input {
-      flex: 1; min-width: 200px; padding: 14px 18px;
-      border: 1px solid #E8D8D3; border-radius: 8px;
-      font-size: 14px; font-family: 'DM Sans', sans-serif;
+      padding: 16px 20px; border: 2px solid #E8E8E8; border-radius: 12px;
+      font-size: 15px; font-family: 'DM Sans', sans-serif;
       color: #1C2A45; background: #fff; outline: none;
-      transition: border-color 0.2s;
+      transition: border-color 0.2s; width: 100%; box-sizing: border-box;
     }
+    .newsletter-input::placeholder { color: #aaa; }
     .newsletter-input:focus { border-color: #D4715E; }
-    .newsletter-input::placeholder { color: #bbb; }
     .newsletter-btn {
-      background: #D4715E; color: #FDFAF9;
-      font-size: 13px; font-weight: 600; letter-spacing: 0.5px;
-      padding: 14px 24px; border-radius: 8px; border: none;
+      background: #D4715E; color: #fff;
+      font-size: 15px; font-weight: 700; letter-spacing: 0.3px;
+      padding: 17px; border-radius: 12px; border: none;
       cursor: pointer; font-family: 'DM Sans', sans-serif;
-      white-space: nowrap; transition: all 0.2s;
+      transition: background 0.2s;
     }
-    .newsletter-btn:hover { background: #C8604A; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(212,113,94,0.3); }
+    .newsletter-btn:hover { background: #C8604A; }
+    .nl-disclaimer { font-size: 11px; color: #bbb; text-align: center; margin-top: 0.75rem; }
+
 
     /* ── CTA SECTION ───────────────────── */
     .cta-section {
