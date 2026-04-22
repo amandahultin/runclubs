@@ -244,6 +244,76 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .cta-btn svg { transition: transform 0.2s; }
     .cta-btn:hover svg { transform: translateX(3px); }
 
+    /* ── EVENTS TEASER ──────────────────── */
+    .events-teaser {
+      padding: 4rem 2rem;
+      background: #F3EBE8;
+      border-top: 1px solid #E8D8D3;
+      border-bottom: 1px solid #E8D8D3;
+    }
+    .events-teaser-header {
+      display: flex; justify-content: space-between; align-items: flex-end;
+      margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem;
+    }
+    .events-teaser-title {
+      font-family: 'Archivo Black', sans-serif;
+      font-size: 28px; text-transform: uppercase; letter-spacing: 1px; color: #1C2A45;
+    }
+    .events-teaser-cta {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 12px; letter-spacing: 1px; text-transform: uppercase;
+      color: #D4715E; text-decoration: none; font-weight: 500;
+      transition: color 0.2s; white-space: nowrap;
+    }
+    .events-teaser-cta:hover { color: #1C2A45; }
+    .events-teaser-cta svg { transition: transform 0.2s; }
+    .events-teaser-cta:hover svg { transform: translateX(3px); }
+    .events-teaser-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 12px;
+    }
+    .event-teaser-card {
+      background: #FDFAF9; border: 1px solid #E8D8D3;
+      border-radius: 12px; padding: 1.1rem 1.25rem;
+      text-decoration: none; color: #1C2A45;
+      display: flex; gap: 1rem; align-items: flex-start;
+      transition: all 0.2s ease;
+    }
+    .event-teaser-card:hover {
+      border-color: #D4715E;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(28,42,69,0.08);
+    }
+    .event-teaser-time {
+      font-family: 'Oswald', sans-serif; font-weight: 700;
+      font-size: 20px; color: #D4715E;
+      min-width: 48px; text-align: center; padding-top: 1px;
+    }
+    .event-teaser-time.no-time { font-size: 13px; padding-top: 4px; }
+    .event-teaser-info { flex: 1; }
+    .event-teaser-club {
+      font-size: 10px; font-weight: 700; letter-spacing: 1.5px;
+      text-transform: uppercase; color: #aaa; margin-bottom: 3px;
+    }
+    .event-teaser-name {
+      font-family: 'Oswald', sans-serif; font-weight: 700;
+      font-size: 15px; text-transform: uppercase; letter-spacing: 0.3px;
+      color: #1C2A45; line-height: 1.2; margin-bottom: 4px;
+    }
+    .event-teaser-loc {
+      font-size: 12px; color: #999; white-space: nowrap;
+      overflow: hidden; text-overflow: ellipsis; max-width: 200px;
+    }
+    .event-teaser-link {
+      font-size: 11px; font-weight: 600; letter-spacing: 0.5px;
+      color: #D4715E; margin-top: 6px; display: inline-block;
+    }
+    .events-teaser-empty { grid-column: 1/-1; color: #aaa; font-size: 14px; text-align: center; padding: 2rem; }
+    @media (max-width: 768px) {
+      .events-teaser { padding: 2.5rem 1.25rem; }
+      .events-teaser-grid { grid-template-columns: 1fr; }
+    }
+
         /* ── NEWSLETTER ─────────────────────── */
     .nl-section { background: #ffffff; border-top: 1px solid #E8E8E8; border-bottom: 1px solid #E8E8E8; }
     .nl-body { max-width: 560px; margin: 0 auto; padding: 4rem 2rem; text-align: center; }
@@ -400,6 +470,23 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
     </div>
   </header>
+
+  <!-- EVENTS TEASER -->
+  <section class="events-teaser fade-in" id="events-teaser">
+    <div class="events-teaser-header">
+      <div>
+        <div class="section-label" style="color:#D4715E;margin-bottom:0.5rem;">Kommande events</div>
+        <div class="events-teaser-title">Vad händer i Stockholm?</div>
+      </div>
+      <a href="stockholm-running-events" class="events-teaser-cta">
+        Se alla events
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+    <div class="events-teaser-grid" id="events-teaser-grid">
+      <div class="events-teaser-empty">Laddar events…</div>
+    </div>
+  </section>
 
   <div class="filters" id="filters">
       <button class="filter-toggle" id="filter-toggle" aria-expanded="false" aria-controls="filters-inner">
@@ -1114,5 +1201,57 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <script src="add-club.js"></script>
   <script src="newsletter.js"></script>
+  <script>
+  (async () => {
+    const grid = document.getElementById('events-teaser-grid');
+    const SV_DAYS = ['Söndag','Måndag','Tisdag','Onsdag','Torsdag','Fredag','Lördag'];
+    const SV_MONTHS = ['Januari','Februari','Mars','April','Maj','Juni','Juli','Augusti','September','Oktober','November','December'];
+
+    try {
+      const html = await fetch('stockholm-running-events.html').then(r => r.text());
+      const match = html.match(/const events = (\[[\s\S]*?\]);/);
+      if (!match) throw new Error('no events');
+      const events = JSON.parse(match[1]);
+
+      const now = new Date();
+      const cutoff = new Date(now.getTime() + 8 * 24 * 60 * 60 * 1000);
+
+      const upcoming = events
+        .filter(ev => {
+          const d = new Date(ev.date);
+          return d >= now && d <= cutoff;
+        })
+        .slice(0, 6);
+
+      if (!upcoming.length) {
+        grid.innerHTML = '<div class="events-teaser-empty">Inga kommande events just nu — kolla igen snart!</div>';
+        return;
+      }
+
+      grid.innerHTML = upcoming.map(ev => {
+        const d = new Date(ev.date);
+        const hasTime = ev.date.includes('T') && !ev.date.endsWith('T00:00:00') && !ev.date.endsWith('T05:00:00');
+        const timeStr = hasTime
+          ? d.toLocaleTimeString('sv-SE', { hour: '2-digit', minute: '2-digit' })
+          : SV_DAYS[d.getDay()].slice(0,3).toUpperCase();
+        const loc = (ev.location || '').split(',')[0].trim();
+        const title = ev.title.length > 40 ? ev.title.slice(0, 38) + '…' : ev.title;
+
+        return `
+          <a href="stockholm-running-events" class="event-teaser-card">
+            <div class="event-teaser-time${hasTime ? '' : ' no-time'}">${timeStr}</div>
+            <div class="event-teaser-info">
+              <div class="event-teaser-club">${ev.club}</div>
+              <div class="event-teaser-name">${title}</div>
+              ${loc ? `<div class="event-teaser-loc">${loc}</div>` : ''}
+              <span class="event-teaser-link">Läs mer →</span>
+            </div>
+          </a>`;
+      }).join('');
+    } catch(e) {
+      grid.innerHTML = '<div class="events-teaser-empty">Kunde inte ladda events.</div>';
+    }
+  })();
+  </script>
 </body>
 </html>
