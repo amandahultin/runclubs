@@ -2,7 +2,7 @@ name: Sync Stockholm running events
 
 on:
   schedule:
-    - cron: "0 9 * * *"   # Every day 09:00 UTC — after mikaelsto/runclubs-events-feed syncs at 07:00
+    - cron: "0 5 * * *"   # Every day 05:00 UTC — after mikaelsto/runclubs-events-feed syncs at 04:00
   workflow_dispatch:        # Allow manual runs from the GitHub Actions tab
 
 permissions:
