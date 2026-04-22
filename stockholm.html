@@ -1230,16 +1230,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       grid.innerHTML = upcoming.map(ev => {
         const d = new Date(ev.date);
-        const hasTime = ev.date.includes('T') && !ev.date.endsWith('T00:00:00') && !ev.date.endsWith('T05:00:00');
-        const timeStr = hasTime
-          ? d.toLocaleTimeString('sv-SE', { hour: '2-digit', minute: '2-digit' })
-          : SV_DAYS[d.getDay()].slice(0,3).toUpperCase();
+        const dayStr = SV_DAYS[d.getDay()].slice(0, 3).toUpperCase();
+        const dateNum = d.getDate();
         const loc = (ev.location || '').split(',')[0].trim();
         const title = ev.title.length > 40 ? ev.title.slice(0, 38) + '…' : ev.title;
 
         return `
           <a href="stockholm-running-events" class="event-teaser-card">
-            <div class="event-teaser-time${hasTime ? '' : ' no-time'}">${timeStr}</div>
+            <div class="event-teaser-time no-time" style="line-height:1.1;">${dayStr}<br>${dateNum}</div>
             <div class="event-teaser-info">
               <div class="event-teaser-club">${ev.club}</div>
               <div class="event-teaser-name">${title}</div>
