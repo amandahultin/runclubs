@@ -227,6 +227,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .map-btn .map-arrow { margin-left: auto; color: #D4715E; transition: transform 0.2s; }
     .map-btn:hover .map-arrow { transform: translateX(3px); }
 
+    /* Instagram CTA */
+    .instagram-cta {
+      display: flex; align-items: center; gap: 10px;
+      width: 100%; padding: 14px 16px;
+      background: linear-gradient(135deg, #E1306C, #833AB4);
+      border-radius: 12px;
+      text-decoration: none; color: #fff;
+      font-size: 13px; font-weight: 600;
+      transition: all 0.2s ease;
+    }
+    .instagram-cta:hover { transform: translateY(-1px); box-shadow: 0 4px 16px rgba(225,48,108,0.3); }
+    .instagram-cta .ig-arrow { margin-left: auto; transition: transform 0.2s; }
+    .instagram-cta:hover .ig-arrow { transform: translateX(3px); }
+
     /* Strava CTA */
     .strava-cta {
       display: flex; align-items: center; gap: 10px;
@@ -429,7 +443,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
       <div>
         <div class="info-strip-label">Träningsdagar</div>
-        <div class="info-strip-value">Onsdag (oftast)</div>
+        <div class="info-strip-value">Onsdag</div>
       </div>
     </div>
     <div class="info-strip-item">
@@ -438,7 +452,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
       <div>
         <div class="info-strip-label">Tid</div>
-        <div class="info-strip-value">Se Strava</div>
+        <div class="info-strip-value">09:00</div>
       </div>
     </div>
     <div class="info-strip-item">
@@ -456,13 +470,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <article class="club-about fade-in">
       <span class="section-label">Om klubben</span>
 
-      <p>Saucony Run Club Sverige är en löpargrupp skapad av det populära skomärket Saucony — och precis som skorna är deras run club till för att inspirera. Gruppen utgår från Down Town Camper på Brunkebergstorg och springer oftast på onsdagar.</p>
+      <p>En löpargrupp skapad av det heta skomärket Saucony — precis som skorna är deras run club till för att inspirera. Deltagarna i gruppen delar gärna kunskap med varandra och stämningen på passen är alltid fylld av energi.</p>
 
       <div class="pull-quote">
         <p>Deltagarna delar gärna kunskap med varandra och stämningen på passen är alltid fylld av energi.</p>
       </div>
 
-      <p>För att hålla dig uppdaterad om kommande runs, följ Saucony Run Club på Strava.</p>
+      <p>Häng med Saucony på en löpartur genom staden, de utgår från Downtown Camper varje onsdag!</p>
 
     </article>
 
@@ -496,6 +510,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       <div class="sidebar-section">
         <span class="sidebar-label">Följ klubben</span>
+        <a href="https://www.instagram.com/sauconysverige/" target="_blank" rel="noopener" class="instagram-cta">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+          Följ på Instagram
+          <span class="ig-arrow">&#8594;</span>
+        </a>
         <a href="https://www.strava.com/clubs/486999" target="_blank" rel="noopener" class="strava-cta">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M15.387 17.944l-2.089-4.116h-3.065L15.387 24l5.15-10.172h-3.066m-7.008-5.599l2.836 5.598h4.172L10.463 0l-7 13.828h4.169"/></svg>
           Följ på Strava
