@@ -18,7 +18,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <meta property="og:url" content="https://runclubs.se/stockholm-running-events">
   <meta property="og:image" content="https://runclubs.se/stockholm-run-clubs.jpeg">
   <link rel="canonical" href="https://runclubs.se/stockholm-running-events">
-  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Oswald:wght@500;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:ital,wght@1,900&family=Oswald:wght@500;700&family=DM+Sans:wght@400;500;600&family=Playfair+Display:wght@400&display=swap" rel="stylesheet">
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <style>
@@ -46,6 +46,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       text-transform: uppercase; letter-spacing: 2px;
       color: #1C2A45; text-decoration: none;
     }
+    .run-clubs-logo { display: inline-flex; align-items: baseline; font-size: 36px; color: #1a1a1a; text-decoration: none; }
+    .run-clubs-logo .run { font-family: 'Inter', sans-serif; font-weight: 900; font-style: italic; letter-spacing: -0.04em; padding-right: 2px; }
+    .run-clubs-logo .clubs { font-family: 'Playfair Display', serif; font-weight: 400; letter-spacing: -0.02em; }
+    .run-clubs-logo .suffix { font-family: 'Playfair Display', serif; font-size: 0.45em; font-weight: 400; text-transform: lowercase; margin-left: 2px; }
+    .footer-brand .run-clubs-logo { font-size: 28px; display: block; margin-bottom: 0.75rem; }
     .nav-links { display: flex; gap: 2rem; }
     .nav-links a {
       font-size: 12px; letter-spacing: 0.5px; text-decoration: none;
@@ -164,7 +169,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .date-heading { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; }
     .date-name {
       font-family: 'Archivo Black', sans-serif;
-      font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: #bbb;
+      font-size: 20px; letter-spacing: 2px; text-transform: uppercase; color: #1C2A45;
     }
     .date-line { flex: 1; height: 1px; background: #F0E0DC; }
     .date-count { font-size: 11px; letter-spacing: 1px; text-transform: uppercase; color: #ccc; font-weight: 500; }
@@ -366,14 +371,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <a href="#main-content" class="skip-link">Hoppa till innehåll</a>
 
   <nav>
-    <a href="/" class="logo">Swedish Run Clubs</a>
+    <a href="/" class="run-clubs-logo"><span class="run">RUN</span><span class="clubs">CLUBS</span><span class="suffix">.se</span></a>
     <div class="nav-links">
       <a href="stockholm">Stockholm</a>
       <a href="goteborg">Göteborg</a>
       <a href="malmo">Malmö</a>
-      <a href="stockholm-running-events" class="active">Events</a>
-      <a href="loppkalender">Lopp</a>
       <a href="nyheter">Nyheter</a>
+      <a href="stockholm-running-events" class="active">Events</a>
+      <a href="loppkalender">Loppkalender</a>
       <a href="om-oss">Om oss</a>
     </div>
     <button class="nav-toggle" aria-label="Öppna meny" aria-expanded="false">
@@ -385,9 +390,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <a href="stockholm">Stockholm</a>
     <a href="goteborg">Göteborg</a>
     <a href="malmo">Malmö</a>
-    <a href="stockholm-running-events">Events</a>
-    <a href="loppkalender">Lopp</a>
     <a href="nyheter">Nyheter</a>
+    <a href="stockholm-running-events">Events</a>
+    <a href="loppkalender">Loppkalender</a>
     <a href="om-oss">Om oss</a>
   </div>
 
@@ -419,17 +424,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="stat-item">
       <div>
         <div class="stat-number">⟳</div>
-        <div class="stat-label">Uppdateras varje vecka</div>
+        <div class="stat-label">Uppdateras varje dag</div>
       </div>
-    </div>
-  </div>
-
-  <div class="filters-bar">
-    <div class="filter-group">
-      <span class="filter-label">Källa</span>
-      <button class="filter-pill active" data-filter="source" data-value="all">Alla</button>
-      <button class="filter-pill" data-filter="source" data-value="strava">Strava</button>
-      <button class="filter-pill" data-filter="source" data-value="instagram">Instagram</button>
     </div>
   </div>
 
@@ -453,7 +449,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <footer>
     <div class="footer-brand">
-      <span class="logo">Swedish Run Clubs</span>
+      <a href="/" class="run-clubs-logo"><span class="run">RUN</span><span class="clubs">CLUBS</span><span class="suffix">.se</span></a>
       <p>Alla run clubs i Sverige — sorterade, beskrivna och enkla att hitta.</p>
     </div>
     <div>
