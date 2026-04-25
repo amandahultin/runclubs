@@ -309,6 +309,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       user-select: none;
     }}
     .page-header-inner {{ max-width: 700px; position: relative; z-index: 1; }}
+    .breadcrumb {{ font-size: 12px; color: rgba(255,255,255,0.4); margin-bottom: 0.75rem; }}
+    .breadcrumb a {{ color: rgba(255,255,255,0.4); text-decoration: none; transition: color 0.15s; }}
+    .breadcrumb a:hover {{ color: #EEAA96; }}
     .page-header-tag {{
       font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
       color: #EEAA96; margin-bottom: 1rem; font-weight: 500;
@@ -618,6 +621,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- PAGE HEADER -->
   <header class="page-header">
     <div class="page-header-inner">
+      <div class="breadcrumb"><a href="/">Start</a> → Loppkalender</div>
       <div class="page-header-tag">Löparkalendern</div>
       <h1>Kommande<br>Lopp</h1>
       <p>Tävlingar från 10 km upp till maraton — Stockholm, Göteborg och Malmö. Hitta ditt nästa lopp.</p>
