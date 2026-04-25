@@ -29,6 +29,7 @@ log = logging.getLogger(__name__)
 EVENTS_SHEET_ID    = "1DjQO84D3ihq-1VMOYZI6Q7WqC3mAdL-l0fRhZrwOFG4"
 WORKSHEET_NAME     = "Events"
 WEEKLY_WORKSHEET   = "WeeklyRuns"
+OVERRIDES_WORKSHEET = "Overrides"
 LOOKAHEAD_DAYS     = 10
 
 HEADERS = [
@@ -37,6 +38,8 @@ HEADERS = [
 ]
 
 WEEKLY_HEADERS = ["club", "day_of_week", "time", "location", "city", "title", "description", "link"]
+
+OVERRIDES_HEADERS = ["club", "date", "action", "time", "location", "title", "description", "link"]
 
 STOCKHOLM_KEYWORDS = {"stockholm"}
 
@@ -76,6 +79,22 @@ def fetch_weekly_runs(sheet_id: str) -> list[dict]:
     records = ws.get_all_records(expected_headers=WEEKLY_HEADERS)
     log.info("Fetched %d rows from WeeklyRuns sheet", len(records))
     return records
+
+
+def fetch_overrides(sheet_id: str) -> dict[tuple[str, str], dict]:
+    """Return a dict keyed by (club_lower, YYYY-MM-DD) → override row."""
+    gc = _sheet_client()
+    sh = gc.open_by_key(sheet_id)
+    ws = sh.worksheet(OVERRIDES_WORKSHEET)
+    records = ws.get_all_records(expected_headers=OVERRIDES_HEADERS)
+    log.info("Fetched %d rows from Overrides sheet", len(records))
+    result = {}
+    for r in records:
+        club = (r.get("club") or "").strip().lower()
+        date = (r.get("date") or "").strip()
+        if club and date:
+            result[(club, date)] = r
+    return result
 
 
 def _parse_date(raw: str) -> datetime | None:
@@ -118,7 +137,18 @@ def prepare_events(records: list[dict]) -> list[dict]:
     return events
 
 
-def expand_weekly_runs(records: list[dict]) -> list[dict]:
+def _parse_time(time_str: str) -> tuple[int, int]:
+    parts = time_str.strip().replace(".", ":").split(":")
+    try:
+        return int(parts[0]), int(parts[1]) if len(parts) > 1 else 0
+    except (ValueError, IndexError):
+        return 0, 0
+
+
+def expand_weekly_runs(
+    records: list[dict],
+    overrides: dict[tuple[str, str], dict],
+) -> list[dict]:
     today = datetime.now(timezone.utc).date()
     cutoff = today + timedelta(days=LOOKAHEAD_DAYS)
     events: list[dict] = []
@@ -134,32 +164,53 @@ def expand_weekly_runs(records: list[dict]) -> list[dict]:
             log.warning("Unknown day_of_week %r for club %r — skipping", day_str, r.get("club"))
             continue
 
-        time_str = (r.get("time") or "").strip().replace(".", ":")
-        hour, minute = 0, 0
-        if time_str:
-            parts = time_str.split(":")
-            try:
-                hour   = int(parts[0])
-                minute = int(parts[1]) if len(parts) > 1 else 0
-            except (ValueError, IndexError):
-                pass
+        club      = (r.get("club") or "").strip()
+        hour, minute = _parse_time(r.get("time") or "")
 
         current = today
         while current <= cutoff:
             if current.weekday() == target_weekday:
-                dt = datetime(current.year, current.month, current.day, hour, minute)
-                events.append({
-                    "type":        "weekly_run",
-                    "source":      "weekly_run",
-                    "club":        (r.get("club") or "").strip(),
-                    "title":       (r.get("title") or "").strip(),
-                    "date":        dt.strftime("%Y-%m-%dT%H:%M:%S"),
-                    "location":    (r.get("location") or "").strip(),
-                    "description": (r.get("description") or "").strip(),
-                    "link":        (r.get("link") or "").strip(),
-                    "image_url":   "",
-                    "engagement":  "",
-                })
+                date_key = current.strftime("%Y-%m-%d")
+                override = overrides.get((club.lower(), date_key))
+
+                if override:
+                    action = (override.get("action") or "").strip().lower()
+                    if action == "cancel":
+                        log.info("Cancelled weekly run: %s on %s", club, date_key)
+                        current += timedelta(days=1)
+                        continue
+                    # action == "override": use override values, fall back to template
+                    o_time = (override.get("time") or "").strip()
+                    h, m   = _parse_time(o_time) if o_time else (hour, minute)
+                    dt     = datetime(current.year, current.month, current.day, h, m)
+                    events.append({
+                        "type":        "weekly_run",
+                        "source":      "weekly_run",
+                        "club":        club,
+                        "title":       (override.get("title") or r.get("title") or "").strip(),
+                        "date":        dt.strftime("%Y-%m-%dT%H:%M:%S"),
+                        "location":    (override.get("location") or r.get("location") or "").strip(),
+                        "description": (override.get("description") or r.get("description") or "").strip(),
+                        "link":        (override.get("link") or r.get("link") or "").strip(),
+                        "image_url":   "",
+                        "engagement":  "",
+                    })
+                    log.info("Override applied: %s on %s", club, date_key)
+                else:
+                    dt = datetime(current.year, current.month, current.day, hour, minute)
+                    events.append({
+                        "type":        "weekly_run",
+                        "source":      "weekly_run",
+                        "club":        club,
+                        "title":       (r.get("title") or "").strip(),
+                        "date":        dt.strftime("%Y-%m-%dT%H:%M:%S"),
+                        "location":    (r.get("location") or "").strip(),
+                        "description": (r.get("description") or "").strip(),
+                        "link":        (r.get("link") or "").strip(),
+                        "image_url":   "",
+                        "engagement":  "",
+                    })
+
             current += timedelta(days=1)
 
     log.info("%d Stockholm weekly run occurrences expanded (next %d days)", len(events), LOOKAHEAD_DAYS)
@@ -858,7 +909,8 @@ def main() -> int:
     events        = prepare_events(records)
 
     weekly_records = fetch_weekly_runs(sheet_id)
-    weekly_events  = expand_weekly_runs(weekly_records)
+    overrides      = fetch_overrides(sheet_id)
+    weekly_events  = expand_weekly_runs(weekly_records, overrides)
 
     all_events = events + weekly_events
     all_events.sort(key=lambda x: (x["date"] or "9999", x["club"]))
