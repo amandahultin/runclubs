@@ -1,8 +1,11 @@
 """Generate stockholm-running-events.html from the running-clubs events Google Sheet.
 
-Reads all rows from the Events worksheet (populated by mikaelsto/runclubs-events-feed),
-filters to Stockholm upcoming events, and renders a self-contained HTML page matching
-the runclubs.se design system.
+Reads from two worksheets:
+  - Events       populated by mikaelsto/runclubs-events-feed (Strava)
+  - WeeklyRuns   manually maintained recurring club runs
+
+Filters to Stockholm, expands weekly runs for the next LOOKAHEAD_DAYS days,
+merges both lists, and renders a self-contained HTML page.
 
 Usage:
     python generate_stockholm_events.py                    # writes stockholm-running-events.html
@@ -15,7 +18,7 @@ import json
 import logging
 import os
 import sys
-from datetime import datetime, timezone
+from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 
 import gspread
@@ -23,15 +26,29 @@ from google.oauth2.service_account import Credentials
 
 log = logging.getLogger(__name__)
 
-EVENTS_SHEET_ID = "1DjQO84D3ihq-1VMOYZI6Q7WqC3mAdL-l0fRhZrwOFG4"
-WORKSHEET_NAME  = "Events"
+EVENTS_SHEET_ID    = "1DjQO84D3ihq-1VMOYZI6Q7WqC3mAdL-l0fRhZrwOFG4"
+WORKSHEET_NAME     = "Events"
+WEEKLY_WORKSHEET   = "WeeklyRuns"
+LOOKAHEAD_DAYS     = 10
 
 HEADERS = [
     "source", "club", "title", "date", "location",
     "description", "link", "image_url", "engagement", "fetched_at",
 ]
 
+WEEKLY_HEADERS = ["club", "day_of_week", "time", "location", "city", "title", "description", "link"]
+
 STOCKHOLM_KEYWORDS = {"stockholm"}
+
+DAYS_MAP = {
+    "monday": 0,    "måndag": 0,
+    "tuesday": 1,   "tisdag": 1,
+    "wednesday": 2, "onsdag": 2,
+    "thursday": 3,  "torsdag": 3,
+    "friday": 4,    "fredag": 4,
+    "saturday": 5,  "lördag": 5,
+    "sunday": 6,    "söndag": 6,
+}
 
 
 def _sheet_client() -> gspread.Client:
@@ -48,7 +65,16 @@ def fetch_events(sheet_id: str) -> list[dict]:
     sh = gc.open_by_key(sheet_id)
     ws = sh.worksheet(WORKSHEET_NAME)
     records = ws.get_all_records(expected_headers=HEADERS)
-    log.info("Fetched %d rows from sheet", len(records))
+    log.info("Fetched %d rows from Events sheet", len(records))
+    return records
+
+
+def fetch_weekly_runs(sheet_id: str) -> list[dict]:
+    gc = _sheet_client()
+    sh = gc.open_by_key(sheet_id)
+    ws = sh.worksheet(WEEKLY_WORKSHEET)
+    records = ws.get_all_records(expected_headers=WEEKLY_HEADERS)
+    log.info("Fetched %d rows from WeeklyRuns sheet", len(records))
     return records
 
 
@@ -76,6 +102,7 @@ def prepare_events(records: list[dict]) -> list[dict]:
             continue
 
         events.append({
+            "type":        "event",
             "source":      (r.get("source") or "").strip().lower(),
             "club":        (r.get("club") or "").strip(),
             "title":       (r.get("title") or "Untitled").strip(),
@@ -87,8 +114,55 @@ def prepare_events(records: list[dict]) -> list[dict]:
             "engagement":  str(r.get("engagement") or "").strip(),
         })
 
-    events.sort(key=lambda x: (x["date"] or "9999", x["club"]))
     log.info("%d Stockholm upcoming events after filtering", len(events))
+    return events
+
+
+def expand_weekly_runs(records: list[dict]) -> list[dict]:
+    today = datetime.now(timezone.utc).date()
+    cutoff = today + timedelta(days=LOOKAHEAD_DAYS)
+    events: list[dict] = []
+
+    for r in records:
+        city = (r.get("city") or "").lower().strip()
+        if not any(kw in city for kw in STOCKHOLM_KEYWORDS):
+            continue
+
+        day_str = (r.get("day_of_week") or "").lower().strip()
+        target_weekday = DAYS_MAP.get(day_str)
+        if target_weekday is None:
+            log.warning("Unknown day_of_week %r for club %r — skipping", day_str, r.get("club"))
+            continue
+
+        time_str = (r.get("time") or "").strip().replace(".", ":")
+        hour, minute = 0, 0
+        if time_str:
+            parts = time_str.split(":")
+            try:
+                hour   = int(parts[0])
+                minute = int(parts[1]) if len(parts) > 1 else 0
+            except (ValueError, IndexError):
+                pass
+
+        current = today
+        while current <= cutoff:
+            if current.weekday() == target_weekday:
+                dt = datetime(current.year, current.month, current.day, hour, minute)
+                events.append({
+                    "type":        "weekly_run",
+                    "source":      "weekly_run",
+                    "club":        (r.get("club") or "").strip(),
+                    "title":       (r.get("title") or "").strip(),
+                    "date":        dt.strftime("%Y-%m-%dT%H:%M:%S"),
+                    "location":    (r.get("location") or "").strip(),
+                    "description": (r.get("description") or "").strip(),
+                    "link":        (r.get("link") or "").strip(),
+                    "image_url":   "",
+                    "engagement":  "",
+                })
+            current += timedelta(days=1)
+
+    log.info("%d Stockholm weekly run occurrences expanded (next %d days)", len(events), LOOKAHEAD_DAYS)
     return events
 
 
@@ -108,7 +182,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Stockholms Löparevent — Swedish Run Clubs</title>
-  <meta name="description" content="Kommande grupplöpningar och events från Stockholms run clubs — Strava-events, Instagram-posts och tävlingar.">
+  <meta name="description" content="Kommande grupplöpningar och events från Stockholms run clubs — Strava-events och veckoliga grupplöpningar.">
   <meta property="og:title" content="Stockholms Löparevent — Swedish Run Clubs">
   <meta property="og:description" content="Kommande grupplöpningar och events från Stockholms run clubs.">
   <meta property="og:type" content="website">
@@ -337,8 +411,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       padding: 3px 8px; border-radius: 10px; flex-shrink: 0;
     }}
     .source-strava    {{ background: #FC5200; color: #fff; }}
-    .source-instagram {{ background: #C13584; color: #fff; }}
     .source-other     {{ background: #4a90d9; color: #fff; }}
+    .type-badge {{
+      font-size: 9px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+      padding: 3px 8px; border-radius: 10px; flex-shrink: 0;
+    }}
+    .type-event   {{ background: #E8EEF8; color: #1C2A45; }}
+    .type-weekly  {{ background: #D8F3DC; color: #1B4332; }}
     .event-club {{
       font-size: 11px; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase;
       color: #aaa;
@@ -499,7 +578,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="page-header-inner">
       <div class="page-header-tag">Stockholms run clubs</div>
       <h1>Kommande<br>Events</h1>
-      <p>Grupplöpningar, intervaller och events från Stockholms run clubs — direkt från Strava och Instagram.</p>
+      <p>Grupplöpningar, intervaller och events från Stockholms run clubs — direkt från Strava.</p>
     </div>
   </header>
 
@@ -583,9 +662,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       return isNaN(d.getTime()) ? null : d;
     }}
 
+    function typeBadge(type) {{
+      if (type === 'weekly_run') return `<span class="type-badge type-weekly">Weekly run</span>`;
+      return `<span class="type-badge type-event">Event</span>`;
+    }}
+
     function sourceBadge(source) {{
-      const cls   = source === 'strava' ? 'source-strava' : source === 'instagram' ? 'source-instagram' : 'source-other';
-      const label = source === 'strava' ? 'Strava' : source === 'instagram' ? 'Instagram' : source;
+      if (source === 'weekly_run') return '';
+      const cls   = source === 'strava' ? 'source-strava' : 'source-other';
+      const label = source === 'strava' ? 'Strava' : source;
       return `<span class="source-badge ${{cls}}">${{label}}</span>`;
     }}
 
@@ -643,6 +728,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           ${{dateBlockHTML}}
           <div class="event-card-body">
             <div class="event-source-row">
+              ${{typeBadge(ev.type)}}
               ${{sourceBadge(ev.source)}}
               <span class="event-club">${{ev.club}}</span>
             </div>
@@ -768,11 +854,18 @@ def main() -> int:
     out_path = Path(sys.argv[1]) if len(sys.argv) > 1 else Path("stockholm-running-events.html")
     sheet_id = os.environ.get("GOOGLE_SHEET_ID") or EVENTS_SHEET_ID
 
-    records = fetch_events(sheet_id)
-    events  = prepare_events(records)
+    records       = fetch_events(sheet_id)
+    events        = prepare_events(records)
+
+    weekly_records = fetch_weekly_runs(sheet_id)
+    weekly_events  = expand_weekly_runs(weekly_records)
+
+    all_events = events + weekly_events
+    all_events.sort(key=lambda x: (x["date"] or "9999", x["club"]))
+    log.info("%d total events after merge", len(all_events))
 
     generated_at = datetime.now(timezone.utc).strftime("%-d %B %Y")
-    html_out = render_html(events, generated_at)
+    html_out = render_html(all_events, generated_at)
 
     out_path.write_text(html_out, encoding="utf-8")
     log.info("Wrote %s (%d events)", out_path, len(events))

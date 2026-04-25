@@ -4,7 +4,7 @@
   <!-- Startsida -->
   <url>
     <loc>https://runclubs.se/</loc>
-    <lastmod>2026-04-24</lastmod>
+    <lastmod>2026-04-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -12,19 +12,19 @@
   <!-- Stadssidor -->
   <url>
     <loc>https://runclubs.se/stockholm</loc>
-    <lastmod>2026-04-24</lastmod>
+    <lastmod>2026-04-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
   </url>
   <url>
     <loc>https://runclubs.se/goteborg</loc>
-    <lastmod>2026-04-24</lastmod>
+    <lastmod>2026-04-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
   </url>
   <url>
     <loc>https://runclubs.se/malmo</loc>
-    <lastmod>2026-04-24</lastmod>
+    <lastmod>2026-04-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
   </url>
@@ -32,19 +32,19 @@
   <!-- Eventsidor -->
   <url>
     <loc>https://runclubs.se/stockholm-running-events</loc>
-    <lastmod>2026-04-24</lastmod>
+    <lastmod>2026-04-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
     <loc>https://runclubs.se/loppkalender</loc>
-    <lastmod>2026-04-24</lastmod>
+    <lastmod>2026-04-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
     <loc>https://runclubs.se/nyheter</loc>
-    <lastmod>2026-04-24</lastmod>
+    <lastmod>2026-04-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.75</priority>
   </url>
@@ -52,19 +52,19 @@
   <!-- Artiklar -->
   <url>
     <loc>https://runclubs.se/tjejer-tar-over-lopsparen</loc>
-    <lastmod>2026-04-24</lastmod>
+    <lastmod>2026-04-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.65</priority>
   </url>
   <url>
     <loc>https://runclubs.se/stockholm-marathon-2026-slutsalt</loc>
-    <lastmod>2026-04-24</lastmod>
+    <lastmod>2026-04-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.65</priority>
   </url>
   <url>
     <loc>https://runclubs.se/lopning-for-tjejer</loc>
-    <lastmod>2026-04-24</lastmod>
+    <lastmod>2026-04-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.65</priority>
   </url>
@@ -72,57 +72,57 @@
   <!-- Om sajten -->
   <url>
     <loc>https://runclubs.se/om-oss</loc>
-    <lastmod>2026-04-24</lastmod>
+    <lastmod>2026-04-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://runclubs.se/samarbeta</loc>
-    <lastmod>2026-04-24</lastmod>
+    <lastmod>2026-04-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://runclubs.se/kontakt</loc>
-    <lastmod>2026-04-24</lastmod>
+    <lastmod>2026-04-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
 
   <!-- Klubbsidor Stockholm -->
-  <url><loc>https://runclubs.se/aero-boys-club</loc><lastmod>2026-04-24</lastmod><priority>0.6</priority></url>
-  <url><loc>https://runclubs.se/andmorerunning</loc><lastmod>2026-04-24</lastmod><priority>0.6</priority></url>
-  <url><loc>https://runclubs.se/burgers-n-brew-run-crew</loc><lastmod>2026-04-24</lastmod><priority>0.6</priority></url>
-  <url><loc>https://runclubs.se/core-run-club</loc><lastmod>2026-04-24</lastmod><priority>0.6</priority></url>
-  <url><loc>https://runclubs.se/dopest-runners</loc><lastmod>2026-04-24</lastmod><priority>0.6</priority></url>
-  <url><loc>https://runclubs.se/east-run-club</loc><lastmod>2026-04-24</lastmod><priority>0.6</priority></url>
-  <url><loc>https://runclubs.se/hogdalen-run-club</loc><lastmod>2026-04-24</lastmod><priority>0.6</priority></url>
-  <url><loc>https://runclubs.se/mellqvist-run-club</loc><lastmod>2026-04-24</lastmod><priority>0.6</priority></url>
-  <url><loc>https://runclubs.se/mikkeller-running-club-sthlm</loc><lastmod>2026-04-24</lastmod><priority>0.6</priority></url>
-  <url><loc>https://runclubs.se/pulse-pacers</loc><lastmod>2026-04-24</lastmod><priority>0.6</priority></url>
-  <url><loc>https://runclubs.se/rtc</loc><lastmod>2026-04-24</lastmod><priority>0.6</priority></url>
-  <url><loc>https://runclubs.se/run-collective-stockholm</loc><lastmod>2026-04-24</lastmod><priority>0.6</priority></url>
-  <url><loc>https://runclubs.se/runday</loc><lastmod>2026-04-24</lastmod><priority>0.6</priority></url>
-  <url><loc>https://runclubs.se/saucony-run-club</loc><lastmod>2026-04-24</lastmod><priority>0.6</priority></url>
-  <url><loc>https://runclubs.se/she-runs-club</loc><lastmod>2026-04-24</lastmod><priority>0.6</priority></url>
-  <url><loc>https://runclubs.se/slowrunners-sthlm</loc><lastmod>2026-04-24</lastmod><priority>0.6</priority></url>
-  <url><loc>https://runclubs.se/soderloparna-stockholm</loc><lastmod>2026-04-24</lastmod><priority>0.6</priority></url>
-  <url><loc>https://runclubs.se/solemates-runclub</loc><lastmod>2026-04-24</lastmod><priority>0.6</priority></url>
-  <url><loc>https://runclubs.se/stadium-run-club</loc><lastmod>2026-04-24</lastmod><priority>0.6</priority></url>
-  <url><loc>https://runclubs.se/stockholm-run-club</loc><lastmod>2026-04-24</lastmod><priority>0.6</priority></url>
-  <url><loc>https://runclubs.se/svedjans-lopsallskap</loc><lastmod>2026-04-24</lastmod><priority>0.6</priority></url>
-  <url><loc>https://runclubs.se/tjejmilen-runclub</loc><lastmod>2026-04-24</lastmod><priority>0.6</priority></url>
-  <url><loc>https://runclubs.se/triple-threshold-rc</loc><lastmod>2026-04-24</lastmod><priority>0.6</priority></url>
-  <url><loc>https://runclubs.se/zlk-zinken-lopklubb</loc><lastmod>2026-04-24</lastmod><priority>0.6</priority></url>
+  <url><loc>https://runclubs.se/aero-boys-club</loc><lastmod>2026-04-25</lastmod><priority>0.6</priority></url>
+  <url><loc>https://runclubs.se/andmorerunning</loc><lastmod>2026-04-25</lastmod><priority>0.6</priority></url>
+  <url><loc>https://runclubs.se/burgers-n-brew-run-crew</loc><lastmod>2026-04-25</lastmod><priority>0.6</priority></url>
+  <url><loc>https://runclubs.se/core-run-club</loc><lastmod>2026-04-25</lastmod><priority>0.6</priority></url>
+  <url><loc>https://runclubs.se/dopest-runners</loc><lastmod>2026-04-25</lastmod><priority>0.6</priority></url>
+  <url><loc>https://runclubs.se/east-run-club</loc><lastmod>2026-04-25</lastmod><priority>0.6</priority></url>
+  <url><loc>https://runclubs.se/hogdalen-run-club</loc><lastmod>2026-04-25</lastmod><priority>0.6</priority></url>
+  <url><loc>https://runclubs.se/mellqvist-run-club</loc><lastmod>2026-04-25</lastmod><priority>0.6</priority></url>
+  <url><loc>https://runclubs.se/mikkeller-running-club-sthlm</loc><lastmod>2026-04-25</lastmod><priority>0.6</priority></url>
+  <url><loc>https://runclubs.se/pulse-pacers</loc><lastmod>2026-04-25</lastmod><priority>0.6</priority></url>
+  <url><loc>https://runclubs.se/rtc</loc><lastmod>2026-04-25</lastmod><priority>0.6</priority></url>
+  <url><loc>https://runclubs.se/run-collective-stockholm</loc><lastmod>2026-04-25</lastmod><priority>0.6</priority></url>
+  <url><loc>https://runclubs.se/runday</loc><lastmod>2026-04-25</lastmod><priority>0.6</priority></url>
+  <url><loc>https://runclubs.se/saucony-run-club</loc><lastmod>2026-04-25</lastmod><priority>0.6</priority></url>
+  <url><loc>https://runclubs.se/she-runs-club</loc><lastmod>2026-04-25</lastmod><priority>0.6</priority></url>
+  <url><loc>https://runclubs.se/slowrunners-sthlm</loc><lastmod>2026-04-25</lastmod><priority>0.6</priority></url>
+  <url><loc>https://runclubs.se/soderloparna-stockholm</loc><lastmod>2026-04-25</lastmod><priority>0.6</priority></url>
+  <url><loc>https://runclubs.se/solemates-runclub</loc><lastmod>2026-04-25</lastmod><priority>0.6</priority></url>
+  <url><loc>https://runclubs.se/stadium-run-club</loc><lastmod>2026-04-25</lastmod><priority>0.6</priority></url>
+  <url><loc>https://runclubs.se/stockholm-run-club</loc><lastmod>2026-04-25</lastmod><priority>0.6</priority></url>
+  <url><loc>https://runclubs.se/svedjans-lopsallskap</loc><lastmod>2026-04-25</lastmod><priority>0.6</priority></url>
+  <url><loc>https://runclubs.se/tjejmilen-runclub</loc><lastmod>2026-04-25</lastmod><priority>0.6</priority></url>
+  <url><loc>https://runclubs.se/triple-threshold-rc</loc><lastmod>2026-04-25</lastmod><priority>0.6</priority></url>
+  <url><loc>https://runclubs.se/zlk-zinken-lopklubb</loc><lastmod>2026-04-25</lastmod><priority>0.6</priority></url>
 
   <!-- Klubbsidor Göteborg -->
-  <url><loc>https://runclubs.se/ess-runners-club</loc><lastmod>2026-04-24</lastmod><priority>0.6</priority></url>
-  <url><loc>https://runclubs.se/goteborg-running-club</loc><lastmod>2026-04-24</lastmod><priority>0.6</priority></url>
-  <url><loc>https://runclubs.se/slowrunners-goteborg</loc><lastmod>2026-04-24</lastmod><priority>0.6</priority></url>
-  <url><loc>https://runclubs.se/sweden-runners-goteborg</loc><lastmod>2026-04-24</lastmod><priority>0.6</priority></url>
+  <url><loc>https://runclubs.se/ess-runners-club</loc><lastmod>2026-04-25</lastmod><priority>0.6</priority></url>
+  <url><loc>https://runclubs.se/goteborg-running-club</loc><lastmod>2026-04-25</lastmod><priority>0.6</priority></url>
+  <url><loc>https://runclubs.se/slowrunners-goteborg</loc><lastmod>2026-04-25</lastmod><priority>0.6</priority></url>
+  <url><loc>https://runclubs.se/sweden-runners-goteborg</loc><lastmod>2026-04-25</lastmod><priority>0.6</priority></url>
 
   <!-- Klubbsidor Malmö -->
-  <url><loc>https://runclubs.se/mrc-malmo</loc><lastmod>2026-04-24</lastmod><priority>0.6</priority></url>
-  <url><loc>https://runclubs.se/sweden-runners-malmo</loc><lastmod>2026-04-24</lastmod><priority>0.6</priority></url>
+  <url><loc>https://runclubs.se/mrc-malmo</loc><lastmod>2026-04-25</lastmod><priority>0.6</priority></url>
+  <url><loc>https://runclubs.se/sweden-runners-malmo</loc><lastmod>2026-04-25</lastmod><priority>0.6</priority></url>
 
 </urlset>
