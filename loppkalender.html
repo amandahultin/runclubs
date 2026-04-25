@@ -16,9 +16,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <meta property="og:description" content="Kommande löptävlingar i Sverige — 10 km, halvmaraton och maraton.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://runclubs.se/loppkalender">
-  <meta property="og:image" content="https://runclubs.se/stockholm-run-clubs.jpeg">
   <link rel="canonical" href="https://runclubs.se/loppkalender">
-  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:ital,wght@1,900&family=Oswald:wght@500;700&family=DM+Sans:wght@400;500;600&family=Playfair+Display:wght@400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Oswald:wght@500;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <style>
@@ -43,10 +42,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       border-bottom: 1px solid #F0E0DC;
       position: sticky; top: 0; z-index: 100;
     }
-    .run-clubs-logo { display: inline-flex; align-items: baseline; font-size: 36px; color: #1a1a1a; text-decoration: none; }
-    .run-clubs-logo .run { font-family: 'Inter', sans-serif; font-weight: 900; font-style: italic; letter-spacing: -0.04em; padding-right: 2px; }
-    .run-clubs-logo .clubs { font-family: 'Playfair Display', serif; font-weight: 400; letter-spacing: -0.02em; }
-    .run-clubs-logo .suffix { font-family: 'Playfair Display', serif; font-size: 0.45em; font-weight: 400; text-transform: lowercase; margin-left: 2px; }
+    .logo {
+      font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 16px;
+      text-transform: uppercase; letter-spacing: 2px;
+      color: #1C2A45; text-decoration: none;
+    }
     .nav-links { display: flex; gap: 2rem; }
     .nav-links a {
       font-size: 12px; letter-spacing: 0.5px; text-decoration: none;
@@ -170,7 +170,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .month-heading { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; }
     .month-name {
       font-family: 'Archivo Black', sans-serif;
-      font-size: 20px; letter-spacing: 2px; text-transform: uppercase; color: #1C2A45;
+      font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: #bbb;
     }
     .month-line { flex: 1; height: 1px; background: #F0E0DC; }
     .month-count { font-size: 11px; letter-spacing: 1px; text-transform: uppercase; color: #ccc; font-weight: 500; }
@@ -295,7 +295,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .no-events-icon { font-size: 48px; display: block; margin-bottom: 1rem; filter: grayscale(1) opacity(0.3); }
     .no-events p { font-size: 15px; }
 
-        /* ── NEWSLETTER ─────────────────────── */
+    /* ── NEWSLETTER ── */
     .nl-section { background: #ffffff; border-top: 1px solid #E8E8E8; border-bottom: 1px solid #E8E8E8; }
     .nl-body { max-width: 560px; margin: 0 auto; padding: 4rem 2rem; text-align: center; }
     .nl-badge {
@@ -331,7 +331,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .newsletter-btn:hover { background: #C8604A; }
     .nl-disclaimer { font-size: 11px; color: #bbb; text-align: center; margin-top: 0.75rem; }
 
-
     /* ── FOOTER ── */
     footer {
       background: #F7E8E4; border-top: 1px solid #F0D8D3;
@@ -339,7 +338,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       grid-template-columns: 2fr 1fr 1fr; gap: 2rem;
       font-size: 13px;
     }
-    .footer-brand .run-clubs-logo { font-size: 28px; display: block; margin-bottom: 0.75rem; }
+    .footer-brand .logo { font-size: 14px; letter-spacing: 1.5px; display: block; margin-bottom: 0.75rem; }
     .footer-brand p { font-size: 13px; color: #888; line-height: 1.6; max-width: 280px; }
     footer h4 {
       font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
@@ -377,12 +376,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       .events-layout { padding: 2rem 1.25rem; }
       .events-grid { grid-template-columns: 1fr; }
 
-      .newsletter { padding: 3rem 1.25rem; flex-direction: column; align-items: flex-start; }
-      .newsletter-title { font-size: 22px; }
-      .newsletter-form { flex-direction: column; width: 100%; }
-      .newsletter-input { min-width: unset; width: 100%; }
-      .newsletter-btn { width: 100%; text-align: center; padding: 14px; }
-
       footer { padding: 2rem 1.25rem; grid-template-columns: 1fr; gap: 1.5rem; }
     }
   </style>
@@ -395,14 +388,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <a href="#main-content" class="skip-link">Hoppa till innehåll</a>
 
   <nav>
-    <a href="/" class="run-clubs-logo"><span class="run">RUN</span><span class="clubs">CLUBS</span><span class="suffix">.se</span></a>
+    <a href="/" class="logo">Swedish Run Clubs</a>
     <div class="nav-links">
       <a href="stockholm">Stockholm</a>
       <a href="goteborg">Göteborg</a>
       <a href="malmo">Malmö</a>
+      <a href="kommande-events">Events</a>
+      <a href="loppkalender" class="active">Lopp</a>
       <a href="nyheter">Nyheter</a>
-      <a href="stockholm-running-events">Events</a>
-      <a href="loppkalender" class="active">Loppkalender</a>
       <a href="om-oss">Om oss</a>
     </div>
     <button class="nav-toggle" aria-label="Öppna meny" aria-expanded="false">
@@ -414,9 +407,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <a href="stockholm">Stockholm</a>
     <a href="goteborg">Göteborg</a>
     <a href="malmo">Malmö</a>
+    <a href="kommande-events">Events</a>
+    <a href="loppkalender">Lopp</a>
     <a href="nyheter">Nyheter</a>
-    <a href="stockholm-running-events">Events</a>
-    <a href="loppkalender" class="active">Loppkalender</a>
     <a href="om-oss">Om oss</a>
   </div>
 
@@ -427,7 +420,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="page-header-inner">
       <div class="page-header-tag">Löparkalendern</div>
       <h1>Kommande<br>Lopp</h1>
-      <p>Tävlingar från 10 km upp till Marathon och Ultradistanser i hela Sverige. Hitta ditt nästa lopp för ditt nästa PB!</p>
+      <p>Tävlingar från 10 km upp till maraton — Stockholm, Göteborg och Malmö. Hitta ditt nästa lopp.</p>
     </div>
   </header>
 
@@ -437,6 +430,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div>
         <div class="stat-number" id="stat-total">—</div>
         <div class="stat-label">Lopp totalt</div>
+      </div>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-item">
+      <div>
+        <div class="stat-number" id="stat-months">—</div>
+        <div class="stat-label">Månader</div>
+      </div>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-item">
+      <div>
+        <div class="stat-number" id="stat-regions">—</div>
+        <div class="stat-label">Regioner</div>
       </div>
     </div>
   </div>
@@ -468,7 +475,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div id="races-container"></div>
   </div>
 
-    <!-- NEWSLETTER -->
+  <!-- NEWSLETTER -->
   <section class="nl-section fade-in">
     <div class="nl-body">
       <div class="nl-badge">Prenumerera på <span class="run-clubs-logo" style="font-size:1em;color:#D4715E;"><span class="run">RUN</span><span class="clubs">CLUBS</span><span class="suffix">.se</span></span> veckobrev</div>
@@ -487,7 +494,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- FOOTER -->
   <footer>
     <div class="footer-brand">
-      <span class="run-clubs-logo"><span class="run">RUN</span><span class="clubs">CLUBS</span><span class="suffix">.se</span></span>
+      <span class="logo">Swedish Run Clubs</span>
       <p>Vi hjälper dig hitta de senaste och trendigaste run clubs och running events i din stad. Just nu i Stockholm, Göteborg och Malmö.</p>
     </div>
     <div>
@@ -500,13 +507,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <h4>Om sajten</h4>
       <a href="om-oss">Om oss</a>
       <a href="nyheter">Nyheter</a>
-      <a href="loppkalender">Loppkalender</a>
       <a href="kontakt">Kontakt</a>
       <a href="samarbeta">Samarbeta</a>
     </div>
     <div class="footer-bottom">
       &copy; 2026 Swedish Run Clubs. Byggd med kärlek av <a href="https://amandahultin.se" target="_blank" rel="noopener noreferrer" style="display:inline; margin:0;">Amanda Hultin <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-left:2px;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>.
-      <div class="footer-updated">Loppdatan uppdaterades 20 April 2026.</div>
+      <div class="footer-updated">Loppdatan uppdaterades 25 April 2026.</div>
     </div>
   </footer>
 
