@@ -42,11 +42,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       border-bottom: 1px solid #F0E0DC;
       position: sticky; top: 0; z-index: 100;
     }
-    .logo {
-      font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 16px;
-      text-transform: uppercase; letter-spacing: 2px;
-      color: #1C2A45; text-decoration: none;
-    }
+    .run-clubs-logo { display: inline-flex; align-items: baseline; font-size: 36px; color: #1a1a1a; text-decoration: none; }
+    .run-clubs-logo .run { font-family: 'Inter', sans-serif; font-weight: 900; font-style: italic; letter-spacing: -0.04em; padding-right: 2px; }
+    .run-clubs-logo .clubs { font-family: 'Playfair Display', serif; font-weight: 400; letter-spacing: -0.02em; }
+    .run-clubs-logo .suffix { font-family: 'Playfair Display', serif; font-size: 0.45em; font-weight: 400; text-transform: lowercase; margin-left: 2px; }
     .nav-links { display: flex; gap: 2rem; }
     .nav-links a {
       font-size: 12px; letter-spacing: 0.5px; text-decoration: none;
@@ -60,7 +59,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     }
     .nav-links a:hover { color: #1C2A45; }
     .nav-links a:hover::after { width: 100%; }
-    .nav-links a.active { color: #1C2A45; }
+    .nav-links a.active { color: #D4715E; }
     .nav-links a.active::after { width: 100%; }
     .nav-toggle {
       display: none; flex-direction: column; gap: 5px;
@@ -341,7 +340,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       grid-template-columns: 2fr 1fr 1fr; gap: 2rem;
       font-size: 13px;
     }
-    .footer-brand .logo { font-size: 14px; letter-spacing: 1.5px; display: block; margin-bottom: 0.75rem; }
+    .footer-brand .run-clubs-logo { font-size: 28px; display: block; margin-bottom: 0.75rem; }
     .footer-brand p { font-size: 13px; color: #888; line-height: 1.6; max-width: 280px; }
     footer h4 {
       font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
@@ -391,14 +390,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <a href="#main-content" class="skip-link">Hoppa till innehåll</a>
 
   <nav>
-    <a href="/" class="logo">Swedish Run Clubs</a>
+    <a href="/" class="run-clubs-logo"><span class="run">RUN</span><span class="clubs">CLUBS</span><span class="suffix">.se</span></a>
     <div class="nav-links">
       <a href="stockholm">Stockholm</a>
       <a href="goteborg">Göteborg</a>
       <a href="malmo">Malmö</a>
-      <a href="kommande-events">Events</a>
-      <a href="loppkalender" class="active">Lopp</a>
       <a href="nyheter">Nyheter</a>
+      <a href="stockholm-running-events">Events</a>
+      <a href="loppkalender" class="active">Loppkalender</a>
       <a href="om-oss">Om oss</a>
     </div>
     <button class="nav-toggle" aria-label="Öppna meny" aria-expanded="false">
@@ -410,9 +409,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <a href="stockholm">Stockholm</a>
     <a href="goteborg">Göteborg</a>
     <a href="malmo">Malmö</a>
-    <a href="kommande-events">Events</a>
-    <a href="loppkalender">Lopp</a>
     <a href="nyheter">Nyheter</a>
+    <a href="stockholm-running-events">Events</a>
+    <a href="loppkalender" class="active">Loppkalender</a>
     <a href="om-oss">Om oss</a>
   </div>
 
@@ -498,7 +497,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- FOOTER -->
   <footer>
     <div class="footer-brand">
-      <span class="logo">Swedish Run Clubs</span>
+      <span class="run-clubs-logo"><span class="run">RUN</span><span class="clubs">CLUBS</span><span class="suffix">.se</span></span>
       <p>Vi hjälper dig hitta de senaste och trendigaste run clubs och running events i din stad. Just nu i Stockholm, Göteborg och Malmö.</p>
     </div>
     <div>
