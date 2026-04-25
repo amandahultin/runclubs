@@ -496,38 +496,40 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .no-events p {{ font-size: 15px; }}
 
     /* ── NEWSLETTER ── */
-    .newsletter {{
-      background: linear-gradient(135deg, #1C2A45 0%, #2a3d5e 100%);
-      color: #FDFAF9; padding: 4rem 2rem;
-      display: flex; align-items: center; justify-content: space-between;
-      gap: 2rem; flex-wrap: wrap;
+    .nl-section {{ background: #ffffff; border-top: 1px solid #E8E8E8; border-bottom: 1px solid #E8E8E8; }}
+    .nl-body {{ max-width: 560px; margin: 0 auto; padding: 4rem 2rem; text-align: center; }}
+    .nl-badge {{
+      display: inline-flex; align-items: center; gap: 8px;
+      background: #FFF0ED; color: #D4715E;
+      font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+      padding: 6px 14px; border-radius: 100px; margin-bottom: 1.5rem;
     }}
-    .newsletter-label {{
-      font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
-      color: #EEAA96; margin-bottom: 0.75rem; font-weight: 500;
+    .nl-title {{
+      font-family: 'Archivo Black', sans-serif;
+      font-size: clamp(28px, 4vw, 42px);
+      color: #1C2A45; line-height: 1.1; text-transform: uppercase;
+      letter-spacing: -1px; margin-bottom: 1rem;
     }}
-    .newsletter-title {{
-      font-family: 'Archivo Black', sans-serif; font-size: 26px;
-      text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.5rem;
-    }}
-    .newsletter p {{ font-size: 14px; color: rgba(255,255,255,0.5); max-width: 400px; line-height: 1.7; }}
-    .newsletter-form {{ display: flex; gap: 10px; flex-wrap: wrap; }}
+    .nl-title em {{ color: #D4715E; font-style: normal; }}
+    .nl-desc {{ font-size: 15px; color: #777; line-height: 1.75; margin-bottom: 2rem; }}
+    .newsletter-form {{ display: flex; flex-direction: column; gap: 12px; }}
     .newsletter-input {{
-      padding: 14px 18px; border: 1px solid rgba(255,255,255,0.15);
-      border-radius: 6px; font-size: 14px; font-family: 'DM Sans', sans-serif;
-      color: #FDFAF9; background: rgba(255,255,255,0.08);
-      outline: none; min-width: 260px; transition: border-color 0.2s;
+      padding: 16px 20px; border: 2px solid #E8E8E8; border-radius: 12px;
+      font-size: 15px; font-family: 'DM Sans', sans-serif;
+      color: #1C2A45; background: #fff; outline: none;
+      transition: border-color 0.2s; width: 100%; box-sizing: border-box;
     }}
-    .newsletter-input::placeholder {{ color: rgba(255,255,255,0.3); }}
-    .newsletter-input:focus {{ border-color: #EEAA96; }}
+    .newsletter-input::placeholder {{ color: #aaa; }}
+    .newsletter-input:focus {{ border-color: #D4715E; }}
     .newsletter-btn {{
-      background: #D4715E; color: #FDFAF9;
-      font-size: 13px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase;
-      padding: 14px 32px; border-radius: 6px; border: none;
+      background: #D4715E; color: #fff;
+      font-size: 15px; font-weight: 700; letter-spacing: 0.3px;
+      padding: 17px; border-radius: 12px; border: none;
       cursor: pointer; font-family: 'DM Sans', sans-serif;
-      transition: all 0.2s; white-space: nowrap;
+      transition: background 0.2s;
     }}
-    .newsletter-btn:hover {{ background: #C8604A; transform: translateY(-1px); }}
+    .newsletter-btn:hover {{ background: #C8604A; }}
+    .nl-disclaimer {{ font-size: 11px; color: #bbb; text-align: center; margin-top: 0.75rem; }}
 
     /* ── FOOTER ── */
     footer {{
@@ -573,12 +575,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
       .events-layout {{ padding: 2rem 1.25rem; }}
       .events-grid {{ grid-template-columns: 1fr; }}
-
-      .newsletter {{ padding: 3rem 1.25rem; flex-direction: column; align-items: flex-start; }}
-      .newsletter-title {{ font-size: 22px; }}
-      .newsletter-form {{ flex-direction: column; width: 100%; }}
-      .newsletter-input {{ min-width: unset; width: 100%; }}
-      .newsletter-btn {{ width: 100%; text-align: center; padding: 14px; }}
 
       footer {{ padding: 2rem 1.25rem; grid-template-columns: 1fr; gap: 1.5rem; }}
     }}
@@ -680,16 +676,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 
   <!-- NEWSLETTER -->
-  <section class="newsletter fade-in">
-    <div class="newsletter-text">
-      <div class="newsletter-label">Nyhetsbrevet</div>
-      <div class="newsletter-title">Missa inget lopp</div>
-      <p>Nya tävlingar, loptips och run club-nyheter direkt i din inkorg.</p>
+  <section class="nl-section fade-in">
+    <div class="nl-body">
+      <div class="nl-badge">Prenumerera på <span class="run-clubs-logo" style="font-size:1em;color:#D4715E;"><span class="run">RUN</span><span class="clubs">CLUBS</span><span class="suffix">.se</span></span> veckobrev</div>
+      <h2 class="nl-title">Inbjudningar,<br><em>events</em> och<br>promo runs.</h2>
+      <p class="nl-desc">Varje söndag får du en sammanställning av vad som händer kommande vecka — veckans pass, nyheter, intervjuer och events. Gratis så klart!</p>
+      <form class="newsletter-form" data-placement="page-mid" onsubmit="return false;">
+        <input type="email" class="newsletter-input" placeholder="din@email.se" aria-label="E-postadress">
+        <button class="newsletter-btn">Anmäl mig nu →</button>
+      </form>
+      <p class="nl-disclaimer">Gratis. Avsluta när du vill.</p>
     </div>
-    <form class="newsletter-form" onsubmit="return false;">
-      <input type="email" class="newsletter-input" placeholder="din@email.se" aria-label="E-postadress">
-      <button class="newsletter-btn">Prenumerera</button>
-    </form>
   </section>
 
   </main>
@@ -698,7 +695,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <footer>
     <div class="footer-brand">
       <span class="logo">Swedish Run Clubs</span>
-      <p>Alla run clubs i Sverige — sorterade, beskrivna och enkla att hitta.</p>
+      <p>Vi hjälper dig hitta de senaste och trendigaste run clubs och running events i din stad. Just nu i Stockholm, Göteborg och Malmö.</p>
     </div>
     <div>
       <h4>Städer</h4>
@@ -714,7 +711,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <a href="samarbeta">Samarbeta</a>
     </div>
     <div class="footer-bottom">
-      &copy; 2026 Swedish Run Clubs. Byggd med kärlek av <a href="https://amandahultin.se" style="display:inline; margin:0;">Amanda Hultin</a>.
+      &copy; 2026 Swedish Run Clubs. Byggd med kärlek av <a href="https://amandahultin.se" target="_blank" rel="noopener noreferrer" style="display:inline; margin:0;">Amanda Hultin <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-left:2px;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>.
       <div class="footer-updated">Loppdatan uppdaterades {generated_at}.</div>
     </div>
   </footer>
