@@ -36,4 +36,5 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add malmo-running-events.html
           git diff --staged --quiet || git commit -m "Auto-update malmo-running-events.html [skip ci]"
+          git pull --rebase origin main
           git push
