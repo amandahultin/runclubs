@@ -82,10 +82,18 @@ def fetch_weekly_runs(sheet_id: str) -> list[dict]:
 
 
 def fetch_overrides(sheet_id: str) -> dict[tuple[str, str], dict]:
-    """Return a dict keyed by (club_lower, YYYY-MM-DD) → override row."""
+    """Return a dict keyed by (club_lower, YYYY-MM-DD) → override row.
+
+    Returns an empty dict if the Overrides worksheet doesn't exist yet,
+    so the script works before the tab has been created.
+    """
     gc = _sheet_client()
     sh = gc.open_by_key(sheet_id)
-    ws = sh.worksheet(OVERRIDES_WORKSHEET)
+    try:
+        ws = sh.worksheet(OVERRIDES_WORKSHEET)
+    except gspread.exceptions.WorksheetNotFound:
+        log.warning("Overrides worksheet not found — skipping overrides")
+        return {}
     records = ws.get_all_records(expected_headers=OVERRIDES_HEADERS)
     log.info("Fetched %d rows from Overrides sheet", len(records))
     result = {}
