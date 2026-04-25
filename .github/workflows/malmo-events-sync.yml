@@ -1,0 +1,39 @@
+name: Sync Malmö running events
+
+on:
+  schedule:
+    - cron: "30 5 * * *"   # Every day 05:30 UTC — after Göteborg events sync at 05:15
+  workflow_dispatch:        # Allow manual runs from the GitHub Actions tab
+
+permissions:
+  contents: write
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: requirements-events.txt
+
+      - name: Install dependencies
+        run: pip install -r requirements-events.txt
+
+      - name: Generate malmo-running-events.html
+        env:
+          GOOGLE_SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}
+          GOOGLE_SHEET_ID: ${{ secrets.EVENTS_SHEET_ID }}
+        run: python generate_malmo_events.py malmo-running-events.html
+
+      - name: Commit and push if changed
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add malmo-running-events.html
+          git diff --staged --quiet || git commit -m "Auto-update malmo-running-events.html [skip ci]"
+          git push
