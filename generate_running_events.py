@@ -4,7 +4,7 @@ Reads from two worksheets:
   - Events       populated by mikaelsto/runclubs-events-feed (Strava)
   - WeeklyRuns   manually maintained recurring club runs
 
-No city filter — lists all events from all cities.
+Filters to Stockholm, Göteborg, and Malmö (including regional variants).
 
 Usage:
     python generate_running_events.py                    # writes running-events.html
@@ -42,6 +42,13 @@ WEEKLY_HEADERS = ["club", "day_of_week", "time", "location", "city", "title", "d
 OVERRIDES_HEADERS = ["club", "date", "city", "action", "time", "location", "title", "description", "link"]
 
 SPECIAL_HEADERS = ["club", "title", "date", "time", "location", "city", "description", "link", "image_url"]
+
+
+ALL_CITIES_KEYWORDS = {
+    "stockholm",
+    "göteborg", "goteborg", "gothenburg", "västra götaland",
+    "malmö", "malmo", "malmoe", "skåne",
+}
 
 
 DAYS_MAP = {
@@ -136,6 +143,10 @@ def prepare_special_events(records: list[dict]) -> list[dict]:
         if dt is not None and dt.date() < today:
             continue
 
+        city = (r.get("city") or "").strip().lower()
+        if not any(kw in city for kw in ALL_CITIES_KEYWORDS):
+            continue
+
         events.append({
             "type":        "event",
             "source":      "special",
@@ -170,6 +181,10 @@ def prepare_events(records: list[dict]) -> list[dict]:
         raw_date = (r.get("date") or "").strip()
         dt = _parse_date(raw_date)
         if dt is not None and dt.date() < today:
+            continue
+
+        loc = (r.get("location") or "").strip().lower()
+        if not any(kw in loc for kw in ALL_CITIES_KEYWORDS):
             continue
 
         events.append({
@@ -210,6 +225,10 @@ def expand_weekly_runs(
         target_weekday = DAYS_MAP.get(day_str)
         if target_weekday is None:
             log.warning("Unknown day_of_week %r for club %r — skipping", day_str, r.get("club"))
+            continue
+
+        city = (r.get("city") or "").strip().lower()
+        if not any(kw in city for kw in ALL_CITIES_KEYWORDS):
             continue
 
         club      = (r.get("club") or "").strip()
