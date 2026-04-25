@@ -485,6 +485,40 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       transform: none; box-shadow: none; border-color: #EFE4E0;
     }}
 
+    .event-card--special {{
+      border: 2px solid transparent !important;
+      background: linear-gradient(#fff, #fff) padding-box,
+                  linear-gradient(135deg, #ffd700, #ff7eb3, #c084fc, #60a5fa, #ffd700) border-box;
+      background-size: 100% 100%, 400% 400%;
+      animation: specialGradient 5s ease infinite;
+      position: relative;
+      overflow: hidden;
+    }}
+    .event-card--special:hover {{
+      box-shadow: 0 12px 40px rgba(192,132,252,0.25), 0 0 0 1px rgba(255,215,0,0.3);
+    }}
+    @keyframes specialGradient {{
+      0%, 100% {{ background-position: 0 0, 0% 50%; }}
+      50% {{ background-position: 0 0, 100% 50%; }}
+    }}
+    .event-card--special .event-date-block {{
+      background: linear-gradient(160deg, #3d1354, #6b2fa0);
+    }}
+    .event-card--special::after {{
+      content: '✨';
+      position: absolute;
+      top: 10px; right: 12px;
+      font-size: 18px;
+      pointer-events: none;
+      animation: sparkleFloat 2.5s ease-in-out infinite;
+      z-index: 2;
+    }}
+    @keyframes sparkleFloat {{
+      0%, 100% {{ transform: translateY(0) scale(1); opacity: 0.85; }}
+      50% {{ transform: translateY(-4px) scale(1.2); opacity: 1; }}
+    }}
+    .source-special {{ background: linear-gradient(135deg, #c084fc, #818cf8); color: #fff; }}
+
     .event-card-image {{
       width: 100%; height: 180px; object-fit: cover; display: block;
     }}
@@ -524,7 +558,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       padding: 3px 8px; border-radius: 10px; flex-shrink: 0;
     }}
     .source-strava    {{ background: #FC5200; color: #fff; }}
-    .source-special   {{ background: #D4715E; color: #fff; }}
     .source-other     {{ background: #4a90d9; color: #fff; }}
     .type-badge {{
       font-size: 9px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
@@ -783,7 +816,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     function sourceBadge(source) {{
       if (source === 'weekly_run') return '';
-      if (source === 'special') return `<span class="source-badge source-special">Speciellt</span>`;
+      if (source === 'special') return `<span class="source-badge source-special">Special Event</span>`;
       const cls   = source === 'strava' ? 'source-strava' : 'source-other';
       const label = source === 'strava' ? 'Strava' : source;
       return `<span class="source-badge ${{cls}}">${{label}}</span>`;
@@ -833,7 +866,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
            </span>`
         : '<span></span>';
 
-      const isExternal = ev.source === 'strava' || ev.source === 'special';
+      const isExternal = ev.source === 'strava';
       const ctaHTML = ev.link
         ? (isExternal
             ? `<span class="event-cta">Läs mer <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="vertical-align:middle;margin-left:2px;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>`
@@ -860,10 +893,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           ${{ctaHTML}}
         </div>`;
 
+      const specialClass = ev.source === 'special' ? ' event-card--special' : '';
+      const opensNewTab  = ev.source === 'strava' || ev.source === 'special';
       if (ev.link) {{
-        return `<a href="${{ev.link}}" ${{isExternal ? 'target="_blank" rel="noopener"' : ''}} class="event-card" aria-label="${{ev.title}}">${{inner}}</a>`;
+        return `<a href="${{ev.link}}" ${{opensNewTab ? 'target="_blank" rel="noopener"' : ''}} class="event-card${{specialClass}}" aria-label="${{ev.title}}">${{inner}}</a>`;
       }} else {{
-        return `<div class="event-card event-card--no-link" aria-label="${{ev.title}}">${{inner}}</div>`;
+        return `<div class="event-card event-card--no-link${{specialClass}}" aria-label="${{ev.title}}">${{inner}}</div>`;
       }}
     }}
 
