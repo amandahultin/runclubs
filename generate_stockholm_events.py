@@ -39,7 +39,7 @@ HEADERS = [
 
 WEEKLY_HEADERS = ["club", "day_of_week", "time", "location", "city", "title", "description", "link"]
 
-OVERRIDES_HEADERS = ["club", "date", "action", "time", "location", "title", "description", "link"]
+OVERRIDES_HEADERS = ["club", "date", "city", "action", "time", "location", "title", "description", "link"]
 
 STOCKHOLM_KEYWORDS = {"stockholm"}
 
