@@ -723,7 +723,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <header class="page-header">
     <div class="page-header-inner">
-      <div class="breadcrumb"><a href="/">Start</a> → <a href="/stockholm">Stockholm</a> → Kommande events</div>
+      <div class="breadcrumb"><a href="/">Start</a> → <a href="/running-events">Running Events</a> → Stockholm</div>
       <div class="page-header-tag">Stockholms run clubs</div>
       <h1>Kommande<br>Events och Weekly runs</h1>
       <p>Här visas alla kommande running events från Strava och weekly runs från löpargrupper, run clubs, communions och run crews i Stockholm.</p>
