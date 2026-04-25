@@ -112,6 +112,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       user-select: none;
     }
     .page-header-inner { max-width: 700px; position: relative; z-index: 1; }
+    .breadcrumb { font-size: 12px; color: rgba(255,255,255,0.4); margin-bottom: 0.75rem; }
+    .breadcrumb a { color: rgba(255,255,255,0.4); text-decoration: none; transition: color 0.15s; }
+    .breadcrumb a:hover { color: #EEAA96; }
     .page-header-tag {
       font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
       color: #EEAA96; margin-bottom: 1rem; font-weight: 500;
@@ -436,9 +439,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <header class="page-header">
     <div class="page-header-inner">
+      <div class="breadcrumb"><a href="/">Start</a> → <a href="/stockholm">Stockholm</a> → Kommande events</div>
       <div class="page-header-tag">Stockholms run clubs</div>
-      <h1>Kommande<br>Events</h1>
-      <p>Grupplöpningar, intervaller och events från Stockholms run clubs — direkt från Strava.</p>
+      <h1>Kommande<br>Events och Weekly runs</h1>
+      <p>Här visas alla kommande running events från Strava och weekly runs från löpargrupper, run clubs, communions och run crews i Stockholm.</p>
     </div>
   </header>
 
@@ -487,7 +491,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <footer>
     <div class="footer-brand">
       <a href="/" class="run-clubs-logo"><span class="run">RUN</span><span class="clubs">CLUBS</span><span class="suffix">.se</span></a>
-      <p>Alla run clubs i Sverige — sorterade, beskrivna och enkla att hitta.</p>
+      <p>Vi hjälper dig hitta de senaste och trendigaste run clubs och running events i din stad. Just nu i Stockholm, Göteborg och Malmö.</p>
     </div>
     <div>
       <h4>Städer</h4>
@@ -503,7 +507,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <a href="samarbeta">Samarbeta</a>
     </div>
     <div class="footer-bottom">
-      &copy; 2026 Swedish Run Clubs. Byggd med kärlek av <a href="https://amandahultin.se" style="display:inline; margin:0;">Amanda Hultin</a>.
+      &copy; 2026 Swedish Run Clubs. Byggd med kärlek av <a href="https://amandahultin.se" target="_blank" rel="noopener noreferrer" style="display:inline; margin:0;">Amanda Hultin <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-left:2px;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>.
       <div class="footer-updated">Eventdata uppdaterades 25 April 2026.</div>
     </div>
   </footer>
