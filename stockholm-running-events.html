@@ -364,19 +364,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       footer { padding: 2rem 1.25rem; grid-template-columns: 1fr; gap: 1.5rem; }
     }
 
-    .breadcrumb {
-      padding: 0.75rem 2rem;
-      font-size: 12px; color: #aaa;
-      display: flex; align-items: center; gap: 6px;
-      border-bottom: 1px solid #F0E0DC;
-    }
-    .breadcrumb a { color: #aaa; text-decoration: none; transition: color 0.2s; }
-    .breadcrumb a:hover { color: #D4715E; }
-    .breadcrumb-sep { color: #ddd; }
-    .breadcrumb-current { color: #1C2A45; font-weight: 500; }
-    @media (max-width: 768px) {
-      .breadcrumb { padding: 0.75rem 1.25rem; }
-    }
+    .breadcrumb { font-size: 12px; color: rgba(255,255,255,0.4); margin-bottom: 0.75rem; }
+    .breadcrumb a { color: rgba(255,255,255,0.4); text-decoration: none; transition: color 0.15s; }
+    .breadcrumb a:hover { color: #EEAA96; }
   </style>
 </head>
 <body>
@@ -414,19 +404,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <main id="main-content">
 
-  <nav class="breadcrumb" aria-label="Brödsmulor">
-    <a href="/">Start</a>
-    <span class="breadcrumb-sep">→</span>
-    <a href="/stockholm">Stockholm</a>
-    <span class="breadcrumb-sep">→</span>
-    <span class="breadcrumb-current">Kommande events</span>
-  </nav>
-
   <header class="page-header">
     <div class="page-header-inner">
+      <div class="breadcrumb"><a href="/">Start</a> → <a href="/stockholm">Stockholm</a> → Kommande events</div>
       <div class="page-header-tag">Stockholms run clubs</div>
-      <h1>Kommande<br>Events</h1>
-      <p>Grupplöpningar, intervaller och events från Stockholms run clubs — direkt från Strava.</p>
+      <h1>Kommande<br>Events och Weekly runs</h1>
+      <p>Här visas alla kommande running events från Strava och weekly runs från löpargrupper, run clubs, communions och run crews i Stockholm.</p>
     </div>
   </header>
 
