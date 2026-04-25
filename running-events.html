@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-TPSCMPZT');</script>
+<!-- End Google Tag Manager -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Running Events Sverige — Swedish Run Clubs</title>
+  <meta name="description" content="Alla kommande running events och weekly runs i Stockholm, Göteborg och Malmö — från run clubs, crews och communions.">
+  <meta property="og:title" content="Running Events Sverige — Swedish Run Clubs">
+  <meta property="og:description" content="Alla kommande running events och weekly runs i Stockholm, Göteborg och Malmö.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://runclubs.se/running-events">
+  <meta property="og:image" content="https://runclubs.se/stockholm-run-clubs.jpeg">
+  <link rel="canonical" href="https://runclubs.se/running-events">
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:ital,wght@1,900&family=Oswald:wght@500;700&family=DM+Sans:wght@400;500;600&family=Playfair+Display:wght@400&display=swap" rel="stylesheet">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; color: #1C2A45; background: #FDFAF9; -webkit-font-smoothing: antialiased; }
+
+    .skip-link {
+      position: absolute; top: -100%; left: 1rem;
+      background: #D4715E; color: #fff; padding: 8px 16px;
+      border-radius: 0 0 6px 6px; font-size: 13px; font-weight: 500;
+      z-index: 1000; text-decoration: none;
+    }
+    .skip-link:focus { top: 0; }
+
+    nav {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.25rem 2rem;
+      background: rgba(253,250,249,0.92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid #F0E0DC;
+      position: sticky; top: 0; z-index: 100;
+    }
+    .logo {
+      font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 16px;
+      text-transform: uppercase; letter-spacing: 2px;
+      color: #1C2A45; text-decoration: none;
+    }
+    .run-clubs-logo { display: inline-flex; align-items: baseline; font-size: 36px; color: #1a1a1a; text-decoration: none; }
+    .run-clubs-logo .run { font-family: 'Inter', sans-serif; font-weight: 900; font-style: italic; letter-spacing: -0.04em; padding-right: 2px; }
+    .run-clubs-logo .clubs { font-family: 'Playfair Display', serif; font-weight: 400; letter-spacing: -0.02em; }
+    .run-clubs-logo .suffix { font-family: 'Playfair Display', serif; font-size: 0.45em; font-weight: 400; text-transform: lowercase; margin-left: 2px; }
+    .footer-brand .run-clubs-logo { font-size: 28px; display: block; margin-bottom: 0.75rem; }
+    .nav-links { display: flex; gap: 2rem; }
+    .nav-links a {
+      font-size: 12px; letter-spacing: 0.5px; text-decoration: none;
+      color: #888; text-transform: uppercase; font-weight: 500;
+      transition: color 0.2s; position: relative;
+    }
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: -4px; left: 0;
+      width: 0; height: 1.5px; background: #D4715E;
+      transition: width 0.2s ease;
+    }
+    .nav-links a:hover { color: #1C2A45; }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-links a.active { color: #1C2A45; }
+    .nav-links a.active::after { width: 100%; }
+    .nav-toggle {
+      display: none; flex-direction: column; gap: 5px;
+      cursor: pointer; background: none; border: none; padding: 4px;
+    }
+    .nav-toggle span {
+      display: block; width: 22px; height: 2px;
+      background: #1C2A45; transition: all 0.3s ease;
+    }
+    .nav-toggle.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .nav-toggle.open span:nth-child(2) { opacity: 0; }
+    .nav-toggle.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+    .mobile-menu {
+      display: none; flex-direction: column;
+      background: rgba(253,250,249,0.98); backdrop-filter: blur(12px);
+      border-bottom: 1px solid #F0E0DC;
+      padding: 1rem 2rem; gap: 0;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      font-size: 13px; letter-spacing: 1px; text-decoration: none;
+      color: #1C2A45; text-transform: uppercase; font-weight: 500;
+      padding: 0.75rem 0; border-bottom: 1px solid #F0E0DC;
+      transition: color 0.15s;
+    }
+    .mobile-menu a:last-child { border-bottom: none; }
+    .mobile-menu a:hover { color: #D4715E; }
+
+    .page-header {
+      background: #1C2A45;
+      padding: 4rem 2rem 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .page-header::before {
+      content: 'EVENT';
+      font-family: 'Archivo Black', sans-serif;
+      font-size: clamp(80px, 18vw, 220px);
+      color: rgba(255,255,255,0.03);
+      position: absolute;
+      right: -1rem; bottom: -1rem;
+      line-height: 1;
+      letter-spacing: -4px;
+      pointer-events: none;
+      user-select: none;
+    }
+    .page-header-inner { max-width: 700px; position: relative; z-index: 1; }
+    .breadcrumb { font-size: 12px; color: rgba(255,255,255,0.4); margin-bottom: 0.75rem; }
+    .breadcrumb a { color: rgba(255,255,255,0.4); text-decoration: none; transition: color 0.15s; }
+    .breadcrumb a:hover { color: #EEAA96; }
+    .page-header-tag {
+      font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+      color: #EEAA96; margin-bottom: 1rem; font-weight: 500;
+    }
+    .page-header h1 {
+      font-family: 'Archivo Black', sans-serif;
+      font-size: clamp(36px, 6vw, 64px);
+      line-height: 0.95; text-transform: uppercase;
+      color: #FDFAF9; letter-spacing: -1px; margin-bottom: 1rem;
+    }
+    .page-header p {
+      font-size: 15px; color: rgba(255,255,255,0.5);
+      line-height: 1.7; max-width: 480px;
+    }
+
+    .stats-bar {
+      background: #D4715E;
+      padding: 1rem 2rem;
+      display: flex; gap: 2.5rem; flex-wrap: wrap;
+    }
+    .stat-item { display: flex; align-items: center; gap: 8px; }
+    .stat-number {
+      font-family: 'Archivo Black', sans-serif;
+      font-size: 22px; color: #FDFAF9; line-height: 1;
+    }
+    .stat-label {
+      font-size: 11px; letter-spacing: 1px; text-transform: uppercase;
+      color: rgba(255,255,255,0.65); font-weight: 500;
+    }
+    .stat-divider { width: 1px; background: rgba(255,255,255,0.2); align-self: stretch; }
+
+    .filters-bar {
+      padding: 1.5rem 2rem;
+      border-bottom: 1px solid #F0E0DC;
+      display: flex; gap: 1.5rem; flex-wrap: wrap; align-items: center;
+    }
+    .filter-group { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
+    .filter-label {
+      font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
+      color: #bbb; font-weight: 500; margin-right: 4px;
+    }
+    .filter-pill {
+      font-size: 12px; font-weight: 600; padding: 6px 16px;
+      border-radius: 20px; border: 1px solid #E0D0CC;
+      background: transparent; color: #888;
+      cursor: pointer; font-family: 'DM Sans', sans-serif;
+      transition: all 0.2s; text-transform: uppercase; letter-spacing: 0.5px;
+    }
+    .filter-pill:hover { border-color: #D4715E; color: #D4715E; }
+    .filter-pill.active { background: #1C2A45; color: #FDFAF9; border-color: #1C2A45; }
+
+    .events-layout { padding: 3rem 2rem; max-width: 1200px; margin: 0 auto; }
+
+    .date-group { margin-bottom: 3rem; }
+    .date-heading { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; }
+    .date-name {
+      font-family: 'Archivo Black', sans-serif;
+      font-size: 20px; letter-spacing: 2px; text-transform: uppercase; color: #1C2A45;
+    }
+    .date-line { flex: 1; height: 1px; background: #F0E0DC; }
+    .date-count { font-size: 11px; letter-spacing: 1px; text-transform: uppercase; color: #ccc; font-weight: 500; }
+
+    .events-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 16px;
+    }
+
+    .event-card {
+      background: #fff;
+      border: 1px solid #EFE4E0;
+      border-radius: 16px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+      text-decoration: none;
+      color: #1C2A45;
+    }
+    .event-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(28,42,69,0.1);
+      border-color: #D4715E;
+    }
+    .event-card--no-link { cursor: default; }
+    .event-card--no-link:hover {
+      transform: none; box-shadow: none; border-color: #EFE4E0;
+    }
+
+    .event-card--special {
+      border: 2px solid transparent !important;
+      background: linear-gradient(#fff, #fff) padding-box,
+                  linear-gradient(135deg, #ffd700, #ff7eb3, #c084fc, #60a5fa, #ffd700) border-box;
+      background-size: 100% 100%, 400% 400%;
+      animation: specialGradient 5s ease infinite;
+      position: relative;
+      overflow: hidden;
+    }
+    .event-card--special:hover {
+      box-shadow: 0 12px 40px rgba(192,132,252,0.25), 0 0 0 1px rgba(255,215,0,0.3);
+    }
+    @keyframes specialGradient {
+      0%, 100% { background-position: 0 0, 0% 50%; }
+      50% { background-position: 0 0, 100% 50%; }
+    }
+    .event-card--special .event-date-block {
+      background: linear-gradient(160deg, #3d1354, #6b2fa0);
+    }
+    .event-card--special::after {
+      content: '✨';
+      position: absolute;
+      top: 10px; right: 12px;
+      font-size: 18px;
+      pointer-events: none;
+      animation: sparkleFloat 2.5s ease-in-out infinite;
+      z-index: 2;
+    }
+    @keyframes sparkleFloat {
+      0%, 100% { transform: translateY(0) scale(1); opacity: 0.85; }
+      50% { transform: translateY(-4px) scale(1.2); opacity: 1; }
+    }
+    .source-special { background: linear-gradient(135deg, #c084fc, #818cf8); color: #fff; }
+
+    .event-card-image {
+      width: 100%; height: 180px; object-fit: cover; display: block;
+    }
+
+    .event-card-top { display: flex; align-items: stretch; }
+
+    .event-date-block {
+      min-width: 72px;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      padding: 1.25rem 0.75rem;
+      background: #1a3a28;
+      gap: 2px; flex-shrink: 0;
+    }
+    .event-date-block.no-date { background: #2a2535; }
+
+    .event-day-num {
+      font-family: 'Archivo Black', sans-serif;
+      font-size: 32px; line-height: 1; color: #FDFAF9;
+    }
+    .event-month-abbr {
+      font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
+      color: rgba(255,255,255,0.5); font-weight: 600;
+    }
+    .event-day-name {
+      font-size: 9px; letter-spacing: 1px; text-transform: uppercase;
+      color: rgba(255,255,255,0.3); font-weight: 500; margin-top: 4px;
+    }
+    .event-date-block.no-date .event-day-num { font-size: 20px; letter-spacing: 2px; }
+
+    .event-card-body {
+      padding: 1rem 1.25rem;
+      flex: 1; display: flex; flex-direction: column; gap: 6px;
+    }
+    .event-source-row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+    .source-badge {
+      font-size: 9px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+      padding: 3px 8px; border-radius: 10px; flex-shrink: 0;
+    }
+    .source-strava    { background: #FC5200; color: #fff; }
+    .source-other     { background: #4a90d9; color: #fff; }
+    .type-badge {
+      font-size: 9px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+      padding: 3px 8px; border-radius: 10px; flex-shrink: 0;
+    }
+    .type-event   { background: #E8EEF8; color: #1C2A45; }
+    .type-weekly  { background: #D8F3DC; color: #1B4332; }
+    .event-club {
+      font-size: 11px; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase;
+      color: #aaa;
+    }
+    .event-title {
+      font-family: 'Oswald', sans-serif; font-weight: 700;
+      font-size: 17px; text-transform: uppercase;
+      letter-spacing: 0.5px; line-height: 1.2; color: #1C2A45;
+    }
+    .event-location {
+      display: flex; align-items: center; gap: 5px;
+      font-size: 12px; color: #999;
+    }
+    .event-desc {
+      font-size: 12px; color: #666; line-height: 1.55;
+      display: -webkit-box; -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical; overflow: hidden;
+      margin-top: 2px;
+    }
+
+    .event-card-footer {
+      padding: 0.75rem 1.25rem;
+      border-top: 1px solid #F5EBE8;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .event-engagement {
+      font-size: 12px; font-weight: 500; color: #bbb;
+      display: flex; align-items: center; gap: 4px;
+    }
+    .event-cta {
+      font-size: 11px; font-weight: 600; letter-spacing: 1px;
+      text-transform: uppercase; color: #D4715E;
+      display: flex; align-items: center; gap: 4px;
+      transition: gap 0.2s;
+    }
+    .event-card:hover .event-cta { gap: 8px; }
+
+    .no-events {
+      grid-column: 1 / -1; text-align: center;
+      padding: 4rem 1rem; color: #bbb;
+    }
+    .no-events-icon { font-size: 48px; display: block; margin-bottom: 1rem; filter: grayscale(1) opacity(0.3); }
+    .no-events p { font-size: 15px; }
+
+    .nl-section { background: #ffffff; border-top: 1px solid #E8E8E8; border-bottom: 1px solid #E8E8E8; }
+    .nl-body { max-width: 560px; margin: 0 auto; padding: 4rem 2rem; text-align: center; }
+    .nl-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: #FFF0ED; color: #D4715E;
+      font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+      padding: 6px 14px; border-radius: 100px; margin-bottom: 1.5rem;
+    }
+    .nl-title {
+      font-family: 'Archivo Black', sans-serif;
+      font-size: clamp(28px, 4vw, 42px);
+      color: #1C2A45; line-height: 1.1; text-transform: uppercase;
+      letter-spacing: -1px; margin-bottom: 1rem;
+    }
+    .nl-title em { color: #D4715E; font-style: normal; }
+    .nl-desc { font-size: 15px; color: #777; line-height: 1.75; margin-bottom: 2rem; }
+    .newsletter-form { display: flex; flex-direction: column; gap: 12px; }
+    .newsletter-input {
+      padding: 16px 20px; border: 2px solid #E8E8E8; border-radius: 12px;
+      font-size: 15px; font-family: 'DM Sans', sans-serif;
+      color: #1C2A45; background: #fff; outline: none;
+      transition: border-color 0.2s; width: 100%; box-sizing: border-box;
+    }
+    .newsletter-input::placeholder { color: #aaa; }
+    .newsletter-input:focus { border-color: #D4715E; }
+    .newsletter-btn {
+      background: #D4715E; color: #fff;
+      font-size: 15px; font-weight: 700; letter-spacing: 0.3px;
+      padding: 17px; border-radius: 12px; border: none;
+      cursor: pointer; font-family: 'DM Sans', sans-serif;
+      transition: background 0.2s;
+    }
+    .newsletter-btn:hover { background: #C8604A; }
+    .nl-disclaimer { font-size: 11px; color: #bbb; text-align: center; margin-top: 0.75rem; }
+
+    footer {
+      background: #F7E8E4; border-top: 1px solid #F0D8D3;
+      padding: 3.5rem 2rem; display: grid;
+      grid-template-columns: 2fr 1fr 1fr; gap: 2rem;
+      font-size: 13px;
+    }
+    .footer-brand .logo { font-size: 14px; letter-spacing: 1.5px; display: block; margin-bottom: 0.75rem; }
+    .footer-brand p { font-size: 13px; color: #888; line-height: 1.6; max-width: 280px; }
+    footer h4 {
+      font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
+      color: #aaa; margin-bottom: 1rem; font-weight: 500;
+    }
+    footer a { display: block; color: #1C2A45; text-decoration: none; margin-bottom: 8px; transition: color 0.15s; }
+    footer a:hover { color: #D4715E; }
+    .footer-bottom {
+      grid-column: 1 / -1; padding-top: 1.5rem;
+      border-top: 1px solid #F0D8D3;
+      font-size: 12px; color: #aaa;
+    }
+    .footer-updated { font-size: 11px; color: #ccc; margin-top: 4px; }
+
+    .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+    .city-nav {
+      padding: 1.75rem 2rem;
+      border-bottom: 1px solid #F0E0DC;
+      background: #FDFAF9;
+      display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap;
+    }
+    .city-nav-label {
+      font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+      color: #aaa; font-weight: 500; white-space: nowrap;
+    }
+    .city-nav-buttons { display: flex; gap: 8px; flex-wrap: wrap; }
+    .city-nav-btn {
+      font-size: 12px; font-weight: 600; padding: 8px 18px;
+      border-radius: 20px; border: 1px solid #E8D8D3;
+      background: #fff; color: #1C2A45; cursor: pointer;
+      font-family: 'DM Sans', sans-serif; text-decoration: none;
+      transition: all 0.2s; letter-spacing: 0.3px;
+      display: inline-flex; align-items: center; gap: 5px;
+    }
+    .city-nav-btn:hover { border-color: #D4715E; color: #D4715E; }
+
+    @media (max-width: 768px) {
+      .city-nav { padding: 1.25rem; gap: 1rem; flex-direction: column; align-items: flex-start; }
+    }
+
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.25rem; }
+      .nav-links { display: none; }
+      .nav-toggle { display: flex; }
+      .page-header { padding: 3rem 1.25rem 2.5rem; }
+      .page-header h1 { font-size: clamp(32px, 10vw, 52px); }
+      .stats-bar { padding: 1rem 1.25rem; gap: 1.25rem; }
+      .stat-divider { display: none; }
+      .filters-bar { padding: 1rem 1.25rem; gap: 1rem; }
+      .events-layout { padding: 2rem 1.25rem; }
+      .events-grid { grid-template-columns: 1fr; }
+      footer { padding: 2rem 1.25rem; grid-template-columns: 1fr; gap: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TPSCMPZT"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <a href="#main-content" class="skip-link">Hoppa till innehåll</a>
+
+  <nav>
+    <a href="/" class="run-clubs-logo"><span class="run">RUN</span><span class="clubs">CLUBS</span><span class="suffix">.se</span></a>
+    <div class="nav-links">
+      <a href="stockholm">Stockholm</a>
+      <a href="goteborg">Göteborg</a>
+      <a href="malmo">Malmö</a>
+      <a href="nyheter">Nyheter</a>
+      <a href="running-events" class="active">Events</a>
+      <a href="loppkalender">Loppkalender</a>
+      <a href="om-oss">Om oss</a>
+    </div>
+    <button class="nav-toggle" aria-label="Öppna meny" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="mobile-menu" role="navigation" aria-label="Mobilmeny">
+    <a href="stockholm">Stockholm</a>
+    <a href="goteborg">Göteborg</a>
+    <a href="malmo">Malmö</a>
+    <a href="nyheter">Nyheter</a>
+    <a href="running-events" class="active">Events</a>
+    <a href="loppkalender">Loppkalender</a>
+    <a href="om-oss">Om oss</a>
+  </div>
+
+  <main id="main-content">
+
+  <header class="page-header">
+    <div class="page-header-inner">
+      <div class="breadcrumb"><a href="/">Start</a> → Running Events</div>
+      <div class="page-header-tag">Alla städer</div>
+      <h1>Kommande<br>Events och Weekly runs</h1>
+      <p>Alla kommande running events från Strava och weekly runs från löpargrupper, run clubs och run crews i Stockholm, Göteborg och Malmö.</p>
+    </div>
+  </header>
+
+  <div class="stats-bar">
+    <div class="stat-item">
+      <div>
+        <div class="stat-number" id="stat-total">—</div>
+        <div class="stat-label">Events</div>
+      </div>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-item">
+      <div>
+        <div class="stat-number" id="stat-clubs">—</div>
+        <div class="stat-label">Run clubs</div>
+      </div>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-item">
+      <div>
+        <div class="stat-number">⟳</div>
+        <div class="stat-label">Uppdateras varje dag</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="city-nav">
+    <span class="city-nav-label">Se alla händelser i din stad</span>
+    <div class="city-nav-buttons">
+      <a href="stockholm-running-events" class="city-nav-btn">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        Stockholm
+      </a>
+      <a href="goteborg-running-events" class="city-nav-btn">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        Göteborg
+      </a>
+      <a href="malmo-running-events" class="city-nav-btn">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        Malmö
+      </a>
+    </div>
+  </div>
+
+  <div class="events-layout">
+    <div id="events-container"></div>
+  </div>
+
+  <section class="nl-section fade-in">
+    <div class="nl-body">
+      <div class="nl-badge">Prenumerera på <span class="run-clubs-logo" style="font-size:1em;color:#D4715E;"><span class="run">RUN</span><span class="clubs">CLUBS</span><span class="suffix">.se</span></span> veckobrev</div>
+      <h2 class="nl-title">Inbjudningar,<br><em>events</em> och<br>promo runs.</h2>
+      <p class="nl-desc">Varje söndag får du en sammanställning av vad som händer kommande vecka — veckans pass, nyheter, intervjuer och events. Gratis så klart!</p>
+      <form class="newsletter-form" data-placement="page-mid" onsubmit="return false;">
+        <input type="email" class="newsletter-input" placeholder="din@email.se" aria-label="E-postadress">
+        <button class="newsletter-btn">Anmäl mig nu →</button>
+      </form>
+      <p class="nl-disclaimer">Gratis. Avsluta när du vill.</p>
+    </div>
+  </section>
+
+  </main>
+
+  <footer>
+    <div class="footer-brand">
+      <a href="/" class="run-clubs-logo"><span class="run">RUN</span><span class="clubs">CLUBS</span><span class="suffix">.se</span></a>
+      <p>Vi hjälper dig hitta de senaste och trendigaste run clubs och running events i din stad. Just nu i Stockholm, Göteborg och Malmö.</p>
+    </div>
+    <div>
+      <h4>Städer</h4>
+      <a href="stockholm">Stockholm</a>
+      <a href="goteborg">Göteborg</a>
+      <a href="malmo">Malmö</a>
+    </div>
+    <div>
+      <h4>Om sajten</h4>
+      <a href="om-oss">Om oss</a>
+      <a href="nyheter">Nyheter</a>
+      <a href="kontakt">Kontakt</a>
+      <a href="samarbeta">Samarbeta</a>
+    </div>
+    <div class="footer-bottom">
+      &copy; 2026 Swedish Run Clubs. Byggd med kärlek av <a href="https://amandahultin.se" target="_blank" rel="noopener noreferrer" style="display:inline; margin:0;">Amanda Hultin <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-left:2px;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>.
+      <div class="footer-updated">Eventdata uppdaterades 25 April 2026.</div>
+    </div>
+  </footer>
+
+  <script>
+    const events = [{"type": "event", "source": "strava", "club": "Run Collective Stockholm", "title": "RUN COLLECTIVE - Social Saturday ☀️☕", "date": "2026-04-25T08:15:00", "location": "Ringvägen 54, Stockholm, Sverige", "description": "Experience a relaxing long run followed by a cozy fika at our favorite bakery on Södermalm☕\nGroup 1: Distance 8-9 km. Pace 6-min\nGroup 2: Distance 12-15 km. Pace 5:30-min\nGroup 3: Distance 12-15 km. Pace 5-min\nBag drop available and free to join☀️", "link": "https://www.strava.com/clubs/1093901/group_events/3481965378118405610", "image_url": "", "engagement": ""}, {"type": "event", "source": "strava", "club": "Vitamin Well", "title": "Gent Social Run 🇧🇪", "date": "2026-04-26T07:00:00", "location": "Zuiderlaan 14, Ghent, OV, Belgium", "description": "10K - open to all levels! 🏃🏻🏃🏼‍♀️\n\nFree Vitamin Well drinks & pastries after the run!", "link": "https://www.strava.com/clubs/1257927/group_events/3471131807401254182", "image_url": "", "engagement": ""}, {"type": "event", "source": "strava", "club": "Stockholm Run Club", "title": "SRC Sunday - long run", "date": "2026-04-26T08:00:00", "location": "Östermalms idrottsplats, Stockholm, Sweden", "description": "Start your Sunday the right way with a SRC long run. Maybe shake out the legs after premiärhalvan or just join us for a nice morning filled with good vibes!\n\nWe’ll be running 6 km + 8 km, stop after 6km, or roll the full distance.\n\nPace options:\n• 5:00 pace\n• 5:30 pace\n• 6:00 pace\n\nWhen: 10:00\nWhere: Östermalms IP\n\nAll sessions are free\nEveryone is welcome\nBag drop available as always\n\nLet’s boogie🕺", "link": "https://www.strava.com/clubs/690747/group_events/3481167689595199426", "image_url": "", "engagement": ""}, {"type": "event", "source": "strava", "club": "TSM Running", "title": "Långpass", "date": "2026-04-26T08:00:00", "location": "Gymnastik- och idrottshögskolan, Stockholm, Sverige", "description": "Vi frångår träningsprogrammet denna helg med ett lättare pass, dels för att det är en lopptät helg och dels för att grupperna tränat bra och att det kan vara bra med något lättare innan 2 helger med långa långpass.\n\nVill någon löpare ändå ha \"tuffare\" fart denna söndag kan man testa att \"gå upp\" en grupp och köra detta lite kortare långpass i tuffare fart hela vägen. Kör man i 3.00 gruppen och vill ha fart, kan man gör en loop på rundan med en egen tempohöjning. Halvmaratongrupperna kör ett kortare långpass utifrån att det kommer dagen efter Adidas Premiärhalvan – loppet som delvis varit halvmaratongruppernas mål under våren.\n\n\nMaratongrupperna\n\n• 3.00-gruppen ca 26 km grundfart 4.40 min/km. \n• 3.15-gruppen ca 25 km grundfart 5.00 min/km. \n• 3.30-gruppen ca 24 km grundfart 5.20 min/km. \n• 3.45-gruppen ca 23 km grundfart 5.40 min/km. \n• 4.00-gruppen ca 22 km grundfart 6.00 min/km. \n• 4.15-gruppen ca 21 km grundfart 6.20 min/km. \n• 4.30-gruppen ca 20 km grundfart 6.40 min/km. \n• 4.45-gruppen ca 19 km grundfart 6.55 min/km. \n• 5.00-gruppen ca 18 km grundfart 7.05 min/km. \n\nHalvmaratongrupperna – totalt distansmål 12 km\n\n• 1.40-gruppen. 5.20 min/km. (ca 64-67 min)\n• 1.50-gruppen. 5.40 min/km. (ca 67-69 min)\n• 1.55-gruppen 6.00 min/km (ca 72-73 min)\n• 2.00-gruppen 6.20 min/km (ca 76-78 min)\n• 2.10-gruppen 6.40 min/km (ca 80 min + tid för gåbackar)\n• 2.20-gruppen 7.00-7.10 min/km. (ca 85 min + tid för gåbackar)", "link": "https://www.strava.com/clubs/122407/group_events/3482671531559813376", "image_url": "", "engagement": ""}, {"type": "event", "source": "strava", "club": "ICIW Runners Europe", "title": "ICIW Running Collective Vienna", "date": "2026-04-26T09:30:00", "location": "Stubenring 6, Vienna, Austria", "description": "", "link": "https://www.strava.com/clubs/1482408/group_events/3479139765436557318", "image_url": "", "engagement": ""}, {"type": "weekly_run", "source": "weekly_run", "club": "Slowrunners Stockholm", "title": "Spring långsamt med oss🏃‍♀️🏃‍♂️", "date": "2026-04-26T10:00:00", "location": "Tanto vid utegymmet", "description": "Slowrunners är en löpargrupp som gjort succé med sin välkomnande attityd och sitt långsamma tempo. Äntligen en grupp för den som inte vill springa så fort! Tempot är 08:00 per kilometer och gruppen håller sig nära tunnelbana och kollektivtrafik så att du kan avsluta ditt pass när det passar dig.", "link": "https://runclubs.se/slowrunners-sthlm", "image_url": "", "engagement": ""}, {"type": "event", "source": "strava", "club": "East Run Club Gbg", "title": "EXTRA RUN. THE CLASSIC 14K.", "date": "2026-04-27T16:00:00", "location": "Waernsgatan 4A 416 70 Göteborg Sweden", "description": "April has to good weather to not add some more runs. Refueled by ProPud. Very very welcome!", "link": "https://www.strava.com/clubs/1701118/group_events/3482484061490712418", "image_url": "https://d3o5xota0a1fcr.cloudfront.net/v6/maps/UF773UVT6UFJXVYPZ7DH26ZBM6ERXVR6J3BSZA6VF5BDX6JH76L25T7UDGTHKABLIBWZDAIV5GVNZHUSRTDDTEEEH5PZ3BQNZI3QJFA=", "engagement": ""}, {"type": "event", "source": "strava", "club": "Måndagsklubben_gbg", "title": "Måndagsklubb v19 🪩", "date": "2026-04-27T16:00:00", "location": "Järntorget, Gothenburg, VG, Sweden", "description": "Ca 6km på Göteborgs bästa gator! \n18:00 Järntorget! Kom det blir kul, ta med en kompis vettja 🤘🏽\nPace: lugnt och fint utifrån närvarande grupp ❤️‍🔥", "link": "https://www.strava.com/clubs/1184888/group_events/3473385214531118266", "image_url": "", "engagement": ""}, {"type": "event", "source": "strava", "club": "Maurten", "title": "Maurten Social Ride — Girona 40km loop", "date": "2026-04-28T08:45:00", "location": "Carrer del Bellaire 7, Girona, Spanien", "description": "Join the Maurten Community Ride in the buildup to The Traka — a social ride with an average pace of 22km/h. \n\n09:45 — Meet next to La Comuna: https://maps.app.goo.gl/HdRXqJC4HiqvoVts6  \n\n10:00 — Roll out. Maurten will fuel the ride with products and one bottle.  \n\n\nGeneral information\n\nBring lights. Spare tube/plugs, extra snacks, a helmet and click pedals are mandatory. For everyone's safety, follow the ride leader's instructions and remember to obey all traffic lights and signs. Download the route to your head unit before the ride. \n\nRead this document before — you will need to sign it before starting the ride: https://drive.google.com/file/d/19cOfNemLsH0NRGK6WZCgSj5UCiFv2vJI/view?usp=sharing", "link": "https://www.strava.com/clubs/675301/group_events/3482750311417408074", "image_url": "https://d3o5xota0a1fcr.cloudfront.net/v6/maps/MCBKIQW4MZNKVJADIFKMMBFXC5F35WL4APZV6O5HTKSW3RKXBFZEFRYQZIQYXWGZWFIYG7AVL75YERM3CG4T3AYBVNAGFQ3N3LC7OII=", "engagement": ""}, {"type": "event", "source": "strava", "club": "ICIW Runners Europe", "title": "ICIW Running Collective Helsinki", "date": "2026-04-28T14:00:00", "location": "Aleksanterinkatu 17, Tampere, Finland", "description": "", "link": "https://www.strava.com/clubs/1482408/group_events/3481664287382660638", "image_url": "", "engagement": ""}, {"type": "event", "source": "strava", "club": "Vitamin Well", "title": "🇩🇰 Copenhagen social run - new product launch 🤫", "date": "2026-04-28T15:30:00", "location": "Njalsgade 72A, Copenhagen, HS, Denmark", "description": "Ny smag alert! 🥤🔥\nVi er klar med en spritny Vitamin Well-smagsvariant, og du har chancen for at være en af de første til at få fingrene i den.\n\nVi løber fra Islands Brygge, Njalsgade 72A 📍\nDer vil være bag drop, så du trygt kan lægge dine ting under løbet 🎒\n\nNår du løber med på dagen, er du automatisk med i lodtrækningen om 1 ramme af den nye smag.\nVi finder fem heldige vindere på dagen 🎉\n\nSes vi? 😄🏃‍♀️💛", "link": "https://www.strava.com/clubs/1257927/group_events/3479453586930004998", "image_url": "", "engagement": ""}, {"type": "event", "source": "strava", "club": "Vitamin Well", "title": "🇩🇰 Vejle Social run - Launch af ny smag 🤫", "date": "2026-04-28T15:30:00", "location": "Willy Sørensens Plads 3 7100 Vejle Danmark", "description": "Ny smag alert! 🥤🔥\nVi er klar med en spritny Vitamin Well-smagsvariant, og du har chancen for at være en af de første til at få fingrene i den.\n\nVi løber fra DGI huset i Vejle 📍\nDer vil være bag drop, så du trygt kan lægge dine ting under løbet 🎒\n\nNår du løber med på dagen, er du automatisk med i lodtrækningen om 1 ramme af den nye smag.\nVi finder fem heldige vindere 🎉", "link": "https://www.strava.com/clubs/1257927/group_events/3479454551639210784", "image_url": "", "engagement": ""}, {"type": "event", "source": "strava", "club": "Vitamin Well", "title": "🇩🇰 Aalborg social run - Launch af ny smag🤫", "date": "2026-04-28T15:30:00", "location": "C W Obels Plads 1A 9000 Aalborg Danmark", "description": "Ny smag alert! 🥤🔥\nVi er klar med en spritny Vitamin Well-smagsvariant, og du har chancen for at være en af de første til at få fingrene i den.\n\nVi løber fra C.W. Obels Plads 1A, Aalborg 📍\nDer vil være bag drop, så du trygt kan lægge dine ting under løbet 🎒\n\nNår du løber med på dagen, er du automatisk med i lodtrækningen om 1 ramme af den nye smag.\nVi finder fem heldige vindere på dagen🎉", "link": "https://www.strava.com/clubs/1257927/group_events/3479453096554659670", "image_url": "", "engagement": ""}, {"type": "event", "source": "strava", "club": "Vitamin Well", "title": "🇩🇰 Odense social run - launch af ny smag", "date": "2026-04-28T15:30:00", "location": "Thriges Plads 3 5000 Odense C Danmark", "description": "Ny smag alert! 🥤🔥\nVi er klar med en spritny Vitamin Well-smagsvariant, og du har chancen for at være en af de første til at få fingrene i den.\n\nVi løber fra Ground i Odense📍\nDer vil være bag drop, så du trygt kan lægge dine ting under løbet 🎒\n\nNår du løber med på dagen, er du automatisk med i lodtrækningen om 1 ramme af den nye smag.\nVi finder fem heldige vindere på dagen🎉", "link": "https://www.strava.com/clubs/1257927/group_events/3479454909516814342", "image_url": "", "engagement": ""}, {"type": "event", "source": "strava", "club": "Vitamin Well", "title": "🇩🇰 Aarhus social run - launch af ny smag 🤫", "date": "2026-04-28T15:30:00", "location": "Hveensgade 5 8000 Aarhus C Danmark", "description": "Ny smag alert! 🥤🔥\nVi er klar med en spritny Vitamin Well-smagsvariant, og du har chancen for at være en af de første til at få fingrene i den.\n\nVi løber fra Pakhus 77, Aarhus 📍\nDer vil være bag drop, så du trygt kan lægge dine ting under løbet 🎒\n\nNår du løber med på dagen, er du automatisk med i lodtrækningen om 1 ramme af den nye smag.\nVi finder fem heldige vindere 🎉", "link": "https://www.strava.com/clubs/1257927/group_events/3479454085321646362", "image_url": "", "engagement": ""}, {"type": "event", "source": "strava", "club": "Göteborg Running Club (GRC)", "title": "GRC | ICIW", "date": "2026-04-28T15:45:00", "location": "Anders Oscar Elliots väg 10 413 11 Göteborg Sverige", "description": "Välkommen till en utmanande och energifylld löpupplevelse med GRC, varje tisdag bjuder vi på intervallbaserade pass som mixar löpning, styrka och rörlighet.\n\nOavsett om du precis knutit dina första löparskor eller redan tuggar mil som vardagsmat - det här passet passar dig.\n\nDen här veckan springer vi tillsammans med ICIW! Det svenska sportklädesmärket lanserar sin tredje löpkollektion. De 50 första på plats får den exklusiva GRC x ICIW-t-shirten att ta med hem.\n\nVeckans tema: MIXED INTERVAL\nEtt varierat intervallpass med plana sträckor, backar och tröskelinslag – perfekt för dig som vill bygga både fart och uthållighet. Vi varvar korta och längre intervaller med styrkeövningar som utmanar hela kroppen.\n\nUpplägg:\nVi samlas mitt i Slottsskogen nära Villa Belparc, där ICIW är på plats och visar upp sin nya kollektion. Därefter värmer vi upp i två grupper, innan det är dags för intervaller.\n\nEfter passet bjuds det på snacks, så häng kvar, snacka löpning och fyll på med energi!\n\nSå bokar du:\nPasset bokas via Peach eller Bruce. Läs mer på → www.goteborgrunningclub.se\n\n- Månadsbetalning: 100 kr\n- 10-kort: 400 kr\n- Drop-in: 50 kr", "link": "https://www.strava.com/clubs/487713/group_events/3477708692936180970", "image_url": "", "engagement": ""}, {"type": "event", "source": "strava", "club": "ICIW Runners Europe", "title": "ICIW Running Collective Gothenburg x GRC", "date": "2026-04-28T15:45:00", "location": "Slottskogen, Gothenburg, VG, Sweden", "description": "Sign up here: https://peach.nu/activities/evbjvjbIL3WkfWfd8jz1", "link": "https://www.strava.com/clubs/1482408/group_events/3481600023808516740", "image_url": "", "engagement": ""}, {"type": "event", "source": "strava", "club": "RTC", "title": "RTC x Stadion 280426", "date": "2026-04-28T16:30:00", "location": "115 51 Stockholm Sverige", "description": "280426 RTC x Stadion \nSamling kl 18.30\nUppvärmningsjogg ca 5-10 min \nIntervaller : Fartlek 15x90/30 sek", "link": "https://www.strava.com/clubs/1012174/group_events/3482648192236525410", "image_url": "", "engagement": ""}, {"type": "event", "source": "strava", "club": "East Run Club Gbg", "title": "EXTRA RUN. MORNING RUN @ 06.", "date": "2026-04-29T04:00:00", "location": "Waernsgatan 4A 416 70 Göteborg Sweden", "description": "Yes, you hear right. Morning run again. Little bit earlier. Refueled by ProPud. Very very welcome!", "link": "https://www.strava.com/clubs/1701118/group_events/3482484627221385772", "image_url": "https://d3o5xota0a1fcr.cloudfront.net/v6/maps/46QOKFYKCMNSWC4M4VRXBDLM27MADOFDE3PHO46BD6YTYQ7VD5UWFLPRLXMBWHGW3QOCDN6NLXJK5YZ2JUVLHPSYSGFOMSIYNINYTBI=", "engagement": ""}, {"type": "event", "source": "strava", "club": "Maurten", "title": "Maurten Women's Social Ride — Girona 30km loop", "date": "2026-04-29T08:45:00", "location": "Carrer del Bellaire 7, Girona, Spanien", "description": "Join the Maurten Women’s Ride in the buildup to The Traka — a social gravel ride with an average pace of 22km/h.  \n \n09:45 — Meet next to La Comuna: https://maps.app.goo.gl/HdRXqJC4HiqvoVts6  \n\n10:00 — Roll out. Maurten will fuel the ride with products and one bottle. \n\nGeneral information\n\nBring lights. Spare tube/plugs, extra snacks, a helmet and click pedals are mandatory. For everyone's safety, follow the ride leader's instructions and remember to obey all traffic lights and signs. Download the route to your head unit before the ride. \n\nRead this document before — you will need to sign it before starting the ride: https://drive.google.com/file/d/19cOfNemLsH0NRGK6WZCgSj5UCiFv2vJI/view?usp=sharing \n\n \nLIMITATIONS FEMALE PANEL TALK\n\nAfter the ride, join the Maurten No Limitations Female Panel Talk on fueling, with lunch included. Limited spots available — sign up below. \n\nWednesday 29 April at 13:30.  \nWhere — La Comuna, Carrer del Bellaire 7  \nWhat´s included — Free lunch and Maurten fuel \n \n\nSign up here  — https://www.eventbrite.com/e/no-limitations-female-panel-talk-tickets-1987984470065?aff=oddtdtcreator", "link": "https://www.strava.com/clubs/675301/group_events/3482754314644045386", "image_url": "https://d3o5xota0a1fcr.cloudfront.net/v6/maps/PZTYKTC4HLQYK32FPQLDTLPOA3WUAB2HKE4WNQQ35ZEAZ6FVL7JO262ZW3UWJYH4TISEX2QADFURAUS62EO5U75GFT2DECBIQS2QQGQ=", "engagement": ""}, {"type": "event", "source": "strava", "club": "ON RUN CLUB STOCKHOLM", "title": "On Run Club Stockholm", "date": "2026-04-29T15:30:00", "location": "Norrlandsgatan 10, Stockholm, Sweden", "description": "On Run Club Stockholm: Trail Run\n\nJoin us for a trail run, fresh air, movement and great energy!\n\nDate: 29 April\nTime: 17.30\nLocation: Norrlandsgatan 10\n\nSchedule\n17:15 – Shoe try on\n17:30 – Run begins\n\nRun\n~8 km mixed-terrain run\n\nTwo guided pace groups:\n• 5:00 min/km\n• 6:00 min/km\n\nSettle into your rhythm, move with the group, or push the pace when it feels right.\n\nTest Shoes\nCloudultra 3 \nCloudultra Pro\n\nPost run \nRefreshments, and time to connect.", "link": "https://www.strava.com/clubs/1947400/group_events/3482732174738699736", "image_url": "", "engagement": ""}, {"type": "event", "source": "strava", "club": "Vitamin Well", "title": "🇦🇹 VIENNA Vitamin Well x Polestar Community Run", "date": "2026-04-29T15:30:00", "location": "Wallnerstraße 5, Vienna, Austria", "description": "Everyone is welcome running with us - this time we are hosting the run together with polestar 🏃🏼‍♀️🫶🏻 meeting Point: 5:30pm, run start at at 5:45pm\n✔️ free vitamin well & snacks after the run\n✔️ easy pace / everyone can join (Ringrunde)\n✔️ bag drop", "link": "https://www.strava.com/clubs/1257927/group_events/3479793500616380870", "image_url": "", "engagement": ""}, {"type": "event", "source": "strava", "club": "Vitamin Well", "title": "Run Well in Stockholm", "date": "2026-04-29T15:30:00", "location": "Sturegatan 11, Stockholm, Sverige", "description": "Varmt välkommen till Run Well - ett socialt och engagerande löppass som hålls av Vitamin Well för alla löpsugna.  🏃🏼‍♀️\n\nÖvar du inför ett lopp, vill få in ett extra träningspass eller är taggad på träffa nya människor? Oavsett vad ditt syfte är, så är du välkommen. Tänk om ditt nya PB eller din nya bästis väntar på dig just på Run Well!\n\nOtroliga Mateo Florez och Vitamin Well teamet guidar oss längs en fin runda. \n\nExakt rutt och pace kommer (denna text kommer uppdateras)\n\nEfter rundan hänger vi kvar, snackar och fyller på med kall Vitamin Well och goda Barebells 🤍\n\n📍 Samlingsplats: Sturegatan 11, utanför Vitamin Well-kontoret\n⏰ Tid: 17:30\n👜 Väskförvaring: Finns på plats\n\nDet finns inte möjlighet för ombyte eller toalett, så kom redo och klara.\n\nVi ses på onsdag!", "link": "https://www.strava.com/clubs/1257927/group_events/3482686218286425344", "image_url": "", "engagement": ""}, {"type": "event", "source": "strava", "club": "STADIUM RUN CLUB - Sverige", "title": "STOCKHOLM - STADIUM RUN CLUB", "date": "2026-04-30T15:30:00", "location": "Kungsgatan 8, Stockholm, Sweden", "description": "Stockholm 📍\n\nStadium Run Club\nTorsdag 30/4\nKl: 17.30 - 18.30 \n\nHejsan! 👋\nNu är anmälan uppe för nästa veckas Run Club! Ett perfekt tillfälle för dig som vill springa tillsammans med andra 🏃🏼‍♀️🏃🏽‍♂️. Passen är utformade så att alla kan vara med och utmana sig själva på sina egna villkor och självklart är alla välkomna oavsett tidigare löpvana.\n\n- Uppvärmning \n- Löpskolning \n- Intervaller \n- Nedjogg \n\nMöts inne i butiken på Kungsgatan 8 📍\n\nAnmäla er gör ni genom att klicka ”im in” nedan\n\nGenom att anmäla mig godkänner jag Stadiums integritetspolicy, att mina uppgifter hanteras i enlighet med GDPR och att få mejlkommunikation kopplat till eventet.\n\nStadiums integritetspolicy hittar du här.\nhttp://www.stadium.se/privacy \nSes på torsdag 👏", "link": "https://www.strava.com/clubs/1933788/group_events/3482663509844901234", "image_url": "", "engagement": ""}, {"type": "event", "source": "strava", "club": "TSM Running", "title": "Provlöpning Stockholm Marathon-banan", "date": "2026-05-03T08:00:00", "location": "Stockholms Olympiastadion, Stockholm, Sverige", "description": "OBS! Föranmälan på webben obligatorisk.\n\nDenna söndag genomför vi årets provlöpning av maraton-banan.\nVi springer c:a 30km av banan och det finns vätskekontroll vid ca 6.5 km och vid 24,5 km där Enervit bjuder på samma sportdryck, Enervit Isotonic Drink (apelsinsmak), som serveras under Adidas Stockholm Marathon.\nEfter provlöpningen bjuds det på frukt och dryck.\n\nFöranmälan är obligatorisk då det finns ett maxtak på c:a 1200 deltagare.\n\nTSM:are anmäler sig gratis under \"Mina Sidor\" (https://manage.marathongruppen.se/) Under \"TSM - Erbjudanden och rabatter\".\n\nMer information om passet finns här:\n\nhttps://www.stockholmmarathon.se/tsm-running/provlopning-2026/", "link": "https://www.strava.com/clubs/122407/group_events/3478702152397723848", "image_url": "https://d3o5xota0a1fcr.cloudfront.net/v6/maps/4N32YZWHKAR2A5SUV7YF3QQ5WVUBGDPO6OQI54QVBDX44VDMRE3IWWAV44E5QUM4BXT6Y2FL2P4VDN2CODIFSQCJKL3G7HJEIJDXGUA=", "engagement": ""}, {"type": "weekly_run", "source": "weekly_run", "club": "Slowrunners Stockholm", "title": "Spring långsamt med oss🏃‍♀️🏃‍♂️", "date": "2026-05-03T10:00:00", "location": "Tanto vid utegymmet", "description": "Slowrunners är en löpargrupp som gjort succé med sin välkomnande attityd och sitt långsamma tempo. Äntligen en grupp för den som inte vill springa så fort! Tempot är 08:00 per kilometer och gruppen håller sig nära tunnelbana och kollektivtrafik så att du kan avsluta ditt pass när det passar dig.", "link": "https://runclubs.se/slowrunners-sthlm", "image_url": "", "engagement": ""}, {"type": "event", "source": "strava", "club": "Göteborg Running Club (GRC)", "title": "GRC | The Roman Way 🇮🇹", "date": "2026-05-05T15:45:00", "location": "Gaetanos Pizza Italiana, Gothenburg, VG, Sweden", "description": "Sign up -> https://peach.nu/c/pZ7nSaX6YL0h2LjiWxgA\n\nGRC | The Roman Way 🍕🏃‍♂️\n\nVi tar tisdagspasset till nya marker och rundar av det på bästa möjliga sätt, med pizza och skönt häng tillsammans med Rome Half Marathon.\n\nVi möts vid Gaetanos Pizzeria och ger oss ut på en social run i en eller två tempoanpassade grupper. Fokus är enkelt: springa tillsammans, snacka, och njuta av löpningen och sällskapet.\n\nEfteråt?\nPizza slices, återhämtning och skön stämning hos Gaetanos.\n\nDe 50 första på plats får en exklusiv GRC x The Roman Way-t-shirt.\n\n⸻\n\nOm GRC-passen\n\nVarje tisdag bjuder GRC på intervallbaserade pass där löpning, styrka och rörlighet möts.\nOavsett nivå, här finns plats för dig.\n\n⸻\n\nSå bokar du\n\nVia Peach eller Bruce\nMer info → www.goteborgrunningclub.se\n\nMånadsbetalning 100 kr\n10-kort 400 kr\nDrop-in 50 kr", "link": "https://www.strava.com/clubs/487713/group_events/3480924432159498330", "image_url": "", "engagement": ""}, {"type": "event", "source": "strava", "club": "RTC", "title": "RTC x Runners Store - Kungsholmen runt (10 k / halvmaraton)", "date": "2026-05-09T09:00:00", "location": "Smedsuddsvägen 6 112 35 Stockholm Sverige", "description": "Save the date! \nMer info kommer senare. RTC x Runners store kommer att ordna ett gemensamt event inför loppet. \n\nCOOP Kungsholmen Runt är godkänt av det Internationella Friidrottsförbundet, World Athletics, vilket garanterar högsta kvalitet.\n\n11.00: 10km, startgrupp Elit, 1 och 2, män, kvinnor (födda 2012 eller tidigare).\n11.05: 10km, startgrupp 3 och 4, män, kvinnor (födda 2012 eller tidigare).\n\n12.00: Halvmarathon, startgrupp 1 och 2 (födda 2009 eller tidigare).\n12.05: Halvmarathon, startgrupp 3 och 4 (födda 2009 eller tidigare).", "link": "https://www.strava.com/clubs/1012174/group_events/3425585168191009876", "image_url": "", "engagement": ""}, {"type": "event", "source": "strava", "club": "Mikkeller Running Club Stockholm", "title": "Bar to Bar", "date": "2026-05-09T10:00:00", "location": "Omnipollo's Church, Stockholm, Sweden", "description": "The legendary Bar to Bar is back for the 10th time.\nWe celebrate by going to some of our favorite bars and breweries. \n\nJoin us at Omnipollo Church in Sundbyberg at 12:00.\nWe will divide into groups and start running when ready. \n\nOur facebook event will have more details on stops and timelines. \n\nWelcome!", "link": "https://www.strava.com/clubs/302996/group_events/3479404901998028688", "image_url": "", "engagement": ""}, {"type": "event", "source": "strava", "club": "RTC", "title": "RTC x Red Bull Wings for Life World Run 100526", "date": "2026-05-10T10:00:00", "location": "Tändstickspalatset, Stockholm, Sweden", "description": "RTC x Red Bull Wings for Life World Run 100526\n\nSöndag 10 maj kör vi – och du är inbjuden.\n\nVi samlas kl. 12.00 på RTC (Västra Trädgårdsgatan 15) för bagdrop, uppsnack och lagbild innan start.\nKl. 13.00 går startskottet för Wings for Life World Run.\n\nInför loppet bjuder RTC på kall Red Bull och energi från Umara – så du är redo att leverera.\n\nEfter målgång väntar vår signatur After Run:\nBastu, bärs, nygräddad pizzabuffé från våra vänner på Tropical och skönt häng i gymmet.\n\nSchema:\nSamling: 12.00\nStart: 13.00\nPizza serveras: 15.00–16.30\nVi håller öppet tills alla är nöjda.\n\nFör att delta:\n– Du måste vara anmäld till loppet och springa i lag RTC i World Run-appen\n– Vara medlem i RTC på Strava\n– Följa @robergtrainingclub på Instagram\n\nEventet är gratis och vi bjuder på mat och dryck.\nBegränsat antal platser – först till kvarn gäller.\n\nVi ses på startlinjen.", "link": "https://www.strava.com/clubs/1012174/group_events/3482350045591330208", "image_url": "", "engagement": ""}, {"type": "event", "source": "strava", "club": "RTC", "title": "RTC x Red Bull wings for life", "date": "2026-05-10T11:00:00", "location": "(59.3323, 18.1155)", "description": "Välgörenhetslopp för ryggmärgsforskning! Mer info kommer senare. Save the date! 🏃🧑‍🦽💸", "link": "https://www.strava.com/clubs/1012174/group_events/3422520347876135950", "image_url": "", "engagement": ""}, {"type": "event", "source": "strava", "club": "Run with ASICS FrontRunner Sweden", "title": "ASICS FrontRunner MONTHLY RUN CLUB", "date": "2026-05-16T08:00:00", "location": "Hornsviksstigen 117 28 Stockholm Sweden", "description": "Kom och spring med ASICS FrontRunners, en löpgrupp som välkomnar alla tempon! På månadslöpen spring vi för en #soundmindsoundbody!\n\n📍Kl10 i Tantolunden, kom gärna 5min innan\n🏃‍♀️Vi anpassar hastigheten efter gruppen och ger oss på Årstaviken runt som är ca 7km\n☕️Efter löpturen så tar de som vill en välförtjänt fika tillsammans!\n\nI nuläget har vi ingen bag drop så se till att anpassa kläderna!", "link": "https://www.strava.com/clubs/1857392/group_events/3470014131983368566", "image_url": "", "engagement": ""}, {"type": "event", "source": "strava", "club": "BMW BERLIN-MARATHON", "title": "VITAMIN WELL Women's Race", "date": "2026-05-16T15:00:00", "location": "Strasse des 17. Juni, Berlin, Deutschland", "description": "MOVE FOR CHANGE!\nGermany’s largest women’s running event brings thousands of participants together in the heart of Berlin to celebrate movement, community and empowerment.\n\nThe VITAMIN WELL Women’s Run is more than a race — it’s a charity run supporting meaningful causes while encouraging women of all levels to get active. \nCan’t make it to Berlin? You can also take part virtually and join the movement from anywhere. 🏃‍♀️✨", "link": "https://www.strava.com/clubs/1536714/group_events/3481229670186890628", "image_url": "https://d3o5xota0a1fcr.cloudfront.net/v6/maps/HVOALD52QYQD47GKQKEBBR2QZUIPSD23VWYZGYH7IVQWIJ5AS3UPNWXXK75VOK7D637QYNK6IEEIKSJZWQC2XFUFHPDMEWSBK3IBTLI=", "engagement": ""}, {"type": "event", "source": "strava", "club": "Vitamin Well", "title": "🇦🇹 INNSBRUCK - Vitamin Well Community Run", "date": "2026-05-18T16:15:00", "location": "Ing-Thommen-Straße 3 6020 Innsbruck Österreich", "description": "Lauf’ mit uns in Innsbruck 🫶🏻🏔️🏃🏼‍♀️\n\n• Wann: 18.05. um 18:15 \n• Meeting Point: Coffeelab Innsbruck\n• Pace: 6:15-6:30 (ca. 6km) \n\nFree Vitamin Well und Snacks nach dem Run inklusive 🥪💦😁 \n\n#everyone is Welcome 🤗", "link": "https://www.strava.com/clubs/1257927/group_events/3481619628406616708", "image_url": "", "engagement": ""}, {"type": "event", "source": "strava", "club": "Vitamin Well", "title": "Vitamin Well Mielijuoksu 2026", "date": "2026-05-23T09:30:00", "location": "Meripuisto, Helsinki, Finland", "description": "Vitamin Well Mielijuoksu is back! \nSign up now: https://ssl.eventilla.com/vitaminwell_mielijuoksu2026\n\nVitamin Well is organizing a charity event for the sake of Mental Health together with MIELI Ry at Meripuisto in Helsinki on Saturday, May 23, 2026💚\n\nThis year, more start times have been added  so that even more runners and entire families can join!\n\nThe running route is 1-2km, and you can complete as many laps as you like within the given time. The style is free, you can walk or run. Vitamin Well will donate to MIELI Ry for every completed lap. The participation fee (€10) will also be donated in full to support mental health work and crisis assistance in Finland💚\n\nThis year, members of the band Haloo Helsinki! will also be joining the event!\n\nAdditionally, Cafe Carusel will offer a free coffee or tea with every lunch purchase during the event and will donate €1 from each lunch sold to MIELI Ry.\n\nChoose your own start group:\n\nFamily Start 1 \n11:00 – Race office opens (open until 17:00) \n12:00 – Welcome & warm-up \n12:30 – Start \n13:30 – Running time ends \n\nFamily Start 2 \n14:00 – Welcome & warm-up \n14:30 – Start \n15:30 – Running time ends \n\nOpen Start \n16:30 – Welcome & warm-up \n17:00 – Start \n19:00 – Running time ends & event ends \n\nFamily Start \nThe family start is designed for the whole family, from the youngest members to adults. The route is 1.2 km long, and you can complete as many laps as you like within one hour. For each lap, Vitamin Well will donate €0.50 to MIELI Mental Health Finland’s charity fund. \n\nGeneral Start \nIn the general start, you have two hours to run the route at your own pace. The route is 2.1 km long, and Vitamin Well will donate €1 for each completed lap to MIELI Mental Health Finland’s charity fund. \n\nLOCATION: Meripuisto, Helsinki\n\nSpots are limited! Secure your spot soon!\n\nSign up now: https://ssl.eventilla.com/vitaminwell_mielijuoksu2026", "link": "https://www.strava.com/clubs/1257927/group_events/3474337184867875024", "image_url": "", "engagement": ""}, {"type": "event", "source": "strava", "club": "Vitamin Well", "title": "🇩🇰 Exercere x Vitamin Well social run 🩵", "date": "2026-06-02T16:00:00", "location": "Gammel Mønt 1 1117 København K Danmark", "description": "EXERCERE x VITAMIN WELL 🩵\n\nJoin us for a social run from Exercere pop-up store in central Copenhagen. \n\n 5K route paced for all levels\nGammel Mønt 1, Copenhagen \n\nFeel the energy of the city, connect with fellow runners, and enjoy refreshing Vitamin Well and goodies.\n\nLeave feeling motivated, energized, and ready for your next run.\n\nEnjoy 20% off your next purchase with a voucher valid for 7 days after the event. The voucher can only be used in the pop-up store.\n\nFree to join! You can leave your luggage.", "link": "https://www.strava.com/clubs/1257927/group_events/3476567782434324498", "image_url": "", "engagement": ""}, {"type": "event", "source": "strava", "club": "Göteborg Trailrun", "title": "Sverige Runt - provlöp 2", "date": "2026-06-06T07:30:00", "location": "Ögärdesvägen, Göteborg, VG, Sverige", "description": "Fira Nationaldagen med att springa Sverige runt 🙂\n\nTillsammans i grupp med Team Nordic Trails och Språng Träning & Äventyrs coacher.\n\n \nca 8.5km och 250hm genom hela Sverige 😉 på delar av vår 22 och 44 km bana. (Banan ser om som en Sverigekarta med lite fantasi, därav namnet Sverige runt…)\n \nEn runda som innehåller alla delar av Sverige; Upp på höga toppar, genom trollskog, över mäktiga broar, stora konstverk, igenom stora älvar och runt djupa kalla sjöar.\n \nMerrell är på plats så du har möjlighet att testa deras nya Agility Peak 6 sko. Begränsat antal, först till kvarn!\n\nGratis men vi vill att du anmäler dig via loppets hemsida!", "link": "https://www.strava.com/clubs/568517/group_events/3471543628682641624", "image_url": "", "engagement": ""}, {"type": "event", "source": "strava", "club": "Göteborg Trailrun", "title": "Provlöp av 8 km banan", "date": "2026-06-24T16:00:00", "location": "Kviberg, Göteborg, VG, Sverige", "description": "Häng med och njut av sommarkvällen på Göteborgs roligaste bana. Upplev de trolska stigarna, den lummiga skogen och njut av den mäktiga utsikten.\n \nVi springer banan i minst 3 grupper (lugn, lugnare, lugnast…)\n\nDessutom har du möjlighet att testa skor från Merrell under passet. Först till kvarn.\n\nGratis, men vi vill att du anmäler dig via loppets hemsida.", "link": "https://www.strava.com/clubs/568517/group_events/3471544110401915642", "image_url": "", "engagement": ""}, {"type": "event", "source": "strava", "club": "Göteborg Trailrun", "title": "Merrell Göteborg Trailrun", "date": "2026-09-05T07:00:00", "location": "Kviberg, Göteborg, VG, Sverige", "description": "Välkommen till Merrell Göteborg Trailrun 5 september 2026!\n\nVälj mellan 8, 12, 22, 33, 45 km eller barndistanser.\n\nVi ses på stigarna!", "link": "https://www.strava.com/clubs/568517/group_events/3471544563506144290", "image_url": "", "engagement": ""}];
+
+    const SV_MONTHS_SHORT = ['jan','feb','mar','apr','maj','jun','jul','aug','sep','okt','nov','dec'];
+    const SV_DAYS         = ['Söndag','Måndag','Tisdag','Onsdag','Torsdag','Fredag','Lördag'];
+    const SV_MONTHS       = ['Januari','Februari','Mars','April','Maj','Juni','Juli','Augusti','September','Oktober','November','December'];
+
+    let activeSource = 'all';
+
+    function parseDate(str) {
+      if (!str) return null;
+      const d = new Date(str);
+      return isNaN(d.getTime()) ? null : d;
+    }
+
+    function typeBadge(type) {
+      if (type === 'weekly_run') return `<span class="type-badge type-weekly">Weekly run</span>`;
+      return `<span class="type-badge type-event">Event</span>`;
+    }
+
+    function sourceBadge(source) {
+      if (source === 'weekly_run') return '';
+      if (source === 'special') return `<span class="source-badge source-special">Special Event</span>`;
+      const cls   = source === 'strava' ? 'source-strava' : 'source-other';
+      const label = source === 'strava' ? 'Strava' : source;
+      return `<span class="source-badge ${cls}">${label}</span>`;
+    }
+
+    function cardHTML(ev) {
+      const d       = parseDate(ev.date);
+      const hasDate = d !== null;
+
+      let dateBlockHTML;
+      if (hasDate) {
+        const dayNum   = d.getDate();
+        const monthStr = SV_MONTHS_SHORT[d.getMonth()];
+        const dayStr   = SV_DAYS[d.getDay()].slice(0, 3);
+        dateBlockHTML = `
+          <div class="event-date-block">
+            <div class="event-day-num">${dayNum}</div>
+            <div class="event-month-abbr">${monthStr}</div>
+            <div class="event-day-name">${dayStr}</div>
+          </div>`;
+      } else {
+        dateBlockHTML = `
+          <div class="event-date-block no-date">
+            <div class="event-day-num">—</div>
+          </div>`;
+      }
+
+      const imageHTML = ev.image_url
+        ? `<img class="event-card-image" src="${ev.image_url}" alt="" loading="lazy">`
+        : '';
+
+      const locHTML = ev.location
+        ? `<div class="event-location">
+             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+             ${ev.location}
+           </div>`
+        : '';
+
+      const descHTML = ev.description
+        ? `<p class="event-desc">${ev.description}</p>`
+        : '';
+
+      const engHTML = ev.engagement && ev.source === 'strava'
+        ? `<span class="event-engagement">
+             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+             ${ev.engagement} anmälda
+           </span>`
+        : '<span></span>';
+
+      const isExternal = ev.source === 'strava';
+      const ctaHTML = ev.link
+        ? (isExternal
+            ? `<span class="event-cta">Läs mer <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="vertical-align:middle;margin-left:2px;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>`
+            : `<span class="event-cta">Läs mer <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>`)
+        : '';
+
+      const inner = `
+        ${imageHTML}
+        <div class="event-card-top">
+          ${dateBlockHTML}
+          <div class="event-card-body">
+            <div class="event-source-row">
+              ${typeBadge(ev.type)}
+              ${sourceBadge(ev.source)}
+              <span class="event-club">${ev.club}</span>
+            </div>
+            <div class="event-title">${ev.title}</div>
+            ${locHTML}
+            ${descHTML}
+          </div>
+        </div>
+        <div class="event-card-footer">
+          ${engHTML}
+          ${ctaHTML}
+        </div>`;
+
+      const specialClass = ev.source === 'special' ? ' event-card--special' : '';
+      const opensNewTab  = ev.source === 'strava' || ev.source === 'special';
+      if (ev.link) {
+        return `<a href="${ev.link}" ${opensNewTab ? 'target="_blank" rel="noopener"' : ''} class="event-card${specialClass}" aria-label="${ev.title}">${inner}</a>`;
+      } else {
+        return `<div class="event-card event-card--no-link${specialClass}" aria-label="${ev.title}">${inner}</div>`;
+      }
+    }
+
+    function render() {
+      const container = document.getElementById('events-container');
+      container.innerHTML = '';
+
+      const filtered = events.filter(ev => activeSource === 'all' || ev.source === activeSource);
+
+      if (filtered.length === 0) {
+        container.innerHTML = `
+          <div class="no-events">
+            <span class="no-events-icon">🏃</span>
+            <p>Inga events hittades med dessa filter.</p>
+          </div>`;
+        document.getElementById('stat-total').textContent = 0;
+        document.getElementById('stat-clubs').textContent = 0;
+        return;
+      }
+
+      const byDate = {};
+      const noDate = [];
+      filtered.forEach(ev => {
+        const d = parseDate(ev.date);
+        if (d) {
+          const key = ev.date.slice(0, 10);
+          if (!byDate[key]) byDate[key] = { label: '', events: [] };
+          byDate[key].events.push(ev);
+          if (!byDate[key].label) {
+            byDate[key].label = SV_DAYS[d.getDay()] + ' ' + d.getDate() + ' ' + SV_MONTHS[d.getMonth()];
+          }
+        } else {
+          noDate.push(ev);
+        }
+      });
+
+      Object.keys(byDate).sort().forEach(key => {
+        const group = byDate[key];
+        const count = group.events.length;
+        const section = document.createElement('div');
+        section.className = 'date-group';
+        section.innerHTML = `
+          <div class="date-heading">
+            <span class="date-name">${group.label}</span>
+            <div class="date-line"></div>
+            <span class="date-count">${count} event${count !== 1 ? 's' : ''}</span>
+          </div>
+          <div class="events-grid">${group.events.map(cardHTML).join('')}</div>`;
+        container.appendChild(section);
+      });
+
+      if (noDate.length > 0) {
+        const section = document.createElement('div');
+        section.className = 'date-group';
+        section.innerHTML = `
+          <div class="date-heading">
+            <span class="date-name">Inget datum</span>
+            <div class="date-line"></div>
+            <span class="date-count">${noDate.length} post${noDate.length !== 1 ? 'ar' : ''}</span>
+          </div>
+          <div class="events-grid">${noDate.map(cardHTML).join('')}</div>`;
+        container.appendChild(section);
+      }
+
+      document.getElementById('stat-total').textContent = filtered.length;
+      document.getElementById('stat-clubs').textContent = new Set(filtered.map(ev => ev.club).filter(Boolean)).size;
+    }
+
+    document.querySelectorAll('[data-filter]').forEach(btn => {
+      btn.addEventListener('click', function() {
+        document.querySelectorAll('[data-filter="source"]').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        activeSource = this.dataset.value;
+        render();
+      });
+    });
+
+    const navToggle  = document.querySelector('.nav-toggle');
+    const mobileMenu = document.querySelector('.mobile-menu');
+    navToggle.addEventListener('click', function() {
+      const isOpen = mobileMenu.classList.toggle('open');
+      navToggle.classList.toggle('open');
+      navToggle.setAttribute('aria-expanded', isOpen);
+      navToggle.setAttribute('aria-label', isOpen ? 'Stäng meny' : 'Öppna meny');
+    });
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0 });
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+    render();
+  </script>
+  <script src="newsletter.js"></script>
+</body>
+</html>
