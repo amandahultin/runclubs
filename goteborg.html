@@ -154,6 +154,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .filter-toggle-chevron { transition: transform 0.2s; color: #D4715E; }
     .filters.open .filter-toggle-chevron { transform: rotate(180deg); }
 
+    .filter-actions { display: flex; justify-content: space-between; align-items: center; }
     .clear-filters {
       font-size: 11px; color: #D4715E; background: none; border: none;
       cursor: pointer; font-family: 'DM Sans', sans-serif; font-weight: 500;
@@ -162,6 +163,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     }
     .clear-filters.show { display: inline-block; }
     .clear-filters:hover { color: #C8604A; }
+    .close-filters {
+      display: none; font-size: 11px; color: #D4715E; background: none; border: none;
+      cursor: pointer; font-family: 'DM Sans', sans-serif; font-weight: 500;
+      padding: 6px 0; text-decoration: underline;
+      text-underline-offset: 2px; transition: color 0.15s;
+    }
+    .close-filters:hover { color: #C8604A; }
 
     /* ── RESULTS BAR ───────────────────── */
     .results-bar {
@@ -317,6 +325,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       .filter-toggle { display: flex; }
       .filters-inner { display: none; flex-direction: column; gap: 1rem; margin-top: 1rem; }
       .filters.open .filters-inner { display: flex; }
+      .close-filters { display: inline-block; }
       .filter-group { width: 100%; }
       .filter-label { width: 100%; margin-bottom: 4px; }
       .results-bar { padding: 0.75rem 1.25rem; }
@@ -457,7 +466,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <button class="pill" data-filter="dag" data-value="sön">Sön</button>
         </div>
       </div>
-      <button class="clear-filters" id="clear-filters">Rensa filter</button>
+      <div class="filter-actions">
+        <button class="clear-filters" id="clear-filters">Rensa filter</button>
+        <button class="close-filters" id="close-filters">Stäng</button>
+      </div>
     </div>
   </div>
 
@@ -742,6 +754,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       filterToggle.addEventListener('click', () => {
         const isOpen = filtersEl.classList.toggle('open');
         filterToggle.setAttribute('aria-expanded', isOpen);
+      });
+    }
+    const closeFiltersBtn = document.getElementById('close-filters');
+    if (closeFiltersBtn && filtersEl) {
+      closeFiltersBtn.addEventListener('click', () => {
+        filtersEl.classList.remove('open');
+        if (filterToggle) filterToggle.setAttribute('aria-expanded', 'false');
       });
     }
     // Update active filter count badge
