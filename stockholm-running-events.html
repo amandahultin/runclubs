@@ -551,7 +551,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         : '<span></span>';
 
       const ctaHTML = ev.link
-        ? `<span class="event-cta">Läs mer <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="vertical-align:middle;margin-left:2px;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>`
+        ? (ev.source === 'strava'
+            ? `<span class="event-cta">Läs mer <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="vertical-align:middle;margin-left:2px;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>`
+            : `<span class="event-cta">Läs mer <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>`)
         : '';
 
       const inner = `
@@ -575,7 +577,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>`;
 
       if (ev.link) {
-        return `<a href="${ev.link}" target="_blank" rel="noopener" class="event-card" aria-label="${ev.title}">${inner}</a>`;
+        const isExternal = ev.source === 'strava';
+        return `<a href="${ev.link}" ${isExternal ? 'target="_blank" rel="noopener"' : ''} class="event-card" aria-label="${ev.title}">${inner}</a>`;
       } else {
         return `<div class="event-card event-card--no-link" aria-label="${ev.title}">${inner}</div>`;
       }
