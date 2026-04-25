@@ -26,11 +26,12 @@ from google.oauth2.service_account import Credentials
 
 log = logging.getLogger(__name__)
 
-EVENTS_SHEET_ID    = "1DjQO84D3ihq-1VMOYZI6Q7WqC3mAdL-l0fRhZrwOFG4"
-WORKSHEET_NAME     = "Events"
-WEEKLY_WORKSHEET   = "WeeklyRuns"
-OVERRIDES_WORKSHEET = "Overrides"
-LOOKAHEAD_DAYS     = 10
+EVENTS_SHEET_ID      = "1DjQO84D3ihq-1VMOYZI6Q7WqC3mAdL-l0fRhZrwOFG4"
+WORKSHEET_NAME       = "Events"
+WEEKLY_WORKSHEET     = "WeeklyRuns"
+OVERRIDES_WORKSHEET  = "Overrides"
+SPECIAL_WORKSHEET    = "SpecialEvents"
+LOOKAHEAD_DAYS       = 10
 
 HEADERS = [
     "source", "club", "title", "date", "location",
@@ -40,6 +41,8 @@ HEADERS = [
 WEEKLY_HEADERS = ["club", "day_of_week", "time", "location", "city", "title", "description", "link"]
 
 OVERRIDES_HEADERS = ["club", "date", "city", "action", "time", "location", "title", "description", "link"]
+
+SPECIAL_HEADERS = ["club", "title", "date", "time", "location", "city", "description", "link", "image_url"]
 
 STOCKHOLM_KEYWORDS = {"stockholm"}
 
@@ -103,6 +106,57 @@ def fetch_overrides(sheet_id: str) -> dict[tuple[str, str], dict]:
         if club and date:
             result[(club, date)] = r
     return result
+
+
+def fetch_special_events(sheet_id: str) -> list[dict]:
+    """Return rows from the SpecialEvents worksheet, or [] if it doesn't exist yet."""
+    gc = _sheet_client()
+    sh = gc.open_by_key(sheet_id)
+    try:
+        ws = sh.worksheet(SPECIAL_WORKSHEET)
+    except gspread.exceptions.WorksheetNotFound:
+        log.warning("SpecialEvents worksheet not found — skipping")
+        return []
+    records = ws.get_all_records(expected_headers=SPECIAL_HEADERS)
+    log.info("Fetched %d rows from SpecialEvents sheet", len(records))
+    return records
+
+
+def prepare_special_events(records: list[dict]) -> list[dict]:
+    today = datetime.now(timezone.utc).date()
+    events: list[dict] = []
+
+    for r in records:
+        city = (r.get("city") or "").lower().strip()
+        if not any(kw in city for kw in STOCKHOLM_KEYWORDS):
+            continue
+
+        raw_date = (r.get("date") or "").strip()
+        raw_time = (r.get("time") or "").strip()
+
+        # Support combined "2026-05-01T18:00:00" or separate date + time columns
+        if raw_date and "T" not in raw_date and raw_time:
+            raw_date = f"{raw_date}T{raw_time}:00" if len(raw_time) == 5 else f"{raw_date}T{raw_time}"
+
+        dt = _parse_date(raw_date)
+        if dt is not None and dt.date() < today:
+            continue
+
+        events.append({
+            "type":        "event",
+            "source":      "special",
+            "club":        (r.get("club") or "").strip(),
+            "title":       (r.get("title") or "Untitled").strip(),
+            "date":        dt.strftime("%Y-%m-%dT%H:%M:%S") if dt else "",
+            "location":    (r.get("location") or "").strip(),
+            "description": (r.get("description") or "").strip(),
+            "link":        (r.get("link") or "").strip(),
+            "image_url":   (r.get("image_url") or "").strip(),
+            "engagement":  "",
+        })
+
+    log.info("%d Stockholm special events after filtering", len(events))
+    return events
 
 
 def _parse_date(raw: str) -> datetime | None:
@@ -470,6 +524,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       padding: 3px 8px; border-radius: 10px; flex-shrink: 0;
     }}
     .source-strava    {{ background: #FC5200; color: #fff; }}
+    .source-special   {{ background: #D4715E; color: #fff; }}
     .source-other     {{ background: #4a90d9; color: #fff; }}
     .type-badge {{
       font-size: 9px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
@@ -728,6 +783,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     function sourceBadge(source) {{
       if (source === 'weekly_run') return '';
+      if (source === 'special') return `<span class="source-badge source-special">Speciellt</span>`;
       const cls   = source === 'strava' ? 'source-strava' : 'source-other';
       const label = source === 'strava' ? 'Strava' : source;
       return `<span class="source-badge ${{cls}}">${{label}}</span>`;
@@ -777,8 +833,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
            </span>`
         : '<span></span>';
 
+      const isExternal = ev.source === 'strava' || ev.source === 'special';
       const ctaHTML = ev.link
-        ? `<span class="event-cta">Se mer <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>`
+        ? (isExternal
+            ? `<span class="event-cta">Läs mer <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="vertical-align:middle;margin-left:2px;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>`
+            : `<span class="event-cta">Läs mer <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>`)
         : '';
 
       const inner = `
@@ -802,7 +861,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>`;
 
       if (ev.link) {{
-        return `<a href="${{ev.link}}" target="_blank" rel="noopener" class="event-card" aria-label="${{ev.title}}">${{inner}}</a>`;
+        return `<a href="${{ev.link}}" ${{isExternal ? 'target="_blank" rel="noopener"' : ''}} class="event-card" aria-label="${{ev.title}}">${{inner}}</a>`;
       }} else {{
         return `<div class="event-card event-card--no-link" aria-label="${{ev.title}}">${{inner}}</div>`;
       }}
@@ -916,11 +975,14 @@ def main() -> int:
     records       = fetch_events(sheet_id)
     events        = prepare_events(records)
 
-    weekly_records = fetch_weekly_runs(sheet_id)
-    overrides      = fetch_overrides(sheet_id)
-    weekly_events  = expand_weekly_runs(weekly_records, overrides)
+    weekly_records  = fetch_weekly_runs(sheet_id)
+    overrides       = fetch_overrides(sheet_id)
+    weekly_events   = expand_weekly_runs(weekly_records, overrides)
 
-    all_events = events + weekly_events
+    special_records = fetch_special_events(sheet_id)
+    special_events  = prepare_special_events(special_records)
+
+    all_events = events + weekly_events + special_events
     all_events.sort(key=lambda x: (x["date"] or "9999", x["club"]))
     log.info("%d total events after merge", len(all_events))
 
