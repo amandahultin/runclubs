@@ -743,7 +743,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       function renderDay(dayIndex) {
         const today = new Date();
         today.setHours(0, 0, 0, 0);
-        const diff = ((dayIndex - today.getDay() + 7) % 7) + 7;
+        const diff = (dayIndex - today.getDay() + 7) % 7;
         const target = new Date(today.getTime() + diff * 24 * 60 * 60 * 1000);
         const targetEnd = new Date(target.getTime() + 24 * 60 * 60 * 1000);
 
