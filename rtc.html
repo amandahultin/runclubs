@@ -682,7 +682,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           if (cc) cc.classList.add('no-events');
           return;
         }
-        document.getElementById('club-events-grid').innerHTML = mine.map(cardHTML).join('');
+        document.getElementById('club-events-grid').innerHTML = mine.slice(0,5).map(cardHTML).join('');
         section.style.display = '';
       })
       .catch(function() {
