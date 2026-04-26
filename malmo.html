@@ -320,7 +320,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .event-teaser-club { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #aaa; margin-bottom: 3px; }
     .event-teaser-name { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 15px; text-transform: uppercase; letter-spacing: 0.3px; color: #1C2A45; line-height: 1.2; margin-bottom: 4px; }
     .event-teaser-loc { font-size: 12px; color: #999; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 200px; }
-    .event-teaser-link { font-size: 11px; font-weight: 600; letter-spacing: 0.5px; color: #D4715E; margin-top: 6px; display: inline-block; }
+    .event-teaser-link { font-size: 11px; font-weight: 600; letter-spacing: 0.5px; color: #D4715E; margin-top: 6px; display: inline-flex; align-items: center; gap: 4px; }
+    .event-source-pill { display: inline-block; font-size: 9px; letter-spacing: 1px; text-transform: uppercase; font-weight: 600; padding: 2px 7px; border-radius: 100px; margin-left: 6px; vertical-align: middle; }
+    .event-source-pill.pill-strava { background: #FFF0ED; color: #D4715E; }
+    .event-source-pill.pill-weekly { background: #F0F0F0; color: #888; }
     .events-teaser-empty { grid-column: 1/-1; color: #aaa; font-size: 14px; text-align: center; padding: 2rem; }
 
     /* ── MOBILE ─────────────────────────── */
@@ -715,15 +718,22 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         const dateNum = d.getDate();
         const loc = (ev.location || '').split(',')[0].trim();
         const title = ev.title.length > 40 ? ev.title.slice(0, 38) + '…' : ev.title;
+        const isStrava = ev.source === 'strava';
         const href = ev.link || 'malmo-running-events';
-        const newTab = ev.link && ev.source === 'strava' ? 'target="_blank" rel="noopener"' : '';
+        const newTab = isStrava && ev.link ? 'target="_blank" rel="noopener"' : '';
+        const sourcePill = isStrava
+          ? '<span class="event-source-pill pill-strava">Strava</span>'
+          : '<span class="event-source-pill pill-weekly">Veckorun</span>';
+        const extIcon = isStrava && ev.link
+          ? '<svg width="11" height="11" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 1h4v4M11 1L5 7M4 3H2a1 1 0 00-1 1v6a1 1 0 001 1h6a1 1 0 001-1V8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+          : '';
         return `<a href="${href}" ${newTab} class="event-teaser-card">
           <div class="event-teaser-time no-time" style="line-height:1.1;">${dayStr}<br>${dateNum}</div>
           <div class="event-teaser-info">
-            <div class="event-teaser-club">${ev.club}</div>
+            <div class="event-teaser-club">${ev.club}${sourcePill}</div>
             <div class="event-teaser-name">${title}</div>
             ${loc ? `<div class="event-teaser-loc">${loc}</div>` : ''}
-            <span class="event-teaser-link">Läs mer →</span>
+            <span class="event-teaser-link">Läs mer ${extIcon || '→'}</span>
           </div>
         </a>`;
       }).join('');
