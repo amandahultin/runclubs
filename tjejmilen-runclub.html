@@ -456,6 +456,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
 
   <style>
+    /* ── club events layout ───────────────────────────────────── */
     .club-events-section {
       padding: 3rem 2.5rem;
       border-bottom: 1px solid #F0E0DC;
@@ -469,6 +470,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       display: flex;
       flex-direction: column;
       gap: 12px;
+    }
+    @media (min-width: 769px) {
+      .club-content {
+        grid-template-areas:
+          "events sidebar"
+          "about  sidebar";
+        grid-template-rows: auto auto;
+      }
+      #club-events-section { grid-area: events; border-right: 1px solid #F0E0DC; }
+      .club-about           { grid-area: about; }
+      .club-sidebar         { grid-area: sidebar; }
     }
     .cev-card {
       display: flex;
@@ -538,17 +550,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     }
     @media (max-width: 768px) {
       .club-events-section { padding: 2rem 1.25rem; }
+      #club-events-section { border-right: none; }
     }
   </style>
 
-  <section id="club-events-section">
-    <div class="club-events-section">
-      <span class="section-label">Kommande events</span>
-      <div class="club-events-grid" id="club-events-grid">
-        <p style="font-size:13px;color:#aaa;">Laddar events…</p>
-      </div>
-    </div>
-  </section>
 
   <script>
   (function() {
@@ -616,6 +621,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </script>
 
   <div class="club-content">
+  <section id="club-events-section">
+    <div class="club-events-section">
+      <span class="section-label">Kommande events</span>
+      <div class="club-events-grid" id="club-events-grid">
+        <p style="font-size:13px;color:#aaa;">Laddar events…</p>
+      </div>
+    </div>
+  </section>
     <article class="club-about fade-in">
       <span class="section-label">Om klubben</span>
 
