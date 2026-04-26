@@ -433,14 +433,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <section class="events-teaser" id="events-teaser">
     <div class="events-teaser-header">
       <div class="events-teaser-title">Vad händer i Malmö just nu?</div>
-      <a href="malmo-running-events" class="events-teaser-cta">
-        Se alla kommande händelser i Malmö
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-      </a>
     </div>
     <div class="events-teaser-grid" id="events-teaser-grid">
       <div class="events-teaser-empty">Laddar events…</div>
     </div>
+    <a href="malmo-running-events" class="events-teaser-cta" style="margin-top:1.5rem;">
+      Se alla kommande händelser i Malmö
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
   </section>
 
   <div class="filters" id="filters">
@@ -714,7 +714,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         const dateNum = d.getDate();
         const loc = (ev.location || '').split(',')[0].trim();
         const title = ev.title.length > 40 ? ev.title.slice(0, 38) + '…' : ev.title;
-        return `<a href="malmo-running-events" class="event-teaser-card">
+        const href = ev.link || 'malmo-running-events';
+        const newTab = ev.link && ev.source === 'strava' ? 'target="_blank" rel="noopener"' : '';
+        return `<a href="${href}" ${newTab} class="event-teaser-card">
           <div class="event-teaser-time no-time" style="line-height:1.1;">${dayStr}<br>${dateNum}</div>
           <div class="event-teaser-info">
             <div class="event-teaser-club">${ev.club}</div>
