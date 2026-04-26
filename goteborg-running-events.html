@@ -186,6 +186,30 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .filter-pill:hover { border-color: #D4715E; color: #D4715E; }
     .filter-pill.active { background: #1C2A45; color: #FDFAF9; border-color: #1C2A45; }
 
+    .city-nav {
+      padding: 1.75rem 2rem;
+      border-bottom: 1px solid #F0E0DC;
+      background: #FDFAF9;
+      display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap;
+    }
+    .city-nav-label {
+      font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+      color: #aaa; font-weight: 500; white-space: nowrap;
+    }
+    .city-nav-buttons { display: flex; gap: 8px; flex-wrap: wrap; }
+    .city-nav-btn {
+      font-size: 12px; font-weight: 600; padding: 8px 18px;
+      border-radius: 20px; border: 1px solid #E8D8D3;
+      background: #fff; color: #1C2A45; cursor: pointer;
+      font-family: 'DM Sans', sans-serif; text-decoration: none;
+      transition: all 0.2s; letter-spacing: 0.3px;
+      display: inline-flex; align-items: center; gap: 5px;
+    }
+    .city-nav-btn:hover { border-color: #D4715E; color: #D4715E; }
+    .city-nav-btn.active { background: #1C2A45; color: #FDFAF9; border-color: #1C2A45; pointer-events: none; }
+    @media (max-width: 768px) {
+      .city-nav { padding: 1.25rem; gap: 1rem; flex-direction: column; align-items: flex-start; }
+    }
     .events-layout { padding: 3rem 2rem; max-width: 1200px; margin: 0 auto; }
 
     .date-group { margin-bottom: 3rem; }
@@ -490,6 +514,24 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="stat-number">⟳</div>
         <div class="stat-label">Uppdateras varje dag</div>
       </div>
+    </div>
+  </div>
+
+  <div class="city-nav">
+    <span class="city-nav-label">Se händelser i annan stad</span>
+    <div class="city-nav-buttons">
+      <a href="stockholm-running-events" class="city-nav-btn">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        Stockholm
+      </a>
+      <a href="goteborg-running-events" class="city-nav-btn active">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        Göteborg
+      </a>
+      <a href="malmo-running-events" class="city-nav-btn">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        Malmö
+      </a>
     </div>
   </div>
 
