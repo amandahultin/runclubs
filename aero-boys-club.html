@@ -527,6 +527,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           "about  sidebar";
         grid-template-rows: auto auto;
       }
+      .club-content.no-events {
+        grid-template-areas: "about sidebar";
+        grid-template-rows: auto;
+      }
       #club-events-section { grid-area: events; border-right: 1px solid #F0E0DC; }
       .club-about           { grid-area: about; }
       .club-sidebar         { grid-area: sidebar; }
@@ -660,7 +664,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           return CLUB_NAMES.some(function(n) { return e.club === n; });
         });
         var section = document.getElementById('club-events-section');
-        if (!mine.length) { return; }
+        if (!mine.length) {
+          var cc = document.querySelector('.club-content');
+          if (cc) cc.classList.add('no-events');
+          return;
+        }
         document.getElementById('club-events-grid').innerHTML = mine.map(cardHTML).join('');
         section.style.display = '';
       })
