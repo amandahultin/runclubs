@@ -16,6 +16,7 @@ SKIP = {
     "mockup-botanik", "mockup-korall", "mockup-lila", "mockup-solsken",
     "placeholder-preview", "klubb",
     "yo-running-club",
+    "saucony-run-club",
 }
 
 # Priority rules: slug → (priority, changefreq)
