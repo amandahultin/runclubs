@@ -591,7 +591,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     const SV_MONTHS       = ['Januari','Februari','Mars','April','Maj','Juni','Juli','Augusti','September','Oktober','November','December'];
 
     let activeSource = 'all';
-    let activeClub = 'all';
+    let activeClubs = new Set();
 
     function parseDate(str) {
       if (!str) return null;
@@ -704,8 +704,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       const filtered = events.filter(ev => {
         const sourceOk = activeSource === 'all' || ev.source === activeSource;
-        const clubOk   = activeClub === 'all'
-          || (activeClub === '__ovrigt__' ? !ev.club : ev.club === activeClub);
+        const clubOk   = activeClubs.size === 0
+          || (activeClubs.has('__ovrigt__') && !ev.club)
+          || (ev.club && activeClubs.has(ev.club));
         return sourceOk && clubOk;
       });
 
@@ -796,9 +797,24 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       bar.querySelectorAll('[data-filter="club"]').forEach(btn => {
         btn.addEventListener('click', function() {
-          bar.querySelectorAll('[data-filter="club"]').forEach(b => b.classList.remove('active'));
-          this.classList.add('active');
-          activeClub = this.dataset.value;
+          const val = this.dataset.value;
+          if (val === 'all') {
+            activeClubs.clear();
+            bar.querySelectorAll('[data-filter="club"]').forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+          } else {
+            bar.querySelector('[data-value="all"]').classList.remove('active');
+            if (activeClubs.has(val)) {
+              activeClubs.delete(val);
+              this.classList.remove('active');
+            } else {
+              activeClubs.add(val);
+              this.classList.add('active');
+            }
+            if (activeClubs.size === 0) {
+              bar.querySelector('[data-value="all"]').classList.add('active');
+            }
+          }
           render();
         });
       });
@@ -834,17 +850,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
     const _clubParam = new URLSearchParams(window.location.search).get('club');
-    if (_clubParam) activeClub = _clubParam;
+    if (_clubParam) activeClubs.add(_clubParam);
 
     render();
     renderClubFilter();
 
     if (_clubParam) {
+      const allPill = document.querySelector('[data-filter="club"][data-value="all"]');
+      if (allPill) allPill.classList.remove('active');
       const activePill = document.querySelector(`[data-filter="club"][data-value="${CSS.escape(_clubParam)}"]`);
-      if (activePill) {
-        document.querySelectorAll('[data-filter="club"]').forEach(b => b.classList.remove('active'));
-        activePill.classList.add('active');
-      }
+      if (activePill) activePill.classList.add('active');
     }
   </script>
   <script src="newsletter.js"></script>
