@@ -994,9 +994,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>`;
 
       const specialClass = ev.source === 'special' ? ' event-card--special' : '';
-      const opensNewTab  = ev.source === 'strava' || ev.source === 'special';
-      if (ev.link) {{
-        return `<a href="${{ev.link}}" ${{opensNewTab ? 'target="_blank" rel="noopener"' : ''}} class="event-card${{specialClass}}" aria-label="${{ev.title}}">${{inner}}</a>`;
+      // Special events: link to club page (internal); Strava: link to event (external)
+      const clubPageHref = (ev.club_page || '').replace(/^https?:\/\/runclubs\.se\//, '');
+      const href = ev.source === 'special'
+        ? (clubPageHref || ev.link || '')
+        : ev.link;
+      const opensNewTab = ev.source === 'strava';
+      if (href) {{
+        return `<a href="${{href}}" ${{opensNewTab ? 'target="_blank" rel="noopener"' : ''}} class="event-card${{specialClass}}" aria-label="${{ev.title}}">${{inner}}</a>`;
       }} else {{
         return `<div class="event-card event-card--no-link${{specialClass}}" aria-label="${{ev.title}}">${{inner}}</div>`;
       }}
