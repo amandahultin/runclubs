@@ -31,7 +31,7 @@ WORKSHEET_NAME       = "Events"
 WEEKLY_WORKSHEET     = "WeeklyRuns"
 OVERRIDES_WORKSHEET  = "Overrides"
 SPECIAL_WORKSHEET    = "SpecialEvents"
-LOOKAHEAD_DAYS       = 10
+LOOKAHEAD_DAYS       = 30
 
 HEADERS = [
     "source", "club", "title", "date", "location",
