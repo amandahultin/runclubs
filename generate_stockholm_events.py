@@ -813,8 +813,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       return isNaN(d.getTime()) ? null : d;
     }}
 
-    function typeBadge(type) {{
+    function typeBadge(type, source) {{
       if (type === 'weekly_run') return `<span class="type-badge type-weekly">Weekly run</span>`;
+      if (source === 'strava' || source === 'special') return '';
       return `<span class="type-badge type-event">Event</span>`;
     }}
 
@@ -883,7 +884,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           ${{dateBlockHTML}}
           <div class="event-card-body">
             <div class="event-source-row">
-              ${{typeBadge(ev.type)}}
+              ${{typeBadge(ev.type, ev.source)}}
               ${{sourceBadge(ev.source)}}
               <span class="event-club">${{ev.club}}</span>
             </div>
