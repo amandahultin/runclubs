@@ -472,6 +472,166 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </div>
 
+  
+
+  <style>
+    .club-events-section {
+      padding: 2.5rem 2rem 0;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    .club-events-section .section-label {
+      display: block;
+      font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
+      color: #D4715E; font-weight: 600; margin-bottom: 1.25rem;
+    }
+    .club-events-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .cev-card {
+      display: flex;
+      gap: 0;
+      background: #fff;
+      border: 1px solid #EFE4E0;
+      border-radius: 14px;
+      overflow: hidden;
+      text-decoration: none;
+      color: #1C2A45;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+    .cev-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(28,42,69,0.09);
+      border-color: #D4715E;
+    }
+    .cev-date-block {
+      min-width: 68px;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      padding: 1rem 0.75rem;
+      background: #1a3a28;
+      gap: 1px; flex-shrink: 0;
+    }
+    .cev-day-num {
+      font-family: 'Archivo Black', sans-serif;
+      font-size: 28px; line-height: 1; color: #FDFAF9;
+    }
+    .cev-month {
+      font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
+      color: rgba(255,255,255,0.5); font-weight: 600;
+    }
+    .cev-dayname {
+      font-size: 9px; letter-spacing: 1px; text-transform: uppercase;
+      color: rgba(255,255,255,0.3); font-weight: 500; margin-top: 3px;
+    }
+    .cev-body {
+      padding: 1rem 1.25rem;
+      flex: 1; display: flex; flex-direction: column; gap: 5px;
+    }
+    .cev-badges { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 2px; }
+    .cev-badge {
+      font-size: 9px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+      padding: 3px 8px; border-radius: 10px;
+    }
+    .cev-badge-event  { background: #E8EEF8; color: #1C2A45; }
+    .cev-badge-weekly { background: #D8F3DC; color: #1B4332; }
+    .cev-badge-strava { background: #FC5200; color: #fff; }
+    .cev-title {
+      font-family: 'Oswald', sans-serif; font-weight: 700;
+      font-size: 16px; text-transform: uppercase;
+      letter-spacing: 0.5px; line-height: 1.2; color: #1C2A45;
+    }
+    .cev-meta {
+      display: flex; gap: 12px; flex-wrap: wrap;
+      font-size: 12px; color: #999;
+    }
+    .cev-desc {
+      font-size: 12px; color: #666; line-height: 1.55;
+      display: -webkit-box; -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical; overflow: hidden;
+      margin-top: 2px; white-space: pre-line;
+    }
+    .cev-cta {
+      font-size: 11px; font-weight: 600; letter-spacing: 1px;
+      text-transform: uppercase; color: #D4715E; margin-top: 4px;
+    }
+    @media (max-width: 768px) {
+      .club-events-section { padding: 2rem 1.25rem 0; }
+    }
+  </style>
+
+  <section id="club-events-section">
+    <div class="club-events-section">
+      <span class="section-label">Kommande events</span>
+      <div class="club-events-grid" id="club-events-grid">
+        <p style="font-size:13px;color:#aaa;">Laddar events…</p>
+      </div>
+    </div>
+  </section>
+
+  <script>
+  (function() {
+    var CLUB_NAMES = ["Löpning för tjejer"];
+    var SOURCE = 'stockholm-running-events.html';
+    var SV_MONTHS = ['jan','feb','mar','apr','maj','jun','jul','aug','sep','okt','nov','dec'];
+    var SV_DAYS   = ['Söndag','Måndag','Tisdag','Onsdag','Torsdag','Fredag','Lördag'];
+
+    function badge(cls, label) {
+      return '<span class="cev-badge ' + cls + '">' + label + '</span>';
+    }
+
+    function cardHTML(ev) {
+      var d       = new Date(ev.date);
+      var dayNum  = d.getDate();
+      var month   = SV_MONTHS[d.getMonth()];
+      var dayName = SV_DAYS[d.getDay()].slice(0, 3);
+      var time    = ev.date.slice(11, 16);
+      var loc     = ev.location ? ev.location.split(',')[0].trim() : '';
+      var desc    = (ev.description || '').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+      var typeBdg = ev.type === 'weekly_run' ? badge('cev-badge-weekly', 'Weekly run') : badge('cev-badge-event', 'Event');
+      var srcBdg  = ev.source === 'strava' ? badge('cev-badge-strava', 'Strava') : '';
+      var href    = ev.link || '#';
+      var target  = (ev.source === 'strava' || ev.source === 'special') ? 'target="_blank" rel="noopener"' : '';
+      var meta    = '';
+      if (loc)              meta += '<span>📍 ' + loc + '</span>';
+      if (time !== '00:00') meta += '<span>⏰ ' + time + '</span>';
+
+      return '<a href="' + href + '" ' + target + ' class="cev-card">'
+        + '<div class="cev-date-block">'
+        +   '<div class="cev-day-num">' + dayNum + '</div>'
+        +   '<div class="cev-month">' + month + '</div>'
+        +   '<div class="cev-dayname">' + dayName + '</div>'
+        + '</div>'
+        + '<div class="cev-body">'
+        +   '<div class="cev-badges">' + typeBdg + srcBdg + '</div>'
+        +   '<div class="cev-title">' + ev.title + '</div>'
+        +   (meta ? '<div class="cev-meta">' + meta + '</div>' : '')
+        +   (desc ? '<p class="cev-desc">' + desc + '</p>' : '')
+        +   (href !== '#' ? '<span class="cev-cta">Läs mer →</span>' : '')
+        + '</div>'
+        + '</a>';
+    }
+
+    fetch(SOURCE)
+      .then(function(r) { return r.text(); })
+      .then(function(html) {
+        var m = html.match(/const events = (\[.*?\]);/s);
+        if (!m) throw new Error('no events');
+        var all  = JSON.parse(m[1]);
+        var mine = all.filter(function(e) {
+          return CLUB_NAMES.some(function(n) { return e.club === n; });
+        });
+        var section = document.getElementById('club-events-section');
+        if (!mine.length) { section.style.display = 'none'; return; }
+        document.getElementById('club-events-grid').innerHTML = mine.map(cardHTML).join('');
+      })
+      .catch(function() {
+        document.getElementById('club-events-section').style.display = 'none';
+      });
+  })();
+  </script>
+
   <div class="club-content">
     <article class="club-about fade-in">
       <span class="section-label">Om klubben</span>
