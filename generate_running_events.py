@@ -19,6 +19,7 @@ import os
 import sys
 from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
+from zoneinfo import ZoneInfo
 
 import gspread
 from google.oauth2.service_account import Credentials
@@ -49,6 +50,25 @@ ALL_CITIES_KEYWORDS = {
     "göteborg", "goteborg", "gothenburg", "västra götaland",
     "malmö", "malmo", "malmoe", "skåne",
 }
+
+
+STOCKHOLM = ZoneInfo("Europe/Stockholm")
+
+
+def _utc_to_stockholm(dt: datetime) -> datetime:
+    """Convert a naive datetime (assumed UTC) to Stockholm local time (naive)."""
+    return dt.replace(tzinfo=timezone.utc).astimezone(STOCKHOLM).replace(tzinfo=None)
+
+
+def build_club_pages(weekly_records: list[dict]) -> dict[str, str]:
+    """Map club name (lowercased) → club page URL from WeeklyRuns sheet."""
+    pages: dict[str, str] = {}
+    for r in weekly_records:
+        club = (r.get("club") or "").strip()
+        link = (r.get("link") or "").strip()
+        if club and link:
+            pages[club.lower()] = link
+    return pages
 
 
 def _normalize_city(text: str) -> str:
@@ -138,8 +158,8 @@ def fetch_special_events(sheet_id: str) -> list[dict]:
     return records
 
 
-def prepare_special_events(records: list[dict]) -> list[dict]:
-    today = datetime.now(timezone.utc).date()
+def prepare_special_events(records: list[dict], club_pages: dict[str, str]) -> list[dict]:
+    today = datetime.now(STOCKHOLM).date()
     events: list[dict] = []
 
     for r in records:
@@ -159,14 +179,16 @@ def prepare_special_events(records: list[dict]) -> list[dict]:
         if not city:
             continue
 
+        club = (r.get("club") or "").strip()
         events.append({
             "type":        "event",
             "source":      "special",
-            "club":        (r.get("club") or "").strip(),
+            "club":        club,
             "title":       (r.get("title") or "Untitled").strip(),
             "date":        dt.strftime("%Y-%m-%dT%H:%M:%S") if dt else "",
             "location":    (r.get("location") or "").strip(),
             "city":        city,
+            "club_page":   club_pages.get(club.lower(), ""),
             "description": (r.get("description") or "").strip(),
             "link":        (r.get("link") or "").strip(),
             "image_url":   (r.get("image_url") or "").strip(),
@@ -186,29 +208,33 @@ def _parse_date(raw: str) -> datetime | None:
     return None
 
 
-def prepare_events(records: list[dict]) -> list[dict]:
-    today = datetime.now(timezone.utc).date()
+def prepare_events(records: list[dict], club_pages: dict[str, str]) -> list[dict]:
+    today = datetime.now(STOCKHOLM).date()
     events: list[dict] = []
 
     for r in records:
         raw_date = (r.get("date") or "").strip()
         dt = _parse_date(raw_date)
-        if dt is not None and dt.date() < today:
-            continue
+        if dt is not None:
+            dt = _utc_to_stockholm(dt)  # Strava times are UTC → convert to Stockholm
+            if dt.date() < today:
+                continue
 
         loc = (r.get("location") or "").strip()
         city = _normalize_city(loc)
         if not city:
             continue
 
+        club = (r.get("club") or "").strip()
         events.append({
             "type":        "event",
             "source":      (r.get("source") or "").strip().lower(),
-            "club":        (r.get("club") or "").strip(),
+            "club":        club,
             "title":       (r.get("title") or "Untitled").strip(),
             "date":        dt.strftime("%Y-%m-%dT%H:%M:%S") if dt else "",
             "location":    loc,
             "city":        city,
+            "club_page":   club_pages.get(club.lower(), ""),
             "description": (r.get("description") or "").strip(),
             "link":        (r.get("link") or "").strip(),
             "image_url":   (r.get("image_url") or "").strip(),
@@ -265,6 +291,7 @@ def expand_weekly_runs(
                     o_time = (override.get("time") or "").strip()
                     h, m   = _parse_time(o_time) if o_time else (hour, minute)
                     dt     = datetime(current.year, current.month, current.day, h, m)
+                    club_link = (override.get("link") or r.get("link") or "").strip()
                     events.append({
                         "type":        "weekly_run",
                         "source":      "weekly_run",
@@ -273,14 +300,16 @@ def expand_weekly_runs(
                         "date":        dt.strftime("%Y-%m-%dT%H:%M:%S"),
                         "location":    (override.get("location") or r.get("location") or "").strip(),
                         "city":        city,
+                        "club_page":   club_link,
                         "description": (override.get("description") or r.get("description") or "").strip(),
-                        "link":        (override.get("link") or r.get("link") or "").strip(),
+                        "link":        club_link,
                         "image_url":   "",
                         "engagement":  "",
                     })
                     log.info("Override applied: %s on %s", club, date_key)
                 else:
                     dt = datetime(current.year, current.month, current.day, hour, minute)
+                    club_link = (r.get("link") or "").strip()
                     events.append({
                         "type":        "weekly_run",
                         "source":      "weekly_run",
@@ -289,8 +318,9 @@ def expand_weekly_runs(
                         "date":        dt.strftime("%Y-%m-%dT%H:%M:%S"),
                         "location":    (r.get("location") or "").strip(),
                         "city":        city,
+                        "club_page":   club_link,
                         "description": (r.get("description") or "").strip(),
-                        "link":        (r.get("link") or "").strip(),
+                        "link":        club_link,
                         "image_url":   "",
                         "engagement":  "",
                     })
@@ -878,8 +908,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       return isNaN(d.getTime()) ? null : d;
     }}
 
-    function typeBadge(type) {{
+    function typeBadge(type, source) {{
       if (type === 'weekly_run') return `<span class="type-badge type-weekly">Weekly run</span>`;
+      if (source === 'strava' || source === 'special') return '';
       return `<span class="type-badge type-event">Event</span>`;
     }}
 
@@ -948,7 +979,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           ${{dateBlockHTML}}
           <div class="event-card-body">
             <div class="event-source-row">
-              ${{typeBadge(ev.type)}}
+              ${{typeBadge(ev.type, ev.source)}}
               ${{sourceBadge(ev.source)}}
               <span class="event-club">${{ev.club}}</span>
             </div>
@@ -1076,15 +1107,16 @@ def main() -> int:
     out_path = Path(sys.argv[1]) if len(sys.argv) > 1 else Path("running-events.html")
     sheet_id = os.environ.get("GOOGLE_SHEET_ID") or EVENTS_SHEET_ID
 
-    records       = fetch_events(sheet_id)
-    events        = prepare_events(records)
-
     weekly_records  = fetch_weekly_runs(sheet_id)
+    club_pages      = build_club_pages(weekly_records)
     overrides       = fetch_overrides(sheet_id)
     weekly_events   = expand_weekly_runs(weekly_records, overrides)
 
+    records       = fetch_events(sheet_id)
+    events        = prepare_events(records, club_pages)
+
     special_records = fetch_special_events(sheet_id)
-    special_events  = prepare_special_events(special_records)
+    special_events  = prepare_special_events(special_records, club_pages)
 
     all_events = events + weekly_events + special_events
     all_events.sort(key=lambda x: (x["date"] or "9999", x["club"]))

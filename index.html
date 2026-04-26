@@ -759,19 +759,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           const dateNum = d.getDate();
           const loc = (ev.location || '').split(',')[0].trim();
           const title = ev.title.length > 40 ? ev.title.slice(0, 38) + '…' : ev.title;
-          const isStrava = ev.source === 'strava';
-          const href = ev.link || 'running-events';
-          const newTab = isStrava && ev.link ? 'target="_blank" rel="noopener"' : '';
-          const extIcon = isStrava && ev.link ? EXT_ICON : '';
+          const clubPage = (ev.club_page || '').replace(/^https?:\/\/runclubs\.se\//, '');
+          const href = clubPage || 'running-events';
           const cityClass = CITY_CLASS[ev.city] || '';
           const cityPill = cityClass ? `<span class="pass-city-tag ${cityClass}">${ev.city}</span>` : '';
-          return `<a href="${href}" ${newTab} class="event-teaser-card">
+          return `<a href="${href}" class="event-teaser-card">
             <div class="event-teaser-time no-time" style="line-height:1.1;">${dayStr}<br>${dateNum}</div>
             <div class="event-teaser-info">
               <div class="event-teaser-club">${ev.club}${cityPill}</div>
               <div class="event-teaser-name">${title}</div>
               ${loc ? `<div class="event-teaser-loc">${loc}</div>` : ''}
-              <span class="event-teaser-link">Läs mer ${extIcon || '→'}</span>
+              <span class="event-teaser-link">Läs mer →</span>
             </div>
           </a>`;
         }).join('');

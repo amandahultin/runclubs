@@ -588,7 +588,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       var time    = ev.date.slice(11, 16);
       var loc     = ev.location ? ev.location.split(',')[0].trim() : '';
       var desc    = (ev.description || '').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-      var typeBdg = ev.type === 'weekly_run' ? badge('cev-badge-weekly', 'Weekly run') : badge('cev-badge-event', 'Event');
+      var typeBdg = ev.type === 'weekly_run' ? badge('cev-badge-weekly', 'Weekly run') : '';
       var srcBdg  = ev.source === 'strava' ? badge('cev-badge-strava', 'Strava') : '';
       var href    = ev.link || '#';
       var target  = (ev.source === 'strava' || ev.source === 'special') ? 'target="_blank" rel="noopener"' : '';
