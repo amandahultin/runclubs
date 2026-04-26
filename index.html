@@ -247,10 +247,28 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       font-size: 32px; text-transform: uppercase; letter-spacing: 1px;
       color: #1C2A45;
     }
+    .schedule-day-pills { display: flex; gap: 6px; flex-wrap: wrap; }
+    .day-pill {
+      font-size: 12px; font-weight: 600; padding: 7px 16px;
+      border-radius: 20px; border: 1px solid #D4C4BF;
+      background: transparent; color: #888;
+      cursor: pointer; font-family: 'DM Sans', sans-serif;
+      transition: all 0.2s; text-transform: uppercase; letter-spacing: 0.5px;
+    }
+    .day-pill:hover { border-color: #D4715E; color: #D4715E; }
+    .day-pill.active { background: #D4715E; color: #FDFAF9; border-color: #D4715E; }
     .schedule-grid {
       display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
       gap: 14px;
     }
+    .pass-city-tag {
+      display: inline-block; font-size: 9px; font-weight: 600;
+      letter-spacing: 1px; text-transform: uppercase;
+      padding: 2px 7px; border-radius: 100px; margin-left: 6px; vertical-align: middle;
+    }
+    .tag-sthlm { background: #C6EFCE; color: #276221; }
+    .tag-gbg   { background: #E8EEF5; color: #3a5a8c; }
+    .tag-malm  { background: #F7E8E4; color: #c25a47; }
     .event-teaser-card {
       background: #FDFAF9; border: 1px solid #E8D8D3;
       border-radius: 12px; padding: 1.1rem 1.25rem;
@@ -454,6 +472,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       .schedule-section { padding: 3rem 1.25rem; }
       .schedule-title { font-size: 24px; }
       .schedule-grid { grid-template-columns: 1fr; }
+      .schedule-day-pills { gap: 4px; }
+      .day-pill { padding: 6px 12px; font-size: 11px; }
 
       .divider { margin: 0 1.25rem; }
 
@@ -590,6 +610,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="section-label">Kommande events</div>
         <h2 class="schedule-title" id="schedule-title">Dagens händelser</h2>
       </div>
+      <div class="schedule-day-pills" role="tablist" aria-label="Välj dag">
+        <button class="day-pill" data-day="1" role="tab">Mån</button>
+        <button class="day-pill" data-day="2" role="tab">Tis</button>
+        <button class="day-pill" data-day="3" role="tab">Ons</button>
+        <button class="day-pill" data-day="4" role="tab">Tor</button>
+        <button class="day-pill" data-day="5" role="tab">Fre</button>
+        <button class="day-pill" data-day="6" role="tab">Lör</button>
+        <button class="day-pill" data-day="0" role="tab">Sön</button>
+      </div>
     </div>
     <div class="schedule-grid" id="schedule-grid">
       <div class="schedule-empty">Laddar events…</div>
@@ -699,30 +728,32 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     }, { threshold: 0.1 });
     document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
-    // ── Today's events ──
+    // ── Events by day ──
     (async () => {
       const grid = document.getElementById('schedule-grid');
       const SV_DAYS = ['Söndag','Måndag','Tisdag','Onsdag','Torsdag','Fredag','Lördag'];
-      try {
-        const html = await fetch('running-events.html').then(r => r.text());
-        const match = html.match(/const events = (\[[\s\S]*?\]);/);
-        if (!match) throw new Error('no events');
-        const events = JSON.parse(match[1]);
+      const CITY_CLASS = { 'Stockholm': 'tag-sthlm', 'Göteborg': 'tag-gbg', 'Malmö': 'tag-malm' };
+      const EXT_ICON = '<svg width="11" height="11" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 1h4v4M11 1L5 7M4 3H2a1 1 0 00-1 1v6a1 1 0 001 1h6a1 1 0 001-1V8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 
-        const now = new Date();
-        now.setHours(0, 0, 0, 0);
-        const tomorrow = new Date(now.getTime() + 24 * 60 * 60 * 1000);
+      let eventsData = [];
 
-        const todays = events
-          .filter(ev => { const d = new Date(ev.date); return d >= now && d < tomorrow; })
+      function renderDay(dayIndex) {
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+        const diff = (dayIndex - today.getDay() + 7) % 7;
+        const target = new Date(today.getTime() + diff * 24 * 60 * 60 * 1000);
+        const targetEnd = new Date(target.getTime() + 24 * 60 * 60 * 1000);
+
+        const dayEvents = eventsData
+          .filter(ev => { const d = new Date(ev.date); return d >= target && d < targetEnd; })
           .sort((a, b) => new Date(a.date) - new Date(b.date));
 
-        if (!todays.length) {
-          grid.innerHTML = '<div class="schedule-empty">Inga events idag — kolla <a href="running-events" style="color:#D4715E;">alla kommande events</a>!</div>';
+        if (!dayEvents.length) {
+          grid.innerHTML = '<div class="schedule-empty">Inga events den här dagen — kolla en annan dag!</div>';
           return;
         }
 
-        grid.innerHTML = todays.map(ev => {
+        grid.innerHTML = dayEvents.map(ev => {
           const d = new Date(ev.date);
           const dayStr = SV_DAYS[d.getDay()].slice(0, 3).toUpperCase();
           const dateNum = d.getDate();
@@ -731,22 +762,40 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           const isStrava = ev.source === 'strava';
           const href = ev.link || 'running-events';
           const newTab = isStrava && ev.link ? 'target="_blank" rel="noopener"' : '';
-          const sourcePill = isStrava
-            ? '<span class="event-source-pill pill-strava">Strava</span>'
-            : '<span class="event-source-pill pill-weekly">Weekly run</span>';
-          const extIcon = isStrava && ev.link
-            ? '<svg width="11" height="11" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 1h4v4M11 1L5 7M4 3H2a1 1 0 00-1 1v6a1 1 0 001 1h6a1 1 0 001-1V8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>'
-            : '';
+          const extIcon = isStrava && ev.link ? EXT_ICON : '';
+          const cityClass = CITY_CLASS[ev.city] || '';
+          const cityPill = cityClass ? `<span class="pass-city-tag ${cityClass}">${ev.city}</span>` : '';
           return `<a href="${href}" ${newTab} class="event-teaser-card">
             <div class="event-teaser-time no-time" style="line-height:1.1;">${dayStr}<br>${dateNum}</div>
             <div class="event-teaser-info">
-              <div class="event-teaser-club">${ev.club}${sourcePill}</div>
+              <div class="event-teaser-club">${ev.club}${cityPill}</div>
               <div class="event-teaser-name">${title}</div>
               ${loc ? `<div class="event-teaser-loc">${loc}</div>` : ''}
               <span class="event-teaser-link">Läs mer ${extIcon || '→'}</span>
             </div>
           </a>`;
         }).join('');
+      }
+
+      try {
+        const html = await fetch('running-events.html').then(r => r.text());
+        const match = html.match(/const events = (\[[\s\S]*?\]);/);
+        if (!match) throw new Error('no events');
+        eventsData = JSON.parse(match[1]);
+
+        const todayDay = new Date().getDay();
+        const pills = document.querySelectorAll('.day-pill');
+        pills.forEach(pill => {
+          const day = parseInt(pill.dataset.day);
+          if (day === todayDay) pill.classList.add('active');
+          pill.addEventListener('click', () => {
+            pills.forEach(p => p.classList.remove('active'));
+            pill.classList.add('active');
+            renderDay(day);
+          });
+        });
+
+        renderDay(todayDay);
       } catch(e) {
         grid.innerHTML = '<div class="schedule-empty">Kunde inte ladda events.</div>';
       }

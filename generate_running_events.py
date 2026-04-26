@@ -51,6 +51,17 @@ ALL_CITIES_KEYWORDS = {
 }
 
 
+def _normalize_city(text: str) -> str:
+    t = text.lower()
+    if "stockholm" in t:
+        return "Stockholm"
+    if any(k in t for k in ("göteborg", "goteborg", "gothenburg", "västra götaland")):
+        return "Göteborg"
+    if any(k in t for k in ("malmö", "malmo", "malmoe", "skåne")):
+        return "Malmö"
+    return ""
+
+
 DAYS_MAP = {
     "monday": 0,    "måndag": 0,
     "tuesday": 1,   "tisdag": 1,
@@ -143,8 +154,9 @@ def prepare_special_events(records: list[dict]) -> list[dict]:
         if dt is not None and dt.date() < today:
             continue
 
-        city = (r.get("city") or "").strip().lower()
-        if not any(kw in city for kw in ALL_CITIES_KEYWORDS):
+        city_raw = (r.get("city") or "").strip()
+        city = _normalize_city(city_raw)
+        if not city:
             continue
 
         events.append({
@@ -154,6 +166,7 @@ def prepare_special_events(records: list[dict]) -> list[dict]:
             "title":       (r.get("title") or "Untitled").strip(),
             "date":        dt.strftime("%Y-%m-%dT%H:%M:%S") if dt else "",
             "location":    (r.get("location") or "").strip(),
+            "city":        city,
             "description": (r.get("description") or "").strip(),
             "link":        (r.get("link") or "").strip(),
             "image_url":   (r.get("image_url") or "").strip(),
@@ -183,8 +196,9 @@ def prepare_events(records: list[dict]) -> list[dict]:
         if dt is not None and dt.date() < today:
             continue
 
-        loc = (r.get("location") or "").strip().lower()
-        if not any(kw in loc for kw in ALL_CITIES_KEYWORDS):
+        loc = (r.get("location") or "").strip()
+        city = _normalize_city(loc)
+        if not city:
             continue
 
         events.append({
@@ -193,7 +207,8 @@ def prepare_events(records: list[dict]) -> list[dict]:
             "club":        (r.get("club") or "").strip(),
             "title":       (r.get("title") or "Untitled").strip(),
             "date":        dt.strftime("%Y-%m-%dT%H:%M:%S") if dt else "",
-            "location":    (r.get("location") or "").strip(),
+            "location":    loc,
+            "city":        city,
             "description": (r.get("description") or "").strip(),
             "link":        (r.get("link") or "").strip(),
             "image_url":   (r.get("image_url") or "").strip(),
@@ -227,8 +242,8 @@ def expand_weekly_runs(
             log.warning("Unknown day_of_week %r for club %r — skipping", day_str, r.get("club"))
             continue
 
-        city = (r.get("city") or "").strip().lower()
-        if not any(kw in city for kw in ALL_CITIES_KEYWORDS):
+        city = _normalize_city((r.get("city") or "").strip())
+        if not city:
             continue
 
         club      = (r.get("club") or "").strip()
@@ -257,6 +272,7 @@ def expand_weekly_runs(
                         "title":       (override.get("title") or r.get("title") or "").strip(),
                         "date":        dt.strftime("%Y-%m-%dT%H:%M:%S"),
                         "location":    (override.get("location") or r.get("location") or "").strip(),
+                        "city":        city,
                         "description": (override.get("description") or r.get("description") or "").strip(),
                         "link":        (override.get("link") or r.get("link") or "").strip(),
                         "image_url":   "",
@@ -272,6 +288,7 @@ def expand_weekly_runs(
                         "title":       (r.get("title") or "").strip(),
                         "date":        dt.strftime("%Y-%m-%dT%H:%M:%S"),
                         "location":    (r.get("location") or "").strip(),
+                        "city":        city,
                         "description": (r.get("description") or "").strip(),
                         "link":        (r.get("link") or "").strip(),
                         "image_url":   "",
