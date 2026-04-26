@@ -592,8 +592,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       if (loc)              meta += '<span>📍 ' + loc + '</span>';
       if (time !== '00:00') meta += '<span>⏰ ' + time + '</span>';
 
-      return '<a href="' + href + '" ' + target + ' class="cev-card">'
-        + '<div class="cev-date-block">'
+      var isStrava = ev.source === 'strava' || ev.source === 'special';
+      var inner = '<div class="cev-date-block">'
         +   '<div class="cev-day-num">' + dayNum + '</div>'
         +   '<div class="cev-month">' + month + '</div>'
         +   '<div class="cev-dayname">' + dayName + '</div>'
@@ -603,9 +603,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         +   '<div class="cev-title">' + ev.title + '</div>'
         +   (meta ? '<div class="cev-meta">' + meta + '</div>' : '')
         +   (desc ? '<p class="cev-desc">' + desc + '</p>' : '')
-        +   (href !== '#' ? '<span class="cev-cta">Läs mer →</span>' : '')
-        + '</div>'
-        + '</a>';
+        +   (isStrava && href !== '#' ? '<span class="cev-cta">Läs mer →</span>' : '')
+        + '</div>';
+      if (isStrava && href !== '#') {
+        return '<a href="' + href + '" target="_blank" rel="noopener" class="cev-card">' + inner + '</a>';
+      }
+      return '<div class="cev-card" style="cursor:default;">' + inner + '</div>';
     }
 
     fetch(SOURCE)
