@@ -476,6 +476,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       padding: 3rem 2.5rem;
       border-bottom: 1px solid #F0E0DC;
     }
+    .club-events-cta {
+      display: block;
+      margin-top: 1.25rem;
+      font-size: 15px; font-weight: 600;
+      color: #D4715E; text-decoration: none;
+      letter-spacing: 0.5px;
+      align-self: flex-end;
+    }
+    .club-events-cta:hover { text-decoration: underline; }
     .club-events-section .section-label {
       display: block;
       font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
@@ -635,7 +644,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           if (cc) cc.classList.add('no-events');
           return;
         }
-        document.getElementById('club-events-grid').innerHTML = mine.slice(0,5).map(cardHTML).join('');
+        document.getElementById('club-events-grid').innerHTML = mine.slice(0,3).map(cardHTML).join('');
         section.style.display = '';
       })
       .catch(function() {
@@ -651,6 +660,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="club-events-grid" id="club-events-grid">
         
       </div>
+      <a href="running-events" class="club-events-cta">Se alla kommande events →</a>
     </div>
   </section>
     <article class="club-about fade-in">
