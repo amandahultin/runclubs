@@ -61,8 +61,31 @@ def _utc_to_stockholm(dt: datetime) -> datetime:
 
 
 def build_club_pages(weekly_records: list[dict]) -> dict[str, str]:
-    """Map club name (lowercased) → club page URL from WeeklyRuns sheet."""
+    """Map club name (lowercased) → club page URL.
+
+    First scans local club HTML files (CLUB_NAMES → canonical URL), then
+    overlays WeeklyRuns sheet data so sheet values take precedence.
+    """
+    import glob, re as _re
     pages: dict[str, str] = {}
+    # Scan all local HTML files for CLUB_NAMES + canonical URL
+    for path in glob.glob("*.html"):
+        try:
+            text = open(path, encoding="utf-8").read()
+        except OSError:
+            continue
+        m_canon = _re.search(
+            r'rel=["\']canonical["\'][^>]*href=["\']([^"\']+)["\']'
+            r'|href=["\']([^"\']+)["\'][^>]*rel=["\']canonical["\']', text)
+        if not m_canon:
+            continue
+        canonical = m_canon.group(1) or m_canon.group(2)
+        m_names = _re.search(r'var CLUB_NAMES\s*=\s*\[([^\]]+)\]', text)
+        if not m_names:
+            continue
+        for name in _re.findall(r'"([^"]+)"', m_names.group(1)):
+            pages[name.lower()] = canonical
+    # Overlay WeeklyRuns sheet (takes precedence)
     for r in weekly_records:
         club = (r.get("club") or "").strip()
         link = (r.get("link") or "").strip()
