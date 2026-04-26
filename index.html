@@ -768,7 +768,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           const loc = (ev.location || '').split(',')[0].trim();
           const title = ev.title.length > 40 ? ev.title.slice(0, 38) + '…' : ev.title;
           const clubPage = (ev.club_page || '').replace(/^https?:\/\/runclubs\.se\//, '');
-          const href = clubPage || 'running-events';
+          const href = clubPage || ('running-events?club=' + encodeURIComponent(ev.club || ''));
           const cityClass = CITY_CLASS[ev.city] || '';
           const cityPill = cityClass ? `<span class="pass-city-tag ${cityClass}">${ev.city}</span>` : '';
           return `<a href="${href}" class="event-teaser-card">

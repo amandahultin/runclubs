@@ -833,8 +833,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     }, { threshold: 0 });
     document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
+    const _clubParam = new URLSearchParams(window.location.search).get('club');
+    if (_clubParam) activeClub = _clubParam;
+
     render();
     renderClubFilter();
+
+    if (_clubParam) {
+      const activePill = document.querySelector(`[data-filter="club"][data-value="${CSS.escape(_clubParam)}"]`);
+      if (activePill) {
+        document.querySelectorAll('[data-filter="club"]').forEach(b => b.classList.remove('active'));
+        activePill.classList.add('active');
+      }
+    }
   </script>
   <script src="newsletter.js"></script>
 </body>
