@@ -149,8 +149,28 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .filters-bar {
       padding: 1.5rem 2rem;
       border-bottom: 1px solid #F0E0DC;
-      display: flex; gap: 1.5rem; flex-wrap: wrap; align-items: center;
     }
+    .filters-inner { display: flex; gap: 1.5rem; flex-wrap: wrap; align-items: center; }
+    .filter-toggle {
+      display: none;
+      align-items: center; justify-content: space-between;
+      width: 100%; padding: 10px 14px;
+      background: #fff; border: 1px solid #E8D8D3; border-radius: 12px;
+      font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500;
+      color: #1C2A45; cursor: pointer; transition: all 0.2s;
+    }
+    .filter-toggle:hover { border-color: #D4715E; }
+    .filter-toggle-label { display: flex; align-items: center; gap: 8px; }
+    .filter-toggle-chevron { transition: transform 0.2s; color: #D4715E; }
+    .filters-bar.open .filter-toggle-chevron { transform: rotate(180deg); }
+    .close-filters {
+      font-size: 13px; color: #D4715E; background: none; border: none;
+      cursor: pointer; font-family: 'DM Sans', sans-serif; font-weight: 500;
+      padding: 6px 0; text-decoration: underline; margin-left: auto;
+      text-underline-offset: 2px; transition: color 0.15s; display: none;
+    }
+    .filters-bar.open .close-filters { display: inline-block; }
+    .close-filters:hover { color: #C8604A; }
     .filter-group { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
     .filter-label {
       font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
@@ -165,6 +185,28 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     }
     .filter-pill:hover { border-color: #D4715E; color: #D4715E; }
     .filter-pill.active { background: #1C2A45; color: #FDFAF9; border-color: #1C2A45; }
+
+    .city-nav {
+      padding: 1.75rem 2rem;
+      border-bottom: 1px solid #F0E0DC;
+      background: #FDFAF9;
+      display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap;
+    }
+    .city-nav-label {
+      font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+      color: #aaa; font-weight: 500; white-space: nowrap;
+    }
+    .city-nav-buttons { display: flex; gap: 8px; flex-wrap: wrap; }
+    .city-nav-btn {
+      font-size: 12px; font-weight: 600; padding: 8px 18px;
+      border-radius: 20px; border: 1px solid #E8D8D3;
+      background: #fff; color: #1C2A45; cursor: pointer;
+      font-family: 'DM Sans', sans-serif; text-decoration: none;
+      transition: all 0.2s; letter-spacing: 0.3px;
+      display: inline-flex; align-items: center; gap: 5px;
+    }
+    .city-nav-btn:hover { border-color: #D4715E; color: #D4715E; }
+    .city-nav-btn.active { background: #1C2A45; color: #FDFAF9; border-color: #1C2A45; pointer-events: none; }
 
     .events-layout { padding: 3rem 2rem; max-width: 1200px; margin: 0 auto; }
 
@@ -395,7 +437,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       .page-header h1 { font-size: clamp(32px, 10vw, 52px); }
       .stats-bar { padding: 1rem 1.25rem; gap: 1.25rem; }
       .stat-divider { display: none; }
-      .filters-bar { padding: 1rem 1.25rem; gap: 1rem; }
+      .city-nav { padding: 1.25rem; gap: 1rem; flex-direction: column; align-items: flex-start; }
+      .filters-bar { padding: 1rem 1.25rem; }
+      .filter-toggle { display: flex; }
+      .filters-inner { display: none; flex-direction: column; gap: 1rem; margin-top: 1rem; }
+      .filters-bar.open .filters-inner { display: flex; }
+      .filter-group { width: 100%; flex-wrap: wrap; }
       .events-layout { padding: 2rem 1.25rem; }
       .events-grid { grid-template-columns: 1fr; }
       footer { padding: 2rem 1.25rem; grid-template-columns: 1fr; gap: 1.5rem; }
@@ -469,6 +516,26 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </div>
 
+  <div class="city-nav">
+    <span class="city-nav-label">Se händelser i annan stad</span>
+    <div class="city-nav-buttons">
+      <a href="stockholm-running-events" class="city-nav-btn">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        Stockholm
+      </a>
+      <a href="goteborg-running-events" class="city-nav-btn">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        Göteborg
+      </a>
+      <a href="malmo-running-events" class="city-nav-btn active">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        Malmö
+      </a>
+    </div>
+  </div>
+
+  <div class="filters-bar" id="filters-bar"></div>
+
   <div class="events-layout">
     <div id="events-container"></div>
   </div>
@@ -522,6 +589,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     const SV_MONTHS       = ['Januari','Februari','Mars','April','Maj','Juni','Juli','Augusti','September','Oktober','November','December'];
 
     let activeSource = 'all';
+    let activeClubs = new Set();
 
     function parseDate(str) {
       if (!str) return null;
@@ -627,7 +695,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       const container = document.getElementById('events-container');
       container.innerHTML = '';
 
-      const filtered = events.filter(ev => activeSource === 'all' || ev.source === activeSource);
+      const filtered = events.filter(ev => {
+        const sourceOk = activeSource === 'all' || ev.source === activeSource;
+        const clubOk   = activeClubs.size === 0
+          || (activeClubs.has('__ovrigt__') && !ev.club)
+          || (ev.club && activeClubs.has(ev.club));
+        return sourceOk && clubOk;
+      });
 
       if (filtered.length === 0) {
         container.innerHTML = `
@@ -706,12 +780,89 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       navToggle.setAttribute('aria-label', isOpen ? 'Stäng meny' : 'Öppna meny');
     });
 
+    function renderClubFilter() {
+      const clubs = [...new Set(events.map(ev => ev.club || '').filter(Boolean))]
+        .sort((a, b) => a.localeCompare(b, 'sv'));
+      const hasOvrigt = events.some(ev => !ev.club);
+      const bar = document.getElementById('filters-bar');
+      if (!bar) return;
+
+      let pillsHtml = `<button class="filter-pill active" data-filter="club" data-value="all">Alla</button>`;
+      clubs.forEach(club => {
+        pillsHtml += `<button class="filter-pill" data-filter="club" data-value="${club.replace(/&/g,'&amp;').replace(/"/g,'&quot;')}">${club.replace(/&/g,'&amp;')}</button>`;
+      });
+      if (hasOvrigt) pillsHtml += `<button class="filter-pill" data-filter="club" data-value="__ovrigt__">Övrigt</button>`;
+
+      bar.innerHTML = `
+        <button class="filter-toggle" id="filter-toggle" aria-expanded="false" aria-controls="filters-inner">
+          <span class="filter-toggle-label">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>
+            Filtrera klubb
+          </span>
+          <svg class="filter-toggle-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="filters-inner" id="filters-inner">
+          <div class="filter-group"><span class="filter-label">Klubb</span>${pillsHtml}</div>
+          <button class="close-filters" id="close-filters">Stäng</button>
+        </div>`;
+
+      bar.querySelectorAll('[data-filter="club"]').forEach(btn => {
+        btn.addEventListener('click', function() {
+          const val = this.dataset.value;
+          if (val === 'all') {
+            activeClubs.clear();
+            bar.querySelectorAll('[data-filter="club"]').forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+          } else {
+            bar.querySelector('[data-value="all"]').classList.remove('active');
+            if (activeClubs.has(val)) {
+              activeClubs.delete(val);
+              this.classList.remove('active');
+            } else {
+              activeClubs.add(val);
+              this.classList.add('active');
+            }
+            if (activeClubs.size === 0) {
+              bar.querySelector('[data-value="all"]').classList.add('active');
+            }
+          }
+          render();
+        });
+      });
+
+      const filterToggle = document.getElementById('filter-toggle');
+      if (filterToggle) {
+        filterToggle.addEventListener('click', () => {
+          const isOpen = bar.classList.toggle('open');
+          filterToggle.setAttribute('aria-expanded', isOpen);
+        });
+      }
+      const closeBtn = document.getElementById('close-filters');
+      if (closeBtn) {
+        closeBtn.addEventListener('click', () => {
+          bar.classList.remove('open');
+          if (filterToggle) filterToggle.setAttribute('aria-expanded', 'false');
+        });
+      }
+    }
+
     const observer = new IntersectionObserver(entries => {
       entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
     }, { threshold: 0 });
     document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
+    const _clubParam = new URLSearchParams(window.location.search).get('club');
+    if (_clubParam) activeClubs.add(_clubParam);
+
     render();
+    renderClubFilter();
+
+    if (_clubParam) {
+      const allPill = document.querySelector('[data-filter="club"][data-value="all"]');
+      if (allPill) allPill.classList.remove('active');
+      const targetPill = document.querySelector(`[data-filter="club"][data-value="${_clubParam}"]`);
+      if (targetPill) targetPill.classList.add('active');
+    }
   </script>
   <script src="newsletter.js"></script>
 </body>
