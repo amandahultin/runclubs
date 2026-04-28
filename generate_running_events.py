@@ -30,6 +30,7 @@ from events_common import (
     fetch_overrides,
     fetch_special_events,
     fetch_weekly_runs,
+    normalize_club_name,
     _parse_date,
     _parse_time,
 )
@@ -111,7 +112,7 @@ def prepare_special_events(records: list[dict], club_pages: dict[str, str]) -> l
         if not city:
             continue
 
-        club = (r.get("club") or "").strip()
+        club = normalize_club_name(r.get("club") or "")
         events.append({
             "type":        "event",
             "source":      "special",
@@ -148,7 +149,7 @@ def prepare_events(records: list[dict], club_pages: dict[str, str]) -> list[dict
         if not city:
             continue
 
-        club = (r.get("club") or "").strip()
+        club = normalize_club_name(r.get("club") or "")
         events.append({
             "type":        "event",
             "source":      (r.get("source") or "").strip().lower(),
@@ -187,7 +188,7 @@ def expand_weekly_runs(
         if not city:
             continue
 
-        club      = (r.get("club") or "").strip()
+        club      = normalize_club_name(r.get("club") or "")
         hour, minute = _parse_time(r.get("time") or "")
 
         current = today
