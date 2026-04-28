@@ -191,7 +191,8 @@ def prepare_special_events(records: list[dict], club_pages: dict[str, str]) -> l
 
         # Support combined "2026-05-01T18:00:00" or separate date + time columns
         if raw_date and "T" not in raw_date and raw_time:
-            raw_date = f"{raw_date}T{raw_time}:00" if len(raw_time) == 5 else f"{raw_date}T{raw_time}"
+            h, m = _parse_time(raw_time)
+            raw_date = f"{raw_date}T{h:02d}:{m:02d}:00"
 
         dt = _parse_date(raw_date)
         if dt is not None and dt.date() < today:
@@ -223,7 +224,7 @@ def prepare_special_events(records: list[dict], club_pages: dict[str, str]) -> l
 
 
 def _parse_date(raw: str) -> datetime | None:
-    for fmt in ("%Y-%m-%dT%H:%M:%S%z", "%Y-%m-%dT%H:%M:%S", "%Y-%m-%d"):
+    for fmt in ("%Y-%m-%dT%H:%M:%S%z", "%Y-%m-%dT%H:%M:%S", "%Y-%m-%dT%H:%M", "%Y-%m-%d"):
         try:
             return datetime.strptime(raw.strip(), fmt)
         except (ValueError, AttributeError):
