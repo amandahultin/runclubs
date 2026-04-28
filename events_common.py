@@ -34,6 +34,15 @@ WEEKLY_HEADERS    = ["club", "day_of_week", "time", "location", "city", "title",
 OVERRIDES_HEADERS = ["club", "date", "city", "action", "time", "location", "title", "description", "link"]
 SPECIAL_HEADERS   = ["club", "title", "date", "time", "location", "city", "description", "link", "image_url"]
 
+CLUB_NAME_ALIASES = {
+    "dc runclub":              "Saucony Run Club Sverige",
+    "downtown camper run club": "Saucony Run Club Sverige",
+    "saucony run club":        "Saucony Run Club Sverige",
+}
+
+def normalize_club_name(name: str) -> str:
+    return CLUB_NAME_ALIASES.get(name.strip().lower(), name.strip())
+
 DAYS_MAP = {
     "monday": 0,    "måndag": 0,
     "tuesday": 1,   "tisdag": 1,
