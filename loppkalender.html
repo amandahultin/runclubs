@@ -668,6 +668,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         this.classList.add('active');
         if (group === 'region') activeRegion = value;
         if (group === 'dist')   activeDist   = value;
+        syncURL();
         render();
       });
     });
@@ -688,7 +689,33 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     }, { threshold: 0 });
     document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
+    // ─── URL SYNC ────────────────────────────────────────────────────────────────
+    function syncURL() {
+      const params = new URLSearchParams();
+      if (activeRegion !== 'all') params.set('region', activeRegion);
+      if (activeDist   !== 'all') params.set('dist', activeDist);
+      const qs = params.toString();
+      history.replaceState(null, '', qs ? '?' + qs : location.pathname);
+    }
+
     // ─── INIT ─────────────────────────────────────────────────────────────────────
+    const _p = new URLSearchParams(location.search);
+    if (_p.get('region')) {
+      activeRegion = _p.get('region');
+      const pill = document.querySelector(`[data-filter="region"][data-value="${activeRegion}"]`);
+      if (pill) {
+        document.querySelectorAll('[data-filter="region"]').forEach(b => b.classList.remove('active'));
+        pill.classList.add('active');
+      }
+    }
+    if (_p.get('dist')) {
+      activeDist = _p.get('dist');
+      const pill = document.querySelector(`[data-filter="dist"][data-value="${activeDist}"]`);
+      if (pill) {
+        document.querySelectorAll('[data-filter="dist"]').forEach(b => b.classList.remove('active'));
+        pill.classList.add('active');
+      }
+    }
     render();
   </script>
   <script src="newsletter.js"></script>

@@ -826,6 +826,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           active[filter] = value;
           pill.classList.add('active');
         }
+        syncURL();
         filterClubs();
       });
     });
@@ -834,8 +835,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       setTimeout(updateFilterCount, 0);
       active.niva = null; active.typ = null; active.dag = null; active.stadsdel = null;
       document.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
+      syncURL();
       filterClubs();
     });
+
+    function syncURL() {
+      const params = new URLSearchParams();
+      if (active.niva)     params.set('niva', active.niva);
+      if (active.typ)      params.set('typ', active.typ);
+      if (active.dag)      params.set('dag', active.dag);
+      if (active.stadsdel) params.set('stadsdel', active.stadsdel);
+      const qs = params.toString();
+      history.replaceState(null, '', qs ? '?' + qs : location.pathname);
+    }
 
     function filterClubs() {
       const cards = document.querySelectorAll('.club-card');
@@ -858,6 +870,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       const hasFilters = active.niva || active.typ || active.dag || active.stadsdel;
       clearBtn.classList.toggle('show', hasFilters);
     }
+
+    const _p = new URLSearchParams(location.search);
+    ['niva','typ','dag','stadsdel'].forEach(key => {
+      const val = _p.get(key);
+      if (val) {
+        active[key] = val;
+        const pill = document.querySelector(`[data-filter="${key}"][data-value="${val}"]`);
+        if (pill) {
+          document.querySelectorAll(`[data-filter="${key}"]`).forEach(p => p.classList.remove('active'));
+          pill.classList.add('active');
+        }
+      }
+    });
+    filterClubs();
   </script>
 
   <script src="add-club.js"></script>
