@@ -1008,6 +1008,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               bar.querySelector('[data-value="all"]').classList.add('active');
             }}
           }}
+          syncURL();
           render();
         }});
       }});
@@ -1028,22 +1029,31 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       }}
     }}
 
+    function syncURL() {{
+      const params = new URLSearchParams();
+      activeClubs.forEach(c => params.append('club', c));
+      const qs = params.toString();
+      history.replaceState(null, '', qs ? '?' + qs : location.pathname);
+    }}
+
     const observer = new IntersectionObserver(entries => {{
       entries.forEach(e => {{ if (e.isIntersecting) e.target.classList.add('visible'); }});
     }}, {{ threshold: 0 }});
     document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
-    const _clubParam = new URLSearchParams(window.location.search).get('club');
-    if (_clubParam) activeClubs.add(_clubParam);
+    const _clubParams = new URLSearchParams(window.location.search).getAll('club');
+    _clubParams.forEach(c => activeClubs.add(c));
 
     render();
     renderClubFilter();
 
-    if (_clubParam) {{
+    if (_clubParams.length > 0) {{
       const allPill = document.querySelector('[data-filter="club"][data-value="all"]');
       if (allPill) allPill.classList.remove('active');
-      const targetPill = document.querySelector(`[data-filter="club"][data-value="${{_clubParam}}"]`);
-      if (targetPill) targetPill.classList.add('active');
+      _clubParams.forEach(c => {{
+        const targetPill = document.querySelector(`[data-filter="club"][data-value="${{c}}"]`);
+        if (targetPill) targetPill.classList.add('active');
+      }});
     }}
   </script>
   <script src="newsletter.js"></script>
