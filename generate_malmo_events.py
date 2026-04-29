@@ -30,6 +30,7 @@ from events_common import (
     fetch_overrides,
     fetch_special_events,
     fetch_weekly_runs,
+    normalize_club_name,
     _parse_date,
     _parse_time,
 )
@@ -59,7 +60,7 @@ def prepare_special_events(records: list[dict]) -> list[dict]:
         events.append({
             "type":        "event",
             "source":      "special",
-            "club":        (r.get("club") or "").strip(),
+            "club":        normalize_club_name(r.get("club") or ""),
             "title":       (r.get("title") or "Untitled").strip(),
             "date":        dt.strftime("%Y-%m-%dT%H:%M:%S") if dt else "",
             "location":    (r.get("location") or "").strip(),
@@ -90,7 +91,7 @@ def prepare_events(records: list[dict]) -> list[dict]:
         events.append({
             "type":        "event",
             "source":      (r.get("source") or "").strip().lower(),
-            "club":        (r.get("club") or "").strip(),
+            "club":        normalize_club_name(r.get("club") or ""),
             "title":       (r.get("title") or "Untitled").strip(),
             "date":        dt.strftime("%Y-%m-%dT%H:%M:%S") if dt else "",
             "location":    (r.get("location") or "").strip(),
@@ -124,7 +125,7 @@ def expand_weekly_runs(
             log.warning("Unknown day_of_week %r for club %r — skipping", day_str, r.get("club"))
             continue
 
-        club      = (r.get("club") or "").strip()
+        club      = normalize_club_name(r.get("club") or "")
         hour, minute = _parse_time(r.get("time") or "")
 
         current = today
