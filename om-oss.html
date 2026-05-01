@@ -328,7 +328,6 @@ document.addEventListener('DOMContentLoaded',function(){
       .about-content { grid-template-columns: 1fr; }
       .about-main { padding: 2rem 1.25rem; border-right: none; border-bottom: 1px solid #F0E0DC; }
       .about-sidebar { padding: 2rem 1.25rem; }
-      .newsletter-section { padding: 2.5rem 1.25rem; }
       .newsletter-form { flex-direction: column; }
       .newsletter-input { min-width: unset; width: 100%; }
       .newsletter-btn { width: 100%; text-align: center; }
@@ -599,18 +598,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </aside>
     </div>
 
-    <!-- NEWSLETTER SECTION -->
-    <section class="newsletter-section fade-in">
-      <div class="newsletter-inner">
-        <span class="section-label">Nyhetsbrevet</span>
-        <h2>Veckans rundor<br>+ kommande events</h2>
-        <p>Nya klubbar, löpartrender och nyheter från Sverige — direkt i din inkorg. Gratis, max ett mail i veckan.</p>
-        <form class="newsletter-form" data-placement="page-bottom" onsubmit="return false;">
-          <input type="email" class="newsletter-input" placeholder="din@email.se">
-          <button class="newsletter-btn">Prenumerera</button>
-        </div>
-      </div>
-    </section>
+    <!-- NEWSLETTER -->
+  <section class="nl-section fade-in">
+    <div class="nl-body">
+      <div class="nl-badge">Prenumerera på <span class="run-clubs-logo" style="font-size:1em;color:#D4715E;"><span class="run">RUN</span><span class="clubs">CLUBS</span><span class="suffix">.se</span></span> veckobrev</div>
+      <h2 class="nl-title">Inbjudningar,<br><em>events</em> och<br>promo runs.</h2>
+      <p class="nl-desc">Varje söndag får du en sammanställning av vad som händer kommande vecka — veckans pass, nyheter, intervjuer och events. Gratis så klart!</p>
+      <form class="newsletter-form" data-placement="page-bottom" onsubmit="return false;">
+        <input type="email" class="newsletter-input" placeholder="din@email.se" aria-label="E-postadress">
+        <button class="newsletter-btn">Anmäl mig nu →</button>
+      </form>
+      <p class="nl-disclaimer">Gratis. Avsluta när du vill.</p>
+    </div>
+  </section>
 
     <!-- CTA SECTION -->
     <section class="cta-section fade-in">
