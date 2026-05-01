@@ -1,4 +1,10 @@
 User-agent: *
 Allow: /
+Disallow: /*?utm_
+Disallow: /*?ref=
+Disallow: /*?fbclid=
+Disallow: /*?gclid=
+Disallow: /*?source=
+Disallow: /*?campaign=
 
 Sitemap: https://runclubs.se/sitemap.xml
