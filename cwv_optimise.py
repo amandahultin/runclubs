@@ -162,16 +162,13 @@ def transform(html: str) -> tuple[str, list[str]]:
         html = html.replace(GTM_OLD_BLOCK, GTM_NEW_BLOCK, 1)
         changes.append("GTM deferred")
 
-    # 2. Remove Cookiebot cd.js (Cookie Declaration widget — causes a visible
-    #    "domain not authorised" error unless a <div id="CookieDeclaration">
-    #    container exists on the page and the domain is registered in Cookiebot).
-    #    The consent *banner* is loaded separately via GTM and is unaffected.
+    # 2. Move Cookiebot cd.js from <head> to end of <body> with defer.
+    #    The declaration widget is non-critical — deferring it removes the
+    #    early third-party DNS lookup from the critical path.
     if COOKIEBOT_HEAD_BLOCK in html:
         html = html.replace(COOKIEBOT_HEAD_BLOCK, '', 1)
-        changes.append("Cookiebot cd.js removed")
-    if COOKIEBOT_BODY_TAG in html:
-        html = html.replace(COOKIEBOT_BODY_TAG, '', 1)
-        changes.append("Cookiebot cd.js (body) removed")
+        html = html.replace('</body>', COOKIEBOT_BODY_TAG + '</body>', 1)
+        changes.append("Cookiebot cd.js deferred to body")
 
     # 3. Trim Google Fonts request
     if FONTS_OLD in html:
