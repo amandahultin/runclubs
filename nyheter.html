@@ -2,18 +2,19 @@
 <html lang="sv">
 <head>
 <script>if(location.pathname.endsWith('.html'))history.replaceState(null,'',location.pathname.slice(0,-5)+location.search+location.hash);</script>
-<script
-  id="CookieDeclaration"
-  src="https://consent.cookiebot.com/c82ce3af-bded-4069-9aea-22493d3d7e2d/cd.js"
-  type="text/javascript"
-  async
-></script>
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-TPSCMPZT');</script>
+<!-- Google Tag Manager (deferred) -->
+<script>
+window.dataLayer=window.dataLayer||[];
+window.dataLayer.push({'gtm.start':new Date().getTime(),event:'gtm.js'});
+document.addEventListener('DOMContentLoaded',function(){
+  setTimeout(function(){
+    var s=document.createElement('script');
+    s.async=true;
+    s.src='https://www.googletagmanager.com/gtm.js?id=GTM-TPSCMPZT';
+    document.head.appendChild(s);
+  },1000);
+});
+</script>
 <!-- End Google Tag Manager -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -34,7 +35,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <link rel="alternate" hreflang="x-default" href="https://runclubs.se/nyheter">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:ital,wght@1,900&family=Oswald:wght@500;700&family=DM+Sans:wght@400;500;600&family=Playfair+Display:wght@400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
@@ -53,9 +54,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       position: sticky; top: 0; z-index: 100;
     }
     .run-clubs-logo { display: inline-flex; align-items: baseline; font-size: 36px; color: #1a1a1a; text-decoration: none; }
-    .run-clubs-logo .run { font-family: 'Inter', sans-serif; font-weight: 900; font-style: italic; letter-spacing: -0.04em; padding-right: 2px; }
-    .run-clubs-logo .clubs { font-family: 'Playfair Display', serif; font-weight: 400; letter-spacing: -0.02em; }
-    .run-clubs-logo .suffix { font-family: 'Playfair Display', serif; font-size: 0.45em; font-weight: 400; text-transform: lowercase; margin-left: 2px; }
+    .run-clubs-logo .run { font-family: 'Archivo Black', sans-serif; font-style: italic; letter-spacing: -0.04em; padding-right: 2px; }
+    .run-clubs-logo .clubs { font-family: Georgia, 'Times New Roman', serif; font-weight: 400; letter-spacing: -0.02em; }
+    .run-clubs-logo .suffix { font-family: Georgia, 'Times New Roman', serif; font-size: 0.45em; font-weight: 400; text-transform: lowercase; margin-left: 2px; }
     .nav-links { display: flex; gap: 2rem; }
     .nav-links a {
       font-size: 12px; letter-spacing: 0.5px; text-decoration: none;
@@ -181,7 +182,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .article-card-body { padding: 1.5rem; display: flex; flex-direction: column; flex: 1; }
     .article-card-body .article-tag { margin-bottom: 0.75rem; }
     .article-card-body h3 {
-      font-family: 'Oswald', sans-serif; font-weight: 700;
+      font-family: 'DM Sans', sans-serif; font-weight: 700;
       font-size: 18px; text-transform: uppercase; letter-spacing: 0.5px;
       color: #1C2A45; margin-bottom: 0.75rem; line-height: 1.25;
     }
@@ -223,7 +224,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .news-list a:hover { color: #D4715E; }
     .news-list-content { display: flex; align-items: center; gap: 1rem; flex: 1; }
     .news-list h3 {
-      font-family: 'Oswald', sans-serif; font-weight: 700;
+      font-family: 'DM Sans', sans-serif; font-weight: 700;
       font-size: 16px; text-transform: uppercase; letter-spacing: 0.3px;
       line-height: 1.3;
     }
@@ -564,5 +565,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </script>
   <script src="newsletter.js"></script>
 
+<script id="CookieDeclaration" src="https://consent.cookiebot.com/c82ce3af-bded-4069-9aea-22493d3d7e2d/cd.js" defer></script>
 </body>
 </html>

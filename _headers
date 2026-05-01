@@ -5,6 +5,16 @@
 /*.html
   Cache-Control: public, max-age=0, must-revalidate
 
+# Club subdirectory pages (/*.html doesn't match nested paths)
+/stockholm/*/
+  Cache-Control: public, max-age=0, must-revalidate
+
+/goteborg/*/
+  Cache-Control: public, max-age=0, must-revalidate
+
+/malmo/*/
+  Cache-Control: public, max-age=0, must-revalidate
+
 # Startsidan
 /
   Cache-Control: public, max-age=0, must-revalidate
