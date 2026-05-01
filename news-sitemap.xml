@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">
+
+  <url>
+    <loc>https://runclubs.se/tjejer-tar-over-lopsparen</loc>
+    <news:news>
+      <news:publication>
+        <news:name>Runclubs.se</news:name>
+        <news:language>sv</news:language>
+      </news:publication>
+      <news:publication_date>2026-04-01</news:publication_date>
+      <news:title>Tjejer tar över löpspåren — och gör det tillsammans</news:title>
+    </news:news>
+  </url>
+
+  <url>
+    <loc>https://runclubs.se/stockholm-marathon-2026-slutsalt</loc>
+    <news:news>
+      <news:publication>
+        <news:name>Runclubs.se</news:name>
+        <news:language>sv</news:language>
+      </news:publication>
+      <news:publication_date>2025-11-01</news:publication_date>
+      <news:title>Stockholm Marathon 2026 slutsålt — på rekordtid</news:title>
+    </news:news>
+  </url>
+
+</urlset>

@@ -8,3 +8,4 @@ Disallow: /*?source=
 Disallow: /*?campaign=
 
 Sitemap: https://runclubs.se/sitemap.xml
+Sitemap: https://runclubs.se/news-sitemap.xml
