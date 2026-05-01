@@ -149,14 +149,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
     /* ── MAIN CONTENT ──────────────────── */
     .club-content {
-      display: grid; grid-template-columns: 1fr 320px; gap: 0;
-      min-height: 400px; max-width: 1200px; margin: 0 auto;
+      max-width: 1200px; margin: 0 auto;
     }
 
-    /* Left column - about */
+    /* Om klubben (moved to bottom) */
     .club-about {
+      max-width: 1200px; margin: 0 auto;
       padding: 3rem 2.5rem;
-      border-right: 1px solid #F0E0DC;
+      border-top: 1px solid #F0E0DC;
     }
     .club-about .section-label {
       font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
@@ -186,13 +186,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     }
     .pull-quote p { padding-left: 1.5rem; }
 
-    /* Right column - sidebar */
+    /* Quick facts strip */
     .club-sidebar {
-      padding: 3rem 2rem;
+      padding: 2.5rem 2.5rem;
       background: #FDFAF9;
+      display: flex; gap: 3rem; flex-wrap: wrap;
+      border-bottom: 1px solid #F0E0DC;
     }
-    .sidebar-section { margin-bottom: 2.5rem; }
-    .sidebar-section:last-child { margin-bottom: 0; }
+    .sidebar-section { flex: 1; min-width: 200px; }
     .sidebar-label {
       font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
       color: #aaa; margin-bottom: 1.25rem; font-weight: 500; display: block;
@@ -356,8 +357,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       .info-strip { flex-direction: column; }
       .info-strip-item { border-right: none; border-bottom: 1px solid #F0E0DC; padding: 1rem 1.25rem; }
       .info-strip-item:last-child { border-bottom: none; }
-      .club-content { grid-template-columns: 1fr; }
-      .club-about { padding: 2rem 1.25rem; border-right: none; border-bottom: 1px solid #F0E0DC; }
+      .club-sidebar { flex-direction: column; gap: 1.5rem; padding: 2rem 1.25rem; }
+      .club-about { padding: 2rem 1.25rem; }
       .club-sidebar { padding: 2rem 1.25rem; }
       .related-section { padding: 2rem 1.25rem; }
       .related-grid { grid-template-columns: 1fr; }
@@ -691,22 +692,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <a href="/running-events" class="club-events-cta">Se alla kommande events →</a>
     </div>
   </section>
-    <article class="club-about fade-in">
-      <span class="section-label">Om klubben</span>
-
-      <p>Tjejmilen Run Club är det självklara valet för dig som har siktet inställt på att springa Tjejmilen den 5 september. Här får du träffa massor av tjejer med samma mål vilket gör att den positiva energin och viljan att hjälpa varandra verkligen genomsyrar gruppen.</p>
-
-      <p>I Tjejmilen Run Club finns plats för alla typer av löpare, och du är varmt välkommen oavsett om det är första gångerna du springer eller om du ställer upp i Tjejmilen för att slå PB.</p>
-
-      <p>Löpargruppen ser alltid till att det finns tid för återhämtning efter passen. Det brukar också bli ett skönt socialt häng och ibland medverkar sponsorer.</p>
-
-      <div class="pull-quote">
-        <p>Välkommen oavsett om det är första gångerna du springer eller om du ställer upp i Tjejmilen för att slå PB.</p>
-      </div>
-
-      <p>Startplatsen är Joe And The Juice och att delta är gratis. För dig som är intresserad av att delta eller vill veta mer, följ klubben på Instagram!</p>
-
-    </article>
 
     <aside class="club-sidebar fade-in">
       <div class="sidebar-section">
@@ -821,6 +806,25 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </section>
 
   </main>
+
+
+  <article class="club-about fade-in">
+      <span class="section-label">Om klubben</span>
+
+      <p>Tjejmilen Run Club är det självklara valet för dig som har siktet inställt på att springa Tjejmilen den 5 september. Här får du träffa massor av tjejer med samma mål vilket gör att den positiva energin och viljan att hjälpa varandra verkligen genomsyrar gruppen.</p>
+
+      <p>I Tjejmilen Run Club finns plats för alla typer av löpare, och du är varmt välkommen oavsett om det är första gångerna du springer eller om du ställer upp i Tjejmilen för att slå PB.</p>
+
+      <p>Löpargruppen ser alltid till att det finns tid för återhämtning efter passen. Det brukar också bli ett skönt socialt häng och ibland medverkar sponsorer.</p>
+
+      <div class="pull-quote">
+        <p>Välkommen oavsett om det är första gångerna du springer eller om du ställer upp i Tjejmilen för att slå PB.</p>
+      </div>
+
+      <p>Startplatsen är Joe And The Juice och att delta är gratis. För dig som är intresserad av att delta eller vill veta mer, följ klubben på Instagram!</p>
+
+    </article>
+
 
   <footer>
     <div class="footer-brand">

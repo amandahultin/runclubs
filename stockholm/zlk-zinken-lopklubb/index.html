@@ -148,14 +148,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
     /* ── MAIN CONTENT ──────────────────── */
     .club-content {
-      display: grid; grid-template-columns: 1fr 320px; gap: 0;
-      min-height: 400px; max-width: 1200px; margin: 0 auto;
+      max-width: 1200px; margin: 0 auto;
     }
 
-    /* Left column - about */
+    /* Om klubben (moved to bottom) */
     .club-about {
+      max-width: 1200px; margin: 0 auto;
       padding: 3rem 2.5rem;
-      border-right: 1px solid #F0E0DC;
+      border-top: 1px solid #F0E0DC;
     }
     .club-about .section-label {
       font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
@@ -185,13 +185,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     }
     .pull-quote p { padding-left: 1.5rem; }
 
-    /* Right column - sidebar */
+    /* Quick facts strip */
     .club-sidebar {
-      padding: 3rem 2rem;
+      padding: 2.5rem 2.5rem;
       background: #FDFAF9;
+      display: flex; gap: 3rem; flex-wrap: wrap;
+      border-bottom: 1px solid #F0E0DC;
     }
-    .sidebar-section { margin-bottom: 2.5rem; }
-    .sidebar-section:last-child { margin-bottom: 0; }
+    .sidebar-section { flex: 1; min-width: 200px; }
     .sidebar-label {
       font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
       color: #aaa; margin-bottom: 1.25rem; font-weight: 500; display: block;
@@ -399,8 +400,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       .info-strip { flex-direction: column; }
       .info-strip-item { border-right: none; border-bottom: 1px solid #F0E0DC; padding: 1rem 1.25rem; }
       .info-strip-item:last-child { border-bottom: none; }
-      .club-content { grid-template-columns: 1fr; }
-      .club-about { padding: 2rem 1.25rem; border-right: none; border-bottom: 1px solid #F0E0DC; }
+      .club-sidebar { flex-direction: column; gap: 1.5rem; padding: 2rem 1.25rem; }
+      .club-about { padding: 2rem 1.25rem; }
       .club-sidebar { padding: 2rem 1.25rem; }
       .related-section { padding: 2rem 1.25rem; }
       .related-grid { grid-template-columns: 1fr; }
@@ -753,20 +754,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <a href="/running-events" class="club-events-cta">Se alla kommande events →</a>
     </div>
   </section>
-    <article class="club-about fade-in">
-      <span class="section-label">Om klubben</span>
-
-      <p>"Sveriges troligtvis gladaste löpklubb" — och det märks från första steget. ZLK Zinken Löpklubb är en <strong>löpargrupp på Södermalm</strong> där välkomnandet är lika stort som glädjen att springa tillsammans. Gruppen utgår från <strong>Zinkensdamm</strong> där gänget samlas en eller flera gånger i veckan. Oavsett om du är en helt ny löpare eller har tusentals mil bakom dig finns det en plats för dig.</p>
-
-      <p>Klubbens signaturpass <strong>Subway Series</strong> innebär att man startar vid Zinkensdamms tunnelbana och följer en linje ut till en ändhållplats — ett roligt sätt att upptäcka Stockholm medan kilometerna rullar på. Andra veckor står <strong>intervaller</strong> på schemat. Löpargruppen varierar också med roliga pass som <strong>Social Run</strong> och <strong>Beer Mile</strong> där samvaron är minst lika viktig som distansen och farten.</p>
-
-      <div class="pull-quote">
-        <p>"Alla har en plats i denna löpklubb."</p>
-      </div>
-
-      <p>Passen avslutas ofta med <strong>mat och dryck</strong>, något som verkligen binder gruppen samman. För att testa ZLK, hör av dig till dem via Facebook eller Instagram. Det kostar ingenting att vara med och gruppen välkomnar löpare på alla nivåer.</p>
-
-    </article>
 
     <aside class="club-sidebar fade-in">
       <div class="sidebar-section">
@@ -896,6 +883,23 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </section>
 
   </main>
+
+
+  <article class="club-about fade-in">
+      <span class="section-label">Om klubben</span>
+
+      <p>"Sveriges troligtvis gladaste löpklubb" — och det märks från första steget. ZLK Zinken Löpklubb är en <strong>löpargrupp på Södermalm</strong> där välkomnandet är lika stort som glädjen att springa tillsammans. Gruppen utgår från <strong>Zinkensdamm</strong> där gänget samlas en eller flera gånger i veckan. Oavsett om du är en helt ny löpare eller har tusentals mil bakom dig finns det en plats för dig.</p>
+
+      <p>Klubbens signaturpass <strong>Subway Series</strong> innebär att man startar vid Zinkensdamms tunnelbana och följer en linje ut till en ändhållplats — ett roligt sätt att upptäcka Stockholm medan kilometerna rullar på. Andra veckor står <strong>intervaller</strong> på schemat. Löpargruppen varierar också med roliga pass som <strong>Social Run</strong> och <strong>Beer Mile</strong> där samvaron är minst lika viktig som distansen och farten.</p>
+
+      <div class="pull-quote">
+        <p>"Alla har en plats i denna löpklubb."</p>
+      </div>
+
+      <p>Passen avslutas ofta med <strong>mat och dryck</strong>, något som verkligen binder gruppen samman. För att testa ZLK, hör av dig till dem via Facebook eller Instagram. Det kostar ingenting att vara med och gruppen välkomnar löpare på alla nivåer.</p>
+
+    </article>
+
 
   <footer>
     <div class="footer-brand">
