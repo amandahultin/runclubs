@@ -120,19 +120,22 @@ def patch_index(index_path: Path, events: list[dict], cards_html: str) -> None:
     patched  = original
 
     # 1. Inline the full events JSON for the JS (replaces placeholder comment block)
+    # Use lambda replacement so re.sub never interprets \n / \uXXXX inside the JSON.
     events_json = json.dumps(events, ensure_ascii=False, separators=(",", ":"))
     json_inject = f"window.__EVENTS__ = {events_json};"
+    json_block  = f"// EVENTS-JSON-START\n    {json_inject}\n    // EVENTS-JSON-END"
     patched = re.sub(
         r"// EVENTS-JSON-START.*?// EVENTS-JSON-END",
-        f"// EVENTS-JSON-START\n    {json_inject}\n    // EVENTS-JSON-END",
+        lambda _: json_block,
         patched,
         flags=re.DOTALL,
     )
 
     # 2. Inject static cards between EVENTS-START / EVENTS-END
+    cards_block = f"<!-- EVENTS-START -->{cards_html}<!-- EVENTS-END -->"
     patched = re.sub(
         r"<!-- EVENTS-START -->.*?<!-- EVENTS-END -->",
-        f"<!-- EVENTS-START -->{cards_html}<!-- EVENTS-END -->",
+        lambda _: cards_block,
         patched,
         flags=re.DOTALL,
     )
