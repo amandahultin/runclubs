@@ -334,6 +334,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       .cta-btn { width: 100%; justify-content: center; }
       footer { padding: 2rem 1.25rem; grid-template-columns: 1fr; }
     }
+
+    /* ── FAQ ─────────────────────────────── */
+    .faq-section { max-width: 780px; margin: 0 auto; padding: 4rem 2rem; }
+    .faq-section .section-label { color: #D4715E; font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 600; margin-bottom: 0.75rem; }
+    .faq-section h2 { font-family: 'Archivo Black', sans-serif; font-size: clamp(22px, 3vw, 30px); color: #1C2A45; margin-bottom: 2rem; }
+    .faq-item { border-bottom: 1px solid #F0E0DC; }
+    .faq-item:first-of-type { border-top: 1px solid #F0E0DC; }
+    .faq-question { width: 100%; background: none; border: none; text-align: left; padding: 1.25rem 0; display: flex; justify-content: space-between; align-items: center; gap: 1rem; cursor: pointer; font-family: 'DM Sans', sans-serif; font-size: 16px; font-weight: 600; color: #1C2A45; }
+    .faq-question:hover { color: #D4715E; }
+    .faq-icon { flex-shrink: 0; width: 20px; height: 20px; border-radius: 50%; border: 1.5px solid currentColor; display: flex; align-items: center; justify-content: center; transition: transform 0.25s; }
+    .faq-icon::after { content: '+'; font-size: 14px; line-height: 1; }
+    .faq-item.open .faq-icon { transform: rotate(45deg); }
+    .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+    .faq-answer p { padding: 0 0 1.25rem; font-size: 15px; line-height: 1.7; color: #555; }
   </style>
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -607,6 +621,57 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </a>
     </section>
 
+
+  <!-- FAQ -->
+  <section class="faq-section fade-in" aria-labelledby="faq-heading-om-oss">
+    <div class="section-label">Vanliga frågor</div>
+    <h2 id="faq-heading-om-oss">Frågor och svar</h2>
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-om-oss-0">
+          Vad är Runclubs.se?
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-answer" id="faq-answer-om-oss-0" role="region">
+          <p>Runclubs.se är Sveriges samlade guide till run clubs och löpargrupper. Vi listar clubs i Stockholm, Göteborg och Malmö med tider, startplatser och nivå så att du enkelt hittar rätt grupp.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-om-oss-1">
+          Hur lägger jag till min run club på Runclubs.se?
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-answer" id="faq-answer-om-oss-1" role="region">
+          <p>Maila oss på amanda@runclubs.se med information om din club — namn, startplats, tider och kontaktlänkar. Vi lägger upp er gratis.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-om-oss-2">
+          Är det gratis att använda Runclubs.se?
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-answer" id="faq-answer-om-oss-2" role="region">
+          <p>Ja, Runclubs.se är helt gratis för löpare att använda. Vi tar inte heller betalt av clubs för att listas.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-om-oss-3">
+          Hur ofta uppdateras eventinformationen?
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-answer" id="faq-answer-om-oss-3" role="region">
+          <p>Eventdata uppdateras automatiskt varje morgon från Strava och vårt eget kalkylblad. Du ser alltid de senaste passen.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-om-oss-4">
+          Täcker ni fler städer än Stockholm, Göteborg och Malmö?
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-answer" id="faq-answer-om-oss-4" role="region">
+          <p>I nuläget fokuserar vi på Sveriges tre största städer. Fler städer är på väg — hör av dig om du vill se din stad på sajten.</p>
+        </div>
+      </div>
+  </section>
   </main>
 
   <!-- FOOTER -->
@@ -658,5 +723,28 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </script>
   <script src="newsletter.js"></script>
 
+
+  <script>
+    // FAQ accordion
+    document.querySelectorAll('.faq-question').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var item   = btn.closest('.faq-item');
+        var answer = item.querySelector('.faq-answer');
+        var isOpen = item.classList.contains('open');
+        // Close all
+        document.querySelectorAll('.faq-item.open').forEach(function(el) {
+          el.classList.remove('open');
+          el.querySelector('.faq-answer').style.maxHeight = null;
+          el.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+        });
+        // Open clicked (if it was closed)
+        if (!isOpen) {
+          item.classList.add('open');
+          answer.style.maxHeight = answer.scrollHeight + 'px';
+          btn.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+  </script>
 </body>
 </html>

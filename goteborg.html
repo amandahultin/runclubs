@@ -384,6 +384,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .placeholder-initial { font-family: 'Archivo Black', sans-serif; font-size: 88px; color: #D4715E; line-height: 1; opacity: 0.9; position: relative; z-index: 1; }
     .placeholder-tag { position: absolute; bottom: 10px; left: 14px; font-family: 'Oswald', sans-serif; font-size: 9px; letter-spacing: 2.5px; text-transform: uppercase; color: rgba(253,250,249,0.55); z-index: 1; }
 
+
+    /* ── FAQ ─────────────────────────────── */
+    .faq-section { max-width: 780px; margin: 0 auto; padding: 4rem 2rem; }
+    .faq-section .section-label { color: #D4715E; font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 600; margin-bottom: 0.75rem; }
+    .faq-section h2 { font-family: 'Archivo Black', sans-serif; font-size: clamp(22px, 3vw, 30px); color: #1C2A45; margin-bottom: 2rem; }
+    .faq-item { border-bottom: 1px solid #F0E0DC; }
+    .faq-item:first-of-type { border-top: 1px solid #F0E0DC; }
+    .faq-question { width: 100%; background: none; border: none; text-align: left; padding: 1.25rem 0; display: flex; justify-content: space-between; align-items: center; gap: 1rem; cursor: pointer; font-family: 'DM Sans', sans-serif; font-size: 16px; font-weight: 600; color: #1C2A45; }
+    .faq-question:hover { color: #D4715E; }
+    .faq-icon { flex-shrink: 0; width: 20px; height: 20px; border-radius: 50%; border: 1.5px solid currentColor; display: flex; align-items: center; justify-content: center; transition: transform 0.25s; }
+    .faq-icon::after { content: '+'; font-size: 14px; line-height: 1; }
+    .faq-item.open .faq-icon { transform: rotate(45deg); }
+    .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+    .faq-answer p { padding: 0 0 1.25rem; font-size: 15px; line-height: 1.7; color: #555; }
   </style>
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -919,6 +933,57 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </section>
 
+
+  <!-- FAQ -->
+  <section class="faq-section fade-in" aria-labelledby="faq-heading-goteborg">
+    <div class="section-label">Vanliga frågor</div>
+    <h2 id="faq-heading-goteborg">Frågor och svar</h2>
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-goteborg-0">
+          Vad kostar det att vara med i en run club i Göteborg?
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-answer" id="faq-answer-goteborg-0" role="region">
+          <p>De allra flesta run clubs i Göteborg är gratis att delta i. Du behöver bara dyka upp och vara redo att springa.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-goteborg-1">
+          Vilken nivå krävs för att vara med i Göteborgs run clubs?
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-answer" id="faq-answer-goteborg-1" role="region">
+          <p>Göteborgs run clubs är öppna för alla nivåer. Oavsett om du är nybörjare eller rutinerad löpare finns det en grupp som passar dig.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-goteborg-2">
+          När samlas run clubs i Göteborg?
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-answer" id="faq-answer-goteborg-2" role="region">
+          <p>Göteborg har run clubs som samlas på vardagar och helger. Kolla in varje clubs sida på Runclubs.se för aktuella tider och mötesplatser.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-goteborg-3">
+          Hur hittar jag en löpargrupp i Göteborg?
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-answer" id="faq-answer-goteborg-3" role="region">
+          <p>Runclubs.se listar alla kända run clubs i Göteborg med tider, startplatser och nivå. Bläddra bland clubs och hitta din matchning.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-goteborg-4">
+          Finns det run clubs i Göteborg som fokuserar på tjejer?
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-answer" id="faq-answer-goteborg-4" role="region">
+          <p>Ja, flera run clubs i Göteborg har pass riktade mot tjejer eller mixed grupper med inkluderande miljö. Se filtret på Göteborgs-sidan.</p>
+        </div>
+      </div>
+  </section>
   </main>
 
   <footer>
@@ -1127,6 +1192,29 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       grid.innerHTML = '<div class="events-teaser-empty">Kunde inte ladda events.</div>';
     }
   })();
+  </script>
+
+  <script>
+    // FAQ accordion
+    document.querySelectorAll('.faq-question').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var item   = btn.closest('.faq-item');
+        var answer = item.querySelector('.faq-answer');
+        var isOpen = item.classList.contains('open');
+        // Close all
+        document.querySelectorAll('.faq-item.open').forEach(function(el) {
+          el.classList.remove('open');
+          el.querySelector('.faq-answer').style.maxHeight = null;
+          el.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+        });
+        // Open clicked (if it was closed)
+        if (!isOpen) {
+          item.classList.add('open');
+          answer.style.maxHeight = answer.scrollHeight + 'px';
+          btn.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
   </script>
 </body>
 </html>
