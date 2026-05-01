@@ -169,7 +169,7 @@ def transform_html(html: str, slug: str) -> str:
 
 MAP_CSS = """
     /* ── MAP ─────────────────────────────── */
-    .map-embed-section { padding: 0 2rem 3rem; max-width: 780px; margin: 0 auto; }
+    .map-embed-section { padding: 0 2.5rem 3rem; max-width: 780px; margin: 0; }
     .map-embed-section h3 { font-size: 14px; letter-spacing: 1px; text-transform: uppercase;
       color: #aaa; font-weight: 500; margin-bottom: 1rem; }
     .map-embed { width: 100%; height: 280px; border: 0; border-radius: 12px;
