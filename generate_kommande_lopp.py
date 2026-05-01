@@ -201,12 +201,19 @@ def render_html(races: list[dict], generated_at: str) -> str:
     return f"""<!DOCTYPE html>
 <html lang="sv">
 <head>
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){{w[l]=w[l]||[];w[l].push({{'gtm.start':
-new Date().getTime(),event:'gtm.js'}});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-}})(window,document,'script','dataLayer','GTM-TPSCMPZT');</script>
+<!-- Google Tag Manager (deferred) -->
+<script>
+window.dataLayer=window.dataLayer||[];
+window.dataLayer.push({{'gtm.start':new Date().getTime(),event:'gtm.js'}});
+document.addEventListener('DOMContentLoaded',function(){{
+  setTimeout(function(){{
+    var s=document.createElement('script');
+    s.async=true;
+    s.src='https://www.googletagmanager.com/gtm.js?id=GTM-TPSCMPZT';
+    document.head.appendChild(s);
+  }},1000);
+}});
+</script>
 <!-- End Google Tag Manager -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -217,6 +224,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://runclubs.se/loppkalender">
   <link rel="canonical" href="https://runclubs.se/loppkalender">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:ital,wght@1,900&family=Oswald:wght@500;700&family=DM+Sans:wght@400;500;600&family=Playfair+Display:wght@400&display=swap" rel="stylesheet">
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -463,7 +471,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .tag-dist     {{ background: #F5F0FF; color: #5B2D8E; }}
 
     .event-title {{
-      font-family: 'Oswald', sans-serif; font-weight: 700;
+      font-family: 'DM Sans', sans-serif; font-weight: 700;
       font-size: 17px; text-transform: uppercase;
       letter-spacing: 0.5px; line-height: 1.2; color: #1C2A45;
     }}
@@ -919,6 +927,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     render();
   </script>
   <script src="newsletter.js"></script>
+<script id="CookieDeclaration" src="https://consent.cookiebot.com/c82ce3af-bded-4069-9aea-22493d3d7e2d/cd.js" defer></script>
 </body>
 </html>
 """
