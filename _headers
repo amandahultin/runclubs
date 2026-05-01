@@ -1,0 +1,51 @@
+# Cloudflare Pages Cache Headers
+# Bilder, fonts och CSS/JS cachas länge — HTML aldrig
+
+# HTML-sidor: ingen cache (alltid färsk)
+/*.html
+  Cache-Control: public, max-age=0, must-revalidate
+
+# Startsidan
+/
+  Cache-Control: public, max-age=0, must-revalidate
+
+# Bilder: 1 år cache (content-addressed, ändras sällan)
+/*.webp
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.jpg
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.jpeg
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.png
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.svg
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.gif
+  Cache-Control: public, max-age=31536000, immutable
+
+# JavaScript: 1 år cache
+/*.js
+  Cache-Control: public, max-age=31536000, immutable
+
+# CSS: 1 år cache
+/*.css
+  Cache-Control: public, max-age=31536000, immutable
+
+# Fonter: 1 år cache
+/*.woff2
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.woff
+  Cache-Control: public, max-age=31536000, immutable
+
+# Sitemap och robots: kort cache
+/sitemap.xml
+  Cache-Control: public, max-age=86400
+
+/robots.txt
+  Cache-Control: public, max-age=86400
