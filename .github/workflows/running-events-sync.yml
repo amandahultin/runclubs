@@ -36,6 +36,9 @@ jobs:
       - name: Refresh SportsEvent JSON-LD in running-events.html
         run: python inject_rich_schemas.py
 
+      - name: Re-apply CWV optimisations to generated files
+        run: python3 cwv_optimise.py running-events.html index.html
+
       - name: Commit and push if changed
         run: |
           git config user.name  "github-actions[bot]"

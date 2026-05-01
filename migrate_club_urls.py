@@ -25,6 +25,26 @@ import shutil
 from pathlib import Path
 from urllib.parse import quote
 
+# Post-processing helpers — applied to every newly created club page so
+# it inherits all current optimisations without needing a separate pass.
+# Imported lazily inside post_process() to avoid hard failures if the
+# sibling scripts are renamed.
+def _post_process(path: Path) -> None:
+    """Apply CWV, SEO-polish and freshness stamp to a freshly migrated page."""
+    from cwv_optimise    import transform       as _cwv
+    from seo_polish      import (fix_heading_order, fix_internal_links,
+                                 fix_hreflang, fix_images)
+    from inject_freshness import patch_club     as _freshness
+
+    html = path.read_text(encoding="utf-8")
+    html, _ = _cwv(html)
+    html     = fix_heading_order(html)
+    html     = fix_internal_links(html)
+    html     = fix_hreflang(html)
+    html     = fix_images(html)
+    html, _  = _freshness(html)
+    path.write_text(html, encoding="utf-8")
+
 ROOT     = Path(__file__).parent
 BASE_URL = "https://runclubs.se"
 
@@ -291,6 +311,10 @@ def migrate_club(slug: str) -> str:
     html = transform_html(html, slug)
     html = inject_map(html, slug)
     dst_path.write_text(html, encoding="utf-8")
+
+    # Apply CWV, SEO-polish and freshness stamp so the output is
+    # immediately production-ready without any extra manual steps.
+    _post_process(dst_path)
 
     update_redirects(slug)
 

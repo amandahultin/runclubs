@@ -162,12 +162,16 @@ def transform(html: str) -> tuple[str, list[str]]:
         html = html.replace(GTM_OLD_BLOCK, GTM_NEW_BLOCK, 1)
         changes.append("GTM deferred")
 
-    # 2. Move Cookiebot cd.js from <head> to <body>
+    # 2. Remove Cookiebot cd.js (Cookie Declaration widget — causes a visible
+    #    "domain not authorised" error unless a <div id="CookieDeclaration">
+    #    container exists on the page and the domain is registered in Cookiebot).
+    #    The consent *banner* is loaded separately via GTM and is unaffected.
     if COOKIEBOT_HEAD_BLOCK in html:
         html = html.replace(COOKIEBOT_HEAD_BLOCK, '', 1)
-        # Append before </body>
-        html = html.replace('</body>', COOKIEBOT_BODY_TAG + '</body>', 1)
-        changes.append("Cookiebot cd.js moved to body")
+        changes.append("Cookiebot cd.js removed")
+    if COOKIEBOT_BODY_TAG in html:
+        html = html.replace(COOKIEBOT_BODY_TAG, '', 1)
+        changes.append("Cookiebot cd.js (body) removed")
 
     # 3. Trim Google Fonts request
     if FONTS_OLD in html:
@@ -189,16 +193,24 @@ def transform(html: str) -> tuple[str, list[str]]:
 
 # ── Main ──────────────────────────────────────────────────────────────────────
 
-def main() -> None:
+def main(targets: list[Path] | None = None) -> None:
+    """Apply CWV transforms.
+
+    targets: specific files to process. When None, processes all HTML
+             files in the repo (excluding drafts/mockups).
+             Can also be driven from the CLI: python3 cwv_optimise.py a.html b.html
+    """
     print("\n── Core Web Vitals pass ────────────────────────────────────")
 
-    # All HTML files except mockups / drafts
-    skip = {'mockup-botanik', 'mockup-korall', 'mockup-lila', 'mockup-solsken',
-            'index-feminine', 'index-feminine-v2', 'placeholder-preview', 'klubb'}
-    files = [
-        p for p in sorted(ROOT.rglob("*.html"))
-        if p.stem not in skip and 'node_modules' not in str(p)
-    ]
+    if targets is not None:
+        files = [p for p in targets if p.exists()]
+    else:
+        skip = {'mockup-botanik', 'mockup-korall', 'mockup-lila', 'mockup-solsken',
+                'index-feminine', 'index-feminine-v2', 'placeholder-preview', 'klubb'}
+        files = [
+            p for p in sorted(ROOT.rglob("*.html"))
+            if p.stem not in skip and 'node_modules' not in str(p)
+        ]
 
     updated = skipped = 0
     for path in files:
@@ -218,4 +230,6 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    main()
+    import sys
+    cli_targets = [Path(a) for a in sys.argv[1:]] if sys.argv[1:] else None
+    main(cli_targets)

@@ -30,6 +30,9 @@ jobs:
           GOOGLE_SHEET_ID: ${{ secrets.EVENTS_SHEET_ID }}
         run: python generate_malmo_events.py malmo-running-events.html
 
+      - name: Re-apply CWV optimisations to generated file
+        run: python3 cwv_optimise.py malmo-running-events.html
+
       - name: Commit and push if changed
         run: |
           git config user.name  "github-actions[bot]"
