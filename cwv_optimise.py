@@ -7,10 +7,6 @@ Changes applied to every HTML file that contains the GTM snippet:
 1. GTM deferred  — inline snippet replaced with DOMContentLoaded +
    1 s setTimeout so gtm.js loads after LCP has painted.
 
-2. Cookiebot cd.js deferred — moved from <head> to end of <body>
-   with `defer`; removes the early third-party DNS lookup from
-   the critical path.
-
 Can also target specific files:
     python3 cwv_optimise.py file.html [file2.html ...]
 
@@ -30,9 +26,6 @@ ROOT = Path(__file__).parent
 
 GTM_OLD = '<!-- Google Tag Manager -->\n<script>(function(w,d,s,l,i)'
 GTM_NEW_MARKER = '<!-- Google Tag Manager (deferred) -->'
-
-COOKIEBOT_OLD_START = '<script\n  id="CookieDeclaration"'
-COOKIEBOT_NEW_MARKER = 'id="CookieDeclaration"'   # present in both; check body position
 
 # ── Replacement strings ───────────────────────────────────────────────────────
 
@@ -63,24 +56,6 @@ GTM_NEW_BLOCK = (
     '<!-- End Google Tag Manager -->'
 )
 
-# Cookiebot cd.js — old block to strip from <head>
-COOKIEBOT_HEAD_BLOCK = (
-    '<script\n'
-    '  id="CookieDeclaration"\n'
-    '  src="https://consent.cookiebot.com/c82ce3af-bded-4069-9aea-22493d3d7e2d/cd.js"\n'
-    '  type="text/javascript"\n'
-    '  async\n'
-    '></script>\n'
-)
-
-# Cookiebot cd.js — compact deferred tag to append before </body>
-COOKIEBOT_BODY_TAG = (
-    '<script id="CookieDeclaration" '
-    'src="https://consent.cookiebot.com/c82ce3af-bded-4069-9aea-22493d3d7e2d/cd.js" '
-    'defer></script>\n'
-)
-
-
 
 # ── Per-file transform ────────────────────────────────────────────────────────
 
@@ -95,14 +70,6 @@ def transform(html: str) -> tuple[str, list[str]]:
     if not already_deferred:
         html = html.replace(GTM_OLD_BLOCK, GTM_NEW_BLOCK, 1)
         changes.append("GTM deferred")
-
-    # 2. Move Cookiebot cd.js from <head> to end of <body> with defer.
-    #    The declaration widget is non-critical — deferring it removes the
-    #    early third-party DNS lookup from the critical path.
-    if COOKIEBOT_HEAD_BLOCK in html:
-        html = html.replace(COOKIEBOT_HEAD_BLOCK, '', 1)
-        html = html.replace('</body>', COOKIEBOT_BODY_TAG + '</body>', 1)
-        changes.append("Cookiebot cd.js deferred to body")
 
     return html, changes
 

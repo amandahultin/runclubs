@@ -589,6 +589,7 @@ document.addEventListener('DOMContentLoaded',function(){{
       footer {{ padding: 2rem 1.25rem; grid-template-columns: 1fr; gap: 1.5rem; }}
     }}
   </style>
+<script id="CookieDeclaration" src="https://consent.cookiebot.com/c82ce3af-bded-4069-9aea-22493d3d7e2d/cd.js" type="text/javascript" async></script>
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
@@ -927,7 +928,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     render();
   </script>
   <script src="newsletter.js"></script>
-<script id="CookieDeclaration" src="https://consent.cookiebot.com/c82ce3af-bded-4069-9aea-22493d3d7e2d/cd.js" defer></script>
 </body>
 </html>
 """

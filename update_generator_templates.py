@@ -4,7 +4,6 @@ Updates the embedded HTML templates inside the 5 generator scripts so
 their output matches the current site standards:
 
   - GTM: deferred (DOMContentLoaded + 1 s setTimeout)
-  - Cookiebot cd.js: added as deferred script just before </body>
 
 Run once from repo root:
     python3 update_generator_templates.py
@@ -57,14 +56,6 @@ SWAPS = [
         "<!-- End Google Tag Manager -->"
     ),
 
-    # 2. Cookiebot cd.js — add deferred just before </body>
-    #    Guard: only add if not already present
-    (
-        "</body>",
-        '<script id="CookieDeclaration" '
-        'src="https://consent.cookiebot.com/c82ce3af-bded-4069-9aea-22493d3d7e2d/cd.js" '
-        'defer></script>\n</body>'
-    ),
 ]
 
 
@@ -75,9 +66,6 @@ def patch(path: Path) -> list[str]:
 
     for old, new in SWAPS:
         if old in text:
-            # Don't double-add Cookiebot
-            if old == "</body>" and "CookieDeclaration" in text:
-                continue
             text = text.replace(old, new)
             applied.append(old[:60].replace("\n", "↵").strip() + "…")
 
