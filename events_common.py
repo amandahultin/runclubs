@@ -43,6 +43,35 @@ CLUB_NAME_ALIASES = {
 def normalize_club_name(name: str) -> str:
     return CLUB_NAME_ALIASES.get(name.strip().lower(), name.strip())
 
+
+def _normalize_city(text: str) -> str:
+    t = text.lower()
+    if "stockholm" in t:
+        return "Stockholm"
+    if any(k in t for k in ("göteborg", "goteborg", "gothenburg", "västra götaland")):
+        return "Göteborg"
+    if any(k in t for k in ("malmö", "malmo", "malmoe", "skåne")):
+        return "Malmö"
+    return ""
+
+
+def build_club_cities(weekly_records: list[dict]) -> dict[str, str]:
+    """Return {club_name_lower: canonical_city} derived from the WeeklyRuns sheet.
+
+    Used as a fallback when a Strava event's location field doesn't contain a
+    recognisable city keyword.
+    """
+    mapping: dict[str, str] = {}
+    for r in weekly_records:
+        club = normalize_club_name(r.get("club") or "").strip()
+        if not club:
+            continue
+        city_raw = (r.get("city") or "").strip()
+        city = _normalize_city(city_raw)
+        if city:
+            mapping[club.lower()] = city
+    return mapping
+
 DAYS_MAP = {
     "monday": 0,    "måndag": 0,
     "tuesday": 1,   "tisdag": 1,

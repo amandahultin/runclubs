@@ -25,6 +25,7 @@ from events_common import (
     DAYS_MAP,
     EVENTS_SHEET_ID,
     LOOKAHEAD_DAYS,
+    build_club_cities,
     combine_date_time,
     fetch_events,
     fetch_overrides,
@@ -74,13 +75,17 @@ def prepare_special_events(records: list[dict]) -> list[dict]:
     return events
 
 
-def prepare_events(records: list[dict]) -> list[dict]:
+def prepare_events(records: list[dict], club_cities: dict[str, str] | None = None) -> list[dict]:
     today = datetime.now(timezone.utc).date()
     events: list[dict] = []
 
     for r in records:
         loc = (r.get("location") or "").lower()
-        if not any(kw in loc for kw in GOTEBORG_KEYWORDS):
+        loc_matches = any(kw in loc for kw in GOTEBORG_KEYWORDS)
+        if not loc_matches and club_cities:
+            club_key = normalize_club_name(r.get("club") or "").lower()
+            loc_matches = club_cities.get(club_key) == "Göteborg"
+        if not loc_matches:
             continue
 
         raw_date = (r.get("date") or "").strip()
@@ -1081,12 +1086,13 @@ def main() -> int:
     out_path = Path(sys.argv[1]) if len(sys.argv) > 1 else Path("goteborg-running-events.html")
     sheet_id = os.environ.get("GOOGLE_SHEET_ID") or EVENTS_SHEET_ID
 
-    records       = fetch_events(sheet_id)
-    events        = prepare_events(records)
-
     weekly_records  = fetch_weekly_runs(sheet_id)
+    club_cities     = build_club_cities(weekly_records)
     overrides       = fetch_overrides(sheet_id)
     weekly_events   = expand_weekly_runs(weekly_records, overrides)
+
+    records       = fetch_events(sheet_id)
+    events        = prepare_events(records, club_cities)
 
     special_records = fetch_special_events(sheet_id)
     special_events  = prepare_special_events(special_records)

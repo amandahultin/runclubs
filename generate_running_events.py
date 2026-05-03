@@ -25,6 +25,8 @@ from events_common import (
     EVENTS_SHEET_ID,
     LOOKAHEAD_DAYS,
     STOCKHOLM,
+    _normalize_city,
+    build_club_cities,
     combine_date_time,
     fetch_events,
     fetch_overrides,
@@ -83,17 +85,6 @@ def build_club_pages(weekly_records: list[dict]) -> dict[str, str]:
     return pages
 
 
-def _normalize_city(text: str) -> str:
-    t = text.lower()
-    if "stockholm" in t:
-        return "Stockholm"
-    if any(k in t for k in ("göteborg", "goteborg", "gothenburg", "västra götaland")):
-        return "Göteborg"
-    if any(k in t for k in ("malmö", "malmo", "malmoe", "skåne")):
-        return "Malmö"
-    return ""
-
-
 def prepare_special_events(records: list[dict], club_pages: dict[str, str]) -> list[dict]:
     today = datetime.now(STOCKHOLM).date()
     events: list[dict] = []
@@ -132,7 +123,11 @@ def prepare_special_events(records: list[dict], club_pages: dict[str, str]) -> l
     return events
 
 
-def prepare_events(records: list[dict], club_pages: dict[str, str]) -> list[dict]:
+def prepare_events(
+    records: list[dict],
+    club_pages: dict[str, str],
+    club_cities: dict[str, str] | None = None,
+) -> list[dict]:
     today = datetime.now(STOCKHOLM).date()
     events: list[dict] = []
 
@@ -146,6 +141,9 @@ def prepare_events(records: list[dict], club_pages: dict[str, str]) -> list[dict
 
         loc = (r.get("location") or "").strip()
         city = _normalize_city(loc)
+        if not city and club_cities:
+            club_key = normalize_club_name(r.get("club") or "").lower()
+            city = club_cities.get(club_key, "")
         if not city:
             continue
 
@@ -1160,11 +1158,12 @@ def main() -> int:
 
     weekly_records  = fetch_weekly_runs(sheet_id)
     club_pages      = build_club_pages(weekly_records)
+    club_cities     = build_club_cities(weekly_records)
     overrides       = fetch_overrides(sheet_id)
     weekly_events   = expand_weekly_runs(weekly_records, overrides)
 
     records       = fetch_events(sheet_id)
-    events        = prepare_events(records, club_pages)
+    events        = prepare_events(records, club_pages, club_cities)
 
     special_records = fetch_special_events(sheet_id)
     special_events  = prepare_special_events(special_records, club_pages)
