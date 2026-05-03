@@ -655,7 +655,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <a href="goteborg">Göteborg</a>
       <a href="malmo">Malmö</a>
       <a href="nyheter">Nyheter</a>
-      <a href="running-events" class="active">Events</a>
+      <a href="events" class="active">Events</a>
       <a href="loppkalender">Loppkalender</a>
       <a href="om-oss">Om oss</a>
     </div>
@@ -669,7 +669,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <a href="goteborg">Göteborg</a>
     <a href="malmo">Malmö</a>
     <a href="nyheter">Nyheter</a>
-    <a href="running-events" class="active">Events</a>
+    <a href="events" class="active">Events</a>
     <a href="loppkalender">Loppkalender</a>
     <a href="om-oss">Om oss</a>
   </div>
@@ -678,7 +678,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <header class="page-header">
     <div class="page-header-inner">
-      <div class="breadcrumb"><a href="/">Start</a> → <a href="/running-events">Running Events</a> → Göteborg</div>
+      <div class="breadcrumb"><a href="/">Start</a> → <a href="/events">Events</a> → Göteborg</div>
       <div class="page-header-tag">Göteborgs run clubs</div>
       <h1>Kommande<br>Events och Weekly runs</h1>
       <p>Här visas alla kommande running events från Strava och weekly runs från löpargrupper, run clubs, communions och run crews i Göteborg.</p>
@@ -762,7 +762,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <h4>Om sajten</h4>
       <a href="om-oss">Om oss</a>
       <a href="nyheter">Nyheter</a>
-      <a href="running-events">Events</a>
+      <a href="events">Events</a>
       <a href="loppkalender">Loppkalender</a>
       <a href="kontakt">Kontakt</a>
       <a href="samarbeta">Samarbeta</a>

@@ -2,7 +2,7 @@
 
 Injects four types of schema.org JSON-LD:
   1. ItemList (SportsActivityLocation) on /stockholm, /goteborg, /malmo
-  2. SportsEvent (next 14 days) on /running-events
+  2. SportsEvent (next 14 days) on /events
   3. NewsArticle on each article page
   4. FAQPage on city pages and /om-oss
 
@@ -149,7 +149,7 @@ def inject_item_lists(club_index: dict) -> None:
         print(f"  ✓ ItemList → {city_slug}.html ({len(CITY_CLUBS[city_slug])} clubs)")
 
 
-# ── 2. SportsEvent on /running-events ────────────────────────────────────────
+# ── 2. SportsEvent on /events ────────────────────────────────────────
 
 CITY_GEO = {
     "Stockholm": {"@type": "GeoCoordinates", "latitude": 59.3293, "longitude": 18.0686},
@@ -175,7 +175,7 @@ def parse_location(location_str: str, city: str) -> dict:
     return place
 
 def load_events_from_running_events() -> list[dict]:
-    path = ROOT / "running-events.html"
+    path = ROOT / "events.html"
     if not path.exists():
         return []
     text = read(path)
@@ -224,7 +224,7 @@ def build_sports_events(events: list[dict], days: int = 14) -> list[dict]:
             "organizer": {
                 "@type": "SportsTeam",
                 "name":  ev.get("club", ""),
-                "url":   ev.get("club_page") or f"{BASE_URL}/running-events",
+                "url":   ev.get("club_page") or f"{BASE_URL}/events",
             },
             "isAccessibleForFree": True,
             "inLanguage": "sv",
@@ -241,9 +241,9 @@ def build_sports_events(events: list[dict], days: int = 14) -> list[dict]:
     return result
 
 def inject_sports_events() -> None:
-    path = ROOT / "running-events.html"
+    path = ROOT / "events.html"
     if not path.exists():
-        print("  ⚠ running-events.html not found")
+        print("  ⚠ events.html not found")
         return
 
     events_raw = load_events_from_running_events()
@@ -266,7 +266,7 @@ def inject_sports_events() -> None:
 
     graph = {"@context": "https://schema.org", "@graph": sports_events}
     write(path, inject_before_head_close(html, graph))
-    print(f"  ✓ SportsEvent → running-events.html ({len(sports_events)} events, next 14 days)")
+    print(f"  ✓ SportsEvent → events.html ({len(sports_events)} events, next 14 days)")
 
 
 # ── 3. NewsArticle on article pages ──────────────────────────────────────────
@@ -448,7 +448,7 @@ def main() -> None:
     club_index = load_club_index()
     inject_item_lists(club_index)
 
-    print("\n── SportsEvent (running-events) ────────────────────────────")
+    print("\n── SportsEvent (events) ────────────────────────────────────")
     inject_sports_events()
 
     print("\n── NewsArticle (articles) ──────────────────────────────────")

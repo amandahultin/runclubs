@@ -2,11 +2,11 @@
 
 Patches index.html with:
   1. window.__EVENTS__ = [...] — the full events JSON, so the JS never
-     needs to fetch running-events.html (faster, works without JS for crawlers).
+     needs to fetch events.html (faster, works without JS for crawlers).
   2. Static HTML cards for today's events inside <!-- EVENTS-START/END -->
      so Googlebot sees real content in the initial HTML even if it skips JS.
 
-Run after generate_running_events.py (which produces running-events.html):
+Run after generate_running_events.py (which produces events.html):
     python generate_homepage_events.py
 
 The script is idempotent: safe to run multiple times.
@@ -35,15 +35,15 @@ SV_MONTHS = ["januari","februari","mars","april","maj","juni",
 CITY_CLASS = {"Stockholm": "tag-sthlm", "Göteborg": "tag-gbg", "Malmö": "tag-malm"}
 
 
-# ── Extract events from running-events.html ──────────────────────────────────
+# ── Extract events from events.html ──────────────────────────────────
 
 def load_events(running_events_path: Path) -> list[dict]:
     text = running_events_path.read_text(encoding="utf-8")
     m = re.search(r"const events = (\[[\s\S]*?\]);", text)
     if not m:
-        raise ValueError("Could not find 'const events = [...]' in running-events.html")
+        raise ValueError("Could not find 'const events = [...]' in events.html")
     events = json.loads(m.group(1))
-    log.info("Loaded %d events from running-events.html", len(events))
+    log.info("Loaded %d events from events.html", len(events))
     return events
 
 
@@ -81,7 +81,7 @@ def render_cards(events: list[dict]) -> str:
         title_esc  = html_module.escape(title)
         loc_esc    = html_module.escape(loc)
         club_page  = (ev.get("club_page") or "").replace("https://runclubs.se/", "")
-        href       = club_page or f"running-events?club={html_module.escape(ev.get('club') or '')}"
+        href       = club_page or f"events?club={html_module.escape(ev.get('club') or '')}"
         city       = ev.get("city") or ""
         city_cls   = CITY_CLASS.get(city, "")
         city_pill  = f'<span class="pass-city-tag {city_cls}">{html_module.escape(city)}</span>' if city_cls else ""
@@ -150,11 +150,11 @@ def patch_index(index_path: Path, events: list[dict], cards_html: str) -> None:
 # ── Main ─────────────────────────────────────────────────────────────────────
 
 def main() -> None:
-    running_events = ROOT / "running-events.html"
+    running_events = ROOT / "events.html"
     index          = ROOT / "index.html"
 
     if not running_events.exists():
-        log.error("running-events.html not found — run generate_running_events.py first")
+        log.error("events.html not found — run generate_running_events.py first")
         sys.exit(1)
 
     events    = load_events(running_events)

@@ -25,6 +25,7 @@ PRIORITY = {
     "stockholm":                (0.95, "weekly"),
     "goteborg":                 (0.95, "weekly"),
     "malmo":                    (0.95, "weekly"),
+    "events":                   (0.90, "daily"),
     "nyheter":                  (0.75, "weekly"),
     "loppkalender":             (0.75, "weekly"),
     "stockholm-running-events": (0.75, "daily"),
@@ -55,7 +56,7 @@ def build_sitemap(root: Path) -> str:
     sections = {
         "Startsida":         ["index"],
         "Stadssidor":        ["stockholm", "goteborg", "malmo"],
-        "Eventsidor":        ["stockholm-running-events", "loppkalender", "nyheter"],
+        "Eventsidor":        ["events", "stockholm-running-events", "loppkalender", "nyheter"],
         "Artiklar":          ["tjejer-tar-over-lopsparen", "stockholm-marathon-2026-slutsalt", "lopning-for-tjejer"],
         "Om sajten":         ["om-oss", "samarbeta", "kontakt"],
     }

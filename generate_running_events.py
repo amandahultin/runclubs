@@ -274,9 +274,9 @@ document.addEventListener('DOMContentLoaded',function(){{
   <meta property="og:title" content="Running Events Sverige — Swedish Run Clubs">
   <meta property="og:description" content="Alla kommande running events och weekly runs i Stockholm, Göteborg och Malmö.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://runclubs.se/running-events">
+  <meta property="og:url" content="https://runclubs.se/events">
   <meta property="og:image" content="https://runclubs.se/stockholm-run-clubs.jpeg">
-  <link rel="canonical" href="https://runclubs.se/running-events">
+  <link rel="canonical" href="https://runclubs.se/events">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:ital,wght@1,900&family=Oswald:wght@500;700&family=DM+Sans:wght@400;500;600&family=Playfair+Display:wght@400&display=swap" rel="stylesheet">
   <link rel="icon" href="/favicon.ico" sizes="any">
@@ -727,7 +727,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <a href="goteborg">Göteborg</a>
       <a href="malmo">Malmö</a>
       <a href="nyheter">Nyheter</a>
-      <a href="running-events" class="active">Events</a>
+      <a href="events" class="active">Events</a>
       <a href="loppkalender">Loppkalender</a>
       <a href="om-oss">Om oss</a>
     </div>
@@ -741,7 +741,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <a href="goteborg">Göteborg</a>
     <a href="malmo">Malmö</a>
     <a href="nyheter">Nyheter</a>
-    <a href="running-events" class="active">Events</a>
+    <a href="events" class="active">Events</a>
     <a href="loppkalender">Loppkalender</a>
     <a href="om-oss">Om oss</a>
   </div>
@@ -834,7 +834,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <h4>Om sajten</h4>
       <a href="om-oss">Om oss</a>
       <a href="nyheter">Nyheter</a>
-      <a href="running-events">Events</a>
+      <a href="events">Events</a>
       <a href="loppkalender">Loppkalender</a>
       <a href="kontakt">Kontakt</a>
       <a href="samarbeta">Samarbeta</a>
@@ -1155,7 +1155,7 @@ def main() -> int:
         format="%(asctime)s %(levelname)s %(name)s: %(message)s",
     )
 
-    out_path = Path(sys.argv[1]) if len(sys.argv) > 1 else Path("running-events.html")
+    out_path = Path(sys.argv[1]) if len(sys.argv) > 1 else Path("events.html")
     sheet_id = os.environ.get("GOOGLE_SHEET_ID") or EVENTS_SHEET_ID
 
     weekly_records  = fetch_weekly_runs(sheet_id)

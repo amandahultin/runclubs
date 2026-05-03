@@ -36,7 +36,7 @@ TOP_LEVEL_PAGES = [
     for f in [
         "index.html",
         "stockholm.html", "goteborg.html", "malmo.html",
-        "running-events.html",
+        "events.html",
         "stockholm-running-events.html",
         "goteborg-running-events.html",
         "malmo-running-events.html",

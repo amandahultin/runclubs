@@ -28,7 +28,7 @@ STATIC_PAGES: dict[str, list[tuple[str, str]]] = {
     "malmo-running-events":     [("Malmö",     f"{BASE_URL}/malmo"),
                                  ("Events",    f"{BASE_URL}/malmo-running-events")],
     # Global event / race pages
-    "running-events":           [("Events",       f"{BASE_URL}/running-events")],
+    "events":               [("Events",       f"{BASE_URL}/events")],
     "loppkalender":             [("Loppkalender", f"{BASE_URL}/loppkalender")],
     # News hub
     "nyheter":                  [("Nyheter", f"{BASE_URL}/nyheter")],

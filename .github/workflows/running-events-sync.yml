@@ -24,11 +24,11 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements-events.txt
 
-      - name: Generate running-events.html (all cities, single Sheet fetch)
+      - name: Generate events.html (all cities, single Sheet fetch)
         env:
           GOOGLE_SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}
           GOOGLE_SHEET_ID: ${{ secrets.EVENTS_SHEET_ID }}
-        run: python generate_running_events.py running-events.html
+        run: python generate_running_events.py events.html
 
       - name: Split into city event pages (no Sheet fetch)
         run: python split_city_events.py

@@ -1,12 +1,12 @@
-"""Split running-events.html into city-specific event pages.
+"""Split events.html into city-specific event pages.
 
-Reads the pre-generated running-events.html, extracts the embedded events JSON,
+Reads the pre-generated events.html, extracts the embedded events JSON,
 filters by city, and renders each city page using the existing city generators'
 render_html functions.  No Google Sheets API calls are made.
 
 Usage:
-    python split_city_events.py          # reads running-events.html in cwd
-    python split_city_events.py path/to/running-events.html
+    python split_city_events.py          # reads events.html in cwd
+    python split_city_events.py path/to/events.html
 """
 
 from __future__ import annotations
@@ -29,7 +29,7 @@ def extract_events(source: Path) -> list[dict]:
 
 
 def main() -> int:
-    source = Path(sys.argv[1]) if len(sys.argv) > 1 else ROOT / "running-events.html"
+    source = Path(sys.argv[1]) if len(sys.argv) > 1 else ROOT / "events.html"
     if not source.exists():
         print(f"ERROR: {source} not found — run generate_running_events.py first")
         return 1

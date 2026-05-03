@@ -2,7 +2,6 @@
   "_comment": "Centralt SEO-config för runclubs.se. Ändra värden här och kör: node apply-seo.js",
   "_google_guide": "Titlar: 50-60 tecken. Descriptions: 145-160 tecken. Primärt sökord tidigt. Tydlig CTA.",
   "pages": {
-
     "index.html": {
       "title": "Löpargrupper i Sverige — Stockholm, Göteborg, Malmö | Runclubs.se",
       "description": "Löpargrupper i Stockholm, Göteborg och Malmö — alla Sveriges run clubs samlade på ett ställe. Filtrera på stad och nivå. Hitta ditt crew och spring idag.",
@@ -11,7 +10,6 @@
       "twitter_title": "Löpargrupper i Sverige — Runclubs.se",
       "twitter_description": "Alla Sveriges run clubs samlade. Hitta löpargrupper i Stockholm, Göteborg och Malmö."
     },
-
     "stockholm.html": {
       "title": "Löpargrupper Stockholm — Hitta din Run Club | Runclubs.se",
       "description": "Löpargrupper i Stockholm — alla run clubs, tider och startplatser samlade. Från Hagaparken till Södermalm. Hitta ditt crew och hoppa på idag.",
@@ -20,7 +18,6 @@
       "twitter_title": "Löpargrupper Stockholm — Runclubs.se",
       "twitter_description": "Alla Stockholms run clubs samlade. Hitta ditt crew och hoppa på."
     },
-
     "goteborg.html": {
       "title": "Löpargrupper Göteborg — Hitta din Run Club | Runclubs.se",
       "description": "Löpargrupper i Göteborg — Slottsskogen, Änggårdsbergen och Delsjön. Filtrera på dag och nivå, hitta ditt crew och hoppa på din första löpning.",
@@ -29,7 +26,6 @@
       "twitter_title": "Löpargrupper Göteborg — Runclubs.se",
       "twitter_description": "Alla Göteborgs run clubs. Hitta ditt crew och hoppa på."
     },
-
     "malmo.html": {
       "title": "Löpargrupper Malmö — Hitta din Run Club | Runclubs.se",
       "description": "Löpargrupper i Malmö — från Ribersborg till Folkets Park. Filtrera på dag och nivå, hitta ditt crew och lägg in första löpningen i kalendern.",
@@ -38,16 +34,6 @@
       "twitter_title": "Löpargrupper Malmö — Runclubs.se",
       "twitter_description": "Alla Malmös run clubs. Hitta ditt crew och hoppa på."
     },
-
-    "running-events.html": {
-      "title": "Löparevent Sverige 2026 — Weekly Runs & Club Events | Runclubs.se",
-      "description": "Kommande löparevent i Sverige — weekly runs och grupplöpningar från run clubs i Stockholm, Göteborg och Malmö. Hitta nästa tillfälle och häng med.",
-      "og_title": "Löparevent Sverige 2026 — Weekly Runs & Club Events | Runclubs.se",
-      "og_description": "Kommande löparevent i Sverige — weekly runs och grupplöpningar från run clubs i Stockholm, Göteborg och Malmö.",
-      "twitter_title": "Löparevent Sverige 2026 — Runclubs.se",
-      "twitter_description": "Kommande löparevent i Sverige. Hitta nästa tillfälle och häng med."
-    },
-
     "stockholm-running-events.html": {
       "title": "Löparevent Stockholm — Weekly Runs & Club Events | Runclubs.se",
       "description": "Kommande löparevent i Stockholm — weekly runs och grupplöpningar från stadens run clubs. Kolla schemat, välj ditt pass och hoppa på.",
@@ -56,7 +42,6 @@
       "twitter_title": "Löparevent Stockholm — Runclubs.se",
       "twitter_description": "Kommande löparevent i Stockholm. Kolla schemat och hoppa på."
     },
-
     "goteborg-running-events.html": {
       "title": "Löparevent Göteborg — Weekly Runs & Club Events | Runclubs.se",
       "description": "Kommande löparevent i Göteborg — weekly runs och grupplöpningar från stadens run clubs. Slottsskogen och mer. Hitta ditt nästa pass idag.",
@@ -65,7 +50,6 @@
       "twitter_title": "Löparevent Göteborg — Runclubs.se",
       "twitter_description": "Kommande löparevent i Göteborg. Hitta ditt nästa pass idag."
     },
-
     "malmo-running-events.html": {
       "title": "Löparevent Malmö — Weekly Runs & Club Events | Runclubs.se",
       "description": "Kommande löparevent i Malmö — weekly runs och grupplöpningar från stadens run clubs. Ribersborg och mer. Kolla schemat och häng med.",
@@ -74,7 +58,6 @@
       "twitter_title": "Löparevent Malmö — Runclubs.se",
       "twitter_description": "Kommande löparevent i Malmö. Kolla schemat och häng med."
     },
-
     "loppkalender.html": {
       "title": "Löptävlingar Sverige 2026 — Maraton, Halvmaraton & 10 km | Runclubs.se",
       "description": "Kommande löptävlingar i Sverige 2026 — maraton, halvmaraton och 10 km i Stockholm, Göteborg och Malmö. Hitta ditt nästa lopp och anmäl dig.",
@@ -83,7 +66,6 @@
       "twitter_title": "Löptävlingar Sverige 2026 — Runclubs.se",
       "twitter_description": "Kommande löptävlingar i Sverige. Hitta ditt nästa lopp."
     },
-
     "om-oss.html": {
       "title": "Om Runclubs.se — Sveriges Run Club-guide | Runclubs.se",
       "description": "Swedish Run Clubs är en oberoende guide till Sveriges löpargrupper — byggd av löpare, för löpare. Läs om idén bakom sajten och vad som händer härnäst.",
@@ -92,7 +74,6 @@
       "twitter_title": "Om Runclubs.se",
       "twitter_description": "En oberoende guide till Sveriges löpargrupper. Byggd av löpare, för löpare."
     },
-
     "samarbeta.html": {
       "title": "Samarbeta med Runclubs.se — Nå Sveriges Löpare | Runclubs.se",
       "description": "Nå Sveriges mest engagerade löpare via sajt, nyhetsbrev och sociala medier. Bygg en kampanj som landar på riktigt — kontakta oss och dra igång.",
@@ -101,7 +82,6 @@
       "twitter_title": "Samarbeta med Runclubs.se",
       "twitter_description": "Nå Sveriges mest engagerade löpare. Kontakta oss."
     },
-
     "kontakt.html": {
       "title": "Kontakt — Runclubs.se | Run Clubs & Löpargrupper i Sverige",
       "description": "Tips om ny run club, nyhetstips eller samarbete? Hör av dig till Runclubs.se — vi svarar oftast samma dag och är alltid öppna för bra idéer.",
@@ -110,7 +90,6 @@
       "twitter_title": "Kontakt — Runclubs.se",
       "twitter_description": "Tips om ny run club eller samarbete? Vi svarar snabbt."
     },
-
     "nyheter.html": {
       "title": "Nyheter om Run Clubs & Löpning i Sverige | Runclubs.se",
       "description": "Senaste nytt från svenska löparvärlden — nya clubs, event-drops, trender och allt löpare bör ha koll på. Uppdateras varje vecka. Håll koll här.",
@@ -119,7 +98,6 @@
       "twitter_title": "Nyheter — Runclubs.se",
       "twitter_description": "Senaste nytt från svenska löparvärlden. Uppdateras varje vecka."
     },
-
     "lopning-for-tjejer.html": {
       "title": "Löpning för Tjejer — Löpargrupper & Sällskap | Runclubs.se",
       "description": "Löpning för tjejer i Sverige — Stockholms stora Facebook-grupp för löpsällskap och träning ihop. Gratis, chill och alla tempon välkomna. Hitta din grupp.",
@@ -128,7 +106,6 @@
       "twitter_title": "Löpning för Tjejer — Runclubs.se",
       "twitter_description": "Löpargrupper för tjejer. Gratis, chill, alla tempon välkomna."
     },
-
     "tjejer-tar-over-lopsparen.html": {
       "title": "Tjejer tar över löpspåren — Trenden 2026 | Runclubs.se",
       "description": "Aldrig har så många tjejer sprungit i grupp i Sverige. Läs om trenden som sveper landet och hitta en löpargrupp att hänga med idag.",
@@ -137,7 +114,6 @@
       "twitter_title": "Tjejer tar över löpspåren — Runclubs.se",
       "twitter_description": "Aldrig har så många tjejer sprungit i grupp. Läs om trenden."
     },
-
     "stockholm-marathon-2026-slutsalt.html": {
       "title": "Stockholm Marathon 2026 Slutsålt — Vad händer nu? | Runclubs.se",
       "description": "Stockholm Marathon 2026 slutsålt på rekordtid — 25 000 platser borta. Vad det säger om löparåret och hur du hittar din nästa start.",
@@ -146,7 +122,6 @@
       "twitter_title": "Stockholm Marathon 2026 Slutsålt",
       "twitter_description": "Stockholm Marathon 2026 slutsålt. Hitta din nästa start."
     },
-
     "run-collective-stockholm.html": {
       "title": "Run Collective Stockholm — Löpargrupp Södermalm | Runclubs.se",
       "description": "Run Collective Stockholm — internationell löpargrupp sedan 2022. Tisdagar och lördagar på Södermalm. Schysst vibe, bagdrop och socialt häng. Dyk in.",
@@ -155,7 +130,6 @@
       "twitter_title": "Run Collective Stockholm — Runclubs.se",
       "twitter_description": "Internationell löpargrupp sedan 2022. Tisdagar & lördagar på Södermalm."
     },
-
     "mikkeller-running-club-sthlm.html": {
       "title": "Mikkeller Running Club Stockholm — Löpargrupp | Runclubs.se",
       "description": "Mikkeller Running Club Stockholm — globalt community i 10 år. Tisdagar 18:00 från Mikkeller Bar, öl efter. Alla välkomna — hoppa på och dyk in.",
@@ -164,7 +138,6 @@
       "twitter_title": "Mikkeller Running Club Stockholm",
       "twitter_description": "Tisdagar 18:00 från Mikkeller Bar. Globalt community. Öl efter."
     },
-
     "stockholm-run-club.html": {
       "title": "Stockholm Run Club — Löpargrupp Östermalm | Runclubs.se",
       "description": "Gratis löpargrupp för alla nivåer — tisdagar och söndagar på Östermalm. Grundad 2020, backad av Adidas och Red Bull. Ingen anmälan — dyk in.",
@@ -173,7 +146,6 @@
       "twitter_title": "Stockholm Run Club — Runclubs.se",
       "twitter_description": "Gratis löpargrupp på Östermalm. Backad av Adidas & Red Bull."
     },
-
     "runday.html": {
       "title": "Runday Stockholm — Löpargrupp för Snabba Ben | Runclubs.se",
       "description": "Runday Stockholm — intervaller och tröskelpass för dig som vill springa snabbare. Måndagar och onsdagar 18:00 i Stockholm. Testa första passet.",
@@ -182,7 +154,6 @@
       "twitter_title": "Runday Stockholm — Runclubs.se",
       "twitter_description": "Intervaller och tröskelpass. Måndagar & onsdagar 18:00."
     },
-
     "mrc-malmo.html": {
       "title": "MRC Malmö — Löpargrupp i Malmö | Runclubs.se",
       "description": "MRC Malmö — löpargrupp för alla nivåer i Malmö. Kolla tider, startplats och vad som händer. Hitta ditt Malmö-crew och dyk in.",
@@ -191,7 +162,6 @@
       "twitter_title": "MRC Malmö — Runclubs.se",
       "twitter_description": "Löpargrupp för alla nivåer i Malmö. Kolla tider och hitta ditt crew."
     },
-
     "sweden-runners-malmo.html": {
       "title": "Sweden Runners Malmö — Ledarledda Löparpass | Runclubs.se",
       "description": "Sweden Runners Malmö — ledarledda löparpass för alla nivåer i Malmö. Friskvårdsbidrag godkänt. Hitta tider och anmäl dig till första löpningen.",
@@ -200,7 +170,6 @@
       "twitter_title": "Sweden Runners Malmö — Runclubs.se",
       "twitter_description": "Ledarledda löparpass i Malmö. Friskvårdsbidrag godkänt."
     },
-
     "dopest-runners.html": {
       "title": "Dopest Runners Stockholm — Löpargrupp | Runclubs.se",
       "description": "Dopest Runners Stockholm — tisdagar, torsdagar och söndagar från Liljeholmen. Bag drop på varje pass. Alla nivåer välkomna — häng med och dyk in.",
@@ -209,7 +178,6 @@
       "twitter_title": "Dopest Runners Stockholm",
       "twitter_description": "Tre pass i veckan från Liljeholmen. Bag drop. Alla nivåer välkomna."
     },
-
     "slowrunners-sthlm.html": {
       "title": "Slowrunners Sthlm — Lugn Löpargrupp Stockholm | Runclubs.se",
       "description": "Slowrunners Sthlm — för dig som tar det lugnt. Söndagar 10:00 vid Tanto utegym. Inget tempokrav, bara schysst sällskap. Välkommen som du är.",
@@ -218,7 +186,6 @@
       "twitter_title": "Slowrunners Sthlm — Runclubs.se",
       "twitter_description": "Lugn löpargrupp i Stockholm. Söndagar 10:00. Inget tempokrav."
     },
-
     "slowrunners-goteborg.html": {
       "title": "Slowrunners Göteborg — Löpargrupp för Alla | Runclubs.se",
       "description": "Slowrunners Göteborg — löpning i lägre tempo. Söndagar, 90 min i 8:00 min/km. Gratis att delta — kom som du är, håll det chill och njut.",
@@ -227,7 +194,6 @@
       "twitter_title": "Slowrunners Göteborg — Runclubs.se",
       "twitter_description": "Löpning i lägre tempo. Söndagar, 90 min. Gratis att delta."
     },
-
     "stadium-run-club.html": {
       "title": "Stadium Run Club — Gratis Löpargrupp Stockholm | Runclubs.se",
       "description": "Stadium Run Club Stockholm — gratis löpargrupp på Kungsgatan. Torsdagar 17:30, testa skor under löpning. Alla välkomna — ingen anmälan krävs.",
@@ -236,7 +202,6 @@
       "twitter_title": "Stadium Run Club Stockholm",
       "twitter_description": "Gratis löpargrupp på Kungsgatan. Torsdagar 17:30."
     },
-
     "saucony-run-club-sverige.html": {
       "title": "Saucony Run Club Sverige — Löpargrupp Stockholm | Runclubs.se",
       "description": "Saucony Run Club Sverige — löpargrupp från Downtown Camper på Brunkebergstorg. Energifyllda onsdagspass i Stockholm. Häng med och upplev staden löpande.",
@@ -245,7 +210,6 @@
       "twitter_title": "Saucony Run Club Sverige",
       "twitter_description": "Löpargrupp från Downtown Camper. Onsdagspass i Stockholm."
     },
-
     "goteborg-running-club.html": {
       "title": "Göteborg Running Club — Löpargrupp Slottsskogen | Runclubs.se",
       "description": "Göteborgs mest välkomnande löparklubb sedan 2011. Gratis pass varje tisdag 18:00 i Slottsskogen. Ingen anmälan — alla nivåer välkomna, bara dyk in.",
@@ -254,7 +218,6 @@
       "twitter_title": "Göteborg Running Club — Runclubs.se",
       "twitter_description": "Gratis pass varje tisdag 18:00 i Slottsskogen. Ingen anmälan."
     },
-
     "sweden-runners-goteborg.html": {
       "title": "Sweden Runners Göteborg — Ledarledda Pass | Runclubs.se",
       "description": "Sweden Runners Göteborg — ledarledda löparpass i Änggårdsbergen varje torsdag 18:00. Alla nivåer, 649 kr/år, friskvårdsbidrag godkänt. Anmäl dig.",
@@ -263,7 +226,6 @@
       "twitter_title": "Sweden Runners Göteborg — Runclubs.se",
       "twitter_description": "Ledarledda pass i Änggårdsbergen. Friskvårdsbidrag godkänt."
     },
-
     "she-runs-club.html": {
       "title": "She Runs Club Göteborg — Löpargrupp för Tjejer | Runclubs.se",
       "description": "She Runs Club Göteborg — crew för tjejer som vill utmana sig själva. Varm och inkluderande vibe, alla nivåer välkomna. Häng med och hoppa på.",
@@ -272,7 +234,6 @@
       "twitter_title": "She Runs Club Göteborg",
       "twitter_description": "Crew för tjejer i Göteborg. Inkluderande vibe, alla nivåer."
     },
-
     "core-run-club.html": {
       "title": "Core Run Club Göteborg — Löpargrupp för Tjejer | Runclubs.se",
       "description": "Core Run Club Göteborg — crew för tjejer. Distans- och tempopass varvat. Bli starkare, snabbare och hitta ditt nya hängäng. Häng med idag.",
@@ -281,7 +242,6 @@
       "twitter_title": "Core Run Club Göteborg",
       "twitter_description": "Crew för tjejer i Göteborg. Distans och tempo varvat."
     },
-
     "east-run-club.html": {
       "title": "East Run Club Göteborg — Löpargrupp med Events | Runclubs.se",
       "description": "East Run Club Göteborg — löpargruppen som ordnar events. Start från Waernsgatan 4A. Alla nivåer välkomna. Hitta tider och häng med.",
@@ -290,7 +250,6 @@
       "twitter_title": "East Run Club Göteborg",
       "twitter_description": "Löpargrupp med events i Göteborg. Alla nivåer välkomna."
     },
-
     "ess-runners-club.html": {
       "title": "ESS Runners Club Göteborg — Löpargrupp | Runclubs.se",
       "description": "ESS Runners Club Göteborg — torsdagsmorgnar 07:00 när staden vaknar. Löpning, snack och frukostmingel efter. Gratis — hoppa på och testa vibben.",
@@ -299,7 +258,6 @@
       "twitter_title": "ESS Runners Club Göteborg",
       "twitter_description": "Torsdagsmorgnar 07:00 i Göteborg. Frukost efter. Gratis."
     },
-
     "aero-boys-club.html": {
       "title": "Aero Boys Club Göteborg — Löpargrupp | Runclubs.se",
       "description": "Aero Boys Club — Göteborgs mest hemlighetsfulla löpargrupp. Info släpps snart. Håll koll här så du inte missar nästa drop.",
@@ -308,7 +266,6 @@
       "twitter_title": "Aero Boys Club Göteborg",
       "twitter_description": "Göteborgs mest hemlighetsfulla löpargrupp. Håll koll."
     },
-
     "hogdalen-run-club.html": {
       "title": "Högdalen Run Club — Löpargrupp Södra Stockholm | Runclubs.se",
       "description": "Högdalen Run Club — lokal crew i södra Stockholm. Alla nivåer välkomna, inget krav på snabba ben. Hitta tider och dyk in när du vill.",
@@ -317,7 +274,6 @@
       "twitter_title": "Högdalen Run Club — Runclubs.se",
       "twitter_description": "Lokal crew i södra Stockholm. Alla nivåer, inget tempokrav."
     },
-
     "mellqvist-run-club.html": {
       "title": "Mellqvist Run Club Stockholm — Kaffe & Löpning | Runclubs.se",
       "description": "Mellqvist Run Club — Stockholmsklubb där kaffet och frukosten är halva grejen. Springer för bullen och ett av stans bästa kaffe. Häng med.",
@@ -326,7 +282,6 @@
       "twitter_title": "Mellqvist Run Club Stockholm",
       "twitter_description": "Springer för bullen och kaffe. Häng med."
     },
-
     "pulse-pacers.html": {
       "title": "Pulse Pacers Stockholm — 5 km Löpargrupp | Runclubs.se",
       "description": "Pulse Pacers Stockholm — 5 km-crew. Onsdagar 18:30 från The King's Fox. Perfekt för nybörjare och chill tempo. Hitta tider och häng med.",
@@ -335,7 +290,6 @@
       "twitter_title": "Pulse Pacers Stockholm",
       "twitter_description": "5 km-crew. Onsdagar 18:30 i Stockholm. Perfekt för nybörjare."
     },
-
     "rtc.html": {
       "title": "Roberg Training Club — Löpargrupp Stockholm | Runclubs.se",
       "description": "Roberg Training Club (RTC) — ett av Stockholms mest ambitiösa löparcommunities. Intervaller, långpass och tävlingar. Trains hard, races everywhere.",
@@ -344,7 +298,6 @@
       "twitter_title": "Roberg Training Club Stockholm",
       "twitter_description": "Ambitiöst löparcommunity. Intervaller och tävlingar."
     },
-
     "burgers-n-brew-run-crew.html": {
       "title": "Burgers 'N' Brew Run Crew — Löpargrupp Stockholm | Runclubs.se",
       "description": "Stockholms intervallkollektiv sedan 2017 — snabbare ben, burgare och öl efter passet. Onsdagar i Stockholm. Testa första passet och häng med.",
@@ -353,7 +306,6 @@
       "twitter_title": "Burgers 'N' Brew Run Crew",
       "twitter_description": "Intervallkollektiv sedan 2017. Burgare och öl efter. Onsdagar."
     },
-
     "solemates-runclub.html": {
       "title": "Solemates Runclub Stockholm — Social Löpargrupp | Runclubs.se",
       "description": "Solemates Runclub Stockholm — social löpargrupp för alla nivåer. Tisdagar 19:30 från Karlavägen. Ingen anmälan — kom som du är och dyk in.",
@@ -362,7 +314,6 @@
       "twitter_title": "Solemates Runclub Stockholm",
       "twitter_description": "Social löpargrupp. Tisdagar 19:30 från Karlavägen."
     },
-
     "soderloparna-stockholm.html": {
       "title": "Söderlöparna Stockholm — Lördagslöpning med Fika | Runclubs.se",
       "description": "Söderlöparna Stockholm — chill lördagslöpning från Gullmarsplan med fikastopp efteråt. Bra sällskap, alla välkomna. Kolla nästa tillfälle och häng med.",
@@ -371,7 +322,6 @@
       "twitter_title": "Söderlöparna Stockholm",
       "twitter_description": "Lördagslöpning med fika efteråt. Alla välkomna."
     },
-
     "svedjans-lopsallskap.html": {
       "title": "Svedjans Löpsällskap — Löpning & Bullar | Runclubs.se",
       "description": "Svedjans Löpsällskap — löparsällskapet som gillar bullar. Måndagar 17:30 från Svedjan Bageri. Bra sällskap, magiska bakverk och gratis att delta.",
@@ -380,7 +330,6 @@
       "twitter_title": "Svedjans Löpsällskap",
       "twitter_description": "Löpning och bullar. Måndagar 17:30 från Svedjan Bageri."
     },
-
     "triple-threshold-rc.html": {
       "title": "Triple Threshold RC — Löpargrupp Södermalm | Runclubs.se",
       "description": "Triple Threshold RC — Södermalms löparcommunity med fokus på prestation. Långpass och intervaller onsdagar och lördagar. Alla välkomna att häng på.",
@@ -389,7 +338,6 @@
       "twitter_title": "Triple Threshold RC — Runclubs.se",
       "twitter_description": "Löparcommunity på Södermalm. Onsdagar och lördagar."
     },
-
     "zlk-zinken-lopklubb.html": {
       "title": "ZLK — Zinken Löpklubb Stockholm | Runclubs.se",
       "description": "ZLK Zinken Löpklubb — glada löpare i Stockholm. Onsdagar från Zinkensdamms IP. Bra vibes, alla nivåer, ingen anmälan — dyk in och häng med.",
@@ -398,7 +346,6 @@
       "twitter_title": "ZLK Zinken Löpklubb",
       "twitter_description": "Glada löpare i Stockholm. Onsdagar från Zinkensdamms IP."
     },
-
     "andmorerunning.html": {
       "title": "&morerunning Stockholm — Löpargrupp för Tjejer | Runclubs.se",
       "description": "&morerunning — nystartad Stockholmsklubb för tjejer. Söndagar 11:00, chill tempo och bra sällskap. Kom och testa första passet utan anmälan.",
@@ -407,7 +354,6 @@
       "twitter_title": "&morerunning Stockholm",
       "twitter_description": "Löpargrupp för tjejer i Stockholm. Söndagar 11:00."
     },
-
     "tjejmilen-runclub.html": {
       "title": "Tjejmilen Run Club — Löpargrupp Stockholm Tjejer | Runclubs.se",
       "description": "Tjejmilen Run Club — löpargrupp för tjejer med Tjejmilen som mål 5 september. Utgår från Joe And The Juice. Gratis, social och alla välkomna.",
@@ -415,6 +361,14 @@
       "og_description": "Löpargrupp för tjejer med Tjejmilen som mål. Utgår från Joe And The Juice. Gratis.",
       "twitter_title": "Tjejmilen Run Club",
       "twitter_description": "Löpargrupp för tjejer. Mål: Tjejmilen 5 september."
+    },
+    "events.html": {
+      "title": "Löparevent Sverige 2026 — Weekly Runs & Club Events | Runclubs.se",
+      "description": "Kommande löparevent i Sverige — weekly runs och grupplöpningar från run clubs i Stockholm, Göteborg och Malmö. Hitta nästa tillfälle och häng med.",
+      "og_title": "Löparevent Sverige 2026 — Weekly Runs & Club Events | Runclubs.se",
+      "og_description": "Kommande löparevent i Sverige — weekly runs och grupplöpningar från run clubs i Stockholm, Göteborg och Malmö.",
+      "twitter_title": "Löparevent Sverige 2026 — Runclubs.se",
+      "twitter_description": "Kommande löparevent i Sverige. Hitta nästa tillfälle och häng med."
     }
   }
 }

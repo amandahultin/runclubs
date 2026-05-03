@@ -606,7 +606,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <a href="goteborg">Göteborg</a>
       <a href="malmo">Malmö</a>
       <a href="nyheter">Nyheter</a>
-      <a href="running-events">Events</a>
+      <a href="events">Events</a>
       <a href="loppkalender" class="active">Loppkalender</a>
       <a href="om-oss">Om oss</a>
     </div>
@@ -620,7 +620,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <a href="goteborg">Göteborg</a>
     <a href="malmo">Malmö</a>
     <a href="nyheter">Nyheter</a>
-    <a href="running-events">Events</a>
+    <a href="events">Events</a>
     <a href="loppkalender" class="active">Loppkalender</a>
     <a href="om-oss">Om oss</a>
   </div>
@@ -720,7 +720,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <h4>Om sajten</h4>
       <a href="om-oss">Om oss</a>
       <a href="nyheter">Nyheter</a>
-      <a href="running-events">Events</a>
+      <a href="events">Events</a>
       <a href="loppkalender">Loppkalender</a>
       <a href="kontakt">Kontakt</a>
       <a href="samarbeta">Samarbeta</a>

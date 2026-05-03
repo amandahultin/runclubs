@@ -31,6 +31,12 @@
 
   <!-- Eventsidor -->
   <url>
+    <loc>https://runclubs.se/events</loc>
+    <lastmod>2026-05-03</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
     <loc>https://runclubs.se/stockholm-running-events</loc>
     <lastmod>2026-05-03</lastmod>
     <changefreq>daily</changefreq>
@@ -107,7 +113,6 @@
   <url><loc>https://runclubs.se/run-collective-stockholm</loc><lastmod>2026-05-03</lastmod><priority>0.6</priority></url>
   <url><loc>https://runclubs.se/runday</loc><lastmod>2026-05-03</lastmod><priority>0.6</priority></url>
   <url><loc>https://runclubs.se/running-around-club</loc><lastmod>2026-05-03</lastmod><priority>0.6</priority></url>
-  <url><loc>https://runclubs.se/running-events</loc><lastmod>2026-05-03</lastmod><priority>0.6</priority></url>
   <url><loc>https://runclubs.se/saucony-run-club-sverige</loc><lastmod>2026-05-03</lastmod><priority>0.6</priority></url>
   <url><loc>https://runclubs.se/she-runs-club</loc><lastmod>2026-05-03</lastmod><priority>0.6</priority></url>
   <url><loc>https://runclubs.se/slowrunners-sthlm</loc><lastmod>2026-05-03</lastmod><priority>0.6</priority></url>
