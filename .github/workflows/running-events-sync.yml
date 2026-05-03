@@ -43,7 +43,7 @@ jobs:
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add running-events.html index.html
+          git add -u
           git diff --staged --quiet || git commit -m "Auto-update events + homepage SSR + SportsEvent schema [skip ci]"
           git pull --rebase --autostash origin main
           git push
