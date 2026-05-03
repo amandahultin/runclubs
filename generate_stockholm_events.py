@@ -106,8 +106,17 @@ def prepare_events(records: list[dict], club_cities: dict[str, str] | None = Non
             "engagement":  str(r.get("engagement") or "").strip(),
         })
 
-    log.info("%d Stockholm upcoming events after filtering", len(events))
-    return events
+    seen: set[tuple] = set()
+    unique: list[dict] = []
+    for e in events:
+        key = (e["club"], e["date"], e["title"])
+        if key not in seen:
+            seen.add(key)
+            unique.append(e)
+    if len(unique) < len(events):
+        log.warning("Dropped %d duplicate Strava rows from sheet", len(events) - len(unique))
+    log.info("%d Stockholm upcoming events after filtering", len(unique))
+    return unique
 
 
 def expand_weekly_runs(

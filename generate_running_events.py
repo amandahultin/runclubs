@@ -163,8 +163,17 @@ def prepare_events(
             "engagement":  str(r.get("engagement") or "").strip(),
         })
 
-    log.info("%d upcoming events after filtering (all cities)", len(events))
-    return events
+    seen: set[tuple] = set()
+    unique: list[dict] = []
+    for e in events:
+        key = (e["club"], e["date"], e["title"])
+        if key not in seen:
+            seen.add(key)
+            unique.append(e)
+    if len(unique) < len(events):
+        log.warning("Dropped %d duplicate Strava rows from sheet", len(events) - len(unique))
+    log.info("%d upcoming events after filtering (all cities)", len(unique))
+    return unique
 
 
 def expand_weekly_runs(
