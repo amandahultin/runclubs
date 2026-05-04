@@ -4,6 +4,8 @@ Run directly:  python generate_sitemap.py
 Also called automatically by the pre-commit git hook.
 """
 
+from __future__ import annotations
+
 from pathlib import Path
 from datetime import date
 
@@ -39,11 +41,35 @@ PRIORITY = {
 DEFAULT_PRIORITY = (0.6, "monthly")
 
 
-def slug_to_url(slug: str) -> str:
-    return f"{BASE_URL}/" if slug == "index" else f"{BASE_URL}/{slug}"
+def parse_redirects(root: Path) -> dict[str, str]:
+    """Return {source_path: destination_path} for 301 rules in _redirects."""
+    rules: dict[str, str] = {}
+    path = root / "_redirects"
+    if not path.exists():
+        return rules
+    for line in path.read_text(encoding="utf-8").splitlines():
+        parts = line.strip().split()
+        if len(parts) >= 3 and parts[2] == "301" and parts[0].startswith("/"):
+            rules[parts[0]] = parts[1]
+    return rules
+
+
+def canonical_url(slug: str, redirects: dict[str, str]) -> str:
+    src = "/" if slug == "index" else f"/{slug}"
+    dst = redirects.get(src, src)
+    return f"{BASE_URL}{dst}"
+
+
+def city_of(url: str) -> str | None:
+    path = url.removeprefix(BASE_URL)
+    for city in ("stockholm", "goteborg", "malmo"):
+        if path.startswith(f"/{city}/"):
+            return city
+    return None
 
 
 def build_sitemap(root: Path) -> str:
+    redirects = parse_redirects(root)
     slugs = sorted(
         p.stem for p in root.glob("*.html")
         if p.stem not in SKIP
@@ -70,31 +96,29 @@ def build_sitemap(root: Path) -> str:
                 ordered.append(slug)
                 pri, freq = PRIORITY.get(slug, DEFAULT_PRIORITY)
                 lines.append(f"""  <url>
-    <loc>{slug_to_url(slug)}</loc>
+    <loc>{canonical_url(slug, redirects)}</loc>
     <lastmod>{TODAY}</lastmod>
     <changefreq>{freq}</changefreq>
     <priority>{pri}</priority>
   </url>""")
 
-    # Club pages — everything not yet listed
+    # Club pages — everything not yet listed, grouped by destination city.
     club_slugs = [s for s in slugs if s not in ordered]
-    if club_slugs:
-        # Group by city heuristic (just alphabetical for now)
-        sthlm = [s for s in club_slugs if s not in
-                 {"goteborg-running-club","sweden-runners-goteborg","slowrunners-goteborg","ess-runners-club",
-                  "mrc-malmo","sweden-runners-malmo"}]
-        gbg   = [s for s in club_slugs if s in
-                 {"goteborg-running-club","sweden-runners-goteborg","slowrunners-goteborg","ess-runners-club"}]
-        malmo = [s for s in club_slugs if s in {"mrc-malmo","sweden-runners-malmo"}]
+    by_city: dict[str | None, list[tuple[str, str]]] = {"stockholm": [], "goteborg": [], "malmo": [], None: []}
+    for slug in club_slugs:
+        url = canonical_url(slug, redirects)
+        by_city[city_of(url)].append((slug, url))
 
-        for label, group in [("Klubbsidor Stockholm", sthlm),
-                              ("Klubbsidor Göteborg",  gbg),
-                              ("Klubbsidor Malmö",     malmo)]:
-            if group:
-                lines.append(f"\n  <!-- {label} -->")
-                for slug in sorted(group):
-                    pri, freq = PRIORITY.get(slug, DEFAULT_PRIORITY)
-                    lines.append(f'  <url><loc>{slug_to_url(slug)}</loc><lastmod>{TODAY}</lastmod><priority>{pri}</priority></url>')
+    for city, label in [("stockholm", "Klubbsidor Stockholm"),
+                        ("goteborg",  "Klubbsidor Göteborg"),
+                        ("malmo",     "Klubbsidor Malmö"),
+                        (None,        "Klubbsidor (övrigt)")]:
+        group = by_city[city]
+        if group:
+            lines.append(f"\n  <!-- {label} -->")
+            for slug, url in sorted(group):
+                pri, freq = PRIORITY.get(slug, DEFAULT_PRIORITY)
+                lines.append(f'  <url><loc>{url}</loc><lastmod>{TODAY}</lastmod><priority>{pri}</priority></url>')
 
     lines.append("\n</urlset>")
     return "\n".join(lines) + "\n"
