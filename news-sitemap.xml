@@ -3,6 +3,18 @@
         xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">
 
   <url>
+    <loc>https://runclubs.se/veckans-running-events-v19-2026</loc>
+    <news:news>
+      <news:publication>
+        <news:name>Runclubs.se</news:name>
+        <news:language>sv</news:language>
+      </news:publication>
+      <news:publication_date>2026-05-04</news:publication_date>
+      <news:title>Veckans 5 hetaste running events — 4–10 maj 2026</news:title>
+    </news:news>
+  </url>
+
+  <url>
     <loc>https://runclubs.se/tjejer-tar-over-lopsparen</loc>
     <news:news>
       <news:publication>
