@@ -103,7 +103,11 @@ def patch_club(html: str) -> tuple[str, list[str]]:
             break
 
     # 2. dateModified in SportsOrganization JSON-LD
-    if '"sameAs"' in html:
+    if _DMOD_RE.search(html):
+        # dateModified already present — replace in place (handles missed strip case)
+        html, _ = _DMOD_RE.subn(NEW_DMOD, html)
+        changes.append("JSON-LD: dateModified replaced (no strip)")
+    elif '"sameAs"' in html:
         html = html.replace('"sameAs"',
                             f'"dateModified": "{ISO_DATE}",\n  "sameAs"', 1)
         changes.append("JSON-LD: dateModified added")
