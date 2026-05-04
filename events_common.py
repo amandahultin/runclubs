@@ -9,6 +9,7 @@ from __future__ import annotations
 import json
 import logging
 import os
+import time
 from datetime import datetime, timedelta, timezone
 from zoneinfo import ZoneInfo
 
@@ -95,20 +96,40 @@ def _sheet_client() -> gspread.Client:
     return gspread.authorize(creds)
 
 
+_RETRY_STATUSES = {429, 500, 502, 503, 504}
+
+
+def _with_retry(fn, *, attempts: int = 4, base_delay: float = 2.0):
+    for i in range(attempts):
+        try:
+            return fn()
+        except gspread.exceptions.APIError as e:
+            status = getattr(getattr(e, "response", None), "status_code", None)
+            if status not in _RETRY_STATUSES or i == attempts - 1:
+                raise
+            delay = base_delay * (2 ** i)
+            log.warning("Sheets API %s — retrying in %.1fs (attempt %d/%d)", status, delay, i + 1, attempts)
+            time.sleep(delay)
+
+
 def fetch_events(sheet_id: str) -> list[dict]:
-    gc = _sheet_client()
-    sh = gc.open_by_key(sheet_id)
-    ws = sh.worksheet(WORKSHEET_NAME)
-    records = ws.get_all_records(expected_headers=HEADERS)
+    def _do():
+        gc = _sheet_client()
+        sh = gc.open_by_key(sheet_id)
+        ws = sh.worksheet(WORKSHEET_NAME)
+        return ws.get_all_records(expected_headers=HEADERS)
+    records = _with_retry(_do)
     log.info("Fetched %d rows from Events sheet", len(records))
     return records
 
 
 def fetch_weekly_runs(sheet_id: str) -> list[dict]:
-    gc = _sheet_client()
-    sh = gc.open_by_key(sheet_id)
-    ws = sh.worksheet(WEEKLY_WORKSHEET)
-    records = ws.get_all_records(expected_headers=WEEKLY_HEADERS)
+    def _do():
+        gc = _sheet_client()
+        sh = gc.open_by_key(sheet_id)
+        ws = sh.worksheet(WEEKLY_WORKSHEET)
+        return ws.get_all_records(expected_headers=WEEKLY_HEADERS)
+    records = _with_retry(_do)
     log.info("Fetched %d rows from WeeklyRuns sheet", len(records))
     return records
 
@@ -118,14 +139,18 @@ def fetch_overrides(sheet_id: str) -> dict[tuple[str, str], dict]:
 
     Returns an empty dict if the Overrides worksheet doesn't exist yet.
     """
-    gc = _sheet_client()
-    sh = gc.open_by_key(sheet_id)
-    try:
-        ws = sh.worksheet(OVERRIDES_WORKSHEET)
-    except gspread.exceptions.WorksheetNotFound:
+    def _do():
+        gc = _sheet_client()
+        sh = gc.open_by_key(sheet_id)
+        try:
+            ws = sh.worksheet(OVERRIDES_WORKSHEET)
+        except gspread.exceptions.WorksheetNotFound:
+            return None
+        return ws.get_all_records(expected_headers=OVERRIDES_HEADERS)
+    records = _with_retry(_do)
+    if records is None:
         log.warning("Overrides worksheet not found — skipping overrides")
         return {}
-    records = ws.get_all_records(expected_headers=OVERRIDES_HEADERS)
     log.info("Fetched %d rows from Overrides sheet", len(records))
     result = {}
     for r in records:
@@ -138,14 +163,18 @@ def fetch_overrides(sheet_id: str) -> dict[tuple[str, str], dict]:
 
 def fetch_special_events(sheet_id: str) -> list[dict]:
     """Return rows from the SpecialEvents worksheet, or [] if it doesn't exist yet."""
-    gc = _sheet_client()
-    sh = gc.open_by_key(sheet_id)
-    try:
-        ws = sh.worksheet(SPECIAL_WORKSHEET)
-    except gspread.exceptions.WorksheetNotFound:
+    def _do():
+        gc = _sheet_client()
+        sh = gc.open_by_key(sheet_id)
+        try:
+            ws = sh.worksheet(SPECIAL_WORKSHEET)
+        except gspread.exceptions.WorksheetNotFound:
+            return None
+        return ws.get_all_records(expected_headers=SPECIAL_HEADERS)
+    records = _with_retry(_do)
+    if records is None:
         log.warning("SpecialEvents worksheet not found — skipping")
         return []
-    records = ws.get_all_records(expected_headers=SPECIAL_HEADERS)
     log.info("Fetched %d rows from SpecialEvents sheet", len(records))
     return records
 
