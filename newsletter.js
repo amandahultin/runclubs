@@ -2,7 +2,7 @@
 // Kopplar alla .newsletter-btn knappar till Google Sheets via Apps Script.
 // Byt ut GOOGLE_SCRIPT_URL nedan mot din egen URL efter deploy.
 
-const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxPHxWYCcZSZbBQGQ8Kh0vrEIgEqjGN0Q5jnux4PNEL4HrxHYz_3PVMhVcpR85af51TrA/exec';
+const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyRWOM4KuOFNPxtLQTQNCuPYf98UPcGnLPtU4li8MkfARCPv7NoE4M42PE9JfbnRf6X/exec';
 
 (function () {
   // Inject modal HTML + CSS
