@@ -27,7 +27,7 @@ const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw3N8tYho3ShQ
           <p style="
             font-family:'DM Sans',sans-serif; font-size:13px;
             color:#888; line-height:1.6; margin-bottom:1.5rem;
-          ">Frivilligt – hjälper oss skräddarsy nyhetsbrevet för dig.</p>
+          ">Frivilligt – hjälper oss att skräddarsy nyhetsbrev, erbjudanden och event för dig.</p>
 
           <!-- Gender -->
           <div style="margin-bottom:1rem; text-align:left;">
@@ -59,12 +59,27 @@ const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw3N8tYho3ShQ
               color:#1C2A45; text-transform:uppercase; letter-spacing:0.6px;
               display:block; margin-bottom:0.5rem;
             ">Födelseår</label>
-            <input id="nl-birthyear" type="number" min="1930" max="2015" placeholder="t.ex. 1990" style="
-              width:100%; box-sizing:border-box; padding:10px 12px;
-              border:2px solid #e0dbd8; border-radius:8px;
-              font-family:'DM Sans',sans-serif; font-size:13px;
-              color:#1C2A45; background:#fff; outline:none;
-            ">
+            <div style="position:relative;">
+              <select id="nl-birthyear" style="
+                width:100%; padding:10px 36px 10px 12px; border:2px solid #e0dbd8;
+                border-radius:8px; font-family:'DM Sans',sans-serif; font-size:13px;
+                color:#1C2A45; background:#fff; outline:none;
+                appearance:none; -webkit-appearance:none; cursor:pointer;
+              ">
+                <option value="">Välj år...</option>
+                ${(function() {
+                  let opts = '';
+                  for (let y = 2026; y >= 1940; y--) {
+                    opts += '<option value="' + y + '"' + (y === 1998 ? ' selected' : '') + '>' + y + '</option>';
+                  }
+                  return opts;
+                })()}
+              </select>
+              <span style="
+                position:absolute; right:12px; top:50%; transform:translateY(-50%);
+                pointer-events:none; color:#888; font-size:11px;
+              ">▾</span>
+            </div>
           </div>
 
           <!-- City -->
@@ -85,6 +100,7 @@ const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw3N8tYho3ShQ
                 <option value="Stockholm">Stockholm</option>
                 <option value="Göteborg">Göteborg</option>
                 <option value="Malmö">Malmö</option>
+                <option value="Annan">Annan</option>
               </select>
               <span style="
                 position:absolute; right:12px; top:50%; transform:translateY(-50%);
@@ -112,7 +128,7 @@ const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw3N8tYho3ShQ
                 <option value="runt 5:30/km">runt 5:30/km</option>
                 <option value="runt 6:00/km">runt 6:00/km</option>
                 <option value="runt 6:30/km">runt 6:30/km</option>
-                <option value="+7:00/km">+7:00/km</option>
+                <option value="runt 7:00/km och uppåt">runt 7:00/km och uppåt</option>
               </select>
               <span style="
                 position:absolute; right:12px; top:50%; transform:translateY(-50%);
