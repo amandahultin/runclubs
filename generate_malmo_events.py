@@ -32,6 +32,7 @@ from events_common import (
     fetch_special_events,
     fetch_weekly_runs,
     normalize_club_name,
+    render_events_section,
     _parse_date,
     _parse_time,
 )
@@ -193,6 +194,7 @@ def expand_weekly_runs(
 
 
 def render_html(events: list[dict], generated_at: str) -> str:
+    events_section, total_count, club_count = render_events_section(events)
     events_json = json.dumps(events, ensure_ascii=False)
 
     return f"""<!DOCTYPE html>
@@ -703,14 +705,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="stats-bar">
     <div class="stat-item">
       <div>
-        <div class="stat-number" id="stat-total">—</div>
+        <div class="stat-number" id="stat-total">{total_count}</div>
         <div class="stat-label">Events</div>
       </div>
     </div>
     <div class="stat-divider"></div>
     <div class="stat-item">
       <div>
-        <div class="stat-number" id="stat-clubs">—</div>
+        <div class="stat-number" id="stat-clubs">{club_count}</div>
         <div class="stat-label">Run clubs</div>
       </div>
     </div>
@@ -744,7 +746,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="filters-bar" id="filters-bar"></div>
 
   <div class="events-layout">
-    <div id="events-container"></div>
+    <div id="events-container">
+      {events_section}
+      <div id="no-events-msg" class="no-events" hidden>
+        <span class="no-events-icon">🏃</span>
+        <p>Inga events hittades med dessa filter.</p>
+      </div>
+    </div>
   </div>
 
   <section class="nl-section fade-in">
@@ -791,192 +799,43 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <script>
     const events = {events_json};
 
-    const SV_MONTHS_SHORT = ['jan','feb','mar','apr','maj','jun','jul','aug','sep','okt','nov','dec'];
-    const SV_DAYS         = ['Söndag','Måndag','Tisdag','Onsdag','Torsdag','Fredag','Lördag'];
-    const SV_MONTHS       = ['Januari','Februari','Mars','April','Maj','Juni','Juli','Augusti','September','Oktober','November','December'];
+    function applyFilters() {{
+      const allCards = document.querySelectorAll('#events-container [data-source]');
+      let visibleTotal = 0;
+      const visibleClubs = new Set();
 
-    let activeSource = 'all';
-    let activeClubs = new Set();
-
-    function parseDate(str) {{
-      if (!str) return null;
-      const d = new Date(str);
-      return isNaN(d.getTime()) ? null : d;
-    }}
-
-    function typeBadge(type, source) {{
-      if (type === 'weekly_run') return `<span class="type-badge type-weekly">Weekly run</span>`;
-      if (source === 'strava' || source === 'special') return '';
-      return `<span class="type-badge type-event">Event</span>`;
-    }}
-
-    function sourceBadge(source) {{
-      if (source === 'weekly_run') return '';
-      if (source === 'special') return `<span class="source-badge source-special">Special Event</span>`;
-      const cls   = source === 'strava' ? 'source-strava' : 'source-other';
-      const label = source === 'strava' ? 'Strava' : source;
-      return `<span class="source-badge ${{cls}}">${{label}}</span>`;
-    }}
-
-    function cardHTML(ev) {{
-      const d       = parseDate(ev.date);
-      const hasDate = d !== null;
-
-      let dateBlockHTML;
-      if (hasDate) {{
-        const dayNum   = d.getDate();
-        const monthStr = SV_MONTHS_SHORT[d.getMonth()];
-        const dayStr   = SV_DAYS[d.getDay()].slice(0, 3);
-        dateBlockHTML = `
-          <div class="event-date-block">
-            <div class="event-day-num">${{dayNum}}</div>
-            <div class="event-month-abbr">${{monthStr}}</div>
-            <div class="event-day-name">${{dayStr}}</div>
-          </div>`;
-      }} else {{
-        dateBlockHTML = `
-          <div class="event-date-block no-date">
-            <div class="event-day-num">—</div>
-          </div>`;
-      }}
-
-      const imageHTML = ev.image_url
-        ? `<img class="event-card-image" src="${{ev.image_url}}" alt="" loading="lazy">`
-        : '';
-
-      const locHTML = ev.location
-        ? `<div class="event-location">
-             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-             ${{ev.location}}
-           </div>`
-        : '';
-
-      const descHTML = ev.description
-        ? `<p class="event-desc">${{ev.description}}</p>`
-        : '';
-
-      const engHTML = ev.engagement && ev.source === 'strava'
-        ? `<span class="event-engagement">
-             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-             ${{ev.engagement}} anmälda
-           </span>`
-        : '<span></span>';
-
-      const isExternal = ev.source === 'strava';
-      const ctaHTML = ev.link
-        ? (isExternal
-            ? `<span class="event-cta">Läs mer <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="vertical-align:middle;margin-left:2px;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>`
-            : `<span class="event-cta">Läs mer <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>`)
-        : '';
-
-      const inner = `
-        ${{imageHTML}}
-        <div class="event-card-top">
-          ${{dateBlockHTML}}
-          <div class="event-card-body">
-            <div class="event-source-row">
-              ${{typeBadge(ev.type, ev.source)}}
-              ${{sourceBadge(ev.source)}}
-              <span class="event-club">${{ev.club}}</span>
-            </div>
-            <div class="event-title">${{ev.title}}</div>
-            ${{locHTML}}
-            ${{descHTML}}
-          </div>
-        </div>
-        <div class="event-card-footer">
-          ${{engHTML}}
-          ${{ctaHTML}}
-        </div>`;
-
-      const specialClass = ev.source === 'special' ? ' event-card--special' : '';
-      const opensNewTab  = ev.source === 'strava' || ev.source === 'special';
-      if (ev.link) {{
-        return `<a href="${{ev.link}}" ${{opensNewTab ? 'target="_blank" rel="noopener"' : ''}} class="event-card${{specialClass}}" aria-label="${{ev.title}}">${{inner}}</a>`;
-      }} else {{
-        return `<div class="event-card event-card--no-link${{specialClass}}" aria-label="${{ev.title}}">${{inner}}</div>`;
-      }}
-    }}
-
-    function render() {{
-      const container = document.getElementById('events-container');
-      container.innerHTML = '';
-
-      const filtered = events.filter(ev => {{
-        const sourceOk = activeSource === 'all' || ev.source === activeSource;
-        const clubOk   = activeClubs.size === 0
-          || (activeClubs.has('__ovrigt__') && !ev.club)
-          || (ev.club && activeClubs.has(ev.club));
-        return sourceOk && clubOk;
-      }});
-
-      if (filtered.length === 0) {{
-        container.innerHTML = `
-          <div class="no-events">
-            <span class="no-events-icon">🏃</span>
-            <p>Inga events hittades med dessa filter.</p>
-          </div>`;
-        document.getElementById('stat-total').textContent = 0;
-        document.getElementById('stat-clubs').textContent = 0;
-        return;
-      }}
-
-      const byDate = {{}};
-      const noDate = [];
-      filtered.forEach(ev => {{
-        const d = parseDate(ev.date);
-        if (d) {{
-          const key = ev.date.slice(0, 10);
-          if (!byDate[key]) byDate[key] = {{ label: '', events: [] }};
-          byDate[key].events.push(ev);
-          if (!byDate[key].label) {{
-            byDate[key].label = SV_DAYS[d.getDay()] + ' ' + d.getDate() + ' ' + SV_MONTHS[d.getMonth()];
-          }}
-        }} else {{
-          noDate.push(ev);
+      allCards.forEach(card => {{
+        const club = card.dataset.club || '';
+        const show = activeClubs.size === 0
+          || (activeClubs.has('__ovrigt__') && !club)
+          || (club && activeClubs.has(club));
+        card.hidden = !show;
+        if (show) {{
+          visibleTotal++;
+          if (club) visibleClubs.add(club);
         }}
       }});
 
-      Object.keys(byDate).sort().forEach(key => {{
-        const group = byDate[key];
-        const count = group.events.length;
-        const section = document.createElement('div');
-        section.className = 'date-group';
-        section.innerHTML = `
-          <div class="date-heading">
-            <span class="date-name">${{group.label}}</span>
-            <div class="date-line"></div>
-            <span class="date-count">${{count}} event${{count !== 1 ? 's' : ''}}</span>
-          </div>
-          <div class="events-grid">${{group.events.map(cardHTML).join('')}}</div>`;
-        container.appendChild(section);
+      document.querySelectorAll('.date-group').forEach(group => {{
+        const groupCards = group.querySelectorAll('[data-source]');
+        let groupVisible = 0;
+        groupCards.forEach(c => {{ if (!c.hidden) groupVisible++; }});
+        group.hidden = groupVisible === 0;
+        const countEl = group.querySelector('[data-count-label]');
+        if (countEl) {{
+          const key = group.dataset.dateGroup;
+          countEl.textContent = key === 'nodate'
+            ? groupVisible + ' post' + (groupVisible !== 1 ? 'ar' : '')
+            : groupVisible + ' event' + (groupVisible !== 1 ? 's' : '');
+        }}
       }});
 
-      if (noDate.length > 0) {{
-        const section = document.createElement('div');
-        section.className = 'date-group';
-        section.innerHTML = `
-          <div class="date-heading">
-            <span class="date-name">Inget datum</span>
-            <div class="date-line"></div>
-            <span class="date-count">${{noDate.length}} post${{noDate.length !== 1 ? 'ar' : ''}}</span>
-          </div>
-          <div class="events-grid">${{noDate.map(cardHTML).join('')}}</div>`;
-        container.appendChild(section);
-      }}
+      const noEventsMsg = document.getElementById('no-events-msg');
+      if (noEventsMsg) noEventsMsg.hidden = visibleTotal > 0;
 
-      document.getElementById('stat-total').textContent = filtered.length;
-      document.getElementById('stat-clubs').textContent = new Set(filtered.map(ev => ev.club).filter(Boolean)).size;
+      document.getElementById('stat-total').textContent = visibleTotal;
+      document.getElementById('stat-clubs').textContent = visibleClubs.size;
     }}
-
-    document.querySelectorAll('[data-filter]').forEach(btn => {{
-      btn.addEventListener('click', function() {{
-        document.querySelectorAll('[data-filter="source"]').forEach(b => b.classList.remove('active'));
-        this.classList.add('active');
-        activeSource = this.dataset.value;
-        render();
-      }});
-    }});
 
     const navToggle  = document.querySelector('.nav-toggle');
     const mobileMenu = document.querySelector('.mobile-menu');
@@ -1034,7 +893,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             }}
           }}
           syncURL();
-          render();
+          applyFilters();
         }});
       }});
 
@@ -1069,8 +928,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     const _clubParams = new URLSearchParams(window.location.search).getAll('club');
     _clubParams.forEach(c => activeClubs.add(c));
 
-    render();
     renderClubFilter();
+    applyFilters();
 
     if (_clubParams.length > 0) {{
       const allPill = document.querySelector('[data-filter="club"][data-value="all"]');

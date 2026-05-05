@@ -6,6 +6,7 @@ and automatically applies to all four generators.
 
 from __future__ import annotations
 
+import html as _html_lib
 import json
 import logging
 import os
@@ -210,3 +211,176 @@ def combine_date_time(raw_date: str, raw_time: str) -> str:
         h, m = _parse_time(raw_time)
         return f"{raw_date}T{h:02d}:{m:02d}:00"
     return raw_date
+
+
+# ── Static HTML rendering ─────────────────────────────────────────────────────
+
+_SV_MONTHS_SHORT = ['jan','feb','mar','apr','maj','jun','jul','aug','sep','okt','nov','dec']
+_SV_DAYS         = ['Söndag','Måndag','Tisdag','Onsdag','Torsdag','Fredag','Lördag']
+_SV_MONTHS       = ['Januari','Februari','Mars','April','Maj','Juni','Juli','Augusti','September','Oktober','November','December']
+
+_PIN_SVG = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>'
+_PPL_SVG = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>'
+_EXT_SVG = '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="vertical-align:middle;margin-left:2px;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>'
+_ARR_SVG = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>'
+
+
+def _e(s: object) -> str:
+    return _html_lib.escape(str(s or ""), quote=True)
+
+
+def card_html(ev: dict) -> str:
+    """Render one event card as static HTML, matching the JS cardHTML() function."""
+    source = ev.get("source") or ""
+    club   = ev.get("club")   or ""
+    title  = ev.get("title")  or ""
+    link   = ev.get("link")   or ""
+
+    d: datetime | None = None
+    date_str = ev.get("date") or ""
+    if date_str:
+        try:
+            d = datetime.fromisoformat(date_str)
+        except ValueError:
+            pass
+
+    if d:
+        js_day     = (d.weekday() + 1) % 7  # Python Mon=0..Sun=6 → JS Sun=0..Sat=6
+        date_block = (
+            f'<div class="event-date-block">'
+            f'<div class="event-day-num">{d.day}</div>'
+            f'<div class="event-month-abbr">{_SV_MONTHS_SHORT[d.month - 1]}</div>'
+            f'<div class="event-day-name">{_SV_DAYS[js_day][:3]}</div>'
+            f'</div>'
+        )
+    else:
+        date_block = '<div class="event-date-block no-date"><div class="event-day-num">—</div></div>'
+
+    image_html = (
+        f'<img class="event-card-image" src="{_e(ev["image_url"])}" alt="" loading="lazy">'
+        if ev.get("image_url") else ""
+    )
+
+    loc_html = (
+        f'<div class="event-location">{_PIN_SVG}{_e(ev["location"])}</div>'
+        if ev.get("location") else ""
+    )
+
+    desc_html = (
+        f'<p class="event-desc">{_e(ev["description"])}</p>'
+        if ev.get("description") else ""
+    )
+
+    if ev.get("type") == "weekly_run":
+        type_badge = '<span class="type-badge type-weekly">Weekly run</span>'
+    elif source in ("strava", "special"):
+        type_badge = ""
+    else:
+        type_badge = '<span class="type-badge type-event">Event</span>'
+
+    if source == "weekly_run":
+        source_badge = ""
+    elif source == "special":
+        source_badge = '<span class="source-badge source-special">Special Event</span>'
+    elif source == "strava":
+        source_badge = '<span class="source-badge source-strava">Strava</span>'
+    else:
+        source_badge = f'<span class="source-badge source-other">{_e(source)}</span>'
+
+    engagement = str(ev.get("engagement") or "")
+    eng_html = (
+        f'<span class="event-engagement">{_PPL_SVG}{_e(engagement)} anmälda</span>'
+        if engagement and source == "strava"
+        else "<span></span>"
+    )
+
+    if link:
+        cta_icon = _EXT_SVG if source == "strava" else _ARR_SVG
+        cta_html = f'<span class="event-cta">Läs mer {cta_icon}</span>'
+    else:
+        cta_html = ""
+
+    inner = (
+        f'{image_html}'
+        f'<div class="event-card-top">'
+        f'{date_block}'
+        f'<div class="event-card-body">'
+        f'<div class="event-source-row">{type_badge}{source_badge}<span class="event-club">{_e(club)}</span></div>'
+        f'<div class="event-title">{_e(title)}</div>'
+        f'{loc_html}{desc_html}'
+        f'</div>'
+        f'</div>'
+        f'<div class="event-card-footer">{eng_html}{cta_html}</div>'
+    )
+
+    special_class = " event-card--special" if source == "special" else ""
+    club_page = ev.get("club_page") or ""
+    for prefix in ("https://runclubs.se/", "http://runclubs.se/"):
+        if club_page.startswith(prefix):
+            club_page = club_page[len(prefix):]
+            break
+    href = (club_page or link) if source == "special" else link
+
+    data = f'data-source="{_e(source)}" data-club="{_e(club)}"'
+    if href:
+        target = ' target="_blank" rel="noopener"' if source == "strava" else ""
+        return f'<a href="{_e(href)}"{target} class="event-card{special_class}" aria-label="{_e(title)}" {data}>{inner}</a>'
+    return f'<div class="event-card event-card--no-link{special_class}" aria-label="{_e(title)}" {data}>{inner}</div>'
+
+
+def render_events_section(events: list[dict]) -> tuple[str, int, int]:
+    """Group events by date and return (static_html, total_count, club_count)."""
+    by_date: dict[str, dict] = {}
+    no_date: list[dict] = []
+
+    for ev in events:
+        date_str = ev.get("date") or ""
+        if date_str:
+            try:
+                d = datetime.fromisoformat(date_str)
+                key = date_str[:10]
+                if key not in by_date:
+                    js_day = (d.weekday() + 1) % 7
+                    label  = f"{_SV_DAYS[js_day]} {d.day} {_SV_MONTHS[d.month - 1]}"
+                    by_date[key] = {"label": label, "events": []}
+                by_date[key]["events"].append(ev)
+            except ValueError:
+                no_date.append(ev)
+        else:
+            no_date.append(ev)
+
+    parts: list[str] = []
+    for key in sorted(by_date.keys()):
+        group = by_date[key]
+        count = len(group["events"])
+        s     = "s" if count != 1 else ""
+        cards = "".join(card_html(ev) for ev in group["events"])
+        parts.append(
+            f'<div class="date-group" data-date-group="{key}">'
+            f'<div class="date-heading">'
+            f'<span class="date-name">{group["label"]}</span>'
+            f'<div class="date-line"></div>'
+            f'<span class="date-count" data-count-label="{key}">{count} event{s}</span>'
+            f'</div>'
+            f'<div class="events-grid">{cards}</div>'
+            f'</div>'
+        )
+
+    if no_date:
+        count = len(no_date)
+        s     = "ar" if count != 1 else ""
+        cards = "".join(card_html(ev) for ev in no_date)
+        parts.append(
+            f'<div class="date-group" data-date-group="nodate">'
+            f'<div class="date-heading">'
+            f'<span class="date-name">Inget datum</span>'
+            f'<div class="date-line"></div>'
+            f'<span class="date-count" data-count-label="nodate">{count} post{s}</span>'
+            f'</div>'
+            f'<div class="events-grid">{cards}</div>'
+            f'</div>'
+        )
+
+    total_count = len(events)
+    club_count  = len({ev.get("club") for ev in events if ev.get("club")})
+    return "\n".join(parts), total_count, club_count
