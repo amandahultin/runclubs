@@ -124,11 +124,14 @@ const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw3N8tYho3ShQ
                 appearance:none; -webkit-appearance:none; cursor:pointer;
               ">
                 <option value="">Välj tempo...</option>
+                <option value="runt 4:30/km">runt 4:30/km</option>
                 <option value="runt 5:00/km">runt 5:00/km</option>
                 <option value="runt 5:30/km">runt 5:30/km</option>
                 <option value="runt 6:00/km">runt 6:00/km</option>
                 <option value="runt 6:30/km">runt 6:30/km</option>
-                <option value="runt 7:00/km och uppåt">runt 7:00/km och uppåt</option>
+                <option value="runt 7:00/km">runt 7:00/km</option>
+                <option value="runt 7:30/km">runt 7:30/km</option>
+                <option value="runt 8:00/km">runt 8:00/km</option>
               </select>
               <span style="
                 position:absolute; right:12px; top:50%; transform:translateY(-50%);
