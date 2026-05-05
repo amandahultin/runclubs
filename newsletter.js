@@ -313,7 +313,7 @@ const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw3N8tYho3ShQ
       showStep2({
         email,
         page:         window.location.pathname,
-        date:         new Date(Date.now() + 2 * 60 * 60 * 1000).toISOString().replace('T', ' ').slice(0, 19),
+        date:         new Date().toLocaleString('sv-SE', { timeZone: 'Europe/Stockholm' }),
         referrer:     document.referrer || '',
         placement,
         utm_source:   utms.utm_source   || '',
