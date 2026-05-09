@@ -136,6 +136,8 @@ document.addEventListener('DOMContentLoaded',function(){
       background: rgba(253,250,249,0.98); backdrop-filter: blur(12px);
       border-bottom: 1px solid #F0E0DC;
       padding: 1rem 2rem; gap: 0;
+      position: fixed; top: 70px; left: 0; right: 0; z-index: 99;
+      max-height: calc(100vh - 70px); overflow-y: auto;
     }
     .mobile-menu.open { display: flex; }
     .mobile-menu a {
