@@ -10,11 +10,13 @@ const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw3N8tYho3ShQ
       display:none; position:fixed; inset:0; z-index:9999;
       background:rgba(28,42,69,0.5); backdrop-filter:blur(4px);
       align-items:center; justify-content:center;
+      padding:1rem; overflow-y:auto; -webkit-overflow-scrolling:touch;
     ">
       <div id="nl-modal-box" style="
-        background:#FDFAF9; border-radius:16px; padding:2.5rem 2rem;
-        max-width:400px; width:90%; text-align:center;
+        background:#FDFAF9; border-radius:16px; padding:2rem 1.5rem;
+        max-width:400px; width:100%; text-align:center;
         box-shadow:0 20px 60px rgba(0,0,0,0.2); position:relative;
+        max-height:calc(100vh - 2rem); overflow-y:auto; -webkit-overflow-scrolling:touch;
       ">
 
         <!-- Step 2: profile fields -->
