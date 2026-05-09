@@ -18,16 +18,16 @@ document.addEventListener('DOMContentLoaded',function(){
 <!-- End Google Tag Manager -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Core Run Club Göteborg — Löpargrupp för Tjejer | Runclubs.se</title>
-  <meta name="description" content="Core Run Club Göteborg — crew för tjejer. Distans- och tempopass varvat. Bli starkare, snabbare och hitta ditt nya hängäng. Häng med idag.">
-  <meta property="og:title" content="Core Run Club Göteborg — Crew för Tjejer">
-  <meta property="og:description" content="Crew för tjejer i Göteborg. Distans och tempo varvat. Bli starkare och snabbare.">
+  <title>Core Run Club Göteborg | Löpargrupp för Tjejer | Runclubs.se</title>
+  <meta name="description" content="Core Run Club är en löpargrupp för tjejer i Göteborg som vill röra på sig, träffa nya människor och ha kul tillsammans. Lugnt tempo, fika och social vibe.">
+  <meta property="og:title" content="Core Run Club Göteborg | Löpargrupp för Tjejer">
+  <meta property="og:description" content="Löpargrupp för tjejer i Göteborg. Lugnt tempo, fika och social vibe, helt utan prestationskrav.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://runclubs.se/goteborg/core-run-club/">
   <meta property="og:image" content="https://runclubs.se/stockholm-run-clubs.jpeg">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Core Run Club Göteborg">
-  <meta name="twitter:description" content="Crew för tjejer i Göteborg. Distans och tempo varvat.">
+  <meta name="twitter:description" content="Löpargrupp för tjejer i Göteborg. Lugnt tempo, fika och social vibe.">
   <link rel="sitemap" type="application/xml" href="/sitemap.xml">
   <link rel="canonical" href="https://runclubs.se/goteborg/core-run-club/">
   <link rel="alternate" hreflang="sv-SE" href="https://runclubs.se/goteborg/core-run-club/">
@@ -37,19 +37,18 @@ document.addEventListener('DOMContentLoaded',function(){
   "@context": "https://schema.org",
   "@type": "SportsOrganization",
   "name": "Core Run Club",
-  "description": "Core Run Club Göteborg — crew för tjejer. Distans och tempopass varvat. Bli starkare, snabbare och hitta ditt nya hängäng.",
+  "description": "Core Run Club är en löpargrupp för tjejer i Göteborg som vill röra på sig, träffa nya människor och ha kul tillsammans, helt utan prestationskrav. Lugnt tempo, fika och social vibe.",
   "url": "https://runclubs.se/goteborg/core-run-club/",
-  "image": "https://runclubs.se/hero.jpg",
+  "image": "https://runclubs.se/core-run-club.hero.jpeg",
   "sport": "Running",
   "address": {
     "@type": "PostalAddress",
-    "addressLocality": "Stockholm",
-    "addressCountry": "SE",
-    "streetAddress": "Stockholm"
+    "addressLocality": "Göteborg",
+    "addressCountry": "SE"
   },
   "areaServed": {
     "@type": "City",
-    "name": "Stockholm"
+    "name": "Göteborg"
   },
   "isPartOf": {
     "@type": "WebSite",
@@ -112,7 +111,7 @@ document.addEventListener('DOMContentLoaded',function(){
     /* ── HERO ───────────────────────────── */
     .hero {
       position: relative; min-height: 400px;
-      background: #1C2A45 url('https://images.unsplash.com/photo-1739368732843-800f36a9b7d0?w=1200&h=600&fit=crop&crop=center') center/cover no-repeat;
+      background: #1C2A45 url('/core-run-club.hero.jpeg') center/cover no-repeat;
       display: flex; flex-direction: column; justify-content: flex-end;
       padding: 3rem 2rem; overflow: hidden;
     }
@@ -128,6 +127,16 @@ document.addEventListener('DOMContentLoaded',function(){
     .hero-tag { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #EEAA96; margin-bottom: 0.75rem; }
     .hero h1 { font-family: 'Archivo Black', sans-serif; font-size: clamp(38px, 5vw, 56px); line-height: 1; text-transform: uppercase; color: #FDFAF9; letter-spacing: 2px; }
     .hero-subtitle { font-size: 16px; color: rgba(255,255,255,0.6); line-height: 1.7; margin-top: 1rem; max-width: 500px; }
+
+    /* Hero logo badge */
+    .hero-logo {
+      position: absolute; top: 2rem; right: 2rem; z-index: 2;
+      width: 72px; height: 72px; border-radius: 14px;
+      background: #fff; padding: 4px;
+      box-shadow: 0 6px 24px rgba(0,0,0,0.35);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .hero-logo img { width: 100%; height: 100%; object-fit: contain; border-radius: 10px; }
 
     /* ── INFO STRIP ─────────────────────── */
     .info-strip {
@@ -446,8 +455,8 @@ document.addEventListener('DOMContentLoaded',function(){
     {
       "@type": "ListItem",
       "position": 2,
-      "name": "Stockholm",
-      "item": "https://runclubs.se/stockholm"
+      "name": "Göteborg",
+      "item": "https://runclubs.se/goteborg"
     },
     {
       "@type": "ListItem",
@@ -497,6 +506,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <main id="main-content">
 
   <header class="hero">
+    <div class="hero-logo" aria-hidden="true">
+      <img src="/core-run-club.logo.png" alt="" loading="eager" decoding="async">
+    </div>
     <div class="hero-content">
       <div class="breadcrumb">
         <a href="/">Start</a><span class="sep">/</span>
@@ -505,7 +517,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
       <div class="hero-tag">Löparklubb i Göteborg</div>
       <h1>Core<br>Run Club</h1>
-      <p class="hero-subtitle">Löpargrupp för tjejer — springer både distans och tempopass.</p>
+      <p class="hero-subtitle">Löpargrupp för tjejer i Göteborg som vill röra på sig, träffa nya människor och ha kul tillsammans, helt utan prestationskrav.</p>
     </div>
   </header>
 
@@ -758,16 +770,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="sidebar-label">Det här är klubben</span>
         <ul class="highlights-list">
           <li>
-            <span class="highlight-icon green">✓</span>
-            Gratis att delta
-          </li>
-          <li>
             <span class="highlight-icon coral">♡</span>
             Girls Only
           </li>
           <li>
             <span class="highlight-icon blue">✴</span>
-            Distans & tempo
+            Social Run
+          </li>
+          <li>
+            <span class="highlight-icon green">✓</span>
+            Fika &amp; mat
           </li>
         </ul>
       </div>
@@ -813,7 +825,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <article class="club-about fade-in">
       <span class="section-label">Om klubben</span>
 
-      <p>Löpargrupp för tjejer — springer både distans och tempopass.</p>
+      <p>Core Run Club är en löpargrupp för tjejer i Göteborg som vill röra på sig, träffa nya människor och ha kul tillsammans, helt utan prestationskrav.</p>
+
+      <p>För tjejerna som springer med Core Run Club är löpningen ett sätt att umgås. Rundorna brukar därför vara medellånga och tempot är lugnt. Efteråt fikar de eller äter mat tillsammans. Målsättningen är att löpningen ska kännas som ett lagom träningspass kombinerat med bra samtal och socialt häng. På så sätt lyckas Core Run Club kombinera det bästa av två världar.</p>
+
+      <figure style="margin: 1.5rem 0;">
+        <img src="/core-run-club.textimage.jpeg" alt="Tjejerna i Core Run Club samlade på en gräsmatta efter ett pass i samarbete med Kari Traa" loading="lazy" style="width:100%; height:auto; border-radius: 12px; display: block;">
+      </figure>
+
+      <p>De flesta som springer är mellan 20 och 30 år gamla, men det finns ingen åldersgräns och alla är välkomna. Trygghet och inspiration är två viktiga värdeord för Core Run Club.</p>
+
+      <p>Run cluben anordnar också special events, ibland tillsammans med varumärken. Spring med Core Run Club om du vill uppleva en löpargrupp som är fylld av värme, gemenskap och bra energi!</p>
 
     </article>
 
