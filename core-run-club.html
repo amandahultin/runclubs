@@ -578,15 +578,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     @media (min-width: 769px) {
       .club-content {
         grid-template-areas:
-          "events sidebar"
-          "about  sidebar";
+          "about  sidebar"
+          "events sidebar";
         grid-template-rows: auto auto;
       }
       .club-content.no-events {
         grid-template-areas: "about sidebar";
         grid-template-rows: auto;
       }
-      #club-events-section { grid-area: events; border-right: 1px solid #F0E0DC; }
+      #club-events-section { grid-area: events; border-right: 1px solid #F0E0DC; border-top: 1px solid #F0E0DC; }
       .club-about           { grid-area: about; }
       .club-sidebar         { grid-area: sidebar; }
     }
@@ -734,31 +734,29 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </script>
 
   <div class="club-content">
-  <section id="club-events-section" style="display:none;">
-    <div class="club-events-section">
-      <span class="section-label">Kommande events</span>
-      <div class="club-events-grid" id="club-events-grid">
-        
-      </div>
-      <a href="events?club=Core%20Run%20Club" class="club-events-cta">Se alla kommande events →</a>
-    </div>
-  </section>
     <article class="club-about fade-in">
       <span class="section-label">Om klubben</span>
 
-      <p>Core Run Club är en löpargrupp för tjejer i Göteborg som vill röra på sig, träffa nya människor och ha kul tillsammans, helt utan prestationskrav.</p>
-
-      <p>För tjejerna som springer med Core Run Club är löpningen ett sätt att umgås. Rundorna brukar därför vara medellånga och tempot är lugnt. Efteråt fikar de eller äter mat tillsammans. Målsättningen är att löpningen ska kännas som ett lagom träningspass kombinerat med bra samtal och socialt häng. På så sätt lyckas Core Run Club kombinera det bästa av två världar.</p>
+      <p>För tjejerna som springer med Core Run Club är <strong>löpningen ett sätt att umgås</strong>. Rundorna är därför <strong>medellånga och tempot lugnt</strong>. Efteråt fikar de eller äter mat tillsammans. Målsättningen är att passet ska kännas som ett lagom träningspass kombinerat med <strong>bra samtal och socialt häng</strong>.</p>
 
       <figure style="margin: 1.5rem 0;">
         <img src="core-run-club.textimage.jpeg" alt="Tjejerna i Core Run Club samlade på en gräsmatta efter ett pass i samarbete med Kari Traa" loading="lazy" style="width:100%; height:auto; border-radius: 12px; display: block;">
       </figure>
 
-      <p>De flesta som springer är mellan 20 och 30 år gamla, men det finns ingen åldersgräns och alla är välkomna. Trygghet och inspiration är två viktiga värdeord för Core Run Club.</p>
+      <p>De flesta som springer är <strong>mellan 20 och 30 år</strong>, men det finns ingen åldersgräns och alla är välkomna. <strong>Trygghet och inspiration</strong> är två viktiga värdeord för Core Run Club.</p>
 
-      <p>Run cluben anordnar också special events, ibland tillsammans med varumärken. Spring med Core Run Club om du vill uppleva en löpargrupp som är fylld av värme, gemenskap och bra energi!</p>
+      <p>Run cluben anordnar också <strong>special events</strong>, ibland tillsammans med varumärken. Spring med Core Run Club om du vill uppleva en löpargrupp fylld av <strong>värme, gemenskap och bra energi</strong>!</p>
 
     </article>
+  <section id="club-events-section" style="display:none;">
+    <div class="club-events-section">
+      <span class="section-label">Kommande events</span>
+      <div class="club-events-grid" id="club-events-grid">
+
+      </div>
+      <a href="events?club=Core%20Run%20Club" class="club-events-cta">Se alla kommande events →</a>
+    </div>
+  </section>
 
     <aside class="club-sidebar fade-in">
       <div class="sidebar-section">
