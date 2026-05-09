@@ -566,15 +566,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     @media (min-width: 769px) {
       .club-content {
         grid-template-areas:
-          "events sidebar"
-          "about  sidebar";
+          "about  sidebar"
+          "events sidebar";
         grid-template-rows: auto auto;
       }
       .club-content.no-events {
         grid-template-areas: "about sidebar";
         grid-template-rows: auto;
       }
-      #club-events-section { grid-area: events; border-right: 1px solid #F0E0DC; }
+      #club-events-section { grid-area: events; border-right: 1px solid #F0E0DC; border-top: 1px solid #F0E0DC; }
       .club-about           { grid-area: about; }
       .club-sidebar         { grid-area: sidebar; }
     }
@@ -722,15 +722,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </script>
 
   <div class="club-content">
-  <section id="club-events-section" style="display:none;">
-    <div class="club-events-section">
-      <span class="section-label">Kommande events</span>
-      <div class="club-events-grid" id="club-events-grid">
-        
-      </div>
-      <a href="events?club=G%C3%B6teborg%20Running%20Club%20%28GRC%29" class="club-events-cta">Se alla kommande events →</a>
-    </div>
-  </section>
     <article class="club-about fade-in">
       <span class="section-label">Om klubben</span>
 
@@ -747,6 +738,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <p>Med <strong>över tio år på nacken</strong> har Göteborg Running Club blivit en institution i stadens löparliv. Slottsskogen med sina böljande stigar och gröna ytor är den perfekta scenen för en tisdag med god löpning och ännu bättre sällskap.</p>
     </article>
 
+  <section id="club-events-section" style="display:none;">
+    <div class="club-events-section">
+      <span class="section-label">Kommande events</span>
+      <div class="club-events-grid" id="club-events-grid">
+        
+      </div>
+      <a href="events?club=G%C3%B6teborg%20Running%20Club%20%28GRC%29" class="club-events-cta">Se alla kommande events →</a>
+    </div>
+  </section>
     <aside class="club-sidebar fade-in">
       <div class="sidebar-section">
         <span class="sidebar-label">Det här är klubben</span>

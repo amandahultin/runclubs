@@ -581,15 +581,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     @media (min-width: 769px) {
       .club-content {
         grid-template-areas:
-          "events sidebar"
-          "about  sidebar";
+          "about  sidebar"
+          "events sidebar";
         grid-template-rows: auto auto;
       }
       .club-content.no-events {
         grid-template-areas: "about sidebar";
         grid-template-rows: auto;
       }
-      #club-events-section { grid-area: events; border-right: 1px solid #F0E0DC; }
+      #club-events-section { grid-area: events; border-right: 1px solid #F0E0DC; border-top: 1px solid #F0E0DC; }
       .club-about           { grid-area: about; }
       .club-sidebar         { grid-area: sidebar; }
     }
@@ -737,6 +737,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </script>
 
   <div class="club-content">
+    <article class="club-about fade-in">
+      <span class="section-label">Om klubben</span>
+
+      <p>Mikkeler Running Club eller MRC Stockholm är ett globalt löparcommunity som "delar en passion för bra öl, kamratskap och äventyr". Alla är välkomna och du behöver inte vara en van löpare för att följa med på ett pass. Mikkeler är ett löparcommunity som anordnar resor och går på festivaler tillsammans. Löparklubben grundades för tio år sedan i Köpenhamn.</p>
+
+    </article>
+
   <section id="club-events-section" style="display:none;">
     <div class="club-events-section">
       <span class="section-label">Kommande events</span>
@@ -746,13 +753,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <a href="events?club=Mikkeller%20Running%20Club%20Stockholm" class="club-events-cta">Se alla kommande events →</a>
     </div>
   </section>
-    <article class="club-about fade-in">
-      <span class="section-label">Om klubben</span>
-
-      <p>Mikkeler Running Club eller MRC Stockholm är ett globalt löparcommunity som "delar en passion för bra öl, kamratskap och äventyr". Alla är välkomna och du behöver inte vara en van löpare för att följa med på ett pass. Mikkeler är ett löparcommunity som anordnar resor och går på festivaler tillsammans. Löparklubben grundades för tio år sedan i Köpenhamn.</p>
-
-    </article>
-
     <aside class="club-sidebar fade-in">
       <div class="sidebar-section">
         <span class="sidebar-label">Det här är klubben</span>
