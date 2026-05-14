@@ -52,25 +52,56 @@ async function handleDashboard(request, env) {
   const params = new URL(request.url).searchParams;
   if (params.get('key') !== env.DASHBOARD_KEY) return new Response('Unauthorized', { status: 401 });
 
-  const days = Math.min(parseInt(params.get('days') || '7', 10), 90);
   const key = params.get('key');
+
+  // ── Date range ──────────────────────────────────────────────────────────────
+  const todayStr = new Date().toISOString().slice(0, 10);
+
+  function daysAgo(n) {
+    const d = new Date(); d.setDate(d.getDate() - n); return d.toISOString().slice(0, 10);
+  }
+  function nextDay(s) {
+    const d = new Date(s + 'T00:00:00Z'); d.setDate(d.getDate() + 1); return d.toISOString().slice(0, 10);
+  }
+
+  let startDate = params.get('start') || daysAgo(6);
+  let endDate   = params.get('end')   || todayStr;
+  // clamp end to today
+  if (endDate > todayStr) endDate = todayStr;
+  const endExcl = nextDay(endDate);
+
+  // Preset definitions for quick links
+  const presets = [
+    { label: 'Idag',     start: todayStr,    end: todayStr },
+    { label: 'I går',    start: daysAgo(1),  end: daysAgo(1) },
+    { label: '7 dagar',  start: daysAgo(6),  end: todayStr },
+    { label: '30 dagar', start: daysAgo(29), end: todayStr },
+    { label: '90 dagar', start: daysAgo(89), end: todayStr },
+  ];
 
   const NAV_URLS = `('https://runclubs.se/','https://runclubs.se/stockholm','https://runclubs.se/goteborg','https://runclubs.se/malmo','https://runclubs.se/events','https://runclubs.se/nyheter','https://runclubs.se/loppkalender','https://runclubs.se/om-oss','https://runclubs.se/kontakt','https://runclubs.se/samarbeta')`;
 
+  const W = `ts >= ? AND ts < ?`;
+
   const [topLinks, byPage, totals, recentRows, topClubs, topEventCards] = await Promise.all([
-    env.DB.prepare(`SELECT link_url, link_text, link_type, COUNT(*) as clicks FROM click_events WHERE ts >= datetime('now', ? || ' days') GROUP BY link_url, link_type ORDER BY clicks DESC LIMIT 30`).bind(`-${days}`).all(),
-    env.DB.prepare(`SELECT page, COUNT(*) as clicks FROM click_events WHERE ts >= datetime('now', ? || ' days') GROUP BY page ORDER BY clicks DESC LIMIT 20`).bind(`-${days}`).all(),
-    env.DB.prepare(`SELECT link_type, COUNT(*) as clicks FROM click_events WHERE ts >= datetime('now', ? || ' days') GROUP BY link_type`).bind(`-${days}`).all(),
+    env.DB.prepare(`SELECT link_url, link_text, link_type, COUNT(*) as clicks FROM click_events WHERE ${W} GROUP BY link_url, link_type ORDER BY clicks DESC LIMIT 30`).bind(startDate, endExcl).all(),
+    env.DB.prepare(`SELECT page, COUNT(*) as clicks FROM click_events WHERE ${W} GROUP BY page ORDER BY clicks DESC LIMIT 20`).bind(startDate, endExcl).all(),
+    env.DB.prepare(`SELECT link_type, COUNT(*) as clicks FROM click_events WHERE ${W} GROUP BY link_type`).bind(startDate, endExcl).all(),
     env.DB.prepare(`SELECT ts, page, link_url, link_text, link_type FROM click_events ORDER BY id DESC LIMIT 20`).all(),
-    // Club breakdown: all internal clicks to club pages (excludes nav destinations)
-    env.DB.prepare(`SELECT link_url, COUNT(*) as clicks FROM click_events WHERE link_type='internal' AND link_url NOT IN ${NAV_URLS} AND link_url NOT LIKE '%/events%' AND link_url NOT LIKE '%-running-events%' AND link_url NOT LIKE '%/loppkalender%' AND link_url NOT LIKE '%/nyheter%' AND link_url NOT LIKE '%/om-oss%' AND link_url NOT LIKE '%/kontakt%' AND link_url NOT LIKE '%/samarbeta%' AND ts >= datetime('now', ? || ' days') GROUP BY link_url ORDER BY clicks DESC LIMIT 20`).bind(`-${days}`).all(),
-    // Event card breakdown: internal clicks from listing pages (homepage, events, city pages)
-    env.DB.prepare(`SELECT link_url, link_text, COUNT(*) as clicks FROM click_events WHERE link_type='internal' AND (page='/' OR page='/events' OR page='/stockholm' OR page='/goteborg' OR page='/malmo' OR page LIKE '%-running-events') AND link_url NOT IN ${NAV_URLS} AND ts >= datetime('now', ? || ' days') GROUP BY link_url, link_text ORDER BY clicks DESC LIMIT 20`).bind(`-${days}`).all(),
+    env.DB.prepare(`SELECT link_url, COUNT(*) as clicks FROM click_events WHERE link_type='internal' AND link_url NOT IN ${NAV_URLS} AND link_url NOT LIKE '%/events%' AND link_url NOT LIKE '%-running-events%' AND link_url NOT LIKE '%/loppkalender%' AND link_url NOT LIKE '%/nyheter%' AND link_url NOT LIKE '%/om-oss%' AND link_url NOT LIKE '%/kontakt%' AND link_url NOT LIKE '%/samarbeta%' AND ${W} GROUP BY link_url ORDER BY clicks DESC LIMIT 20`).bind(startDate, endExcl).all(),
+    env.DB.prepare(`SELECT link_url, link_text, COUNT(*) as clicks FROM click_events WHERE link_type='internal' AND (page='/' OR page='/events' OR page='/stockholm' OR page='/goteborg' OR page='/malmo' OR page LIKE '%-running-events') AND link_url NOT IN ${NAV_URLS} AND ${W} GROUP BY link_url, link_text ORDER BY clicks DESC LIMIT 20`).bind(startDate, endExcl).all(),
   ]);
 
   const totalClicks = (totals.results || []).reduce((s, r) => s + r.clicks, 0);
   const internalClicks = (totals.results || []).find(r => r.link_type === 'internal')?.clicks || 0;
   const externalClicks = (totals.results || []).find(r => r.link_type === 'external')?.clicks || 0;
+
+  function fmtDate(s) {
+    const months = ['jan','feb','mar','apr','maj','jun','jul','aug','sep','okt','nov','dec'];
+    const [y, m, d] = s.split('-');
+    return `${parseInt(d)} ${months[parseInt(m)-1]} ${y}`;
+  }
+  const rangeLabel = startDate === endDate ? fmtDate(startDate) : `${fmtDate(startDate)} – ${fmtDate(endDate)}`;
 
   const html = `<!DOCTYPE html>
 <html lang="sv">
@@ -82,10 +113,15 @@ async function handleDashboard(request, env) {
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: 'DM Sans', system-ui, sans-serif; background: #f8f8f6; color: #1a1a1a; padding: 2rem 1rem; }
   h1 { font-size: 1.4rem; font-weight: 700; margin-bottom: 0.25rem; }
-  .meta { color: #666; font-size: 0.85rem; margin-bottom: 2rem; }
-  .period-nav { display: flex; gap: 0.5rem; margin-bottom: 2rem; flex-wrap: wrap; }
-  .period-nav a { padding: 0.35rem 0.85rem; border-radius: 99px; border: 1.5px solid #ddd; font-size: 0.82rem; text-decoration: none; color: #444; }
-  .period-nav a.active { background: #1a1a1a; color: #fff; border-color: #1a1a1a; }
+  .meta { color: #666; font-size: 0.85rem; margin-bottom: 1.25rem; }
+  .date-picker { display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem; margin-bottom: 2rem; background: #fff; border: 1px solid #e8e8e4; border-radius: 12px; padding: 1rem 1.25rem; }
+  .presets { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+  .preset { padding: 0.3rem 0.75rem; border-radius: 99px; border: 1.5px solid #ddd; font-size: 0.82rem; text-decoration: none; color: #444; white-space: nowrap; }
+  .preset.active { background: #1a1a1a; color: #fff; border-color: #1a1a1a; }
+  .date-sep { color: #bbb; font-size: 0.9rem; flex-shrink: 0; }
+  .date-form { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; margin-left: auto; }
+  .date-form input[type=date] { border: 1.5px solid #ddd; border-radius: 8px; padding: 0.3rem 0.6rem; font-size: 0.82rem; color: #333; background: #fff; }
+  .date-form button { padding: 0.3rem 0.9rem; border-radius: 8px; border: none; background: #1a1a1a; color: #fff; font-size: 0.82rem; cursor: pointer; }
   .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 1rem; margin-bottom: 2rem; }
   .stat { background: #fff; border-radius: 12px; padding: 1.25rem 1.5rem; border: 1px solid #e8e8e4; }
   .stat-num { font-size: 2rem; font-weight: 700; line-height: 1; }
@@ -108,10 +144,23 @@ async function handleDashboard(request, env) {
 </head>
 <body>
 <h1>Klickstatistik — runclubs.se</h1>
-<p class="meta">Senast ${days} dagarna. Uppdateras i realtid.</p>
-<nav class="period-nav">
-  ${[1,7,14,30,90].map(d => `<a href="?key=${encodeURIComponent(key)}&days=${d}" class="${d === days ? 'active' : ''}">${d === 1 ? 'I dag' : d + ' dagar'}</a>`).join('')}
-</nav>
+<p class="meta">${rangeLabel}</p>
+<div class="date-picker">
+  <div class="presets">
+    ${presets.map(p => {
+      const active = p.start === startDate && p.end === endDate ? ' active' : '';
+      return `<a href="?key=${encodeURIComponent(key)}&start=${p.start}&end=${p.end}" class="preset${active}">${p.label}</a>`;
+    }).join('')}
+  </div>
+  <span class="date-sep">|</span>
+  <form method="get" class="date-form">
+    <input type="hidden" name="key" value="${esc(key)}">
+    <input type="date" name="start" value="${startDate}" max="${todayStr}">
+    <span class="date-sep">—</span>
+    <input type="date" name="end" value="${endDate}" max="${todayStr}">
+    <button type="submit">Applicera</button>
+  </form>
+</div>
 <div class="stats">
   <div class="stat"><div class="stat-num">${totalClicks}</div><div class="stat-label">Totalt klick</div></div>
   <div class="stat"><div class="stat-num">${internalClicks}</div><div class="stat-label">Interna klick</div></div>
