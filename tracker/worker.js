@@ -222,7 +222,7 @@ async function handleDashboard(request, env) {
   </table>
 </div>
 <div class="section">
-  <h2>Klick per sida</h2>
+  <h2>Vilka sidor klickar användare ifrån</h2>
   <table>
     <thead><tr><th>Sida</th><th style="text-align:right">Klick</th></tr></thead>
     <tbody>${(byPage.results || []).map(r => {
