@@ -1,0 +1,9 @@
+name = "runclubs-site"
+compatibility_date = "2024-09-23"
+pages_build_output_dir = "."
+
+[[d1_databases]]
+binding = "DB"
+database_name = "runclubs-clicks"
+# Replace with the ID shown after running: wrangler d1 create runclubs-clicks
+database_id = "4def745c-191c-48f3-9a22-ac9aabbf5ffc"
