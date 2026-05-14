@@ -1,5 +1,10 @@
-export async function onRequestPost(context) {
-  const { request, env } = context;
+export async function track(request, env) {
+  if (request.method === 'OPTIONS') {
+    return new Response(null, { status: 204, headers: cors() });
+  }
+  if (request.method !== 'POST') {
+    return new Response('Method Not Allowed', { status: 405 });
+  }
 
   let body;
   try {
@@ -10,8 +15,6 @@ export async function onRequestPost(context) {
 
   const { page, url, text, type } = body;
   if (!page || !url) return new Response('Bad Request', { status: 400 });
-
-  // Skip self-referential dashboard tracking
   if (page.startsWith('/dashboard')) return ok();
 
   try {
@@ -30,13 +33,6 @@ export async function onRequestPost(context) {
   }
 
   return ok();
-}
-
-export async function onRequestOptions() {
-  return new Response(null, {
-    status: 204,
-    headers: cors(),
-  });
 }
 
 function ok() {

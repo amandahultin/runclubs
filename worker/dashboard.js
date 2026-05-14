@@ -1,5 +1,4 @@
-export async function onRequestGet(context) {
-  const { request, env } = context;
+export async function dashboard(request, env) {
   const params = new URL(request.url).searchParams;
 
   if (params.get('key') !== env.DASHBOARD_KEY) {
