@@ -55,11 +55,17 @@ async function handleDashboard(request, env) {
   const days = Math.min(parseInt(params.get('days') || '7', 10), 90);
   const key = params.get('key');
 
-  const [topLinks, byPage, totals, recentRows] = await Promise.all([
+  const NAV_URLS = `('https://runclubs.se/','https://runclubs.se/stockholm','https://runclubs.se/goteborg','https://runclubs.se/malmo','https://runclubs.se/events','https://runclubs.se/nyheter','https://runclubs.se/loppkalender','https://runclubs.se/om-oss','https://runclubs.se/kontakt','https://runclubs.se/samarbeta')`;
+
+  const [topLinks, byPage, totals, recentRows, topClubs, topEventCards] = await Promise.all([
     env.DB.prepare(`SELECT link_url, link_text, link_type, COUNT(*) as clicks FROM click_events WHERE ts >= datetime('now', ? || ' days') GROUP BY link_url, link_type ORDER BY clicks DESC LIMIT 30`).bind(`-${days}`).all(),
     env.DB.prepare(`SELECT page, COUNT(*) as clicks FROM click_events WHERE ts >= datetime('now', ? || ' days') GROUP BY page ORDER BY clicks DESC LIMIT 20`).bind(`-${days}`).all(),
     env.DB.prepare(`SELECT link_type, COUNT(*) as clicks FROM click_events WHERE ts >= datetime('now', ? || ' days') GROUP BY link_type`).bind(`-${days}`).all(),
     env.DB.prepare(`SELECT ts, page, link_url, link_text, link_type FROM click_events ORDER BY id DESC LIMIT 20`).all(),
+    // Club breakdown: all internal clicks to club pages (excludes nav destinations)
+    env.DB.prepare(`SELECT link_url, COUNT(*) as clicks FROM click_events WHERE link_type='internal' AND link_url NOT IN ${NAV_URLS} AND link_url NOT LIKE '%/events%' AND link_url NOT LIKE '%-running-events%' AND link_url NOT LIKE '%/loppkalender%' AND link_url NOT LIKE '%/nyheter%' AND link_url NOT LIKE '%/om-oss%' AND link_url NOT LIKE '%/kontakt%' AND link_url NOT LIKE '%/samarbeta%' AND ts >= datetime('now', ? || ' days') GROUP BY link_url ORDER BY clicks DESC LIMIT 20`).bind(`-${days}`).all(),
+    // Event card breakdown: internal clicks from listing pages (homepage, events, city pages)
+    env.DB.prepare(`SELECT link_url, link_text, COUNT(*) as clicks FROM click_events WHERE link_type='internal' AND (page='/' OR page='/events' OR page='/stockholm' OR page='/goteborg' OR page='/malmo' OR page LIKE '%-running-events') AND link_url NOT IN ${NAV_URLS} AND ts >= datetime('now', ? || ' days') GROUP BY link_url, link_text ORDER BY clicks DESC LIMIT 20`).bind(`-${days}`).all(),
   ]);
 
   const totalClicks = (totals.results || []).reduce((s, r) => s + r.clicks, 0);
@@ -132,6 +138,29 @@ async function handleDashboard(request, env) {
   </table>
 </div>
 <div class="section">
+  <h2>Populäraste klubbar</h2>
+  <table>
+    <thead><tr><th>Klubb</th><th style="text-align:right">Klick</th></tr></thead>
+    <tbody>${(topClubs.results || []).map(r => {
+      const pct = Math.round((r.clicks / ((topClubs.results[0]?.clicks) || 1)) * 100);
+      const name = clubName(r.link_url);
+      return `<tr><td><span class="url" title="${esc(r.link_url)}">${esc(name)}</span></td><td class="cnt">${r.clicks}<div class="bar-wrap"><div class="bar" style="width:${pct}%"></div></div></td></tr>`;
+    }).join('')}</tbody>
+  </table>
+</div>
+<div class="section">
+  <h2>Mest klickade event-kort</h2>
+  <table>
+    <thead><tr><th>Klubb</th><th>Event</th><th style="text-align:right">Klick</th></tr></thead>
+    <tbody>${(topEventCards.results || []).map(r => {
+      const pct = Math.round((r.clicks / ((topEventCards.results[0]?.clicks) || 1)) * 100);
+      const name = clubName(r.link_url);
+      const eventInfo = (r.link_text || '').replace(/läs mer\s*→?/gi, '').replace(/\s+/g, ' ').trim().slice(0, 80);
+      return `<tr><td style="white-space:nowrap">${esc(name)}</td><td style="color:#555;font-size:0.8rem">${esc(eventInfo)}</td><td class="cnt">${r.clicks}<div class="bar-wrap"><div class="bar" style="width:${pct}%"></div></div></td></tr>`;
+    }).join('')}</tbody>
+  </table>
+</div>
+<div class="section">
   <h2>Senaste klick</h2>
   <table>
     <thead><tr><th>Tid</th><th>Sida</th><th>Länk</th><th>Typ</th></tr></thead>
@@ -144,6 +173,14 @@ async function handleDashboard(request, env) {
   return new Response(html, {
     headers: { 'Content-Type': 'text/html; charset=utf-8', 'Cache-Control': 'no-store', 'X-Robots-Tag': 'noindex' },
   });
+}
+
+function clubName(url) {
+  try {
+    const parts = new URL(url).pathname.replace(/\/$/, '').split('/').filter(Boolean);
+    const slug = (parts[parts.length - 1] || '').replace(/\.html$/, '');
+    return slug.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+  } catch (_) { return url; }
 }
 
 function esc(str) {
