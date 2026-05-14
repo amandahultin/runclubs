@@ -83,13 +83,16 @@ async function handleDashboard(request, env) {
 
   const W = `ts >= ? AND ts < ?`;
 
-  const [topLinks, byPage, totals, recentRows, topClubs, topEventCards] = await Promise.all([
+  const [topLinks, byPage, totals, recentRows, topClubs, topEventCards, dailyClicks, hourlyClicks, dowClicks] = await Promise.all([
     env.DB.prepare(`SELECT link_url, link_text, link_type, COUNT(*) as clicks FROM click_events WHERE ${W} GROUP BY link_url, link_type ORDER BY clicks DESC LIMIT 30`).bind(startDate, endExcl).all(),
     env.DB.prepare(`SELECT page, COUNT(*) as clicks FROM click_events WHERE ${W} GROUP BY page ORDER BY clicks DESC LIMIT 20`).bind(startDate, endExcl).all(),
     env.DB.prepare(`SELECT link_type, COUNT(*) as clicks FROM click_events WHERE ${W} GROUP BY link_type`).bind(startDate, endExcl).all(),
     env.DB.prepare(`SELECT ts, page, link_url, link_text, link_type FROM click_events ORDER BY id DESC LIMIT 20`).all(),
     env.DB.prepare(`SELECT link_url, COUNT(*) as clicks FROM click_events WHERE link_type='internal' AND link_url NOT IN ${NAV_URLS} AND link_url NOT LIKE '%/events%' AND link_url NOT LIKE '%-running-events%' AND link_url NOT LIKE '%/loppkalender%' AND link_url NOT LIKE '%/nyheter%' AND link_url NOT LIKE '%/om-oss%' AND link_url NOT LIKE '%/kontakt%' AND link_url NOT LIKE '%/samarbeta%' AND ${W} GROUP BY link_url ORDER BY clicks DESC LIMIT 20`).bind(startDate, endExcl).all(),
     env.DB.prepare(`SELECT link_url, link_text, link_type, COUNT(*) as clicks FROM click_events WHERE (page='/' OR page='/events' OR page='/stockholm' OR page='/goteborg' OR page='/malmo' OR page LIKE '%-running-events') AND link_url NOT IN ${NAV_URLS} AND ${W} GROUP BY link_url, link_text ORDER BY clicks DESC LIMIT 20`).bind(startDate, endExcl).all(),
+    env.DB.prepare(`SELECT date(ts) as day, COUNT(*) as clicks FROM click_events WHERE ${W} GROUP BY day ORDER BY day`).bind(startDate, endExcl).all(),
+    env.DB.prepare(`SELECT strftime('%H', ts) as hour, COUNT(*) as clicks FROM click_events WHERE ${W} GROUP BY hour ORDER BY hour`).bind(startDate, endExcl).all(),
+    env.DB.prepare(`SELECT strftime('%w', ts) as dow, COUNT(*) as clicks FROM click_events WHERE ${W} GROUP BY dow ORDER BY dow`).bind(startDate, endExcl).all(),
   ]);
 
   const totalClicks = (totals.results || []).reduce((s, r) => s + r.clicks, 0);
@@ -109,6 +112,7 @@ async function handleDashboard(request, env) {
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>runclubs.se — klickstatistik</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"></script>
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: 'DM Sans', system-ui, sans-serif; background: #f8f8f6; color: #1a1a1a; padding: 2rem 1rem; }
@@ -140,6 +144,11 @@ async function handleDashboard(request, env) {
   .bar-wrap { width: 80px; background: #f0f0ec; border-radius: 4px; height: 6px; margin-top: 5px; }
   .bar { height: 6px; border-radius: 4px; background: #1a1a1a; }
   .ts { color: #aaa; font-size: 0.75rem; white-space: nowrap; }
+  .charts-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem; }
+  .charts-grid .section { margin-bottom: 0; }
+  .chart-wrap { position: relative; height: 220px; }
+  .chart-wrap--tall { height: 260px; }
+  @media (max-width: 640px) { .charts-grid { grid-template-columns: 1fr; } }
 </style>
 </head>
 <body>
@@ -165,6 +174,30 @@ async function handleDashboard(request, env) {
   <div class="stat"><div class="stat-num">${totalClicks}</div><div class="stat-label">Totalt klick</div></div>
   <div class="stat"><div class="stat-num">${internalClicks}</div><div class="stat-label">Interna klick</div></div>
   <div class="stat"><div class="stat-num">${externalClicks}</div><div class="stat-label">Externa klick</div></div>
+</div>
+<div class="section">
+  <h2>Klick per dag</h2>
+  <div class="chart-wrap chart-wrap--tall"><canvas id="chart-daily"></canvas></div>
+</div>
+<div class="charts-grid">
+  <div class="section">
+    <h2>Klick per timme</h2>
+    <div class="chart-wrap"><canvas id="chart-hourly"></canvas></div>
+  </div>
+  <div class="section">
+    <h2>Klick per veckodag</h2>
+    <div class="chart-wrap"><canvas id="chart-dow"></canvas></div>
+  </div>
+</div>
+<div class="charts-grid">
+  <div class="section">
+    <h2>Intern / Extern fördelning</h2>
+    <div class="chart-wrap"><canvas id="chart-split"></canvas></div>
+  </div>
+  <div class="section">
+    <h2>Klick per sida — topp 8</h2>
+    <div class="chart-wrap"><canvas id="chart-pages"></canvas></div>
+  </div>
 </div>
 <div class="section">
   <h2>Mest klickade länkar</h2>
@@ -216,6 +249,84 @@ async function handleDashboard(request, env) {
     <tbody>${(recentRows.results || []).map(r => `<tr><td class="ts">${r.ts}</td><td style="color:#555;font-size:0.8rem">${esc(r.page)}</td><td><span class="url" title="${esc(r.link_url)}">${esc(r.link_text || r.link_url)}</span></td><td><span class="pill pill-${r.link_type}">${r.link_type === 'internal' ? 'intern' : 'extern'}</span></td></tr>`).join('')}</tbody>
   </table>
 </div>
+<script>
+(function () {
+  Chart.defaults.font.family = "'DM Sans', system-ui, sans-serif";
+  Chart.defaults.color = '#888';
+  Chart.defaults.plugins.legend.display = false;
+
+  const daily   = ${JSON.stringify(dailyClicks.results  || [])};
+  const hourly  = ${JSON.stringify(hourlyClicks.results || [])};
+  const dow     = ${JSON.stringify(dowClicks.results    || [])};
+  const split   = ${JSON.stringify(totals.results       || [])};
+  const pages   = ${JSON.stringify((byPage.results || []).slice(0, 8))};
+
+  const gridColor = '#f0f0ec';
+  const ink = '#1a1a1a';
+  const yAxis = { beginAtZero: true, grid: { color: gridColor }, ticks: { precision: 0 } };
+  const xAxis = { grid: { display: false } };
+
+  // 1. Daily trend — fill gaps so missing days show as 0
+  const dayMap = {};
+  daily.forEach(r => { dayMap[r.day] = r.clicks; });
+  const allDays = [], allCounts = [];
+  const cur = new Date('${startDate}T00:00:00Z'), last = new Date('${endDate}T00:00:00Z');
+  while (cur <= last) {
+    const k = cur.toISOString().slice(0, 10);
+    allDays.push(k.slice(5));   // "MM-DD"
+    allCounts.push(dayMap[k] || 0);
+    cur.setDate(cur.getDate() + 1);
+  }
+  new Chart(document.getElementById('chart-daily'), {
+    type: 'line',
+    data: { labels: allDays, datasets: [{ data: allCounts, borderColor: ink, backgroundColor: 'rgba(26,26,26,0.07)', fill: true, tension: 0.35, pointRadius: allDays.length > 20 ? 0 : 3, pointHoverRadius: 5, borderWidth: 2 }] },
+    options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false }, tooltip: { callbacks: { title: t => t[0].label } } }, scales: { x: { ...xAxis, ticks: { maxTicksLimit: 10 } }, y: yAxis } }
+  });
+
+  // 2. Hourly
+  const hMap = {}; hourly.forEach(r => { hMap[r.hour] = r.clicks; });
+  const hrs = Array.from({ length: 24 }, (_, i) => i.toString().padStart(2, '0'));
+  new Chart(document.getElementById('chart-hourly'), {
+    type: 'bar',
+    data: { labels: hrs.map(h => h + ':00'), datasets: [{ data: hrs.map(h => hMap[h] || 0), backgroundColor: ink, borderRadius: 3 }] },
+    options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { x: { ...xAxis, ticks: { maxTicksLimit: 8 } }, y: yAxis } }
+  });
+
+  // 3. Day of week (SQLite: 0=Sun … 6=Sat, reorder to Mon-first)
+  const dowLabels = ['Mån','Tis','Ons','Tor','Fre','Lör','Sön'];
+  const dowOrder  = [1, 2, 3, 4, 5, 6, 0];
+  const dMap = {}; dow.forEach(r => { dMap[r.dow] = r.clicks; });
+  new Chart(document.getElementById('chart-dow'), {
+    type: 'bar',
+    data: { labels: dowLabels, datasets: [{ data: dowOrder.map(i => dMap[String(i)] || 0), backgroundColor: ink, borderRadius: 3 }] },
+    options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { x: xAxis, y: yAxis } }
+  });
+
+  // 4. Internal / External donut
+  const intC = split.find(r => r.link_type === 'internal')?.clicks || 0;
+  const extC = split.find(r => r.link_type === 'external')?.clicks || 0;
+  new Chart(document.getElementById('chart-split'), {
+    type: 'doughnut',
+    data: { labels: ['Interna', 'Externa'], datasets: [{ data: [intC, extC], backgroundColor: ['#1B4332', '#991B1B'], borderWidth: 0, hoverOffset: 6 }] },
+    options: { responsive: true, maintainAspectRatio: false, cutout: '62%', plugins: { legend: { display: true, position: 'bottom' } } }
+  });
+
+  // 5. Top pages horizontal bar
+  new Chart(document.getElementById('chart-pages'), {
+    type: 'bar',
+    data: {
+      labels: pages.map(r => r.page || '/'),
+      datasets: [{ data: pages.map(r => r.clicks), backgroundColor: ink, borderRadius: 3 }]
+    },
+    options: {
+      indexAxis: 'y',
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false } },
+      scales: { x: { ...yAxis, grid: { color: gridColor } }, y: { grid: { display: false }, ticks: { font: { size: 11 } } } }
+    }
+  });
+})();
+</script>
 </body>
 </html>`;
 
