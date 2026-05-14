@@ -207,7 +207,7 @@ async function handleDashboard(request, env) {
     <div class="chart-wrap"><canvas id="chart-split"></canvas></div>
   </div>
   <div class="section">
-    <h2>Klick per sida — topp 8</h2>
+    <h2>Vilka sidor klickar användare ifrån — topp 8</h2>
     <div class="chart-wrap"><canvas id="chart-pages"></canvas></div>
   </div>
 </div>
