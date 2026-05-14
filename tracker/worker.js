@@ -153,7 +153,7 @@ async function handleDashboard(request, env) {
 </head>
 <body>
 <h1>Klickstatistik — runclubs.se</h1>
-<p class="meta">${rangeLabel}</p>
+<p class="meta">${rangeLabel} &nbsp;·&nbsp; Hämtad ${new Date().toLocaleString('sv-SE', { timeZone: 'Europe/Stockholm', dateStyle: 'short', timeStyle: 'short' })}</p>
 <div class="date-picker">
   <div class="presets">
     ${presets.map(p => {
