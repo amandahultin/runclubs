@@ -1,0 +1,8 @@
+name = "runclubs-tracker"
+main = "worker.js"
+compatibility_date = "2024-09-23"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "runclubs-clicks"
+database_id = "4def745c-191c-48f3-9a22-ac9aabbf5ffc"

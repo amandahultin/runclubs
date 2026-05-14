@@ -1,5 +1,5 @@
 (function () {
-  var ENDPOINT = '/track';
+  var ENDPOINT = 'https://runclubs-tracker.amandajenny-hultin.workers.dev/track';
   var host = location.hostname;
 
   document.addEventListener('click', function (e) {
