@@ -87,12 +87,12 @@ async function handleDashboard(request, env) {
     env.DB.prepare(`SELECT link_url, link_text, link_type, COUNT(*) as clicks FROM click_events WHERE ${W} GROUP BY link_url, link_type ORDER BY clicks DESC LIMIT 30`).bind(startDate, endExcl).all(),
     env.DB.prepare(`SELECT page, COUNT(*) as clicks FROM click_events WHERE ${W} GROUP BY page ORDER BY clicks DESC LIMIT 20`).bind(startDate, endExcl).all(),
     env.DB.prepare(`SELECT link_type, COUNT(*) as clicks FROM click_events WHERE ${W} GROUP BY link_type`).bind(startDate, endExcl).all(),
-    env.DB.prepare(`SELECT ts, page, link_url, link_text, link_type FROM click_events ORDER BY id DESC LIMIT 20`).all(),
+    env.DB.prepare(`SELECT datetime(ts, '+2 hours') as ts, page, link_url, link_text, link_type FROM click_events ORDER BY id DESC LIMIT 20`).all(),
     env.DB.prepare(`SELECT link_url, COUNT(*) as clicks FROM click_events WHERE link_type='internal' AND link_url NOT IN ${NAV_URLS} AND link_url NOT LIKE '%/events%' AND link_url NOT LIKE '%-running-events%' AND link_url NOT LIKE '%/loppkalender%' AND link_url NOT LIKE '%/nyheter%' AND link_url NOT LIKE '%/om-oss%' AND link_url NOT LIKE '%/kontakt%' AND link_url NOT LIKE '%/samarbeta%' AND ${W} GROUP BY link_url ORDER BY clicks DESC LIMIT 20`).bind(startDate, endExcl).all(),
     env.DB.prepare(`SELECT link_url, link_text, link_type, COUNT(*) as clicks FROM click_events WHERE (page='/' OR page='/events' OR page='/stockholm' OR page='/goteborg' OR page='/malmo' OR page LIKE '%-running-events') AND link_url NOT IN ${NAV_URLS} AND ${W} GROUP BY link_url, link_text ORDER BY clicks DESC LIMIT 20`).bind(startDate, endExcl).all(),
-    env.DB.prepare(`SELECT date(ts) as day, COUNT(*) as clicks FROM click_events WHERE ${W} GROUP BY day ORDER BY day`).bind(startDate, endExcl).all(),
-    env.DB.prepare(`SELECT strftime('%H', ts) as hour, COUNT(*) as clicks FROM click_events WHERE ${W} GROUP BY hour ORDER BY hour`).bind(startDate, endExcl).all(),
-    env.DB.prepare(`SELECT strftime('%w', ts) as dow, COUNT(*) as clicks FROM click_events WHERE ${W} GROUP BY dow ORDER BY dow`).bind(startDate, endExcl).all(),
+    env.DB.prepare(`SELECT date(datetime(ts, '+2 hours')) as day, COUNT(*) as clicks FROM click_events WHERE ${W} GROUP BY day ORDER BY day`).bind(startDate, endExcl).all(),
+    env.DB.prepare(`SELECT strftime('%H', datetime(ts, '+2 hours')) as hour, COUNT(*) as clicks FROM click_events WHERE ${W} GROUP BY hour ORDER BY hour`).bind(startDate, endExcl).all(),
+    env.DB.prepare(`SELECT strftime('%w', datetime(ts, '+2 hours')) as dow, COUNT(*) as clicks FROM click_events WHERE ${W} GROUP BY dow ORDER BY dow`).bind(startDate, endExcl).all(),
   ]);
 
   const totalClicks = (totals.results || []).reduce((s, r) => s + r.clicks, 0);
