@@ -65,7 +65,16 @@ async function handleDashboard(request, env) {
     if (diff > 12) diff -= 24;
     return diff; // 1 (CET) or 2 (CEST)
   }
-  const TZ = `+${stockholmOffset()} hours`;
+  const offset = stockholmOffset(); // 1 or 2
+  const TZ = `+${offset} hours`;
+
+  // Convert a Stockholm-local date string to a UTC datetime string for SQL filtering
+  // e.g. "2026-05-15" with offset 2 → "2026-05-14 22:00:00"
+  function toUtcFilter(dateStr) {
+    const d = new Date(dateStr + 'T00:00:00Z');
+    d.setUTCHours(d.getUTCHours() - offset);
+    return d.toISOString().slice(0, 19).replace('T', ' ');
+  }
 
   const todayStr = new Date().toISOString().slice(0, 10);
 
@@ -94,17 +103,19 @@ async function handleDashboard(request, env) {
   const NAV_URLS = `('https://runclubs.se/','https://runclubs.se/stockholm','https://runclubs.se/goteborg','https://runclubs.se/malmo','https://runclubs.se/events','https://runclubs.se/nyheter','https://runclubs.se/loppkalender','https://runclubs.se/om-oss','https://runclubs.se/kontakt','https://runclubs.se/samarbeta')`;
 
   const W = `ts >= ? AND ts < ?`;
+  const filterStart = toUtcFilter(startDate);
+  const filterEnd   = toUtcFilter(endExcl);
 
   const [topLinks, byPage, totals, recentRows, topClubs, topEventCards, dailyClicks, hourlyClicks, dowClicks] = await Promise.all([
-    env.DB.prepare(`SELECT link_url, link_text, link_type, COUNT(*) as clicks FROM click_events WHERE ${W} GROUP BY link_url, link_type ORDER BY clicks DESC LIMIT 30`).bind(startDate, endExcl).all(),
-    env.DB.prepare(`SELECT page, COUNT(*) as clicks FROM click_events WHERE ${W} GROUP BY page ORDER BY clicks DESC LIMIT 20`).bind(startDate, endExcl).all(),
-    env.DB.prepare(`SELECT link_type, COUNT(*) as clicks FROM click_events WHERE ${W} GROUP BY link_type`).bind(startDate, endExcl).all(),
+    env.DB.prepare(`SELECT link_url, link_text, link_type, COUNT(*) as clicks FROM click_events WHERE ${W} GROUP BY link_url, link_type ORDER BY clicks DESC LIMIT 30`).bind(filterStart, filterEnd).all(),
+    env.DB.prepare(`SELECT page, COUNT(*) as clicks FROM click_events WHERE ${W} GROUP BY page ORDER BY clicks DESC LIMIT 20`).bind(filterStart, filterEnd).all(),
+    env.DB.prepare(`SELECT link_type, COUNT(*) as clicks FROM click_events WHERE ${W} GROUP BY link_type`).bind(filterStart, filterEnd).all(),
     env.DB.prepare(`SELECT datetime(ts, '${TZ}') as ts, page, link_url, link_text, link_type FROM click_events ORDER BY id DESC LIMIT 20`).all(),
-    env.DB.prepare(`SELECT link_url, COUNT(*) as clicks FROM click_events WHERE link_type='internal' AND link_url NOT IN ${NAV_URLS} AND link_url NOT LIKE '%/events%' AND link_url NOT LIKE '%-running-events%' AND link_url NOT LIKE '%/loppkalender%' AND link_url NOT LIKE '%/nyheter%' AND link_url NOT LIKE '%/om-oss%' AND link_url NOT LIKE '%/kontakt%' AND link_url NOT LIKE '%/samarbeta%' AND ${W} GROUP BY link_url ORDER BY clicks DESC LIMIT 20`).bind(startDate, endExcl).all(),
-    env.DB.prepare(`SELECT link_url, link_text, link_type, COUNT(*) as clicks FROM click_events WHERE (page='/' OR page='/events' OR page='/stockholm' OR page='/goteborg' OR page='/malmo' OR page LIKE '%-running-events') AND link_url NOT IN ${NAV_URLS} AND ${W} GROUP BY link_url, link_text ORDER BY clicks DESC LIMIT 20`).bind(startDate, endExcl).all(),
-    env.DB.prepare(`SELECT date(datetime(ts, '${TZ}')) as day, COUNT(*) as clicks FROM click_events WHERE ${W} GROUP BY day ORDER BY day`).bind(startDate, endExcl).all(),
-    env.DB.prepare(`SELECT strftime('%H', datetime(ts, '${TZ}')) as hour, COUNT(*) as clicks FROM click_events WHERE ${W} GROUP BY hour ORDER BY hour`).bind(startDate, endExcl).all(),
-    env.DB.prepare(`SELECT strftime('%w', datetime(ts, '${TZ}')) as dow, COUNT(*) as clicks FROM click_events WHERE ${W} GROUP BY dow ORDER BY dow`).bind(startDate, endExcl).all(),
+    env.DB.prepare(`SELECT link_url, COUNT(*) as clicks FROM click_events WHERE link_type='internal' AND link_url NOT IN ${NAV_URLS} AND link_url NOT LIKE '%/events%' AND link_url NOT LIKE '%-running-events%' AND link_url NOT LIKE '%/loppkalender%' AND link_url NOT LIKE '%/nyheter%' AND link_url NOT LIKE '%/om-oss%' AND link_url NOT LIKE '%/kontakt%' AND link_url NOT LIKE '%/samarbeta%' AND ${W} GROUP BY link_url ORDER BY clicks DESC LIMIT 20`).bind(filterStart, filterEnd).all(),
+    env.DB.prepare(`SELECT link_url, link_text, link_type, COUNT(*) as clicks FROM click_events WHERE (page='/' OR page='/events' OR page='/stockholm' OR page='/goteborg' OR page='/malmo' OR page LIKE '%-running-events') AND link_url NOT IN ${NAV_URLS} AND ${W} GROUP BY link_url, link_text ORDER BY clicks DESC LIMIT 20`).bind(filterStart, filterEnd).all(),
+    env.DB.prepare(`SELECT date(datetime(ts, '${TZ}')) as day, COUNT(*) as clicks FROM click_events WHERE ${W} GROUP BY day ORDER BY day`).bind(filterStart, filterEnd).all(),
+    env.DB.prepare(`SELECT strftime('%H', datetime(ts, '${TZ}')) as hour, COUNT(*) as clicks FROM click_events WHERE ${W} GROUP BY hour ORDER BY hour`).bind(filterStart, filterEnd).all(),
+    env.DB.prepare(`SELECT strftime('%w', datetime(ts, '${TZ}')) as dow, COUNT(*) as clicks FROM click_events WHERE ${W} GROUP BY dow ORDER BY dow`).bind(filterStart, filterEnd).all(),
   ]);
 
   const totalClicks = (totals.results || []).reduce((s, r) => s + r.clicks, 0);
