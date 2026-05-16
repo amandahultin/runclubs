@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded',function(){
   <meta property="og:description" content="Pass varje tisdag 18:00 i Slottsskogen sedan 2011. Ingen anmälan.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://runclubs.se/goteborg/goteborg-running-club/">
-  <meta property="og:image" content="https://runclubs.se/goteborg-run-clubs.jpeg">
+  <meta property="og:image" content="https://runclubs.se/goteborg-running-club.hero.jpg">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Göteborg Running Club — Runclubs.se">
   <meta name="twitter:description" content="Pass varje tisdag 18:00 i Slottsskogen. Ingen anmälan.">
@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded',function(){
   "name": "Göteborg Running Club",
   "description": "Göteborgs mest välkomnande löparklubb sedan 2011. Pass varje tisdag 18:00 i Slottsskogen. Ingen anmälan — bara dyk in.",
   "url": "https://runclubs.se/goteborg/goteborg-running-club/",
-  "image": "https://runclubs.se/hero.jpg",
+  "image": "https://runclubs.se/goteborg-running-club.hero.jpg",
   "sport": "Running",
   "address": {
     "@type": "PostalAddress",
@@ -112,7 +112,7 @@ document.addEventListener('DOMContentLoaded',function(){
     /* ── HERO ───────────────────────────── */
     .hero {
       position: relative; min-height: 400px;
-      background: #1C2A45 url('https://images.unsplash.com/photo-1613937574892-25f441264a09?w=1200&h=600&fit=crop&crop=center') center/cover no-repeat;
+      background: #1C2A45 url('/goteborg-running-club.hero.jpg') center 45%/cover no-repeat;
       display: flex; flex-direction: column; justify-content: flex-end;
       padding: 3rem 2rem; overflow: hidden;
     }
@@ -121,6 +121,14 @@ document.addEventListener('DOMContentLoaded',function(){
       background: linear-gradient(to top, rgba(28,42,69,0.95) 0%, rgba(28,42,69,0.6) 40%, rgba(28,42,69,0.3) 100%);
     }
     .hero-content { position: relative; z-index: 1; max-width: 700px; }
+    .hero-logo {
+      position: absolute; top: 2rem; right: 2rem; z-index: 2;
+      width: 72px; height: 72px; border-radius: 14px;
+      background: #000; padding: 4px;
+      box-shadow: 0 6px 24px rgba(0,0,0,0.35);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .hero-logo img { width: 100%; height: 100%; object-fit: contain; border-radius: 10px; }
     .breadcrumb { font-size: 12px; color: rgba(255,255,255,0.4); margin-bottom: 1rem; }
     .breadcrumb a { color: rgba(255,255,255,0.4); text-decoration: none; transition: color 0.15s; }
     .breadcrumb a:hover { color: #EEAA96; }
@@ -431,6 +439,7 @@ document.addEventListener('DOMContentLoaded',function(){
       .nav-toggle { display: flex; }
       .hero { min-height: 320px; padding: 2rem 1.25rem; }
       .hero h1 { font-size: 36px; }
+      .hero-logo { top: 1rem; right: 1rem; width: 56px; height: 56px; }
       .info-strip { flex-direction: column; }
       .info-strip-item { border-right: none; border-bottom: 1px solid #F0E0DC; padding: 1rem 1.25rem; }
       .info-strip-item:last-child { border-bottom: none; }
@@ -527,6 +536,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <main id="main-content">
 
   <header class="hero">
+    <div class="hero-logo" aria-hidden="true">
+      <img src="/goteborg-running-club.logo.png" alt="" loading="eager" decoding="async">
+    </div>
     <div class="hero-content">
       <div class="breadcrumb">
         <a href="/">Start</a><span class="sep">/</span>
@@ -777,6 +789,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <p>Göteborg Running Club grundades <strong>2011</strong> och är en av Göteborgs <strong>populäraste löparklubbar</strong>. Filosofin är enkel: <strong>löpning ska vara roligt och tillgängligt</strong>. För att kunna tillgodogöra dig löpningen på bästa sätt rekommenderar Göteborg Running Club att du obehindrat kan springa <strong>3–4 kilometer</strong>.</p>
 
       <p>Klasserna är i regel <strong>intervallbaserade</strong>, vilket innebär att varje person kan utmana sig själv utifrån sina egna förutsättningar. Det går alltid bra att <strong>testa på ett pass</strong> eller att kontakta gruppen om du har frågor.</p>
+
+      <figure style="margin: 1.5rem 0; max-width: 360px;">
+        <img src="/goteborg-running-club.image1.jpg" alt="Löpare från Göteborg Running Club umgås efter ett pass" loading="lazy" style="width:100%; height:auto; border-radius: 12px; display: block;">
+      </figure>
 
       <div class="pull-quote">
         <p>En av klubbens mest omtyckta traditioner är avslutningen — varje tisdag efter passet avslutas kvällen med öl på puben. Det sociala är lika viktigt som löpningen.</p>
