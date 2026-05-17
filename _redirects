@@ -32,3 +32,11 @@ https://www.runclubs.se/* https://runclubs.se/:splat 301
 /mrc-malmo /malmo/mrc-malmo/ 301
 /sweden-runners-malmo /malmo/sweden-runners-malmo/ 301
 /nasci-collective /stockholm/nasci-collective/ 301
+
+# Nyhetsartiklar flyttade till /nyheter/
+/girls-only-loparklubbar /nyheter/girls-only-loparklubbar/ 301
+/tjejer-tar-over-lopsparen /nyheter/tjejer-tar-over-lopsparen/ 301
+/loparklubbar-sodermalm /nyheter/loparklubbar-sodermalm/ 301
+/stockholm-marathon-2026-slutsalt /nyheter/stockholm-marathon-2026-slutsalt/ 301
+/veckans-running-events-v19-2026 /nyheter/veckans-running-events-v19-2026/ 301
+/veckans-running-events-v20-2026 /nyheter/veckans-running-events-v20-2026/ 301

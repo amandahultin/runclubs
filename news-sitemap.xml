@@ -3,7 +3,7 @@
         xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">
 
   <url>
-    <loc>https://runclubs.se/girls-only-loparklubbar</loc>
+    <loc>https://runclubs.se/nyheter/girls-only-loparklubbar/</loc>
     <news:news>
       <news:publication>
         <news:name>Runclubs.se</news:name>
@@ -15,7 +15,7 @@
   </url>
 
   <url>
-    <loc>https://runclubs.se/loparklubbar-sodermalm</loc>
+    <loc>https://runclubs.se/nyheter/loparklubbar-sodermalm/</loc>
     <news:news>
       <news:publication>
         <news:name>Runclubs.se</news:name>
@@ -27,7 +27,19 @@
   </url>
 
   <url>
-    <loc>https://runclubs.se/veckans-running-events-v19-2026</loc>
+    <loc>https://runclubs.se/nyheter/veckans-running-events-v20-2026/</loc>
+    <news:news>
+      <news:publication>
+        <news:name>Runclubs.se</news:name>
+        <news:language>sv</news:language>
+      </news:publication>
+      <news:publication_date>2026-05-11</news:publication_date>
+      <news:title>Fem löpargrupper du vill springa med i veckan! — 11–17 maj 2026</news:title>
+    </news:news>
+  </url>
+
+  <url>
+    <loc>https://runclubs.se/nyheter/veckans-running-events-v19-2026/</loc>
     <news:news>
       <news:publication>
         <news:name>Runclubs.se</news:name>
@@ -39,7 +51,7 @@
   </url>
 
   <url>
-    <loc>https://runclubs.se/tjejer-tar-over-lopsparen</loc>
+    <loc>https://runclubs.se/nyheter/tjejer-tar-over-lopsparen/</loc>
     <news:news>
       <news:publication>
         <news:name>Runclubs.se</news:name>
@@ -51,7 +63,7 @@
   </url>
 
   <url>
-    <loc>https://runclubs.se/stockholm-marathon-2026-slutsalt</loc>
+    <loc>https://runclubs.se/nyheter/stockholm-marathon-2026-slutsalt/</loc>
     <news:news>
       <news:publication>
         <news:name>Runclubs.se</news:name>

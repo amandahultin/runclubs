@@ -57,13 +57,13 @@
 
   <!-- Artiklar -->
   <url>
-    <loc>https://runclubs.se/tjejer-tar-over-lopsparen</loc>
+    <loc>https://runclubs.se/nyheter/tjejer-tar-over-lopsparen/</loc>
     <lastmod>2026-05-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.65</priority>
   </url>
   <url>
-    <loc>https://runclubs.se/stockholm-marathon-2026-slutsalt</loc>
+    <loc>https://runclubs.se/nyheter/stockholm-marathon-2026-slutsalt/</loc>
     <lastmod>2026-05-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.65</priority>
@@ -135,12 +135,12 @@
 
   <!-- Klubbsidor (övrigt) -->
   <url><loc>https://runclubs.se/dc-run-club</loc><lastmod>2026-05-17</lastmod><priority>0.6</priority></url>
-  <url><loc>https://runclubs.se/girls-only-loparklubbar</loc><lastmod>2026-05-17</lastmod><priority>0.6</priority></url>
+  <url><loc>https://runclubs.se/nyheter/girls-only-loparklubbar/</loc><lastmod>2026-05-17</lastmod><priority>0.6</priority></url>
   <url><loc>https://runclubs.se/goteborg-running-events</loc><lastmod>2026-05-17</lastmod><priority>0.6</priority></url>
   <url><loc>https://runclubs.se/kommande-events</loc><lastmod>2026-05-17</lastmod><priority>0.6</priority></url>
-  <url><loc>https://runclubs.se/loparklubbar-sodermalm</loc><lastmod>2026-05-17</lastmod><priority>0.6</priority></url>
+  <url><loc>https://runclubs.se/nyheter/loparklubbar-sodermalm/</loc><lastmod>2026-05-17</lastmod><priority>0.6</priority></url>
   <url><loc>https://runclubs.se/malmo-running-events</loc><lastmod>2026-05-17</lastmod><priority>0.6</priority></url>
-  <url><loc>https://runclubs.se/veckans-running-events-v19-2026</loc><lastmod>2026-05-17</lastmod><priority>0.6</priority></url>
-  <url><loc>https://runclubs.se/veckans-running-events-v20-2026</loc><lastmod>2026-05-17</lastmod><priority>0.6</priority></url>
+  <url><loc>https://runclubs.se/nyheter/veckans-running-events-v19-2026/</loc><lastmod>2026-05-17</lastmod><priority>0.6</priority></url>
+  <url><loc>https://runclubs.se/nyheter/veckans-running-events-v20-2026/</loc><lastmod>2026-05-17</lastmod><priority>0.6</priority></url>
 
 </urlset>
