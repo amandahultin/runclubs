@@ -3,6 +3,18 @@
         xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">
 
   <url>
+    <loc>https://runclubs.se/girls-only-loparklubbar</loc>
+    <news:news>
+      <news:publication>
+        <news:name>Runclubs.se</news:name>
+        <news:language>sv</news:language>
+      </news:publication>
+      <news:publication_date>2026-05-14</news:publication_date>
+      <news:title>Girls Only run clubs i Sverige — så hittar du din grupp</news:title>
+    </news:news>
+  </url>
+
+  <url>
     <loc>https://runclubs.se/loparklubbar-sodermalm</loc>
     <news:news>
       <news:publication>
