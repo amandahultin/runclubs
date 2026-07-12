@@ -167,7 +167,17 @@ document.addEventListener('DOMContentLoaded',function(){
       .article-container { padding: 2rem 1.25rem 1rem; }
       .article-container h2 { font-size: 22px; margin-top: 2rem; padding-top: 1.5rem; }
       footer { grid-template-columns: 1fr; padding: 2rem 1.25rem; }
+      .club-list-section { padding: 2rem 1.25rem !important; }
+      .club-list-grid { gap: 1.5rem !important; }
     }
+
+    /* Club list */
+    .club-list-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 2rem; align-items: start; }
+    .club-group-title { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #D4715E; font-weight: 700; margin: 0 0 0.85rem; }
+    .club-card-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.75rem; }
+    .club-card { background: #fff; border: 1px solid #E5D5D0; border-radius: 12px; padding: 1rem 1.25rem; }
+    .club-card a { color: #1C2A45; text-decoration: none; font-weight: 600; font-size: 15px; display: block; margin-bottom: 4px; }
+    .club-card span { font-size: 13px; color: #666; line-height: 1.6; display: block; }
 
     .post-nav { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; padding: 0 1.5rem; margin: 2rem 0; }
     .post-nav a { padding: 1rem 1.25rem; background: #fff; border: 1px solid #F0E0DC; border-radius: 12px; text-decoration: none; color: inherit; transition: all 0.2s; display: flex; flex-direction: column; gap: 0.4rem; min-height: 64px; }
@@ -307,38 +317,38 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <span style="font-size:10px; letter-spacing:2px; text-transform:uppercase; color:#aaa; font-weight:600; display:block; margin-bottom:0.5rem;">🎯 Kom igång</span>
       <h2 style="font-family:'Archivo Black',sans-serif; font-size:24px; line-height:1.2; text-transform:uppercase; color:#1C2A45; margin:0 0 0.75rem; letter-spacing:0.5px;">Några klubbar att börja med</h2>
       <p style="font-size:15px; color:#555; line-height:1.7; margin:0 0 1.75rem;">Vill du testa direkt? Här är sex klubbar som funkar bra som en första runda inför hösten.</p>
-      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:2rem;">
+      <div class="club-list-grid">
         <div>
-          <h3 style="font-size:11px; letter-spacing:2px; text-transform:uppercase; color:#D4715E; font-weight:700; margin:0 0 0.75rem;">Stockholm</h3>
-          <ul style="list-style:none; padding:0; margin:0;">
-            <li style="padding:0.75rem 0; border-bottom:1px solid #E5D5D0;">
-              <a href="/dopest-runners" style="color:#1C2A45; text-decoration:none; font-weight:600; font-size:15px; display:block; margin-bottom:2px;">Dopest Runners</a>
-              <span style="font-size:13px; color:#666; line-height:1.5;">En av de större stockholmsklubbarna. Med Dopest Runners har du roligt samtidigt som du erbjuds en stor variation av pass och tempon. Bag drop vid Liljeholmen och alltid ett varmt välkomnande.</span>
+          <h3 class="club-group-title">Stockholm</h3>
+          <ul class="club-card-list">
+            <li class="club-card">
+              <a href="/dopest-runners">Dopest Runners</a>
+              <span>En av de större stockholmsklubbarna. Med Dopest Runners har du roligt samtidigt som du erbjuds en stor variation av pass och tempon. Bag drop vid Liljeholmen och alltid ett varmt välkomnande.</span>
             </li>
-            <li style="padding:0.75rem 0; border-bottom:1px solid #E5D5D0;">
-              <a href="/stockholm-run-club" style="color:#1C2A45; text-decoration:none; font-weight:600; font-size:15px; display:block; margin-bottom:2px;">Stockholm Run Club</a>
-              <span style="font-size:13px; color:#666; line-height:1.5;">Utgår från Östermalm. Brukar ha stort fokus på att förbereda sina deltagare inför lopp. Stora grupper och varierade tempon.</span>
+            <li class="club-card">
+              <a href="/stockholm-run-club">Stockholm Run Club</a>
+              <span>Utgår från Östermalm. Brukar ha stort fokus på att förbereda sina deltagare inför lopp. Stora grupper och varierade tempon.</span>
             </li>
-            <li style="padding:0.75rem 0;">
-              <a href="/mellqvist-run-club" style="color:#1C2A45; text-decoration:none; font-weight:600; font-size:15px; display:block; margin-bottom:2px;">Mellqvist Run Club</a>
-              <span style="font-size:13px; color:#666; line-height:1.5;">Het och superpopulär run club med frukost och för de dagar du bara vill ha en mysig runda med bra sällskap.</span>
+            <li class="club-card">
+              <a href="/mellqvist-run-club">Mellqvist Run Club</a>
+              <span>Het och superpopulär run club med frukost och för de dagar du bara vill ha en mysig runda med bra sällskap.</span>
             </li>
           </ul>
         </div>
         <div>
-          <h3 style="font-size:11px; letter-spacing:2px; text-transform:uppercase; color:#D4715E; font-weight:700; margin:0 0 0.75rem;">Göteborg</h3>
-          <ul style="list-style:none; padding:0; margin:0;">
-            <li style="padding:0.75rem 0; border-bottom:1px solid #E5D5D0;">
-              <a href="/slowrunners-goteborg" style="color:#1C2A45; text-decoration:none; font-weight:600; font-size:15px; display:block; margin-bottom:2px;">Slowrunners Göteborg</a>
-              <span style="font-size:13px; color:#666; line-height:1.5;">Spring i ett lugnt tempo. Perfekt för dig som precis börjat springa eller bara föredrar mindre hets och en mer avslappnad inställning till löpning.</span>
+          <h3 class="club-group-title">Göteborg</h3>
+          <ul class="club-card-list">
+            <li class="club-card">
+              <a href="/slowrunners-goteborg">Slowrunners Göteborg</a>
+              <span>Spring i ett lugnt tempo. Perfekt för dig som precis börjat springa eller bara föredrar mindre hets och en mer avslappnad inställning till löpning.</span>
             </li>
-            <li style="padding:0.75rem 0; border-bottom:1px solid #E5D5D0;">
-              <a href="/goteborg-running-club" style="color:#1C2A45; text-decoration:none; font-weight:600; font-size:15px; display:block; margin-bottom:2px;">Göteborg Running Club</a>
-              <span style="font-size:13px; color:#666; line-height:1.5;">Superduktiga coacher, grymt sällskap och bra upplägg inför lopp. Det här är gruppen för dig som vill hitta toppform och tycker det är mysigt att avsluta ett pass med bra sällskap och en öl.</span>
+            <li class="club-card">
+              <a href="/goteborg-running-club">Göteborg Running Club</a>
+              <span>Superduktiga coacher, grymt sällskap och bra upplägg inför lopp. Det här är gruppen för dig som vill hitta toppform och tycker det är mysigt att avsluta ett pass med bra sällskap och en öl.</span>
             </li>
-            <li style="padding:0.75rem 0;">
-              <a href="/core-run-club" style="color:#1C2A45; text-decoration:none; font-weight:600; font-size:15px; display:block; margin-bottom:2px;">Core Run Club</a>
-              <span style="font-size:13px; color:#666; line-height:1.5;">Kanske en av Göteborgs hetaste run clubs just nu. Girls Only, fylld av kärlek, uppmuntran och roliga samarbeten. Här hjälper tjejer varandra att prestera utan press.</span>
+            <li class="club-card">
+              <a href="/core-run-club">Core Run Club</a>
+              <span>Kanske en av Göteborgs hetaste run clubs just nu. Girls Only, fylld av kärlek, uppmuntran och roliga samarbeten. Här hjälper tjejer varandra att prestera utan press.</span>
             </li>
           </ul>
         </div>
