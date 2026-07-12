@@ -175,9 +175,12 @@ document.addEventListener('DOMContentLoaded',function(){
     .club-list-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 2rem; align-items: start; }
     .club-group-title { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #D4715E; font-weight: 700; margin: 0 0 0.85rem; }
     .club-card-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.75rem; }
-    .club-card { background: #fff; border: 1px solid #E5D5D0; border-radius: 12px; padding: 1rem 1.25rem; }
-    .club-card a { color: #1C2A45; text-decoration: none; font-weight: 600; font-size: 15px; display: block; margin-bottom: 4px; }
-    .club-card span { font-size: 13px; color: #666; line-height: 1.6; display: block; }
+    .club-card { display: block; background: #fff; border: 1px solid #E5D5D0; border-radius: 12px; padding: 1rem 1.25rem; text-decoration: none; transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s; }
+    .club-card:hover { border-color: #D4715E; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(28,42,69,0.06); }
+    .club-card-name { color: #1C2A45; font-weight: 600; font-size: 15px; display: block; margin-bottom: 4px; }
+    .club-card-name::after { content: '→'; color: #D4715E; margin-left: 6px; display: inline-block; transition: transform 0.2s; }
+    .club-card:hover .club-card-name::after { transform: translateX(3px); }
+    .club-card-desc { font-size: 13px; color: #666; line-height: 1.6; display: block; }
 
     .post-nav { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; padding: 0 1.5rem; margin: 2rem 0; }
     .post-nav a { padding: 1rem 1.25rem; background: #fff; border: 1px solid #F0E0DC; border-radius: 12px; text-decoration: none; color: inherit; transition: all 0.2s; display: flex; flex-direction: column; gap: 0.4rem; min-height: 64px; }
@@ -321,34 +324,46 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div>
           <h3 class="club-group-title">Stockholm</h3>
           <ul class="club-card-list">
-            <li class="club-card">
-              <a href="/dopest-runners">Dopest Runners</a>
-              <span>En av de större stockholmsklubbarna. Med Dopest Runners har du roligt samtidigt som du erbjuds en stor variation av pass och tempon. Bag drop vid Liljeholmen och alltid ett varmt välkomnande.</span>
+            <li>
+              <a class="club-card" href="/dopest-runners">
+                <span class="club-card-name">Dopest Runners</span>
+                <span class="club-card-desc">En av de större stockholmsklubbarna. Med Dopest Runners har du roligt samtidigt som du erbjuds en stor variation av pass och tempon. Bag drop vid Liljeholmen och alltid ett varmt välkomnande.</span>
+              </a>
             </li>
-            <li class="club-card">
-              <a href="/stockholm-run-club">Stockholm Run Club</a>
-              <span>Utgår från Östermalm. Brukar ha stort fokus på att förbereda sina deltagare inför lopp. Stora grupper och varierade tempon.</span>
+            <li>
+              <a class="club-card" href="/stockholm-run-club">
+                <span class="club-card-name">Stockholm Run Club</span>
+                <span class="club-card-desc">Utgår från Östermalm. Brukar ha stort fokus på att förbereda sina deltagare inför lopp. Stora grupper och varierade tempon.</span>
+              </a>
             </li>
-            <li class="club-card">
-              <a href="/mellqvist-run-club">Mellqvist Run Club</a>
-              <span>Het och superpopulär run club med frukost och för de dagar du bara vill ha en mysig runda med bra sällskap.</span>
+            <li>
+              <a class="club-card" href="/mellqvist-run-club">
+                <span class="club-card-name">Mellqvist Run Club</span>
+                <span class="club-card-desc">Het och superpopulär run club med frukost och för de dagar du bara vill ha en mysig runda med bra sällskap.</span>
+              </a>
             </li>
           </ul>
         </div>
         <div>
           <h3 class="club-group-title">Göteborg</h3>
           <ul class="club-card-list">
-            <li class="club-card">
-              <a href="/slowrunners-goteborg">Slowrunners Göteborg</a>
-              <span>Spring i ett lugnt tempo. Perfekt för dig som precis börjat springa eller bara föredrar mindre hets och en mer avslappnad inställning till löpning.</span>
+            <li>
+              <a class="club-card" href="/slowrunners-goteborg">
+                <span class="club-card-name">Slowrunners Göteborg</span>
+                <span class="club-card-desc">Spring i ett lugnt tempo. Perfekt för dig som precis börjat springa eller bara föredrar mindre hets och en mer avslappnad inställning till löpning.</span>
+              </a>
             </li>
-            <li class="club-card">
-              <a href="/goteborg-running-club">Göteborg Running Club</a>
-              <span>Superduktiga coacher, grymt sällskap och bra upplägg inför lopp. Det här är gruppen för dig som vill hitta toppform och tycker det är mysigt att avsluta ett pass med bra sällskap och en öl.</span>
+            <li>
+              <a class="club-card" href="/goteborg-running-club">
+                <span class="club-card-name">Göteborg Running Club</span>
+                <span class="club-card-desc">Superduktiga coacher, grymt sällskap och bra upplägg inför lopp. Det här är gruppen för dig som vill hitta toppform och tycker det är mysigt att avsluta ett pass med bra sällskap och en öl.</span>
+              </a>
             </li>
-            <li class="club-card">
-              <a href="/core-run-club">Core Run Club</a>
-              <span>Kanske en av Göteborgs hetaste run clubs just nu. Girls Only, fylld av kärlek, uppmuntran och roliga samarbeten. Här hjälper tjejer varandra att prestera utan press.</span>
+            <li>
+              <a class="club-card" href="/core-run-club">
+                <span class="club-card-name">Core Run Club</span>
+                <span class="club-card-desc">Kanske en av Göteborgs hetaste run clubs just nu. Girls Only, fylld av kärlek, uppmuntran och roliga samarbeten. Här hjälper tjejer varandra att prestera utan press.</span>
+              </a>
             </li>
           </ul>
         </div>
