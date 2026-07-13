@@ -40,6 +40,7 @@ CLUB_NAME_ALIASES = {
     "dc runclub":              "Saucony Run Club Sverige",
     "downtown camper run club": "Saucony Run Club Sverige",
     "saucony run club":        "Saucony Run Club Sverige",
+    "slowrunners göteborg":    "Pace & People",
 }
 
 def normalize_club_name(name: str) -> str:
