@@ -1,14 +1,17 @@
-"""Generate running-events.html from the running-clubs events Google Sheet.
+"""Generate ovriga-landet-running-events.html from the running-clubs events Google Sheet.
 
 Reads from two worksheets:
   - Events       populated by mikaelsto/runclubs-events-feed (Strava)
   - WeeklyRuns   manually maintained recurring club runs
 
-Filters to Stockholm, Göteborg, and everywhere else in Sweden ("Övriga landet").
+Filters to everywhere outside Stockholm/Göteborg (Malmö, Varberg, Halmstad,
+Falkenberg, Uppsala, Gävle, Linköping, Norrköping, ...), expands weekly runs
+for the next LOOKAHEAD_DAYS days, merges both lists, and renders a
+self-contained HTML page.
 
 Usage:
-    python generate_running_events.py                    # writes running-events.html
-    python generate_running_events.py path/to/out.html   # custom output path
+    python generate_ovriga_landet_events.py                    # writes ovriga-landet-running-events.html
+    python generate_ovriga_landet_events.py path/to/out.html   # custom output path
 """
 
 from __future__ import annotations
@@ -24,8 +27,6 @@ from events_common import (
     DAYS_MAP,
     EVENTS_SHEET_ID,
     LOOKAHEAD_DAYS,
-    STOCKHOLM,
-    _normalize_city,
     build_club_cities,
     combine_date_time,
     fetch_events,
@@ -40,57 +41,23 @@ from events_common import (
 
 log = logging.getLogger(__name__)
 
-ALL_CITIES_KEYWORDS = {
-    "stockholm",
-    "göteborg", "goteborg", "gothenburg", "västra götaland",
+OVRIGA_LANDET_KEYWORDS = {
     "malmö", "malmo", "malmoe", "skåne",
+    "varberg", "halmstad", "falkenberg",
+    "uppsala", "gavle", "gävle", "linkoping", "linköping",
+    "norrkoping", "norrköping",
 }
 
 
-def _utc_to_stockholm(dt: datetime) -> datetime:
-    """Convert a naive datetime (assumed UTC) to Stockholm local time (naive)."""
-    return dt.replace(tzinfo=timezone.utc).astimezone(STOCKHOLM).replace(tzinfo=None)
-
-
-def build_club_pages(weekly_records: list[dict]) -> dict[str, str]:
-    """Map club name (lowercased) → club page URL.
-
-    First scans local club HTML files (CLUB_NAMES → canonical URL), then
-    overlays WeeklyRuns sheet data so sheet values take precedence.
-    """
-    import glob, re as _re
-    pages: dict[str, str] = {}
-    # Scan all local HTML files for CLUB_NAMES + canonical URL
-    for path in glob.glob("*.html"):
-        try:
-            text = open(path, encoding="utf-8").read()
-        except OSError:
-            continue
-        m_canon = _re.search(
-            r'rel=["\']canonical["\'][^>]*href=["\']([^"\']+)["\']'
-            r'|href=["\']([^"\']+)["\'][^>]*rel=["\']canonical["\']', text)
-        if not m_canon:
-            continue
-        canonical = m_canon.group(1) or m_canon.group(2)
-        m_names = _re.search(r'var CLUB_NAMES\s*=\s*\[([^\]]+)\]', text)
-        if not m_names:
-            continue
-        for name in _re.findall(r'"([^"]+)"', m_names.group(1)):
-            pages[name.lower()] = canonical
-    # Overlay WeeklyRuns sheet (takes precedence)
-    for r in weekly_records:
-        club = (r.get("club") or "").strip()
-        link = (r.get("link") or "").strip()
-        if club and link:
-            pages[club.lower()] = link
-    return pages
-
-
-def prepare_special_events(records: list[dict], club_pages: dict[str, str]) -> list[dict]:
-    today = datetime.now(STOCKHOLM).date()
+def prepare_special_events(records: list[dict]) -> list[dict]:
+    today = datetime.now(timezone.utc).date()
     events: list[dict] = []
 
     for r in records:
+        city = (r.get("city") or "").lower().strip()
+        if not any(kw in city for kw in OVRIGA_LANDET_KEYWORDS):
+            continue
+
         raw_date = (r.get("date") or "").strip()
         raw_time = (r.get("time") or "").strip()
 
@@ -99,65 +66,48 @@ def prepare_special_events(records: list[dict], club_pages: dict[str, str]) -> l
         if dt is not None and dt.date() < today:
             continue
 
-        city_raw = (r.get("city") or "").strip()
-        city = _normalize_city(city_raw)
-        if not city:
-            continue
-
-        club = normalize_club_name(r.get("club") or "")
         events.append({
             "type":        "event",
             "source":      "special",
-            "club":        club,
+            "club":        normalize_club_name(r.get("club") or ""),
             "title":       (r.get("title") or "Untitled").strip(),
             "date":        dt.strftime("%Y-%m-%dT%H:%M:%S") if dt else "",
             "location":    (r.get("location") or "").strip(),
-            "city":        city,
-            "club_page":   club_pages.get(club.lower(), ""),
             "description": (r.get("description") or "").strip(),
             "link":        (r.get("link") or "").strip(),
             "image_url":   (r.get("image_url") or "").strip(),
             "engagement":  "",
         })
 
-    log.info("%d special events after filtering (all cities)", len(events))
+    log.info("%d Övriga landet special events after filtering", len(events))
     return events
 
 
-def prepare_events(
-    records: list[dict],
-    club_pages: dict[str, str],
-    club_cities: dict[str, str] | None = None,
-) -> list[dict]:
-    today = datetime.now(STOCKHOLM).date()
+def prepare_events(records: list[dict], club_cities: dict[str, str] | None = None) -> list[dict]:
+    today = datetime.now(timezone.utc).date()
     events: list[dict] = []
 
     for r in records:
-        raw_date = (r.get("date") or "").strip()
-        dt = _parse_date(raw_date)
-        if dt is not None:
-            dt = _utc_to_stockholm(dt)  # Strava times are UTC → convert to Stockholm
-            if dt.date() < today:
-                continue
-
-        loc = (r.get("location") or "").strip()
-        city = _normalize_city(loc)
-        if not city and club_cities:
+        loc = (r.get("location") or "").lower()
+        loc_matches = any(kw in loc for kw in OVRIGA_LANDET_KEYWORDS)
+        if not loc_matches and club_cities:
             club_key = normalize_club_name(r.get("club") or "").lower()
-            city = club_cities.get(club_key, "")
-        if not city:
+            loc_matches = club_cities.get(club_key) == "Övriga landet"
+        if not loc_matches:
             continue
 
-        club = normalize_club_name(r.get("club") or "")
+        raw_date = (r.get("date") or "").strip()
+        dt = _parse_date(raw_date)
+        if dt is not None and dt.date() < today:
+            continue
+
         events.append({
             "type":        "event",
             "source":      (r.get("source") or "").strip().lower(),
-            "club":        club,
+            "club":        normalize_club_name(r.get("club") or ""),
             "title":       (r.get("title") or "Untitled").strip(),
             "date":        dt.strftime("%Y-%m-%dT%H:%M:%S") if dt else "",
-            "location":    loc,
-            "city":        city,
-            "club_page":   club_pages.get(club.lower(), ""),
+            "location":    (r.get("location") or "").strip(),
             "description": (r.get("description") or "").strip(),
             "link":        (r.get("link") or "").strip(),
             "image_url":   (r.get("image_url") or "").strip(),
@@ -173,8 +123,9 @@ def prepare_events(
             unique.append(e)
     if len(unique) < len(events):
         log.warning("Dropped %d duplicate Strava rows from sheet", len(events) - len(unique))
-    log.info("%d upcoming events after filtering (all cities)", len(unique))
+    log.info("%d Övriga landet upcoming events after filtering", len(unique))
     return unique
+
 
 
 def expand_weekly_runs(
@@ -186,14 +137,14 @@ def expand_weekly_runs(
     events: list[dict] = []
 
     for r in records:
+        city = (r.get("city") or "").lower().strip()
+        if not any(kw in city for kw in OVRIGA_LANDET_KEYWORDS):
+            continue
+
         day_str = (r.get("day_of_week") or "").lower().strip()
         target_weekday = DAYS_MAP.get(day_str)
         if target_weekday is None:
             log.warning("Unknown day_of_week %r for club %r — skipping", day_str, r.get("club"))
-            continue
-
-        city = _normalize_city((r.get("city") or "").strip())
-        if not city:
             continue
 
         club      = normalize_club_name(r.get("club") or "")
@@ -215,7 +166,6 @@ def expand_weekly_runs(
                     o_time = (override.get("time") or "").strip()
                     h, m   = _parse_time(o_time) if o_time else (hour, minute)
                     dt     = datetime(current.year, current.month, current.day, h, m)
-                    club_link = (override.get("link") or r.get("link") or "").strip()
                     events.append({
                         "type":        "weekly_run",
                         "source":      "weekly_run",
@@ -223,17 +173,14 @@ def expand_weekly_runs(
                         "title":       (override.get("title") or r.get("title") or "").strip(),
                         "date":        dt.strftime("%Y-%m-%dT%H:%M:%S"),
                         "location":    (override.get("location") or r.get("location") or "").strip(),
-                        "city":        city,
-                        "club_page":   club_link,
                         "description": (override.get("description") or r.get("description") or "").strip(),
-                        "link":        club_link,
+                        "link":        (override.get("link") or r.get("link") or "").strip(),
                         "image_url":   "",
                         "engagement":  "",
                     })
                     log.info("Override applied: %s on %s", club, date_key)
                 else:
                     dt = datetime(current.year, current.month, current.day, hour, minute)
-                    club_link = (r.get("link") or "").strip()
                     events.append({
                         "type":        "weekly_run",
                         "source":      "weekly_run",
@@ -241,17 +188,15 @@ def expand_weekly_runs(
                         "title":       (r.get("title") or "").strip(),
                         "date":        dt.strftime("%Y-%m-%dT%H:%M:%S"),
                         "location":    (r.get("location") or "").strip(),
-                        "city":        city,
-                        "club_page":   club_link,
                         "description": (r.get("description") or "").strip(),
-                        "link":        club_link,
+                        "link":        (r.get("link") or "").strip(),
                         "image_url":   "",
                         "engagement":  "",
                     })
 
             current += timedelta(days=1)
 
-    log.info("%d weekly run occurrences expanded (all cities, (next %d days)", len(events), LOOKAHEAD_DAYS)
+    log.info("%d Övriga landet weekly run occurrences expanded (next %d days)", len(events), LOOKAHEAD_DAYS)
     return events
 
 
@@ -278,14 +223,14 @@ document.addEventListener('DOMContentLoaded',function(){{
 <!-- End Google Tag Manager -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Running Events Sverige — Swedish Run Clubs</title>
-  <meta name="description" content="Alla kommande running events och weekly runs i Stockholm, Göteborg och övriga landet — från run clubs, crews och communions.">
-  <meta property="og:title" content="Running Events Sverige — Swedish Run Clubs">
-  <meta property="og:description" content="Alla kommande running events och weekly runs i Stockholm, Göteborg och övriga landet.">
+  <title>Löparevent i övriga landet — Swedish Run Clubs</title>
+  <meta name="description" content="Kommande grupplöpningar och events från run clubs runt om i Sverige — Strava-events och veckoliga grupplöpningar utanför Stockholm och Göteborg.">
+  <meta property="og:title" content="Löparevent i övriga landet — Swedish Run Clubs">
+  <meta property="og:description" content="Kommande grupplöpningar och events från run clubs runt om i Sverige.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://runclubs.se/events">
-  <meta property="og:image" content="https://runclubs.se/stockholm-run-clubs.jpeg">
-  <link rel="canonical" href="https://runclubs.se/events">
+  <meta property="og:url" content="https://runclubs.se/ovriga-landet-running-events">
+  <meta property="og:image" content="https://runclubs.se/malmo-run-clubs.jpeg">
+  <link rel="canonical" href="https://runclubs.se/ovriga-landet-running-events">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:ital,wght@1,900&family=Oswald:wght@500;700&family=DM+Sans:wght@400;500;600&family=Playfair+Display:wght@400&display=swap" rel="stylesheet">
   <link rel="icon" href="/favicon.ico" sizes="any">
@@ -455,6 +400,28 @@ document.addEventListener('DOMContentLoaded',function(){{
     }}
     .filter-pill:hover {{ border-color: #D4715E; color: #D4715E; }}
     .filter-pill.active {{ background: #1C2A45; color: #FDFAF9; border-color: #1C2A45; }}
+
+    .city-nav {{
+      padding: 1.75rem 2rem;
+      border-bottom: 1px solid #F0E0DC;
+      background: #FDFAF9;
+      display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap;
+    }}
+    .city-nav-label {{
+      font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+      color: #aaa; font-weight: 500; white-space: nowrap;
+    }}
+    .city-nav-buttons {{ display: flex; gap: 8px; flex-wrap: wrap; }}
+    .city-nav-btn {{
+      font-size: 12px; font-weight: 600; padding: 8px 18px;
+      border-radius: 20px; border: 1px solid #E8D8D3;
+      background: #fff; color: #1C2A45; cursor: pointer;
+      font-family: 'DM Sans', sans-serif; text-decoration: none;
+      transition: all 0.2s; letter-spacing: 0.3px;
+      display: inline-flex; align-items: center; gap: 5px;
+    }}
+    .city-nav-btn:hover {{ border-color: #D4715E; color: #D4715E; }}
+    .city-nav-btn.active {{ background: #1C2A45; color: #FDFAF9; border-color: #1C2A45; pointer-events: none; }}
 
     .events-layout {{ padding: 3rem 2rem; max-width: 1200px; margin: 0 auto; }}
 
@@ -677,31 +644,6 @@ document.addEventListener('DOMContentLoaded',function(){{
     .fade-in {{ opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }}
     .fade-in.visible {{ opacity: 1; transform: translateY(0); }}
 
-    .city-nav {{
-      padding: 1.75rem 2rem;
-      border-bottom: 1px solid #F0E0DC;
-      background: #FDFAF9;
-      display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap;
-    }}
-    .city-nav-label {{
-      font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
-      color: #aaa; font-weight: 500; white-space: nowrap;
-    }}
-    .city-nav-buttons {{ display: flex; gap: 8px; flex-wrap: wrap; }}
-    .city-nav-btn {{
-      font-size: 12px; font-weight: 600; padding: 8px 18px;
-      border-radius: 20px; border: 1px solid #E8D8D3;
-      background: #fff; color: #1C2A45; cursor: pointer;
-      font-family: 'DM Sans', sans-serif; text-decoration: none;
-      transition: all 0.2s; letter-spacing: 0.3px;
-      display: inline-flex; align-items: center; gap: 5px;
-    }}
-    .city-nav-btn:hover {{ border-color: #D4715E; color: #D4715E; }}
-
-    @media (max-width: 768px) {{
-      .city-nav {{ padding: 1.25rem; gap: 1rem; flex-direction: column; align-items: flex-start; }}
-    }}
-
     @media (max-width: 768px) {{
       nav {{ padding: 1rem 1.25rem; }}
       .nav-links {{ display: none; }}
@@ -710,6 +652,7 @@ document.addEventListener('DOMContentLoaded',function(){{
       .page-header h1 {{ font-size: clamp(32px, 10vw, 52px); }}
       .stats-bar {{ padding: 1rem 1.25rem; gap: 1.25rem; }}
       .stat-divider {{ display: none; }}
+      .city-nav {{ padding: 1.25rem; gap: 1rem; flex-direction: column; align-items: flex-start; }}
       .filters-bar {{ padding: 1rem 1.25rem; }}
       .filter-toggle {{ display: flex; }}
       .filters-inner {{ display: none; flex-direction: column; gap: 1rem; margin-top: 1rem; }}
@@ -759,10 +702,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <header class="page-header">
     <div class="page-header-inner">
-      <div class="breadcrumb"><a href="/">Start</a> → Running Events</div>
-      <div class="page-header-tag">Alla städer</div>
+      <div class="breadcrumb"><a href="/">Start</a> → <a href="/events">Events</a> → Övriga landet</div>
+      <div class="page-header-tag">Run clubs i övriga landet</div>
       <h1>Kommande<br>Events och Weekly runs</h1>
-      <p>Alla kommande running events från Strava och weekly runs från löpargrupper, run clubs och run crews i Stockholm, Göteborg och övriga landet.</p>
+      <p>Här visas alla kommande running events från Strava och weekly runs från löpargrupper, run clubs, communions och run crews utanför Stockholm och Göteborg.</p>
     </div>
   </header>
 
@@ -790,7 +733,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 
   <div class="city-nav">
-    <span class="city-nav-label">Se alla händelser i din stad</span>
+    <span class="city-nav-label">Se händelser i annan stad</span>
     <div class="city-nav-buttons">
       <a href="stockholm-running-events" class="city-nav-btn">
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
@@ -800,7 +743,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
         Göteborg
       </a>
-      <a href="ovriga-landet-running-events" class="city-nav-btn">
+      <a href="ovriga-landet-running-events" class="city-nav-btn active">
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
         Övriga landet
       </a>
@@ -862,8 +805,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <script>
     const events = {events_json};
-
-    let activeClubs = new Set();
 
     function applyFilters() {{
       const allCards = document.querySelectorAll('#events-container [data-source]');
@@ -1018,20 +959,19 @@ def main() -> int:
         format="%(asctime)s %(levelname)s %(name)s: %(message)s",
     )
 
-    out_path = Path(sys.argv[1]) if len(sys.argv) > 1 else Path("events.html")
+    out_path = Path(sys.argv[1]) if len(sys.argv) > 1 else Path("ovriga-landet-running-events.html")
     sheet_id = os.environ.get("GOOGLE_SHEET_ID") or EVENTS_SHEET_ID
 
     weekly_records  = fetch_weekly_runs(sheet_id)
-    club_pages      = build_club_pages(weekly_records)
     club_cities     = build_club_cities(weekly_records)
     overrides       = fetch_overrides(sheet_id)
-    weekly_events   = expand_weekly_runs(weekly_records, overrides)
 
     records       = fetch_events(sheet_id)
-    events        = prepare_events(records, club_pages, club_cities)
+    events        = prepare_events(records, club_cities)
+    weekly_events   = expand_weekly_runs(weekly_records, overrides)
 
     special_records = fetch_special_events(sheet_id)
-    special_events  = prepare_special_events(special_records, club_pages)
+    special_events  = prepare_special_events(special_records)
 
     all_events = events + weekly_events + special_events
     all_events.sort(key=lambda x: (x["date"] or "9999", x["club"]))

@@ -32,7 +32,7 @@ ROOT = Path(__file__).parent
 SV_DAYS   = ["Söndag", "Måndag", "Tisdag", "Onsdag", "Torsdag", "Fredag", "Lördag"]
 SV_MONTHS = ["januari","februari","mars","april","maj","juni",
              "juli","augusti","september","oktober","november","december"]
-CITY_CLASS = {"Stockholm": "tag-sthlm", "Göteborg": "tag-gbg", "Malmö": "tag-malm"}
+CITY_CLASS = {"Stockholm": "tag-sthlm", "Göteborg": "tag-gbg", "Övriga landet": "tag-other"}
 
 
 # ── Extract events from events.html ──────────────────────────────────

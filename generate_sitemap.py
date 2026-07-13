@@ -26,7 +26,7 @@ PRIORITY = {
     "index":                    (1.0,  "weekly"),
     "stockholm":                (0.95, "weekly"),
     "goteborg":                 (0.95, "weekly"),
-    "malmo":                    (0.95, "weekly"),
+    "ovriga-landet":            (0.95, "weekly"),
     "events":                   (0.90, "daily"),
     "nyheter":                  (0.75, "weekly"),
     "loppkalender":             (0.75, "weekly"),
@@ -62,7 +62,7 @@ def canonical_url(slug: str, redirects: dict[str, str]) -> str:
 
 def city_of(url: str) -> str | None:
     path = url.removeprefix(BASE_URL)
-    for city in ("stockholm", "goteborg", "malmo"):
+    for city in ("stockholm", "goteborg", "ovriga-landet"):
         if path.startswith(f"/{city}/"):
             return city
     return None
@@ -81,7 +81,7 @@ def build_sitemap(root: Path) -> str:
     # Ordered sections for readability
     sections = {
         "Startsida":         ["index"],
-        "Stadssidor":        ["stockholm", "goteborg", "malmo"],
+        "Stadssidor":        ["stockholm", "goteborg", "ovriga-landet"],
         "Eventsidor":        ["events", "stockholm-running-events", "loppkalender", "nyheter"],
         "Artiklar":          ["tjejer-tar-over-lopsparen", "stockholm-marathon-2026-slutsalt", "lopning-for-tjejer"],
         "Om sajten":         ["om-oss", "samarbeta", "kontakt"],
@@ -104,14 +104,14 @@ def build_sitemap(root: Path) -> str:
 
     # Club pages — everything not yet listed, grouped by destination city.
     club_slugs = [s for s in slugs if s not in ordered]
-    by_city: dict[str | None, list[tuple[str, str]]] = {"stockholm": [], "goteborg": [], "malmo": [], None: []}
+    by_city: dict[str | None, list[tuple[str, str]]] = {"stockholm": [], "goteborg": [], "ovriga-landet": [], None: []}
     for slug in club_slugs:
         url = canonical_url(slug, redirects)
         by_city[city_of(url)].append((slug, url))
 
     for city, label in [("stockholm", "Klubbsidor Stockholm"),
                         ("goteborg",  "Klubbsidor Göteborg"),
-                        ("malmo",     "Klubbsidor Malmö"),
+                        ("ovriga-landet", "Klubbsidor Övriga landet"),
                         (None,        "Klubbsidor (övrigt)")]:
         group = by_city[city]
         if group:

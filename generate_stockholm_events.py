@@ -669,7 +669,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="nav-links">
       <a href="stockholm">Stockholm</a>
       <a href="goteborg">Göteborg</a>
-      <a href="malmo">Malmö</a>
+      <a href="ovriga-landet">Övriga landet</a>
       <a href="nyheter">Nyheter</a>
       <a href="events" class="active">Events</a>
       <a href="loppkalender">Loppkalender</a>
@@ -683,7 +683,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="mobile-menu" role="navigation" aria-label="Mobilmeny">
     <a href="stockholm">Stockholm</a>
     <a href="goteborg">Göteborg</a>
-    <a href="malmo">Malmö</a>
+    <a href="ovriga-landet">Övriga landet</a>
     <a href="nyheter">Nyheter</a>
     <a href="events">Events</a>
     <a href="loppkalender">Loppkalender</a>
@@ -735,9 +735,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
         Göteborg
       </a>
-      <a href="malmo-running-events" class="city-nav-btn">
+      <a href="ovriga-landet-running-events" class="city-nav-btn">
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-        Malmö
+        Övriga landet
       </a>
     </div>
   </div>
@@ -772,13 +772,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <footer>
     <div class="footer-brand">
       <a href="/" class="run-clubs-logo"><span class="run">RUN</span><span class="clubs">CLUBS</span><span class="suffix">.se</span></a>
-      <p>Vi hjälper dig hitta de senaste och trendigaste run clubs och running events i din stad. Just nu i Stockholm, Göteborg och Malmö.</p>
+      <p>Vi hjälper dig hitta de senaste och trendigaste run clubs och running events i din stad. Just nu i Stockholm, Göteborg och övriga landet.</p>
     </div>
     <div>
       <h4>Städer</h4>
       <a href="stockholm">Stockholm</a>
       <a href="goteborg">Göteborg</a>
-      <a href="malmo">Malmö</a>
+      <a href="ovriga-landet">Övriga landet</a>
     </div>
     <div>
       <h4>Om sajten</h4>

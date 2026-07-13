@@ -20,7 +20,7 @@ TARGETS = [
     "generate_running_events.py",
     "generate_stockholm_events.py",
     "generate_goteborg_events.py",
-    "generate_malmo_events.py",
+    "generate_ovriga_landet_events.py",
     "generate_kommande_lopp.py",
 ]
 

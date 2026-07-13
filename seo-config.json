@@ -50,13 +50,13 @@
       "twitter_title": "Löparevent Göteborg — Runclubs.se",
       "twitter_description": "Kommande löparevent i Göteborg. Hitta ditt nästa pass idag."
     },
-    "malmo-running-events.html": {
-      "title": "Löparevent Malmö — Weekly Runs & Club Events | Runclubs.se",
-      "description": "Kommande löparevent i Malmö — weekly runs och grupplöpningar från stadens run clubs. Ribersborg och mer. Kolla schemat och häng med.",
-      "og_title": "Löparevent Malmö — Weekly Runs & Club Events | Runclubs.se",
-      "og_description": "Kommande löparevent i Malmö — weekly runs och grupplöpningar från stadens run clubs. Hitta ditt pass.",
-      "twitter_title": "Löparevent Malmö — Runclubs.se",
-      "twitter_description": "Kommande löparevent i Malmö. Kolla schemat och häng med."
+    "ovriga-landet-running-events.html": {
+      "title": "Löparevent i övriga landet — Weekly Runs & Club Events | Runclubs.se",
+      "description": "Kommande löparevent utanför Stockholm och Göteborg — weekly runs och grupplöpningar från run clubs runt om i Sverige. Kolla schemat och häng med.",
+      "og_title": "Löparevent i övriga landet — Weekly Runs & Club Events | Runclubs.se",
+      "og_description": "Kommande löparevent utanför Stockholm och Göteborg — weekly runs och grupplöpningar från run clubs runt om i Sverige. Hitta ditt pass.",
+      "twitter_title": "Löparevent i övriga landet — Runclubs.se",
+      "twitter_description": "Kommande löparevent runt om i Sverige. Kolla schemat och häng med."
     },
     "loppkalender.html": {
       "title": "Löptävlingar Sverige 2026 — Maraton, Halvmaraton & 10 km | Runclubs.se",

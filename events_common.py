@@ -53,8 +53,13 @@ def _normalize_city(text: str) -> str:
         return "Stockholm"
     if any(k in t for k in ("göteborg", "goteborg", "gothenburg", "västra götaland")):
         return "Göteborg"
-    if any(k in t for k in ("malmö", "malmo", "malmoe", "skåne")):
-        return "Malmö"
+    if any(k in t for k in (
+        "malmö", "malmo", "malmoe", "skåne",
+        "varberg", "halmstad", "falkenberg",
+        "uppsala", "gavle", "gävle", "linkoping", "linköping",
+        "norrkoping", "norrköping",
+    )):
+        return "Övriga landet"
     return ""
 
 

@@ -39,12 +39,12 @@ def main() -> int:
 
     from generate_stockholm_events import render_html as render_stockholm
     from generate_goteborg_events import render_html as render_goteborg
-    from generate_malmo_events import render_html as render_malmo
+    from generate_ovriga_landet_events import render_html as render_ovriga_landet
 
     cities = [
-        ("Stockholm", ROOT / "stockholm-running-events.html", render_stockholm),
-        ("Göteborg",  ROOT / "goteborg-running-events.html",  render_goteborg),
-        ("Malmö",     ROOT / "malmo-running-events.html",     render_malmo),
+        ("Stockholm",     ROOT / "stockholm-running-events.html",     render_stockholm),
+        ("Göteborg",      ROOT / "goteborg-running-events.html",      render_goteborg),
+        ("Övriga landet", ROOT / "ovriga-landet-running-events.html", render_ovriga_landet),
     ]
 
     for city_name, out_path, render_fn in cities:

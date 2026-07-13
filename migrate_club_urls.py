@@ -65,7 +65,7 @@ CITY_CLUBS: dict[str, list[str]] = {
         "east-run-club", "slowrunners-goteborg", "she-runs-club",
         "core-run-club", "ess-runners-club",
     ],
-    "malmo": [
+    "ovriga-landet": [
         "mrc-malmo", "sweden-runners-malmo",
     ],
 }
@@ -88,8 +88,8 @@ def new_path(slug: str) -> str:
 
 # Top-level non-club pages (relative links to keep as absolute but non-city-scoped)
 TOP_LEVEL = {
-    "stockholm", "goteborg", "malmo", "nyheter", "events",
-    "stockholm-running-events", "goteborg-running-events", "malmo-running-events",
+    "stockholm", "goteborg", "ovriga-landet", "nyheter", "events",
+    "stockholm-running-events", "goteborg-running-events", "ovriga-landet-running-events",
     "loppkalender", "om-oss", "kontakt", "samarbeta", "lopning-for-tjejer",
     "tjejer-tar-over-lopsparen", "stockholm-marathon-2026-slutsalt",
 }

@@ -27,7 +27,7 @@ BASE_URL = "https://runclubs.se"
 CLUB_PAGES = (
     list(ROOT.glob("stockholm/*/index.html")) +
     list(ROOT.glob("goteborg/*/index.html")) +
-    list(ROOT.glob("malmo/*/index.html"))
+    list(ROOT.glob("ovriga-landet/*/index.html"))
 )
 
 # Top-level canonical pages (skip mockups, old flat club stubs, drafts)
@@ -35,11 +35,11 @@ TOP_LEVEL_PAGES = [
     ROOT / f
     for f in [
         "index.html",
-        "stockholm.html", "goteborg.html", "malmo.html",
+        "stockholm.html", "goteborg.html", "ovriga-landet.html",
         "events.html",
         "stockholm-running-events.html",
         "goteborg-running-events.html",
-        "malmo-running-events.html",
+        "ovriga-landet-running-events.html",
         "loppkalender.html",
         "nyheter.html",
         "om-oss.html",
@@ -55,7 +55,7 @@ TOP_LEVEL_PAGES = [
 ALL_PAGES = TOP_LEVEL_PAGES + CLUB_PAGES
 
 # City hub display names for internal links
-CITY_DISPLAY = {"stockholm": "Stockholm", "goteborg": "Göteborg", "malmo": "Malmö"}
+CITY_DISPLAY = {"stockholm": "Stockholm", "goteborg": "Göteborg", "ovriga-landet": "Malmö"}
 
 
 # ─────────────────────────────────────────────────────────────────────────────

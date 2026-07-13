@@ -1,7 +1,7 @@
 """inject_rich_schemas.py
 
 Injects four types of schema.org JSON-LD:
-  1. ItemList (SportsActivityLocation) on /stockholm, /goteborg, /malmo
+  1. ItemList (SportsActivityLocation) on /stockholm, /goteborg, /ovriga-landet
   2. SportsEvent (next 14 days) on /events
   3. NewsArticle on each article page
   4. FAQPage on city pages and /om-oss
@@ -85,15 +85,26 @@ CITY_CLUBS: dict[str, list[str]] = {
         "east-run-club", "slowrunners-goteborg", "she-runs-club",
         "core-run-club", "ess-runners-club",
     ],
-    "malmo": [
+    "ovriga-landet": [
         "mrc-malmo", "sweden-runners-malmo",
     ],
 }
 
+# Fallback PostalAddress.addressLocality when a club's own schema isn't found.
+# "ovriga-landet" spans many real cities, but every club in it today is in
+# Malmö, so that's the accurate fallback until clubs from other cities join.
 CITY_NAMES = {
     "stockholm": "Stockholm",
     "goteborg":  "Göteborg",
-    "malmo":     "Malmö",
+    "ovriga-landet": "Malmö",
+}
+
+# Display label for the hub page itself (ItemList name/description) — distinct
+# from CITY_NAMES, which is real per-club geodata, not a page label.
+HUB_LABEL = {
+    "stockholm": "Stockholm",
+    "goteborg":  "Göteborg",
+    "ovriga-landet": "övriga landet",
 }
 
 def build_item_list(city_slug: str, club_index: dict) -> dict:
@@ -122,11 +133,12 @@ def build_item_list(city_slug: str, club_index: dict) -> dict:
         }
         items.append(item)
 
+    hub_label = HUB_LABEL[city_slug]
     return {
         "@context": "https://schema.org",
         "@type":    "ItemList",
-        "name":     f"Löpargrupper i {city_name}",
-        "description": f"Alla run clubs och löpargrupper i {city_name}",
+        "name":     f"Löpargrupper i {hub_label}",
+        "description": f"Alla run clubs och löpargrupper i {hub_label}",
         "numberOfItems": len(items),
         "itemListElement": items,
     }
@@ -384,26 +396,26 @@ CITY_FAQS = {
         ("Finns det run clubs i Göteborg som fokuserar på tjejer?",
          "Ja, flera run clubs i Göteborg har pass riktade mot tjejer eller mixed grupper med inkluderande miljö. Se filtret på Göteborgs-sidan."),
     ],
-    "malmo": [
-        ("Vad kostar det att springa med en run club i Malmö?",
-         "Malmös run clubs är gratis att delta i. Du anmäler dig enkelt via Strava eller Instagram och dyker upp på startplatsen."),
-        ("Vilken nivå krävs för Malmös run clubs?",
-         "Malmös run clubs tar emot alla — nybörjare som vill komma igång och erfarna löpare som vill ha sällskap."),
-        ("Var samlas run clubs i Malmö?",
-         "Malmös run clubs samlas på centrala platser som Stortorget och Pildammsparken. Se varje clubs sida för exakt startplats."),
-        ("Hur ofta kör run clubs i Malmö sina pass?",
-         "De flesta run clubs i Malmö kör återkommande veckopass. Frekvensen varierar — en till tre gånger i veckan är vanligt."),
+    "ovriga-landet": [
+        ("Vad kostar det att springa med en run club i övriga landet?",
+         "Run clubs utanför Stockholm och Göteborg är gratis att delta i. Du anmäler dig enkelt via Strava eller Instagram och dyker upp på startplatsen."),
+        ("Vilken nivå krävs för run clubs i övriga landet?",
+         "Run clubs i övriga landet tar emot alla — nybörjare som vill komma igång och erfarna löpare som vill ha sällskap."),
+        ("Var samlas run clubs i övriga landet?",
+         "Mötesplatsen varierar per stad och club — i Malmö samlas många kring Stortorget och Pildammsparken. Se varje clubs sida för exakt startplats."),
+        ("Hur ofta kör run clubs i övriga landet sina pass?",
+         "De flesta run clubs kör återkommande veckopass. Frekvensen varierar — en till tre gånger i veckan är vanligt."),
     ],
     "om-oss": [
         ("Vad är Runclubs.se?",
-         "Runclubs.se är Sveriges samlade guide till run clubs och löpargrupper. Vi listar clubs i Stockholm, Göteborg och Malmö med tider, startplatser och nivå så att du enkelt hittar rätt grupp."),
+         "Runclubs.se är Sveriges samlade guide till run clubs och löpargrupper. Vi listar clubs i Stockholm, Göteborg och övriga landet med tider, startplatser och nivå så att du enkelt hittar rätt grupp."),
         ("Hur lägger jag till min run club på Runclubs.se?",
          "Maila oss på amanda@runclubs.se med information om din club — namn, startplats, tider och kontaktlänkar. Vi lägger upp er gratis."),
         ("Är det gratis att använda Runclubs.se?",
          "Ja, Runclubs.se är helt gratis för löpare att använda. Vi tar inte heller betalt av clubs för att listas."),
         ("Hur ofta uppdateras eventinformationen?",
          "Eventdata uppdateras automatiskt varje morgon från Strava och vårt eget kalkylblad. Du ser alltid de senaste passen."),
-        ("Täcker ni fler städer än Stockholm, Göteborg och Malmö?",
+        ("Täcker ni fler städer än Stockholm, Göteborg och övriga landet?",
          "I nuläget fokuserar vi på Sveriges tre största städer. Fler städer är på väg — hör av dig om du vill se din stad på sajten."),
     ],
 }

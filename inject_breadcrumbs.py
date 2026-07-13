@@ -19,14 +19,14 @@ STATIC_PAGES: dict[str, list[tuple[str, str]]] = {
     # City pages
     "stockholm":               [("Stockholm", f"{BASE_URL}/stockholm")],
     "goteborg":                [("Göteborg",  f"{BASE_URL}/goteborg")],
-    "malmo":                   [("Malmö",     f"{BASE_URL}/malmo")],
+    "ovriga-landet":           [("Övriga landet", f"{BASE_URL}/ovriga-landet")],
     # City event pages
     "stockholm-running-events": [("Stockholm", f"{BASE_URL}/stockholm"),
                                  ("Events",    f"{BASE_URL}/stockholm-running-events")],
     "goteborg-running-events":  [("Göteborg",  f"{BASE_URL}/goteborg"),
                                  ("Events",    f"{BASE_URL}/goteborg-running-events")],
-    "malmo-running-events":     [("Malmö",     f"{BASE_URL}/malmo"),
-                                 ("Events",    f"{BASE_URL}/malmo-running-events")],
+    "ovriga-landet-running-events": [("Events",       f"{BASE_URL}/events"),
+                                     ("Övriga landet", f"{BASE_URL}/ovriga-landet-running-events")],
     # Global event / race pages
     "events":               [("Events",       f"{BASE_URL}/events")],
     "loppkalender":             [("Loppkalender", f"{BASE_URL}/loppkalender")],
@@ -51,7 +51,7 @@ STATIC_PAGES: dict[str, list[tuple[str, str]]] = {
 CITY_URL = {
     "Stockholm": f"{BASE_URL}/stockholm",
     "Göteborg":  f"{BASE_URL}/goteborg",
-    "Malmö":     f"{BASE_URL}/malmo",
+    "Malmö":     f"{BASE_URL}/ovriga-landet",
 }
 
 # Pages to skip entirely
