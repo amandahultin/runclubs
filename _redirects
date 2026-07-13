@@ -25,7 +25,9 @@ https://www.runclubs.se/* https://runclubs.se/:splat 301
 /sweden-runners-goteborg /goteborg/sweden-runners-goteborg/ 301
 /aero-boys-club /goteborg/aero-boys-club/ 301
 /east-run-club /goteborg/east-run-club/ 301
-/slowrunners-goteborg /goteborg/slowrunners-goteborg/ 301
+/slowrunners-goteborg /goteborg/pace-people/ 301
+/goteborg/slowrunners-goteborg/ /goteborg/pace-people/ 301
+/pace-people /goteborg/pace-people/ 301
 /she-runs-club /goteborg/she-runs-club/ 301
 /core-run-club /goteborg/core-run-club/ 301
 /ess-runners-club /goteborg/ess-runners-club/ 301
