@@ -173,9 +173,9 @@ def main() -> None:
     club_pages = (
         list(ROOT.glob("stockholm/*/index.html")) +
         list(ROOT.glob("goteborg/*/index.html")) +
-        list(ROOT.glob("malmo/*/index.html"))
+        list(ROOT.glob("ovriga-landet/*/index.html"))
     )
-    city_pages = [ROOT / f for f in ("stockholm.html", "goteborg.html", "malmo.html")]
+    city_pages = [ROOT / f for f in ("stockholm.html", "goteborg.html", "ovriga-landet.html")]
 
     total = 0
 
