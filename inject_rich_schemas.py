@@ -44,10 +44,22 @@ def has_type(html: str, schema_type: str) -> bool:
     return f'"@type": "{schema_type}"' in html or f'"@type":"{schema_type}"' in html
 
 def load_club_index() -> dict[str, dict]:
-    """Read every club HTML file and extract its existing SportsOrganization JSON-LD."""
+    """Read every club HTML file and extract its existing SportsOrganization JSON-LD.
+
+    Club pages live either as a root-level stub (legacy) or as
+    <city>/<slug>/index.html (current convention, e.g. ovriga-landet/rusa-running-club/).
+    The stub files are redirect-only and carry no JSON-LD, so subdirectory
+    pages must be scanned too or every club added since the URL migration
+    silently falls back to generic name/url/image/address below.
+    """
     import glob
     data = {}
-    for fpath in glob.glob(str(ROOT / "*.html")):
+    patterns = [
+        str(ROOT / "*.html"),
+        str(ROOT / "*" / "*" / "index.html"),
+    ]
+    fpaths = [p for pattern in patterns for p in glob.glob(pattern)]
+    for fpath in fpaths:
         html = open(fpath, encoding="utf-8").read()
         blocks = re.findall(
             r'<script type="application/ld\+json">(.*?)</script>', html, re.DOTALL
@@ -56,7 +68,8 @@ def load_club_index() -> dict[str, dict]:
             try:
                 d = json.loads(block)
                 if d.get("@type") in ("SportsOrganization", "SportsActivityLocation", "SportsClub"):
-                    slug = Path(fpath).stem
+                    path = Path(fpath)
+                    slug = path.parent.name if path.name == "index.html" else path.stem
                     data[slug] = {
                         "name":    d.get("name", slug),
                         "url":     d.get("url",  f"{BASE_URL}/{slug}"),
@@ -86,13 +99,20 @@ CITY_CLUBS: dict[str, list[str]] = {
         "core-run-club", "ess-runners-club",
     ],
     "ovriga-landet": [
-        "mrc-malmo", "sweden-runners-malmo",
+        "mrc-malmo", "sweden-runners-malmo", "motvind-run-club-varberg",
+        "rusa-running-club", "uppsala-lopklubb-for-tjejer", "social-run-lund",
+        "fun-run-malmo", "lund-run-club", "ett-steg-i-taget-alingsas",
+        "running-for-breakfast-vasteras", "running-for-breakfast-eskilstuna",
+        "running-for-breakfast-norrkoping",
     ],
 }
 
 # Fallback PostalAddress.addressLocality when a club's own schema isn't found.
-# "ovriga-landet" spans many real cities, but every club in it today is in
-# Malmö, so that's the accurate fallback until clubs from other cities join.
+# "ovriga-landet" now spans many cities (Malmö, Varberg, Uppsala, Lund,
+# Alingsås, Västerås, Eskilstuna, Norrköping...) so there is no single
+# accurate fallback city — this only fires if load_club_index() fails to
+# find a club's own address, which should be rare now that it scans
+# subdirectory pages too.
 CITY_NAMES = {
     "stockholm": "Stockholm",
     "goteborg":  "Göteborg",
