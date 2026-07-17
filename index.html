@@ -160,8 +160,14 @@ document.addEventListener('DOMContentLoaded',function(){
       content: ''; position: absolute; inset: 0;
       background: linear-gradient(to top,
         rgba(28,42,69,0.95) 0%,
-        rgba(28,42,69,0.4) 50%,
-        rgba(28,42,69,0.15) 100%);
+        rgba(120,73,58,0.4) 50%,
+        rgba(212,113,94,0.12) 100%);
+    }
+    .hero::after {
+      content: ''; position: absolute; left: -60px; bottom: -120px;
+      width: 340px; height: 340px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(248,139,105,0.35) 0%, rgba(248,139,105,0) 70%);
+      pointer-events: none;
     }
     .hero-content { position: relative; z-index: 1; max-width: 800px; }
     .hero-tag {
@@ -188,10 +194,10 @@ document.addEventListener('DOMContentLoaded',function(){
       display: inline-flex; align-items: center; gap: 8px;
       background: #D4715E; color: #FDFAF9;
       font-size: 12px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase;
-      padding: 14px 30px; border-radius: 6px; text-decoration: none;
+      padding: 15px 32px; border-radius: 100px; text-decoration: none;
       white-space: nowrap; transition: all 0.2s ease;
     }
-    .hero-cta:hover { background: #C8604A; transform: translateY(-1px); box-shadow: 0 4px 16px rgba(212,113,94,0.35); }
+    .hero-cta:hover { background: #C8604A; transform: translateY(-1px); box-shadow: 0 8px 24px rgba(212,113,94,0.4); }
     .hero-cta svg { transition: transform 0.2s; }
     .hero-cta:hover svg { transform: translateX(3px); }
 
@@ -222,17 +228,17 @@ document.addEventListener('DOMContentLoaded',function(){
     }
 
     /* ── CITIES ─────────────────────────── */
-    .cities-section { padding: 5rem 2rem; }
+    .cities-section { padding: 5rem 2rem 0; }
     .cities {
       display: grid; grid-template-columns: repeat(2, 1fr);
       gap: 20px; margin-bottom: 1.25rem;
     }
     .city {
-      position: relative; border-radius: 16px; overflow: hidden;
+      position: relative; border-radius: 22px; overflow: hidden;
       text-decoration: none; color: #fff; display: block;
       aspect-ratio: 4/3; transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
-    .city:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(28,42,69,0.2); }
+    .city:hover { transform: translateY(-4px); box-shadow: 0 14px 40px rgba(212,113,94,0.25); }
     .city-image {
       position: absolute; inset: 0;
       background-size: cover; background-position: center;
@@ -269,13 +275,59 @@ document.addEventListener('DOMContentLoaded',function(){
     .city:hover .city-count svg { transform: translateX(3px); }
     .cities-hint { font-size: 13px; color: #bbb; }
 
+    /* ── NÄSTA PASS (smal rad under städerna) ──── */
+    .next-pass-section { padding: 1.75rem 2rem 4rem; }
+    .next-pass {
+      display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;
+      background: #FFF3EC; border: 1px solid #F7E1D4; border-radius: 100px;
+      padding: 0.85rem 1.75rem; text-decoration: none; color: #1C2A45;
+      transition: all 0.2s ease;
+    }
+    .next-pass:hover { border-color: #D4715E; box-shadow: 0 8px 22px rgba(212,113,94,0.15); }
+    .next-pass-dot { position: relative; width: 9px; height: 9px; border-radius: 50%; background: #D4715E; flex-shrink: 0; }
+    .next-pass-dot::after {
+      content: ''; position: absolute; inset: -6px; border-radius: 50%; background: #D4715E;
+      opacity: 0.35; animation: pulseDot 1.8s ease-out infinite;
+    }
+    @keyframes pulseDot { 0% { transform: scale(0.6); opacity: 0.5; } 100% { transform: scale(1.8); opacity: 0; } }
+    .next-pass-label { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #D4715E; flex-shrink: 0; }
+    .next-pass-body { flex: 1; min-width: 200px; font-size: 14px; }
+    .next-pass-body b { font-weight: 700; }
+    .next-pass-body .np-meta { color: #a3897c; font-size: 13px; }
+    .next-pass-arrow { display: inline-flex; align-items: center; gap: 4px; font-size: 12px; font-weight: 600; color: #D4715E; white-space: nowrap; }
+    .next-pass-section.is-empty { display: none; }
+
+    /* ── FÖLJ OSS PÅ INSTAGRAM ──────────── */
+    .ig-section {
+      position: relative; overflow: hidden; padding: 5.5rem 2rem;
+      background: linear-gradient(160deg, #FFF8F3 0%, #FFDAC4 45%, #F6B89E 78%, #F88B69 100%);
+    }
+    .ig-section::before { content: ''; position: absolute; top: -100px; right: -80px; width: 320px; height: 320px; border-radius: 50%; background: rgba(255,255,255,0.35); }
+    .ig-section::after { content: ''; position: absolute; bottom: -140px; left: 8%; width: 220px; height: 220px; border-radius: 50%; background: rgba(28,42,69,0.08); }
+    .ig-inner { position: relative; z-index: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 3.5rem; align-items: center; }
+    .ig-copy .section-label { color: #C8604A; margin-bottom: 1rem; }
+    .ig-title { font-family: 'Archivo Black', sans-serif; font-size: clamp(32px,4.2vw,48px); line-height: 1.05; text-transform: uppercase; color: #1C2A45; letter-spacing: -0.5px; margin-bottom: 1.1rem; }
+    .ig-quote { font-family: 'Playfair Display', serif; font-style: italic; font-size: 19px; color: #7a3f2f; margin-bottom: 1.4rem; line-height: 1.4; }
+    .ig-desc { font-size: 15px; color: #5b4a42; line-height: 1.7; max-width: 420px; margin-bottom: 2rem; }
+    .ig-cta { display: inline-flex; align-items: center; gap: 10px; background: #1C2A45; color: #FFF8F3; font-size: 13px; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; padding: 16px 30px; border-radius: 100px; text-decoration: none; transition: all 0.2s ease; }
+    .ig-cta:hover { background: #334463; transform: translateY(-2px); box-shadow: 0 10px 28px rgba(28,42,69,0.3); }
+    .ig-handle { margin-top: 1.1rem; font-size: 13px; color: #7a3f2f; font-weight: 600; }
+    .ig-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 8px; }
+    .ig-tile { aspect-ratio: 1; border-radius: 14px; overflow: hidden; position: relative; display: flex; align-items: center; justify-content: center; text-align: center; padding: 14px; }
+    .ig-tile img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .ig-tile.copy { font-family: 'DM Sans', sans-serif; font-weight: 700; font-size: 13px; }
+    .ig-tile.copy.c1 { background: #FFDAC4; color: #1C2A45; }
+    .ig-tile.copy.c2 { background: #D4715E; color: #fff; }
+    .ig-tile.copy.c3 { background: #1C2A45; color: #FFF8F3; }
+    .ig-tile.copy.c4 { background: #F6B89E; color: #1C2A45; }
+
     /* ── DAGENS PASS ───────────────────── */
     .schedule-section {
       padding: 5rem 2rem;
-      background: #F3EBE8;
+      background: #FFF3EC;
       color: #1C2A45;
-      border-top: 1px solid #E8D8D3;
-      border-bottom: 1px solid #E8D8D3;
+      border-top: 1px solid #F7E1D4;
+      border-bottom: 1px solid #F7E1D4;
     }
     .schedule-header {
       display: flex; justify-content: space-between; align-items: flex-end;
@@ -290,8 +342,8 @@ document.addEventListener('DOMContentLoaded',function(){
     .schedule-day-pills { display: flex; gap: 6px; flex-wrap: wrap; }
     .day-pill {
       font-size: 12px; font-weight: 600; padding: 7px 16px;
-      border-radius: 20px; border: 1px solid #D4C4BF;
-      background: transparent; color: #888;
+      border-radius: 100px; border: 1px solid #E8C9B8;
+      background: #fff; color: #a3897c;
       cursor: pointer; font-family: 'DM Sans', sans-serif;
       transition: all 0.2s; text-transform: uppercase; letter-spacing: 0.5px;
     }
@@ -310,8 +362,8 @@ document.addEventListener('DOMContentLoaded',function(){
     .tag-gbg   { background: #FFF3C4; color: #7A5C00; }
     .tag-other { background: #F7E8E4; color: #c25a47; }
     .event-teaser-card {
-      background: #FDFAF9; border: 1px solid #E8D8D3;
-      border-radius: 12px; padding: 1.1rem 1.25rem;
+      background: #fff; border: 1px solid #F0DED4;
+      border-radius: 18px; padding: 1.1rem 1.25rem;
       text-decoration: none; color: #1C2A45;
       display: flex; gap: 1rem; align-items: flex-start;
       transition: all 0.2s ease;
@@ -319,7 +371,7 @@ document.addEventListener('DOMContentLoaded',function(){
     .event-teaser-card:hover {
       border-color: #D4715E;
       transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(28,42,69,0.08);
+      box-shadow: 0 8px 24px rgba(212,113,94,0.15);
     }
     .event-teaser-time {
       font-family: 'DM Sans', sans-serif; font-weight: 700;
@@ -379,11 +431,11 @@ document.addEventListener('DOMContentLoaded',function(){
       gap: 20px;
     }
     .news-card {
-      position: relative; border-radius: 16px; overflow: hidden;
+      position: relative; border-radius: 20px; overflow: hidden;
       text-decoration: none; color: #fff; display: block;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
-    .news-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(28,42,69,0.15); }
+    .news-card:hover { transform: translateY(-4px); box-shadow: 0 14px 36px rgba(212,113,94,0.2); }
     .news-card-image {
       width: 100%; aspect-ratio: 16/9; object-fit: cover;
       display: block; transition: transform 0.4s ease;
@@ -391,7 +443,11 @@ document.addEventListener('DOMContentLoaded',function(){
     .news-card:hover .news-card-image { transform: scale(1.04); }
     .news-card-overlay {
       position: absolute; inset: 0;
-      background: linear-gradient(to top, rgba(28,42,69,0.92) 0%, rgba(28,42,69,0.1) 60%, transparent 100%);
+      background: linear-gradient(to top, rgba(28,42,69,0.92) 0%, rgba(120,73,58,0.15) 55%, transparent 100%);
+      transition: background 0.3s;
+    }
+    .news-card:hover .news-card-overlay {
+      background: linear-gradient(to top, rgba(200,96,74,0.88) 0%, rgba(28,42,69,0.2) 55%, transparent 100%);
     }
     .news-card-content {
       position: absolute; bottom: 0; left: 0; right: 0;
@@ -430,13 +486,14 @@ document.addEventListener('DOMContentLoaded',function(){
     .news-link:hover { color: #C8604A; gap: 10px; }
 
     /* ── NEWSLETTER ─────────────────────── */
-    .nl-section { background: #ffffff; border-top: 1px solid #E8E8E8; border-bottom: 1px solid #E8E8E8; }
-    .nl-body { max-width: 560px; margin: 0 auto; padding: 4rem 2rem; text-align: center; }
+    .nl-section { background: #FFF8F3; border-top: 1px solid #F7E8E4; border-bottom: 1px solid #F7E8E4; position: relative; overflow: hidden; }
+    .nl-section::before { content: ''; position: absolute; top: -90px; left: -90px; width: 260px; height: 260px; border-radius: 50%; background: rgba(246,184,158,0.35); }
+    .nl-body { position: relative; z-index: 1; max-width: 560px; margin: 0 auto; padding: 4.5rem 2rem; text-align: center; }
     .nl-badge {
       display: inline-flex; align-items: center; gap: 8px;
-      background: #FFF0ED; color: #D4715E;
+      background: #FFDAC4; color: #C8604A;
       font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
-      padding: 6px 14px; border-radius: 100px; margin-bottom: 1.5rem;
+      padding: 7px 16px; border-radius: 100px; margin-bottom: 1.5rem;
     }
     .nl-title {
       font-family: 'Archivo Black', sans-serif;
@@ -448,29 +505,29 @@ document.addEventListener('DOMContentLoaded',function(){
     .nl-desc { font-size: 15px; color: #777; line-height: 1.75; margin-bottom: 2rem; }
     .newsletter-form { display: flex; flex-direction: column; gap: 12px; }
     .newsletter-input {
-      padding: 16px 20px; border: 2px solid #E8E8E8; border-radius: 12px;
+      padding: 16px 22px; border: 2px solid #F0DED4; border-radius: 100px;
       font-size: 15px; font-family: 'DM Sans', sans-serif;
       color: #1C2A45; background: #fff; outline: none;
       transition: border-color 0.2s; width: 100%; box-sizing: border-box;
     }
-    .newsletter-input::placeholder { color: #aaa; }
+    .newsletter-input::placeholder { color: #c2ab9f; }
     .newsletter-input:focus { border-color: #D4715E; }
     .newsletter-btn {
       background: #D4715E; color: #fff;
       font-size: 15px; font-weight: 700; letter-spacing: 0.3px;
-      padding: 17px; border-radius: 12px; border: none;
+      padding: 17px; border-radius: 100px; border: none;
       cursor: pointer; font-family: 'DM Sans', sans-serif;
-      transition: background 0.2s;
+      transition: all 0.2s;
     }
-    .newsletter-btn:hover { background: #C8604A; }
-    .nl-disclaimer { font-size: 11px; color: #bbb; text-align: center; margin-top: 0.75rem; }
+    .newsletter-btn:hover { background: #C8604A; box-shadow: 0 8px 22px rgba(212,113,94,0.3); }
+    .nl-disclaimer { font-size: 11px; color: #c2ab9f; text-align: center; margin-top: 0.75rem; }
 
     /* ── FOOTER ─────────────────────────── */
     footer {
-      background: #F7E8E4; border-top: 1px solid #F0D8D3;
-      padding: 3.5rem 2rem; display: grid;
+      background: #F7E8E4; border-radius: 32px 32px 0 0;
+      padding: 3.5rem 2rem 2.5rem; display: grid;
       grid-template-columns: 2fr 1fr 1fr; gap: 2rem;
-      font-size: 13px;
+      font-size: 13px; margin: 0 1rem;
     }
     .footer-brand .run-clubs-logo { font-size: 28px; display: block; margin-bottom: 0.75rem; }
     .footer-brand p { font-size: 13px; color: #888; line-height: 1.6; max-width: 280px; }
@@ -485,6 +542,13 @@ document.addEventListener('DOMContentLoaded',function(){
       border-top: 1px solid #F0D8D3;
       font-size: 12px; color: #aaa;
     }
+    .ig-footer-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: #D4715E; color: #fff !important;
+      padding: 9px 18px 9px 12px; border-radius: 100px;
+      font-size: 12px; font-weight: 600; transition: background 0.15s;
+    }
+    .ig-footer-btn:hover { background: #C8604A; color: #fff !important; }
 
     /* ── FADE-IN ANIMATION ─────────────── */
     .fade-in {
@@ -505,9 +569,17 @@ document.addEventListener('DOMContentLoaded',function(){
       .hero p { font-size: 14px; }
       .scroll-indicator { display: none; }
 
-      .cities-section { padding: 3rem 1.25rem; }
+      .cities-section { padding: 3rem 1.25rem 0; }
       .cities { grid-template-columns: 1fr; gap: 12px; }
       .city { aspect-ratio: 16/9; }
+
+      .next-pass-section { padding: 1.25rem 1.25rem 2.5rem; }
+      .next-pass { border-radius: 20px; }
+      .next-pass-arrow { width: 100%; justify-content: flex-end; }
+
+      .ig-section { padding: 3.5rem 1.25rem; }
+      .ig-inner { grid-template-columns: 1fr; gap: 2.25rem; }
+      .ig-grid { max-width: 420px; margin: 0 auto; }
 
       .schedule-section { padding: 3rem 1.25rem; }
       .schedule-title { font-size: 24px; }
@@ -527,7 +599,7 @@ document.addEventListener('DOMContentLoaded',function(){
       .nl-right { flex: 1 1 100%; }
       .nl-title { font-size: clamp(32px, 10vw, 48px); }
 
-      footer { padding: 2rem 1.25rem; grid-template-columns: 1fr; gap: 1.5rem; }
+      footer { padding: 2rem 1.25rem; grid-template-columns: 1fr; gap: 1.5rem; margin: 0; border-radius: 24px 24px 0 0; }
     }
   </style>
   <link rel="icon" href="/favicon.ico" sizes="any">
@@ -629,6 +701,44 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </a>
     </div>
     <p class="cities-hint">Filtrera på nivå, typ och träningsdag när du väljer din stad</p>
+  </section>
+
+  <!-- NÄSTA PASS -->
+  <section class="next-pass-section is-empty" id="next-pass-section">
+    <a href="#schedule" class="next-pass" id="next-pass">
+      <span class="next-pass-dot" aria-hidden="true"></span>
+      <span class="next-pass-label">Nästa pass</span>
+      <span class="next-pass-body" id="next-pass-body"></span>
+      <span class="next-pass-arrow">Se dagens händelser →</span>
+    </a>
+  </section>
+
+  <!-- FÖLJ OSS PÅ INSTAGRAM -->
+  <section class="ig-section fade-in">
+    <div class="ig-inner">
+      <div class="ig-copy">
+        <div class="section-label">@runclubs.se på instagram</div>
+        <h2 class="ig-title">Hitta ditt<br>crew i flödet</h2>
+        <p class="ig-quote">"Söndagslistan är ute 🍑" — veckans pass, events och nya klubbar, innan de hamnar här på sajten.</p>
+        <p class="ig-desc">Vi postar veckans löprundor, nya klubbar och stämningen från passen först på Instagram. Följ med så missar du aldrig vad som händer i din stad.</p>
+        <a href="https://www.instagram.com/runclubs.se/" target="_blank" rel="noopener" class="ig-cta">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+          Följ @runclubs.se
+        </a>
+        <div class="ig-handle">↳ länk i bio leder alltid tillbaka hit till runclubs.se</div>
+      </div>
+      <div class="ig-grid" aria-hidden="true">
+        <div class="ig-tile copy c1">FÄRG</div>
+        <div class="ig-tile copy c2">FÄRG</div>
+        <div class="ig-tile"><img src="pexels-runffwpu-2402777.jpg" alt="" loading="lazy"></div>
+        <div class="ig-tile copy c4">FÄRG</div>
+        <div class="ig-tile"><img src="andmorerunning-hero.jpg" alt="" loading="lazy"></div>
+        <div class="ig-tile copy c3">FÄRG</div>
+        <div class="ig-tile"><img src="pace-people-team.jpg" alt="" loading="lazy"></div>
+        <div class="ig-tile copy c1">FÄRG</div>
+        <div class="ig-tile copy c2">FÄRG</div>
+      </div>
+    </div>
   </section>
 
   <!-- NEWSLETTER -->
@@ -743,8 +853,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
     <div class="footer-bottom" style="display:flex; justify-content:space-between; align-items:center; gap:1rem; flex-wrap:wrap;">
       <span>&copy; 2026 Swedish Run Clubs. Byggd med kärlek av <a href="https://amandahultin.se" target="_blank" rel="noopener noreferrer" style="display:inline; margin:0;">Amanda Hultin <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-left:2px;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>.</span>
-      <a href="https://www.instagram.com/runclubs.se/" target="_blank" rel="noopener" aria-label="Följ oss på Instagram" style="display:inline-flex; align-items:center; margin:0; color:#aaa; transition:color 0.15s;" onmouseover="this.style.color='#D4715E'" onmouseout="this.style.color='#aaa'">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+      <a href="https://www.instagram.com/runclubs.se/" target="_blank" rel="noopener" aria-label="Följ oss på Instagram" class="ig-footer-btn">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+        Följ oss
       </a>
     </div>
   </footer>
@@ -851,6 +962,27 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         });
 
         renderDay(todayDay);
+
+        // ── Nästa pass (raden under städerna) ──
+        const stripBody = document.getElementById('next-pass-body');
+        const stripSection = document.getElementById('next-pass-section');
+        if (stripBody && stripSection) {
+          const now = new Date();
+          const upcoming = eventsData
+            .filter(ev => new Date(ev.date) >= now)
+            .sort((a, b) => new Date(a.date) - new Date(b.date))[0];
+          if (upcoming) {
+            const d = new Date(upcoming.date);
+            const isToday = d.toDateString() === now.toDateString();
+            const dayLabel = isToday
+              ? 'idag'
+              : SV_DAYS[d.getDay()].slice(0, 3).toLowerCase() + ' ' + d.getDate() + ' ' + SV_MONTHS[d.getMonth()];
+            const cityClass = CITY_CLASS[upcoming.city] || '';
+            const cityPill = cityClass ? `<span class="pass-city-tag ${cityClass}">${upcoming.city}</span>` : '';
+            stripBody.innerHTML = `<b>${upcoming.title}</b> med ${upcoming.club}${cityPill} <span class="np-meta">· ${dayLabel}</span>`;
+            stripSection.classList.remove('is-empty');
+          }
+        }
       } catch(e) {
         grid.innerHTML = '<div class="schedule-empty">Kunde inte ladda events.</div>';
       }
