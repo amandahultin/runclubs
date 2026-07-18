@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded',function(){
   <meta property="og:image" content="https://runclubs.se/stockholm-run-clubs.jpeg">
   <link rel="canonical" href="https://runclubs.se/events">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:ital,wght@1,900&family=Oswald:wght@500;700&family=DM+Sans:wght@400;500;600&family=Playfair+Display:wght@400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:ital,wght@1,900&family=Oswald:wght@500;700&family=DM+Sans:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <style>
@@ -103,45 +103,40 @@ document.addEventListener('DOMContentLoaded',function(){
     .mobile-menu a:hover { color: #D4715E; }
 
     .page-header {
-      background: #1C2A45;
+      background: linear-gradient(160deg, #FFF8F3 0%, #FFDAC4 40%, #F6B89E 75%, #F88B69 100%);
       padding: 4rem 2rem 3rem;
       position: relative;
       overflow: hidden;
     }
     .page-header::after {
-      content: ''; position: absolute; left: -70px; bottom: -130px;
-      width: 320px; height: 320px; border-radius: 50%;
-      background: radial-gradient(circle, rgba(248,139,105,0.28) 0%, rgba(248,139,105,0) 70%);
+      content: ''; position: absolute; top: -90px; right: -70px;
+      width: 280px; height: 280px; border-radius: 50%;
+      background: rgba(255,255,255,0.35);
       pointer-events: none;
     }
     .page-header::before {
-      content: 'EVENT';
-      font-family: 'Archivo Black', sans-serif;
-      font-size: clamp(80px, 18vw, 220px);
-      color: rgba(255,255,255,0.03);
-      position: absolute;
-      right: -1rem; bottom: -1rem;
-      line-height: 1;
-      letter-spacing: -4px;
+      content: ''; position: absolute; left: -80px; bottom: -140px;
+      width: 260px; height: 260px; border-radius: 50%;
+      background: rgba(28,42,69,0.08);
       pointer-events: none;
-      user-select: none;
     }
     .page-header-inner { max-width: 700px; position: relative; z-index: 1; }
-    .breadcrumb { font-size: 12px; color: rgba(255,255,255,0.4); margin-bottom: 0.75rem; }
-    .breadcrumb a { color: rgba(255,255,255,0.4); text-decoration: none; transition: color 0.15s; }
-    .breadcrumb a:hover { color: #EEAA96; }
+    .breadcrumb { font-size: 12px; color: rgba(28,42,69,0.45); margin-bottom: 0.75rem; }
+    .breadcrumb a { color: rgba(28,42,69,0.45); text-decoration: none; transition: color 0.15s; }
+    .breadcrumb a:hover { color: #C8604A; }
     .page-header-tag {
-      font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
-      color: #EEAA96; margin-bottom: 1rem; font-weight: 500;
+      font-family: 'Playfair Display', serif; font-style: italic;
+      font-size: 15px; letter-spacing: 0.5px;
+      color: #C8604A; margin-bottom: 1rem; font-weight: 400;
     }
     .page-header h1 {
       font-family: 'Archivo Black', sans-serif;
       font-size: clamp(36px, 6vw, 64px);
       line-height: 0.95; text-transform: uppercase;
-      color: #FDFAF9; letter-spacing: -1px; margin-bottom: 1rem;
+      color: #C8604A; letter-spacing: -1px; margin-bottom: 1rem;
     }
     .page-header p {
-      font-size: 15px; color: rgba(255,255,255,0.5);
+      font-size: 15px; color: rgba(28,42,69,0.75);
       line-height: 1.7; max-width: 480px;
     }
 
