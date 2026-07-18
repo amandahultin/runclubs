@@ -255,17 +255,6 @@ document.addEventListener('DOMContentLoaded',function(){
     .card-image { width: 100%; height: 160px; object-fit: cover; background: #F3EBE8; display: block; }
     .card-body { padding: 1.25rem 1.5rem 1.5rem; display: flex; flex-direction: column; flex: 1; }
 
-    /* ── CTA SECTION ───────────────────── */
-    .cta-section { background: #1C2A45; padding: 4rem 2rem; display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
-    .cta-content { max-width: 500px; }
-    .cta-label { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: #EEAA96; margin-bottom: 0.75rem; font-weight: 500; }
-    .cta-title { font-family: 'Archivo Black', sans-serif; font-size: 26px; text-transform: uppercase; color: #FDFAF9; letter-spacing: 0.5px; margin-bottom: 0.75rem; }
-    .cta-text { font-size: 14px; color: rgba(255,255,255,0.5); line-height: 1.7; }
-    .cta-btn { display: inline-flex; align-items: center; gap: 8px; background: #D4715E; color: #FDFAF9; font-size: 13px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; padding: 15px 32px; border-radius: 100px; text-decoration: none; transition: all 0.2s ease; white-space: nowrap; }
-    .cta-btn:hover { background: #C8604A; transform: translateY(-1px); box-shadow: 0 8px 24px rgba(212,113,94,0.4); }
-    .cta-btn svg { transition: transform 0.2s; }
-    .cta-btn:hover svg { transform: translateX(3px); }
-
         /* ── NEWSLETTER ─────────────────────── */
     .nl-section { background: #FFF8F3; border-top: 1px solid #F7E8E4; border-bottom: 1px solid #F7E8E4; position: relative; overflow: hidden; }
     .nl-section::before { content: ''; position: absolute; top: -90px; left: -90px; width: 260px; height: 260px; border-radius: 50%; background: rgba(246,184,158,0.35); }
@@ -365,9 +354,6 @@ document.addEventListener('DOMContentLoaded',function(){
       .section { padding: 1.5rem 1.25rem; }
       .clubs-grid { grid-template-columns: 1fr; }
       .featured-section { padding: 2rem 1.25rem; }
-      .cta-section { padding: 2.5rem 1.25rem; flex-direction: column; align-items: flex-start; }
-      .cta-title { font-size: 22px; }
-      .cta-btn { width: 100%; justify-content: center; }
       .newsletter { padding: 2.5rem 1.25rem; flex-direction: column; align-items: flex-start; }
       .newsletter-title { font-size: 20px; }
       .newsletter-form { flex-direction: column; width: 100%; }
@@ -1344,7 +1330,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <p>Hitta din run club utanför Stockholm och Göteborg — för alla nivåer och takter.</p>
       <div class="hero-stats">
         <div class="hero-stat">
-          <div class="hero-stat-number">12</div>
+          <div class="hero-stat-number">13</div>
           <div class="hero-stat-label">Klubbar</div>
         </div>
         <div class="hero-stat">
@@ -1439,11 +1425,31 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </div>
 
-  <div class="results-bar" id="results-bar">Visar <span class="results-count">12</span> klubbar</div>
+  <div class="results-bar" id="results-bar">Visar <span class="results-count">13</span> klubbar</div>
 
   <section class="featured-section">
     <div class="section-label">Alla klubbar i övriga landet</div>
     <div class="clubs-grid" id="clubs-grid">
+      <a href="/ovriga-landet/testklubben-runners/" class="club-card" data-niva="nyborjare mellanniva" data-typ="social tempo" data-dag="ons" data-stad="testberg">
+        <div class="card-image card-image--placeholder">
+          <span class="placeholder-initial">T</span>
+          <span class="placeholder-tag">Testklubben Runners</span>
+        </div>
+        <div class="card-body">
+          <div class="card-tags">
+            <span class="card-tag tag-typ">Social</span>
+            <span class="card-tag tag-typ">Tempo</span>
+          </div>
+          <div class="card-name">Testklubben Runners</div>
+          <div class="card-desc">En testklubb för att verifiera genereringsscriptet.</div>
+          <div class="card-meta">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Testberg · Ons 18:00
+          </div>
+          <div class="card-updated">Uppdaterad 2026-07-18</div>
+        </div>
+      </a>
+
 
       <a href="/ovriga-landet/mrc-malmo/" class="club-card" data-niva="nybörjare mellannivå avancerad" data-typ="intervall väg social" data-dag="tis lör" data-stad="malmö">
         <div class="card-image card-image--branded">
@@ -1705,17 +1711,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </section>
 
-  <section class="cta-section fade-in">
-    <div class="cta-content">
-      <div class="cta-label">Saknas din klubb?</div>
-      <h2 class="cta-title">Lägg till din<br>run club</h2>
-      <p class="cta-text">Vill du att din klubb ska finnas med på Swedish Run Clubs? Eller vill du uppdatera information om en befintlig klubb? Hör av dig till oss!</p>
-    </div>
-    <a href="kontakt" class="cta-btn">Kontakta oss <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
-  </section>
-
   <!-- Related cities — intern SEO-länkning -->
-  <section class="related-cities fade-in" style="padding: 3rem 2rem; text-align: center; border-top: 1px solid #F0E0DC;">
+  <section class="related-cities fade-in" style="padding: 3rem 2rem; text-align: center;">
     <div style="font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: #aaa; margin-bottom: 1rem; font-weight: 500;">Upptäck fler städer</div>
     <h2 style="font-family: 'Archivo Black', sans-serif; font-size: 22px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1.5rem; color: #1C2A45;">Löpargrupper i Stockholm och Göteborg</h2>
     <p style="max-width: 520px; margin: 0 auto 2rem; font-size: 14px; color: #666; line-height: 1.7;">Sveriges löparcommunity finns i fler städer. Utforska run clubs i Stockholm och Göteborg — många klubbar gör exchange-runs och tar emot löpare från andra städer.</p>
