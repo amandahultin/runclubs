@@ -83,18 +83,26 @@ document.addEventListener('DOMContentLoaded',function(){
     /* ── HERO ───────────────────────────── */
     .hero {
       position: relative; min-height: 420px;
-      background: #1C2A45 url('https://images.unsplash.com/photo-1552674605-db6ffd4facb5?w=1200&h=600&fit=crop&crop=center') center/cover no-repeat;
+      background: linear-gradient(160deg, #FFF8F3 0%, #FFDAC4 40%, #F6B89E 75%, #F88B69 100%);
       display: flex; flex-direction: column; justify-content: flex-end;
       padding: 3rem 2rem; overflow: hidden;
     }
+    .hero::after {
+      content: ''; position: absolute; top: -90px; right: -70px;
+      width: 280px; height: 280px; border-radius: 50%;
+      background: rgba(255,255,255,0.35);
+      pointer-events: none;
+    }
     .hero::before {
-      content: ''; position: absolute; inset: 0;
-      background: linear-gradient(to top, rgba(28,42,69,0.95) 0%, rgba(28,42,69,0.6) 40%, rgba(28,42,69,0.25) 100%);
+      content: ''; position: absolute; left: -80px; bottom: -140px;
+      width: 260px; height: 260px; border-radius: 50%;
+      background: rgba(28,42,69,0.08);
+      pointer-events: none;
     }
     .hero-content { position: relative; z-index: 1; max-width: 700px; }
-    .hero-tag { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #EEAA96; margin-bottom: 0.75rem; }
-    .hero h1 { font-family: 'Archivo Black', sans-serif; font-size: clamp(38px, 5vw, 56px); line-height: 1; text-transform: uppercase; color: #FDFAF9; letter-spacing: 2px; }
-    .hero-subtitle { font-size: 16px; color: rgba(255,255,255,0.6); line-height: 1.7; margin-top: 1rem; max-width: 520px; }
+    .hero-tag { font-family: 'Playfair Display', serif; font-style: italic; font-size: 15px; letter-spacing: 0.5px; color: #C8604A; margin-bottom: 0.75rem; font-weight: 400; text-transform: none; }
+    .hero h1 { font-family: 'Archivo Black', sans-serif; font-size: clamp(38px, 5vw, 56px); line-height: 1; text-transform: uppercase; color: #C8604A; letter-spacing: 2px; }
+    .hero-subtitle { font-size: 16px; color: rgba(28,42,69,0.75); line-height: 1.7; margin-top: 1rem; max-width: 520px; }
 
     /* ── INFO STRIP ─────────────────────── */
     .info-strip {
