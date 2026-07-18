@@ -8,9 +8,16 @@ from __future__ import annotations
 
 from pathlib import Path
 from datetime import date
+from xml.sax.saxutils import escape as xml_escape
+
+from filter_combos import all_combos
 
 BASE_URL = "https://runclubs.se"
 TODAY = date.today().isoformat()
+
+# Filter-combination pages (niva/typ/stadsdel) — see filter_combos.py
+FILTER_PAGE_PRIORITY = 0.3
+FILTER_PAGE_CHANGEFREQ = "monthly"
 
 # Pages to skip (templates, mockups, drafts)
 SKIP = {
@@ -109,16 +116,41 @@ def build_sitemap(root: Path) -> str:
         url = canonical_url(slug, redirects)
         by_city[city_of(url)].append((slug, url))
 
-    for city, label in [("stockholm", "Klubbsidor Stockholm"),
-                        ("goteborg",  "Klubbsidor Göteborg"),
-                        ("ovriga-landet", "Klubbsidor Övriga landet"),
-                        (None,        "Klubbsidor (övrigt)")]:
+    combos_by_city: dict[str, list] = {"stockholm": [], "goteborg": [], "ovriga-landet": []}
+    for combo in all_combos(root):
+        combos_by_city[combo.city].append(combo)
+
+    for city, club_label, filter_label in [
+        ("stockholm", "Klubbsidor Stockholm", "Filtersidor Stockholm"),
+        ("goteborg", "Klubbsidor Göteborg", "Filtersidor Göteborg"),
+        ("ovriga-landet", "Klubbsidor Övriga landet", "Filtersidor Övriga landet"),
+        (None, "Klubbsidor (övrigt)", None),
+    ]:
         group = by_city[city]
         if group:
-            lines.append(f"\n  <!-- {label} -->")
+            # Dedupe entries that resolve to the same destination URL (e.g. two
+            # legacy slugs redirecting to the same club page).
+            seen_urls: set[str] = set()
+            deduped = []
             for slug, url in sorted(group):
+                if url in seen_urls:
+                    continue
+                seen_urls.add(url)
+                deduped.append((slug, url))
+
+            lines.append(f"\n  <!-- {club_label} -->")
+            for slug, url in deduped:
                 pri, freq = PRIORITY.get(slug, DEFAULT_PRIORITY)
                 lines.append(f'  <url><loc>{url}</loc><lastmod>{TODAY}</lastmod><priority>{pri}</priority></url>')
+
+        if city and combos_by_city[city]:
+            lines.append(f"\n  <!-- {filter_label} -->")
+            for combo in combos_by_city[city]:
+                lines.append(
+                    f'  <url><loc>{xml_escape(combo.url)}</loc><lastmod>{TODAY}</lastmod>'
+                    f'<changefreq>{FILTER_PAGE_CHANGEFREQ}</changefreq>'
+                    f'<priority>{FILTER_PAGE_PRIORITY}</priority></url>'
+                )
 
     lines.append("\n</urlset>")
     return "\n".join(lines) + "\n"

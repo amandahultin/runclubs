@@ -19,15 +19,15 @@ document.addEventListener('DOMContentLoaded',function(){
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Löpargrupper Göteborg — Hitta din Run Club | Runclubs.se</title>
-  <meta name="description" content="Löpargrupper i Göteborg — Slottsskogen, Änggårdsbergen och Delsjön. Filtrera på dag och nivå, hitta ditt crew och hoppa på din första löpning.">
+  <meta name="description" content="Löpargrupper i Göteborg — Slottsskogen, Änggårdsbergen och Delsjön. Filtrera på dag och nivå, hitta din grupp och hoppa på din första löpning.">
   <meta property="og:title" content="Löpargrupper Göteborg — Hitta din Run Club | Runclubs.se">
-  <meta property="og:description" content="Göteborgs run clubs samlade. Slottsskogen, Änggårdsbergen, Delsjön. Hitta ditt crew och hoppa på.">
+  <meta property="og:description" content="Göteborgs run clubs samlade. Slottsskogen, Änggårdsbergen, Delsjön. Hitta din grupp och hoppa på.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://runclubs.se/goteborg">
   <meta property="og:image" content="https://runclubs.se/goteborg-run-clubs.jpeg">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Löpargrupper Göteborg — Runclubs.se">
-  <meta name="twitter:description" content="Alla Göteborgs run clubs. Hitta ditt crew och hoppa på.">
+  <meta name="twitter:description" content="Alla Göteborgs run clubs. Hitta din grupp och hoppa på.">
   <meta name="twitter:image" content="https://runclubs.se/goteborg-run-clubs.jpeg">
   <link rel="sitemap" type="application/xml" href="/sitemap.xml">
   <link rel="canonical" href="https://runclubs.se/goteborg">
@@ -1753,6 +1753,66 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     const active = { niva: null, typ: null, dag: null, stadsdel: null };
     const clearBtn = document.getElementById('clear-filters');
 
+    // ── Dynamic meta for filter-combo landing pages ──
+    // Keeps /goteborg?niva=...&typ=...&stadsdel=... self-canonical with its own
+    // title/description so Google can index it separately from the base page.
+    // "dag" is excluded (not part of the indexed URL set) — see filter_combos.py.
+    const CITY_LABEL = 'Göteborg';
+    const FILTER_LABELS = {
+      niva: { 'nybörjare': 'Nybörjare', 'mellannivå': 'Mellannivå', 'avancerad': 'Avancerad' },
+      typ: { 'väg': 'Väg', 'trail': 'Trail', 'intervall': 'Intervall', 'långpass': 'Långpass', 'social': 'Social', 'frukost': 'Frukost', 'girls-only': 'Girls Only' },
+      stadsdel: { 'linné-majorna': 'Linné-Majorna', 'johanneberg': 'Johanneberg', 'olskroken': 'Olskroken' }
+    };
+    const metaEls = {
+      title: document.querySelector('title'),
+      desc: document.querySelector('meta[name="description"]'),
+      ogTitle: document.querySelector('meta[property="og:title"]'),
+      ogDesc: document.querySelector('meta[property="og:description"]'),
+      ogUrl: document.querySelector('meta[property="og:url"]'),
+      twitterTitle: document.querySelector('meta[name="twitter:title"]'),
+      twitterDesc: document.querySelector('meta[name="twitter:description"]'),
+      canonical: document.querySelector('link[rel="canonical"]')
+    };
+    const metaDefaults = {
+      title: metaEls.title ? metaEls.title.textContent : '',
+      desc: metaEls.desc ? metaEls.desc.getAttribute('content') : '',
+      ogTitle: metaEls.ogTitle ? metaEls.ogTitle.getAttribute('content') : '',
+      ogDesc: metaEls.ogDesc ? metaEls.ogDesc.getAttribute('content') : '',
+      ogUrl: metaEls.ogUrl ? metaEls.ogUrl.getAttribute('content') : '',
+      twitterTitle: metaEls.twitterTitle ? metaEls.twitterTitle.getAttribute('content') : '',
+      twitterDesc: metaEls.twitterDesc ? metaEls.twitterDesc.getAttribute('content') : '',
+      canonical: metaEls.canonical ? metaEls.canonical.getAttribute('href') : ''
+    };
+
+    function updateMetaForFilters() {
+      const keys = ['niva', 'typ', 'stadsdel'];
+      const labels = keys.filter(k => active[k]).map(k => (FILTER_LABELS[k] || {})[active[k]] || active[k]);
+      if (labels.length === 0 || active.dag) {
+        if (metaEls.title) document.title = metaDefaults.title;
+        if (metaEls.desc) metaEls.desc.setAttribute('content', metaDefaults.desc);
+        if (metaEls.ogTitle) metaEls.ogTitle.setAttribute('content', metaDefaults.ogTitle);
+        if (metaEls.ogDesc) metaEls.ogDesc.setAttribute('content', metaDefaults.ogDesc);
+        if (metaEls.ogUrl) metaEls.ogUrl.setAttribute('content', metaDefaults.ogUrl);
+        if (metaEls.twitterTitle) metaEls.twitterTitle.setAttribute('content', metaDefaults.twitterTitle);
+        if (metaEls.twitterDesc) metaEls.twitterDesc.setAttribute('content', metaDefaults.twitterDesc);
+        if (metaEls.canonical) metaEls.canonical.setAttribute('href', metaDefaults.canonical);
+        return;
+      }
+      const params = new URLSearchParams();
+      keys.forEach(k => { if (active[k]) params.set(k, active[k]); });
+      const url = location.origin + location.pathname + '?' + params.toString();
+      const title = `Löpargrupper i ${CITY_LABEL} – ${labels.join(' · ')} | Runclubs.se`;
+      const desc = `Hitta löpargrupper i ${CITY_LABEL} (${labels.join(', ')}) — filtrera på nivå, typ och stadsdel och hitta din grupp. Gratis, ingen anmälan krävs. Se tider och startplatser på Runclubs.se.`;
+      if (metaEls.title) document.title = title;
+      if (metaEls.desc) metaEls.desc.setAttribute('content', desc);
+      if (metaEls.ogTitle) metaEls.ogTitle.setAttribute('content', title);
+      if (metaEls.ogDesc) metaEls.ogDesc.setAttribute('content', desc);
+      if (metaEls.ogUrl) metaEls.ogUrl.setAttribute('content', url);
+      if (metaEls.twitterTitle) metaEls.twitterTitle.setAttribute('content', title);
+      if (metaEls.twitterDesc) metaEls.twitterDesc.setAttribute('content', desc);
+      if (metaEls.canonical) metaEls.canonical.setAttribute('href', url);
+    }
+
 
     // Mobile filter toggle
     const filterToggle = document.getElementById('filter-toggle');
@@ -1813,6 +1873,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       if (active.stadsdel) params.set('stadsdel', active.stadsdel);
       const qs = params.toString();
       history.replaceState(null, '', qs ? '?' + qs : location.pathname);
+      updateMetaForFilters();
     }
 
     function filterClubs() {
@@ -1849,6 +1910,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         }
       }
     });
+    updateMetaForFilters();
     filterClubs();
   </script>
 
