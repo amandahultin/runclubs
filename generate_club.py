@@ -156,6 +156,17 @@ def build_highlights_html(raw: str) -> str:
     return "\n".join(lines)
 
 
+def build_long_description_html(raw: str) -> str:
+    paragraphs = [p.strip() for p in re.split(r"\n\s*\n", raw) if p.strip()]
+    if not paragraphs:
+        return (
+            "<p>Mer info om klubben kommer inom kort — under tiden är bästa "
+            "sättet att hänga med att följa gruppen på Instagram eller "
+            "Strava.</p>"
+        )
+    return "\n\n      ".join(f"<p>{p}</p>" for p in paragraphs)
+
+
 def build_nav_link(href: str, label: str, active_key: str, current_region: str) -> str:
     active = ' class="active"' if active_key == current_region else ""
     return f'<a href="{href}"{active}>{label}</a>'
@@ -195,6 +206,7 @@ def build_club_page(row: dict, region_key: str) -> tuple[str, str]:
     cost = row.get("Kostnad", "").strip() or "Se Instagram"
     niva = row.get("Nivå", "").strip() or "Nybörjare, Mellannivå, Avancerad"
     highlights_raw = row.get("Höjdpunkter", "").strip()
+    long_description_raw = row.get("Lång beskrivning", "").strip()
 
     region_label = REGIONS[region_key]["label"]
     region_url = f"https://runclubs.se/{region_key}"
@@ -223,6 +235,7 @@ def build_club_page(row: dict, region_key: str) -> tuple[str, str]:
         "SAME_AS_JSON": build_same_as(instagram, strava, facebook),
         "SOCIAL_LINKS_HTML": build_social_links_html(instagram, strava, facebook),
         "HIGHLIGHTS_HTML": build_highlights_html(highlights_raw),
+        "LONG_DESCRIPTION_HTML": build_long_description_html(long_description_raw),
         "HERO_LOGO_BLOCK": build_hero_logo_block(logo_url),
         "SCHEDULE_DAY": schedule_day or "Se Instagram",
         "SCHEDULE_TIME": schedule_time or "Se Instagram",
