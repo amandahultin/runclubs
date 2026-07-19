@@ -263,6 +263,26 @@ def build_club_page(row: dict, region_key: str) -> tuple[str, str]:
     return html, str(target)
 
 
+def build_card_image_html(club_name: str, hero_image: str, kort_bild: str) -> str:
+    if kort_bild.strip().lower() == "foto" and hero_image:
+        thumb = hero_image
+        if "images.unsplash.com" in thumb:
+            thumb = re.sub(r"w=\d+&h=\d+", "w=400&h=220", thumb)
+        alt = f"Löpare från {club_name}"
+        return (
+            '<div class="card-image card-image--branded">\n'
+            f'          <img src="{thumb}" alt="{alt}" loading="lazy" decoding="async" width="400" height="220">\n'
+            '        </div>'
+        )
+    initial = club_name[0].upper() if club_name else "?"
+    return (
+        '<div class="card-image card-image--placeholder">\n'
+        f'          <span class="placeholder-initial">{initial}</span>\n'
+        f'          <span class="placeholder-tag">{club_name}</span>\n'
+        '        </div>'
+    )
+
+
 def build_card_html(row: dict, region_key: str) -> str:
     club_name = row["Klubbnamn"].strip()
     slug = (row.get("Slug") or "").strip() or slugify(club_name)
@@ -272,11 +292,13 @@ def build_card_html(row: dict, region_key: str) -> str:
     schedule_time = row.get("Tid", "").strip()
     niva_raw = row.get("Nivå", "").strip()
     tags_raw = row.get("Typ/taggar", "").strip()
+    hero_image = row.get("Hero-bild URL", "").strip()
+    kort_bild = row.get("Kort-bild", "").strip()
     date_iso, _ = today_iso_and_sv()
 
     niva_attr = " ".join(slugify(n) for n in re.split(r"[;,]", niva_raw) if n.strip()) \
         or "nybörjare mellannivå avancerad"
-    tags = [t.strip() for t in re.split(r"[;,]", tags_raw) if t.strip()]
+    tags = [t.strip()[:1].upper() + t.strip()[1:] for t in re.split(r"[;,]", tags_raw) if t.strip()]
     typ_attr = " ".join(t.lower() for t in tags)
     dag_attr = slugify(schedule_day)[:3] if schedule_day else ""
 
@@ -293,14 +315,11 @@ def build_card_html(row: dict, region_key: str) -> str:
         meta_prefix = stadsdel
 
     meta = f"{meta_prefix} · {schedule_summary(schedule_day, schedule_time)}"
-    initial = club_name[0].upper() if club_name else "?"
+    card_image_html = build_card_image_html(club_name, hero_image, kort_bild)
 
     return f'''
       <a href="/{region_key}/{slug}/" class="club-card" data-niva="{niva_attr}" data-typ="{typ_attr}" data-dag="{dag_attr}" {location_attr}>
-        <div class="card-image card-image--placeholder">
-          <span class="placeholder-initial">{initial}</span>
-          <span class="placeholder-tag">{club_name}</span>
-        </div>
+        {card_image_html}
         <div class="card-body">
           <div class="card-tags">
             {tags_html}
