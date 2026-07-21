@@ -48,3 +48,11 @@ jobs:
             --out-dir instagram/generated \
             --week-start "${{ github.event.inputs.week_start }}" \
             --upload
+
+      - name: Upload generated images as a workflow artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: instagram-event-images
+          path: instagram/generated/*.png
+          if-no-files-found: ignore
