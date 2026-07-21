@@ -278,7 +278,7 @@ def main() -> None:
     ap.add_argument("--sheet-id", default=os.environ.get("EVENTS_SHEET_ID") or EVENTS_SHEET_ID)
     args = ap.parse_args()
 
-    out_dir = Path(args.out_dir)
+    out_dir = Path(args.out_dir).resolve()
     out_dir.mkdir(parents=True, exist_ok=True)
 
     events = gather_events(args.sheet_id, args.week_start)
