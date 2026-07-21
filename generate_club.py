@@ -77,6 +77,13 @@ SV_MONTHS = [
 ]
 
 
+def normalize_url(url: str) -> str:
+    url = url.strip()
+    if url and not re.match(r"^https?://", url, re.I):
+        url = "https://" + url
+    return url
+
+
 def slugify(text: str) -> str:
     text = text.strip().lower()
     for a, b in [("å", "a"), ("ä", "a"), ("ö", "o"), ("é", "e"), ("ü", "u")]:
@@ -139,24 +146,43 @@ def build_social_links_html(instagram: str, strava: str, facebook: str) -> str:
     return "\n        ".join(blocks)
 
 
+def split_leading_icon(item: str) -> tuple[str, str]:
+    """If the item starts with an emoji/symbol token (e.g. "⏱️ Tidsbaserade
+    pass"), use it as the icon and strip it from the display text -- matches
+    the site convention of one icon living in the icon slot, not duplicated
+    in the text. Falls back to a plain bullet for icon-less text."""
+    m = re.match(r"^(\S+)\s+(.*)$", item)
+    if m and not re.match(r"^\w+$", m.group(1), re.UNICODE):
+        return m.group(1), m.group(2)
+    return "•", item
+
+
 def build_highlights_html(raw: str) -> str:
     items = [h.strip() for h in re.split(r"[;\n]", raw) if h.strip()]
     if not items:
         items = ["Följ klubben på Instagram för senaste infon"]
-    icons = ["coral", "blue", "green", "purple"]
+    icon_classes = ["coral", "blue", "green", "purple"]
     lines = []
     for i, item in enumerate(items):
-        icon_cls = icons[i % len(icons)]
+        icon, text = split_leading_icon(item)
+        icon_cls = icon_classes[i % len(icon_classes)]
         lines.append(
             f'          <li>\n'
-            f'            <span class="highlight-icon {icon_cls}">•</span>\n'
-            f'            {item}\n'
+            f'            <span class="highlight-icon {icon_cls}">{icon}</span>\n'
+            f'            {text}\n'
             f'          </li>'
         )
     return "\n".join(lines)
 
 
-def build_long_description_html(raw: str) -> str:
+def build_body_image_html(image_path: str, club_name: str) -> str:
+    if not image_path:
+        return ""
+    alt = f"Löpare från {club_name} i action"
+    return f'<img class="article-image" src="{image_path}" alt="{alt}" loading="lazy" decoding="async">'
+
+
+def build_long_description_html(raw: str, body_image_html: str = "") -> str:
     paragraphs = [p.strip() for p in re.split(r"\n\s*\n", raw) if p.strip()]
     if not paragraphs:
         return (
@@ -164,7 +190,11 @@ def build_long_description_html(raw: str) -> str:
             "sättet att hänga med att följa gruppen på Instagram eller "
             "Strava.</p>"
         )
-    return "\n\n      ".join(f"<p>{p}</p>" for p in paragraphs)
+    blocks = [f"<p>{paragraphs[0]}</p>"]
+    if body_image_html:
+        blocks.append(body_image_html)
+    blocks.extend(f"<p>{p}</p>" for p in paragraphs[1:])
+    return "\n\n      ".join(blocks)
 
 
 def build_nav_link(href: str, label: str, active_key: str, current_region: str) -> str:
@@ -196,9 +226,9 @@ def build_club_page(row: dict, region_key: str) -> tuple[str, str]:
     slug = (row.get("Slug") or "").strip() or slugify(club_name)
     city = row["Stad"].strip()
     short_description = row["Kort beskrivning"].strip()
-    instagram = row.get("Instagram-URL", "").strip()
-    strava = row.get("Strava-URL", "").strip()
-    facebook = row.get("Facebook-URL", "").strip()
+    instagram = normalize_url(row.get("Instagram-URL", ""))
+    strava = normalize_url(row.get("Strava-URL", ""))
+    facebook = normalize_url(row.get("Facebook-URL", ""))
     hero_image = row["Hero-bild URL"].strip()
     logo_url = row.get("Logga URL", "").strip()
     schedule_day = row.get("Träningsdag", "").strip()
@@ -207,6 +237,8 @@ def build_club_page(row: dict, region_key: str) -> tuple[str, str]:
     niva = row.get("Nivå", "").strip() or "Nybörjare, Mellannivå, Avancerad"
     highlights_raw = row.get("Höjdpunkter", "").strip()
     long_description_raw = row.get("Lång beskrivning", "").strip()
+    body_image_path = row.get("Bild i text", "").strip()
+    hero_image_position = row.get("Hero-bild position", "").strip() or "center"
 
     region_label = REGIONS[region_key]["label"]
     region_url = f"https://runclubs.se/{region_key}"
@@ -222,6 +254,7 @@ def build_club_page(row: dict, region_key: str) -> tuple[str, str]:
         "SHORT_DESCRIPTION": short_description,
         "JSONLD_DESCRIPTION": short_description,
         "HERO_IMAGE_URL": hero_image,
+        "HERO_IMAGE_POSITION": hero_image_position,
         "CANONICAL_URL": canonical_url,
         "CITY_URLENC": quote(f"{city}, Sverige"),
         "REGION_URL": region_url,
@@ -235,7 +268,9 @@ def build_club_page(row: dict, region_key: str) -> tuple[str, str]:
         "SAME_AS_JSON": build_same_as(instagram, strava, facebook),
         "SOCIAL_LINKS_HTML": build_social_links_html(instagram, strava, facebook),
         "HIGHLIGHTS_HTML": build_highlights_html(highlights_raw),
-        "LONG_DESCRIPTION_HTML": build_long_description_html(long_description_raw),
+        "LONG_DESCRIPTION_HTML": build_long_description_html(
+            long_description_raw, build_body_image_html(body_image_path, club_name)
+        ),
         "HERO_LOGO_BLOCK": build_hero_logo_block(logo_url),
         "SCHEDULE_DAY": schedule_day or "Se Instagram",
         "SCHEDULE_TIME": schedule_time or "Se Instagram",

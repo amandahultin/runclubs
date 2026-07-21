@@ -94,6 +94,7 @@ CITY_CLUBS: dict[str, list[str]] = {
         "stadium-run-club", "tjejmilen-runclub",
     ],
     "goteborg": [
+        "we-run-west",
         "goteborg-running-club", "sweden-runners-goteborg", "aero-boys-club",
         "east-run-club", "slowrunners-goteborg", "she-runs-club",
         "core-run-club", "ess-runners-club",

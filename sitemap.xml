@@ -4,7 +4,7 @@
   <!-- Startsida -->
   <url>
     <loc>https://runclubs.se/</loc>
-    <lastmod>2026-07-20</lastmod>
+    <lastmod>2026-07-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -12,19 +12,19 @@
   <!-- Stadssidor -->
   <url>
     <loc>https://runclubs.se/stockholm</loc>
-    <lastmod>2026-07-20</lastmod>
+    <lastmod>2026-07-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
   </url>
   <url>
     <loc>https://runclubs.se/goteborg</loc>
-    <lastmod>2026-07-20</lastmod>
+    <lastmod>2026-07-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
   </url>
   <url>
     <loc>https://runclubs.se/ovriga-landet</loc>
-    <lastmod>2026-07-20</lastmod>
+    <lastmod>2026-07-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
   </url>
@@ -32,25 +32,25 @@
   <!-- Eventsidor -->
   <url>
     <loc>https://runclubs.se/events</loc>
-    <lastmod>2026-07-20</lastmod>
+    <lastmod>2026-07-21</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://runclubs.se/stockholm-running-events</loc>
-    <lastmod>2026-07-20</lastmod>
+    <lastmod>2026-07-21</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
     <loc>https://runclubs.se/loppkalender</loc>
-    <lastmod>2026-07-20</lastmod>
+    <lastmod>2026-07-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
     <loc>https://runclubs.se/nyheter</loc>
-    <lastmod>2026-07-20</lastmod>
+    <lastmod>2026-07-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.75</priority>
   </url>
@@ -58,19 +58,19 @@
   <!-- Artiklar -->
   <url>
     <loc>https://runclubs.se/tjejer-tar-over-lopsparen</loc>
-    <lastmod>2026-07-20</lastmod>
+    <lastmod>2026-07-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.65</priority>
   </url>
   <url>
     <loc>https://runclubs.se/stockholm-marathon-2026-slutsalt</loc>
-    <lastmod>2026-07-20</lastmod>
+    <lastmod>2026-07-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.65</priority>
   </url>
   <url>
     <loc>https://runclubs.se/lopning-for-tjejer</loc>
-    <lastmod>2026-07-20</lastmod>
+    <lastmod>2026-07-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.65</priority>
   </url>
@@ -78,403 +78,404 @@
   <!-- Om sajten -->
   <url>
     <loc>https://runclubs.se/om-oss</loc>
-    <lastmod>2026-07-20</lastmod>
+    <lastmod>2026-07-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://runclubs.se/samarbeta</loc>
-    <lastmod>2026-07-20</lastmod>
+    <lastmod>2026-07-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://runclubs.se/kontakt</loc>
-    <lastmod>2026-07-20</lastmod>
+    <lastmod>2026-07-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
 
   <!-- Klubbsidor Stockholm -->
-  <url><loc>https://runclubs.se/stockholm/andmorerunning/</loc><lastmod>2026-07-20</lastmod><priority>0.6</priority></url>
-  <url><loc>https://runclubs.se/stockholm/burgers-n-brew-run-crew/</loc><lastmod>2026-07-20</lastmod><priority>0.6</priority></url>
-  <url><loc>https://runclubs.se/stockholm/dopest-runners/</loc><lastmod>2026-07-20</lastmod><priority>0.6</priority></url>
-  <url><loc>https://runclubs.se/stockholm/hogdalen-run-club/</loc><lastmod>2026-07-20</lastmod><priority>0.6</priority></url>
-  <url><loc>https://runclubs.se/stockholm/mellqvist-run-club/</loc><lastmod>2026-07-20</lastmod><priority>0.6</priority></url>
-  <url><loc>https://runclubs.se/stockholm/mikkeller-running-club-sthlm/</loc><lastmod>2026-07-20</lastmod><priority>0.6</priority></url>
-  <url><loc>https://runclubs.se/stockholm/nasci-collective/</loc><lastmod>2026-07-20</lastmod><priority>0.6</priority></url>
-  <url><loc>https://runclubs.se/stockholm/pulse-pacers/</loc><lastmod>2026-07-20</lastmod><priority>0.6</priority></url>
-  <url><loc>https://runclubs.se/stockholm/rtc/</loc><lastmod>2026-07-20</lastmod><priority>0.6</priority></url>
-  <url><loc>https://runclubs.se/stockholm/run-collective-stockholm/</loc><lastmod>2026-07-20</lastmod><priority>0.6</priority></url>
-  <url><loc>https://runclubs.se/stockholm/runday/</loc><lastmod>2026-07-20</lastmod><priority>0.6</priority></url>
-  <url><loc>https://runclubs.se/stockholm/running-around-club/</loc><lastmod>2026-07-20</lastmod><priority>0.6</priority></url>
-  <url><loc>https://runclubs.se/stockholm/saucony-run-club-sverige/</loc><lastmod>2026-07-20</lastmod><priority>0.6</priority></url>
-  <url><loc>https://runclubs.se/stockholm/slowrunners-sthlm/</loc><lastmod>2026-07-20</lastmod><priority>0.6</priority></url>
-  <url><loc>https://runclubs.se/stockholm/soderloparna-stockholm/</loc><lastmod>2026-07-20</lastmod><priority>0.6</priority></url>
-  <url><loc>https://runclubs.se/stockholm/solemates-runclub/</loc><lastmod>2026-07-20</lastmod><priority>0.6</priority></url>
-  <url><loc>https://runclubs.se/stockholm/stadium-run-club/</loc><lastmod>2026-07-20</lastmod><priority>0.6</priority></url>
-  <url><loc>https://runclubs.se/stockholm/stockholm-run-club/</loc><lastmod>2026-07-20</lastmod><priority>0.6</priority></url>
-  <url><loc>https://runclubs.se/stockholm/svedjans-lopsallskap/</loc><lastmod>2026-07-20</lastmod><priority>0.6</priority></url>
-  <url><loc>https://runclubs.se/stockholm/tjejmilen-runclub/</loc><lastmod>2026-07-20</lastmod><priority>0.6</priority></url>
-  <url><loc>https://runclubs.se/stockholm/triple-threshold-rc/</loc><lastmod>2026-07-20</lastmod><priority>0.6</priority></url>
-  <url><loc>https://runclubs.se/stockholm/zlk-zinken-lopklubb/</loc><lastmod>2026-07-20</lastmod><priority>0.6</priority></url>
+  <url><loc>https://runclubs.se/stockholm/andmorerunning/</loc><lastmod>2026-07-21</lastmod><priority>0.6</priority></url>
+  <url><loc>https://runclubs.se/stockholm/burgers-n-brew-run-crew/</loc><lastmod>2026-07-21</lastmod><priority>0.6</priority></url>
+  <url><loc>https://runclubs.se/stockholm/dopest-runners/</loc><lastmod>2026-07-21</lastmod><priority>0.6</priority></url>
+  <url><loc>https://runclubs.se/stockholm/hogdalen-run-club/</loc><lastmod>2026-07-21</lastmod><priority>0.6</priority></url>
+  <url><loc>https://runclubs.se/stockholm/mellqvist-run-club/</loc><lastmod>2026-07-21</lastmod><priority>0.6</priority></url>
+  <url><loc>https://runclubs.se/stockholm/mikkeller-running-club-sthlm/</loc><lastmod>2026-07-21</lastmod><priority>0.6</priority></url>
+  <url><loc>https://runclubs.se/stockholm/nasci-collective/</loc><lastmod>2026-07-21</lastmod><priority>0.6</priority></url>
+  <url><loc>https://runclubs.se/stockholm/pulse-pacers/</loc><lastmod>2026-07-21</lastmod><priority>0.6</priority></url>
+  <url><loc>https://runclubs.se/stockholm/rtc/</loc><lastmod>2026-07-21</lastmod><priority>0.6</priority></url>
+  <url><loc>https://runclubs.se/stockholm/run-collective-stockholm/</loc><lastmod>2026-07-21</lastmod><priority>0.6</priority></url>
+  <url><loc>https://runclubs.se/stockholm/runday/</loc><lastmod>2026-07-21</lastmod><priority>0.6</priority></url>
+  <url><loc>https://runclubs.se/stockholm/running-around-club/</loc><lastmod>2026-07-21</lastmod><priority>0.6</priority></url>
+  <url><loc>https://runclubs.se/stockholm/saucony-run-club-sverige/</loc><lastmod>2026-07-21</lastmod><priority>0.6</priority></url>
+  <url><loc>https://runclubs.se/stockholm/slowrunners-sthlm/</loc><lastmod>2026-07-21</lastmod><priority>0.6</priority></url>
+  <url><loc>https://runclubs.se/stockholm/soderloparna-stockholm/</loc><lastmod>2026-07-21</lastmod><priority>0.6</priority></url>
+  <url><loc>https://runclubs.se/stockholm/solemates-runclub/</loc><lastmod>2026-07-21</lastmod><priority>0.6</priority></url>
+  <url><loc>https://runclubs.se/stockholm/stadium-run-club/</loc><lastmod>2026-07-21</lastmod><priority>0.6</priority></url>
+  <url><loc>https://runclubs.se/stockholm/stockholm-run-club/</loc><lastmod>2026-07-21</lastmod><priority>0.6</priority></url>
+  <url><loc>https://runclubs.se/stockholm/svedjans-lopsallskap/</loc><lastmod>2026-07-21</lastmod><priority>0.6</priority></url>
+  <url><loc>https://runclubs.se/stockholm/tjejmilen-runclub/</loc><lastmod>2026-07-21</lastmod><priority>0.6</priority></url>
+  <url><loc>https://runclubs.se/stockholm/triple-threshold-rc/</loc><lastmod>2026-07-21</lastmod><priority>0.6</priority></url>
+  <url><loc>https://runclubs.se/stockholm/zlk-zinken-lopklubb/</loc><lastmod>2026-07-21</lastmod><priority>0.6</priority></url>
 
   <!-- Filtersidor Stockholm -->
-  <url><loc>https://runclubs.se/stockholm?stadsdel=södermalm</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/stockholm?stadsdel=östermalm</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/stockholm?stadsdel=vasastan</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/stockholm?stadsdel=city</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/stockholm?stadsdel=söderort</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/stockholm?typ=väg</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/stockholm?typ=väg&amp;stadsdel=södermalm</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/stockholm?typ=väg&amp;stadsdel=östermalm</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/stockholm?typ=väg&amp;stadsdel=vasastan</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/stockholm?typ=väg&amp;stadsdel=city</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/stockholm?typ=väg&amp;stadsdel=söderort</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/stockholm?typ=intervall</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/stockholm?typ=intervall&amp;stadsdel=södermalm</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/stockholm?typ=intervall&amp;stadsdel=östermalm</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/stockholm?typ=intervall&amp;stadsdel=söderort</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/stockholm?typ=långpass</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/stockholm?typ=långpass&amp;stadsdel=södermalm</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/stockholm?typ=långpass&amp;stadsdel=östermalm</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/stockholm?typ=långpass&amp;stadsdel=söderort</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/stockholm?typ=social</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/stockholm?typ=social&amp;stadsdel=södermalm</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/stockholm?typ=social&amp;stadsdel=östermalm</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/stockholm?typ=social&amp;stadsdel=vasastan</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/stockholm?typ=social&amp;stadsdel=city</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/stockholm?typ=social&amp;stadsdel=söderort</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/stockholm?typ=frukost</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/stockholm?typ=frukost&amp;stadsdel=vasastan</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/stockholm?typ=frukost&amp;stadsdel=city</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/stockholm?typ=girls-only</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/stockholm?niva=nybörjare</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/stockholm?niva=nybörjare&amp;stadsdel=södermalm</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/stockholm?niva=nybörjare&amp;stadsdel=östermalm</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/stockholm?niva=nybörjare&amp;stadsdel=vasastan</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/stockholm?niva=nybörjare&amp;stadsdel=city</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/stockholm?niva=nybörjare&amp;stadsdel=söderort</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/stockholm?niva=nybörjare&amp;typ=väg</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/stockholm?niva=nybörjare&amp;typ=väg&amp;stadsdel=södermalm</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/stockholm?niva=nybörjare&amp;typ=väg&amp;stadsdel=östermalm</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/stockholm?niva=nybörjare&amp;typ=väg&amp;stadsdel=vasastan</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/stockholm?niva=nybörjare&amp;typ=väg&amp;stadsdel=city</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/stockholm?niva=nybörjare&amp;typ=väg&amp;stadsdel=söderort</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/stockholm?niva=nybörjare&amp;typ=intervall</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/stockholm?niva=nybörjare&amp;typ=intervall&amp;stadsdel=östermalm</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/stockholm?niva=nybörjare&amp;typ=intervall&amp;stadsdel=söderort</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/stockholm?niva=nybörjare&amp;typ=långpass</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/stockholm?niva=nybörjare&amp;typ=långpass&amp;stadsdel=södermalm</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/stockholm?niva=nybörjare&amp;typ=långpass&amp;stadsdel=östermalm</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/stockholm?niva=nybörjare&amp;typ=långpass&amp;stadsdel=söderort</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/stockholm?niva=nybörjare&amp;typ=social</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/stockholm?niva=nybörjare&amp;typ=social&amp;stadsdel=södermalm</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/stockholm?niva=nybörjare&amp;typ=social&amp;stadsdel=östermalm</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/stockholm?niva=nybörjare&amp;typ=social&amp;stadsdel=vasastan</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/stockholm?niva=nybörjare&amp;typ=social&amp;stadsdel=city</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/stockholm?niva=nybörjare&amp;typ=social&amp;stadsdel=söderort</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/stockholm?niva=nybörjare&amp;typ=frukost</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/stockholm?niva=nybörjare&amp;typ=frukost&amp;stadsdel=vasastan</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/stockholm?niva=nybörjare&amp;typ=frukost&amp;stadsdel=city</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/stockholm?niva=nybörjare&amp;typ=girls-only</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/stockholm?niva=mellannivå</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/stockholm?niva=mellannivå&amp;stadsdel=södermalm</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/stockholm?niva=mellannivå&amp;stadsdel=östermalm</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/stockholm?niva=mellannivå&amp;stadsdel=vasastan</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/stockholm?niva=mellannivå&amp;stadsdel=city</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/stockholm?niva=mellannivå&amp;stadsdel=söderort</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/stockholm?niva=mellannivå&amp;typ=väg</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/stockholm?niva=mellannivå&amp;typ=väg&amp;stadsdel=södermalm</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/stockholm?niva=mellannivå&amp;typ=väg&amp;stadsdel=östermalm</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/stockholm?niva=mellannivå&amp;typ=väg&amp;stadsdel=vasastan</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/stockholm?niva=mellannivå&amp;typ=väg&amp;stadsdel=city</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/stockholm?niva=mellannivå&amp;typ=väg&amp;stadsdel=söderort</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/stockholm?niva=mellannivå&amp;typ=intervall</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/stockholm?niva=mellannivå&amp;typ=intervall&amp;stadsdel=södermalm</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/stockholm?niva=mellannivå&amp;typ=intervall&amp;stadsdel=östermalm</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/stockholm?niva=mellannivå&amp;typ=intervall&amp;stadsdel=söderort</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/stockholm?niva=mellannivå&amp;typ=långpass</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/stockholm?niva=mellannivå&amp;typ=långpass&amp;stadsdel=södermalm</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/stockholm?niva=mellannivå&amp;typ=långpass&amp;stadsdel=östermalm</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/stockholm?niva=mellannivå&amp;typ=långpass&amp;stadsdel=söderort</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/stockholm?niva=mellannivå&amp;typ=social</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/stockholm?niva=mellannivå&amp;typ=social&amp;stadsdel=södermalm</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/stockholm?niva=mellannivå&amp;typ=social&amp;stadsdel=östermalm</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/stockholm?niva=mellannivå&amp;typ=social&amp;stadsdel=vasastan</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/stockholm?niva=mellannivå&amp;typ=social&amp;stadsdel=city</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/stockholm?niva=mellannivå&amp;typ=social&amp;stadsdel=söderort</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/stockholm?niva=mellannivå&amp;typ=frukost</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/stockholm?niva=mellannivå&amp;typ=frukost&amp;stadsdel=vasastan</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/stockholm?niva=mellannivå&amp;typ=frukost&amp;stadsdel=city</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/stockholm?niva=mellannivå&amp;typ=girls-only</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/stockholm?niva=avancerad</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/stockholm?niva=avancerad&amp;stadsdel=södermalm</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/stockholm?niva=avancerad&amp;stadsdel=östermalm</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/stockholm?niva=avancerad&amp;stadsdel=city</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/stockholm?niva=avancerad&amp;stadsdel=söderort</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/stockholm?niva=avancerad&amp;typ=väg</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/stockholm?niva=avancerad&amp;typ=väg&amp;stadsdel=södermalm</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/stockholm?niva=avancerad&amp;typ=väg&amp;stadsdel=östermalm</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/stockholm?niva=avancerad&amp;typ=väg&amp;stadsdel=city</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/stockholm?niva=avancerad&amp;typ=väg&amp;stadsdel=söderort</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/stockholm?niva=avancerad&amp;typ=intervall</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/stockholm?niva=avancerad&amp;typ=intervall&amp;stadsdel=södermalm</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/stockholm?niva=avancerad&amp;typ=intervall&amp;stadsdel=östermalm</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/stockholm?niva=avancerad&amp;typ=intervall&amp;stadsdel=söderort</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/stockholm?niva=avancerad&amp;typ=långpass</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/stockholm?niva=avancerad&amp;typ=långpass&amp;stadsdel=södermalm</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/stockholm?niva=avancerad&amp;typ=långpass&amp;stadsdel=östermalm</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/stockholm?niva=avancerad&amp;typ=långpass&amp;stadsdel=söderort</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/stockholm?niva=avancerad&amp;typ=social</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/stockholm?niva=avancerad&amp;typ=social&amp;stadsdel=södermalm</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/stockholm?niva=avancerad&amp;typ=social&amp;stadsdel=östermalm</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/stockholm?niva=avancerad&amp;typ=social&amp;stadsdel=city</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/stockholm?niva=avancerad&amp;typ=social&amp;stadsdel=söderort</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/stockholm?niva=avancerad&amp;typ=frukost</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/stockholm?niva=avancerad&amp;typ=frukost&amp;stadsdel=city</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/stockholm?niva=avancerad&amp;typ=girls-only</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/stockholm?stadsdel=södermalm</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/stockholm?stadsdel=östermalm</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/stockholm?stadsdel=vasastan</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/stockholm?stadsdel=city</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/stockholm?stadsdel=söderort</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/stockholm?typ=väg</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/stockholm?typ=väg&amp;stadsdel=södermalm</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/stockholm?typ=väg&amp;stadsdel=östermalm</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/stockholm?typ=väg&amp;stadsdel=vasastan</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/stockholm?typ=väg&amp;stadsdel=city</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/stockholm?typ=väg&amp;stadsdel=söderort</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/stockholm?typ=intervall</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/stockholm?typ=intervall&amp;stadsdel=södermalm</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/stockholm?typ=intervall&amp;stadsdel=östermalm</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/stockholm?typ=intervall&amp;stadsdel=söderort</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/stockholm?typ=långpass</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/stockholm?typ=långpass&amp;stadsdel=södermalm</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/stockholm?typ=långpass&amp;stadsdel=östermalm</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/stockholm?typ=långpass&amp;stadsdel=söderort</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/stockholm?typ=social</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/stockholm?typ=social&amp;stadsdel=södermalm</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/stockholm?typ=social&amp;stadsdel=östermalm</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/stockholm?typ=social&amp;stadsdel=vasastan</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/stockholm?typ=social&amp;stadsdel=city</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/stockholm?typ=social&amp;stadsdel=söderort</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/stockholm?typ=frukost</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/stockholm?typ=frukost&amp;stadsdel=vasastan</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/stockholm?typ=frukost&amp;stadsdel=city</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/stockholm?typ=girls-only</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/stockholm?niva=nybörjare</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/stockholm?niva=nybörjare&amp;stadsdel=södermalm</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/stockholm?niva=nybörjare&amp;stadsdel=östermalm</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/stockholm?niva=nybörjare&amp;stadsdel=vasastan</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/stockholm?niva=nybörjare&amp;stadsdel=city</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/stockholm?niva=nybörjare&amp;stadsdel=söderort</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/stockholm?niva=nybörjare&amp;typ=väg</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/stockholm?niva=nybörjare&amp;typ=väg&amp;stadsdel=södermalm</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/stockholm?niva=nybörjare&amp;typ=väg&amp;stadsdel=östermalm</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/stockholm?niva=nybörjare&amp;typ=väg&amp;stadsdel=vasastan</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/stockholm?niva=nybörjare&amp;typ=väg&amp;stadsdel=city</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/stockholm?niva=nybörjare&amp;typ=väg&amp;stadsdel=söderort</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/stockholm?niva=nybörjare&amp;typ=intervall</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/stockholm?niva=nybörjare&amp;typ=intervall&amp;stadsdel=östermalm</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/stockholm?niva=nybörjare&amp;typ=intervall&amp;stadsdel=söderort</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/stockholm?niva=nybörjare&amp;typ=långpass</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/stockholm?niva=nybörjare&amp;typ=långpass&amp;stadsdel=södermalm</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/stockholm?niva=nybörjare&amp;typ=långpass&amp;stadsdel=östermalm</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/stockholm?niva=nybörjare&amp;typ=långpass&amp;stadsdel=söderort</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/stockholm?niva=nybörjare&amp;typ=social</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/stockholm?niva=nybörjare&amp;typ=social&amp;stadsdel=södermalm</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/stockholm?niva=nybörjare&amp;typ=social&amp;stadsdel=östermalm</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/stockholm?niva=nybörjare&amp;typ=social&amp;stadsdel=vasastan</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/stockholm?niva=nybörjare&amp;typ=social&amp;stadsdel=city</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/stockholm?niva=nybörjare&amp;typ=social&amp;stadsdel=söderort</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/stockholm?niva=nybörjare&amp;typ=frukost</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/stockholm?niva=nybörjare&amp;typ=frukost&amp;stadsdel=vasastan</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/stockholm?niva=nybörjare&amp;typ=frukost&amp;stadsdel=city</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/stockholm?niva=nybörjare&amp;typ=girls-only</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/stockholm?niva=mellannivå</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/stockholm?niva=mellannivå&amp;stadsdel=södermalm</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/stockholm?niva=mellannivå&amp;stadsdel=östermalm</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/stockholm?niva=mellannivå&amp;stadsdel=vasastan</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/stockholm?niva=mellannivå&amp;stadsdel=city</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/stockholm?niva=mellannivå&amp;stadsdel=söderort</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/stockholm?niva=mellannivå&amp;typ=väg</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/stockholm?niva=mellannivå&amp;typ=väg&amp;stadsdel=södermalm</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/stockholm?niva=mellannivå&amp;typ=väg&amp;stadsdel=östermalm</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/stockholm?niva=mellannivå&amp;typ=väg&amp;stadsdel=vasastan</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/stockholm?niva=mellannivå&amp;typ=väg&amp;stadsdel=city</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/stockholm?niva=mellannivå&amp;typ=väg&amp;stadsdel=söderort</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/stockholm?niva=mellannivå&amp;typ=intervall</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/stockholm?niva=mellannivå&amp;typ=intervall&amp;stadsdel=södermalm</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/stockholm?niva=mellannivå&amp;typ=intervall&amp;stadsdel=östermalm</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/stockholm?niva=mellannivå&amp;typ=intervall&amp;stadsdel=söderort</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/stockholm?niva=mellannivå&amp;typ=långpass</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/stockholm?niva=mellannivå&amp;typ=långpass&amp;stadsdel=södermalm</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/stockholm?niva=mellannivå&amp;typ=långpass&amp;stadsdel=östermalm</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/stockholm?niva=mellannivå&amp;typ=långpass&amp;stadsdel=söderort</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/stockholm?niva=mellannivå&amp;typ=social</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/stockholm?niva=mellannivå&amp;typ=social&amp;stadsdel=södermalm</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/stockholm?niva=mellannivå&amp;typ=social&amp;stadsdel=östermalm</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/stockholm?niva=mellannivå&amp;typ=social&amp;stadsdel=vasastan</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/stockholm?niva=mellannivå&amp;typ=social&amp;stadsdel=city</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/stockholm?niva=mellannivå&amp;typ=social&amp;stadsdel=söderort</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/stockholm?niva=mellannivå&amp;typ=frukost</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/stockholm?niva=mellannivå&amp;typ=frukost&amp;stadsdel=vasastan</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/stockholm?niva=mellannivå&amp;typ=frukost&amp;stadsdel=city</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/stockholm?niva=mellannivå&amp;typ=girls-only</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/stockholm?niva=avancerad</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/stockholm?niva=avancerad&amp;stadsdel=södermalm</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/stockholm?niva=avancerad&amp;stadsdel=östermalm</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/stockholm?niva=avancerad&amp;stadsdel=city</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/stockholm?niva=avancerad&amp;stadsdel=söderort</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/stockholm?niva=avancerad&amp;typ=väg</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/stockholm?niva=avancerad&amp;typ=väg&amp;stadsdel=södermalm</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/stockholm?niva=avancerad&amp;typ=väg&amp;stadsdel=östermalm</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/stockholm?niva=avancerad&amp;typ=väg&amp;stadsdel=city</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/stockholm?niva=avancerad&amp;typ=väg&amp;stadsdel=söderort</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/stockholm?niva=avancerad&amp;typ=intervall</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/stockholm?niva=avancerad&amp;typ=intervall&amp;stadsdel=södermalm</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/stockholm?niva=avancerad&amp;typ=intervall&amp;stadsdel=östermalm</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/stockholm?niva=avancerad&amp;typ=intervall&amp;stadsdel=söderort</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/stockholm?niva=avancerad&amp;typ=långpass</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/stockholm?niva=avancerad&amp;typ=långpass&amp;stadsdel=södermalm</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/stockholm?niva=avancerad&amp;typ=långpass&amp;stadsdel=östermalm</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/stockholm?niva=avancerad&amp;typ=långpass&amp;stadsdel=söderort</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/stockholm?niva=avancerad&amp;typ=social</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/stockholm?niva=avancerad&amp;typ=social&amp;stadsdel=södermalm</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/stockholm?niva=avancerad&amp;typ=social&amp;stadsdel=östermalm</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/stockholm?niva=avancerad&amp;typ=social&amp;stadsdel=city</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/stockholm?niva=avancerad&amp;typ=social&amp;stadsdel=söderort</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/stockholm?niva=avancerad&amp;typ=frukost</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/stockholm?niva=avancerad&amp;typ=frukost&amp;stadsdel=city</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/stockholm?niva=avancerad&amp;typ=girls-only</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
 
   <!-- Klubbsidor Göteborg -->
-  <url><loc>https://runclubs.se/goteborg/aero-boys-club/</loc><lastmod>2026-07-20</lastmod><priority>0.6</priority></url>
-  <url><loc>https://runclubs.se/goteborg/core-run-club/</loc><lastmod>2026-07-20</lastmod><priority>0.6</priority></url>
-  <url><loc>https://runclubs.se/goteborg/east-run-club/</loc><lastmod>2026-07-20</lastmod><priority>0.6</priority></url>
-  <url><loc>https://runclubs.se/goteborg/ess-runners-club/</loc><lastmod>2026-07-20</lastmod><priority>0.6</priority></url>
-  <url><loc>https://runclubs.se/goteborg/goteborg-running-club/</loc><lastmod>2026-07-20</lastmod><priority>0.6</priority></url>
-  <url><loc>https://runclubs.se/goteborg/pace-people/</loc><lastmod>2026-07-20</lastmod><priority>0.6</priority></url>
-  <url><loc>https://runclubs.se/goteborg/she-runs-club/</loc><lastmod>2026-07-20</lastmod><priority>0.6</priority></url>
-  <url><loc>https://runclubs.se/goteborg/sweden-runners-goteborg/</loc><lastmod>2026-07-20</lastmod><priority>0.6</priority></url>
+  <url><loc>https://runclubs.se/goteborg/aero-boys-club/</loc><lastmod>2026-07-21</lastmod><priority>0.6</priority></url>
+  <url><loc>https://runclubs.se/goteborg/core-run-club/</loc><lastmod>2026-07-21</lastmod><priority>0.6</priority></url>
+  <url><loc>https://runclubs.se/goteborg/east-run-club/</loc><lastmod>2026-07-21</lastmod><priority>0.6</priority></url>
+  <url><loc>https://runclubs.se/goteborg/ess-runners-club/</loc><lastmod>2026-07-21</lastmod><priority>0.6</priority></url>
+  <url><loc>https://runclubs.se/goteborg/goteborg-running-club/</loc><lastmod>2026-07-21</lastmod><priority>0.6</priority></url>
+  <url><loc>https://runclubs.se/goteborg/pace-people/</loc><lastmod>2026-07-21</lastmod><priority>0.6</priority></url>
+  <url><loc>https://runclubs.se/goteborg/she-runs-club/</loc><lastmod>2026-07-21</lastmod><priority>0.6</priority></url>
+  <url><loc>https://runclubs.se/goteborg/sweden-runners-goteborg/</loc><lastmod>2026-07-21</lastmod><priority>0.6</priority></url>
+  <url><loc>https://runclubs.se/goteborg/we-run-west/</loc><lastmod>2026-07-21</lastmod><priority>0.6</priority></url>
 
   <!-- Filtersidor Göteborg -->
-  <url><loc>https://runclubs.se/goteborg?stadsdel=linné-majorna</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/goteborg?stadsdel=johanneberg</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/goteborg?stadsdel=olskroken</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/goteborg?typ=väg</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/goteborg?typ=väg&amp;stadsdel=linné-majorna</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/goteborg?typ=väg&amp;stadsdel=johanneberg</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/goteborg?typ=väg&amp;stadsdel=olskroken</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/goteborg?typ=intervall</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/goteborg?typ=intervall&amp;stadsdel=linné-majorna</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/goteborg?typ=intervall&amp;stadsdel=johanneberg</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/goteborg?typ=långpass</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/goteborg?typ=långpass&amp;stadsdel=linné-majorna</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/goteborg?typ=långpass&amp;stadsdel=johanneberg</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/goteborg?typ=social</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/goteborg?typ=social&amp;stadsdel=linné-majorna</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/goteborg?typ=social&amp;stadsdel=johanneberg</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/goteborg?typ=social&amp;stadsdel=olskroken</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/goteborg?typ=frukost</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/goteborg?typ=frukost&amp;stadsdel=linné-majorna</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/goteborg?typ=girls-only</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/goteborg?niva=nybörjare</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/goteborg?niva=nybörjare&amp;stadsdel=linné-majorna</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/goteborg?niva=nybörjare&amp;stadsdel=johanneberg</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/goteborg?niva=nybörjare&amp;stadsdel=olskroken</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/goteborg?niva=nybörjare&amp;typ=väg</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/goteborg?niva=nybörjare&amp;typ=väg&amp;stadsdel=linné-majorna</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/goteborg?niva=nybörjare&amp;typ=väg&amp;stadsdel=johanneberg</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/goteborg?niva=nybörjare&amp;typ=väg&amp;stadsdel=olskroken</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/goteborg?niva=nybörjare&amp;typ=intervall</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/goteborg?niva=nybörjare&amp;typ=intervall&amp;stadsdel=linné-majorna</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/goteborg?niva=nybörjare&amp;typ=intervall&amp;stadsdel=johanneberg</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/goteborg?niva=nybörjare&amp;typ=långpass</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/goteborg?niva=nybörjare&amp;typ=långpass&amp;stadsdel=linné-majorna</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/goteborg?niva=nybörjare&amp;typ=långpass&amp;stadsdel=johanneberg</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/goteborg?niva=nybörjare&amp;typ=social</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/goteborg?niva=nybörjare&amp;typ=social&amp;stadsdel=linné-majorna</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/goteborg?niva=nybörjare&amp;typ=social&amp;stadsdel=johanneberg</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/goteborg?niva=nybörjare&amp;typ=social&amp;stadsdel=olskroken</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/goteborg?niva=nybörjare&amp;typ=frukost</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/goteborg?niva=nybörjare&amp;typ=frukost&amp;stadsdel=linné-majorna</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/goteborg?niva=nybörjare&amp;typ=girls-only</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/goteborg?niva=mellannivå</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/goteborg?niva=mellannivå&amp;stadsdel=linné-majorna</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/goteborg?niva=mellannivå&amp;stadsdel=johanneberg</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/goteborg?niva=mellannivå&amp;typ=väg</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/goteborg?niva=mellannivå&amp;typ=väg&amp;stadsdel=linné-majorna</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/goteborg?niva=mellannivå&amp;typ=väg&amp;stadsdel=johanneberg</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/goteborg?niva=mellannivå&amp;typ=intervall</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/goteborg?niva=mellannivå&amp;typ=intervall&amp;stadsdel=linné-majorna</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/goteborg?niva=mellannivå&amp;typ=intervall&amp;stadsdel=johanneberg</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/goteborg?niva=mellannivå&amp;typ=långpass</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/goteborg?niva=mellannivå&amp;typ=långpass&amp;stadsdel=linné-majorna</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/goteborg?niva=mellannivå&amp;typ=långpass&amp;stadsdel=johanneberg</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/goteborg?niva=mellannivå&amp;typ=social</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/goteborg?niva=mellannivå&amp;typ=social&amp;stadsdel=linné-majorna</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/goteborg?niva=mellannivå&amp;typ=social&amp;stadsdel=johanneberg</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/goteborg?niva=mellannivå&amp;typ=frukost</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/goteborg?niva=mellannivå&amp;typ=frukost&amp;stadsdel=linné-majorna</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/goteborg?niva=mellannivå&amp;typ=girls-only</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/goteborg?niva=avancerad</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/goteborg?niva=avancerad&amp;stadsdel=linné-majorna</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/goteborg?niva=avancerad&amp;stadsdel=johanneberg</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/goteborg?niva=avancerad&amp;typ=väg</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/goteborg?niva=avancerad&amp;typ=väg&amp;stadsdel=linné-majorna</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/goteborg?niva=avancerad&amp;typ=väg&amp;stadsdel=johanneberg</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/goteborg?niva=avancerad&amp;typ=intervall</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/goteborg?niva=avancerad&amp;typ=intervall&amp;stadsdel=linné-majorna</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/goteborg?niva=avancerad&amp;typ=intervall&amp;stadsdel=johanneberg</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/goteborg?niva=avancerad&amp;typ=långpass</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/goteborg?niva=avancerad&amp;typ=långpass&amp;stadsdel=linné-majorna</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/goteborg?niva=avancerad&amp;typ=långpass&amp;stadsdel=johanneberg</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/goteborg?niva=avancerad&amp;typ=social</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/goteborg?niva=avancerad&amp;typ=social&amp;stadsdel=linné-majorna</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/goteborg?niva=avancerad&amp;typ=social&amp;stadsdel=johanneberg</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/goteborg?niva=avancerad&amp;typ=frukost</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/goteborg?niva=avancerad&amp;typ=frukost&amp;stadsdel=linné-majorna</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/goteborg?stadsdel=linné-majorna</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/goteborg?stadsdel=johanneberg</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/goteborg?stadsdel=olskroken</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/goteborg?typ=väg</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/goteborg?typ=väg&amp;stadsdel=linné-majorna</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/goteborg?typ=väg&amp;stadsdel=johanneberg</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/goteborg?typ=väg&amp;stadsdel=olskroken</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/goteborg?typ=intervall</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/goteborg?typ=intervall&amp;stadsdel=linné-majorna</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/goteborg?typ=intervall&amp;stadsdel=johanneberg</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/goteborg?typ=långpass</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/goteborg?typ=långpass&amp;stadsdel=linné-majorna</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/goteborg?typ=långpass&amp;stadsdel=johanneberg</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/goteborg?typ=social</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/goteborg?typ=social&amp;stadsdel=linné-majorna</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/goteborg?typ=social&amp;stadsdel=johanneberg</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/goteborg?typ=social&amp;stadsdel=olskroken</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/goteborg?typ=frukost</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/goteborg?typ=frukost&amp;stadsdel=linné-majorna</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/goteborg?typ=girls-only</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/goteborg?niva=nybörjare</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/goteborg?niva=nybörjare&amp;stadsdel=linné-majorna</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/goteborg?niva=nybörjare&amp;stadsdel=johanneberg</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/goteborg?niva=nybörjare&amp;stadsdel=olskroken</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/goteborg?niva=nybörjare&amp;typ=väg</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/goteborg?niva=nybörjare&amp;typ=väg&amp;stadsdel=linné-majorna</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/goteborg?niva=nybörjare&amp;typ=väg&amp;stadsdel=johanneberg</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/goteborg?niva=nybörjare&amp;typ=väg&amp;stadsdel=olskroken</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/goteborg?niva=nybörjare&amp;typ=intervall</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/goteborg?niva=nybörjare&amp;typ=intervall&amp;stadsdel=linné-majorna</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/goteborg?niva=nybörjare&amp;typ=intervall&amp;stadsdel=johanneberg</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/goteborg?niva=nybörjare&amp;typ=långpass</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/goteborg?niva=nybörjare&amp;typ=långpass&amp;stadsdel=linné-majorna</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/goteborg?niva=nybörjare&amp;typ=långpass&amp;stadsdel=johanneberg</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/goteborg?niva=nybörjare&amp;typ=social</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/goteborg?niva=nybörjare&amp;typ=social&amp;stadsdel=linné-majorna</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/goteborg?niva=nybörjare&amp;typ=social&amp;stadsdel=johanneberg</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/goteborg?niva=nybörjare&amp;typ=social&amp;stadsdel=olskroken</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/goteborg?niva=nybörjare&amp;typ=frukost</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/goteborg?niva=nybörjare&amp;typ=frukost&amp;stadsdel=linné-majorna</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/goteborg?niva=nybörjare&amp;typ=girls-only</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/goteborg?niva=mellannivå</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/goteborg?niva=mellannivå&amp;stadsdel=linné-majorna</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/goteborg?niva=mellannivå&amp;stadsdel=johanneberg</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/goteborg?niva=mellannivå&amp;typ=väg</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/goteborg?niva=mellannivå&amp;typ=väg&amp;stadsdel=linné-majorna</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/goteborg?niva=mellannivå&amp;typ=väg&amp;stadsdel=johanneberg</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/goteborg?niva=mellannivå&amp;typ=intervall</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/goteborg?niva=mellannivå&amp;typ=intervall&amp;stadsdel=linné-majorna</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/goteborg?niva=mellannivå&amp;typ=intervall&amp;stadsdel=johanneberg</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/goteborg?niva=mellannivå&amp;typ=långpass</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/goteborg?niva=mellannivå&amp;typ=långpass&amp;stadsdel=linné-majorna</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/goteborg?niva=mellannivå&amp;typ=långpass&amp;stadsdel=johanneberg</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/goteborg?niva=mellannivå&amp;typ=social</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/goteborg?niva=mellannivå&amp;typ=social&amp;stadsdel=linné-majorna</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/goteborg?niva=mellannivå&amp;typ=social&amp;stadsdel=johanneberg</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/goteborg?niva=mellannivå&amp;typ=frukost</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/goteborg?niva=mellannivå&amp;typ=frukost&amp;stadsdel=linné-majorna</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/goteborg?niva=mellannivå&amp;typ=girls-only</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/goteborg?niva=avancerad</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/goteborg?niva=avancerad&amp;stadsdel=linné-majorna</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/goteborg?niva=avancerad&amp;stadsdel=johanneberg</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/goteborg?niva=avancerad&amp;typ=väg</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/goteborg?niva=avancerad&amp;typ=väg&amp;stadsdel=linné-majorna</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/goteborg?niva=avancerad&amp;typ=väg&amp;stadsdel=johanneberg</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/goteborg?niva=avancerad&amp;typ=intervall</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/goteborg?niva=avancerad&amp;typ=intervall&amp;stadsdel=linné-majorna</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/goteborg?niva=avancerad&amp;typ=intervall&amp;stadsdel=johanneberg</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/goteborg?niva=avancerad&amp;typ=långpass</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/goteborg?niva=avancerad&amp;typ=långpass&amp;stadsdel=linné-majorna</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/goteborg?niva=avancerad&amp;typ=långpass&amp;stadsdel=johanneberg</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/goteborg?niva=avancerad&amp;typ=social</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/goteborg?niva=avancerad&amp;typ=social&amp;stadsdel=linné-majorna</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/goteborg?niva=avancerad&amp;typ=social&amp;stadsdel=johanneberg</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/goteborg?niva=avancerad&amp;typ=frukost</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/goteborg?niva=avancerad&amp;typ=frukost&amp;stadsdel=linné-majorna</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
 
   <!-- Klubbsidor Övriga landet -->
-  <url><loc>https://runclubs.se/ovriga-landet/ett-steg-i-taget-alingsas/</loc><lastmod>2026-07-20</lastmod><priority>0.6</priority></url>
-  <url><loc>https://runclubs.se/ovriga-landet/fun-run-malmo/</loc><lastmod>2026-07-20</lastmod><priority>0.6</priority></url>
-  <url><loc>https://runclubs.se/ovriga-landet/girls-run-kalmar/</loc><lastmod>2026-07-20</lastmod><priority>0.6</priority></url>
-  <url><loc>https://runclubs.se/ovriga-landet/lund-run-club/</loc><lastmod>2026-07-20</lastmod><priority>0.6</priority></url>
-  <url><loc>https://runclubs.se/ovriga-landet/motvind-run-club-varberg/</loc><lastmod>2026-07-20</lastmod><priority>0.6</priority></url>
-  <url><loc>https://runclubs.se/ovriga-landet/mrc-malmo/</loc><lastmod>2026-07-20</lastmod><priority>0.6</priority></url>
-  <url><loc>https://runclubs.se/ovriga-landet/orebro-runclub/</loc><lastmod>2026-07-20</lastmod><priority>0.6</priority></url>
-  <url><loc>https://runclubs.se/ovriga-landet/running-for-breakfast-eskilstuna/</loc><lastmod>2026-07-20</lastmod><priority>0.6</priority></url>
-  <url><loc>https://runclubs.se/ovriga-landet/running-for-breakfast-norrkoping/</loc><lastmod>2026-07-20</lastmod><priority>0.6</priority></url>
-  <url><loc>https://runclubs.se/ovriga-landet/running-for-breakfast-vasteras/</loc><lastmod>2026-07-20</lastmod><priority>0.6</priority></url>
-  <url><loc>https://runclubs.se/ovriga-landet/rusa-running-club/</loc><lastmod>2026-07-20</lastmod><priority>0.6</priority></url>
-  <url><loc>https://runclubs.se/ovriga-landet/social-run-lund/</loc><lastmod>2026-07-20</lastmod><priority>0.6</priority></url>
-  <url><loc>https://runclubs.se/ovriga-landet/sweden-runners-malmo/</loc><lastmod>2026-07-20</lastmod><priority>0.6</priority></url>
-  <url><loc>https://runclubs.se/ovriga-landet/uppsala-lopklubb-for-tjejer/</loc><lastmod>2026-07-20</lastmod><priority>0.6</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet/ett-steg-i-taget-alingsas/</loc><lastmod>2026-07-21</lastmod><priority>0.6</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet/fun-run-malmo/</loc><lastmod>2026-07-21</lastmod><priority>0.6</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet/girls-run-kalmar/</loc><lastmod>2026-07-21</lastmod><priority>0.6</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet/lund-run-club/</loc><lastmod>2026-07-21</lastmod><priority>0.6</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet/motvind-run-club-varberg/</loc><lastmod>2026-07-21</lastmod><priority>0.6</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet/mrc-malmo/</loc><lastmod>2026-07-21</lastmod><priority>0.6</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet/orebro-runclub/</loc><lastmod>2026-07-21</lastmod><priority>0.6</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet/running-for-breakfast-eskilstuna/</loc><lastmod>2026-07-21</lastmod><priority>0.6</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet/running-for-breakfast-norrkoping/</loc><lastmod>2026-07-21</lastmod><priority>0.6</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet/running-for-breakfast-vasteras/</loc><lastmod>2026-07-21</lastmod><priority>0.6</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet/rusa-running-club/</loc><lastmod>2026-07-21</lastmod><priority>0.6</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet/social-run-lund/</loc><lastmod>2026-07-21</lastmod><priority>0.6</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet/sweden-runners-malmo/</loc><lastmod>2026-07-21</lastmod><priority>0.6</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet/uppsala-lopklubb-for-tjejer/</loc><lastmod>2026-07-21</lastmod><priority>0.6</priority></url>
 
   <!-- Filtersidor Övriga landet -->
-  <url><loc>https://runclubs.se/ovriga-landet?stad=alingsås</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/ovriga-landet?stad=eskilstuna</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/ovriga-landet?stad=kalmar</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/ovriga-landet?stad=lund</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/ovriga-landet?stad=malmö</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/ovriga-landet?stad=norrköping</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/ovriga-landet?stad=uppsala</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/ovriga-landet?stad=varberg</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/ovriga-landet?stad=västerås</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/ovriga-landet?typ=väg</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/ovriga-landet?typ=väg&amp;stad=alingsås</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/ovriga-landet?typ=väg&amp;stad=eskilstuna</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/ovriga-landet?typ=väg&amp;stad=kalmar</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/ovriga-landet?typ=väg&amp;stad=lund</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/ovriga-landet?typ=väg&amp;stad=malmö</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/ovriga-landet?typ=väg&amp;stad=norrköping</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/ovriga-landet?typ=väg&amp;stad=uppsala</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/ovriga-landet?typ=väg&amp;stad=varberg</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/ovriga-landet?typ=väg&amp;stad=västerås</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/ovriga-landet?typ=intervall</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/ovriga-landet?typ=intervall&amp;stad=malmö</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/ovriga-landet?typ=långpass</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/ovriga-landet?typ=långpass&amp;stad=malmö</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/ovriga-landet?typ=social</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/ovriga-landet?typ=social&amp;stad=alingsås</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/ovriga-landet?typ=social&amp;stad=eskilstuna</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/ovriga-landet?typ=social&amp;stad=kalmar</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/ovriga-landet?typ=social&amp;stad=lund</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/ovriga-landet?typ=social&amp;stad=malmö</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/ovriga-landet?typ=social&amp;stad=norrköping</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/ovriga-landet?typ=social&amp;stad=uppsala</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/ovriga-landet?typ=social&amp;stad=varberg</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/ovriga-landet?typ=social&amp;stad=västerås</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/ovriga-landet?typ=frukost</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/ovriga-landet?typ=frukost&amp;stad=eskilstuna</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/ovriga-landet?typ=frukost&amp;stad=malmö</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/ovriga-landet?typ=frukost&amp;stad=norrköping</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/ovriga-landet?typ=frukost&amp;stad=västerås</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/ovriga-landet?niva=nybörjare</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/ovriga-landet?niva=nybörjare&amp;stad=alingsås</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/ovriga-landet?niva=nybörjare&amp;stad=kalmar</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/ovriga-landet?niva=nybörjare&amp;stad=lund</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/ovriga-landet?niva=nybörjare&amp;stad=malmö</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/ovriga-landet?niva=nybörjare&amp;stad=uppsala</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/ovriga-landet?niva=nybörjare&amp;stad=varberg</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/ovriga-landet?niva=nybörjare&amp;typ=väg</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/ovriga-landet?niva=nybörjare&amp;typ=väg&amp;stad=alingsås</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/ovriga-landet?niva=nybörjare&amp;typ=väg&amp;stad=kalmar</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/ovriga-landet?niva=nybörjare&amp;typ=väg&amp;stad=lund</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/ovriga-landet?niva=nybörjare&amp;typ=väg&amp;stad=malmö</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/ovriga-landet?niva=nybörjare&amp;typ=väg&amp;stad=uppsala</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/ovriga-landet?niva=nybörjare&amp;typ=väg&amp;stad=varberg</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/ovriga-landet?niva=nybörjare&amp;typ=intervall</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/ovriga-landet?niva=nybörjare&amp;typ=intervall&amp;stad=malmö</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/ovriga-landet?niva=nybörjare&amp;typ=långpass</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/ovriga-landet?niva=nybörjare&amp;typ=långpass&amp;stad=malmö</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/ovriga-landet?niva=nybörjare&amp;typ=social</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/ovriga-landet?niva=nybörjare&amp;typ=social&amp;stad=alingsås</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/ovriga-landet?niva=nybörjare&amp;typ=social&amp;stad=kalmar</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/ovriga-landet?niva=nybörjare&amp;typ=social&amp;stad=lund</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/ovriga-landet?niva=nybörjare&amp;typ=social&amp;stad=malmö</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/ovriga-landet?niva=nybörjare&amp;typ=social&amp;stad=uppsala</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/ovriga-landet?niva=nybörjare&amp;typ=social&amp;stad=varberg</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/ovriga-landet?niva=nybörjare&amp;typ=frukost</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/ovriga-landet?niva=nybörjare&amp;typ=frukost&amp;stad=malmö</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/ovriga-landet?niva=mellannivå</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/ovriga-landet?niva=mellannivå&amp;stad=alingsås</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/ovriga-landet?niva=mellannivå&amp;stad=kalmar</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/ovriga-landet?niva=mellannivå&amp;stad=lund</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/ovriga-landet?niva=mellannivå&amp;stad=malmö</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/ovriga-landet?niva=mellannivå&amp;stad=uppsala</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/ovriga-landet?niva=mellannivå&amp;stad=varberg</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/ovriga-landet?niva=mellannivå&amp;typ=väg</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/ovriga-landet?niva=mellannivå&amp;typ=väg&amp;stad=alingsås</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/ovriga-landet?niva=mellannivå&amp;typ=väg&amp;stad=kalmar</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/ovriga-landet?niva=mellannivå&amp;typ=väg&amp;stad=lund</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/ovriga-landet?niva=mellannivå&amp;typ=väg&amp;stad=malmö</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/ovriga-landet?niva=mellannivå&amp;typ=väg&amp;stad=uppsala</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/ovriga-landet?niva=mellannivå&amp;typ=väg&amp;stad=varberg</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/ovriga-landet?niva=mellannivå&amp;typ=intervall</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/ovriga-landet?niva=mellannivå&amp;typ=intervall&amp;stad=malmö</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/ovriga-landet?niva=mellannivå&amp;typ=långpass</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/ovriga-landet?niva=mellannivå&amp;typ=långpass&amp;stad=malmö</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/ovriga-landet?niva=mellannivå&amp;typ=social</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/ovriga-landet?niva=mellannivå&amp;typ=social&amp;stad=alingsås</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/ovriga-landet?niva=mellannivå&amp;typ=social&amp;stad=kalmar</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/ovriga-landet?niva=mellannivå&amp;typ=social&amp;stad=lund</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/ovriga-landet?niva=mellannivå&amp;typ=social&amp;stad=malmö</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/ovriga-landet?niva=mellannivå&amp;typ=social&amp;stad=uppsala</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/ovriga-landet?niva=mellannivå&amp;typ=social&amp;stad=varberg</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/ovriga-landet?niva=mellannivå&amp;typ=frukost</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/ovriga-landet?niva=mellannivå&amp;typ=frukost&amp;stad=malmö</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/ovriga-landet?niva=avancerad</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/ovriga-landet?niva=avancerad&amp;stad=alingsås</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/ovriga-landet?niva=avancerad&amp;stad=lund</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/ovriga-landet?niva=avancerad&amp;stad=malmö</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/ovriga-landet?niva=avancerad&amp;stad=uppsala</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/ovriga-landet?niva=avancerad&amp;stad=varberg</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/ovriga-landet?niva=avancerad&amp;typ=väg</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/ovriga-landet?niva=avancerad&amp;typ=väg&amp;stad=alingsås</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/ovriga-landet?niva=avancerad&amp;typ=väg&amp;stad=lund</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/ovriga-landet?niva=avancerad&amp;typ=väg&amp;stad=malmö</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/ovriga-landet?niva=avancerad&amp;typ=väg&amp;stad=uppsala</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/ovriga-landet?niva=avancerad&amp;typ=väg&amp;stad=varberg</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/ovriga-landet?niva=avancerad&amp;typ=intervall</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/ovriga-landet?niva=avancerad&amp;typ=intervall&amp;stad=malmö</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/ovriga-landet?niva=avancerad&amp;typ=långpass</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/ovriga-landet?niva=avancerad&amp;typ=långpass&amp;stad=malmö</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/ovriga-landet?niva=avancerad&amp;typ=social</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/ovriga-landet?niva=avancerad&amp;typ=social&amp;stad=alingsås</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/ovriga-landet?niva=avancerad&amp;typ=social&amp;stad=lund</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/ovriga-landet?niva=avancerad&amp;typ=social&amp;stad=malmö</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/ovriga-landet?niva=avancerad&amp;typ=social&amp;stad=uppsala</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/ovriga-landet?niva=avancerad&amp;typ=social&amp;stad=varberg</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/ovriga-landet?niva=avancerad&amp;typ=frukost</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://runclubs.se/ovriga-landet?niva=avancerad&amp;typ=frukost&amp;stad=malmö</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet?stad=alingsås</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet?stad=eskilstuna</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet?stad=kalmar</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet?stad=lund</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet?stad=malmö</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet?stad=norrköping</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet?stad=uppsala</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet?stad=varberg</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet?stad=västerås</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet?typ=väg</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet?typ=väg&amp;stad=alingsås</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet?typ=väg&amp;stad=eskilstuna</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet?typ=väg&amp;stad=kalmar</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet?typ=väg&amp;stad=lund</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet?typ=väg&amp;stad=malmö</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet?typ=väg&amp;stad=norrköping</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet?typ=väg&amp;stad=uppsala</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet?typ=väg&amp;stad=varberg</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet?typ=väg&amp;stad=västerås</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet?typ=intervall</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet?typ=intervall&amp;stad=malmö</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet?typ=långpass</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet?typ=långpass&amp;stad=malmö</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet?typ=social</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet?typ=social&amp;stad=alingsås</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet?typ=social&amp;stad=eskilstuna</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet?typ=social&amp;stad=kalmar</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet?typ=social&amp;stad=lund</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet?typ=social&amp;stad=malmö</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet?typ=social&amp;stad=norrköping</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet?typ=social&amp;stad=uppsala</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet?typ=social&amp;stad=varberg</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet?typ=social&amp;stad=västerås</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet?typ=frukost</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet?typ=frukost&amp;stad=eskilstuna</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet?typ=frukost&amp;stad=malmö</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet?typ=frukost&amp;stad=norrköping</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet?typ=frukost&amp;stad=västerås</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet?niva=nybörjare</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet?niva=nybörjare&amp;stad=alingsås</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet?niva=nybörjare&amp;stad=kalmar</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet?niva=nybörjare&amp;stad=lund</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet?niva=nybörjare&amp;stad=malmö</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet?niva=nybörjare&amp;stad=uppsala</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet?niva=nybörjare&amp;stad=varberg</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet?niva=nybörjare&amp;typ=väg</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet?niva=nybörjare&amp;typ=väg&amp;stad=alingsås</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet?niva=nybörjare&amp;typ=väg&amp;stad=kalmar</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet?niva=nybörjare&amp;typ=väg&amp;stad=lund</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet?niva=nybörjare&amp;typ=väg&amp;stad=malmö</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet?niva=nybörjare&amp;typ=väg&amp;stad=uppsala</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet?niva=nybörjare&amp;typ=väg&amp;stad=varberg</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet?niva=nybörjare&amp;typ=intervall</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet?niva=nybörjare&amp;typ=intervall&amp;stad=malmö</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet?niva=nybörjare&amp;typ=långpass</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet?niva=nybörjare&amp;typ=långpass&amp;stad=malmö</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet?niva=nybörjare&amp;typ=social</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet?niva=nybörjare&amp;typ=social&amp;stad=alingsås</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet?niva=nybörjare&amp;typ=social&amp;stad=kalmar</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet?niva=nybörjare&amp;typ=social&amp;stad=lund</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet?niva=nybörjare&amp;typ=social&amp;stad=malmö</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet?niva=nybörjare&amp;typ=social&amp;stad=uppsala</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet?niva=nybörjare&amp;typ=social&amp;stad=varberg</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet?niva=nybörjare&amp;typ=frukost</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet?niva=nybörjare&amp;typ=frukost&amp;stad=malmö</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet?niva=mellannivå</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet?niva=mellannivå&amp;stad=alingsås</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet?niva=mellannivå&amp;stad=kalmar</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet?niva=mellannivå&amp;stad=lund</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet?niva=mellannivå&amp;stad=malmö</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet?niva=mellannivå&amp;stad=uppsala</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet?niva=mellannivå&amp;stad=varberg</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet?niva=mellannivå&amp;typ=väg</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet?niva=mellannivå&amp;typ=väg&amp;stad=alingsås</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet?niva=mellannivå&amp;typ=väg&amp;stad=kalmar</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet?niva=mellannivå&amp;typ=väg&amp;stad=lund</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet?niva=mellannivå&amp;typ=väg&amp;stad=malmö</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet?niva=mellannivå&amp;typ=väg&amp;stad=uppsala</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet?niva=mellannivå&amp;typ=väg&amp;stad=varberg</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet?niva=mellannivå&amp;typ=intervall</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet?niva=mellannivå&amp;typ=intervall&amp;stad=malmö</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet?niva=mellannivå&amp;typ=långpass</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet?niva=mellannivå&amp;typ=långpass&amp;stad=malmö</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet?niva=mellannivå&amp;typ=social</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet?niva=mellannivå&amp;typ=social&amp;stad=alingsås</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet?niva=mellannivå&amp;typ=social&amp;stad=kalmar</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet?niva=mellannivå&amp;typ=social&amp;stad=lund</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet?niva=mellannivå&amp;typ=social&amp;stad=malmö</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet?niva=mellannivå&amp;typ=social&amp;stad=uppsala</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet?niva=mellannivå&amp;typ=social&amp;stad=varberg</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet?niva=mellannivå&amp;typ=frukost</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet?niva=mellannivå&amp;typ=frukost&amp;stad=malmö</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet?niva=avancerad</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet?niva=avancerad&amp;stad=alingsås</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet?niva=avancerad&amp;stad=lund</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet?niva=avancerad&amp;stad=malmö</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet?niva=avancerad&amp;stad=uppsala</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet?niva=avancerad&amp;stad=varberg</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet?niva=avancerad&amp;typ=väg</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet?niva=avancerad&amp;typ=väg&amp;stad=alingsås</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet?niva=avancerad&amp;typ=väg&amp;stad=lund</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet?niva=avancerad&amp;typ=väg&amp;stad=malmö</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet?niva=avancerad&amp;typ=väg&amp;stad=uppsala</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet?niva=avancerad&amp;typ=väg&amp;stad=varberg</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet?niva=avancerad&amp;typ=intervall</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet?niva=avancerad&amp;typ=intervall&amp;stad=malmö</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet?niva=avancerad&amp;typ=långpass</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet?niva=avancerad&amp;typ=långpass&amp;stad=malmö</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet?niva=avancerad&amp;typ=social</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet?niva=avancerad&amp;typ=social&amp;stad=alingsås</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet?niva=avancerad&amp;typ=social&amp;stad=lund</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet?niva=avancerad&amp;typ=social&amp;stad=malmö</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet?niva=avancerad&amp;typ=social&amp;stad=uppsala</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet?niva=avancerad&amp;typ=social&amp;stad=varberg</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet?niva=avancerad&amp;typ=frukost</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet?niva=avancerad&amp;typ=frukost&amp;stad=malmö</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
 
   <!-- Klubbsidor (övrigt) -->
-  <url><loc>https://runclubs.se/dc-run-club</loc><lastmod>2026-07-20</lastmod><priority>0.6</priority></url>
-  <url><loc>https://runclubs.se/girls-only-loparklubbar</loc><lastmod>2026-07-20</lastmod><priority>0.6</priority></url>
-  <url><loc>https://runclubs.se/goteborg-running-events</loc><lastmod>2026-07-20</lastmod><priority>0.6</priority></url>
-  <url><loc>https://runclubs.se/grand-run-club</loc><lastmod>2026-07-20</lastmod><priority>0.6</priority></url>
-  <url><loc>https://runclubs.se/kommande-events</loc><lastmod>2026-07-20</lastmod><priority>0.6</priority></url>
-  <url><loc>https://runclubs.se/kt-run-club</loc><lastmod>2026-07-20</lastmod><priority>0.6</priority></url>
-  <url><loc>https://runclubs.se/loparklubbar-med-frukost</loc><lastmod>2026-07-20</lastmod><priority>0.6</priority></url>
-  <url><loc>https://runclubs.se/loparklubbar-sodermalm</loc><lastmod>2026-07-20</lastmod><priority>0.6</priority></url>
-  <url><loc>https://runclubs.se/mandagsklubben</loc><lastmod>2026-07-20</lastmod><priority>0.6</priority></url>
-  <url><loc>https://runclubs.se/ovriga-landet-running-events</loc><lastmod>2026-07-20</lastmod><priority>0.6</priority></url>
-  <url><loc>https://runclubs.se/runners-08</loc><lastmod>2026-07-20</lastmod><priority>0.6</priority></url>
-  <url><loc>https://runclubs.se/runners-high-sthlm</loc><lastmod>2026-07-20</lastmod><priority>0.6</priority></url>
-  <url><loc>https://runclubs.se/social-run-club-kungsbacka</loc><lastmod>2026-07-20</lastmod><priority>0.6</priority></url>
-  <url><loc>https://runclubs.se/strawberry-run-club</loc><lastmod>2026-07-20</lastmod><priority>0.6</priority></url>
-  <url><loc>https://runclubs.se/the-social-run-club</loc><lastmod>2026-07-20</lastmod><priority>0.6</priority></url>
-  <url><loc>https://runclubs.se/veckans-running-events-v19-2026</loc><lastmod>2026-07-20</lastmod><priority>0.6</priority></url>
-  <url><loc>https://runclubs.se/veckans-running-events-v20-2026</loc><lastmod>2026-07-20</lastmod><priority>0.6</priority></url>
-  <url><loc>https://runclubs.se/west-run-club</loc><lastmod>2026-07-20</lastmod><priority>0.6</priority></url>
+  <url><loc>https://runclubs.se/dc-run-club</loc><lastmod>2026-07-21</lastmod><priority>0.6</priority></url>
+  <url><loc>https://runclubs.se/girls-only-loparklubbar</loc><lastmod>2026-07-21</lastmod><priority>0.6</priority></url>
+  <url><loc>https://runclubs.se/goteborg-running-events</loc><lastmod>2026-07-21</lastmod><priority>0.6</priority></url>
+  <url><loc>https://runclubs.se/grand-run-club</loc><lastmod>2026-07-21</lastmod><priority>0.6</priority></url>
+  <url><loc>https://runclubs.se/kommande-events</loc><lastmod>2026-07-21</lastmod><priority>0.6</priority></url>
+  <url><loc>https://runclubs.se/kt-run-club</loc><lastmod>2026-07-21</lastmod><priority>0.6</priority></url>
+  <url><loc>https://runclubs.se/loparklubbar-med-frukost</loc><lastmod>2026-07-21</lastmod><priority>0.6</priority></url>
+  <url><loc>https://runclubs.se/loparklubbar-sodermalm</loc><lastmod>2026-07-21</lastmod><priority>0.6</priority></url>
+  <url><loc>https://runclubs.se/mandagsklubben</loc><lastmod>2026-07-21</lastmod><priority>0.6</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet-running-events</loc><lastmod>2026-07-21</lastmod><priority>0.6</priority></url>
+  <url><loc>https://runclubs.se/runners-08</loc><lastmod>2026-07-21</lastmod><priority>0.6</priority></url>
+  <url><loc>https://runclubs.se/runners-high-sthlm</loc><lastmod>2026-07-21</lastmod><priority>0.6</priority></url>
+  <url><loc>https://runclubs.se/social-run-club-kungsbacka</loc><lastmod>2026-07-21</lastmod><priority>0.6</priority></url>
+  <url><loc>https://runclubs.se/strawberry-run-club</loc><lastmod>2026-07-21</lastmod><priority>0.6</priority></url>
+  <url><loc>https://runclubs.se/the-social-run-club</loc><lastmod>2026-07-21</lastmod><priority>0.6</priority></url>
+  <url><loc>https://runclubs.se/veckans-running-events-v19-2026</loc><lastmod>2026-07-21</lastmod><priority>0.6</priority></url>
+  <url><loc>https://runclubs.se/veckans-running-events-v20-2026</loc><lastmod>2026-07-21</lastmod><priority>0.6</priority></url>
+  <url><loc>https://runclubs.se/west-run-club</loc><lastmod>2026-07-21</lastmod><priority>0.6</priority></url>
 
 </urlset>
