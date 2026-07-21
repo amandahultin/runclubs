@@ -1,0 +1,46 @@
+<!-- @dsCard group="Foundations" name="Brand tokens" -->
+<!doctype html>
+<html>
+<head>
+{% include "components/_shared.html" %}
+<style>
+  body { padding: 48px; }
+  h1 { font-family: var(--font-display); font-size: 28px; text-transform: uppercase; margin-bottom: 28px; }
+  h2 { font-family: var(--font-heading); font-weight: 600; font-size: 16px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--color-muted); margin: 32px 0 14px; }
+  .swatches { display: flex; flex-wrap: wrap; gap: 16px; }
+  .swatch { width: 140px; }
+  .swatch .chip { height: 80px; border-radius: 10px; border: 1px solid rgba(0,0,0,.06); }
+  .swatch .label { font-size: 12px; margin-top: 6px; color: var(--color-navy); }
+  .swatch .hex { font-size: 11px; color: var(--color-muted); }
+  .type-row { display: flex; align-items: baseline; gap: 18px; margin-bottom: 10px; }
+  .type-row .sample { font-size: 26px; }
+  .type-row .name { font-size: 13px; color: var(--color-muted); width: 220px; }
+</style>
+</head>
+<body>
+  <h1>Runclubs.se — Brand tokens</h1>
+
+  <h2>Core colors</h2>
+  <div class="swatches">
+    <div class="swatch"><div class="chip" style="background:var(--color-bg);border:1px solid #eee"></div><div class="label">Background</div><div class="hex">#FDFAF9</div></div>
+    <div class="swatch"><div class="chip" style="background:var(--color-navy)"></div><div class="label">Navy ink</div><div class="hex">#1C2A45</div></div>
+    <div class="swatch"><div class="chip" style="background:var(--color-coral)"></div><div class="label">Coral primary</div><div class="hex">#D4715E</div></div>
+    <div class="swatch"><div class="chip" style="background:var(--color-coral-light)"></div><div class="label">Coral light</div><div class="hex">#EEAA96</div></div>
+    <div class="swatch"><div class="chip" style="background:var(--color-card-border)"></div><div class="label">Card border</div><div class="hex">#E8D8D3</div></div>
+    <div class="swatch"><div class="chip" style="background:var(--color-muted)"></div><div class="label">Muted text</div><div class="hex">#888</div></div>
+  </div>
+
+  <h2>City pills</h2>
+  <div class="swatches">
+    <div class="swatch"><div class="chip" style="background:var(--city-stockholm-bg)"></div><div class="label" style="color:var(--city-stockholm-fg)">Stockholm</div></div>
+    <div class="swatch"><div class="chip" style="background:var(--city-goteborg-bg)"></div><div class="label" style="color:var(--city-goteborg-fg)">Göteborg</div></div>
+    <div class="swatch"><div class="chip" style="background:var(--city-malmo-bg)"></div><div class="label" style="color:var(--city-malmo-fg)">Malmö</div></div>
+  </div>
+
+  <h2>Type</h2>
+  <div class="type-row"><div class="sample" style="font-family:var(--font-display);text-transform:uppercase">Event headline</div><div class="name">Archivo Black — display</div></div>
+  <div class="type-row"><div class="sample" style="font-family:var(--font-heading);font-weight:700;text-transform:uppercase">Date &amp; card titles</div><div class="name">Oswald 700 — heading</div></div>
+  <div class="type-row"><div class="sample" style="font-family:var(--font-body)">Body copy, labels</div><div class="name">DM Sans — body</div></div>
+  <div class="type-row"><div class="sample"><span style="font-family:var(--font-wordmark-run);font-weight:900;font-style:italic">RUN</span><span style="font-family:var(--font-wordmark-clubs)">CLUBS</span></div><div class="name">Wordmark: Inter italic + Playfair</div></div>
+</body>
+</html>

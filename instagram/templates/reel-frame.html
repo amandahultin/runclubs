@@ -1,0 +1,56 @@
+<!-- @dsCard group="Templates" name="Weekly feed reel (1080x1920)" -->
+<!doctype html>
+<html data-width="1080" data-height="1920">
+<head>
+{% include "components/_shared.html" %}
+{% include "components/_logo.html" %}
+{% include "components/_city-pill.html" %}
+{% from "components/_logo.html" import logo %}
+{% from "components/_city-pill.html" import city_pill %}
+<style>
+  html, body { width: 1080px; height: 1920px; overflow: hidden; }
+  .schedule-section { padding: 60px; height: 1920px; display: flex; flex-direction: column; }
+  .schedule-header { margin-bottom: 36px; }
+  .section-label { font-size: 18px; letter-spacing: 5px; text-transform: uppercase; color: var(--color-coral); margin-bottom: 14px; font-weight: 600; }
+  .schedule-title { font-family: var(--font-display); font-size: 64px; text-transform: uppercase; letter-spacing: -1px; color: var(--color-navy); line-height: 1; }
+  .schedule-day-pills { display: flex; gap: 10px; margin-top: 26px; }
+  .day-pill { font-size: 18px; font-weight: 600; padding: 11px 22px; border-radius: 30px; border: 1.5px solid var(--color-pill-border); background: transparent; color: var(--color-muted); text-transform: uppercase; letter-spacing: 1px; }
+  .schedule-grid { display: flex; flex-direction: column; gap: 18px; flex: 1; }
+  .event-teaser-card { background: var(--color-bg); border: 1.5px solid var(--color-card-border); border-radius: 18px; padding: 26px 30px; text-decoration: none; color: var(--color-navy); display: flex; gap: 24px; align-items: flex-start; box-shadow: 0 4px 14px rgba(28,42,69,0.04); }
+  .event-teaser-time { font-family: var(--font-heading); font-weight: 700; font-size: 38px; color: var(--color-coral); min-width: 88px; text-align: center; line-height: 1.05; }
+  .event-teaser-info { flex: 1; }
+  .event-teaser-club { font-size: 15px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--color-tertiary); margin-bottom: 5px; }
+  .event-teaser-name { font-family: var(--font-heading); font-weight: 700; font-size: 28px; text-transform: uppercase; letter-spacing: 0.5px; color: var(--color-navy); line-height: 1.18; margin-bottom: 7px; }
+  .event-teaser-loc { font-size: 17px; color: #999; }
+  .event-teaser-link { font-size: 16px; font-weight: 600; letter-spacing: 0.5px; color: var(--color-coral); margin-top: 8px; display: inline-block; }
+  .top-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+</style>
+</head>
+<body>
+{% macro teaser_card(ev) %}
+<div class="event-teaser-card">
+  <div class="event-teaser-time">{{ ev.day }}<br>{{ ev.date }}</div>
+  <div class="event-teaser-info">
+    <div class="event-teaser-club">{{ ev.club }} {{ city_pill(ev.city) }}</div>
+    <div class="event-teaser-name">{{ ev.title }}</div>
+    <div class="event-teaser-loc">{{ ev.loc }}</div>
+    <span class="event-teaser-link">Läs mer →</span>
+  </div>
+</div>
+{% endmacro %}
+<section class="schedule-section">
+  <div class="top-bar">{{ logo('big') }}</div>
+  <div class="schedule-header">
+    <div class="section-label">Kommande events</div>
+    <h2 class="schedule-title">{{ title | default('Veckan på runclubs.se') }}</h2>
+    <div class="schedule-day-pills">
+      <span class="day-pill">Mån</span><span class="day-pill">Tis</span><span class="day-pill">Ons</span>
+      <span class="day-pill">Tor</span><span class="day-pill">Fre</span><span class="day-pill">Lör</span><span class="day-pill">Sön</span>
+    </div>
+  </div>
+  <div class="schedule-grid">
+    {% for ev in events %}{{ teaser_card(ev) }}{% endfor %}
+  </div>
+</section>
+</body>
+</html>

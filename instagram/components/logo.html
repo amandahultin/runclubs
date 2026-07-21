@@ -1,0 +1,14 @@
+<!-- @dsCard group="Components" name="Logo / wordmark" -->
+<!doctype html>
+<html>
+<head>
+{% include "components/_shared.html" %}
+{% include "components/_logo.html" %}
+<style>body { padding: 48px; display: flex; gap: 40px; align-items: center; }</style>
+</head>
+<body>
+{% from "components/_logo.html" import logo %}
+{{ logo('big') }}
+{{ logo('small') }}
+</body>
+</html>

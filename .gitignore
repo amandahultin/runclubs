@@ -20,3 +20,7 @@ backup-cleanup-*/
 
 # Generated Instagram event images (uploaded to Drive, not committed)
 instagram/generated/
+
+# Pre-rendered static catalog (build output of instagram/build_catalog.py,
+# pushed to the Claude Design project — regenerate, don't hand-edit)
+instagram/catalog/

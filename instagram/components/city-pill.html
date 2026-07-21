@@ -1,0 +1,15 @@
+<!-- @dsCard group="Components" name="City pill" -->
+<!doctype html>
+<html>
+<head>
+{% include "components/_shared.html" %}
+{% include "components/_city-pill.html" %}
+<style>body { padding: 48px; display: flex; gap: 16px; }</style>
+</head>
+<body>
+{% from "components/_city-pill.html" import city_pill %}
+{{ city_pill('Stockholm') }}
+{{ city_pill('Göteborg') }}
+{{ city_pill('Malmö') }}
+</body>
+</html>

@@ -1,0 +1,13 @@
+<!-- Style + macro partial for the city pill — see city-pill.html for the demo. -->
+<style>
+  .city-pill { display: inline-block; font-size: 16px; font-weight: 700; letter-spacing: 1.6px; text-transform: uppercase; padding: 8px 18px; border-radius: 100px; }
+</style>
+{% macro city_pill(city) %}
+{% set colors = {
+  'Stockholm': ('var(--city-stockholm-bg)', 'var(--city-stockholm-fg)'),
+  'Göteborg':  ('var(--city-goteborg-bg)', 'var(--city-goteborg-fg)'),
+  'Malmö':     ('var(--city-malmo-bg)', 'var(--city-malmo-fg)'),
+} %}
+{% set bg, fg = colors.get(city, colors['Malmö']) %}
+<span class="city-pill" style="background:{{ bg }};color:{{ fg }}">{{ city }}</span>
+{% endmacro %}

@@ -1,0 +1,14 @@
+<!-- @dsCard group="Components" name="Date block" -->
+<!doctype html>
+<html>
+<head>
+{% include "components/_shared.html" %}
+{% include "components/_date-block.html" %}
+<style>body { padding: 48px; display: flex; gap: 60px; align-items: flex-end; }</style>
+</head>
+<body>
+{% from "components/_date-block.html" import date_block %}
+{{ date_block(25, 'LÖRDAG', 'JUL', 1.0) }}
+{{ date_block(25, 'LÖRDAG', 'JUL', 1.3) }}
+</body>
+</html>

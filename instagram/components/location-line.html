@@ -1,0 +1,14 @@
+<!-- @dsCard group="Components" name="Location line" -->
+<!doctype html>
+<html>
+<head>
+{% include "components/_shared.html" %}
+{% include "components/_location-line.html" %}
+<style>body { padding: 48px; display: flex; flex-direction: column; gap: 20px; max-width: 500px; }</style>
+</head>
+<body>
+{% from "components/_location-line.html" import location_line %}
+{{ location_line('Sturegatan 11, Stockholm, Sverige', 1.0) }}
+{{ location_line('Reimersholmsgatan 5, 117 40 Stockholm, Sverige', 1.3) }}
+</body>
+</html>

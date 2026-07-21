@@ -1,0 +1,12 @@
+<!-- Style + macro partial for the date block — see date-block.html for the demo. -->
+<style>
+  .date-row { display: flex; align-items: flex-end; gap: 22px; }
+  .date-num { font-family: var(--font-heading); font-weight: 700; line-height: 0.85; color: var(--color-coral); }
+  .date-meta { font-family: var(--font-heading); font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--color-navy); line-height: 1.35; padding-bottom: 10px; }
+</style>
+{% macro date_block(day, day_name, month, scale=1.0) %}
+<div class="date-row">
+  <div class="date-num" style="font-size:{{ (120*scale)|round|int }}px">{{ day }}</div>
+  <div class="date-meta" style="font-size:{{ (30*scale)|round|int }}px">{{ day_name }}<br>{{ month }}</div>
+</div>
+{% endmacro %}
