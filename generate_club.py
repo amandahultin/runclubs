@@ -182,8 +182,20 @@ def build_body_image_html(image_path: str, club_name: str) -> str:
     return f'<img class="article-image" src="{image_path}" alt="{alt}" loading="lazy" decoding="async">'
 
 
+def apply_markdown_emphasis(text: str) -> str:
+    """Lightweight **bold** / *italic* markdown -> <strong>/<em>, so sheet
+    authors can add emphasis without writing raw HTML."""
+    text = re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", text)
+    text = re.sub(r"\*(.+?)\*", r"<em>\1</em>", text)
+    return text
+
+
 def build_long_description_html(raw: str, body_image_html: str = "") -> str:
-    paragraphs = [p.strip() for p in re.split(r"\n\s*\n", raw) if p.strip()]
+    paragraphs = [
+        apply_markdown_emphasis(p.strip())
+        for p in re.split(r"\n\s*\n", raw)
+        if p.strip()
+    ]
     if not paragraphs:
         return (
             "<p>Mer info om klubben kommer inom kort — under tiden är bästa "
