@@ -3,6 +3,30 @@
         xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">
 
   <url>
+    <loc>https://runclubs.se/nyheter/sex-somriga-loprundor/</loc>
+    <news:news>
+      <news:publication>
+        <news:name>Runclubs.se</news:name>
+        <news:language>sv</news:language>
+      </news:publication>
+      <news:publication_date>2026-07-21</news:publication_date>
+      <news:title>Sex somriga löprundor värda att packa löparskorna för</news:title>
+    </news:news>
+  </url>
+
+  <url>
+    <loc>https://runclubs.se/nyheter/loparklubbar-med-frukost/</loc>
+    <news:news>
+      <news:publication>
+        <news:name>Runclubs.se</news:name>
+        <news:language>sv</news:language>
+      </news:publication>
+      <news:publication_date>2026-07-18</news:publication_date>
+      <news:title>Run Clubs för dig som tycker om att springa tidigt</news:title>
+    </news:news>
+  </url>
+
+  <url>
     <loc>https://runclubs.se/nyheter/girls-only-loparklubbar/</loc>
     <news:news>
       <news:publication>
