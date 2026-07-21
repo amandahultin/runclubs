@@ -17,3 +17,6 @@ backup-cleanup-*/
 *.swp
 *~
 .wrangler/
+
+# Generated Instagram event images (uploaded to Drive, not committed)
+instagram/generated/
