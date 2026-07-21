@@ -264,6 +264,7 @@ def upload_to_drive(paths: list[Path], folder_id: str) -> None:
             body={"name": path.name, "parents": [folder_id]},
             media_body=media,
             fields="id",
+            supportsAllDrives=True,
         ).execute()
         log.info("Uploaded %s to Drive folder %s", path.name, folder_id)
 
