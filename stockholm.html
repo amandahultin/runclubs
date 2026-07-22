@@ -427,7 +427,7 @@ document.addEventListener('DOMContentLoaded',function(){
     .card-image--branded::after { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(255,218,196,0.28) 0%, rgba(246,184,158,0.14) 100%); mix-blend-mode: screen; pointer-events: none; }
 
     /* ── Typografisk placeholder ─────────────────── */
-    .card-image--placeholder { background: linear-gradient(160deg, #FFF3EC 0%, #FFDAC4 100%); position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden; width: 100%; height: 220px; }
+    .card-image--placeholder { background: linear-gradient(160deg, #FFF8F3 0%, #FFDAC4 40%, #F6B89E 75%, #F88B69 100%); position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden; width: 100%; height: 220px; }
     .card-image--placeholder::before { content: ''; position: absolute; width: 260px; height: 260px; border-radius: 50%; background: radial-gradient(circle, rgba(212,113,94,0.3) 0%, transparent 70%); top: -70px; right: -70px; }
     .card-image--placeholder::after { content: ''; position: absolute; width: 180px; height: 180px; border-radius: 50%; background: rgba(255,255,255,0.4); bottom: -90px; left: -50px; }
     .placeholder-initial { font-family: 'Archivo Black', sans-serif; font-size: 88px; color: #C8604A; line-height: 1; opacity: 0.85; position: relative; z-index: 1; }
@@ -1678,8 +1678,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </a>
 
       <a href="/stockholm/stockholm-run-club/" class="club-card" data-niva="mellannivå avancerad" data-typ="intervall långpass social väg" data-dag="tis sön" data-stadsdel="östermalm">
-        <div class="card-image card-image--branded">
-          <img src="https://images.unsplash.com/photo-1540539234-c14a20fb7c7b?w=400&h=220&fit=crop&crop=center" alt="Löpargrupp springer tillsammans på stranden" loading="eager" decoding="async" width="400" height="220" fetchpriority="high">
+        <div class="card-image card-image--placeholder">
+          <span class="placeholder-initial">S</span>
+          <span class="placeholder-tag">Stockholm Run Club</span>
         </div>
         <div class="card-body">
           <div class="card-tags">
@@ -1700,7 +1701,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       <a href="/stockholm/dopest-runners/" class="club-card" data-niva="nybörjare mellannivå avancerad" data-typ="intervall långpass social väg" data-dag="tis tor sön" data-stadsdel="söderort">
         <div class="card-image card-image--branded">
-          <img src="https://images.unsplash.com/photo-1596727362302-b8d891c42ab8?w=400&h=220&fit=crop&crop=center" alt="Löpare i maraton sett ovanifrån" loading="eager" decoding="async" width="400" height="220" fetchpriority="high">
+          <img src="/dopest-runner-logo.png" alt="Dopest Runners" loading="eager" decoding="async" width="400" height="220" fetchpriority="high" style="object-fit: contain;">
         </div>
         <div class="card-body">
           <div class="card-tags">
@@ -1806,8 +1807,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </a>
 
             <a href="/stockholm/soderloparna-stockholm/" class="club-card" data-niva="nybörjare mellannivå" data-typ="social långpass väg" data-dag="lör" data-stadsdel="söderort">
-        <div class="card-image card-image--branded">
-          <img src="https://images.unsplash.com/photo-1667781838690-5f32ea0ccea6?w=400&h=220&fit=crop&crop=center" alt="Löpare i maraton" loading="lazy" decoding="async" width="400" height="220">
+        <div class="card-image card-image--placeholder">
+          <span class="placeholder-initial">S</span>
+          <span class="placeholder-tag">Söderlöparna Stockholm</span>
         </div>
         <div class="card-body">
           <div class="card-tags">
@@ -1935,9 +1937,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </a>
 
             <a href="/stockholm/slowrunners-sthlm/" class="club-card" data-niva="nybörjare" data-typ="social väg" data-dag="sön" data-stadsdel="södermalm">
-        <div class="card-image card-image--placeholder">
-          <span class="placeholder-initial">S</span>
-          <span class="placeholder-tag">Slowrunners Sthlm</span>
+        <div class="card-image card-image--branded">
+          <img src="/slow-runners-stockholm-logo.jpeg" alt="Slowrunners Sthlm" loading="lazy" decoding="async" width="400" height="220" style="object-fit: contain;">
         </div>
         <div class="card-body">
           <div class="card-tags">
@@ -1959,8 +1960,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
             <a href="/stockholm/svedjans-lopsallskap/" class="club-card" data-niva="nybörjare mellannivå" data-typ="social väg" data-dag="mån" data-stadsdel="södermalm">
-        <div class="card-image card-image--branded">
-          <img src="https://images.unsplash.com/photo-1513593771513-7b58b6c4af38?w=400&h=220&fit=crop&crop=center" alt="Löpare springer i grupp" loading="lazy" decoding="async" width="400" height="220">
+        <div class="card-image card-image--placeholder">
+          <span class="placeholder-initial">S</span>
+          <span class="placeholder-tag">Svedjans Löpsällskap</span>
         </div>
         <div class="card-body">
           <div class="card-tags">
@@ -2000,8 +2002,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </a>
 
             <a href="lopning-for-tjejer" class="club-card" data-niva="" data-typ="social girls-only" data-dag="" data-stadsdel="">
-        <div class="card-image card-image--branded">
-          <img src="https://images.unsplash.com/photo-1667781838690-5f32ea0ccea6?w=400&h=220&fit=crop&crop=center" alt="Kvinnor som springer" loading="lazy" decoding="async" width="400" height="220">
+        <div class="card-image card-image--placeholder">
+          <span class="placeholder-initial">L</span>
+          <span class="placeholder-tag">Löpning för tjejer</span>
         </div>
         <div class="card-body">
           <div class="card-tags">
@@ -2041,8 +2044,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </a>
 
             <a href="/stockholm/pulse-pacers/" class="club-card" data-niva="nybörjare mellannivå" data-typ="social väg" data-dag="ons" data-stadsdel="city">
-        <div class="card-image card-image--branded">
-          <img src="https://images.unsplash.com/photo-1526676537331-7747bf8278fc?w=400&h=220&fit=crop&crop=center" alt="Löpare på friidrottsbana" loading="lazy" decoding="async" width="400" height="220">
+        <div class="card-image card-image--placeholder">
+          <span class="placeholder-initial">P</span>
+          <span class="placeholder-tag">Pulse Pacers</span>
         </div>
         <div class="card-body">
           <div class="card-tags">
@@ -2146,8 +2150,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </a>
 
       <a href="/stockholm/runners-08/" class="club-card" data-niva="nybörjare mellannivå" data-typ="social väg" data-dag="tor" data-stadsdel="">
-        <div class="card-image card-image--branded">
-          <img src="https://images.unsplash.com/photo-1526676537331-7747bf8278fc?w=400&h=220&fit=crop&crop=center" alt="Runners 08" loading="lazy" decoding="async" width="400" height="220">
+        <div class="card-image card-image--placeholder">
+          <span class="placeholder-initial">R</span>
+          <span class="placeholder-tag">Runners 08</span>
         </div>
         <div class="card-body">
           <div class="card-tags">
@@ -2165,8 +2170,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </a>
 
       <a href="/stockholm/runners-high-sthlm/" class="club-card" data-niva="nybörjare mellannivå avancerad" data-typ="social väg" data-dag="" data-stadsdel="">
-        <div class="card-image card-image--branded">
-          <img src="https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?w=400&h=220&fit=crop&crop=center" alt="Runners High Sthlm" loading="lazy" decoding="async" width="400" height="220">
+        <div class="card-image card-image--placeholder">
+          <span class="placeholder-initial">R</span>
+          <span class="placeholder-tag">Runners High Sthlm</span>
         </div>
         <div class="card-body">
           <div class="card-tags">
@@ -2184,8 +2190,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </a>
 
       <a href="/stockholm/kt-run-club/" class="club-card" data-niva="nybörjare mellannivå avancerad" data-typ="social girls-only väg" data-dag="" data-stadsdel="">
-        <div class="card-image card-image--branded">
-          <img src="https://images.unsplash.com/photo-1623390003553-4fa3f9fceb89?w=400&h=220&fit=crop&crop=center" alt="KT Run Club" loading="lazy" decoding="async" width="400" height="220">
+        <div class="card-image card-image--placeholder">
+          <span class="placeholder-initial">K</span>
+          <span class="placeholder-tag">KT Run Club</span>
         </div>
         <div class="card-body">
           <div class="card-tags">
@@ -2203,8 +2210,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </a>
 
       <a href="/stockholm/grand-run-club/" class="club-card" data-niva="nybörjare mellannivå" data-typ="social väg" data-dag="ons lör" data-stadsdel="kungsholmen">
-        <div class="card-image card-image--branded">
-          <img src="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=400&h=220&fit=crop&crop=center" alt="Grand Run Club" loading="lazy" decoding="async" width="400" height="220">
+        <div class="card-image card-image--placeholder">
+          <span class="placeholder-initial">G</span>
+          <span class="placeholder-tag">Grand Run Club</span>
         </div>
         <div class="card-body">
           <div class="card-tags">
