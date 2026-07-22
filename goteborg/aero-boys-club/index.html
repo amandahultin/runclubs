@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded',function(){
   <meta property="og:description" content="En av Göteborgs populäraste run clubs. Öppen för alla, varierad löpning och bra stämning.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://runclubs.se/goteborg/aero-boys-club/">
-  <meta property="og:image" content="https://runclubs.se/stockholm-run-clubs.jpeg">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1739368732843-800f36a9b7d0?w=1200&h=600&fit=crop&crop=center">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Aero Boys Club Göteborg">
   <meta name="twitter:description" content="En av Göteborgs populäraste run clubs. Öppen för alla, varierad löpning och bra stämning.">
@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded',function(){
   "name": "Aero Boys Club",
   "description": "Aero Boys Club är en av Göteborgs populäraste run clubs. Öppen för alla, social löpning med after run-häng på stadens hetaste restauranger och caféer.",
   "url": "https://runclubs.se/goteborg/aero-boys-club/",
-  "image": "https://runclubs.se/hero.jpg",
+  "image": "https://images.unsplash.com/photo-1739368732843-800f36a9b7d0?w=1200&h=600&fit=crop&crop=center",
   "sport": "Running",
   "address": {
     "@type": "PostalAddress",
@@ -129,6 +129,16 @@ document.addEventListener('DOMContentLoaded',function(){
     .hero-tag { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #EEAA96; margin-bottom: 0.75rem; }
     .hero h1 { font-family: 'Archivo Black', sans-serif; font-size: clamp(38px, 5vw, 56px); line-height: 1; text-transform: uppercase; color: #FDFAF9; letter-spacing: 2px; }
     .hero-subtitle { font-size: 16px; color: rgba(255,255,255,0.6); line-height: 1.7; margin-top: 1rem; max-width: 500px; }
+
+    /* Hero logo badge */
+    .hero-logo {
+      position: absolute; top: 2rem; right: 2rem; z-index: 2;
+      width: 72px; height: 72px; border-radius: 14px;
+      background: #fff; padding: 4px;
+      box-shadow: 0 6px 24px rgba(0,0,0,0.35);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .hero-logo img { width: 100%; height: 100%; object-fit: contain; border-radius: 10px; }
 
     /* ── INFO STRIP ─────────────────────── */
     .info-strip {
@@ -401,6 +411,7 @@ document.addEventListener('DOMContentLoaded',function(){
       .nav-links { display: none; }
       .nav-toggle { display: flex; }
       .hero { min-height: 320px; padding: 2rem 1.25rem; }
+      .hero-logo { top: 1rem; right: 1rem; width: 60px; height: 60px; }
       .hero h1 { font-size: 36px; }
       .info-strip { flex-direction: column; }
       .info-strip-item { border-right: none; border-bottom: 1px solid #F0E0DC; padding: 1rem 1.25rem; }
@@ -498,6 +509,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <main id="main-content">
 
   <header class="hero">
+    <div class="hero-logo" aria-hidden="true">
+      <img src="/aero-boys-club-logo.png" alt="" loading="eager" decoding="async">
+    </div>
     <div class="hero-content">
       <div class="breadcrumb">
         <a href="/">Start</a><span class="sep">/</span>
@@ -526,7 +540,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
       <div>
         <div class="info-strip-label">Träningsdagar</div>
-        <div class="info-strip-value">—</div>
+        <div class="info-strip-value">Lördagar</div>
       </div>
     </div>
     <div class="info-strip-item">
@@ -535,7 +549,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
       <div>
         <div class="info-strip-label">Tid</div>
-        <div class="info-strip-value">—</div>
+        <div class="info-strip-value">10:00</div>
       </div>
     </div>
     <div class="info-strip-item">
@@ -544,7 +558,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
       <div>
         <div class="info-strip-label">Kostnad</div>
-        <div class="info-strip-value">—</div>
+        <div class="info-strip-value">Gratis</div>
       </div>
     </div>
 
@@ -745,9 +759,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <article class="club-about fade-in">
       <span class="section-label">Om klubben</span>
 
-      <p>Aero Boys är en av Göteborgs populäraste run clubs. Öppen för alla, det är bara att dyka upp och springa med. ABC är en löpargrupp för dig som tycker om den sociala biten av löpning. Många gånger avslutas deras run på något av Göteborgs hetaste restauranger eller caféer för ett härligt after run-häng.</p>
+      <p><strong>Aero Boys Club</strong> är en av Göteborgs största run clubs. De välkomnar alla och det är bara att dyka upp för att hänga med på nästa runda. Förutom mängder av roliga runs så samarbetar de med heta restauranger och varumärken runt om i Göteborg. Inte sällan håller de i event och passen avslutas ofta med socialt häng och härlig gemenskap.</p>
 
-      <p>Aero Boys erbjuder en varierad löpning och kreativa pass. De springer långrundor och intervaller men mixar också city underlag med semi trail. Oavsett var de springer bjuds det alltid på bra stämning och massor med äventyr!</p>
+      <p>ABC är en run club för dig som vill kombinera din löprunda med grymt sällskap och roliga happenings. Ofta utgår ABC:s runs från bar Etzy klockan 10:00 på lördagar men håll dig uppdaterad via deras Instagram och Strava.</p>
 
     </article>
 
@@ -821,10 +835,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
     </aside>
   </div>
-  <section 
   <section class="map-embed-section">
     <h2>Mötesplats</h2>
-    <iframe class="map-embed" src="https://maps.google.com/maps?q=Stockholm%2C%20Stockholm%2C%20Sverige&output=embed&hl=sv" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Karta över mötesplatsen" aria-label="Karta"></iframe>
+    <iframe class="map-embed" src="https://maps.google.com/maps?q=G%C3%B6teborg%2C%20Sverige&output=embed&hl=sv" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Karta över mötesplatsen" aria-label="Karta"></iframe>
   </section><section class="related-section fade-in">
     <span class="section-label">Andra liknande löpargrupper i <a href="/goteborg/" style="color:inherit;text-decoration:underline;text-underline-offset:2px;">Göteborg</a></span>
     <div class="related-grid">
