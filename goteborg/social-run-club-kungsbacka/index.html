@@ -19,15 +19,15 @@ document.addEventListener('DOMContentLoaded',function(){
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Social Run Club Kungsbacka — Löparklubb i Kungsbacka | Runclubs.se</title>
-  <meta name="description" content="Social Run Club Kungsbacka: löpargemenskap driven av två systrar, måndagar vid Slingan i Sandskogen.">
+  <meta name="description" content="Social Run Club Kungsbacka: social run club som drivs av två systrar med passion för rörelse och löpning.">
   <meta property="og:title" content="Social Run Club Kungsbacka">
-  <meta property="og:description" content="Måndagar vid Slingan i Sandskogen — löpning och gemenskap, drivet av två systrar.">
+  <meta property="og:description" content="Social run club som drivs av två systrar med passion för rörelse och löpning.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://runclubs.se/goteborg/social-run-club-kungsbacka/">
-  <meta property="og:image" content="https://images.unsplash.com/photo-1486218119243-13883505764c?w=1200&h=600&fit=crop&crop=center">
+  <meta property="og:image" content="https://runclubs.se/social-run-club-kungsbacka-hero.jpeg">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Social Run Club Kungsbacka">
-  <meta name="twitter:description" content="Måndagar vid Slingan i Sandskogen — löpning och gemenskap, drivet av två systrar.">
+  <meta name="twitter:description" content="Social run club som drivs av två systrar med passion för rörelse och löpning.">
   <link rel="sitemap" type="application/xml" href="/sitemap.xml">
   <link rel="canonical" href="https://runclubs.se/goteborg/social-run-club-kungsbacka/">
   <link rel="alternate" hreflang="sv-SE" href="https://runclubs.se/goteborg/social-run-club-kungsbacka/">
@@ -37,9 +37,9 @@ document.addEventListener('DOMContentLoaded',function(){
   "@context": "https://schema.org",
   "@type": "SportsOrganization",
   "name": "Social Run Club Kungsbacka",
-  "description": "Löpargemenskap i Kungsbacka, driven av två systrar. Samlas på måndagar vid Slingan i Sandskogen.",
+  "description": "Social run club som drivs av två systrar med passion för rörelse och löpning.",
   "url": "https://runclubs.se/goteborg/social-run-club-kungsbacka/",
-  "image": "https://images.unsplash.com/photo-1486218119243-13883505764c?w=1200&h=600&fit=crop&crop=center",
+  "image": "https://runclubs.se/social-run-club-kungsbacka-hero.jpeg",
   "sport": "Running",
   "address": {
     "@type": "PostalAddress",
@@ -113,7 +113,7 @@ document.addEventListener('DOMContentLoaded',function(){
     /* ── HERO ───────────────────────────── */
     .hero {
       position: relative; min-height: 400px;
-      background: #1C2A45 url('https://images.unsplash.com/photo-1486218119243-13883505764c?w=1200&h=600&fit=crop&crop=center') center/cover no-repeat;
+      background: #1C2A45 url('/social-run-club-kungsbacka-hero.jpeg') center 35%/cover no-repeat;
       display: flex; flex-direction: column; justify-content: flex-end;
       padding: 3rem 2rem; overflow: hidden;
     }
@@ -129,6 +129,16 @@ document.addEventListener('DOMContentLoaded',function(){
     .hero-tag { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #EEAA96; margin-bottom: 0.75rem; }
     .hero h1 { font-family: 'Archivo Black', sans-serif; font-size: clamp(38px, 5vw, 56px); line-height: 1; text-transform: uppercase; color: #FDFAF9; letter-spacing: 2px; }
     .hero-subtitle { font-size: 16px; color: rgba(255,255,255,0.6); line-height: 1.7; margin-top: 1rem; max-width: 500px; }
+
+    /* Hero logo badge */
+    .hero-logo {
+      position: absolute; top: 2rem; right: 2rem; z-index: 2;
+      width: 72px; height: 72px; border-radius: 14px;
+      background: #fff; padding: 4px;
+      box-shadow: 0 6px 24px rgba(0,0,0,0.35);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .hero-logo img { width: 100%; height: 100%; object-fit: contain; border-radius: 10px; }
 
     /* ── INFO STRIP ─────────────────────── */
     .info-strip {
@@ -400,7 +410,8 @@ document.addEventListener('DOMContentLoaded',function(){
       nav { padding: 1rem 1.25rem; }
       .nav-links { display: none; }
       .nav-toggle { display: flex; }
-      .hero { min-height: 320px; padding: 2rem 1.25rem; }
+      .hero { min-height: 320px; padding: 2rem 1.25rem; background-position: center 25%; }
+      .hero-logo { top: 1rem; right: 1rem; width: 60px; height: 60px; }
       .hero h1 { font-size: 36px; }
       .info-strip { flex-direction: column; }
       .info-strip-item { border-right: none; border-bottom: 1px solid #F0E0DC; padding: 1rem 1.25rem; }
@@ -513,6 +524,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <main id="main-content">
 
   <header class="hero">
+    <div class="hero-logo" aria-hidden="true">
+      <img src="/social-run-club-kungsbacka-logo.png" alt="" loading="eager" decoding="async">
+    </div>
     <div class="hero-content">
       <div class="breadcrumb">
         <a href="/">Start</a><span class="sep">/</span>
@@ -521,7 +535,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
       <div class="hero-tag">Löparklubb i Kungsbacka</div>
       <h1>Social Run Club<br>Kungsbacka</h1>
-      <p class="hero-subtitle">Måndagar vid Slingan i Sandskogen — löpning och gemenskap, drivet av två systrar.</p>
+      <p class="hero-subtitle">Social run club som drivs av två systrar med passion för rörelse och löpning.</p>
     </div>
   </header>
 
@@ -541,7 +555,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
       <div>
         <div class="info-strip-label">Träningsdagar</div>
-        <div class="info-strip-value">Måndagar*</div>
+        <div class="info-strip-value">Se Instagram</div>
       </div>
     </div>
     <div class="info-strip-item">
@@ -550,7 +564,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
       <div>
         <div class="info-strip-label">Tid</div>
-        <div class="info-strip-value">18:00*</div>
+        <div class="info-strip-value">Se Instagram</div>
       </div>
     </div>
     <div class="info-strip-item">
@@ -760,15 +774,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <article class="club-about fade-in">
       <span class="section-label">Om klubben</span>
 
-      <p>Social Run Club Kungsbacka drivs av systrarna <strong>Emma och Cissi</strong>, med fokus på inkluderande löpning och gemenskap i Kungsbacka.</p>
+      <p><strong>Social Run Club Kungsbacka</strong> är en löparklubb i Kungsbacka. Social run club som drivs av två systrar med passion för rörelse och löpning.</p>
 
-      <p>Gruppen träffas vanligtvis på <strong>måndagar kl 18:00</strong> vid <strong>Slingan i Sandskogen</strong>, men schemat kan variera — håll koll via Instagram eller klubbens Facebook-grupp för aktuella tider.</p>
+      <p>Social Run Club Kungsbacka: Drivs av de två systrarna <strong>Anna och Linnéa</strong> som båda älskar rörelse och framförallt löpning. Systrarnas vision är att Social Run Club Kungsbacka ska ge alla möjligheten att springa i en gemenskap. Anna och Linnéa ser till att du känner dig välkommen och inkluderad oavsett om du precis kommit igång med löpningen eller springer flera mil i veckan.</p>
 
-      <p>Bor du i Kungsbacka-området och söker en lokal löpgemenskap utan krav på tempo? Det här är stället.</p>
-
-      <div class="pull-quote">
-        <p>Schemat kan variera från vecka till vecka — dubbelkolla alltid senaste inlägget innan du kommer.</p>
-      </div>
+      <p>Distans och typ av pass varierar och det är därför enkelt att hitta en runda som passar just dig. För mer information om tid och plats — följ gruppen på Instagram.</p>
 
     </article>
 
@@ -798,11 +808,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             Alla nivåer
           </li>
           <li>
-            <span class="highlight-icon blue">📅</span>
-            Måndagar 18:00*
-          </li>
-          <li>
-            <span class="highlight-icon purple">📍</span>
+            <span class="highlight-icon blue">📍</span>
             Slingan, Sandskogen
           </li>
         </ul>
