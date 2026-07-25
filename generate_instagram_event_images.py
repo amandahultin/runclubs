@@ -70,13 +70,13 @@ _DIMS_RE = re.compile(r'data-width="(\d+)"\s+data-height="(\d+)"')
 def _title_font_size(title: str, scale: float) -> int:
     n = len(title)
     if n <= 28:
-        base = 82
+        base = 104
     elif n <= 45:
-        base = 66
+        base = 80
     elif n <= 65:
-        base = 52
+        base = 62
     else:
-        base = 42
+        base = 48
     return round(base * scale)
 
 
