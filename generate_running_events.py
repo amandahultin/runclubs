@@ -485,6 +485,7 @@ document.addEventListener('DOMContentLoaded',function(){{
       text-decoration: none;
       color: #1C2A45;
     }}
+    .event-card[hidden] { display: none; }
     .event-card:hover {{
       transform: translateY(-4px);
       box-shadow: 0 14px 36px rgba(212,113,94,0.2);
