@@ -815,6 +815,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <script>
     const events = {events_json};
 
+    let activeClubs = new Set();
+    let activeWeekdays = new Set();
+    const WEEKDAYS = ['Måndag','Tisdag','Onsdag','Torsdag','Fredag','Lördag','Söndag'];
+    const WEEKDAY_BY_JS_DAY = ['Söndag','Måndag','Tisdag','Onsdag','Torsdag','Fredag','Lördag'];
+
+    function cardWeekday(card) {{
+      const group = card.closest('.date-group');
+      const key = group && group.dataset.dateGroup;
+      if (!key || key === 'nodate') return null;
+      return WEEKDAY_BY_JS_DAY[new Date(key + 'T00:00:00').getDay()];
+    }}
+
     function applyFilters() {{
       const allCards = document.querySelectorAll('#events-container [data-source]');
       let visibleTotal = 0;
@@ -822,9 +834,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       allCards.forEach(card => {{
         const club = card.dataset.club || '';
-        const show = activeClubs.size === 0
+        const weekday = cardWeekday(card);
+        const clubShow = activeClubs.size === 0
           || (activeClubs.has('__ovrigt__') && !club)
           || (club && activeClubs.has(club));
+        const weekdayShow = activeWeekdays.size === 0
+          || (weekday && activeWeekdays.has(weekday));
+        const show = clubShow && weekdayShow;
         card.hidden = !show;
         if (show) {{
           visibleTotal++;
@@ -862,12 +878,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       navToggle.setAttribute('aria-label', isOpen ? 'Stäng meny' : 'Öppna meny');
     }});
 
-    function renderClubFilter() {{
+    function renderFilters() {{
       const clubs = [...new Set(events.map(ev => ev.club || '').filter(Boolean))]
         .sort((a, b) => a.localeCompare(b, 'sv'));
       const hasOvrigt = events.some(ev => !ev.club);
       const bar = document.getElementById('filters-bar');
       if (!bar) return;
+
+      let weekdayPillsHtml = `<button class="filter-pill active" data-filter="weekday" data-value="all">Alla</button>`;
+      WEEKDAYS.forEach(day => {{
+        weekdayPillsHtml += `<button class="filter-pill" data-filter="weekday" data-value="${{day}}">${{day}}</button>`;
+      }});
 
       let pillsHtml = `<button class="filter-pill active" data-filter="club" data-value="all">Alla</button>`;
       clubs.forEach(club => {{
@@ -879,14 +900,40 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <button class="filter-toggle" id="filter-toggle" aria-expanded="false" aria-controls="filters-inner">
           <span class="filter-toggle-label">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>
-            Filtrera klubb
+            Filtrera
           </span>
           <svg class="filter-toggle-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
         </button>
         <div class="filters-inner" id="filters-inner">
+          <div class="filter-group"><span class="filter-label">Veckodag</span>${{weekdayPillsHtml}}</div>
           <div class="filter-group"><span class="filter-label">Klubb</span>${{pillsHtml}}</div>
           <button class="close-filters" id="close-filters">Stäng</button>
         </div>`;
+
+      bar.querySelectorAll('[data-filter="weekday"]').forEach(btn => {{
+        btn.addEventListener('click', function() {{
+          const val = this.dataset.value;
+          if (val === 'all') {{
+            activeWeekdays.clear();
+            bar.querySelectorAll('[data-filter="weekday"]').forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+          }} else {{
+            bar.querySelector('[data-filter="weekday"][data-value="all"]').classList.remove('active');
+            if (activeWeekdays.has(val)) {{
+              activeWeekdays.delete(val);
+              this.classList.remove('active');
+            }} else {{
+              activeWeekdays.add(val);
+              this.classList.add('active');
+            }}
+            if (activeWeekdays.size === 0) {{
+              bar.querySelector('[data-filter="weekday"][data-value="all"]').classList.add('active');
+            }}
+          }}
+          syncURL();
+          applyFilters();
+        }});
+      }});
 
       bar.querySelectorAll('[data-filter="club"]').forEach(btn => {{
         btn.addEventListener('click', function() {{
@@ -896,7 +943,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             bar.querySelectorAll('[data-filter="club"]').forEach(b => b.classList.remove('active'));
             this.classList.add('active');
           }} else {{
-            bar.querySelector('[data-value="all"]').classList.remove('active');
+            bar.querySelector('[data-filter="club"][data-value="all"]').classList.remove('active');
             if (activeClubs.has(val)) {{
               activeClubs.delete(val);
               this.classList.remove('active');
@@ -905,7 +952,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               this.classList.add('active');
             }}
             if (activeClubs.size === 0) {{
-              bar.querySelector('[data-value="all"]').classList.add('active');
+              bar.querySelector('[data-filter="club"][data-value="all"]').classList.add('active');
             }}
           }}
           syncURL();
@@ -931,6 +978,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     function syncURL() {{
       const params = new URLSearchParams();
+      activeWeekdays.forEach(d => params.append('weekday', d));
       activeClubs.forEach(c => params.append('club', c));
       const qs = params.toString();
       history.replaceState(null, '', qs ? '?' + qs : location.pathname);
@@ -941,12 +989,22 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     }}, {{ threshold: 0 }});
     document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
+    const _weekdayParams = new URLSearchParams(window.location.search).getAll('weekday');
+    _weekdayParams.forEach(d => activeWeekdays.add(d));
     const _clubParams = new URLSearchParams(window.location.search).getAll('club');
     _clubParams.forEach(c => activeClubs.add(c));
 
-    renderClubFilter();
+    renderFilters();
     applyFilters();
 
+    if (_weekdayParams.length > 0) {{
+      const allWeekdayPill = document.querySelector('[data-filter="weekday"][data-value="all"]');
+      if (allWeekdayPill) allWeekdayPill.classList.remove('active');
+      _weekdayParams.forEach(d => {{
+        const targetPill = document.querySelector(`[data-filter="weekday"][data-value="${{d}}"]`);
+        if (targetPill) targetPill.classList.add('active');
+      }});
+    }}
     if (_clubParams.length > 0) {{
       const allPill = document.querySelector('[data-filter="club"][data-value="all"]');
       if (allPill) allPill.classList.remove('active');
