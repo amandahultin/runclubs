@@ -92,6 +92,16 @@ def slugify(text: str) -> str:
     return text.strip("-")
 
 
+def filter_token(text: str) -> str:
+    """Like slugify(), but for card data-* filter attributes, which must
+    match the filter pills' data-value verbatim (e.g. "lör", "nybörjare",
+    "södermalm") -- those keep Swedish diacritics, so this must NOT
+    de-accent like the URL-safe slugify() does."""
+    text = text.strip().lower()
+    text = re.sub(r"[^a-zåäö0-9]+", "-", text)
+    return text.strip("-")
+
+
 def region_key_from_label(raw: str) -> str | None:
     norm = raw.strip().lower()
     for key, cfg in REGIONS.items():
@@ -343,11 +353,11 @@ def build_card_html(row: dict, region_key: str) -> str:
     kort_bild = row.get("Kort-bild", "").strip()
     date_iso, _ = today_iso_and_sv()
 
-    niva_attr = " ".join(slugify(n) for n in re.split(r"[;,]", niva_raw) if n.strip()) \
+    niva_attr = " ".join(filter_token(n) for n in re.split(r"[;,]", niva_raw) if n.strip()) \
         or "nybörjare mellannivå avancerad"
     tags = [t.strip()[:1].upper() + t.strip()[1:] for t in re.split(r"[;,]", tags_raw) if t.strip()]
     typ_attr = " ".join(t.lower() for t in tags)
-    dag_attr = slugify(schedule_day)[:3] if schedule_day else ""
+    dag_attr = filter_token(schedule_day)[:3] if schedule_day else ""
 
     tags_html = "\n            ".join(
         f'<span class="card-tag tag-typ">{t}</span>' for t in tags
@@ -358,7 +368,7 @@ def build_card_html(row: dict, region_key: str) -> str:
         meta_prefix = city
     else:
         stadsdel = row.get("Stadsdel", "").strip() or city
-        location_attr = f'data-stadsdel="{slugify(stadsdel)}"'
+        location_attr = f'data-stadsdel="{filter_token(stadsdel)}"'
         meta_prefix = stadsdel
 
     meta = f"{meta_prefix} · {schedule_summary(schedule_day, schedule_time)}"

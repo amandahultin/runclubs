@@ -85,6 +85,7 @@ def load_club_index() -> dict[str, dict]:
 
 CITY_CLUBS: dict[str, list[str]] = {
     "stockholm": [
+        "bbrs",
         "stockholm-run-club", "dopest-runners", "rtc", "triple-threshold-rc",
         "burgers-n-brew-run-crew", "zlk-zinken-lopklubb", "soderloparna-stockholm",
         "runday", "run-collective-stockholm", "mikkeller-running-club-sthlm",
