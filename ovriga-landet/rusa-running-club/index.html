@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded',function(){
   <meta property="og:description" content="En löparklubb för dig som vill springa men också snacka, dricka kaffe och öl.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://runclubs.se/ovriga-landet/rusa-running-club/">
-  <meta property="og:image" content="https://images.unsplash.com/photo-1526676537331-7747bf8278fc?w=1200&h=600&fit=crop&crop=center">
+  <meta property="og:image" content="https://runclubs.se/rusa-running-club-hero.jpg">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Rusa Running Club">
   <meta name="twitter:description" content="En löparklubb för dig som vill springa men också snacka, dricka kaffe och öl.">
@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded',function(){
   "name": "Rusa Running Club",
   "description": "Löparklubb i Malmö för dig som vill springa men också snacka, dricka kaffe och öl efteråt.",
   "url": "https://runclubs.se/ovriga-landet/rusa-running-club/",
-  "image": "https://images.unsplash.com/photo-1526676537331-7747bf8278fc?w=1200&h=600&fit=crop&crop=center",
+  "image": "https://runclubs.se/rusa-running-club-hero.jpg",
   "sport": "Running",
   "address": {
     "@type": "PostalAddress",
@@ -113,7 +113,7 @@ document.addEventListener('DOMContentLoaded',function(){
     /* ── HERO ───────────────────────────── */
     .hero {
       position: relative; min-height: 400px;
-      background: #1C2A45 url('https://images.unsplash.com/photo-1526676537331-7747bf8278fc?w=1200&h=600&fit=crop&crop=center') center/cover no-repeat;
+      background: #1C2A45 url('/rusa-running-club-hero.jpg') center 50%/cover no-repeat;
       display: flex; flex-direction: column; justify-content: flex-end;
       padding: 3rem 2rem; overflow: hidden;
     }
@@ -523,7 +523,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <main id="main-content">
 
   <header class="hero">
-
+    <div class="hero-logo" aria-hidden="true">
+      <img src="/rusa-running-club-logo.png" alt="" loading="eager" decoding="async">
+    </div>
     <div class="hero-content">
       <div class="breadcrumb">
         <a href="/">Start</a><span class="sep">/</span>
