@@ -99,7 +99,7 @@ CITY_CLUBS: dict[str, list[str]] = {
         "we-run-west",
         "goteborg-running-club", "sweden-runners-goteborg", "aero-boys-club",
         "east-run-club", "slowrunners-goteborg", "she-runs-club",
-        "core-run-club", "ess-runners-club",
+        "core-run-club", "ess-runners-club", "place-run-club",
     ],
     "ovriga-landet": [
         "orebro-runclub",
@@ -107,7 +107,7 @@ CITY_CLUBS: dict[str, list[str]] = {
         "rusa-running-club", "uppsala-lopklubb-for-tjejer", "social-run-lund",
         "fun-run-malmo", "lund-run-club", "ett-steg-i-taget-alingsas",
         "running-for-breakfast-vasteras", "running-for-breakfast-eskilstuna",
-        "running-for-breakfast-norrkoping",
+        "running-for-breakfast-norrkoping", "sundet-run-club-helsingborg",
     ],
 }
 
