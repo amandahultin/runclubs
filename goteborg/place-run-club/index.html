@@ -18,38 +18,38 @@ document.addEventListener('DOMContentLoaded',function(){
 <!-- End Google Tag Manager -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Social Run Lund — Löparklubb i Lund | Runclubs.se</title>
-  <meta name="description" content="Social Run Lund — löparklubb för dig som vill kombinera löpning med samtal och sällskap. Onsdagar 18:00 vid Klimatlekan, alla nivåer välkomna.">
-  <meta property="og:title" content="Social Run Lund">
-  <meta property="og:description" content="Löparklubb i Lund som kombinerar löpning med roliga samtal och härligt sällskap. Alla nivåer välkomna.">
+  <title>Place Run Club Göteborg | Löpargrupp | Runclubs.se</title>
+  <meta name="description" content="Place Run Club — social löpargrupp i centrala Göteborg med Fred's Food &amp; Coffee som fast mötesplats. Sociala löprundor, intervaller och kreativa koncept som Run 'n Read.">
+  <meta property="og:title" content="Place Run Club Göteborg | Runclubs.se">
+  <meta property="og:description" content="Social löpargrupp i centrala Göteborg med Fred's Food & Coffee som fast mötesplats. Alla nivåer välkomna.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://runclubs.se/ovriga-landet/social-run-lund/">
-  <meta property="og:image" content="https://images.unsplash.com/photo-1552674605-db6ffd4facb5?w=1200&h=600&fit=crop&crop=center">
+  <meta property="og:url" content="https://runclubs.se/goteborg/place-run-club/">
+  <meta property="og:image" content="https://runclubs.se/place-run-club-hero.jpeg">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Social Run Lund">
-  <meta name="twitter:description" content="Löparklubb i Lund som kombinerar löpning med roliga samtal och härligt sällskap. Alla nivåer välkomna.">
+  <meta name="twitter:title" content="Place Run Club Göteborg">
+  <meta name="twitter:description" content="Social löpargrupp i centrala Göteborg med Fred's Food & Coffee som fast mötesplats. Alla nivåer välkomna.">
   <link rel="sitemap" type="application/xml" href="/sitemap.xml">
-  <link rel="canonical" href="https://runclubs.se/ovriga-landet/social-run-lund/">
-  <link rel="alternate" hreflang="sv-SE" href="https://runclubs.se/ovriga-landet/social-run-lund/">
-  <link rel="alternate" hreflang="x-default" href="https://runclubs.se/ovriga-landet/social-run-lund/">
+  <link rel="canonical" href="https://runclubs.se/goteborg/place-run-club/">
+  <link rel="alternate" hreflang="sv-SE" href="https://runclubs.se/goteborg/place-run-club/">
+  <link rel="alternate" hreflang="x-default" href="https://runclubs.se/goteborg/place-run-club/">
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "SportsOrganization",
-  "name": "Social Run Lund",
-  "description": "Löparklubb i Lund grundad av Emma. Kombinerar löpning med samtal och gemenskap varje onsdag, alla nivåer välkomna.",
-  "url": "https://runclubs.se/ovriga-landet/social-run-lund/",
-  "image": "https://images.unsplash.com/photo-1552674605-db6ffd4facb5?w=1200&h=600&fit=crop&crop=center",
+  "name": "Place Run Club",
+  "description": "Place Run Club är en social löpargrupp i centrala Göteborg med Fred's Food & Coffee som fasta mötesplats. Sociala löprundor, intervaller och kreativa koncept som Run 'n Read.",
+  "url": "https://runclubs.se/goteborg/place-run-club/",
+  "image": "https://runclubs.se/place-run-club-hero.jpeg",
   "sport": "Running",
   "address": {
     "@type": "PostalAddress",
-    "addressLocality": "Lund",
+    "addressLocality": "Göteborg",
     "addressCountry": "SE",
-    "streetAddress": "Grillplatsen vid Klimatlekan, Lund"
+    "streetAddress": "Fred's Food & Coffee, Göteborg"
   },
   "areaServed": {
     "@type": "City",
-    "name": "Lund"
+    "name": "Göteborg"
   },
   "isPartOf": {
     "@type": "WebSite",
@@ -58,8 +58,8 @@ document.addEventListener('DOMContentLoaded',function(){
   },
   "dateModified": "2026-08-03",
   "sameAs": [
-    "https://www.instagram.com/socialrunlund/",
-    "https://www.strava.com/clubs/2274226"
+    "https://www.instagram.com/placerunclub/",
+    "https://www.strava.com/clubs/1826371"
   ]
 }
 </script>
@@ -113,7 +113,7 @@ document.addEventListener('DOMContentLoaded',function(){
     /* ── HERO ───────────────────────────── */
     .hero {
       position: relative; min-height: 400px;
-      background: #1C2A45 url('https://images.unsplash.com/photo-1552674605-db6ffd4facb5?w=1200&h=600&fit=crop&crop=center') center/cover no-repeat;
+      background: #1C2A45 url('/place-run-club-hero.jpeg') center 50%/cover no-repeat;
       display: flex; flex-direction: column; justify-content: flex-end;
       padding: 3rem 2rem; overflow: hidden;
     }
@@ -411,6 +411,7 @@ document.addEventListener('DOMContentLoaded',function(){
       .nav-links { display: none; }
       .nav-toggle { display: flex; }
       .hero { min-height: 320px; padding: 2rem 1.25rem; }
+      .hero-logo { top: 1rem; right: 1rem; width: 60px; height: 60px; }
       .hero h1 { font-size: 36px; }
       .info-strip { flex-direction: column; }
       .info-strip-item { border-right: none; border-bottom: 1px solid #F0E0DC; padding: 1rem 1.25rem; }
@@ -431,21 +432,6 @@ document.addEventListener('DOMContentLoaded',function(){
 
       footer { padding: 2rem 1.25rem; grid-template-columns: 1fr; }
     }
-
-    /* Facebook CTA */
-    .facebook-cta {
-      display: flex; align-items: center; gap: 10px;
-      width: 100%; padding: 14px 16px;
-      background: #1877F2;
-      border-radius: 12px;
-      text-decoration: none; color: #fff;
-      font-size: 13px; font-weight: 600;
-      transition: all 0.2s ease;
-      margin-top: 8px;
-    }
-    .facebook-cta:hover { transform: translateY(-1px); box-shadow: 0 4px 16px rgba(24,119,242,0.3); }
-    .facebook-cta .fb-arrow { margin-left: auto; transition: transform 0.2s; }
-    .facebook-cta:hover .fb-arrow { transform: translateX(3px); }
 
     /* ── MAP ─────────────────────────────── */
     .map-embed-section { padding: 0 2.5rem 3rem; max-width: 1200px; margin: 0 auto; }
@@ -472,14 +458,14 @@ document.addEventListener('DOMContentLoaded',function(){
     {
       "@type": "ListItem",
       "position": 2,
-      "name": "Övriga landet",
-      "item": "https://runclubs.se/ovriga-landet"
+      "name": "Göteborg",
+      "item": "https://runclubs.se/goteborg"
     },
     {
       "@type": "ListItem",
       "position": 3,
-      "name": "Social Run Lund",
-      "item": "https://runclubs.se/ovriga-landet/social-run-lund/"
+      "name": "Place Run Club",
+      "item": "https://runclubs.se/goteborg/place-run-club/"
     }
   ]
 }
@@ -498,12 +484,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <a href="/" class="run-clubs-logo"><span class="run">RUN</span><span class="clubs">CLUBS</span><span class="suffix">.se</span></a>
     <div class="nav-links">
       <a href="/stockholm">Stockholm</a>
-    <a href="/goteborg">Göteborg</a>
-    <a href="/ovriga-landet" class="active">Övriga landet</a>
-    <a href="/nyheter">Nyheter</a>
-    <a href="/events">Events</a>
-    <a href="/loppkalender">Loppkalender</a>
-    <a href="/om-oss">Om oss</a>
+      <a href="/goteborg" class="active">Göteborg</a>
+      <a href="/ovriga-landet">Övriga landet</a>
+      <a href="/nyheter">Nyheter</a>
+      <a href="/events">Events</a>
+      <a href="/loppkalender">Loppkalender</a>
+      <a href="/om-oss">Om oss</a>
     </div>
     <button class="nav-toggle" aria-label="Öppna meny" aria-expanded="false">
       <span></span><span></span><span></span>
@@ -512,8 +498,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <div class="mobile-menu" role="navigation" aria-label="Mobilmeny">
     <a href="/stockholm">Stockholm</a>
-    <a href="/goteborg">Göteborg</a>
-    <a href="/ovriga-landet" class="active">Övriga landet</a>
+    <a href="/goteborg" class="active">Göteborg</a>
+    <a href="/ovriga-landet">Övriga landet</a>
     <a href="/nyheter">Nyheter</a>
     <a href="/events">Events</a>
     <a href="/loppkalender">Loppkalender</a>
@@ -524,17 +510,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <header class="hero">
     <div class="hero-logo" aria-hidden="true">
-      <img src="/social-run-lund-logo.jpeg" alt="" loading="eager" decoding="async">
+      <img src="/place-run-club-logo.jpeg" alt="" loading="eager" decoding="async">
     </div>
     <div class="hero-content">
       <div class="breadcrumb">
         <a href="/">Start</a><span class="sep">/</span>
-        <a href="/ovriga-landet">Övriga landet</a><span class="sep">/</span>
-        Social Run Lund
+        <a href="/goteborg">Göteborg</a><span class="sep">/</span>
+        Place Run Club
       </div>
-      <div class="hero-tag">Löparklubb i Lund</div>
-      <h1>Social<br>Run Lund</h1>
-      <p class="hero-subtitle">Kombinera löpning med roliga samtal och härligt sällskap — alla nivåer välkomna.</p>
+      <div class="hero-tag">Löparklubb i Göteborg</div>
+      <h1>Place<br>Run Club</h1>
+      <p class="hero-subtitle">Häng med Place Run Club på nästa runda — varm stämning och inkluderande tempo i centrala Göteborg.</p>
     </div>
   </header>
 
@@ -545,7 +531,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
       <div>
         <div class="info-strip-label">Mötesplats</div>
-        <div class="info-strip-value">Grillplatsen vid Klimatlekan, Lund</div>
+        <div class="info-strip-value">Fred's Food &amp; Coffee, Göteborg</div>
       </div>
     </div>
     <div class="info-strip-item">
@@ -554,7 +540,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
       <div>
         <div class="info-strip-label">Träningsdagar</div>
-        <div class="info-strip-value">Onsdagar</div>
+        <div class="info-strip-value">Se Instagram</div>
       </div>
     </div>
     <div class="info-strip-item">
@@ -563,7 +549,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
       <div>
         <div class="info-strip-label">Tid</div>
-        <div class="info-strip-value">Onsdagar 18:00</div>
+        <div class="info-strip-value">Se Instagram</div>
       </div>
     </div>
     <div class="info-strip-item">
@@ -572,7 +558,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
       <div>
         <div class="info-strip-label">Kostnad</div>
-        <div class="info-strip-value">Se Instagram</div>
+        <div class="info-strip-value">Gratis</div>
       </div>
     </div>
 
@@ -584,8 +570,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
     </div>
   </div>
-
-
 
   <style>
     /* ── club events layout ───────────────────────────────────── */
@@ -703,7 +687,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <script>
   (function() {
-    var CLUB_NAMES = ["Social Run Lund", "Social Run"];
+    var CLUB_NAMES = ["Place Run Club"];
     var SOURCE = '/events.html';
     var SV_MONTHS = ['jan','feb','mar','apr','maj','jun','jul','aug','sep','okt','nov','dec'];
     var SV_DAYS   = ['Söndag','Måndag','Tisdag','Onsdag','Torsdag','Fredag','Lördag'];
@@ -725,7 +709,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       var href    = ev.link || '#';
       var target  = (ev.source === 'strava' || ev.source === 'special') ? 'target="_blank" rel="noopener"' : '';
       var meta    = '';
-      if (loc)             meta += '<span>📍 ' + loc + '</span>';
+      if (loc)              meta += '<span>📍 ' + loc + '</span>';
       if (time !== '00:00') meta += '<span>⏰ ' + time + '</span>';
 
       var isStrava = ev.source === 'strava' || ev.source === 'special';
@@ -773,9 +757,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <article class="club-about fade-in">
       <span class="section-label">Om klubben</span>
 
-      <p><strong>Social Run Lund</strong> startades av <strong>Emma</strong> med målsättningen att sprida kravlös löparglädje och kombinera löpning med roliga samtal och härligt sällskap.</p>
+      <p><strong>Place Run Club</strong> startades av Christian Björck i november 2025, bara några månader efter att han själv hittade löpningen genom andra run clubs i Göteborg. Inspirerad av det varma välkomnandet och gemenskapen han själv möttes av skapade han Place Run Club.</p>
 
-      <p>Gruppen springer varje onsdag klockan 18.00, med start vid <strong>Grillplatsen vid Klimatlekan</strong> i Lund, i ett härligt snacktempo, och fokuserar på gemenskap snarare än prestation. Alla löpare, erfarna som oerfarna, är välkomna att hänga med. Utöver den ordinarie träffen läggs extrapass in varje månad, med varierande tid och dag — håll utkik på Instagram och Strava.</p>
+      <p>Klubben håller till i centrala Göteborg med <strong>Fred's Food &amp; Coffee</strong> som fasta mötesplats och samlar löpare kring sociala löprundor i skönt tempo, intervaller och lite mer kreativa koncept, som adventslöpning och Run 'n Read, där löpning möter litteratur. Här är alla välkomna oavsett erfarenhet. Tanken är enkel, du ska hitta ditt Place.</p>
     </article>
 
 
@@ -796,37 +780,37 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="sidebar-label">Det här är klubben</span>
         <ul class="highlights-list">
           <li>
-            <span class="highlight-icon coral">🌟</span>
-            Alla nivåer välkomna
+            <span class="highlight-icon coral">☕</span>
+            Fast mötesplats hos Fred's Food &amp; Coffee
           </li>
           <li>
-            <span class="highlight-icon blue">💬</span>
-            Löpning med snack och sällskap
+            <span class="highlight-icon blue">🎉</span>
+            Kreativa koncept som adventslöpning och Run 'n Read
           </li>
           <li>
-            <span class="highlight-icon green">🗓️</span>
-            Extrapass varje månad, tid och dag varierar
+            <span class="highlight-icon green">✓</span>
+            Sociala löppass och intervaller varvat
           </li>
         </ul>
       </div>
 
       <div class="sidebar-section">
         <span class="sidebar-label">Hitta hit</span>
-        <a href="https://maps.google.com/?q=Grillplatsen%2C%20Klimatlekan%2C%20Lund%2C%20Sverige" target="_blank" rel="noopener" class="map-btn">
-          <span class="map-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
-          Grillplatsen vid Klimatlekan, Lund
+        <a href="https://maps.google.com/?q=Fred%27s+Food+%26+Coffee%2C+G%C3%B6teborg" target="_blank" rel="noopener" class="map-btn">
+          <span class="map-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
+          Fred's Food &amp; Coffee, Göteborg
           <span class="map-arrow">&#8594;</span>
         </a>
       </div>
 
       <div class="sidebar-section">
         <span class="sidebar-label">Följ klubben</span>
-        <a href="https://www.instagram.com/socialrunlund/" target="_blank" rel="noopener" class="instagram-cta">
+        <a href="https://www.instagram.com/placerunclub/" target="_blank" rel="noopener" class="instagram-cta">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
           Följ på Instagram
           <span class="ig-arrow">&#8594;</span>
         </a>
-        <a href="https://www.strava.com/clubs/2274226" target="_blank" rel="noopener" class="strava-cta">
+        <a href="https://www.strava.com/clubs/1826371" target="_blank" rel="noopener" class="strava-cta">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M15.387 17.944l-2.089-4.116h-3.065L15.387 24l5.15-10.172h-3.066m-7.008-5.599l2.836 5.598h4.172L10.463 0l-7 13.828h4.169"/></svg>
           Följ på Strava
           <span class="strava-arrow">&#8594;</span>
@@ -835,9 +819,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       <div class="sidebar-section">
         <span class="sidebar-label">Är du ledare?</span>
-        <a href="mailto:amanda@runclubs.se?subject=Uppdatera%20info%20om%20Social%20Run%20Lund" class="map-btn" style="background:#FDFAF9;">
+        <a href="mailto:amanda@runclubs.se?subject=Uppdatera%20info%20om%20Place%20Run%20Club" class="map-btn" style="background:#FDFAF9;">
           <span class="map-icon" style="background:#1C2A45;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></span>
-          Uppdatera info om Social Run Lund
+          Uppdatera info om Place Run Club
           <span class="map-arrow">&#8594;</span>
         </a>
       </div>
@@ -845,8 +829,50 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
   <section class="map-embed-section">
     <h2>Mötesplats</h2>
-    <iframe class="map-embed" src="https://maps.google.com/maps?q=Grillplatsen%2C%20Klimatlekan%2C%20Lund%2C%20Sverige&output=embed&hl=sv" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Karta över mötesplatsen" aria-label="Karta"></iframe>
+    <iframe class="map-embed" src="https://maps.google.com/maps?q=Fred%27s%20Food%20%26%20Coffee%2C%20G%C3%B6teborg%2C%20Sverige&output=embed&hl=sv" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Karta över mötesplatsen" aria-label="Karta"></iframe>
+  </section><section class="related-section fade-in">
+    <span class="section-label">Andra liknande löpargrupper i <a href="/goteborg/" style="color:inherit;text-decoration:underline;text-underline-offset:2px;">Göteborg</a></span>
+    <div class="related-grid">
+
+      <a href="/goteborg/aero-boys-club/" class="related-card">
+        <div class="related-card-name">Aero Boys Club</div>
+        <div class="related-card-meta">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Göteborg · Lör 10:00
+        </div>
+        <div class="related-card-tags">
+          <span class="related-tag">Social</span>
+          <span class="related-tag">Events</span>
+        </div>
+        <span class="related-card-arrow">Läs mer →</span>
+      </a>
+      <a href="/goteborg/core-run-club/" class="related-card">
+        <div class="related-card-name">Core Run Club</div>
+        <div class="related-card-meta">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Göteborg · Se Instagram
+        </div>
+        <div class="related-card-tags">
+          <span class="related-tag">Social</span>
+          <span class="related-tag">Tempo</span>
+        </div>
+        <span class="related-card-arrow">Läs mer →</span>
+      </a>
+      <a href="/goteborg/east-run-club/" class="related-card">
+        <div class="related-card-name">East Run Club</div>
+        <div class="related-card-meta">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Waernsgatan 4A, Göteborg
+        </div>
+        <div class="related-card-tags">
+          <span class="related-tag">Social</span>
+        </div>
+        <span class="related-card-arrow">Läs mer →</span>
+      </a>
+    </div>
   </section>
+
+
 
     <!-- NEWSLETTER -->
   <section class="nl-section fade-in">
@@ -875,7 +901,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <h4>Städer</h4>
       <a href="/stockholm">Stockholm</a>
       <a href="/goteborg">Göteborg</a>
-    <a href="/ovriga-landet">Övriga landet</a>
+      <a href="/ovriga-landet">Övriga landet</a>
     </div>
     <div>
       <h4>Om sajten</h4>
