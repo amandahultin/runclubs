@@ -1,8 +1,8 @@
-"""Render Instagram-ready images for next week's Stockholm Strava events.
+"""Render Instagram-ready images for next week's Strava events, all cities.
 
 Reads the Events worksheet (the same sheet the site's event pages read from),
-filters to Strava-sourced events in Stockholm happening in the target week,
-and renders one branded PNG per event in two sizes:
+filters to Strava-sourced events happening in the target week, and renders
+one branded PNG per event in two sizes:
 
   - <slug>-post.png   1080x1350  (Instagram feed post, 4:5)
   - <slug>-story.png  1080x1920  (Instagram story / reel cover, 9:16)
@@ -46,14 +46,15 @@ from events_common import (
     EVENTS_SHEET_ID,
     _SV_DAYS,
     _SV_MONTHS_SHORT,
+    _normalize_city,
     _parse_date,
+    build_club_cities,
     fetch_events,
+    fetch_weekly_runs,
     normalize_club_name,
 )
 
 log = logging.getLogger(__name__)
-
-STOCKHOLM_KEYWORDS = {"stockholm"}
 
 INSTAGRAM_DIR = Path(__file__).resolve().parent / "instagram"
 _JINJA_ENV = Environment(
@@ -92,7 +93,7 @@ def event_page_html(ev: dict, variant: str) -> str:
 
     tpl = _JINJA_ENV.get_template(f"templates/event-{variant}.html")
     return tpl.render(
-        city="Stockholm",
+        city=ev["city"],
         day=d.day,
         day_name=_SV_DAYS[js_day].upper(),
         month=_SV_MONTHS_SHORT[d.month - 1].upper(),
@@ -166,16 +167,13 @@ def gather_events(sheet_id: str, week_start: str | None) -> list[dict]:
     log.info("Target week: %s -> %s (UTC)", start.date(), end.date())
 
     records = fetch_events(sheet_id)
+    club_cities = build_club_cities(fetch_weekly_runs(sheet_id))
     events: list[dict] = []
     seen: set[tuple] = set()
 
     for r in records:
         source = (r.get("source") or "").strip().lower()
         if source != "strava":
-            continue
-
-        loc = (r.get("location") or "").lower()
-        if not any(kw in loc for kw in STOCKHOLM_KEYWORDS):
             continue
 
         dt = _parse_date((r.get("date") or "").strip())
@@ -192,15 +190,19 @@ def gather_events(sheet_id: str, week_start: str | None) -> list[dict]:
             continue
         seen.add(key)
 
+        location = (r.get("location") or "").strip()
+        city = _normalize_city(location) or club_cities.get(club.lower(), "")
+
         events.append({
             "club": club,
             "title": title,
-            "location": (r.get("location") or "").strip(),
+            "location": location,
+            "city": city,
             "_dt": dt,
         })
 
     events.sort(key=lambda e: e["_dt"])
-    log.info("%d Stockholm Strava events in target week", len(events))
+    log.info("%d Strava events in target week", len(events))
     return events
 
 

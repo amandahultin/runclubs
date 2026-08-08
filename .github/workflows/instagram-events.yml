@@ -1,4 +1,4 @@
-name: Generate Instagram event images (Stockholm)
+name: Generate Instagram event images
 
 on:
   # No schedule yet — manual runs only while we iterate on the template.
