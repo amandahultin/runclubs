@@ -50,6 +50,7 @@ jobs:
             --upload
 
       - name: Upload generated images as a workflow artifact
+        id: upload
         if: always()
         uses: actions/upload-artifact@v4
         with:
@@ -59,3 +60,10 @@ jobs:
             instagram/generated/*.html
           if-no-files-found: ignore
           retention-days: 7
+
+      - name: Print artifact download link
+        if: always() && steps.upload.outputs.artifact-id != ''
+        run: |
+          echo "### Instagram event images" >> "$GITHUB_STEP_SUMMARY"
+          echo "[Download artifact](${{ steps.upload.outputs.artifact-url }})" >> "$GITHUB_STEP_SUMMARY"
+          echo "Artifact: ${{ steps.upload.outputs.artifact-url }}"
