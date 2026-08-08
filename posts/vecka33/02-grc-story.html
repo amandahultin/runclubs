@@ -1,0 +1,141 @@
+<!-- @dsCard group="Templates" name="Event — story / reel cover (1080x1920)" -->
+<!doctype html>
+<html data-width="1080" data-height="1920">
+<head>
+<!--
+  Internal include-only partial — not a component itself, not synced to
+  Claude Design as its own card. Every component and template includes
+  this for fonts, color/spacing tokens, and a base reset, so there is
+  exactly one place these values are defined.
+
+  Edit colors/fonts here and every component + template picks it up.
+-->
+<meta charset="utf-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:ital,wght@1,900&family=Oswald:wght@500;600;700&family=DM+Sans:wght@300;400;500;600;700&family=Playfair+Display:wght@400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --color-bg:          #FFF7F1;
+    --color-navy:        #1C2A45;
+    --color-accent:      #FF3D7A;
+    --color-numeral:     #FF5F46;
+    --color-tint:        #FFC9A6;
+    --color-accent-soft: #FFD1DC;
+    --color-card-border: #E8D8D3;
+    --color-pill-border: #D4C4BF;
+    --color-muted:       #9C7B86;
+    --color-tertiary:    #aaa;
+
+    --city-stockholm-bg: #C6EFCE;
+    --city-stockholm-fg: #276221;
+    --city-goteborg-bg:  #FFF3C4;
+    --city-goteborg-fg:  #7A5C00;
+    --city-malmo-bg:     #F7E8E4;
+    --city-malmo-fg:     #c25a47;
+
+    --font-display: 'Archivo Black', sans-serif;
+    --font-heading: 'Oswald', sans-serif;
+    --font-body:    'DM Sans', sans-serif;
+    --font-wordmark-run:   'Inter', sans-serif;
+    --font-wordmark-clubs: 'Playfair Display', serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: var(--font-body); color: var(--color-navy); background: var(--color-bg); }
+</style>
+<!--
+  Style + macro partial for the logo component. Not a Claude Design card
+  itself — see logo.html for the browsable demo. Templates pull this in
+  with both an include (for the CSS) and a from-import (for the macro),
+  since Jinja's import only binds the macro name, not any plain
+  markup/CSS that lives alongside it in the file.
+-->
+<style>
+  .logo { display: inline-flex; align-items: baseline; color: #1a1a1a; text-decoration: none; font-size: 34px; }
+  .logo .run { font-family: var(--font-wordmark-run); font-weight: 900; font-style: italic; letter-spacing: -0.04em; padding-right: 2px; }
+  .logo .clubs { font-family: var(--font-wordmark-clubs); font-weight: 400; letter-spacing: -0.02em; }
+  .logo .suffix { font-family: var(--font-wordmark-clubs); font-size: 0.45em; font-weight: 400; text-transform: lowercase; margin-left: 2px; }
+  .logo.small { font-size: 24px; }
+</style>
+
+<!-- Style + macro partial for the location line — see location-line.html for the demo. -->
+<style>
+  .loc { display: flex; align-items: center; gap: 12px; color: var(--color-muted); overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+  .loc svg { flex-shrink: 0; }
+</style>
+
+
+
+<style>
+  html, body { width: 1080px; height: 1920px; overflow: hidden; }
+  .poster { position: relative; width: 1080px; height: 1920px; padding: 72px; display: flex; flex-direction: column; overflow: hidden; }
+  .blob { position: absolute; top: -380px; left: -380px; width: 1040px; height: 1040px; border-radius: 50%; background: var(--color-tint); z-index: 0; }
+  .top-bar, .content, .bottom-link { position: relative; z-index: 1; }
+  .content { flex: 1; display: flex; flex-direction: column; justify-content: flex-end; gap: 18px; padding-bottom: 70px; }
+  .pill { align-self: flex-start; font-family: var(--font-heading); font-size: 24px; font-weight: 600; letter-spacing: 1.2px; text-transform: uppercase; padding: 14px 28px; border-radius: 100px; background: var(--color-navy); color: #fff; }
+  .title { font-family: var(--font-display); font-size: 75px; line-height: 1.08; text-transform: uppercase; color: var(--color-navy); }
+  .desc { font-size: 26px; font-weight: 300; line-height: 1.7; letter-spacing: 0.1px; color: var(--color-muted); white-space: pre-line; max-width: 900px; display: -webkit-box; -webkit-line-clamp: 7; -webkit-box-orient: vertical; overflow: hidden; }
+  .cta { align-self: flex-start; font-size: 26px; font-weight: 700; color: #fff; background: var(--color-accent); padding: 11px 20px; border-radius: 12px; }
+  .bottom-link { font-size: 22px; font-weight: 300; color: var(--color-muted); }
+
+  /* Variant: solid pink, no blob, white text/logo */
+  .poster.pink { background: var(--color-accent); }
+  .poster.pink .blob { display: none; }
+  .poster.pink .logo { color: #fff; }
+  .poster.pink .title { color: #fff; }
+  .poster.pink .desc { color: rgba(255,255,255,0.85); }
+  .poster.pink .loc { color: rgba(255,255,255,0.85); }
+  .poster.pink .bottom-link { color: rgba(255,255,255,0.7); }
+  .poster.pink .cta { background: #fff; color: var(--color-navy); }
+
+  /* Variant: pink with a peach blob (top-right), white pill/logo/text */
+  .poster.pink-blob { background: var(--color-accent); }
+  .poster.pink-blob .blob { left: auto; right: -380px; }
+  .poster.pink-blob .logo { color: #fff; }
+  .poster.pink-blob .pill { background: #fff; color: var(--color-navy); }
+  .poster.pink-blob .title { color: #fff; }
+  .poster.pink-blob .desc { color: rgba(255,255,255,0.85); }
+  .poster.pink-blob .loc { color: rgba(255,255,255,0.85); }
+  .poster.pink-blob .bottom-link { color: rgba(255,255,255,0.7); }
+  .poster.pink-blob .cta { background: var(--color-navy); color: #fff; }
+</style>
+</head>
+<body>
+<div class="poster pink">
+  <div class="blob"></div>
+  <div class="top-bar">
+<span class="logo"><span class="run">RUN</span><span class="clubs">CLUBS</span><span class="suffix">.se</span></span>
+</div>
+  <div class="content">
+    <span class="pill">Göteborg · TISDAG 11 AUG · 18:00</span>
+    <div class="title">GRC | Säsongspremiär</div>
+    <div class="desc">Välkommen till säsongspremiären!
+
+Varje tisdag kommer vi köra intervallbaserade löpklasser som kombinerar löpning, styrka och rörlighet. Oavsett om du är ny i löpspåret eller en van löpare som vill vässa formen, är det här ett pass för dig.
+
+Vi samlas på Linnéplatsen utanför Station Linné och tar sikte på gemensam uppvärmning och efterföljande intervaller.
+
+För den som vill rundar vi av passet med after run på Station Linné!😅
+
+https://peach.nu/c/pZ7nSaX6YL0h2LjiWxgA
+
+⸻
+
+Så bokar du:
+Passet bokas via Peach 🍑 
+- endast löpning 50kr
+- 10-kort 400kr
+- löpande medlemskap 100kr</div>
+    <span class="cta">med Göteborg Running Club (GRC) →</span>
+    
+
+<div class="loc" style="font-size:34px">
+  <svg width="29" height="29" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+  <span>Linnéplatsen 9 413 10 Göteborg Sverige</span>
+</div>
+
+  </div>
+  <div class="bottom-link">Länk till anmälan hittar du på runclubs.se/events.</div>
+</div>
+</body>
+</html>

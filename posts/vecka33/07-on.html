@@ -1,0 +1,131 @@
+<!-- @dsCard group="Templates" name="Event — feed post (1080x1350)" -->
+<!doctype html>
+<html data-width="1080" data-height="1350">
+<head>
+<!--
+  Internal include-only partial — not a component itself, not synced to
+  Claude Design as its own card. Every component and template includes
+  this for fonts, color/spacing tokens, and a base reset, so there is
+  exactly one place these values are defined.
+
+  Edit colors/fonts here and every component + template picks it up.
+-->
+<meta charset="utf-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:ital,wght@1,900&family=Oswald:wght@500;600;700&family=DM+Sans:wght@300;400;500;600;700&family=Playfair+Display:wght@400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --color-bg:          #FFF7F1;
+    --color-navy:        #1C2A45;
+    --color-accent:      #FF3D7A;
+    --color-numeral:     #FF5F46;
+    --color-tint:        #FFC9A6;
+    --color-accent-soft: #FFD1DC;
+    --color-card-border: #E8D8D3;
+    --color-pill-border: #D4C4BF;
+    --color-muted:       #9C7B86;
+    --color-tertiary:    #aaa;
+
+    --city-stockholm-bg: #C6EFCE;
+    --city-stockholm-fg: #276221;
+    --city-goteborg-bg:  #FFF3C4;
+    --city-goteborg-fg:  #7A5C00;
+    --city-malmo-bg:     #F7E8E4;
+    --city-malmo-fg:     #c25a47;
+
+    --font-display: 'Archivo Black', sans-serif;
+    --font-heading: 'Oswald', sans-serif;
+    --font-body:    'DM Sans', sans-serif;
+    --font-wordmark-run:   'Inter', sans-serif;
+    --font-wordmark-clubs: 'Playfair Display', serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: var(--font-body); color: var(--color-navy); background: var(--color-bg); }
+</style>
+<!--
+  Style + macro partial for the logo component. Not a Claude Design card
+  itself — see logo.html for the browsable demo. Templates pull this in
+  with both an include (for the CSS) and a from-import (for the macro),
+  since Jinja's import only binds the macro name, not any plain
+  markup/CSS that lives alongside it in the file.
+-->
+<style>
+  .logo { display: inline-flex; align-items: baseline; color: #1a1a1a; text-decoration: none; font-size: 34px; }
+  .logo .run { font-family: var(--font-wordmark-run); font-weight: 900; font-style: italic; letter-spacing: -0.04em; padding-right: 2px; }
+  .logo .clubs { font-family: var(--font-wordmark-clubs); font-weight: 400; letter-spacing: -0.02em; }
+  .logo .suffix { font-family: var(--font-wordmark-clubs); font-size: 0.45em; font-weight: 400; text-transform: lowercase; margin-left: 2px; }
+  .logo.small { font-size: 24px; }
+</style>
+
+<!-- Style + macro partial for the location line — see location-line.html for the demo. -->
+<style>
+  .loc { display: flex; align-items: center; gap: 12px; color: var(--color-muted); overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+  .loc svg { flex-shrink: 0; }
+</style>
+
+
+
+<style>
+  html, body { width: 1080px; height: 1350px; overflow: hidden; }
+  .poster { position: relative; width: 1080px; height: 1350px; padding: 72px; display: flex; flex-direction: column; overflow: hidden; }
+  .blob { position: absolute; top: -360px; left: -360px; width: 980px; height: 980px; border-radius: 50%; background: var(--color-tint); z-index: 0; }
+  .top-bar, .content, .bottom-link { position: relative; z-index: 1; }
+  .club-badge { position: absolute; top: 72px; right: 72px; width: 128px; height: 128px; border-radius: 20px; overflow: hidden; z-index: 2; box-shadow: 0 4px 16px rgba(0,0,0,0.18); background: #fff; }
+  .club-badge img { width: 100%; height: 100%; object-fit: cover; }
+
+  .content { flex: 1; display: flex; flex-direction: column; justify-content: flex-end; gap: 32px; padding-bottom: 40px; }
+  .pill { align-self: flex-start; font-family: var(--font-heading); font-size: 23px; font-weight: 600; letter-spacing: 1.2px; text-transform: uppercase; padding: 16px 30px; border-radius: 100px; background: var(--color-navy); color: #fff; margin-bottom: 12px; }
+  .title { font-family: var(--font-display); font-size: 70px; line-height: 1.08; text-transform: uppercase; color: var(--color-navy); }
+  .desc { font-size: 29px; font-weight: 300; line-height: 1.7; letter-spacing: 0.1px; color: var(--color-muted); white-space: pre-line; max-width: 900px; display: -webkit-box; -webkit-line-clamp: 7; -webkit-box-orient: vertical; overflow: hidden; }
+  .cta { align-self: flex-start; font-size: 26px; font-weight: 700; color: #fff; background: var(--color-accent); padding: 11px 20px; border-radius: 12px; }
+  .bottom-link { font-size: 22px; font-weight: 300; color: var(--color-muted); }
+
+  /* Variant: solid pink, no blob, white text/logo */
+  .poster.pink { background: var(--color-accent); }
+  .poster.pink .blob { display: none; }
+  .poster.pink .logo { color: #fff; }
+  .poster.pink .title { color: #fff; }
+  .poster.pink .desc { color: rgba(255,255,255,0.85); }
+  .poster.pink .loc { color: rgba(255,255,255,0.85); }
+  .poster.pink .bottom-link { color: rgba(255,255,255,0.7); }
+  .poster.pink .cta { background: #fff; color: var(--color-navy); }
+
+  /* Variant: pink with a peach blob (top-right), white pill/logo/text */
+  .poster.pink-blob { background: var(--color-accent); }
+  .poster.pink-blob .blob { left: auto; right: -360px; }
+  .poster.pink-blob .logo { color: #fff; }
+  .poster.pink-blob .pill { background: #fff; color: var(--color-navy); }
+  .poster.pink-blob .title { color: #fff; }
+  .poster.pink-blob .desc { color: rgba(255,255,255,0.85); }
+  .poster.pink-blob .loc { color: rgba(255,255,255,0.85); }
+  .poster.pink-blob .bottom-link { color: rgba(255,255,255,0.7); }
+  .poster.pink-blob .cta { background: var(--color-navy); color: #fff; }
+</style>
+</head>
+<body>
+<div class="poster ">
+  <div class="blob"></div>
+  <div class="club-badge"><img src="data:image/jpeg;base64,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" alt=""></div>
+  <div class="top-bar">
+<span class="logo"><span class="run">RUN</span><span class="clubs">CLUBS</span><span class="suffix">.se</span></span>
+</div>
+  <div class="content">
+    <span class="pill">ONSDAG 12 AUG · 17:30</span>
+    <div class="title">On Run Club - Backintervaller 🏔️</div>
+    <div class="desc">I samarbete med SALTE bjuder ON in till backintervaller.
+
+"Good company, and recovery drinks after the run."</div>
+    <span class="cta">med ON RUN CLUB STOCKHOLM →</span>
+    
+
+<div class="loc" style="font-size:30px">
+  <svg width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+  <span>Biblioteksgatan 16, Stockholm, Sweden</span>
+</div>
+
+  </div>
+  <div class="bottom-link">Länk till anmälan hittar du på runclubs.se/events.</div>
+</div>
+</body>
+</html>

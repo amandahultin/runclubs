@@ -1,0 +1,133 @@
+<!-- @dsCard group="Templates" name="Event — feed post (1080x1350)" -->
+<!doctype html>
+<html data-width="1080" data-height="1350">
+<head>
+<!--
+  Internal include-only partial — not a component itself, not synced to
+  Claude Design as its own card. Every component and template includes
+  this for fonts, color/spacing tokens, and a base reset, so there is
+  exactly one place these values are defined.
+
+  Edit colors/fonts here and every component + template picks it up.
+-->
+<meta charset="utf-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:ital,wght@1,900&family=Oswald:wght@500;600;700&family=DM+Sans:wght@300;400;500;600;700&family=Playfair+Display:wght@400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --color-bg:          #FFF7F1;
+    --color-navy:        #1C2A45;
+    --color-accent:      #FF3D7A;
+    --color-numeral:     #FF5F46;
+    --color-tint:        #FFC9A6;
+    --color-accent-soft: #FFD1DC;
+    --color-card-border: #E8D8D3;
+    --color-pill-border: #D4C4BF;
+    --color-muted:       #9C7B86;
+    --color-tertiary:    #aaa;
+
+    --city-stockholm-bg: #C6EFCE;
+    --city-stockholm-fg: #276221;
+    --city-goteborg-bg:  #FFF3C4;
+    --city-goteborg-fg:  #7A5C00;
+    --city-malmo-bg:     #F7E8E4;
+    --city-malmo-fg:     #c25a47;
+
+    --font-display: 'Archivo Black', sans-serif;
+    --font-heading: 'Oswald', sans-serif;
+    --font-body:    'DM Sans', sans-serif;
+    --font-wordmark-run:   'Inter', sans-serif;
+    --font-wordmark-clubs: 'Playfair Display', serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: var(--font-body); color: var(--color-navy); background: var(--color-bg); }
+</style>
+<!--
+  Style + macro partial for the logo component. Not a Claude Design card
+  itself — see logo.html for the browsable demo. Templates pull this in
+  with both an include (for the CSS) and a from-import (for the macro),
+  since Jinja's import only binds the macro name, not any plain
+  markup/CSS that lives alongside it in the file.
+-->
+<style>
+  .logo { display: inline-flex; align-items: baseline; color: #1a1a1a; text-decoration: none; font-size: 34px; }
+  .logo .run { font-family: var(--font-wordmark-run); font-weight: 900; font-style: italic; letter-spacing: -0.04em; padding-right: 2px; }
+  .logo .clubs { font-family: var(--font-wordmark-clubs); font-weight: 400; letter-spacing: -0.02em; }
+  .logo .suffix { font-family: var(--font-wordmark-clubs); font-size: 0.45em; font-weight: 400; text-transform: lowercase; margin-left: 2px; }
+  .logo.small { font-size: 24px; }
+</style>
+
+<!-- Style + macro partial for the location line — see location-line.html for the demo. -->
+<style>
+  .loc { display: flex; align-items: center; gap: 12px; color: var(--color-muted); overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+  .loc svg { flex-shrink: 0; }
+</style>
+
+
+
+<style>
+  html, body { width: 1080px; height: 1350px; overflow: hidden; }
+  .poster { position: relative; width: 1080px; height: 1350px; padding: 72px; display: flex; flex-direction: column; overflow: hidden; }
+  .blob { position: absolute; top: -360px; left: -360px; width: 980px; height: 980px; border-radius: 50%; background: var(--color-tint); z-index: 0; }
+  .top-bar, .content, .bottom-link { position: relative; z-index: 1; }
+  .club-badge { position: absolute; top: 72px; right: 72px; width: 128px; height: 128px; border-radius: 20px; overflow: hidden; z-index: 2; box-shadow: 0 4px 16px rgba(0,0,0,0.18); background: #fff; }
+  .club-badge img { width: 100%; height: 100%; object-fit: cover; }
+
+  .content { flex: 1; display: flex; flex-direction: column; justify-content: flex-end; gap: 32px; padding-bottom: 40px; }
+  .pill { align-self: flex-start; font-family: var(--font-heading); font-size: 23px; font-weight: 600; letter-spacing: 1.2px; text-transform: uppercase; padding: 16px 30px; border-radius: 100px; background: var(--color-navy); color: #fff; margin-bottom: 12px; }
+  .title { font-family: var(--font-display); font-size: 55px; line-height: 1.08; text-transform: uppercase; color: var(--color-navy); }
+  .desc { font-size: 29px; font-weight: 300; line-height: 1.7; letter-spacing: 0.1px; color: var(--color-muted); white-space: pre-line; max-width: 900px; display: -webkit-box; -webkit-line-clamp: 7; -webkit-box-orient: vertical; overflow: hidden; }
+  .cta { align-self: flex-start; font-size: 26px; font-weight: 700; color: #fff; background: var(--color-accent); padding: 11px 20px; border-radius: 12px; }
+  .bottom-link { font-size: 22px; font-weight: 300; color: var(--color-muted); }
+
+  /* Variant: solid pink, no blob, white text/logo */
+  .poster.pink { background: var(--color-accent); }
+  .poster.pink .blob { display: none; }
+  .poster.pink .logo { color: #fff; }
+  .poster.pink .title { color: #fff; }
+  .poster.pink .desc { color: rgba(255,255,255,0.85); }
+  .poster.pink .loc { color: rgba(255,255,255,0.85); }
+  .poster.pink .bottom-link { color: rgba(255,255,255,0.7); }
+  .poster.pink .cta { background: #fff; color: var(--color-navy); }
+
+  /* Variant: pink with a peach blob (top-right), white pill/logo/text */
+  .poster.pink-blob { background: var(--color-accent); }
+  .poster.pink-blob .blob { left: auto; right: -360px; }
+  .poster.pink-blob .logo { color: #fff; }
+  .poster.pink-blob .pill { background: #fff; color: var(--color-navy); }
+  .poster.pink-blob .title { color: #fff; }
+  .poster.pink-blob .desc { color: rgba(255,255,255,0.85); }
+  .poster.pink-blob .loc { color: rgba(255,255,255,0.85); }
+  .poster.pink-blob .bottom-link { color: rgba(255,255,255,0.7); }
+  .poster.pink-blob .cta { background: var(--color-navy); color: #fff; }
+</style>
+</head>
+<body>
+<div class="poster pink-blob">
+  <div class="blob"></div>
+  <div class="club-badge"><img src="data:image/png;base64,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" alt=""></div>
+  <div class="top-bar">
+<span class="logo"><span class="run">RUN</span><span class="clubs">CLUBS</span><span class="suffix">.se</span></span>
+</div>
+  <div class="content">
+    <span class="pill">FREDAG 14 AUG · 13:00</span>
+    <div class="title">Gordito: Way Out West: 4K Three Martini Lunch Social Run 🍸</div>
+    <div class="desc">Den som ändå befann sig i Göteborg på fredag och fick springa och sippa martinis med Gordito. Jag är avundsjuk, men ha det så roligt alla Göteborgare och ni som har vägarna förbi!
+
+🔥 Distans: 4 fantastiska kilometer
+
+"we're calling it a social run so the martinis have somewhere to be."</div>
+    <span class="cta">med Gordito Athletic Group →</span>
+    
+
+<div class="loc" style="font-size:30px">
+  <svg width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+  <span>Heurlins plats 3B 413 01 Göteborg Sweden</span>
+</div>
+
+  </div>
+  <div class="bottom-link">Länk till anmälan hittar du på runclubs.se/events.</div>
+</div>
+</body>
+</html>

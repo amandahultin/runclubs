@@ -1,0 +1,47 @@
+<!-- @dsCard group="Posts — Vecka 33" name="Cover" -->
+<!doctype html>
+<html data-width="1080" data-height="1350">
+<head>
+<meta charset="utf-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:ital,wght@1,900&family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --color-navy: #1C2A45;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'DM Sans', sans-serif; }
+  html, body { width: 1080px; height: 1350px; overflow: hidden; }
+</style>
+<style>
+  .logo { display: inline-flex; align-items: baseline; color: #fff; text-decoration: none; font-size: 34px; }
+  .logo .run { font-family: 'Inter', sans-serif; font-weight: 900; font-style: italic; letter-spacing: -0.04em; padding-right: 2px; }
+  .logo .clubs { font-family: 'Playfair Display', serif; font-weight: 400; letter-spacing: -0.02em; }
+  .logo .suffix { font-family: 'Playfair Display', serif; font-size: 0.45em; font-weight: 400; text-transform: lowercase; margin-left: 2px; }
+</style>
+<style>
+  .poster { position: relative; width: 1080px; height: 1350px; overflow: hidden; }
+  .photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 60% 40%; }
+  .overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(28,42,69,0) 38%, rgba(28,42,69,0.72) 100%); }
+  .top-bar, .content { position: relative; z-index: 1; padding: 72px; }
+  .top-bar { position: absolute; top: 0; left: 0; }
+  .content { position: absolute; bottom: 0; left: 0; right: 0; display: flex; flex-direction: column; align-items: center; gap: 24px; text-align: center; }
+  .title { font-family: 'Archivo Black', sans-serif; font-size: 74px; line-height: 0.98; text-transform: uppercase; color: #fff; max-width: 920px; }
+  .subtitle { font-size: 40px; line-height: 1.45; color: #fff; max-width: 880px; }
+</style>
+</head>
+<body>
+<div class="poster">
+  <img class="photo" src="../../uploads/IMG_7521.jpeg" alt="">
+  <div class="overlay"></div>
+  <div class="top-bar">
+    <span class="logo"><span class="run">RUN</span><span class="clubs">CLUBS</span><span class="suffix">.se</span></span>
+  </div>
+  <div class="content">
+    <div class="title">RUN CLUBS SOM SPRINGER I STOCKHOLM NÄSTA VECKA</div>
+    <p class="subtitle">Nästa vecka är de flesta run clubs i Stockholm igång igen ✨ Här kommer massor med runs och event att boka in i kalendern 👉</p>
+  </div>
+</div>
+</body>
+</html>
