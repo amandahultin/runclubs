@@ -2,12 +2,13 @@
 
 Reads the Events worksheet (the same sheet the site's event pages read from),
 filters to Strava-sourced events happening in the target week, and renders
-one branded PNG per event in two sizes:
+one branded PNG per event in two sizes, alongside the rendered HTML each PNG
+was screenshotted from:
 
-  - <slug>-post.png   1080x1350  (Instagram feed post, 4:5)
-  - <slug>-story.png  1080x1920  (Instagram story / reel cover, 9:16)
+  - <slug>-post.png    <slug>-post.html    1080x1350  (Instagram feed post, 4:5)
+  - <slug>-story.png   <slug>-story.html   1080x1920  (Instagram story / reel cover, 9:16)
 
-Optionally uploads both files per event to a Google Drive folder.
+Optionally uploads the PNGs (not the HTML) per event to a Google Drive folder.
 
 Usage:
     python generate_instagram_event_images.py --out-dir instagram/generated
@@ -136,7 +137,6 @@ async def render_event(ev: dict, out_dir: Path) -> list[Path]:
                     clip={"x": 0, "y": 0, "width": width, "height": height},
                 )
                 await ctx.close()
-                html_path.unlink(missing_ok=True)
                 paths.append(png_path)
         finally:
             await browser.close()

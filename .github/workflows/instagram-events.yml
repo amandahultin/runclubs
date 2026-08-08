@@ -54,6 +54,8 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: instagram-event-images
-          path: instagram/generated/*.png
+          path: |
+            instagram/generated/*.png
+            instagram/generated/*.html
           if-no-files-found: ignore
           retention-days: 7
