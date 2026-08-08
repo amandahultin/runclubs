@@ -40,6 +40,7 @@ import re
 import sys
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
+from zoneinfo import ZoneInfo
 
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 
@@ -58,6 +59,7 @@ from events_common import (
 log = logging.getLogger(__name__)
 
 INSTAGRAM_DIR = Path(__file__).resolve().parent / "instagram"
+LOCAL_TZ = ZoneInfo("Europe/Stockholm")
 _JINJA_ENV = Environment(
     loader=FileSystemLoader(str(INSTAGRAM_DIR)),
     autoescape=select_autoescape(["html"]),
@@ -66,20 +68,38 @@ _JINJA_ENV = Environment(
 # Title-size tiering scale per output format — matches instagram/templates/event-*.html.
 VARIANT_SCALE = {"post": 1.0, "story": 1.3}
 
+# Background colorway rotation for visual rhythm across a week's posts —
+# "" = default cream + peach blob (top-left). Matches instagram/templates/event-*.html
+# .poster.pink / .poster.pink-blob variant classes. Roughly 60% cream / 20% pink / 20% pink-blob.
+VARIANT_CLASS_CYCLE = ["", "", "pink", "", "pink-blob"]
+
 _DIMS_RE = re.compile(r'data-width="(\d+)"\s+data-height="(\d+)"')
 
 
-def _title_font_size(title: str, scale: float) -> int:
+def _title_font_size(title: str, scale: float, has_description: bool) -> int:
     n = len(title)
-    if n <= 28:
-        base = 104
-    elif n <= 45:
-        base = 80
-    elif n <= 65:
-        base = 62
+    if n > 45:
+        base = 46
+    elif n > 32:
+        base = 54
+    elif n > 20:
+        base = 64
     else:
-        base = 48
+        base = 86
+    if has_description:
+        base = min(base, 58)
     return round(base * scale)
+
+
+def _clean_description(text: str) -> str:
+    """Collapse runs of 3+ blank lines to 1, strip leading/trailing whitespace."""
+    text = (text or "").strip()
+    text = re.sub(r"\n{3,}", "\n\n", text)
+    return text
+
+
+def _variant_class(index: int) -> str:
+    return VARIANT_CLASS_CYCLE[index % len(VARIANT_CLASS_CYCLE)]
 
 
 def _slugify(text: str) -> str:
@@ -87,10 +107,11 @@ def _slugify(text: str) -> str:
     return text or "event"
 
 
-def event_page_html(ev: dict, variant: str) -> str:
+def event_page_html(ev: dict, variant: str, index: int) -> str:
     d: datetime = ev["_dt"]
     js_day = (d.weekday() + 1) % 7  # Python Mon=0..Sun=6 -> Sun=0..Sat=6
     scale = VARIANT_SCALE[variant]
+    description = ev.get("description", "")
 
     tpl = _JINJA_ENV.get_template(f"templates/event-{variant}.html")
     return tpl.render(
@@ -98,14 +119,17 @@ def event_page_html(ev: dict, variant: str) -> str:
         day=d.day,
         day_name=_SV_DAYS[js_day].upper(),
         month=_SV_MONTHS_SHORT[d.month - 1].upper(),
+        time=d.astimezone(LOCAL_TZ).strftime("%H:%M"),
         club=ev["club"],
         title=ev["title"],
         location=ev["location"],
-        title_size=_title_font_size(ev["title"], scale),
+        description=description,
+        title_size=_title_font_size(ev["title"], scale, bool(description)),
+        variant_class=_variant_class(index),
     )
 
 
-async def render_event(ev: dict, out_dir: Path) -> list[Path]:
+async def render_event(ev: dict, out_dir: Path, index: int = 0) -> list[Path]:
     from playwright.async_api import async_playwright
 
     slug = f"{ev['_dt'].strftime('%Y-%m-%d')}-{_slugify(ev['club'])}-{_slugify(ev['title'])[:40]}"
@@ -115,7 +139,7 @@ async def render_event(ev: dict, out_dir: Path) -> list[Path]:
         browser = await p.chromium.launch()
         try:
             for variant in VARIANT_SCALE:
-                html = event_page_html(ev, variant)
+                html = event_page_html(ev, variant, index)
                 match = _DIMS_RE.search(html)
                 if not match:
                     raise ValueError(f"templates/event-{variant}.html is missing data-width/data-height")
@@ -198,6 +222,7 @@ def gather_events(sheet_id: str, week_start: str | None) -> list[dict]:
             "title": title,
             "location": location,
             "city": city,
+            "description": _clean_description(r.get("description") or ""),
             "_dt": dt,
         })
 
@@ -247,8 +272,8 @@ def main() -> None:
         return
 
     all_paths: list[Path] = []
-    for ev in events:
-        paths = asyncio.run(render_event(ev, out_dir))
+    for index, ev in enumerate(events):
+        paths = asyncio.run(render_event(ev, out_dir, index))
         log.info("Rendered %s (%s)", ev["title"], ", ".join(p.name for p in paths))
         all_paths.extend(paths)
 
