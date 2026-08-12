@@ -185,7 +185,7 @@ def prepare_races(records: list[dict]) -> list[dict]:
             "region":   region,
             "distance": (r.get("distance") or "").strip(),
             "dist_cat": dist_cat,
-            "link":     (r.get("link") or "").strip(),
+            "link":     (r.get("official_link") or r.get("link") or "").strip(),
         })
 
     races.sort(key=lambda x: x["date"])
