@@ -668,6 +668,19 @@ document.addEventListener('DOMContentLoaded',function(){{
       .events-grid {{ grid-template-columns: 1fr; }}
       footer {{ padding: 2rem 1.25rem; grid-template-columns: 1fr; gap: 1.5rem; margin: 0; border-radius: 24px 24px 0 0; }}
     }}
+    /* -- ANNOUNCEMENT BAR ------------------- */
+    .announcement-bar {{
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      padding: 10px 16px; font-size: 12.5px; font-weight: 500;
+      text-align: center; letter-spacing: 0.2px;
+      background: #FDFAF9; color: #1C2A45; border-bottom: 1px solid #F0E0DC;
+    }}
+    .announcement-bar svg {{ flex-shrink: 0; color: #C8604A; }}
+    .announcement-bar a {{ color: #C8604A; text-decoration: none; font-weight: 700; }}
+    .announcement-bar a:hover {{ text-decoration: underline; }}
+    @media (max-width: 560px) {{
+      .announcement-bar {{ font-size: 11.5px; padding: 9px 14px; }}
+    }}
   </style>
 <script id="CookieDeclaration" src="https://consent.cookiebot.com/c82ce3af-bded-4069-9aea-22493d3d7e2d/cd.js" type="text/javascript" async></script>
 </head>
@@ -677,6 +690,11 @@ document.addEventListener('DOMContentLoaded',function(){{
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <a href="#main-content" class="skip-link">Hoppa till innehåll</a>
+
+  <div class="announcement-bar">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+    Följ runclubs.se på <a href="https://www.instagram.com/runclubs.se/" target="_blank" rel="noopener">Instagram</a> — nya klubbar och events varje vecka
+  </div>
 
   <nav>
     <a href="/" class="run-clubs-logo"><span class="run">RUN</span><span class="clubs">CLUBS</span><span class="suffix">.se</span></a>
