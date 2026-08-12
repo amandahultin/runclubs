@@ -22,6 +22,11 @@ Not yet handled (skipped with a message): "Utan ort" = Ja (nationwide clubs
 with no single city -- these still need a hand-built flat page, see
 strawberry-run-club.html for the pattern).
 
+A missing Hero-bild URL is not an error: the club page renders with the
+same peach/coral gradient hero used on nyheter.html/events.html instead of a
+photo, and the club card falls back to that gradient too (with the club's
+logo centered on it, if one was provided).
+
 Usage:
     python3 generate_club.py --dry-run                # preview, writes nothing
     python3 generate_club.py                            # generate + write
@@ -251,8 +256,14 @@ def build_club_page(row: dict, region_key: str) -> tuple[str, str]:
     instagram = normalize_url(row.get("Instagram-URL", ""))
     strava = normalize_url(row.get("Strava-URL", ""))
     facebook = normalize_url(row.get("Facebook-URL", ""))
-    hero_image = row["Hero-bild URL"].strip()
+    hero_image = row.get("Hero-bild URL", "").strip()
     logo_url = row.get("Logga URL", "").strip()
+    if hero_image:
+        meta_image = hero_image
+    elif logo_url:
+        meta_image = f"https://runclubs.se{logo_url}" if logo_url.startswith("/") else logo_url
+    else:
+        meta_image = "https://runclubs.se/hero.jpg"
     schedule_day = row.get("Träningsdag", "").strip()
     schedule_time = row.get("Tid", "").strip()
     cost = row.get("Kostnad", "").strip() or "Se Instagram"
@@ -275,8 +286,9 @@ def build_club_page(row: dict, region_key: str) -> tuple[str, str]:
         "META_DESCRIPTION": f"{club_name} i {city} — {short_description}",
         "SHORT_DESCRIPTION": short_description,
         "JSONLD_DESCRIPTION": short_description,
-        "HERO_IMAGE_URL": hero_image,
+        "HERO_IMAGE_URL": meta_image,
         "HERO_IMAGE_POSITION": hero_image_position,
+        "HERO_MODIFIER_CLASS": "" if hero_image else " hero--gradient",
         "CANONICAL_URL": canonical_url,
         "CITY_URLENC": quote(f"{city}, Sverige"),
         "REGION_URL": region_url,
@@ -320,7 +332,7 @@ def build_club_page(row: dict, region_key: str) -> tuple[str, str]:
     return html, str(target)
 
 
-def build_card_image_html(club_name: str, hero_image: str, kort_bild: str) -> str:
+def build_card_image_html(club_name: str, hero_image: str, kort_bild: str, logo_url: str = "") -> str:
     if kort_bild.strip().lower() == "foto" and hero_image:
         thumb = hero_image
         if "images.unsplash.com" in thumb:
@@ -329,6 +341,12 @@ def build_card_image_html(club_name: str, hero_image: str, kort_bild: str) -> st
         return (
             '<div class="card-image card-image--branded">\n'
             f'          <img src="{thumb}" alt="{alt}" loading="lazy" decoding="async" width="400" height="220">\n'
+            '        </div>'
+        )
+    if logo_url.strip():
+        return (
+            '<div class="card-image card-image--placeholder">\n'
+            f'          <img class="placeholder-logo" src="{logo_url.strip()}" alt="{club_name}" loading="lazy" decoding="async">\n'
             '        </div>'
         )
     return '<div class="card-image card-image--placeholder"></div>'
@@ -345,6 +363,7 @@ def build_card_html(row: dict, region_key: str) -> str:
     tags_raw = row.get("Typ/taggar", "").strip()
     hero_image = row.get("Hero-bild URL", "").strip()
     kort_bild = row.get("Kort-bild", "").strip()
+    logo_url = row.get("Logga URL", "").strip()
     date_iso, _ = today_iso_and_sv()
 
     niva_attr = " ".join(filter_token(n) for n in re.split(r"[;,]", niva_raw) if n.strip()) \
@@ -366,7 +385,7 @@ def build_card_html(row: dict, region_key: str) -> str:
         meta_prefix = stadsdel
 
     meta = f"{meta_prefix} · {schedule_summary(schedule_day, schedule_time)}"
-    card_image_html = build_card_image_html(club_name, hero_image, kort_bild)
+    card_image_html = build_card_image_html(club_name, hero_image, kort_bild, logo_url)
 
     return f'''
       <a href="/{region_key}/{slug}/" class="club-card" data-niva="{niva_attr}" data-typ="{typ_attr}" data-dag="{dag_attr}" {location_attr}>
@@ -498,8 +517,6 @@ def process_row(row: dict, dry_run: bool, force: bool) -> str:
     if not region_key:
         return f"skip: {club_name} -- unrecognized Region {region_raw!r} (expected Stockholm/Göteborg/Övriga landet)"
 
-    if not (row.get("Hero-bild URL") or "").strip():
-        return f"skip: {club_name} -- no Hero-bild URL, add one (verify it shows running before adding!)"
     if not (row.get("Kort beskrivning") or "").strip():
         return f"skip: {club_name} -- no Kort beskrivning"
     if not (row.get("Stad") or "").strip():
