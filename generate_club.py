@@ -24,8 +24,8 @@ strawberry-run-club.html for the pattern).
 
 A missing Hero-bild URL is not an error: the club page renders with the
 same peach/coral gradient hero used on nyheter.html/events.html instead of a
-photo, and the club card falls back to that gradient too (with the club's
-logo centered on it, if one was provided).
+photo. The club card falls back to the club's logo (full-bleed, same
+treatment as a real photo) if one was provided, otherwise the gradient.
 
 Usage:
     python3 generate_club.py --dry-run                # preview, writes nothing
@@ -345,8 +345,8 @@ def build_card_image_html(club_name: str, hero_image: str, kort_bild: str, logo_
         )
     if logo_url.strip():
         return (
-            '<div class="card-image card-image--placeholder">\n'
-            f'          <img class="placeholder-logo" src="{logo_url.strip()}" alt="{club_name}" loading="lazy" decoding="async">\n'
+            '<div class="card-image card-image--branded">\n'
+            f'          <img src="{logo_url.strip()}" alt="{club_name}" loading="lazy" decoding="async" width="400" height="220">\n'
             '        </div>'
         )
     return '<div class="card-image card-image--placeholder"></div>'
