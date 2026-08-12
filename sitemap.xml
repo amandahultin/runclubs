@@ -246,6 +246,7 @@
   <url><loc>https://runclubs.se/goteborg/pace-people/</loc><lastmod>2026-08-12</lastmod><priority>0.6</priority></url>
   <url><loc>https://runclubs.se/goteborg/place-run-club/</loc><lastmod>2026-08-12</lastmod><priority>0.6</priority></url>
   <url><loc>https://runclubs.se/goteborg/she-runs-club/</loc><lastmod>2026-08-12</lastmod><priority>0.6</priority></url>
+  <url><loc>https://runclubs.se/goteborg/stig-gbg/</loc><lastmod>2026-08-12</lastmod><priority>0.6</priority></url>
   <url><loc>https://runclubs.se/goteborg/sweden-runners-goteborg/</loc><lastmod>2026-08-12</lastmod><priority>0.6</priority></url>
   <url><loc>https://runclubs.se/goteborg/we-run-west/</loc><lastmod>2026-08-12</lastmod><priority>0.6</priority></url>
 
@@ -257,6 +258,7 @@
   <url><loc>https://runclubs.se/goteborg?typ=väg&amp;stadsdel=linné-majorna</loc><lastmod>2026-08-12</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
   <url><loc>https://runclubs.se/goteborg?typ=väg&amp;stadsdel=johanneberg</loc><lastmod>2026-08-12</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
   <url><loc>https://runclubs.se/goteborg?typ=väg&amp;stadsdel=olskroken</loc><lastmod>2026-08-12</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/goteborg?typ=trail</loc><lastmod>2026-08-12</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
   <url><loc>https://runclubs.se/goteborg?typ=intervall</loc><lastmod>2026-08-12</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
   <url><loc>https://runclubs.se/goteborg?typ=intervall&amp;stadsdel=linné-majorna</loc><lastmod>2026-08-12</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
   <url><loc>https://runclubs.se/goteborg?typ=intervall&amp;stadsdel=johanneberg</loc><lastmod>2026-08-12</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
@@ -278,6 +280,7 @@
   <url><loc>https://runclubs.se/goteborg?niva=nybörjare&amp;typ=väg&amp;stadsdel=linné-majorna</loc><lastmod>2026-08-12</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
   <url><loc>https://runclubs.se/goteborg?niva=nybörjare&amp;typ=väg&amp;stadsdel=johanneberg</loc><lastmod>2026-08-12</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
   <url><loc>https://runclubs.se/goteborg?niva=nybörjare&amp;typ=väg&amp;stadsdel=olskroken</loc><lastmod>2026-08-12</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/goteborg?niva=nybörjare&amp;typ=trail</loc><lastmod>2026-08-12</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
   <url><loc>https://runclubs.se/goteborg?niva=nybörjare&amp;typ=intervall</loc><lastmod>2026-08-12</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
   <url><loc>https://runclubs.se/goteborg?niva=nybörjare&amp;typ=intervall&amp;stadsdel=linné-majorna</loc><lastmod>2026-08-12</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
   <url><loc>https://runclubs.se/goteborg?niva=nybörjare&amp;typ=intervall&amp;stadsdel=johanneberg</loc><lastmod>2026-08-12</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
@@ -297,6 +300,7 @@
   <url><loc>https://runclubs.se/goteborg?niva=mellannivå&amp;typ=väg</loc><lastmod>2026-08-12</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
   <url><loc>https://runclubs.se/goteborg?niva=mellannivå&amp;typ=väg&amp;stadsdel=linné-majorna</loc><lastmod>2026-08-12</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
   <url><loc>https://runclubs.se/goteborg?niva=mellannivå&amp;typ=väg&amp;stadsdel=johanneberg</loc><lastmod>2026-08-12</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/goteborg?niva=mellannivå&amp;typ=trail</loc><lastmod>2026-08-12</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
   <url><loc>https://runclubs.se/goteborg?niva=mellannivå&amp;typ=intervall</loc><lastmod>2026-08-12</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
   <url><loc>https://runclubs.se/goteborg?niva=mellannivå&amp;typ=intervall&amp;stadsdel=linné-majorna</loc><lastmod>2026-08-12</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
   <url><loc>https://runclubs.se/goteborg?niva=mellannivå&amp;typ=intervall&amp;stadsdel=johanneberg</loc><lastmod>2026-08-12</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
@@ -315,6 +319,7 @@
   <url><loc>https://runclubs.se/goteborg?niva=avancerad&amp;typ=väg</loc><lastmod>2026-08-12</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
   <url><loc>https://runclubs.se/goteborg?niva=avancerad&amp;typ=väg&amp;stadsdel=linné-majorna</loc><lastmod>2026-08-12</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
   <url><loc>https://runclubs.se/goteborg?niva=avancerad&amp;typ=väg&amp;stadsdel=johanneberg</loc><lastmod>2026-08-12</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/goteborg?niva=avancerad&amp;typ=trail</loc><lastmod>2026-08-12</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
   <url><loc>https://runclubs.se/goteborg?niva=avancerad&amp;typ=intervall</loc><lastmod>2026-08-12</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
   <url><loc>https://runclubs.se/goteborg?niva=avancerad&amp;typ=intervall&amp;stadsdel=linné-majorna</loc><lastmod>2026-08-12</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
   <url><loc>https://runclubs.se/goteborg?niva=avancerad&amp;typ=intervall&amp;stadsdel=johanneberg</loc><lastmod>2026-08-12</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>

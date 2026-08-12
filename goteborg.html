@@ -380,6 +380,8 @@ document.addEventListener('DOMContentLoaded',function(){
 
     /* ── Typografisk placeholder ─────────────────── */
     .card-image--placeholder { background: linear-gradient(160deg, #FFF8F3 0%, #FFDAC4 40%, #F6B89E 75%, #F88B69 100%); position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden; width: 100%; height: 220px; }
+    .card-image--logo { width: 100%; height: 220px; display: flex; align-items: center; justify-content: center; overflow: hidden; box-sizing: border-box; padding: 28px; }
+    .card-image--logo img { max-width: 100%; max-height: 100%; object-fit: contain; }
     .card-image--placeholder::before { content: ''; position: absolute; width: 260px; height: 260px; border-radius: 50%; background: radial-gradient(circle, rgba(212,113,94,0.3) 0%, transparent 70%); top: -70px; right: -70px; }
     .card-image--placeholder::after { content: ''; position: absolute; width: 180px; height: 180px; border-radius: 50%; background: rgba(255,255,255,0.4); bottom: -90px; left: -50px; }
     .placeholder-initial { font-family: 'Archivo Black', sans-serif; font-size: 88px; color: #C8604A; line-height: 1; opacity: 0.85; position: relative; z-index: 1; }
@@ -1512,7 +1514,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <p>Hitta din run club i Göteborg — från Slottsskogen till Delsjön, för alla nivåer och takter.</p>
       <div class="hero-stats">
         <div class="hero-stat">
-          <div class="hero-stat-number">15</div>
+          <div class="hero-stat-number">16</div>
           <div class="hero-stat-label">Klubbar</div>
         </div>
         <div class="hero-stat">
@@ -1602,11 +1604,30 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </div>
 
-  <div class="results-bar" id="results-bar">Visar <span class="results-count">15</span> klubbar</div>
+  <div class="results-bar" id="results-bar">Visar <span class="results-count">16</span> klubbar</div>
 
   <section class="featured-section">
     <div class="section-label">Alla klubbar i Göteborg</div>
     <div class="clubs-grid" id="clubs-grid">
+      <a href="/goteborg/stig-gbg/" class="club-card" data-niva="nybörjare mellannivå avancerad" data-typ="social trail" data-dag="mån" data-stadsdel="skatås-änggården">
+        <div class="card-image card-image--logo" style="background: #FFFFFF;">
+          <img src="/stig-gbg-logo.png" alt="STIG GBG" loading="lazy" decoding="async">
+        </div>
+        <div class="card-body">
+          <div class="card-tags">
+            <span class="card-tag tag-typ">Social</span>
+            <span class="card-tag tag-typ">Trail</span>
+          </div>
+          <div class="card-name">STIG GBG</div>
+          <div class="card-desc">STIG GBG är en trailöpargrupp i Göteborg som kombinerar skogslöpning med gemenskap, i tre fartgrupper från 6 till 8 km.</div>
+          <div class="card-meta">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Skatås, Änggården · Måndag och onsdag 18:30, 19:00
+          </div>
+          <div class="card-updated">Uppdaterad 2026-08-12</div>
+        </div>
+      </a>
+
       <a href="/goteborg/billdals-park-run/" class="club-card" data-niva="nyborjare mellanniva" data-typ="social parkrun" data-dag="lor" data-stadsdel="">
         <div class="card-image card-image--branded" style="background: #FFFFFF;">
           <img src="/billdals-parkrun-logo.png" alt="Billdals Parkrun" loading="lazy" decoding="async" width="400" height="220" style="object-fit: contain; filter: none;">

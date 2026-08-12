@@ -24,8 +24,10 @@ strawberry-run-club.html for the pattern).
 
 A missing Hero-bild URL is not an error: the club page renders with the
 same peach/coral gradient hero used on nyheter.html/events.html instead of a
-photo. The club card falls back to the club's logo (full-bleed, same
-treatment as a real photo) if one was provided, otherwise the gradient.
+photo. The club card falls back to the club's logo if one was provided
+(unscaled/uncropped, on a background color sampled from the logo's own
+corner pixel so it reads as a full, seamless fill regardless of the logo's
+aspect ratio), otherwise the gradient.
 
 Usage:
     python3 generate_club.py --dry-run                # preview, writes nothing
@@ -332,6 +334,26 @@ def build_club_page(row: dict, region_key: str) -> tuple[str, str]:
     return html, str(target)
 
 
+def sample_logo_bg_color(logo_url: str) -> str:
+    """Best-effort corner-pixel color of a local logo file, so a logo card
+    can be filled edge-to-edge without cropping the logo itself. Falls back
+    to white (the common logo canvas color) if the file can't be read."""
+    if not logo_url.startswith("/"):
+        return "#FFFFFF"
+    path = ROOT / logo_url.lstrip("/")
+    if not path.exists():
+        return "#FFFFFF"
+    try:
+        from PIL import Image
+        with Image.open(path) as im:
+            r, g, b, a = im.convert("RGBA").getpixel((2, 2))
+        if a < 250:
+            return "#FFFFFF"
+        return f"#{r:02X}{g:02X}{b:02X}"
+    except Exception:
+        return "#FFFFFF"
+
+
 def build_card_image_html(club_name: str, hero_image: str, kort_bild: str, logo_url: str = "") -> str:
     if kort_bild.strip().lower() == "foto" and hero_image:
         thumb = hero_image
@@ -344,9 +366,10 @@ def build_card_image_html(club_name: str, hero_image: str, kort_bild: str, logo_
             '        </div>'
         )
     if logo_url.strip():
+        bg = sample_logo_bg_color(logo_url.strip())
         return (
-            '<div class="card-image card-image--branded">\n'
-            f'          <img src="{logo_url.strip()}" alt="{club_name}" loading="lazy" decoding="async" width="400" height="220">\n'
+            f'<div class="card-image card-image--logo" style="background: {bg};">\n'
+            f'          <img src="{logo_url.strip()}" alt="{club_name}" loading="lazy" decoding="async">\n'
             '        </div>'
         )
     return '<div class="card-image card-image--placeholder"></div>'
