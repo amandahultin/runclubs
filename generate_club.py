@@ -331,13 +331,7 @@ def build_card_image_html(club_name: str, hero_image: str, kort_bild: str) -> st
             f'          <img src="{thumb}" alt="{alt}" loading="lazy" decoding="async" width="400" height="220">\n'
             '        </div>'
         )
-    initial = club_name[0].upper() if club_name else "?"
-    return (
-        '<div class="card-image card-image--placeholder">\n'
-        f'          <span class="placeholder-initial">{initial}</span>\n'
-        f'          <span class="placeholder-tag">{club_name}</span>\n'
-        '        </div>'
-    )
+    return '<div class="card-image card-image--placeholder"></div>'
 
 
 def build_card_html(row: dict, region_key: str) -> str:
