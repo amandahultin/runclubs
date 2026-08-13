@@ -1071,6 +1071,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       }});
     }}
   </script>
+  <script src="/sticky-instagram-cta.js" defer></script>
   <script src="newsletter.js"></script>
 </body>
 </html>
