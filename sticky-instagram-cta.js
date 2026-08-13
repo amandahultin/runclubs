@@ -40,7 +40,7 @@
         '<circle cx="12" cy="12" r="4.2" stroke="white" stroke-width="1.8"/>' +
         '<circle cx="17.6" cy="6.4" r="1.1" fill="white"/>' +
       '</svg></span>' +
-      '<span>Häng med på det senaste - följ oss på Instagram</span>' +
+      '<span>Nya klubbar & event - häng med oss på Instagram</span>' +
     '</a>';
 
   if (document.readyState === 'loading') {
