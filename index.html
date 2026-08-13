@@ -312,9 +312,12 @@ document.addEventListener('DOMContentLoaded',function(){
     .ig-cta { display: inline-flex; align-items: center; gap: 10px; background: #1C2A45; color: #FFF8F3; font-size: 13px; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; padding: 16px 30px; border-radius: 100px; text-decoration: none; transition: all 0.2s ease; }
     .ig-cta:hover { background: #334463; transform: translateY(-2px); box-shadow: 0 10px 28px rgba(28,42,69,0.3); }
     .ig-handle { margin-top: 1.1rem; font-size: 13px; color: #7a3f2f; font-weight: 600; }
-    .ig-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 8px; }
-    .ig-tile { aspect-ratio: 1; border-radius: 14px; overflow: hidden; position: relative; display: flex; align-items: center; justify-content: center; text-align: center; padding: 14px; }
-    .ig-tile img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    #ig-feed.ig-feed { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 12px; }
+    .ig-post { position: relative; display: block; aspect-ratio: 1/1; overflow: hidden; border-radius: 8px; background: #eee; text-decoration: none; }
+    .ig-post img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.2s ease; }
+    .ig-post:hover img { transform: scale(1.04); }
+    .ig-post .ig-play-icon { position: absolute; top: 8px; right: 8px; width: 22px; height: 22px; filter: drop-shadow(0 0 2px rgba(0,0,0,0.6)); }
+    .ig-feed-empty, .ig-feed-error { color: #7a3f2f; font-size: 0.9rem; padding: 1rem 0; }
 
     /* ── DAGENS PASS ───────────────────── */
     .schedule-section {
@@ -574,7 +577,7 @@ document.addEventListener('DOMContentLoaded',function(){
 
       .ig-section { padding: 3.5rem 1.25rem; }
       .ig-inner { grid-template-columns: 1fr; gap: 2.25rem; }
-      .ig-grid { max-width: 420px; margin: 0 auto; }
+      #ig-feed.ig-feed { max-width: 420px; margin: 0 auto; }
 
       .schedule-section { padding: 3rem 1.25rem; }
       .schedule-title { font-size: 24px; }
@@ -722,17 +725,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </a>
         <div class="ig-handle">↳ länk i bio leder alltid tillbaka hit till runclubs.se</div>
       </div>
-      <div class="ig-grid" aria-hidden="true">
-        <div class="ig-tile"><img src="svedjan-hero.jpeg" alt="" loading="lazy"></div>
-        <div class="ig-tile"><img src="tjejmilen-runclub.jpg" alt="" loading="lazy"></div>
-        <div class="ig-tile"><img src="pexels-runffwpu-2402777.jpg" alt="" loading="lazy"></div>
-        <div class="ig-tile"><img src="rtc-hero.jpg" alt="" loading="lazy"></div>
-        <div class="ig-tile"><img src="andmorerunning-hero.jpg" alt="" loading="lazy"></div>
-        <div class="ig-tile"><img src="goteborg-running-club.image1.jpg" alt="" loading="lazy"></div>
-        <div class="ig-tile"><img src="pace-people-team.jpg" alt="" loading="lazy"></div>
-        <div class="ig-tile"><img src="core-run-club.textimage.jpeg" alt="" loading="lazy"></div>
-        <div class="ig-tile"><img src="ett-steg-i-taget.jpg" alt="" loading="lazy"></div>
-      </div>
+      <!-- Auto-updated daily by .github/workflows/instagram-feed-sync.yml
+           via the Instagram Graph API — see sync_instagram_feed.py.
+           Rendered here from instagram/feed/posts.json by widget.js. -->
+      <div id="ig-feed"></div>
     </div>
   </section>
 
@@ -1031,6 +1027,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       }
     })();
   </script>
+
+  <script src="widget.js"></script>
+
   <script src="newsletter.js"></script>
 
   <script src="/tracker.js" defer></script>
