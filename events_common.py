@@ -10,6 +10,7 @@ import html as _html_lib
 import json
 import logging
 import os
+import re
 import time
 from datetime import datetime, timedelta, timezone
 from zoneinfo import ZoneInfo
@@ -41,6 +42,16 @@ CLUB_NAME_ALIASES = {
     "downtown camper run club": "Saucony Run Club Sverige",
     "saucony run club":        "Saucony Run Club Sverige",
     "slowrunners göteborg":    "Pace & People",
+    # Strava spells several clubs differently from the WeeklyRuns sheet. Map
+    # them onto the sheet's name — the one the club's own page uses — so the
+    # cards dedupe and the club filter lists each club once.
+    "saucony sverige":                           "Saucony Run Club Sverige",
+    "måndagsklubben_gbg":                        "Måndagsklubben",
+    "göteborg running club (grc)":               "Göteborg Running Club",
+    "rtc":                                       "Roberg Training Club (RTC)",
+    "stadium run club - sverige":                "Stadium Run Club",
+    "nasci run club - för gravida & postpartum": "Nasci Run Club",
+    "triple threshold running communion":        "Triple Threshold RC",
 }
 
 def normalize_club_name(name: str) -> str:
@@ -219,42 +230,65 @@ def combine_date_time(raw_date: str, raw_time: str) -> str:
     return raw_date
 
 
-def drop_weekly_run_duplicates(events: list[dict]) -> list[dict]:
-    """Drop WeeklyRuns cards that a Strava event already covers.
+# Highest priority first. When several sources describe the same club's run on
+# the same day, the card from the earliest source in this tuple is the one kept:
+# Strava carries the real title, description, map and event link; a Special
+# Event is a hand-curated one-off; the WeeklyRuns card is the generic fallback.
+SOURCE_PRIORITY = ("strava", "special", "weekly_run")
 
-    A club that also posts its recurring run to Strava shows up twice: once
-    from the WeeklyRuns sheet and once from the Strava feed. Keep the Strava
-    card — it carries the actual title, description, map and event link — and
-    drop the weekly card for that club on that calendar day.
+_VENUE_SUFFIX = re.compile(r"\s*@.*$")
 
-    Clubs are matched on the name after normalize_club_name(), so a club named
-    differently in the two sheets needs an entry in CLUB_NAME_ALIASES for the
-    duplicate to be caught.
+
+def club_match_key(name: str) -> str:
+    """Key deciding whether two cards describe the same club.
+
+    The Special Events sheet writes the venue into the club name
+    ("ESS Runners Club @Pigalle") and that venue changes week to week, so the
+    suffix is stripped here rather than aliased. Everything else goes through
+    CLUB_NAME_ALIASES, so a club spelled differently between two sheets needs
+    an entry there to be recognised as the same club.
     """
-    strava_days = {
-        (e["club"], e["date"][:10])
-        for e in events
-        if e.get("source") == "strava" and e.get("date")
-    }
-    if not strava_days:
-        return events
+    return _VENUE_SUFFIX.sub("", normalize_club_name(name)).strip().casefold()
+
+
+def drop_duplicate_cards(events: list[dict]) -> list[dict]:
+    """Collapse cards describing the same club's run on the same day.
+
+    A club can reach the site through all three sheets at once — a WeeklyRuns
+    entry for the recurring slot, a Special Events entry for that week's
+    version, and a Strava event the club posted itself — which renders as two
+    or three cards for a single run. Keep the highest-priority source present
+    for that club and day (see SOURCE_PRIORITY) and drop the rest.
+
+    Matching is per calendar day, not per start time, because the same run is
+    routinely listed a few minutes apart across sheets.
+    """
+    rank = {src: i for i, src in enumerate(SOURCE_PRIORITY)}
+
+    best: dict[tuple, int] = {}
+    for e in events:
+        if not e.get("date") or e.get("source") not in rank:
+            continue
+        k = (club_match_key(e["club"]), e["date"][:10])
+        r = rank[e["source"]]
+        if r < best.get(k, len(rank)):
+            best[k] = r
 
     kept: list[dict] = []
-    dropped = 0
+    dropped: list[dict] = []
     for e in events:
-        if (
-            e.get("source") == "weekly_run"
-            and e.get("date")
-            and (e["club"], e["date"][:10]) in strava_days
-        ):
-            log.info("Weekly run hidden, Strava event covers it: %s on %s (%s)",
-                     e["club"], e["date"][:10], e.get("title", ""))
-            dropped += 1
-            continue
+        if e.get("date") and e.get("source") in rank:
+            k = (club_match_key(e["club"]), e["date"][:10])
+            if rank[e["source"]] > best[k]:
+                dropped.append(e)
+                continue
         kept.append(e)
 
+    for e in dropped:
+        log.info("Hidden as duplicate (%s outranked): %s on %s — %s",
+                 e["source"], e["club"], e["date"][:10], e.get("title", ""))
     if dropped:
-        log.info("Dropped %d weekly-run card(s) already covered by Strava", dropped)
+        log.info("Dropped %d duplicate card(s) across sources", len(dropped))
     return kept
 
 

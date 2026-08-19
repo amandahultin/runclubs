@@ -28,7 +28,7 @@ from events_common import (
     _normalize_city,
     build_club_cities,
     combine_date_time,
-    drop_weekly_run_duplicates,
+    drop_duplicate_cards,
     fetch_events,
     fetch_overrides,
     fetch_special_events,
@@ -1102,7 +1102,7 @@ def main() -> int:
     special_events  = prepare_special_events(special_records, club_pages)
 
     all_events = events + weekly_events + special_events
-    all_events = drop_weekly_run_duplicates(all_events)
+    all_events = drop_duplicate_cards(all_events)
     all_events.sort(key=lambda x: (x["date"] or "9999", x["club"]))
     log.info("%d total events after merge", len(all_events))
 
