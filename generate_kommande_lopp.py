@@ -22,6 +22,8 @@ from pathlib import Path
 import gspread
 from google.oauth2.service_account import Credentials
 
+from events_common import sv_long_date
+
 log = logging.getLogger(__name__)
 
 # Distance category boundaries (km)
@@ -953,7 +955,7 @@ def main() -> int:
     records = fetch_races(sheet_id)
     races   = prepare_races(records)
 
-    generated_at = datetime.now(timezone.utc).strftime("%-d %B %Y")
+    generated_at = sv_long_date(datetime.now(timezone.utc))
     html = render_html(races, generated_at)
 
     out_path.write_text(html, encoding="utf-8")

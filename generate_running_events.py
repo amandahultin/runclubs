@@ -34,6 +34,7 @@ from events_common import (
     fetch_weekly_runs,
     normalize_club_name,
     render_events_section,
+    sv_long_date,
     _parse_date,
     _parse_time,
 )
@@ -1103,7 +1104,7 @@ def main() -> int:
     all_events.sort(key=lambda x: (x["date"] or "9999", x["club"]))
     log.info("%d total events after merge", len(all_events))
 
-    generated_at = datetime.now(timezone.utc).strftime("%-d %B %Y")
+    generated_at = sv_long_date(datetime.now(timezone.utc))
     html_out = render_html(all_events, generated_at)
 
     out_path.write_text(html_out, encoding="utf-8")

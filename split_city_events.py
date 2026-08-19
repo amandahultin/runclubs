@@ -17,6 +17,8 @@ import sys
 from datetime import datetime, timezone
 from pathlib import Path
 
+from events_common import sv_long_date
+
 ROOT = Path(__file__).parent
 
 
@@ -35,7 +37,7 @@ def main() -> int:
         return 1
 
     all_events = extract_events(source)
-    generated_at = datetime.now(timezone.utc).strftime("%-d %B %Y")
+    generated_at = sv_long_date(datetime.now(timezone.utc))
 
     from generate_stockholm_events import render_html as render_stockholm
     from generate_goteborg_events import render_html as render_goteborg
