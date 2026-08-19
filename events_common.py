@@ -54,8 +54,20 @@ CLUB_NAME_ALIASES = {
     "triple threshold running communion":        "Triple Threshold RC",
 }
 
+# The Special Events sheet appends the venue to the club name
+# ("ESS Runners Club @Pigalle") and the venue changes from week to week.
+_VENUE_SUFFIX = re.compile(r"\s*@.*$")
+
+
 def normalize_club_name(name: str) -> str:
-    return CLUB_NAME_ALIASES.get(name.strip().lower(), name.strip())
+    """Canonical club name, used for display, filter pills and deduping.
+
+    The venue suffix from the Special Events sheet is dropped — the venue is
+    already carried by the event's location — so a club gets one name, one
+    filter pill and one dedupe key no matter which sheet it came in through.
+    """
+    n = _VENUE_SUFFIX.sub("", name.strip()).strip()
+    return CLUB_NAME_ALIASES.get(n.lower(), n)
 
 
 def _normalize_city(text: str) -> str:
@@ -236,19 +248,14 @@ def combine_date_time(raw_date: str, raw_time: str) -> str:
 # Event is a hand-curated one-off; the WeeklyRuns card is the generic fallback.
 SOURCE_PRIORITY = ("strava", "special", "weekly_run")
 
-_VENUE_SUFFIX = re.compile(r"\s*@.*$")
-
-
 def club_match_key(name: str) -> str:
     """Key deciding whether two cards describe the same club.
 
-    The Special Events sheet writes the venue into the club name
-    ("ESS Runners Club @Pigalle") and that venue changes week to week, so the
-    suffix is stripped here rather than aliased. Everything else goes through
+    normalize_club_name() already drops the venue suffix and applies
     CLUB_NAME_ALIASES, so a club spelled differently between two sheets needs
     an entry there to be recognised as the same club.
     """
-    return _VENUE_SUFFIX.sub("", normalize_club_name(name)).strip().casefold()
+    return normalize_club_name(name).casefold()
 
 
 def drop_duplicate_cards(events: list[dict]) -> list[dict]:
