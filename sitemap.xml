@@ -346,6 +346,7 @@
   <url><loc>https://runclubs.se/ovriga-landet/running-for-breakfast-norrkoping/</loc><lastmod>2026-08-19</lastmod><priority>0.6</priority></url>
   <url><loc>https://runclubs.se/ovriga-landet/running-for-breakfast-vasteras/</loc><lastmod>2026-08-19</lastmod><priority>0.6</priority></url>
   <url><loc>https://runclubs.se/ovriga-landet/rusa-running-club/</loc><lastmod>2026-08-19</lastmod><priority>0.6</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet/slo-social-running-club/</loc><lastmod>2026-08-19</lastmod><priority>0.6</priority></url>
   <url><loc>https://runclubs.se/ovriga-landet/social-run-landskrona/</loc><lastmod>2026-08-19</lastmod><priority>0.6</priority></url>
   <url><loc>https://runclubs.se/ovriga-landet/social-run-lund/</loc><lastmod>2026-08-19</lastmod><priority>0.6</priority></url>
   <url><loc>https://runclubs.se/ovriga-landet/sundet-run-club-helsingborg/</loc><lastmod>2026-08-19</lastmod><priority>0.6</priority></url>
@@ -357,6 +358,7 @@
   <url><loc>https://runclubs.se/ovriga-landet?stad=eskilstuna</loc><lastmod>2026-08-19</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
   <url><loc>https://runclubs.se/ovriga-landet?stad=kalmar</loc><lastmod>2026-08-19</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
   <url><loc>https://runclubs.se/ovriga-landet?stad=lund</loc><lastmod>2026-08-19</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet?stad=luleå</loc><lastmod>2026-08-19</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
   <url><loc>https://runclubs.se/ovriga-landet?stad=malmö</loc><lastmod>2026-08-19</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
   <url><loc>https://runclubs.se/ovriga-landet?stad=norrköping</loc><lastmod>2026-08-19</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
   <url><loc>https://runclubs.se/ovriga-landet?stad=uppsala</loc><lastmod>2026-08-19</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
@@ -381,6 +383,7 @@
   <url><loc>https://runclubs.se/ovriga-landet?typ=social&amp;stad=eskilstuna</loc><lastmod>2026-08-19</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
   <url><loc>https://runclubs.se/ovriga-landet?typ=social&amp;stad=kalmar</loc><lastmod>2026-08-19</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
   <url><loc>https://runclubs.se/ovriga-landet?typ=social&amp;stad=lund</loc><lastmod>2026-08-19</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet?typ=social&amp;stad=luleå</loc><lastmod>2026-08-19</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
   <url><loc>https://runclubs.se/ovriga-landet?typ=social&amp;stad=malmö</loc><lastmod>2026-08-19</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
   <url><loc>https://runclubs.se/ovriga-landet?typ=social&amp;stad=norrköping</loc><lastmod>2026-08-19</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
   <url><loc>https://runclubs.se/ovriga-landet?typ=social&amp;stad=uppsala</loc><lastmod>2026-08-19</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
@@ -396,6 +399,7 @@
   <url><loc>https://runclubs.se/ovriga-landet?niva=nybörjare&amp;stad=eskilstuna</loc><lastmod>2026-08-19</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
   <url><loc>https://runclubs.se/ovriga-landet?niva=nybörjare&amp;stad=kalmar</loc><lastmod>2026-08-19</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
   <url><loc>https://runclubs.se/ovriga-landet?niva=nybörjare&amp;stad=lund</loc><lastmod>2026-08-19</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet?niva=nybörjare&amp;stad=luleå</loc><lastmod>2026-08-19</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
   <url><loc>https://runclubs.se/ovriga-landet?niva=nybörjare&amp;stad=malmö</loc><lastmod>2026-08-19</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
   <url><loc>https://runclubs.se/ovriga-landet?niva=nybörjare&amp;stad=norrköping</loc><lastmod>2026-08-19</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
   <url><loc>https://runclubs.se/ovriga-landet?niva=nybörjare&amp;stad=uppsala</loc><lastmod>2026-08-19</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
@@ -420,6 +424,7 @@
   <url><loc>https://runclubs.se/ovriga-landet?niva=nybörjare&amp;typ=social&amp;stad=eskilstuna</loc><lastmod>2026-08-19</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
   <url><loc>https://runclubs.se/ovriga-landet?niva=nybörjare&amp;typ=social&amp;stad=kalmar</loc><lastmod>2026-08-19</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
   <url><loc>https://runclubs.se/ovriga-landet?niva=nybörjare&amp;typ=social&amp;stad=lund</loc><lastmod>2026-08-19</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet?niva=nybörjare&amp;typ=social&amp;stad=luleå</loc><lastmod>2026-08-19</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
   <url><loc>https://runclubs.se/ovriga-landet?niva=nybörjare&amp;typ=social&amp;stad=malmö</loc><lastmod>2026-08-19</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
   <url><loc>https://runclubs.se/ovriga-landet?niva=nybörjare&amp;typ=social&amp;stad=norrköping</loc><lastmod>2026-08-19</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
   <url><loc>https://runclubs.se/ovriga-landet?niva=nybörjare&amp;typ=social&amp;stad=uppsala</loc><lastmod>2026-08-19</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
@@ -435,6 +440,7 @@
   <url><loc>https://runclubs.se/ovriga-landet?niva=mellannivå&amp;stad=eskilstuna</loc><lastmod>2026-08-19</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
   <url><loc>https://runclubs.se/ovriga-landet?niva=mellannivå&amp;stad=kalmar</loc><lastmod>2026-08-19</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
   <url><loc>https://runclubs.se/ovriga-landet?niva=mellannivå&amp;stad=lund</loc><lastmod>2026-08-19</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet?niva=mellannivå&amp;stad=luleå</loc><lastmod>2026-08-19</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
   <url><loc>https://runclubs.se/ovriga-landet?niva=mellannivå&amp;stad=malmö</loc><lastmod>2026-08-19</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
   <url><loc>https://runclubs.se/ovriga-landet?niva=mellannivå&amp;stad=norrköping</loc><lastmod>2026-08-19</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
   <url><loc>https://runclubs.se/ovriga-landet?niva=mellannivå&amp;stad=uppsala</loc><lastmod>2026-08-19</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
@@ -459,6 +465,7 @@
   <url><loc>https://runclubs.se/ovriga-landet?niva=mellannivå&amp;typ=social&amp;stad=eskilstuna</loc><lastmod>2026-08-19</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
   <url><loc>https://runclubs.se/ovriga-landet?niva=mellannivå&amp;typ=social&amp;stad=kalmar</loc><lastmod>2026-08-19</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
   <url><loc>https://runclubs.se/ovriga-landet?niva=mellannivå&amp;typ=social&amp;stad=lund</loc><lastmod>2026-08-19</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet?niva=mellannivå&amp;typ=social&amp;stad=luleå</loc><lastmod>2026-08-19</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
   <url><loc>https://runclubs.se/ovriga-landet?niva=mellannivå&amp;typ=social&amp;stad=malmö</loc><lastmod>2026-08-19</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
   <url><loc>https://runclubs.se/ovriga-landet?niva=mellannivå&amp;typ=social&amp;stad=norrköping</loc><lastmod>2026-08-19</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
   <url><loc>https://runclubs.se/ovriga-landet?niva=mellannivå&amp;typ=social&amp;stad=uppsala</loc><lastmod>2026-08-19</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
@@ -473,6 +480,7 @@
   <url><loc>https://runclubs.se/ovriga-landet?niva=avancerad&amp;stad=alingsås</loc><lastmod>2026-08-19</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
   <url><loc>https://runclubs.se/ovriga-landet?niva=avancerad&amp;stad=eskilstuna</loc><lastmod>2026-08-19</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
   <url><loc>https://runclubs.se/ovriga-landet?niva=avancerad&amp;stad=lund</loc><lastmod>2026-08-19</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet?niva=avancerad&amp;stad=luleå</loc><lastmod>2026-08-19</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
   <url><loc>https://runclubs.se/ovriga-landet?niva=avancerad&amp;stad=malmö</loc><lastmod>2026-08-19</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
   <url><loc>https://runclubs.se/ovriga-landet?niva=avancerad&amp;stad=norrköping</loc><lastmod>2026-08-19</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
   <url><loc>https://runclubs.se/ovriga-landet?niva=avancerad&amp;stad=uppsala</loc><lastmod>2026-08-19</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
@@ -495,6 +503,7 @@
   <url><loc>https://runclubs.se/ovriga-landet?niva=avancerad&amp;typ=social&amp;stad=alingsås</loc><lastmod>2026-08-19</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
   <url><loc>https://runclubs.se/ovriga-landet?niva=avancerad&amp;typ=social&amp;stad=eskilstuna</loc><lastmod>2026-08-19</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
   <url><loc>https://runclubs.se/ovriga-landet?niva=avancerad&amp;typ=social&amp;stad=lund</loc><lastmod>2026-08-19</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://runclubs.se/ovriga-landet?niva=avancerad&amp;typ=social&amp;stad=luleå</loc><lastmod>2026-08-19</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
   <url><loc>https://runclubs.se/ovriga-landet?niva=avancerad&amp;typ=social&amp;stad=malmö</loc><lastmod>2026-08-19</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
   <url><loc>https://runclubs.se/ovriga-landet?niva=avancerad&amp;typ=social&amp;stad=norrköping</loc><lastmod>2026-08-19</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
   <url><loc>https://runclubs.se/ovriga-landet?niva=avancerad&amp;typ=social&amp;stad=uppsala</loc><lastmod>2026-08-19</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
