@@ -219,6 +219,45 @@ def combine_date_time(raw_date: str, raw_time: str) -> str:
     return raw_date
 
 
+def drop_weekly_run_duplicates(events: list[dict]) -> list[dict]:
+    """Drop WeeklyRuns cards that a Strava event already covers.
+
+    A club that also posts its recurring run to Strava shows up twice: once
+    from the WeeklyRuns sheet and once from the Strava feed. Keep the Strava
+    card — it carries the actual title, description, map and event link — and
+    drop the weekly card for that club on that calendar day.
+
+    Clubs are matched on the name after normalize_club_name(), so a club named
+    differently in the two sheets needs an entry in CLUB_NAME_ALIASES for the
+    duplicate to be caught.
+    """
+    strava_days = {
+        (e["club"], e["date"][:10])
+        for e in events
+        if e.get("source") == "strava" and e.get("date")
+    }
+    if not strava_days:
+        return events
+
+    kept: list[dict] = []
+    dropped = 0
+    for e in events:
+        if (
+            e.get("source") == "weekly_run"
+            and e.get("date")
+            and (e["club"], e["date"][:10]) in strava_days
+        ):
+            log.info("Weekly run hidden, Strava event covers it: %s on %s (%s)",
+                     e["club"], e["date"][:10], e.get("title", ""))
+            dropped += 1
+            continue
+        kept.append(e)
+
+    if dropped:
+        log.info("Dropped %d weekly-run card(s) already covered by Strava", dropped)
+    return kept
+
+
 # ── Static HTML rendering ─────────────────────────────────────────────────────
 
 _SV_MONTHS_SHORT = ['jan','feb','mar','apr','maj','jun','jul','aug','sep','okt','nov','dec']
