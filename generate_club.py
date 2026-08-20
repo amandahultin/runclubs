@@ -75,6 +75,7 @@ REGIONS = {
 
 INDEX_HTML = ROOT / "index.html"
 OM_OSS_HTML = ROOT / "om-oss.html"
+SAMARBETA_HTML = ROOT / "samarbeta.html"
 REDIRECTS_FILE = ROOT / "_redirects"
 RICH_SCHEMAS_FILE = ROOT / "inject_rich_schemas.py"
 
@@ -513,6 +514,20 @@ def bump_om_oss_total() -> None:
     OM_OSS_HTML.write_text(new_text, encoding="utf-8")
 
 
+def bump_samarbeta_total() -> None:
+    if not SAMARBETA_HTML.exists():
+        return
+    text = SAMARBETA_HTML.read_text(encoding="utf-8")
+    pattern = re.compile(
+        r'(<div class="stats-number">)(\d+)(</div>\s*<div class="stats-label">Listade klubbar</div>)'
+    )
+    new_text, n = pattern.subn(lambda m: m.group(1) + str(int(m.group(2)) + 1) + m.group(3), text, count=1)
+    if n != 1:
+        print(f"  WARNING: samarbeta.html stats-number 'Listade klubbar' matched {n}x (expected 1) -- not updated")
+        return
+    SAMARBETA_HTML.write_text(new_text, encoding="utf-8")
+
+
 def register_in_city_clubs(region_key: str, slug: str) -> None:
     if not RICH_SCHEMAS_FILE.exists():
         return
@@ -564,6 +579,7 @@ def process_row(row: dict, dry_run: bool, force: bool) -> str:
     bump_index_city_count(region_key)
     bump_city_hero_stat(region_key)
     bump_om_oss_total()
+    bump_samarbeta_total()
     register_in_city_clubs(region_key, slug)
 
     return f"CREATED: {club_name} -> {target_path}"

@@ -18,10 +18,10 @@ document.addEventListener('DOMContentLoaded',function(){
 <!-- End Google Tag Manager -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Samarbeta med Runclubs.se — Nå Sveriges Löpare | Runclubs.se</title>
-  <meta name="description" content="Nå Sveriges mest engagerade löpare via sajt, nyhetsbrev och sociala medier. Bygg en kampanj som landar på riktigt — kontakta oss och dra igång.">
-  <meta property="og:title" content="Samarbeta med Runclubs.se — Nå Sveriges Löpare">
-  <meta property="og:description" content="Nå Sveriges mest engagerade löpare. Bygg en kampanj som landar — kontakta oss.">
+  <title>Samarbeta med Runclubs.se och nå Sveriges löpare | Runclubs.se</title>
+  <meta name="description" content="Nå Sveriges mest engagerade löpare via sajt, nyhetsbrev och sociala medier. Bygg en kampanj som landar på riktigt. Kontakta oss och dra igång.">
+  <meta property="og:title" content="Samarbeta med Runclubs.se och nå Sveriges löpare">
+  <meta property="og:description" content="Nå Sveriges mest engagerade löpare. Bygg en kampanj som landar. Kontakta oss.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://runclubs.se/samarbeta">
   <meta property="og:image" content="https://runclubs.se/stockholm-run-clubs.jpeg">
@@ -81,19 +81,27 @@ document.addEventListener('DOMContentLoaded',function(){
 
     /* ── HERO ───────────────────────────── */
     .hero {
-      position: relative; min-height: 400px;
-      background: #1C2A45 url('https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?w=1200&h=600&fit=crop&crop=center') center/cover no-repeat;
+      position: relative; min-height: 420px;
+      background: linear-gradient(160deg, #FFF8F3 0%, #FFDAC4 40%, #F6B89E 75%, #F88B69 100%);
       display: flex; flex-direction: column; justify-content: flex-end;
       padding: 3rem 2rem; overflow: hidden;
     }
+    .hero::after {
+      content: ''; position: absolute; top: -90px; right: -70px;
+      width: 280px; height: 280px; border-radius: 50%;
+      background: rgba(255,255,255,0.35);
+      pointer-events: none;
+    }
     .hero::before {
-      content: ''; position: absolute; inset: 0;
-      background: linear-gradient(to top, rgba(28,42,69,0.95) 0%, rgba(28,42,69,0.6) 40%, rgba(28,42,69,0.25) 100%);
+      content: ''; position: absolute; left: -80px; bottom: -140px;
+      width: 260px; height: 260px; border-radius: 50%;
+      background: rgba(28,42,69,0.08);
+      pointer-events: none;
     }
     .hero-content { position: relative; z-index: 1; max-width: 700px; }
-    .hero-tag { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #EEAA96; margin-bottom: 0.75rem; }
-    .hero h1 { font-family: 'Archivo Black', sans-serif; font-size: clamp(38px, 5vw, 56px); line-height: 1; text-transform: uppercase; color: #FDFAF9; letter-spacing: 2px; }
-    .hero-subtitle { font-size: 16px; color: rgba(255,255,255,0.6); line-height: 1.7; margin-top: 1rem; max-width: 520px; }
+    .hero-tag { font-family: 'Playfair Display', serif; font-style: italic; font-size: 15px; letter-spacing: 0.5px; color: #C8604A; margin-bottom: 0.75rem; font-weight: 400; text-transform: none; }
+    .hero h1 { font-family: 'Archivo Black', sans-serif; font-size: clamp(38px, 5vw, 56px); line-height: 1; text-transform: uppercase; color: #C8604A; letter-spacing: 2px; }
+    .hero-subtitle { font-size: 16px; color: rgba(28,42,69,0.75); line-height: 1.7; margin-top: 1rem; max-width: 520px; }
 
     /* ── STATS STRIP ───────────────────── */
     .stats-strip {
@@ -123,7 +131,7 @@ document.addEventListener('DOMContentLoaded',function(){
     }
     .section-label {
       font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
-      color: #aaa; margin-bottom: 1.25rem; font-weight: 500; display: block;
+      color: #D4715E; margin-bottom: 1.25rem; font-weight: 500; display: block;
     }
     .intro-inner h2 {
       font-family: 'Archivo Black', sans-serif; font-size: 28px;
@@ -372,14 +380,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="hero-content">
         <div class="hero-tag">Samarbeten</div>
         <h1>Nå Sveriges<br>löpare</h1>
-        <p class="hero-subtitle">Swedish Run Clubs är platsen där engagerade löpare hittar sin nästa klubb. Vill ditt varumärke synas där? Låt oss prata.</p>
+        <p class="hero-subtitle">Runclubs.se är platsen där engagerade löpare hittar sin nästa klubb. Vill ditt varumärke synas där? Låt oss prata.</p>
       </div>
     </section>
 
     <!-- STATS -->
     <div class="stats-strip fade-in">
       <div class="stats-item">
-        <div class="stats-number">33</div>
+        <div class="stats-number">62</div>
         <div class="stats-label">Listade klubbar</div>
       </div>
       <div class="stats-item">
@@ -399,10 +407,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- INTRO -->
     <section class="intro-section fade-in">
       <div class="intro-inner">
-        <span class="section-label">Varför Swedish Run Clubs?</span>
+        <span class="section-label">Varför Runclubs.se?</span>
         <h2>En målgrupp som<br>faktiskt bryr sig</h2>
         <p>Löpare är en av de mest engagerade och köpstarka målgrupperna inom hälsa och livsstil. De investerar i skor, kläder, nutrition, resor och upplevelser. Och de litar på rekommendationer från communities de tillhör.</p>
-        <p><strong>Swedish Run Clubs</strong> samlar löpare som aktivt letar efter sin nästa klubb, sitt nästa lopp eller sin nästa löparupplevelse. Det gör oss till en unik kanal för varumärken som vill nå just den här målgruppen — i rätt ögonblick.</p>
+        <p><strong>Runclubs.se</strong> samlar löpare som aktivt letar efter sin nästa klubb, sitt nästa lopp eller sin nästa löparupplevelse. Det gör oss till en unik kanal för varumärken som vill nå den här målgruppen i rätt ögonblick.</p>
       </div>
     </section>
 
@@ -427,7 +435,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div class="format-card fade-in">
             <div class="format-icon green">🤝</div>
             <h3>Partnerskap</h3>
-            <p>Längre samarbeten som sträcker sig över tid — synlighet på sajten, i nyhetsbrev och i sociala kanaler. Skräddarsytt efter dina mål.</p>
+            <p>Längre samarbeten som sträcker sig över tid, med synlighet på sajten, i nyhetsbrev och i sociala kanaler. Skräddarsytt efter dina mål.</p>
           </div>
 
         </div>
@@ -440,8 +448,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="why-text fade-in">
           <span class="section-label">Det här får du</span>
           <h2>Mer än bara<br>en annons</h2>
-          <p>Vi tror inte på banners som ingen klickar på. Istället erbjuder vi samarbeten som <strong>känns som en naturlig del av innehållet</strong> — för att det är det enda som fungerar i en nischad community.</p>
-          <p>Varje samarbete anpassas efter ditt varumärke och din målgrupp. Vi är transparenta med vad som är sponsrat och värnar om trovärdigheten — för din skull och för vår.</p>
+          <p>Vi tror inte på banners som ingen klickar på. Istället erbjuder vi samarbeten som <strong>känns som en naturlig del av innehållet</strong>, för att det är det enda som fungerar i en nischad community.</p>
+          <p>Varje samarbete anpassas efter ditt varumärke och din målgrupp. Vi är transparenta med vad som är sponsrat och värnar om trovärdigheten, för din skull och för vår.</p>
         </div>
         <div class="fade-in">
           <ul class="why-list">
@@ -470,10 +478,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               <div class="why-icon">♡</div>
               <div class="why-item-text">
                 <h4>Personligt</h4>
-                <p>Du jobbar direkt med mig — inga mellanhänder</p>
+                <p>Du jobbar direkt med mig. Inga mellanhänder.</p>
               </div>
             </li>
+            <li>
+              <h4>📈 Växande community</h4>
+              <p>Sajten får mer trafik för varje månad, och vårt Instagram-community växer i samma takt.</p>
+            </li>
           </ul>
+          <p style="margin-top: 1.5rem; font-size: 15px;">
+            Nyfiken på hur det ser ut i praktiken?
+            <a href="https://www.instagram.com/runclubs.se/" target="_blank" rel="noopener" style="color:#D4715E; font-weight:600; text-decoration:underline;">Följ oss på Instagram</a>,
+            ett community som blir större för varje vecka.
+          </p>
         </div>
       </div>
     </section>
@@ -481,7 +498,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- QUOTE -->
     <section class="quote-section fade-in">
       <div class="quote-inner">
-        <p>Swedish Run Clubs handlar om att bygga gemenskap kring löpning. De varumärken som lyckas bäst här är de som delar den känslan — och vill vara en del av den.</p>
+        <p>Runclubs.se handlar om att bygga gemenskap kring löpning. De varumärken som lyckas bäst här är de som delar den känslan och vill vara en del av den.</p>
         <div class="quote-author">Amanda Hultin, grundare</div>
       </div>
     </section>
@@ -524,7 +541,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <a href="samarbeta">Samarbeta</a>
     </div>
     <div class="footer-bottom" style="display:flex; justify-content:space-between; align-items:center; gap:1rem; flex-wrap:wrap;">
-      <span>&copy; 2026 Swedish Run Clubs. Byggd med kärlek av <a href="https://amandahultin.se" target="_blank" rel="noopener noreferrer" style="display:inline; margin:0;">Amanda Hultin <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-left:2px;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>.</span>
+      <span>&copy; 2026 Runclubs.se. Byggd med kärlek av <a href="https://amandahultin.se" target="_blank" rel="noopener noreferrer" style="display:inline; margin:0;">Amanda Hultin <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-left:2px;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>.</span>
       <a href="https://www.instagram.com/runclubs.se/" target="_blank" rel="noopener" aria-label="Följ oss på Instagram" style="display:inline-flex; align-items:center; margin:0; color:#aaa; transition:color 0.15s;" onmouseover="this.style.color='#D4715E'" onmouseout="this.style.color='#aaa'">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
       </a>
