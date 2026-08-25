@@ -41,7 +41,7 @@ def local_path_for_url(url: str, root: Path) -> Path:
 def scrape_meta(url: str, root: Path, hops: int = 0) -> tuple[str, str]:
     """Scrape <title>/description, following meta-refresh redirect stubs
     (many club/article slugs are just a stub at the root that instant-redirects
-    into a /city/slug/ or /nyheter/slug/ folder — the stub's own <title> is
+    into a /city/slug/ or /magazine/slug/ folder — the stub's own <title> is
     always the placeholder "Flyttad sida", not real content)."""
     path = local_path_for_url(url, root)
     if not path.exists():

@@ -23,7 +23,7 @@ with no single city -- these still need a hand-built flat page, see
 strawberry-run-club.html for the pattern).
 
 A missing Hero-bild URL is not an error: the club page renders with the
-same peach/coral gradient hero used on nyheter.html/events.html instead of a
+same peach/coral gradient hero used on magazine.html/events.html instead of a
 photo. The club card falls back to the club's logo if one was provided
 (unscaled/uncropped, on a background color sampled from the logo's own
 corner pixel so it reads as a full, seamless fill regardless of the logo's

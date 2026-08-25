@@ -90,12 +90,12 @@
       "twitter_title": "Kontakt — Runclubs.se",
       "twitter_description": "Tips om ny run club eller samarbete? Vi svarar snabbt."
     },
-    "nyheter.html": {
-      "title": "Nyheter om Run Clubs & Löpning i Sverige | Runclubs.se",
+    "magazine.html": {
+      "title": "Magazine — Run Clubs & Löpning i Sverige | Runclubs.se",
       "description": "Senaste nytt från svenska löparvärlden — nya clubs, event-drops, trender och allt löpare bör ha koll på. Uppdateras varje vecka. Håll koll här.",
-      "og_title": "Nyheter om Run Clubs i Sverige — Runclubs.se",
+      "og_title": "Magazine — Run Clubs i Sverige — Runclubs.se",
       "og_description": "Senaste nytt från svenska löparvärlden. Nya clubs, trender och event-drops. Uppdateras varje vecka.",
-      "twitter_title": "Nyheter — Runclubs.se",
+      "twitter_title": "Magazine — Runclubs.se",
       "twitter_description": "Senaste nytt från svenska löparvärlden. Uppdateras varje vecka."
     },
     "lopning-for-tjejer.html": {
@@ -308,11 +308,11 @@
     },
     "solemates-runclub.html": {
       "title": "Solemates Runclub Stockholm — Social Löpargrupp | Runclubs.se",
-      "description": "Solemates Runclub Stockholm — social löpargrupp för alla nivåer. Tisdagar 19:30 från Karlavägen. Ingen anmälan — kom som du är och dyk in.",
+      "description": "Solemates Runclub Stockholm — social löpargrupp för alla nivåer. Tisdagar från Karlavägen. Ingen anmälan — kom som du är och dyk in.",
       "og_title": "Solemates Runclub Stockholm — Social Löpargrupp",
-      "og_description": "Social löpargrupp för alla nivåer. Tisdagar 19:30 från Karlavägen.",
+      "og_description": "Social löpargrupp för alla nivåer. Tisdagar från Karlavägen.",
       "twitter_title": "Solemates Runclub Stockholm",
-      "twitter_description": "Social löpargrupp. Tisdagar 19:30 från Karlavägen."
+      "twitter_description": "Social löpargrupp. Tisdagar från Karlavägen."
     },
     "soderloparna-stockholm.html": {
       "title": "Söderlöparna Stockholm — Lördagslöpning med Fika | Runclubs.se",

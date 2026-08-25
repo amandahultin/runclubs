@@ -31,15 +31,15 @@ STATIC_PAGES: dict[str, list[tuple[str, str]]] = {
     "events":               [("Events",       f"{BASE_URL}/events")],
     "loppkalender":             [("Loppkalender", f"{BASE_URL}/loppkalender")],
     # News hub
-    "nyheter":                  [("Nyheter", f"{BASE_URL}/nyheter")],
+    "magazine":                 [("Magazine", f"{BASE_URL}/magazine")],
     # Articles
-    "tjejer-tar-over-lopsparen":      [("Nyheter", f"{BASE_URL}/nyheter"),
+    "tjejer-tar-over-lopsparen":      [("Magazine", f"{BASE_URL}/magazine"),
                                        ("Tjejer tar över löpspåren — och gör det tillsammans",
                                         f"{BASE_URL}/tjejer-tar-over-lopsparen")],
-    "stockholm-marathon-2026-slutsalt": [("Nyheter", f"{BASE_URL}/nyheter"),
+    "stockholm-marathon-2026-slutsalt": [("Magazine", f"{BASE_URL}/magazine"),
                                          ("Stockholm Marathon 2026 slutsålt — på rekordtid",
                                           f"{BASE_URL}/stockholm-marathon-2026-slutsalt")],
-    "lopning-for-tjejer":             [("Nyheter", f"{BASE_URL}/nyheter"),
+    "lopning-for-tjejer":             [("Magazine", f"{BASE_URL}/magazine"),
                                        ("Löpning för tjejer",
                                         f"{BASE_URL}/lopning-for-tjejer")],
     # Info pages

@@ -462,10 +462,12 @@ document.addEventListener('DOMContentLoaded',function(){
       text-transform: uppercase; font-weight: 600;
       padding: 4px 10px; border-radius: 10px; margin-bottom: 10px;
     }
-    .tag-stockholm { background: #C6EFCE; color: #276221; }
-    .tag-goteborg { background: #E8EEF5; color: #1C2A45; }
-    .tag-tips { background: #FFEB9C; color: #7d6608; }
-    .tag-trend { background: #F0E6FF; color: #5B2D8E; }
+    .tag-crew { background: #FFEB9C; color: #7d6608; }
+    .tag-nextup { background: #E8EEF5; color: #1C2A45; }
+    .tag-news { background: #DCEAFB; color: #1D4E89; }
+    .tag-mystory { background: #F7E8E4; color: #D4715E; }
+    .tag-community { background: #FBE1E8; color: #A83E5D; }
+    .tag-portrait { background: #DCEFF2; color: #146B72; }
     .news-card-title {
       font-family: 'Archivo Black', sans-serif; font-size: 18px;
       text-transform: uppercase; color: #fff;
@@ -619,7 +621,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <a href="stockholm">Stockholm</a>
       <a href="goteborg">Göteborg</a>
       <a href="ovriga-landet">Övriga landet</a>
-      <a href="nyheter">Nyheter</a>
+      <a href="magazine">Magazine</a>
       <a href="events">Events</a>
       <a href="loppkalender">Loppkalender</a>
       <a href="om-oss">Om oss</a>
@@ -633,7 +635,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <a href="stockholm">Stockholm</a>
     <a href="goteborg">Göteborg</a>
     <a href="ovriga-landet">Övriga landet</a>
-    <a href="nyheter">Nyheter</a>
+    <a href="magazine">Magazine</a>
     <a href="events">Events</a>
     <a href="loppkalender">Loppkalender</a>
     <a href="om-oss">Om oss</a>
@@ -793,49 +795,49 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="section-label">Senaste nytt</div>
     <div class="news-grid">
 
-      <a href="/nyheter/run-clubs-intervaller/" class="news-card featured">
+      <a href="/magazine/om-mig-och-sajten/" class="news-card featured">
+        <img src="om-mig-hero.jpeg" alt="Amanda Hultin sitter på löparbanan med armarna utsträckta" class="news-card-image" loading="lazy" width="800" height="450" style="object-position: center 25%;">
+        <div class="news-card-overlay"></div>
+        <div class="news-card-content">
+          <span class="news-tag tag-mystory">Om mig och sajten</span>
+          <div class="news-card-title">Sveriges största sajt för run clubs och running events</div>
+          <div class="news-card-date">Augusti 2026</div>
+        </div>
+      </a>
+
+      <a href="/magazine/run-clubs-intervaller/" class="news-card">
         <img src="intervaller-hero.jpg" alt="Amanda Hultin på löparbanan inför ett intervallpass" class="news-card-image" loading="lazy" width="800" height="450" style="object-position: center 18%; filter: grayscale(1);">
         <div class="news-card-overlay"></div>
         <div class="news-card-content">
-          <span class="news-tag tag-tips">Guide · Intervaller</span>
+          <span class="news-tag tag-crew">Find Your Crew · Intervaller</span>
           <div class="news-card-title">Sex run clubs i Göteborg och Stockholm som kör intervaller</div>
           <div class="news-card-date">Augusti 2026</div>
         </div>
       </a>
 
-      <a href="/nyheter/sex-somriga-loprundor/" class="news-card">
+      <a href="/magazine/sex-somriga-loprundor/" class="news-card">
         <img src="are.jpeg" alt="Löpare springer genom vatten vid Ridvadet i Åre med fjäll och skog i bakgrunden" class="news-card-image" loading="lazy" width="800" height="450" style="object-position: center 15%;">
         <div class="news-card-overlay"></div>
         <div class="news-card-content">
-          <span class="news-tag tag-tips">Guide · Sommarlöpning</span>
+          <span class="news-tag tag-mystory">My Story</span>
           <div class="news-card-title">Sex somriga löprundor värda att packa löparskorna för</div>
           <div class="news-card-date">Juli 2026</div>
         </div>
       </a>
 
-      <a href="/nyheter/loparklubbar-med-frukost/" class="news-card">
+      <a href="/magazine/loparklubbar-med-frukost/" class="news-card">
         <img src="coffe.jpeg" alt="En kopp kaffe redo att avnjutas efter ett morgonpass" class="news-card-image" loading="lazy" width="800" height="450">
         <div class="news-card-overlay"></div>
         <div class="news-card-content">
-          <span class="news-tag tag-tips">Guide · Tidiga pass</span>
+          <span class="news-tag tag-crew">Find Your Crew · Tidiga pass</span>
           <div class="news-card-title">Run Clubs för dig som tycker om att springa tidigt</div>
           <div class="news-card-date">Juli 2026</div>
         </div>
       </a>
 
-      <a href="/nyheter/fem-anledningar-runclub-hosten/" class="news-card">
-        <img src="goteborg-running-club.hero.jpg" alt="Löpare från Göteborg Running Club springer tillsammans i Slottsskogen" class="news-card-image" loading="lazy" width="800" height="450" style="object-position: center 40%;">
-        <div class="news-card-overlay"></div>
-        <div class="news-card-content">
-          <span class="news-tag tag-tips">Guide · Höstträning</span>
-          <div class="news-card-title">Fem anledningar att springa med en run club inför höstens lopp</div>
-          <div class="news-card-date">Juli 2026</div>
-        </div>
-      </a>
-
     </div>
-    <a href="nyheter" class="news-link">
-      Alla nyheter
+    <a href="magazine" class="news-link">
+      Alla artiklar
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
     </a>
   </section>
@@ -857,7 +859,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div>
       <h4>Om sajten</h4>
       <a href="om-oss">Om oss</a>
-      <a href="nyheter">Nyheter</a>
+      <a href="magazine">Magazine</a>
       <a href="events">Events</a>
       <a href="loppkalender">Loppkalender</a>
       <a href="kontakt">Kontakt</a>

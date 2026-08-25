@@ -204,7 +204,7 @@ const mainPages = results.filter(r =>
    'running-events.html','stockholm-running-events.html',
    'goteborg-running-events.html','malmo-running-events.html',
    'loppkalender.html','om-oss.html','samarbeta.html',
-   'kontakt.html','nyheter.html','lopning-for-tjejer.html',
+   'kontakt.html','magazine.html','lopning-for-tjejer.html',
    'tjejer-tar-over-lopsparen.html','stockholm-marathon-2026-slutsalt.html'
   ].includes(r.file)
 );

@@ -18,21 +18,21 @@ document.addEventListener('DOMContentLoaded',function(){
 <!-- End Google Tag Manager -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nyheter om Run Clubs &amp; Löpning i Sverige | Runclubs.se</title>
+  <title>Magazine — Run Clubs &amp; Löpning i Sverige | Runclubs.se</title>
   <meta name="description" content="Senaste nytt från svenska löparvärlden — nya clubs, event-drops, trender och allt löpare bör ha koll på. Uppdateras varje vecka. Håll koll här.">
-  <meta property="og:title" content="Nyheter om Run Clubs i Sverige — Runclubs.se">
+  <meta property="og:title" content="Magazine — Run Clubs i Sverige — Runclubs.se">
   <meta property="og:description" content="Senaste nytt från svenska löparvärlden. Nya clubs, trender och event-drops. Uppdateras varje vecka.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://runclubs.se/nyheter">
+  <meta property="og:url" content="https://runclubs.se/magazine">
   <meta property="og:image" content="https://runclubs.se/tjejer-och-run-clubs.jpg">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Nyheter — Runclubs.se">
+  <meta name="twitter:title" content="Magazine — Runclubs.se">
   <meta name="twitter:description" content="Senaste nytt från svenska löparvärlden. Uppdateras varje vecka.">
   <meta name="twitter:image" content="https://runclubs.se/tjejer-och-run-clubs.jpg">
   <link rel="sitemap" type="application/xml" href="/sitemap.xml">
-  <link rel="canonical" href="https://runclubs.se/nyheter">
-  <link rel="alternate" hreflang="sv-SE" href="https://runclubs.se/nyheter">
-  <link rel="alternate" hreflang="x-default" href="https://runclubs.se/nyheter">
+  <link rel="canonical" href="https://runclubs.se/magazine">
+  <link rel="alternate" hreflang="sv-SE" href="https://runclubs.se/magazine">
+  <link rel="alternate" hreflang="x-default" href="https://runclubs.se/magazine">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:ital,wght@1,900&family=Oswald:wght@500;700&family=DM+Sans:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
@@ -139,11 +139,12 @@ document.addEventListener('DOMContentLoaded',function(){
       text-transform: uppercase; font-weight: 600; padding: 4px 12px;
       border-radius: 10px; margin-bottom: 1rem; width: fit-content;
     }
-    .tag-trend { background: #F0E6FF; color: #5B2D8E; }
-    .tag-stockholm { background: #C6EFCE; color: #276221; }
-    .tag-goteborg { background: #E8EEF5; color: #1C2A45; }
-    .tag-tips { background: #FFEB9C; color: #7d6608; }
-    .tag-other { background: #F7E8E4; color: #D4715E; }
+    .tag-crew { background: #FFEB9C; color: #7d6608; }
+    .tag-nextup { background: #E8EEF5; color: #1C2A45; }
+    .tag-news { background: #DCEAFB; color: #1D4E89; }
+    .tag-mystory { background: #F7E8E4; color: #D4715E; }
+    .tag-community { background: #FBE1E8; color: #A83E5D; }
+    .tag-portrait { background: #DCEFF2; color: #146B72; }
     .featured-body h2 {
       font-family: 'Archivo Black', sans-serif; font-size: 26px;
       line-height: 1.15; text-transform: uppercase; color: #1C2A45;
@@ -170,41 +171,56 @@ document.addEventListener('DOMContentLoaded',function(){
     .articles-inner {
       max-width: 960px; margin: 0 auto;
     }
+    .category-filter-bar {
+      display: flex; align-items: center; flex-wrap: wrap;
+      gap: 10px 8px; margin-bottom: 1.75rem;
+    }
+    .filter-pill {
+      font-size: 12px; font-weight: 600; padding: 7px 16px;
+      border-radius: 100px; border: 1px solid #E8C9B8;
+      background: #fff; color: #a3897c;
+      cursor: pointer; font-family: 'DM Sans', sans-serif;
+      transition: all 0.2s; text-transform: uppercase; letter-spacing: 0.5px;
+    }
+    .filter-pill:hover { border-color: #D4715E; color: #D4715E; }
+    .filter-pill.active { background: #D4715E; color: #FDFAF9; border-color: #D4715E; }
+    .filter-count { font-size: 12px; color: #aaa; margin-left: auto; }
     .articles-grid {
-      display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px;
+      display: flex; flex-direction: column;
     }
     .article-card {
-      background: #fff; border: 1px solid #F0E0DC; border-radius: 14px;
-      overflow: hidden; text-decoration: none; color: #1C2A45;
-      display: flex; flex-direction: column;
-      transition: all 0.25s ease;
+      display: grid; grid-template-columns: 280px 1fr; align-items: center; gap: 2rem;
+      text-decoration: none; color: #1C2A45;
+      padding: 1.75rem 0; border-bottom: 1px solid #F0E0DC;
+      transition: all 0.2s ease;
     }
-    .article-card:hover {
-      border-color: #D4715E; transform: translateY(-3px);
-      box-shadow: 0 8px 24px rgba(28,42,69,0.08);
-    }
+    .article-card:first-child { padding-top: 0; }
+    .article-card:last-child { border-bottom: none; padding-bottom: 0; }
     .article-card-image {
-      height: 200px; overflow: hidden;
+      height: 190px; border-radius: 14px; overflow: hidden;
     }
     .article-card-image img {
       width: 100%; height: 100%; object-fit: cover;
       transition: transform 0.4s ease;
     }
     .article-card:hover .article-card-image img { transform: scale(1.03); }
-    .article-card-body { padding: 1.5rem; display: flex; flex-direction: column; flex: 1; }
-    .article-card-body .article-tag { margin-bottom: 0.75rem; }
+    .article-card-body { padding: 0; display: flex; flex-direction: column; }
+    .article-card-body .article-tag { margin-bottom: 0.85rem; }
     .article-card-body h3 {
-      font-family: 'DM Sans', sans-serif; font-weight: 700;
-      font-size: 18px; text-transform: uppercase; letter-spacing: 0.5px;
-      color: #1C2A45; margin-bottom: 0.75rem; line-height: 1.25;
+      font-family: 'Archivo Black', sans-serif;
+      font-size: 24px; text-transform: uppercase; letter-spacing: 0.3px;
+      color: #1C2A45; margin-bottom: 0.75rem; line-height: 1.2;
+      transition: color 0.2s;
     }
+    .article-card:hover .article-card-body h3 { color: #D4715E; }
     .article-card-body p {
-      font-size: 13px; color: #666; line-height: 1.7; margin-bottom: 1rem;
-      flex: 1;
+      font-family: 'Playfair Display', serif; font-style: italic;
+      font-size: 15px; color: #6b6b6b; line-height: 1.65; margin-bottom: 1rem;
+      max-width: 520px;
     }
     .article-card-footer {
       display: flex; align-items: center; justify-content: space-between;
-      margin-top: auto;
+      max-width: 520px;
     }
     .article-card-date { font-size: 11px; color: #aaa; }
     .article-card-arrow {
@@ -342,7 +358,9 @@ document.addEventListener('DOMContentLoaded',function(){
       .featured-body { padding: 1.5rem; }
       .featured-body h2 { font-size: 20px; }
       .articles-section { padding: 2rem 1.25rem; }
-      .articles-grid { grid-template-columns: 1fr; }
+      .article-card { grid-template-columns: 1fr; gap: 1rem; }
+      .article-card-image { height: 200px; }
+      .article-card-body h3 { font-size: 20px; }
       .short-news { padding: 0 1.25rem 2rem; }
       .news-list a { padding: 1rem 0; }
       .news-list h3 { font-size: 14px; }
@@ -371,8 +389,8 @@ document.addEventListener('DOMContentLoaded',function(){
     {
       "@type": "ListItem",
       "position": 2,
-      "name": "Nyheter",
-      "item": "https://runclubs.se/nyheter"
+      "name": "Magazine",
+      "item": "https://runclubs.se/magazine"
     }
   ]
 }
@@ -393,7 +411,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <a href="stockholm">Stockholm</a>
       <a href="goteborg">Göteborg</a>
       <a href="ovriga-landet">Övriga landet</a>
-      <a href="nyheter" class="active">Nyheter</a>
+      <a href="magazine" class="active">Magazine</a>
       <a href="events">Events</a>
       <a href="loppkalender">Loppkalender</a>
       <a href="om-oss">Om oss</a>
@@ -407,7 +425,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <a href="stockholm">Stockholm</a>
     <a href="goteborg">Göteborg</a>
     <a href="ovriga-landet">Övriga landet</a>
-    <a href="nyheter" class="active">Nyheter</a>
+    <a href="magazine" class="active">Magazine</a>
     <a href="events">Events</a>
     <a href="loppkalender">Loppkalender</a>
     <a href="om-oss">Om oss</a>
@@ -419,8 +437,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <section class="hero">
       <div class="hero-content">
         <div class="hero-tag">Senaste nytt</div>
-        <h1>Nyheter</h1>
-        <p class="hero-subtitle">Det händer mycket i den svenska löparvärlden just nu. Här samlar vi det viktigaste.</p>
+        <h1>Magazine</h1>
+        <p class="hero-subtitle">Håll dig uppdaterad om nyheter och det hetaste just nu inom löparvärlden med Runclubs.se Magazine. Guider, event och community!</p>
       </div>
     </section>
 
@@ -433,11 +451,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <img src="/om-mig-hero.jpeg" alt="Amanda Hultin sitter på löparbanan med armarna utsträckta" loading="lazy" width="675" height="900" style="object-position: center 25%;">
           </div>
           <div class="featured-body">
-            <span class="article-tag tag-other">Om mig och sajten</span>
-            <h2><a href="/nyheter/om-mig-och-sajten/">Sveriges största sajt för run clubs och running events</a></h2>
+            <span class="article-tag tag-mystory">Om mig och sajten</span>
+            <h2><a href="/magazine/om-mig-och-sajten/">Sveriges största sajt för run clubs och running events</a></h2>
             <div class="featured-meta">Augusti 2026 · Av Amanda Hultin</div>
             <p class="featured-excerpt">Jag byggde runclubs.se under min föräldraledighet i våras. Här är historien om hur sajten blev till, och om vad löpning betyder för mig.</p>
-            <a href="/nyheter/om-mig-och-sajten/" class="read-more">Läs hela artikeln <span>→</span></a>
+            <a href="/magazine/om-mig-och-sajten/" class="read-more">Läs hela artikeln <span>→</span></a>
           </div>
         </div>
       </div>
@@ -446,15 +464,25 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- ARTICLE GRID -->
     <section class="articles-section">
       <div class="articles-inner">
-        <span class="section-label">Artiklar & nyheter</span>
+        <span class="section-label">Artiklar</span>
+        <div class="category-filter-bar" role="group" aria-label="Filtrera artiklar på kategori">
+          <button type="button" class="filter-pill active" data-filter="all">Alla</button>
+          <button type="button" class="filter-pill" data-filter="crew">Find Your Crew</button>
+          <button type="button" class="filter-pill" data-filter="nextup">Next Up</button>
+          <button type="button" class="filter-pill" data-filter="news">Running News</button>
+          <button type="button" class="filter-pill" data-filter="mystory">My Story</button>
+          <button type="button" class="filter-pill" data-filter="community">Community</button>
+          <button type="button" class="filter-pill" data-filter="portrait">Club Portrait</button>
+          <span class="filter-count" aria-live="polite"></span>
+        </div>
         <div class="articles-grid">
 
-          <a href="/nyheter/run-clubs-intervaller/" class="article-card fade-in">
+          <a href="/magazine/run-clubs-intervaller/" class="article-card fade-in" data-cat="crew">
             <div class="article-card-image">
               <img src="/intervaller-updated.jpeg" alt="Amanda Hultin skuggar ögonen mot solen på löparbanan inför ett intervallpass" loading="lazy" width="800" height="450" style="object-position: center 50%;">
             </div>
             <div class="article-card-body">
-              <span class="article-tag tag-other">Guide · Intervaller</span>
+              <span class="article-tag tag-crew">Find Your Crew · Intervaller</span>
               <h3>Sex run clubs i Göteborg och Stockholm som kör intervaller</h3>
               <p>Amandas guide till sex run clubs i Göteborg och Stockholm med fokus på intervaller, för dig som vill bli snabbare tillsammans med andra.</p>
               <div class="article-card-footer">
@@ -464,12 +492,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </div>
           </a>
 
-          <a href="/nyheter/sex-somriga-loprundor/" class="article-card fade-in">
+          <a href="/magazine/sex-somriga-loprundor/" class="article-card fade-in" data-cat="mystory">
             <div class="article-card-image">
               <img src="/are.jpeg" alt="Löpare springer genom vatten vid Ridvadet i Åre med fjäll och skog i bakgrunden" loading="lazy" width="800" height="450" style="object-position: center 15%;">
             </div>
             <div class="article-card-body">
-              <span class="article-tag tag-other">Guide · Sommarlöpning</span>
+              <span class="article-tag tag-mystory">My Story</span>
               <h3>Sex somriga löprundor värda att packa löparskorna för</h3>
               <p>Från kuststigen i Bohuslän till Ridvadet i Åre — mina egna sex favoritrundor i sommar, plus var du ska stanna för frukost, glass eller ett glas vin efteråt.</p>
               <div class="article-card-footer">
@@ -479,12 +507,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </div>
           </a>
 
-          <a href="/nyheter/loparklubbar-med-frukost/" class="article-card fade-in">
+          <a href="/magazine/loparklubbar-med-frukost/" class="article-card fade-in" data-cat="crew">
             <div class="article-card-image">
               <img src="/coffe.jpeg" alt="En kopp kaffe redo att avnjutas efter ett morgonpass" loading="lazy" width="800" height="450">
             </div>
             <div class="article-card-body">
-              <span class="article-tag tag-tips">Guide · Tidiga pass</span>
+              <span class="article-tag tag-crew">Find Your Crew · Tidiga pass</span>
               <h3>Run Clubs för dig som tycker om att springa tidigt</h3>
               <p>Sju run clubs (och ett bageri) för dig som helst har passet avklarat innan frukost. Här är klubbarna som kombinerar morgonlöpning med frukosthäng.</p>
               <div class="article-card-footer">
@@ -494,12 +522,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </div>
           </a>
 
-          <a href="/nyheter/fem-anledningar-runclub-hosten/" class="article-card fade-in">
+          <a href="/magazine/fem-anledningar-runclub-hosten/" class="article-card fade-in" data-cat="crew">
             <div class="article-card-image">
               <img src="/goteborg-running-club.hero.jpg" alt="Löpare från Göteborg Running Club springer tillsammans i Slottsskogen" loading="lazy" width="800" height="450" style="object-position: center 40%;">
             </div>
             <div class="article-card-body">
-              <span class="article-tag tag-tips">Guide · Höstträning</span>
+              <span class="article-tag tag-crew">Find Your Crew · Höstträning</span>
               <h3>Fem anledningar att springa med en run club inför höstens lopp</h3>
               <p>Ska du springa Stockholm Halvmarathon eller Midnattsloppet i höst? Här är fem anledningar att testa en run club — plus sex klubbar att börja med i Stockholm och Göteborg.</p>
               <div class="article-card-footer">
@@ -509,12 +537,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </div>
           </a>
 
-          <a href="/nyheter/girls-only-loparklubbar/" class="article-card fade-in">
+          <a href="/magazine/girls-only-loparklubbar/" class="article-card fade-in" data-cat="crew">
             <div class="article-card-image">
               <img src="/core-run-club.hero.jpeg" alt="Tjejerna i Core Run Club står samlade utanför ett rödbruna tegelhus i Göteborg" loading="lazy" width="800" height="450" style="object-position: center 40%;">
             </div>
             <div class="article-card-body">
-              <span class="article-tag tag-trend">Guide · Girls Only</span>
+              <span class="article-tag tag-crew">Find Your Crew · Girls Only</span>
               <h3>En guide till Girls Only run clubs i Sverige</h3>
               <p>Guide till sex Girls Only-klubbar i Stockholm och Göteborg — inklusive nya Nasci Run Club för gravida och postpartum. Plus tre liknande klubbar med samma vibb.</p>
               <div class="article-card-footer">
@@ -524,12 +552,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </div>
           </a>
 
-          <a href="/nyheter/veckans-running-events-v20-2026/" class="article-card fade-in">
+          <a href="/magazine/veckans-running-events-v20-2026/" class="article-card fade-in" data-cat="nextup">
             <div class="article-card-image">
               <img src="slowrunners-hero.jpg" alt="Slowrunners Göteborg uppställda för en gemensam runda" loading="lazy" width="960" height="720">
             </div>
             <div class="article-card-body">
-              <span class="article-tag tag-tips">Tips</span>
+              <span class="article-tag tag-nextup">Next Up</span>
               <h3>Fem löpargrupper du vill springa med i veckan! — 11–17 maj 2026</h3>
               <p>Trail i Botaniska, 800-metersintervaller med Markus från @mymarathons, Vitamin Well i kollab med Femme Open och premiärrun hos ON.</p>
               <div class="article-card-footer">
@@ -539,12 +567,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </div>
           </a>
 
-          <a href="/nyheter/loparklubbar-sodermalm/" class="article-card fade-in">
+          <a href="/magazine/loparklubbar-sodermalm/" class="article-card fade-in" data-cat="crew">
             <div class="article-card-image">
               <img src="/run-collective-run03.jpeg" alt="Löpargrupp springer på en brygga vid Liljeholmshamnen i Stockholm" loading="lazy" width="800" height="450">
             </div>
             <div class="article-card-body">
-              <span class="article-tag tag-stockholm">Guide · Söder</span>
+              <span class="article-tag tag-crew">Find Your Crew · Söder</span>
               <h3>Löpargrupper på Södermalm: så hittar du rätt run club för dig</h3>
               <p>Söder är en av Stockholms absolut bästa stadsdelar för löpning. Här är min guide till löpargrupper jag själv hängt med på en runda.</p>
               <div class="article-card-footer">
@@ -554,12 +582,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </div>
           </a>
 
-          <a href="/nyheter/veckans-running-events-v19-2026/" class="article-card fade-in">
+          <a href="/magazine/veckans-running-events-v19-2026/" class="article-card fade-in" data-cat="nextup">
             <div class="article-card-image">
               <img src="pexels-runffwpu-2402777.jpg" alt="Glada löpare med händerna i luften under ett event" loading="lazy" width="600" height="400">
             </div>
             <div class="article-card-body">
-              <span class="article-tag tag-tips">Tips</span>
+              <span class="article-tag tag-nextup">Next Up</span>
               <h3>Veckans 5 hetaste running events — 4–10 maj 2026</h3>
               <p>Pizza i Italien-tema, skotest med Salomon, broar i Göteborg och bastu efter Wings for Life — flera anledningar att snöra på sig skorna den här veckan.</p>
               <div class="article-card-footer">
@@ -569,12 +597,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </div>
           </a>
 
-          <a href="/nyheter/tjejer-tar-over-lopsparen/" class="article-card fade-in">
+          <a href="/magazine/tjejer-tar-over-lopsparen/" class="article-card fade-in" data-cat="community">
             <div class="article-card-image">
               <picture><source srcset="tjejer-och-run-clubs.webp" type="image/webp"><img src="tjejer-och-run-clubs.jpg" alt="Tjejer springer tillsammans i en run club i Sverige" loading="lazy" width="800" height="450"></picture>
             </div>
             <div class="article-card-body">
-              <span class="article-tag tag-trend">Trend</span>
+              <span class="article-tag tag-community">Community</span>
               <h3>Tjejer tar över löpspåren — och gör det tillsammans</h3>
               <p>Aldrig har så många tjejer sprungit. Och aldrig har så många gjort det i grupp. Trenden från New York och London har nu tagit rejält fäste i Sverige.</p>
               <div class="article-card-footer">
@@ -584,12 +612,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </div>
           </a>
 
-          <a href="/nyheter/stockholm-marathon-2026-slutsalt/" class="article-card fade-in">
+          <a href="/magazine/stockholm-marathon-2026-slutsalt/" class="article-card fade-in" data-cat="news">
             <div class="article-card-image">
               <picture><source srcset="run-clubs-stockholm-marathon.webp" type="image/webp"><img src="run-clubs-stockholm-marathon.jpeg" alt="Löpare springer Stockholm Marathon genom Stockholms gator" loading="lazy" width="800" height="450"></picture>
             </div>
             <div class="article-card-body">
-              <span class="article-tag tag-stockholm">Stockholm</span>
+              <span class="article-tag tag-news">Running News</span>
               <h3>Stockholm Marathon 2026 slutsålt — på rekordtid</h3>
               <p>Det tog bara några veckor. Adidas Stockholm Marathon 2026 är slutsålt, och det långt innan startskottet går den 30 maj.</p>
               <div class="article-card-footer">
@@ -599,12 +627,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </div>
           </a>
 
-          <a href="goteborg-running-club" class="article-card fade-in">
+          <a href="goteborg-running-club" class="article-card fade-in" data-cat="news">
             <div class="article-card-image">
               <img src="https://images.unsplash.com/photo-1552674605-db6ffd4facb5?w=600&h=400&fit=crop&crop=center" alt="Löpare på en bro i Göteborg" loading="lazy" width="600" height="400">
             </div>
             <div class="article-card-body">
-              <span class="article-tag tag-goteborg">Göteborg</span>
+              <span class="article-tag tag-news">Running News</span>
               <h3>Göteborgsvarvet 2026 — världens största halvmaraton</h3>
               <p>Loppet är slutsålt men stämningen längs banan är öppen för alla — 200 000 åskådare och en stad som förvandlas till en löparfest.</p>
               <div class="article-card-footer">
@@ -621,12 +649,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- SHORT NEWS LIST -->
     <section class="short-news">
       <div class="short-news-inner">
-        <span class="section-label">Fler nyheter</span>
+        <span class="section-label">I korthet</span>
         <ul class="news-list">
 <li class="fade-in">
             <a href="stockholm">
               <div class="news-list-content">
-                <span class="article-tag tag-tips">Tips</span>
+                <span class="article-tag tag-crew">Find Your Crew</span>
                 <h3>Hur hittar du rätt run club för dig?</h3>
               </div>
               <span class="news-list-meta">Jan 2026</span>
@@ -681,7 +709,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div>
       <h4>Om sajten</h4>
       <a href="om-oss">Om oss</a>
-      <a href="nyheter">Nyheter</a>
+      <a href="magazine">Magazine</a>
       <a href="events">Events</a>
       <a href="loppkalender">Loppkalender</a>
       <a href="kontakt">Kontakt</a>
@@ -713,6 +741,34 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     }, { threshold: 0.1 });
 
     document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+    // Category filter
+    (function() {
+      const pills = document.querySelectorAll('.filter-pill');
+      const cards = document.querySelectorAll('.articles-grid .article-card');
+      const count = document.querySelector('.filter-count');
+      if (!pills.length || !cards.length) return;
+
+      function applyFilter(filter) {
+        let visible = 0;
+        cards.forEach(card => {
+          const match = filter === 'all' || card.dataset.cat === filter;
+          card.style.display = match ? '' : 'none';
+          if (match) visible++;
+        });
+        if (count) count.textContent = visible + ' inlägg';
+      }
+
+      pills.forEach(pill => {
+        pill.addEventListener('click', function() {
+          pills.forEach(p => p.classList.remove('active'));
+          this.classList.add('active');
+          applyFilter(this.dataset.filter);
+        });
+      });
+
+      applyFilter('all');
+    })();
   </script>
   <script src="newsletter.js"></script>
 

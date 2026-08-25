@@ -1,4 +1,6 @@
 https://www.runclubs.se/* https://runclubs.se/:splat 301
+/nyheter /magazine 301
+/nyheter/* /magazine/:splat 301
 /running-events /events 301
 /stockholm-run-club /stockholm/stockholm-run-club/ 301
 /dopest-runners /stockholm/dopest-runners/ 301
@@ -54,7 +56,7 @@ https://www.runclubs.se/* https://runclubs.se/:splat 301
 /we-run-west /goteborg/we-run-west/ 301
 /place-run-club /goteborg/place-run-club/ 301
 /sundet-run-club-helsingborg /ovriga-landet/sundet-run-club-helsingborg/ 301
-/sex-somriga-loprundor /nyheter/sex-somriga-loprundor/ 301
+/sex-somriga-loprundor /magazine/sex-somriga-loprundor/ 301
 /billdals-park-run /goteborg/billdals-park-run/ 301
 /bbrs /stockholm/bbrs/ 301
 /social-run-landskrona /ovriga-landet/social-run-landskrona/ 301

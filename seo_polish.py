@@ -41,7 +41,7 @@ TOP_LEVEL_PAGES = [
         "goteborg-running-events.html",
         "ovriga-landet-running-events.html",
         "loppkalender.html",
-        "nyheter.html",
+        "magazine.html",
         "om-oss.html",
         "kontakt.html",
         "samarbeta.html",

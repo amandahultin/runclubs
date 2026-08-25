@@ -743,7 +743,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <a href="stockholm">Stockholm</a>
       <a href="goteborg">Göteborg</a>
       <a href="ovriga-landet">Övriga landet</a>
-      <a href="nyheter">Nyheter</a>
+      <a href="magazine">Magazine</a>
       <a href="events" class="active">Events</a>
       <a href="loppkalender">Loppkalender</a>
       <a href="om-oss">Om oss</a>
@@ -757,7 +757,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <a href="stockholm">Stockholm</a>
     <a href="goteborg">Göteborg</a>
     <a href="ovriga-landet">Övriga landet</a>
-    <a href="nyheter">Nyheter</a>
+    <a href="magazine">Magazine</a>
     <a href="events" class="active">Events</a>
     <a href="loppkalender">Loppkalender</a>
     <a href="om-oss">Om oss</a>
@@ -856,7 +856,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div>
       <h4>Om sajten</h4>
       <a href="om-oss">Om oss</a>
-      <a href="nyheter">Nyheter</a>
+      <a href="magazine">Magazine</a>
       <a href="events">Events</a>
       <a href="loppkalender">Loppkalender</a>
       <a href="kontakt">Kontakt</a>
