@@ -3,6 +3,18 @@
         xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">
 
   <url>
+    <loc>https://runclubs.se/magazine/veckans-running-events-v35-2026/</loc>
+    <news:news>
+      <news:publication>
+        <news:name>Runclubs.se</news:name>
+        <news:language>sv</news:language>
+      </news:publication>
+      <news:publication_date>2026-08-27</news:publication_date>
+      <news:title>Åtta löpargrupper du vill springa med i veckan — 25–28 augusti 2026</news:title>
+    </news:news>
+  </url>
+
+  <url>
     <loc>https://runclubs.se/magazine/sex-somriga-loprundor/</loc>
     <news:news>
       <news:publication>
