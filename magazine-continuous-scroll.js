@@ -4,6 +4,10 @@
   var MAIN_SELECTOR = 'main#main-content';
   var loadedPaths = new Set([location.pathname.replace(/\/index\.html$/, '/')]);
   var loading = false;
+  var pendingSentinel = null;
+  var pendingHref = null;
+  var pendingPath = null;
+  var checkScheduled = false;
 
   var style = document.createElement('style');
   style.textContent =
@@ -32,18 +36,29 @@
 
     var sentinel = document.createElement('div');
     sentinel.setAttribute('aria-hidden', 'true');
+    sentinel.style.height = '10px';
     navPrev.closest('.post-nav').insertAdjacentElement('afterend', sentinel);
 
-    var observer = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting && !loading) {
-          observer.disconnect();
-          sentinel.remove();
-          loadNext(href, path);
-        }
-      });
-    }, { rootMargin: '800px 0px 0px 0px' });
-    observer.observe(sentinel);
+    pendingSentinel = sentinel;
+    pendingHref = href;
+    pendingPath = path;
+    checkPending();
+  }
+
+  function checkPending() {
+    if (checkScheduled) return;
+    checkScheduled = true;
+    requestAnimationFrame(function () {
+      checkScheduled = false;
+      if (!pendingSentinel || loading) return;
+      var rect = pendingSentinel.getBoundingClientRect();
+      if (rect.top <= window.innerHeight + 800) {
+        var sentinel = pendingSentinel, href = pendingHref, path = pendingPath;
+        pendingSentinel = null; pendingHref = null; pendingPath = null;
+        sentinel.remove();
+        loadNext(href, path);
+      }
+    });
   }
 
   function loadNext(href, path) {
@@ -66,6 +81,7 @@
         wrapper.className = 'continuous-post';
         newMain.removeAttribute('id');
         while (newMain.firstChild) wrapper.appendChild(newMain.firstChild);
+        wrapper.querySelectorAll('.fade-in').forEach(function (el) { el.classList.add('visible'); });
 
         currentMain.appendChild(divider);
         currentMain.appendChild(wrapper);
@@ -79,18 +95,16 @@
         var newOgUrl = doc.querySelector('meta[property="og:url"]');
         if (ogUrl && newOgUrl) ogUrl.setAttribute('content', newOgUrl.getAttribute('content'));
 
-        var revealObserver = new IntersectionObserver(function (entries) {
-          entries.forEach(function (entry) {
-            if (entry.isIntersecting) entry.target.classList.add('visible');
-          });
-        }, { threshold: 0.1 });
-        wrapper.querySelectorAll('.fade-in').forEach(function (el) { revealObserver.observe(el); });
-
         loading = false;
         watchForNext(wrapper);
+        checkPending();
       })
       .catch(function () { loading = false; });
   }
+
+  ['scroll', 'resize'].forEach(function (evt) {
+    window.addEventListener(evt, checkPending, { passive: true });
+  });
 
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);
