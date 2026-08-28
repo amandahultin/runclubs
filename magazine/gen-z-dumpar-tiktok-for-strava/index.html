@@ -59,15 +59,29 @@ document.addEventListener('DOMContentLoaded',function(){
     .mobile-menu a { text-decoration: none; color: #1C2A45; font-size: 14px; padding: 0.6rem 0; border-bottom: 1px solid #F0E0DC; }
     .mobile-menu a:last-child { border-bottom: none; }
     .mobile-menu a:hover { color: #D4715E; }
-    .hero { background: #1C2A45; padding: 3rem 1.5rem 2.5rem; }
+    .hero {
+      position: relative; min-height: 480px;
+      background: #1C2A45;
+      display: flex; flex-direction: column; justify-content: flex-end;
+      padding: 3rem 1.5rem 2.5rem; overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background-image: url('/amanda-strava-trend.jpeg');
+      background-size: cover; background-position: center 20%;
+    }
+    .hero::before {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(28,42,69,0.95) 0%, rgba(28,42,69,0.5) 50%, rgba(28,42,69,0.2) 100%);
+      z-index: 1;
+    }
+    .hero-content { position: relative; z-index: 2; }
     .breadcrumb { font-size: 12px; color: rgba(255,255,255,0.4); margin-bottom: 0.75rem; }
     .breadcrumb a { color: rgba(255,255,255,0.4); text-decoration: none; }
     .breadcrumb a:hover { color: #EEAA96; }
     .hero-tag { display: inline-block; font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 600; padding: 3px 10px; border-radius: 10px; margin-bottom: 0.75rem; background: rgba(198,239,206,0.2); color: #EEAA96; }
     .hero h1 { font-family: 'Archivo Black', sans-serif; font-size: 36px; line-height: 1.1; text-transform: uppercase; color: #FDFAF9; letter-spacing: 1px; margin-bottom: 0.75rem; max-width: 560px; }
-    .hero-meta { font-size: 12px; color: rgba(255,255,255,0.4); margin-top: 1rem; }
-    .article-image { width: 100%; height: 260px; background: #F0D8D3; overflow: hidden; }
-    .article-image img { width: 100%; height: 100%; object-fit: cover; }
+    .hero-meta { font-size: 12px; color: rgba(255,255,255,0.6); margin-top: 1rem; }
     .image-caption { font-size: 12px; color: #aaa; padding: 0.5rem 1.5rem; font-style: italic; }
     .content { padding: 2rem 1.5rem; max-width: 680px; }
     .intro { font-size: 17px; line-height: 1.8; color: #333; margin-bottom: 1.5rem; font-weight: 500; }
@@ -100,6 +114,8 @@ document.addEventListener('DOMContentLoaded',function(){
       .nav-toggle { display: flex; }
       .mobile-menu.open { display: flex; }
       footer { grid-template-columns: 1fr; }
+      .hero { min-height: 380px; padding: 2rem 1.25rem; }
+      .hero-bg { background-position: center 16%; }
     }
 
     .post-nav { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; padding: 0 1.5rem; margin: 2rem 0; }
@@ -217,16 +233,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <main id="main-content">
 
-  <div class="hero">
-    <div class="breadcrumb"><a href="/">Start</a> → <a href="/magazine">Magazine</a> → Trend</div>
-    <div class="hero-tag">Running News</div>
-    <h1>Gen Z dumpar TikTok för Strava</h1>
-    <div class="hero-meta">Augusti 2026</div>
-  </div>
-
-  <div class="article-image">
-    <img src="/amanda-strava-trend.jpeg" alt="Amanda Hultin sitter på en trappa i löparkläder med sin klocka synlig vid hakan" width="1200" height="1600" style="object-position: center 12%;">
-  </div>
+  <header class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <div class="breadcrumb"><a href="/">Start</a> → <a href="/magazine">Magazine</a> → Trend</div>
+      <div class="hero-tag">Running News</div>
+      <h1>Gen Z dumpar TikTok för Strava</h1>
+      <div class="hero-meta">Augusti 2026</div>
+    </div>
+  </header>
   <div class="image-caption">Numera scrollar jag Strava minst lika ofta som Instagram, och jag är tydligen långt ifrån ensam.</div>
 
   <div class="content">

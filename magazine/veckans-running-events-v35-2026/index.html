@@ -62,27 +62,32 @@ document.addEventListener('DOMContentLoaded',function(){
     .mobile-menu a:hover { color: #D4715E; }
 
     /* HERO */
-    .hero { background: #1C2A45; padding: 3rem 1.5rem 2.5rem; position: relative; overflow: hidden; }
-    .hero::after {
-      content: ''; position: absolute; right: -40px; top: -40px;
-      width: 220px; height: 220px; border-radius: 50%;
-      background: radial-gradient(circle, rgba(238,170,150,0.18), transparent 70%);
-      pointer-events: none;
+    .hero {
+      position: relative; min-height: 480px;
+      background: #1C2A45;
+      display: flex; flex-direction: column; justify-content: flex-end;
+      padding: 3rem 1.5rem 2.5rem; overflow: hidden;
     }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background-image: url('/amanda-stadion-halvmaran.jpeg');
+      background-size: cover; background-position: center 26%;
+    }
+    .hero::before {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(28,42,69,0.95) 0%, rgba(28,42,69,0.5) 50%, rgba(28,42,69,0.2) 100%);
+      z-index: 1;
+    }
+    .hero-content { position: relative; z-index: 2; }
     .breadcrumb { font-size: 12px; color: rgba(255,255,255,0.4); margin-bottom: 0.75rem; }
     .breadcrumb a { color: rgba(255,255,255,0.4); text-decoration: none; }
     .breadcrumb a:hover { color: #EEAA96; }
     .hero-tag { display: inline-block; font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 600; padding: 4px 12px; border-radius: 10px; margin-bottom: 0.75rem; background: #FFEB9C; color: #7d6608; }
     .hero h1 { font-family: 'Archivo Black', sans-serif; font-size: 36px; line-height: 1.1; text-transform: uppercase; color: #FDFAF9; letter-spacing: 1px; margin-bottom: 0.75rem; max-width: 620px; }
-    .hero-deck { font-size: 15px; color: rgba(255,255,255,0.7); line-height: 1.7; max-width: 560px; margin-top: 0.5rem; }
-    .hero-meta { font-size: 12px; color: rgba(255,255,255,0.4); margin-top: 1.25rem; display: flex; gap: 1rem; flex-wrap: wrap; }
+    .hero-deck { font-size: 15px; color: rgba(255,255,255,0.85); line-height: 1.7; max-width: 560px; margin-top: 0.5rem; text-shadow: 0 1px 8px rgba(0,0,0,0.3); }
+    .hero-meta { font-size: 12px; color: rgba(255,255,255,0.6); margin-top: 1.25rem; display: flex; gap: 1rem; flex-wrap: wrap; }
     .hero-meta span::before { content: '•'; margin-right: 0.5rem; color: #EEAA96; }
     .hero-meta span:first-child::before { display: none; }
-
-    .article-image { width: 100%; height: 280px; background: #F0D8D3; overflow: hidden; }
-    .article-image img { width: 100%; height: 100%; object-fit: cover; }
-    .article-image a { display: block; width: 100%; height: 100%; }
-    .image-caption { font-size: 12px; color: #aaa; padding: 0.5rem 1.5rem; font-style: italic; }
     .image-caption { font-size: 12px; color: #aaa; padding: 0.5rem 1.5rem; font-style: italic; }
 
     /* TOC / quick list */
@@ -240,6 +245,8 @@ document.addEventListener('DOMContentLoaded',function(){
       .event-facts { grid-template-columns: 1fr; }
       .toc { margin: 1.25rem 1rem 0; }
       .pull-quote, .highlight, .outro { margin-left: 1rem; margin-right: 1rem; }
+      .hero { min-height: 380px; padding: 2rem 1.25rem; }
+      .hero-bg { background-position: center 22%; }
     }
 
     .post-nav { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; padding: 0 1.5rem; margin: 2rem 0; }
@@ -356,20 +363,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <main id="main-content">
 
-  <div class="hero">
-    <div class="breadcrumb"><a href="/">Start</a> → <a href="/magazine">Magazine</a> → Veckans events</div>
-    <h1>Åtta löpargrupper du vill springa med i veckan!</h1>
-    <p class="hero-deck">Skotest med Salomon och Saucony, gravid- och postpartumlöpning med Nasci, och sen pekar hela veckan mot lördagen, Stockholm Halvmaraton. RTC, ON Run Club och nykomlingen Kutar Run Club bjuder alla in till shakeout-rundor de sista dagarna innan startskottet.</p>
-    <div class="hero-meta">
-      <span>25–28 augusti 2026</span>
-      <span>Stockholm</span>
-      <span>8 events</span>
+  <header class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <div class="breadcrumb"><a href="/">Start</a> → <a href="/magazine">Magazine</a> → Veckans events</div>
+      <h1>Åtta löpargrupper du vill springa med i veckan!</h1>
+      <p class="hero-deck">Skotest med Salomon och Saucony, gravid- och postpartumlöpning med Nasci, och sen pekar hela veckan mot lördagen, Stockholm Halvmaraton. RTC, ON Run Club och nykomlingen Kutar Run Club bjuder alla in till shakeout-rundor de sista dagarna innan startskottet.</p>
+      <div class="hero-meta">
+        <span>25–28 augusti 2026</span>
+        <span>Stockholm</span>
+        <span>8 events</span>
+      </div>
     </div>
-  </div>
-
-  <div class="article-image">
-    <img src="/amanda-stadion-halvmaran.jpeg" alt="Amanda Hultin sträcker ut på Stockholms stadion inför Stockholm Halvmaraton" width="1200" height="1600" style="object-position: center 18%;">
-  </div>
+  </header>
   <p class="image-caption">Jag på Stockholms stadion, samma bana där RTC kör sin Half Marathon Sharpener på torsdag, två dagar innan Stockholm Halvmaraton.</p>
 
   <div class="content">
