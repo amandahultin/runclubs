@@ -322,9 +322,13 @@ def inject_sports_events() -> None:
         r'\n  <script type="application/ld\+json">\s*\{[^<]*"@type":\s*"ItemList"[\s\S]*?</script>',
         "", html
     )
+    # Event descriptions are free text and can contain a literal "<" (e.g.
+    # "<3"), which breaks a [^<]* match — match non-greedily up to the next
+    # </script> instead and only drop blocks that mention SportsEvent.
     html = re.sub(
-        r'\n  <script type="application/ld\+json">\s*\[[^<]*"@type":\s*"SportsEvent"[\s\S]*?</script>',
-        "", html
+        r'\n  <script type="application/ld\+json">[\s\S]*?</script>',
+        lambda m: "" if '"@type": "SportsEvent"' in m.group(0) else m.group(0),
+        html,
     )
 
     graph = {"@context": "https://schema.org", "@graph": sports_events}
