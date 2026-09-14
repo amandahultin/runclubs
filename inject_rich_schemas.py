@@ -216,6 +216,27 @@ def parse_location(location_str: str, city: str) -> dict:
         place["geo"] = CITY_GEO[city]
     return place
 
+def fallback_description(ev: dict) -> str:
+    """Synthesize a description when the sheet row has none.
+
+    Weekly recurring runs (type == "weekly_run") rarely carry a per-row
+    description in the sheet, which is what triggers Google's "Missing
+    field 'description'" warning for SportsEvent — it's a recommended
+    (not required) property, but Search Console still flags its absence.
+    """
+    title = (ev.get("title") or "").strip()
+    club  = (ev.get("club") or "").strip()
+    label = "veckopass" if ev.get("type") == "weekly_run" else "löparevent"
+
+    if title and club and title.lower() != club.lower():
+        return f"{title} — {label} med {club}."
+    if club:
+        return f"{label.capitalize()} med {club}."
+    if title:
+        return f"{title} — {label} för löpare."
+    return "Löparevent för löpare i Sverige."
+
+
 def load_events_from_running_events() -> list[dict]:
     path = ROOT / "events.html"
     if not path.exists():
@@ -271,8 +292,8 @@ def build_sports_events(events: list[dict], days: int = 14) -> list[dict]:
             "isAccessibleForFree": True,
             "inLanguage": "sv",
         }
-        if ev.get("description"):
-            schema_ev["description"] = ev["description"][:500]
+        description = (ev.get("description") or "").strip() or fallback_description(ev)
+        schema_ev["description"] = description[:500]
         if ev.get("link"):
             schema_ev["url"] = ev["link"]
         if ev.get("image_url"):
