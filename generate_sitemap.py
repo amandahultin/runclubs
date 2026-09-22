@@ -32,6 +32,11 @@ SKIP = {
 # .html file, so the glob below can't find them: path → (priority, changefreq)
 FOLDER_PAGES = {
     "/stockholm/gym/": (0.8, "weekly"),
+    "/stockholm/gym/sats-stureplan/": (0.6, "monthly"),
+    "/stockholm/gym/nordic-wellness-tegnergatan/": (0.6, "monthly"),
+    "/stockholm/gym/boson/": (0.6, "monthly"),
+    "/stockholm/gym/fitness24seven-odenplan/": (0.6, "monthly"),
+    "/stockholm/gym/friskis-svettis-city/": (0.6, "monthly"),
 }
 
 # Priority rules: slug → (priority, changefreq)
