@@ -451,6 +451,32 @@ document.addEventListener('DOMContentLoaded',function(){
     .faq-answer p { padding: 0 0 1.25rem; font-size: 15px; line-height: 1.7; color: #555; }
 
     .city-updated { text-align: center; font-size: 11px; letter-spacing: 0.5px; color: #aaa; padding: 0.75rem 0 0; margin: 0; }
+    /* ── Snabblänkar i heron ──────────────── */
+    .hero-links { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 1.25rem; }
+    .hero-link { display: inline-flex; align-items: center; font-size: 12px; font-weight: 600; letter-spacing: 0.3px; color: #FDFAF9; text-decoration: none; padding: 7px 14px; border-radius: 100px; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.25); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); transition: all 0.2s; }
+    .hero-link:hover { background: rgba(255,255,255,0.22); border-color: rgba(255,255,255,0.45); }
+    .hero-link.is-new { background: #D4715E; border-color: #D4715E; }
+    .hero-link.is-new:hover { background: #C8604A; border-color: #C8604A; }
+
+    /* ── Gympuff i klubblistan ────────────── */
+    .gym-puff { grid-column: 1 / -1; display: grid; grid-template-columns: 300px 1fr; background: #fff; border: 1px solid #F0E0DC; border-radius: 22px; overflow: hidden; color: #1C2A45; }
+    .gym-puff.hidden { display: none; }
+    .gym-puff-media { position: relative; min-height: 200px; background: linear-gradient(160deg, #1C2A45 0%, #3b3f5c 45%, #C8604A 100%); display: flex; align-items: center; justify-content: center; overflow: hidden; }
+    .gym-puff-media::before { content: ''; position: absolute; width: 260px; height: 260px; border-radius: 50%; background: radial-gradient(circle, rgba(248,139,105,0.45) 0%, transparent 70%); bottom: -120px; right: -80px; }
+    .gym-puff-media svg { position: relative; z-index: 1; color: #FFDAC4; }
+    .gym-puff-body { padding: 1.75rem 2rem; display: flex; flex-direction: column; justify-content: center; gap: 0.6rem; }
+    .puff-badge { align-self: flex-start; background: #FFDAC4; color: #C8604A; font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding: 5px 12px; border-radius: 100px; }
+    .puff-title { font-family: 'Archivo Black', sans-serif; font-size: clamp(20px, 2.4vw, 26px); text-transform: uppercase; letter-spacing: 0.5px; line-height: 1.15; }
+    .puff-desc { font-size: 14px; color: #666; line-height: 1.6; max-width: 560px; }
+    .puff-tags { display: flex; gap: 4px; flex-wrap: wrap; }
+    .tg-utr  { background: #F7E8E4; color: #C8604A; }
+    .tg-log  { background: #F0E6FF; color: #5B2D8E; }
+    .tg-till { background: #D8F3DC; color: #1B4332; }
+    .puff-btn { align-self: flex-start; display: inline-flex; align-items: center; gap: 8px; background: #D4715E; color: #fff; text-decoration: none; font-size: 14px; font-weight: 700; letter-spacing: 0.3px; padding: 12px 20px; border-radius: 100px; margin-top: 0.4rem; transition: all 0.2s; }
+    .puff-btn:hover { background: #C8604A; box-shadow: 0 8px 22px rgba(212,113,94,0.3); }
+    .intro-section a { color: #C8604A; font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+    @media (max-width: 900px) { .gym-puff { grid-template-columns: 1fr; } .gym-puff-media { min-height: 150px; } }
+    @media (max-width: 768px) { .gym-puff-body { padding: 1.5rem 1.25rem; } }
   </style>
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -2107,6 +2133,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div class="hero-stat-label">Dagar/vecka</div>
         </div>
       </div>
+      <div class="hero-links" role="navigation" aria-label="Snabblänkar Stockholm">
+        <a href="stockholm-running-events" class="hero-link">Events i Stockholm</a>
+        <a href="loppkalender" class="hero-link">Loppkalender</a>
+        <a href="/stockholm/gym/" class="hero-link is-new">Gym &amp; löpband</a>
+      </div>
     </div>
   </header>
 
@@ -2315,6 +2346,21 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div class="card-updated">Uppdaterad 2026-04-19</div>
         </div>
       </a>
+
+      <!-- Gympuff – flyttas efter sjätte kortet även när ordningen slumpas (se skriptet nedan) -->
+      <aside class="gym-puff" id="gym-puff" aria-label="Gym för löpare i Stockholm">
+        <div class="gym-puff-media" aria-hidden="true">
+          <svg width="120" height="96" viewBox="0 0 120 96" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 78h86l8-12"/><path d="M22 78 34 30"/><path d="M34 30h16"/><circle cx="70" cy="20" r="7"/><path d="m68 30-6 20 12 8 4 20"/><path d="m62 50-12 10"/><path d="m68 34 14 6 6-8"/><path d="m66 36-10 4-4 10"/></svg>
+        </div>
+        <div class="gym-puff-body">
+          <span class="puff-badge">Nytt · Vintersäsong</span>
+          <div class="puff-title">För kallt ute? Hitta rätt gym för intervallerna.</div>
+          <p class="puff-desc">Vi har kollat löpband, inomhusbanor och löparpass så att du kan hålla formen hela vintern – och vara redo när klubbarna drar igång igen på riktigt.</p>
+          <div class="puff-tags"><span class="card-tag tg-utr">Löpband</span><span class="card-tag tg-utr">Inomhusbana</span><span class="card-tag tg-utr">Rodd &amp; SkiErg</span><span class="card-tag tg-log">Bastu</span><span class="card-tag tg-till">Drop-in</span></div>
+          <a href="/stockholm/gym/" class="puff-btn">Se gym med löpband i Stockholm <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+      </aside>
+
 
             <a href="/stockholm/rtc/" class="club-card" data-niva="mellannivå avancerad" data-typ="intervall långpass social väg" data-dag="" data-stadsdel="östermalm">
         <div class="card-image card-image--branded">
@@ -2903,6 +2949,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <p style="font-size:17px;line-height:1.8;color:#1C2A45;margin-bottom:1.25rem;">Stockholm är Sveriges run club-huvudstad. Aldrig tidigare har så många löpare samlats i grupp — längs Djurgårdsbrunnsviken, runt Hagaparken och upp för backarna på Södermalm. De senaste åren har antalet löpargrupper i Stockholm nästan fördubblats, och med dem har hela kulturen kring löpning förändrats. Det handlar inte längre bara om att springa fort. Det handlar om att springa tillsammans.</p>
     <p style="font-size:17px;line-height:1.8;color:#1C2A45;margin-bottom:1.25rem;">På Runclubs.se hittar du alla aktiva run clubs i Stockholm samlade på ett ställe. Från lugna social runs längs vattnet till intervallpass på Östermalm och långpass ut mot Nacka naturreservat — utbudet täcker alla nivåer och stilar. Nybörjare välkomnas av grupper som Slowrunners och ZLK – Zinken Löpklubb, medan clubs som Triple Threshold RC och RTC lockar löpare som vill ha struktur och fart i träningen.</p>
     <p style="font-size:17px;line-height:1.8;color:#1C2A45;margin-bottom:1.25rem;">Gemensamt för nästan alla löpargrupper i Stockholm är att de är gratis att delta i. Du behöver ingen anmälan — du dyker upp på startplatsen, säger hej och springer med. Många clubs samlas flera gånger i veckan, och de flesta välkomnar nya ansikten varje gång. Filtrera nedan på dag, nivå och stadsdel för att hitta rätt match, och kolla sedan respektive clubs sida för tider och startplats.</p>
+    <p style="font-size:17px;line-height:1.8;color:#1C2A45;margin-bottom:1.25rem;">När mörkret kommer flyttar många in. Utöver våra run clubs finns det också bra möjligheter för dig som söker <a href="/stockholm/gym/">gym med bra löpband i Stockholm</a> under vintermånaderna.</p>
   </section>
 
   <footer>
@@ -2960,6 +3007,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       cards[j] = cards[i];
     }
     grid.appendChild(cards[0]);
+    const gymPuff = document.getElementById('gym-puff');
+    const sixth = grid.querySelectorAll('.club-card')[5];
+    if (gymPuff && sixth) sixth.after(gymPuff);
 
     // ── Filters ──
     const active = { niva: null, typ: null, dag: null, stadsdel: null };

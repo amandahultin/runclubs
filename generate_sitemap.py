@@ -28,6 +28,12 @@ SKIP = {
     "saucony-run-club",
 }
 
+# Pages that live in their own folder (path/index.html) and have no root-level
+# .html file, so the glob below can't find them: path → (priority, changefreq)
+FOLDER_PAGES = {
+    "/stockholm/gym/": (0.8, "weekly"),
+}
+
 # Priority rules: slug → (priority, changefreq)
 PRIORITY = {
     "index":                    (1.0,  "weekly"),
@@ -104,6 +110,18 @@ def build_sitemap(root: Path) -> str:
                 pri, freq = PRIORITY.get(slug, DEFAULT_PRIORITY)
                 lines.append(f"""  <url>
     <loc>{canonical_url(slug, redirects)}</loc>
+    <lastmod>{TODAY}</lastmod>
+    <changefreq>{freq}</changefreq>
+    <priority>{pri}</priority>
+  </url>""")
+
+    present = [(path, meta) for path, meta in FOLDER_PAGES.items()
+               if (root / path.strip("/") / "index.html").exists()]
+    if present:
+        lines.append("\n  <!-- Gymguider -->")
+        for path, (pri, freq) in present:
+            lines.append(f"""  <url>
+    <loc>{BASE_URL}{path}</loc>
     <lastmod>{TODAY}</lastmod>
     <changefreq>{freq}</changefreq>
     <priority>{pri}</priority>
