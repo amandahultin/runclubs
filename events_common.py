@@ -52,6 +52,7 @@ CLUB_NAME_ALIASES = {
     "stadium run club - sverige":                "Stadium Run Club",
     "nasci run club - för gravida & postpartum": "Nasci Run Club",
     "triple threshold running communion":        "Triple Threshold RC",
+    "solemates run club":                        "Solemates Runclub",
 }
 
 # The Special Events sheet appends the venue to the club name
