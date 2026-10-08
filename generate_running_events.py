@@ -35,19 +35,13 @@ from events_common import (
     fetch_weekly_runs,
     normalize_club_name,
     render_events_section,
+    resolve_city,
     sv_long_date,
     _parse_date,
     _parse_time,
 )
 
 log = logging.getLogger(__name__)
-
-ALL_CITIES_KEYWORDS = {
-    "stockholm",
-    "göteborg", "goteborg", "gothenburg", "västra götaland",
-    "malmö", "malmo", "malmoe", "skåne",
-}
-
 
 def _utc_to_stockholm(dt: datetime) -> datetime:
     """Convert a naive datetime (assumed UTC) to Stockholm local time (naive)."""
@@ -143,12 +137,7 @@ def prepare_events(
                 continue
 
         loc = (r.get("location") or "").strip()
-        city = _normalize_city(loc)
-        if not city and club_cities:
-            club_key = normalize_club_name(r.get("club") or "").lower()
-            city = club_cities.get(club_key, "")
-        if not city:
-            continue
+        city = resolve_city(loc, r.get("club") or "", club_cities)
 
         club = normalize_club_name(r.get("club") or "")
         events.append({
