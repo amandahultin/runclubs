@@ -22,9 +22,11 @@ from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 from events_common import (
+    CITY_GOTEBORG,
     DAYS_MAP,
     EVENTS_SHEET_ID,
     LOOKAHEAD_DAYS,
+    _normalize_city,
     build_club_cities,
     combine_date_time,
     drop_duplicate_cards,
@@ -34,6 +36,7 @@ from events_common import (
     fetch_weekly_runs,
     normalize_club_name,
     render_events_section,
+    resolve_city,
     sv_long_date,
     _parse_date,
     _parse_time,
@@ -41,16 +44,13 @@ from events_common import (
 
 log = logging.getLogger(__name__)
 
-GOTEBORG_KEYWORDS = {"göteborg", "goteborg", "gothenburg"}
-
 
 def prepare_special_events(records: list[dict]) -> list[dict]:
     today = datetime.now(timezone.utc).date()
     events: list[dict] = []
 
     for r in records:
-        city = (r.get("city") or "").lower().strip()
-        if not any(kw in city for kw in GOTEBORG_KEYWORDS):
+        if _normalize_city(r.get("city") or "") != CITY_GOTEBORG:
             continue
 
         raw_date = (r.get("date") or "").strip()
@@ -83,12 +83,8 @@ def prepare_events(records: list[dict], club_cities: dict[str, str] | None = Non
     events: list[dict] = []
 
     for r in records:
-        loc = (r.get("location") or "").lower()
-        loc_matches = any(kw in loc for kw in GOTEBORG_KEYWORDS)
-        if not loc_matches and club_cities:
-            club_key = normalize_club_name(r.get("club") or "").lower()
-            loc_matches = club_cities.get(club_key) == "Göteborg"
-        if not loc_matches:
+        city = resolve_city(r.get("location") or "", r.get("club") or "", club_cities)
+        if city != CITY_GOTEBORG:
             continue
 
         raw_date = (r.get("date") or "").strip()
@@ -131,8 +127,7 @@ def expand_weekly_runs(
     events: list[dict] = []
 
     for r in records:
-        city = (r.get("city") or "").lower().strip()
-        if not any(kw in city for kw in GOTEBORG_KEYWORDS):
+        if _normalize_city(r.get("city") or "") != CITY_GOTEBORG:
             continue
 
         day_str = (r.get("day_of_week") or "").lower().strip()
