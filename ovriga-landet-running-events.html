@@ -230,6 +230,17 @@ document.addEventListener('DOMContentLoaded',function(){
     .ev-card--highlight .ev-body { padding: 2rem 2.25rem; gap: 10px; }
     .ev-card--highlight .ev-title { font-size: 26px; line-height: 1.2; }
     .ev-card--highlight .ev-desc { font-size: 15px; -webkit-line-clamp: 3; }
+    .club-notice {
+      display: flex; align-items: center; flex-wrap: wrap; gap: 6px 12px;
+      margin-bottom: 1.25rem; padding: 10px 16px; border-radius: 14px;
+      background: var(--peach-soft); color: var(--ink); font-size: 14px;
+    }
+    .club-notice[hidden] { display: none; }
+    .club-notice button {
+      background: none; border: none; padding: 0; cursor: pointer;
+      font: inherit; font-weight: 600; color: var(--accent-ink);
+      text-decoration: underline; text-underline-offset: 2px;
+    }
     .view-tabs {
       display: inline-flex; gap: 4px; padding: 4px; margin-bottom: 2rem;
       background: #fff; border: 1px solid #EFE4E0; border-radius: 100px;
@@ -645,6 +656,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="filters-bar" id="filters-bar"></div>
 
   <div class="events-layout">
+    <div id="club-notice" class="club-notice" role="status" hidden></div>
     <section class="highlight" aria-labelledby="highlight-heading"><h2 class="section-heading" id="highlight-heading">Veckans höjdpunkt</h2><article class="ev-card ev-card--highlight" data-id="b5875b95bf" data-source="weekly_run" data-club="Running For Breakfast Eskilstuna"><div class="ev-media ev-media--club"><img class="ev-logo" src="/running-for-breakfast-logo.png" alt="" loading="lazy" decoding="async" style="object-position: center;"></div><div class="ev-body"><div class="ev-top"><span class="ev-badge ev-badge--weekly">Weekly run</span><span class="ev-when">Lör 17 okt · 09:00</span></div><h3 class="ev-title"><a class="ev-link" href="https://runclubs.se/ovriga-landet/running-for-breakfast-eskilstuna/">Löpning + frukost till rabatterat pris</a></h3><div class="ev-meta"><span class="ev-club">Running For Breakfast Eskilstuna</span><span class="ev-place"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Eskilstuna</span></div><p class="ev-desc">Lördagslöpning och frukost till rabatterat pris i Eskilstuna. Running For Breakfast finns även i Västerås och Norrköping.</p><div class="ev-actions"><button type="button" class="ev-like" aria-pressed="false" aria-label="Gilla Löpning + frukost till rabatterat pris"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1.1L12 21l7.8-7.5 1-1.1a5.5 5.5 0 0 0 0-7.8z"/></svg><span class="ev-like-count"></span></button><button type="button" class="ev-share" data-url="https://runclubs.se/events#ev-b5875b95bf" data-title="Löpning + frukost till rabatterat pris" aria-label="Dela Löpning + frukost till rabatterat pris"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12v7a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg></button><button type="button" class="ev-share ev-cal" data-start="20261017T070000Z" aria-label="Lägg till Löpning + frukost till rabatterat pris i kalendern"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></button><a class="ev-cta" href="https://runclubs.se/ovriga-landet/running-for-breakfast-eskilstuna/" tabindex="-1" aria-hidden="true">Till passet <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></div></div></article></section>
     <div class="view-tabs" role="tablist" aria-label="Välj vy">
       <button class="view-tab" role="tab" id="tab-upcoming" data-view="upcoming" aria-selected="true" aria-controls="events-container">Kommande event</button>
@@ -992,9 +1004,6 @@ Free Vitamin Well drinks and pastries after the run!</p><div class="ev-actions">
     });
 
     function renderFilters() {
-      const clubs = [...new Set(events.map(ev => ev.club || '').filter(Boolean))]
-        .sort((a, b) => a.localeCompare(b, 'sv'));
-      const hasOvrigt = events.some(ev => !ev.club);
       const bar = document.getElementById('filters-bar');
       if (!bar) return;
 
@@ -1002,12 +1011,6 @@ Free Vitamin Well drinks and pastries after the run!</p><div class="ev-actions">
       WEEKDAYS.forEach(day => {
         weekdayPillsHtml += `<button class="filter-pill" data-filter="weekday" data-value="${day}">${day}</button>`;
       });
-
-      let pillsHtml = `<button class="filter-pill active" data-filter="club" data-value="all">Alla</button>`;
-      clubs.forEach(club => {
-        pillsHtml += `<button class="filter-pill" data-filter="club" data-value="${club.replace(/&/g,'&amp;').replace(/"/g,'&quot;')}">${club.replace(/&/g,'&amp;')}</button>`;
-      });
-      if (hasOvrigt) pillsHtml += `<button class="filter-pill" data-filter="club" data-value="__ovrigt__">Övrigt</button>`;
 
       bar.innerHTML = `
         <button class="filter-toggle" id="filter-toggle" aria-expanded="false" aria-controls="filters-inner">
@@ -1019,7 +1022,6 @@ Free Vitamin Well drinks and pastries after the run!</p><div class="ev-actions">
         </button>
         <div class="filters-inner" id="filters-inner">
           <div class="filter-group"><span class="filter-label">Veckodag</span>${weekdayPillsHtml}</div>
-          <div class="filter-group"><span class="filter-label">Klubb</span>${pillsHtml}</div>
           <button class="close-filters" id="close-filters">Stäng</button>
         </div>`;
 
@@ -1041,31 +1043,6 @@ Free Vitamin Well drinks and pastries after the run!</p><div class="ev-actions">
             }
             if (activeWeekdays.size === 0) {
               bar.querySelector('[data-filter="weekday"][data-value="all"]').classList.add('active');
-            }
-          }
-          syncURL();
-          applyFilters();
-        });
-      });
-
-      bar.querySelectorAll('[data-filter="club"]').forEach(btn => {
-        btn.addEventListener('click', function() {
-          const val = this.dataset.value;
-          if (val === 'all') {
-            activeClubs.clear();
-            bar.querySelectorAll('[data-filter="club"]').forEach(b => b.classList.remove('active'));
-            this.classList.add('active');
-          } else {
-            bar.querySelector('[data-filter="club"][data-value="all"]').classList.remove('active');
-            if (activeClubs.has(val)) {
-              activeClubs.delete(val);
-              this.classList.remove('active');
-            } else {
-              activeClubs.add(val);
-              this.classList.add('active');
-            }
-            if (activeClubs.size === 0) {
-              bar.querySelector('[data-filter="club"][data-value="all"]').classList.add('active');
             }
           }
           syncURL();
@@ -1422,6 +1399,7 @@ Free Vitamin Well drinks and pastries after the run!</p><div class="ev-actions">
         // Visa kortet även om ett filter eller en annan vy dolde det.
         activeClubs.clear();
         activeWeekdays.clear();
+        renderClubNotice();
         setView('upcoming');
         renderFilters();
         applyFilters();
@@ -1443,8 +1421,40 @@ Free Vitamin Well drinks and pastries after the run!</p><div class="ev-actions">
 
     const _weekdayParams = new URLSearchParams(window.location.search).getAll('weekday');
     _weekdayParams.forEach(d => activeWeekdays.add(d));
+    // Klubbfiltret har inga knappar längre, men länkar med ?club= (bl.a. från ChatGPT)
+    // ska fortsätta fungera. Matcha förlåtande: "Måndagsklubben_gbg" → Måndagsklubben,
+    // och "Pace " från en okodad "Pace & People"-länk → Pace & People-klubbarna.
+    const clubKey = s => s.toLowerCase().replace(/[^0-9a-zåäöéü]/g, '');
+    function resolveClubParam(param) {
+      const want = clubKey(param);
+      if (!want) return [];
+      const clubs = [...new Set(events.map(ev => ev.club).filter(Boolean))];
+      const exact = clubs.filter(c => clubKey(c) === want);
+      if (exact.length) return exact;
+      return clubs.filter(c => { const k = clubKey(c); return k.startsWith(want) || want.startsWith(k); });
+    }
     const _clubParams = new URLSearchParams(window.location.search).getAll('club');
-    _clubParams.forEach(c => activeClubs.add(c));
+    _clubParams.forEach(c => resolveClubParam(c).forEach(club => activeClubs.add(club)));
+
+    function renderClubNotice() {
+      const box = document.getElementById('club-notice');
+      if (!box) return;
+      box.hidden = activeClubs.size === 0;
+      // Höjdpunkten gäller hela listan, inte den filtrerade klubben.
+      const highlight = document.querySelector('.highlight');
+      if (highlight) highlight.hidden = !box.hidden;
+      if (box.hidden) return;
+      const esc = s => s.replace(/&/g, '&amp;').replace(/</g, '&lt;');
+      box.innerHTML = `<span>Visar bara <strong>${[...activeClubs].map(esc).join(', ')}</strong></span>`
+        + `<button type="button" id="clear-club">Visa alla</button>`;
+      document.getElementById('clear-club').addEventListener('click', () => {
+        activeClubs.clear();
+        renderClubNotice();
+        applyFilters();
+        syncURL();
+      });
+    }
+    renderClubNotice();
 
     setView(new URLSearchParams(window.location.search).get('view'));
     renderFilters();
@@ -1455,14 +1465,6 @@ Free Vitamin Well drinks and pastries after the run!</p><div class="ev-actions">
       if (allWeekdayPill) allWeekdayPill.classList.remove('active');
       _weekdayParams.forEach(d => {
         const targetPill = document.querySelector(`[data-filter="weekday"][data-value="${d}"]`);
-        if (targetPill) targetPill.classList.add('active');
-      });
-    }
-    if (_clubParams.length > 0) {
-      const allPill = document.querySelector('[data-filter="club"][data-value="all"]');
-      if (allPill) allPill.classList.remove('active');
-      _clubParams.forEach(c => {
-        const targetPill = document.querySelector(`[data-filter="club"][data-value="${c}"]`);
         if (targetPill) targetPill.classList.add('active');
       });
     }
