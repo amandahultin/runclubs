@@ -450,6 +450,20 @@ document.addEventListener('DOMContentLoaded',function(){{
 
     .events-layout {{ padding: 3rem 2rem; max-width: 1200px; margin: 0 auto; }}
 
+    .view-tabs {{
+      display: inline-flex; gap: 4px; padding: 4px; margin-bottom: 2rem;
+      background: #fff; border: 1px solid #EFE4E0; border-radius: 100px;
+    }}
+    .view-tab {{
+      font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 600;
+      padding: 9px 20px; border-radius: 100px; border: none;
+      background: transparent; color: #888; cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+    }}
+    .view-tab:hover {{ color: #1C2A45; }}
+    .view-tab[aria-selected="true"] {{ background: #1C2A45; color: #FDFAF9; }}
+    .view-tab:focus-visible {{ outline: 2px solid #D4715E; outline-offset: 2px; }}
+
     .date-group {{ margin-bottom: 3rem; }}
     .date-heading {{ display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; }}
     .date-name {{
@@ -807,12 +821,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="filters-bar" id="filters-bar"></div>
 
   <div class="events-layout">
-    <div id="events-container">
+    <div class="view-tabs" role="tablist" aria-label="Välj vy">
+      <button class="view-tab" role="tab" id="tab-upcoming" data-view="upcoming" aria-selected="true" aria-controls="events-container">Kommande event</button>
+      <button class="view-tab" role="tab" id="tab-popular" data-view="popular" aria-selected="false" aria-controls="popular-container" tabindex="-1">Mest klickade</button>
+    </div>
+    <div id="events-container" role="tabpanel" aria-labelledby="tab-upcoming">
       {events_section}
-      <div id="no-events-msg" class="no-events" hidden>
-        <span class="no-events-icon">🏃</span>
-        <p>Inga events hittades med dessa filter.</p>
-      </div>
+    </div>
+    <div id="popular-container" class="events-grid" role="tabpanel" aria-labelledby="tab-popular" hidden></div>
+    <div id="no-events-msg" class="no-events" hidden>
+      <span class="no-events-icon">🏃</span>
+      <p>Inga events hittades med dessa filter.</p>
     </div>
   </div>
 
@@ -912,6 +931,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       const noEventsMsg = document.getElementById('no-events-msg');
       if (noEventsMsg) noEventsMsg.hidden = visibleTotal > 0;
+
+      if (activeView === 'popular') buildPopularList();
 
       document.getElementById('stat-total').textContent = visibleTotal;
       document.getElementById('stat-clubs').textContent = visibleClubs.size;
@@ -1024,8 +1045,58 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       }}
     }}
 
+    const upcomingContainer = document.getElementById('events-container');
+    const popularContainer  = document.getElementById('popular-container');
+    const viewTabs = [...document.querySelectorAll('.view-tab')];
+    let activeView = 'upcoming';
+
+    function popularityScore(card) {{
+      // TODO: koppla popularitet (steg 14) — gillningar + klick per event.
+      // Tills vidare får alla samma poäng, så listan faller tillbaka på datumordning.
+      return 0;
+    }}
+
+    function buildPopularList() {{
+      const cards = [...upcomingContainer.querySelectorAll('[data-source]')];
+      const ranked = cards
+        .map((card, i) => ({{ card, i, score: popularityScore(card) }}))
+        .sort((a, b) => b.score - a.score || a.i - b.i);
+      popularContainer.replaceChildren(...ranked.map(({{ card }}) => {{
+        const clone = card.cloneNode(true);
+        clone.hidden = card.hidden;
+        return clone;
+      }}));
+    }}
+
+    function setView(view) {{
+      activeView = view === 'popular' ? 'popular' : 'upcoming';
+      viewTabs.forEach(tab => {{
+        const selected = tab.dataset.view === activeView;
+        tab.setAttribute('aria-selected', selected);
+        tab.tabIndex = selected ? 0 : -1;
+      }});
+      upcomingContainer.hidden = activeView !== 'upcoming';
+      popularContainer.hidden  = activeView !== 'popular';
+      if (activeView === 'popular') buildPopularList();
+      else popularContainer.replaceChildren();
+    }}
+
+    viewTabs.forEach((tab, i) => {{
+      tab.addEventListener('click', () => {{
+        setView(tab.dataset.view);
+        syncURL();
+      }});
+      tab.addEventListener('keydown', e => {{
+        if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+        const next = viewTabs[(i + (e.key === 'ArrowRight' ? 1 : -1) + viewTabs.length) % viewTabs.length];
+        next.focus();
+        next.click();
+      }});
+    }});
+
     function syncURL() {{
       const params = new URLSearchParams();
+      if (activeView === 'popular') params.set('view', 'popular');
       activeWeekdays.forEach(d => params.append('weekday', d));
       activeClubs.forEach(c => params.append('club', c));
       const qs = params.toString();
@@ -1042,6 +1113,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     const _clubParams = new URLSearchParams(window.location.search).getAll('club');
     _clubParams.forEach(c => activeClubs.add(c));
 
+    setView(new URLSearchParams(window.location.search).get('view'));
     renderFilters();
     applyFilters();
 
