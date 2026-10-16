@@ -425,7 +425,20 @@ _HEART_SVG = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke
 
 _SHARE_SVG = '<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12v7a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>'
 
+_CAL_SVG = '<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>'
+
 SITE_EVENTS_URL = "https://runclubs.se/events"
+
+
+def ics_start(ev: dict) -> str:
+    """Start for the .ics: UTC '20261017T070000Z', or '20261017' when the run has no time."""
+    try:
+        d = datetime.fromisoformat(ev.get("date") or "")
+    except ValueError:
+        return ""
+    if (d.hour, d.minute) == (0, 0):
+        return d.strftime("%Y%m%d")
+    return d.replace(tzinfo=STOCKHOLM).astimezone(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
 
 
 def event_id(ev: dict) -> str:
@@ -529,6 +542,12 @@ def feed_card_html(ev: dict, club_images: dict[str, dict], highlight: bool = Fal
     # Only the list card carries the anchor id; the highlight is a second copy of the same event.
     anchor = "" if highlight else f' id="ev-{eid}"'
     share_url = f"{SITE_EVENTS_URL}#ev-{eid}"
+    start = ics_start(ev)
+    cal_html = (
+        f'<button type="button" class="ev-share ev-cal" data-start="{start}" '
+        f'aria-label="Lägg till {_e(title)} i kalendern">{_CAL_SVG}</button>'
+        if start else ""
+    )
     return (
         f'<article class="ev-card{special}"{anchor} data-id="{eid}" data-source="{_e(source)}" data-club="{_e(club)}">'
         f'<div class="ev-media ev-media--{media_kind}">{media}'
@@ -544,6 +563,7 @@ def feed_card_html(ev: dict, club_images: dict[str, dict], highlight: bool = Fal
         f'{_HEART_SVG}<span class="ev-like-count"></span></button>'
         f'<button type="button" class="ev-share" data-url="{_e(share_url)}" data-title="{_e(title)}" '
         f'aria-label="Dela {_e(title)}">{_SHARE_SVG}</button>'
+        f'{cal_html}'
         f'{eng_html}{cta_html}</div>'
         f'</div>'
         f'</article>'
@@ -1617,6 +1637,78 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         return;
       }}
       showToast(await copyText(url) ? 'Länken är kopierad ✓' : url);
+    }});
+
+    // ── Kalender (.ics) ─────────────────────────────────
+    function icsEscape(text) {{
+      return String(text || '').replace(/\\\\/g, '\\\\\\\\').replace(/;/g, '\\\\;')
+        .replace(/,/g, '\\\\,').replace(/\\r?\\n/g, '\\\\n');
+    }}
+    const utf8 = new TextEncoder();
+    function icsFold(line) {{
+      // RFC 5545: max 75 byte per rad, utan att dela ett tecken.
+      const parts = [];
+      let cur = '', bytes = 0;
+      for (const ch of line) {{
+        const b = utf8.encode(ch).length;
+        if (bytes + b > 74) {{ parts.push(cur); cur = ' '; bytes = 1; }}
+        cur += ch;
+        bytes += b;
+      }}
+      parts.push(cur);
+      return parts.join('\\r\\n');
+    }}
+    function icsDate(d) {{
+      return d.toISOString().replace(/[-:]/g, '').replace(/\\.\\d{{3}}/, '');
+    }}
+    function buildIcs(card) {{
+      const btn   = card.querySelector('.ev-cal');
+      const start = btn.dataset.start;
+      const allDay = start.length === 8;
+      let dtStart, dtEnd;
+      if (allDay) {{
+        const d = new Date(Date.UTC(+start.slice(0, 4), +start.slice(4, 6) - 1, +start.slice(6, 8) + 1));
+        dtStart = 'DTSTART;VALUE=DATE:' + start;
+        dtEnd   = 'DTEND;VALUE=DATE:' + d.toISOString().slice(0, 10).replace(/-/g, '');
+      }} else {{
+        const s = new Date(Date.UTC(+start.slice(0, 4), +start.slice(4, 6) - 1, +start.slice(6, 8),
+                                    +start.slice(9, 11), +start.slice(11, 13)));
+        dtStart = 'DTSTART:' + start;
+        dtEnd   = 'DTEND:' + icsDate(new Date(s.getTime() + 60 * 60 * 1000)); // ingen sluttid i datan → 1 h
+      }}
+      const title = card.querySelector('.ev-title').textContent.trim();
+      const place = card.querySelector('.ev-place');
+      const club  = card.dataset.club;
+      const link  = card.querySelector('.ev-link');
+      const url   = card.querySelector('.ev-share').dataset.url;
+      const desc  = [card.querySelector('.ev-desc')?.textContent.trim(), club && 'Arrangör: ' + club,
+                     link && link.href, url].filter(Boolean).join('\\n\\n');
+      const lines = [
+        'BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//runclubs.se//Events//SV', 'CALSCALE:GREGORIAN', 'METHOD:PUBLISH',
+        'BEGIN:VEVENT',
+        'UID:' + card.dataset.id + '@runclubs.se',
+        'DTSTAMP:' + icsDate(new Date()),
+        dtStart, dtEnd,
+        'SUMMARY:' + icsEscape(title),
+        place ? 'LOCATION:' + icsEscape(place.textContent.trim()) : '',
+        'DESCRIPTION:' + icsEscape(desc),
+        'URL:' + url,
+        'END:VEVENT', 'END:VCALENDAR',
+      ].filter(Boolean);
+      return lines.map(icsFold).join('\\r\\n') + '\\r\\n';
+    }}
+    document.addEventListener('click', e => {{
+      const btn = e.target.closest('.ev-cal');
+      if (!btn) return;
+      const card = btn.closest('.ev-card');
+      const blob = new Blob([buildIcs(card)], {{ type: 'text/calendar;charset=utf-8' }});
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'runclubs-' + card.dataset.id + '.ics';
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      setTimeout(() => URL.revokeObjectURL(a.href), 10000);
     }});
 
     function focusSharedEvent() {{
