@@ -459,9 +459,6 @@ def event_id(ev: dict) -> str:
     return hashlib.sha1(key.encode("utf-8")).hexdigest()[:10]
 
 
-MEDIA_LABELS = {"photo": "Eventfoto", "map": "Karta", "club": "Klubbkort", "initial": "Initial"}
-
-
 def pick_media(ev: dict, club_images: dict[str, dict], allow_map: bool = True) -> tuple[str, str]:
     """Image chain: event photo → route map → club card → peach plate with the club's initial.
 
@@ -556,8 +553,7 @@ def feed_card_html(ev: dict, club_images: dict[str, dict], highlight: bool = Fal
     )
     return (
         f'<article class="ev-card{special}"{anchor} data-id="{eid}" data-source="{_e(source)}" data-club="{_e(club)}">'
-        f'<div class="ev-media ev-media--{media_kind}">{media}'
-        f'<span class="ev-media-label">{MEDIA_LABELS[media_kind]}</span></div>'
+        f'<div class="ev-media ev-media--{media_kind}">{media}</div>'
         f'<div class="ev-body">'
         f'<div class="ev-top">{badge}<span class="ev-when">{when}</span></div>'
         f'<h3 class="ev-title">{title_html}</h3>'
@@ -927,12 +923,6 @@ document.addEventListener('DOMContentLoaded',function(){{
     .ev-initial {{
       font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 60px; line-height: 1;
       color: rgba(255,255,255,0.9); text-shadow: 0 2px 12px rgba(168,80,47,0.25);
-    }}
-    .ev-media-label {{
-      position: absolute; left: 8px; bottom: 8px; z-index: 1;
-      font-size: 9px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
-      padding: 3px 7px; border-radius: 8px;
-      background: rgba(31,27,24,0.7); color: #fff;
     }}
     .ev-media:has(.ev-logo) {{ background: #fff; border-right: 1px solid #F5EBE8; }}
     .ev-media .ev-logo {{ object-fit: contain; object-position: center !important; padding: 14px; }}
