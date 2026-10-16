@@ -1523,10 +1523,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     const viewTabs = [...document.querySelectorAll('.view-tab')];
     let activeView = 'upcoming';
 
+    // Popularitet = gillningar + klick. Lika poäng → tidigast datum först.
     function popularityScore(card) {{
-      // TODO: koppla popularitet (steg 14) — gillningar + klick per event.
-      // Tills vidare får alla samma poäng, så listan faller tillbaka på datumordning.
-      return 0;
+      const s = stats.get(card.dataset.id);
+      return s ? s.likes + s.clicks : 0;
     }}
 
     function buildPopularList() {{
