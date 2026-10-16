@@ -108,6 +108,7 @@ CITY_CLUBS: dict[str, list[str]] = {
         "core-run-club", "ess-runners-club", "place-run-club",
     ],
     "ovriga-landet": [
+        "loparfamiljen",
         "slo-social-running-club",
         "run-for-a-bun-jonkoping",
         "social-run-landskrona",
