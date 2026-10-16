@@ -1563,17 +1563,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     const viewTabs = [...document.querySelectorAll('.view-tab')];
     let activeView = 'upcoming';
 
-    // Popularitet = gillningar + klick de senaste 7 dagarna (rullande vecka), så att
+    // Popularitet = gillningar de senaste 7 dagarna (rullande vecka; ett klick vidare
+    // till passet räknas som en gillning, så klick ingår utan att räknas dubbelt), så att
     // gammal aktivitet faller bort och återkommande weekly runs inte toppar för alltid.
     // Varje tillfälle har dessutom eget id (datum ingår), så nästa veckas pass börjar på noll.
     // Lika veckopoäng → flest totalt → tidigast datum.
     function popularityScore(card) {{
       const s = stats.get(card.dataset.id);
-      return s ? s.likes_7d + s.clicks_7d : 0;
+      return s ? s.likes_7d : 0;
     }}
     function popularityTotal(card) {{
       const s = stats.get(card.dataset.id);
-      return s ? s.likes + s.clicks : 0;
+      return s ? s.likes : 0;
     }}
 
     function buildPopularList() {{
@@ -1665,7 +1666,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     const liked = new Set(storeGet('rc_likes', [])); // gillat i den här webbläsaren
 
     function renderEventStats(id) {{
-      const s = stats.get(id) || {{ likes: 0 }};
+      const s = stats.get(id) || {{}};
       document.querySelectorAll(`.ev-card[data-id="${{id}}"] .ev-like`).forEach(btn => {{
         btn.setAttribute('aria-pressed', liked.has(id));
         btn.querySelector('.ev-like-count').textContent = s.likes > 0 ? s.likes : '';
@@ -1699,11 +1700,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       }});
     }}
 
-    document.addEventListener('click', async e => {{
-      const btn = e.target.closest('.ev-like');
-      if (!btn) return;
-      const id = btn.closest('.ev-card').dataset.id;
-      const nowLiked = !liked.has(id);
+    // Gilla/avgilla ett event. Optimistiskt: uppdatera direkt, rätta efter svaret.
+    // quiet = ingen studs och inget felmeddelande (används när ett klick vidare gillar).
+    async function setLiked(id, nowLiked, quiet = false) {{
+      if (liked.has(id) === nowLiked) return;
       const before = Object.assign({{}}, stats.get(id));
 
       // Optimistiskt: uppdatera direkt, rätta efter svaret.
@@ -1713,10 +1713,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       setStat(id, {{ likes: Math.max(0, (before.likes || 0) + delta),
                      likes_7d: Math.max(0, (before.likes_7d || 0) + delta) }});
       renderEventStats(id);
-      if (nowLiked) {{
-        btn.classList.remove('pop');
-        void btn.offsetWidth;
-        btn.classList.add('pop');
+      if (nowLiked && !quiet) {{
+        document.querySelectorAll(`.ev-card[data-id="${{id}}"] .ev-like`).forEach(btn => {{
+          btn.classList.remove('pop');
+          void btn.offsetWidth;
+          btn.classList.add('pop');
+        }});
       }}
 
       try {{
@@ -1726,9 +1728,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         nowLiked ? liked.delete(id) : liked.add(id);
         storeSet('rc_likes', [...liked]);
         stats.set(id, before);
-        showToast('Kunde inte spara gillningen — försök igen');
+        if (!quiet) showToast('Kunde inte spara gillningen — försök igen');
       }}
       renderEventStats(id);
+    }}
+
+    document.addEventListener('click', e => {{
+      const btn = e.target.closest('.ev-like');
+      if (!btn) return;
+      const id = btn.closest('.ev-card').dataset.id;
+      setLiked(id, !liked.has(id));
     }});
 
     let toastTimer;
@@ -1854,14 +1863,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     // Klick vidare till passet (knappen, titeln eller kortet). keepalive gör att
     // anropet hinner iväg även när sidan lämnas.
+    // Ett klick vidare räknas dessutom som en gillning (en per webbläsare, som hjärtat).
     function trackPassClick(e) {{
       const link = e.target.closest('.ev-cta, .ev-link');
       if (!link || (e.type === 'auxclick' && e.button !== 1)) return;
       const id = link.closest('.ev-card').dataset.id;
+      setLiked(id, true, true);
       const s = stats.get(id) || {{}};
       setStat(id, {{ clicks: (s.clicks || 0) + 1, clicks_7d: (s.clicks_7d || 0) + 1 }});
+      renderEventStats(id);
       rpc('click_event', {{ p_event_id: id, p_visitor: visitorId() }})
-        .then(([row]) => applyServerRow(id, row))
+        .then(([row]) => {{ applyServerRow(id, row); renderEventStats(id); }})
         .catch(() => {{}});
     }}
     document.addEventListener('click', trackPassClick);
