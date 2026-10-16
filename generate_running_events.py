@@ -282,14 +282,23 @@ document.addEventListener('DOMContentLoaded',function(){{
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <style>
+    :root {{
+      --bg: #FBF8F4;         /* off-white */
+      --ink: #1F1B18;        /* mörk text */
+      --ink-soft: #6B625B;
+      --peach: #F6B89E;      /* accent */
+      --peach-soft: #FFE6D8;
+      --peach-deep: #EE9A78;
+      --accent-ink: #A8502F; /* accenttext på ljus bakgrund */
+    }}
     *, *::before, *::after {{ margin: 0; padding: 0; box-sizing: border-box; }}
     html {{ scroll-behavior: smooth; }}
-    html {{ background: #FDFAF9; }}
-    body {{ font-family: 'DM Sans', sans-serif; color: #1C2A45; background: #FDFAF9; max-width: 1400px; margin: 0 auto; -webkit-font-smoothing: antialiased; }}
+    html {{ background: var(--bg); }}
+    body {{ font-family: 'DM Sans', sans-serif; color: var(--ink); background: var(--bg); max-width: 1400px; margin: 0 auto; -webkit-font-smoothing: antialiased; }}
 
     .skip-link {{
       position: absolute; top: -100%; left: 1rem;
-      background: #D4715E; color: #fff; padding: 8px 16px;
+      background: var(--peach); color: var(--ink); padding: 8px 16px;
       border-radius: 0 0 6px 6px; font-size: 13px; font-weight: 500;
       z-index: 1000; text-decoration: none;
     }}
@@ -298,16 +307,16 @@ document.addEventListener('DOMContentLoaded',function(){{
     nav {{
       display: flex; justify-content: space-between; align-items: center;
       padding: 1.25rem 2rem;
-      background: rgba(253,250,249,0.92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      background: rgba(251,248,244,0.92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
       border-bottom: 1px solid #F0E0DC;
       position: sticky; top: 0; z-index: 100;
     }}
     .logo {{
       font-family: 'DM Sans', sans-serif; font-weight: 700; font-size: 16px;
       text-transform: uppercase; letter-spacing: 2px;
-      color: #1C2A45; text-decoration: none;
+      color: var(--ink); text-decoration: none;
     }}
-    .run-clubs-logo {{ display: inline-flex; align-items: baseline; font-size: 36px; color: #1a1a1a; text-decoration: none; }}
+    .run-clubs-logo {{ display: inline-flex; align-items: baseline; font-size: 36px; color: var(--ink); text-decoration: none; }}
     .run-clubs-logo .run {{ font-family: 'Inter', sans-serif; font-weight: 900; font-style: italic; letter-spacing: -0.04em; padding-right: 2px; }}
     .run-clubs-logo .clubs {{ font-family: 'Playfair Display', serif; font-weight: 400; letter-spacing: -0.02em; }}
     .run-clubs-logo .suffix {{ font-family: 'Playfair Display', serif; font-size: 0.45em; font-weight: 400; text-transform: lowercase; margin-left: 2px; }}
@@ -320,12 +329,12 @@ document.addEventListener('DOMContentLoaded',function(){{
     }}
     .nav-links a::after {{
       content: ''; position: absolute; bottom: -4px; left: 0;
-      width: 0; height: 1.5px; background: #D4715E;
+      width: 0; height: 1.5px; background: var(--peach-deep);
       transition: width 0.2s ease;
     }}
-    .nav-links a:hover {{ color: #1C2A45; }}
+    .nav-links a:hover {{ color: var(--ink); }}
     .nav-links a:hover::after {{ width: 100%; }}
-    .nav-links a.active {{ color: #1C2A45; }}
+    .nav-links a.active {{ color: var(--ink); }}
     .nav-links a.active::after {{ width: 100%; }}
     .nav-toggle {{
       display: none; flex-direction: column; gap: 5px;
@@ -333,26 +342,26 @@ document.addEventListener('DOMContentLoaded',function(){{
     }}
     .nav-toggle span {{
       display: block; width: 22px; height: 2px;
-      background: #1C2A45; transition: all 0.3s ease;
+      background: var(--ink); transition: all 0.3s ease;
     }}
     .nav-toggle.open span:nth-child(1) {{ transform: rotate(45deg) translate(5px, 5px); }}
     .nav-toggle.open span:nth-child(2) {{ opacity: 0; }}
     .nav-toggle.open span:nth-child(3) {{ transform: rotate(-45deg) translate(5px, -5px); }}
     .mobile-menu {{
       display: none; flex-direction: column;
-      background: rgba(253,250,249,0.98); backdrop-filter: blur(12px);
+      background: rgba(251,248,244,0.98); backdrop-filter: blur(12px);
       border-bottom: 1px solid #F0E0DC;
       padding: 1rem 2rem; gap: 0;
     }}
     .mobile-menu.open {{ display: flex; }}
     .mobile-menu a {{
       font-size: 13px; letter-spacing: 1px; text-decoration: none;
-      color: #1C2A45; text-transform: uppercase; font-weight: 500;
+      color: var(--ink); text-transform: uppercase; font-weight: 500;
       padding: 0.75rem 0; border-bottom: 1px solid #F0E0DC;
       transition: color 0.15s;
     }}
     .mobile-menu a:last-child {{ border-bottom: none; }}
-    .mobile-menu a:hover {{ color: #D4715E; }}
+    .mobile-menu a:hover {{ color: var(--accent-ink); }}
 
     .page-header {{
       background: linear-gradient(160deg, #FFF8F3 0%, #FFDAC4 40%, #F6B89E 75%, #F88B69 100%);
@@ -369,44 +378,44 @@ document.addEventListener('DOMContentLoaded',function(){{
     .page-header::before {{
       content: ''; position: absolute; left: -80px; bottom: -140px;
       width: 260px; height: 260px; border-radius: 50%;
-      background: rgba(28,42,69,0.08);
+      background: rgba(31,27,24,0.08);
       pointer-events: none;
     }}
     .page-header-inner {{ max-width: 700px; position: relative; z-index: 1; }}
-    .breadcrumb {{ font-size: 12px; color: rgba(28,42,69,0.45); margin-bottom: 0.75rem; }}
-    .breadcrumb a {{ color: rgba(28,42,69,0.45); text-decoration: none; transition: color 0.15s; }}
-    .breadcrumb a:hover {{ color: #C8604A; }}
+    .breadcrumb {{ font-size: 12px; color: rgba(31,27,24,0.45); margin-bottom: 0.75rem; }}
+    .breadcrumb a {{ color: rgba(31,27,24,0.45); text-decoration: none; transition: color 0.15s; }}
+    .breadcrumb a:hover {{ color: var(--accent-ink); }}
     .page-header-tag {{
       font-family: 'Playfair Display', serif; font-style: italic;
       font-size: 15px; letter-spacing: 0.5px;
-      color: #C8604A; margin-bottom: 1rem; font-weight: 400;
+      color: var(--accent-ink); margin-bottom: 1rem; font-weight: 400;
     }}
     .page-header h1 {{
       font-family: 'Archivo Black', sans-serif;
       font-size: clamp(36px, 6vw, 64px);
       line-height: 0.95; text-transform: uppercase;
-      color: #C8604A; letter-spacing: -1px; margin-bottom: 1rem;
+      color: var(--accent-ink); letter-spacing: -1px; margin-bottom: 1rem;
     }}
     .page-header p {{
-      font-size: 15px; color: rgba(28,42,69,0.75);
+      font-size: 15px; color: rgba(31,27,24,0.75);
       line-height: 1.7; max-width: 480px;
     }}
 
     .stats-bar {{
-      background: #D4715E;
+      background: var(--peach);
       padding: 1rem 2rem;
       display: flex; gap: 2.5rem; flex-wrap: wrap;
     }}
     .stat-item {{ display: flex; align-items: center; gap: 8px; }}
     .stat-number {{
       font-family: 'Archivo Black', sans-serif;
-      font-size: 22px; color: #FDFAF9; line-height: 1;
+      font-size: 22px; color: var(--ink); line-height: 1;
     }}
     .stat-label {{
       font-size: 11px; letter-spacing: 1px; text-transform: uppercase;
-      color: rgba(255,255,255,0.65); font-weight: 500;
+      color: rgba(31,27,24,0.6); font-weight: 500;
     }}
-    .stat-divider {{ width: 1px; background: rgba(255,255,255,0.2); align-self: stretch; }}
+    .stat-divider {{ width: 1px; background: rgba(31,27,24,0.15); align-self: stretch; }}
 
     .filters-bar {{
       padding: 1.5rem 2rem;
@@ -419,20 +428,20 @@ document.addEventListener('DOMContentLoaded',function(){{
       width: 100%; padding: 10px 14px;
       background: #fff; border: 1px solid #E8D8D3; border-radius: 12px;
       font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500;
-      color: #1C2A45; cursor: pointer; transition: all 0.2s;
+      color: var(--ink); cursor: pointer; transition: all 0.2s;
     }}
-    .filter-toggle:hover {{ border-color: #D4715E; }}
+    .filter-toggle:hover {{ border-color: var(--peach-deep); }}
     .filter-toggle-label {{ display: flex; align-items: center; gap: 8px; }}
-    .filter-toggle-chevron {{ transition: transform 0.2s; color: #D4715E; }}
+    .filter-toggle-chevron {{ transition: transform 0.2s; color: var(--accent-ink); }}
     .filters-bar.open .filter-toggle-chevron {{ transform: rotate(180deg); }}
     .close-filters {{
-      font-size: 13px; color: #D4715E; background: none; border: none;
+      font-size: 13px; color: var(--accent-ink); background: none; border: none;
       cursor: pointer; font-family: 'DM Sans', sans-serif; font-weight: 500;
       padding: 6px 0; text-decoration: underline; margin-left: auto;
       text-underline-offset: 2px; transition: color 0.15s; display: none;
     }}
     .filters-bar.open .close-filters {{ display: inline-block; }}
-    .close-filters:hover {{ color: #C8604A; }}
+    .close-filters:hover {{ color: var(--ink); }}
     .filter-group {{ display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }}
     .filter-label {{
       font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
@@ -445,8 +454,8 @@ document.addEventListener('DOMContentLoaded',function(){{
       cursor: pointer; font-family: 'DM Sans', sans-serif;
       transition: all 0.2s; text-transform: uppercase; letter-spacing: 0.5px;
     }}
-    .filter-pill:hover {{ border-color: #D4715E; color: #D4715E; }}
-    .filter-pill.active {{ background: #D4715E; color: #FDFAF9; border-color: #D4715E; }}
+    .filter-pill:hover {{ border-color: var(--peach-deep); color: var(--accent-ink); }}
+    .filter-pill.active {{ background: var(--peach); color: var(--ink); border-color: var(--peach); }}
 
     .events-layout {{ padding: 3rem 2rem; max-width: 1200px; margin: 0 auto; }}
 
@@ -460,15 +469,15 @@ document.addEventListener('DOMContentLoaded',function(){{
       background: transparent; color: #888; cursor: pointer;
       transition: background 0.2s, color 0.2s;
     }}
-    .view-tab:hover {{ color: #1C2A45; }}
-    .view-tab[aria-selected="true"] {{ background: #1C2A45; color: #FDFAF9; }}
-    .view-tab:focus-visible {{ outline: 2px solid #D4715E; outline-offset: 2px; }}
+    .view-tab:hover {{ color: var(--ink); }}
+    .view-tab[aria-selected="true"] {{ background: var(--ink); color: var(--bg); }}
+    .view-tab:focus-visible {{ outline: 2px solid var(--accent-ink); outline-offset: 2px; }}
 
     .date-group {{ margin-bottom: 3rem; }}
     .date-heading {{ display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; }}
     .date-name {{
       font-family: 'Archivo Black', sans-serif;
-      font-size: 20px; letter-spacing: 2px; text-transform: uppercase; color: #1C2A45;
+      font-size: 20px; letter-spacing: 2px; text-transform: uppercase; color: var(--ink);
     }}
     .date-line {{ flex: 1; height: 1px; background: #F0E0DC; }}
     .date-count {{ font-size: 11px; letter-spacing: 1px; text-transform: uppercase; color: #ccc; font-weight: 500; }}
@@ -488,13 +497,13 @@ document.addEventListener('DOMContentLoaded',function(){{
       flex-direction: column;
       transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
       text-decoration: none;
-      color: #1C2A45;
+      color: var(--ink);
     }}
     .event-card[hidden] {{ display: none; }}
     .event-card:hover {{
       transform: translateY(-4px);
-      box-shadow: 0 14px 36px rgba(212,113,94,0.2);
-      border-color: #D4715E;
+      box-shadow: 0 14px 36px rgba(238,154,120,0.25);
+      border-color: var(--peach-deep);
     }}
     .event-card--no-link {{ cursor: default; }}
     .event-card--no-link:hover {{
@@ -518,7 +527,7 @@ document.addEventListener('DOMContentLoaded',function(){{
       50% {{ background-position: 0 0, 100% 50%; }}
     }}
     .event-card--special .event-date-block {{
-      background: linear-gradient(160deg, #F88B69, #C8604A);
+      background: linear-gradient(160deg, var(--peach), var(--peach-deep));
     }}
     .event-card--special::after {{
       content: '✨';
@@ -545,22 +554,22 @@ document.addEventListener('DOMContentLoaded',function(){{
       min-width: 72px;
       display: flex; flex-direction: column; align-items: center; justify-content: center;
       padding: 1.25rem 0.75rem;
-      background: linear-gradient(160deg, #D4715E, #C8604A);
+      background: linear-gradient(160deg, var(--peach-soft), var(--peach));
       gap: 2px; flex-shrink: 0;
     }}
-    .event-date-block.no-date {{ background: linear-gradient(160deg, #6B7A99, #334463); }}
+    .event-date-block.no-date {{ background: linear-gradient(160deg, #F3ECE6, #E6DBD2); }}
 
     .event-day-num {{
       font-family: 'Archivo Black', sans-serif;
-      font-size: 32px; line-height: 1; color: #FDFAF9;
+      font-size: 32px; line-height: 1; color: var(--ink);
     }}
     .event-month-abbr {{
       font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
-      color: rgba(255,255,255,0.5); font-weight: 600;
+      color: rgba(31,27,24,0.6); font-weight: 600;
     }}
     .event-day-name {{
       font-size: 9px; letter-spacing: 1px; text-transform: uppercase;
-      color: rgba(255,255,255,0.3); font-weight: 500; margin-top: 4px;
+      color: rgba(31,27,24,0.45); font-weight: 500; margin-top: 4px;
     }}
     .event-date-block.no-date .event-day-num {{ font-size: 20px; letter-spacing: 2px; }}
 
@@ -574,12 +583,12 @@ document.addEventListener('DOMContentLoaded',function(){{
       padding: 3px 8px; border-radius: 10px; flex-shrink: 0;
     }}
     .source-strava    {{ background: #FC5200; color: #fff; }}
-    .source-other     {{ background: #6B7A99; color: #fff; }}
+    .source-other     {{ background: var(--ink-soft); color: #fff; }}
     .type-badge {{
       font-size: 9px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
       padding: 3px 8px; border-radius: 10px; flex-shrink: 0;
     }}
-    .type-event   {{ background: #E8EEF5; color: #1C2A45; }}
+    .type-event   {{ background: var(--peach-soft); color: var(--ink); }}
     .type-weekly  {{ background: #D8F3DC; color: #1B4332; }}
     .event-club {{
       font-size: 11px; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase;
@@ -588,7 +597,7 @@ document.addEventListener('DOMContentLoaded',function(){{
     .event-title {{
       font-family: 'DM Sans', sans-serif; font-weight: 700;
       font-size: 17px; text-transform: uppercase;
-      letter-spacing: 0.5px; line-height: 1.2; color: #1C2A45;
+      letter-spacing: 0.5px; line-height: 1.2; color: var(--ink);
     }}
     .event-location {{
       display: flex; align-items: center; gap: 5px;
@@ -612,7 +621,7 @@ document.addEventListener('DOMContentLoaded',function(){{
     }}
     .event-cta {{
       font-size: 11px; font-weight: 600; letter-spacing: 1px;
-      text-transform: uppercase; color: #D4715E;
+      text-transform: uppercase; color: var(--accent-ink);
       display: flex; align-items: center; gap: 4px;
       transition: gap 0.2s;
     }}
@@ -630,35 +639,35 @@ document.addEventListener('DOMContentLoaded',function(){{
     .nl-body {{ max-width: 560px; margin: 0 auto; padding: 4rem 2rem; text-align: center; }}
     .nl-badge {{
       display: inline-flex; align-items: center; gap: 8px;
-      background: #FFDAC4; color: #C8604A;
+      background: var(--peach-soft); color: var(--accent-ink);
       font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
       padding: 7px 16px; border-radius: 100px; margin-bottom: 1.5rem;
     }}
     .nl-title {{
       font-family: 'Archivo Black', sans-serif;
       font-size: clamp(28px, 4vw, 42px);
-      color: #1C2A45; line-height: 1.1; text-transform: uppercase;
+      color: var(--ink); line-height: 1.1; text-transform: uppercase;
       letter-spacing: -1px; margin-bottom: 1rem;
     }}
-    .nl-title em {{ color: #D4715E; font-style: normal; }}
+    .nl-title em {{ color: var(--accent-ink); font-style: normal; }}
     .nl-desc {{ font-size: 15px; color: #777; line-height: 1.75; margin-bottom: 2rem; }}
     .newsletter-form {{ display: flex; flex-direction: column; gap: 12px; }}
     .newsletter-input {{
       padding: 16px 22px; border: 2px solid #F0DED4; border-radius: 100px;
       font-size: 15px; font-family: 'DM Sans', sans-serif;
-      color: #1C2A45; background: #fff; outline: none;
+      color: var(--ink); background: #fff; outline: none;
       transition: border-color 0.2s; width: 100%; box-sizing: border-box;
     }}
     .newsletter-input::placeholder {{ color: #c2ab9f; }}
-    .newsletter-input:focus {{ border-color: #D4715E; }}
+    .newsletter-input:focus {{ border-color: var(--peach-deep); }}
     .newsletter-btn {{
-      background: #D4715E; color: #fff;
+      background: var(--peach); color: var(--ink);
       font-size: 15px; font-weight: 700; letter-spacing: 0.3px;
       padding: 17px; border-radius: 100px; border: none;
       cursor: pointer; font-family: 'DM Sans', sans-serif;
       transition: all 0.2s;
     }}
-    .newsletter-btn:hover {{ background: #C8604A; box-shadow: 0 8px 22px rgba(212,113,94,0.3); }}
+    .newsletter-btn:hover {{ background: var(--peach-deep); box-shadow: 0 8px 22px rgba(238,154,120,0.35); }}
     .nl-disclaimer {{ font-size: 11px; color: #c2ab9f; text-align: center; margin-top: 0.75rem; }}
 
     footer {{
@@ -673,8 +682,8 @@ document.addEventListener('DOMContentLoaded',function(){{
       font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
       color: #aaa; margin-bottom: 1rem; font-weight: 500;
     }}
-    footer a {{ display: block; color: #1C2A45; text-decoration: none; margin-bottom: 8px; transition: color 0.15s; }}
-    footer a:hover {{ color: #D4715E; }}
+    footer a {{ display: block; color: var(--ink); text-decoration: none; margin-bottom: 8px; transition: color 0.15s; }}
+    footer a:hover {{ color: var(--accent-ink); }}
     .footer-bottom {{
       grid-column: 1 / -1; padding-top: 1.5rem;
       border-top: 1px solid #F0D8D3;
@@ -682,8 +691,12 @@ document.addEventListener('DOMContentLoaded',function(){{
       display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap;
     }}
     .footer-updated {{ font-size: 11px; color: #ccc; margin-top: 4px; }}
-    .ig-footer-btn {{ display: inline-flex; align-items: center; gap: 8px; background: #D4715E; color: #fff !important; padding: 9px 18px 9px 12px; border-radius: 100px; font-size: 12px; font-weight: 600; transition: background 0.15s; text-decoration: none; }}
-    .ig-footer-btn:hover {{ background: #C8604A; color: #fff !important; }}
+    .ig-footer-btn {{ display: inline-flex; align-items: center; gap: 8px; background: var(--peach); color: var(--ink) !important; padding: 9px 18px 9px 12px; border-radius: 100px; font-size: 12px; font-weight: 600; transition: background 0.15s; text-decoration: none; }}
+    .ig-footer-btn:hover {{ background: var(--peach-deep); color: var(--ink) !important; }}
+
+    /* Delad sticky Instagram-knapp är marinblå sajtwide — mörk istället på /events. */
+    body #ig-sticky-cta {{ background: var(--ink); }}
+    body #ig-sticky-cta:hover {{ background: #3A332E; }}
 
     .fade-in {{ opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }}
     .fade-in.visible {{ opacity: 1; transform: translateY(0); }}
@@ -691,7 +704,7 @@ document.addEventListener('DOMContentLoaded',function(){{
     .city-nav {{
       padding: 1.75rem 2rem;
       border-bottom: 1px solid #F0E0DC;
-      background: #FDFAF9;
+      background: var(--bg);
       display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap;
     }}
     .city-nav-label {{
@@ -702,12 +715,12 @@ document.addEventListener('DOMContentLoaded',function(){{
     .city-nav-btn {{
       font-size: 12px; font-weight: 600; padding: 8px 18px;
       border-radius: 100px; border: 1px solid #E8D8D3;
-      background: #fff; color: #1C2A45; cursor: pointer;
+      background: #fff; color: var(--ink); cursor: pointer;
       font-family: 'DM Sans', sans-serif; text-decoration: none;
       transition: all 0.2s; letter-spacing: 0.3px;
       display: inline-flex; align-items: center; gap: 5px;
     }}
-    .city-nav-btn:hover {{ border-color: #D4715E; color: #D4715E; }}
+    .city-nav-btn:hover {{ border-color: var(--peach-deep); color: var(--accent-ink); }}
 
     @media (max-width: 768px) {{
       .city-nav {{ padding: 1.25rem; gap: 1rem; flex-direction: column; align-items: flex-start; }}
@@ -837,7 +850,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <section class="nl-section fade-in">
     <div class="nl-body">
-      <div class="nl-badge">Prenumerera på <span class="run-clubs-logo" style="font-size:1em;color:#D4715E;"><span class="run">RUN</span><span class="clubs">CLUBS</span><span class="suffix">.se</span></span> veckobrev</div>
+      <div class="nl-badge">Prenumerera på <span class="run-clubs-logo" style="font-size:1em;color:var(--accent-ink);"><span class="run">RUN</span><span class="clubs">CLUBS</span><span class="suffix">.se</span></span> veckobrev</div>
       <h2 class="nl-title">Inbjudningar,<br><em>events</em> och<br>promo runs.</h2>
       <p class="nl-desc">Varje söndag får du en sammanställning av vad som händer kommande vecka — veckans pass, nyheter, intervjuer och events. Gratis så klart!</p>
       <form class="newsletter-form" data-placement="page-mid" onsubmit="return false;">
