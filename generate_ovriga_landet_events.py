@@ -35,7 +35,7 @@ from events_common import (
     fetch_events,
     fetch_overrides,
     fetch_special_events,
-    fetch_weekly_runs,
+    fetch_recurring_runs,
     normalize_club_name,
     render_events_section,
     resolve_city,
@@ -1022,7 +1022,7 @@ def main() -> int:
     out_path = Path(sys.argv[1]) if len(sys.argv) > 1 else Path("ovriga-landet-running-events.html")
     sheet_id = os.environ.get("GOOGLE_SHEET_ID") or EVENTS_SHEET_ID
 
-    weekly_records  = fetch_weekly_runs(sheet_id)
+    weekly_records  = fetch_recurring_runs(sheet_id)
     club_cities     = build_club_cities(weekly_records)
     overrides       = fetch_overrides(sheet_id)
 

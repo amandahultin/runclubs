@@ -2,7 +2,8 @@
 
 Reads from two worksheets:
   - Events       populated by mikaelsto/runclubs-events-feed (Strava)
-  - WeeklyRuns   manually maintained recurring club runs
+  - Klubbar      recurring club runs (Pass1–3 columns in the club sheet),
+                 with the old WeeklyRuns tab as fallback
 
 Filters to Stockholm, Göteborg, and everywhere else in Sweden ("Övriga landet").
 
@@ -32,7 +33,7 @@ from events_common import (
     fetch_events,
     fetch_overrides,
     fetch_special_events,
-    fetch_weekly_runs,
+    fetch_recurring_runs,
     normalize_club_name,
     render_events_section,
     resolve_city,
@@ -78,7 +79,7 @@ def build_club_pages(weekly_records: list[dict]) -> dict[str, str]:
         club = (r.get("club") or "").strip()
         link = (r.get("link") or "").strip()
         if club and link:
-            pages[club.lower()] = link
+            pages[normalize_club_name(club).lower()] = link
     return pages
 
 
@@ -1078,7 +1079,7 @@ def main() -> int:
     out_path = Path(sys.argv[1]) if len(sys.argv) > 1 else Path("events.html")
     sheet_id = os.environ.get("GOOGLE_SHEET_ID") or EVENTS_SHEET_ID
 
-    weekly_records  = fetch_weekly_runs(sheet_id)
+    weekly_records  = fetch_recurring_runs(sheet_id)
     club_pages      = build_club_pages(weekly_records)
     club_cities     = build_club_cities(weekly_records)
     overrides       = fetch_overrides(sheet_id)

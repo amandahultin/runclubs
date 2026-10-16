@@ -51,7 +51,7 @@ from events_common import (
     _parse_date,
     build_club_cities,
     fetch_events,
-    fetch_weekly_runs,
+    fetch_recurring_runs,
     normalize_club_name,
     resolve_city,
 )
@@ -191,7 +191,7 @@ def gather_events(sheet_id: str, week_start: str | None) -> list[dict]:
     log.info("Target week: %s -> %s (UTC)", start.date(), end.date())
 
     records = fetch_events(sheet_id)
-    club_cities = build_club_cities(fetch_weekly_runs(sheet_id))
+    club_cities = build_club_cities(fetch_recurring_runs(sheet_id))
     events: list[dict] = []
     seen: set[tuple] = set()
 

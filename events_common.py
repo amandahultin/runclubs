@@ -18,6 +18,8 @@ from zoneinfo import ZoneInfo
 import gspread
 from google.oauth2.service_account import Credentials
 
+from club_schedule import KLUBBAR_SHEET_ID, KLUBBAR_WORKSHEET, build_weekly_records, rows_from_values
+
 log = logging.getLogger(__name__)
 
 # ── Sheet config ─────────────────────────────────────────────────────────────
@@ -38,14 +40,15 @@ OVERRIDES_HEADERS = ["club", "date", "city", "action", "time", "location", "titl
 SPECIAL_HEADERS   = ["club", "title", "date", "time", "location", "city", "description", "link", "image_url"]
 
 CLUB_NAME_ALIASES = {
-    "dc runclub":              "Saucony Run Club Sverige",
-    "downtown camper run club": "Saucony Run Club Sverige",
-    "saucony run club":        "Saucony Run Club Sverige",
-    "slowrunners göteborg":    "Pace & People",
+    "dc runclub":               "Saucony & Downtown Camper",
+    "downtown camper run club": "Saucony & Downtown Camper",
+    "saucony run club":         "Saucony & Downtown Camper",
+    "saucony run club sverige": "Saucony & Downtown Camper",
+    "slowrunners göteborg":     "Pace & People",
     # Strava spells several clubs differently from the WeeklyRuns sheet. Map
     # them onto the sheet's name — the one the club's own page uses — so the
     # cards dedupe and the club filter lists each club once.
-    "saucony sverige":                           "Saucony Run Club Sverige",
+    "saucony sverige":                           "Saucony & Downtown Camper",
     "måndagsklubben_gbg":                        "Måndagsklubben",
     "göteborg running club (grc)":               "Göteborg Running Club",
     "rtc":                                       "Roberg Training Club (RTC)",
@@ -53,6 +56,12 @@ CLUB_NAME_ALIASES = {
     "nasci run club - för gravida & postpartum": "Nasci Run Club",
     "triple threshold running communion":        "Triple Threshold RC",
     "solemates run club":                        "Solemates Runclub",
+    # The club sheet (Klubbar) names a few clubs differently from the name
+    # their club page filters events on (CLUB_NAMES). Keep the page's name.
+    "mikkeller running club":                    "Mikkeller Running Club Stockholm",
+    "run collective":                            "Run Collective Stockholm",
+    "slowrunners":                               "Slowrunners Stockholm",
+    "ess running club":                          "ESS Runners Club",
 }
 
 # The Special Events sheet appends the venue to the club name
@@ -241,6 +250,51 @@ def fetch_weekly_runs(sheet_id: str) -> list[dict]:
     return records
 
 
+def fetch_klubbar() -> list[dict]:
+    """Rows of the club sheet (Klubbar), keyed by header, with "_row" numbers."""
+    def _do():
+        gc = _sheet_client()
+        sh = gc.open_by_key(KLUBBAR_SHEET_ID)
+        return sh.worksheet(KLUBBAR_WORKSHEET).get_all_values()
+    rows = rows_from_values(_with_retry(_do))
+    log.info("Fetched %d rows from Klubbar sheet", len(rows))
+    return rows
+
+
+def _link_slug(link: str) -> str:
+    path = re.sub(r"^https?://[^/]+", "", (link or "").strip()).strip("/")
+    return re.sub(r"\.html$", "", path.split("/")[-1]).casefold()
+
+
+def fetch_recurring_runs(sheet_id: str) -> list[dict]:
+    """Recurring club runs, in WeeklyRuns row shape, from the club sheet.
+
+    Until the Pass columns in Klubbar are verified, WeeklyRuns is a fallback:
+    its rows are kept for every club that has no Pass slot in Klubbar, and
+    used wholesale if Klubbar can't be read.
+    """
+    try:
+        records, _ = build_weekly_records(fetch_klubbar())
+    except (gspread.exceptions.APIError, gspread.exceptions.SpreadsheetNotFound,
+            gspread.exceptions.WorksheetNotFound) as e:
+        log.error("Kunde inte läsa Klubbar (%s) — använder bara WeeklyRuns", e)
+        return fetch_weekly_runs(sheet_id)
+
+    covered_names = {club_match_key(r["club"]) for r in records}
+    covered_slugs = {_link_slug(r["link"]) for r in records if r["link"]}
+    fallback = [
+        w for w in fetch_weekly_runs(sheet_id)
+        if club_match_key(w.get("club") or "") not in covered_names
+        and _link_slug(w.get("link") or "") not in covered_slugs
+    ]
+    if fallback:
+        log.warning("WeeklyRuns-fallback för klubbar utan pass i Klubbar: %s",
+                    ", ".join(sorted({(w.get("club") or "").strip() for w in fallback})))
+    log.info("%d återkommande pass från Klubbar, %d från WeeklyRuns-fallback",
+             len(records), len(fallback))
+    return records + fallback
+
+
 def fetch_overrides(sheet_id: str) -> dict[tuple[str, str], dict]:
     """Return a dict keyed by (club_lower, YYYY-MM-DD) → override row.
 
@@ -261,7 +315,7 @@ def fetch_overrides(sheet_id: str) -> dict[tuple[str, str], dict]:
     log.info("Fetched %d rows from Overrides sheet", len(records))
     result = {}
     for r in records:
-        club     = (r.get("club") or "").strip().lower()
+        club     = normalize_club_name(r.get("club") or "").lower()
         date_val = (r.get("date") or "").strip()
         if club and date_val:
             result[(club, date_val)] = r
