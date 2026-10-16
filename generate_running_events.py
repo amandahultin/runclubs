@@ -441,7 +441,7 @@ def pick_media(ev: dict, club_images: dict[str, dict], allow_map: bool = True) -
     return "initial", f'<span class="ev-initial" aria-hidden="true">{_e(_club_initial(ev))}</span>'
 
 
-def feed_card_html(ev: dict, club_images: dict[str, dict]) -> str:
+def feed_card_html(ev: dict, club_images: dict[str, dict], highlight: bool = False) -> str:
     """One /events card: full-height image left, content right."""
     source = ev.get("source") or ""
     club   = ev.get("club")   or ""
@@ -460,7 +460,7 @@ def feed_card_html(ev: dict, club_images: dict[str, dict]) -> str:
         except ValueError:
             pass
 
-    media_kind, media = pick_media(ev, club_images)
+    media_kind, media = pick_media(ev, club_images, allow_map=not highlight)
 
     if source == "weekly_run":
         badge = '<span class="ev-badge ev-badge--weekly">Weekly run</span>'
@@ -503,6 +503,8 @@ def feed_card_html(ev: dict, club_images: dict[str, dict]) -> str:
         cta_html = ""
 
     special = " ev-card--special" if source == "special" else ""
+    if highlight:
+        special += " ev-card--highlight"
     return (
         f'<article class="ev-card{special}" data-source="{_e(source)}" data-club="{_e(club)}">'
         f'<div class="ev-media ev-media--{media_kind}">{media}'
@@ -519,11 +521,59 @@ def feed_card_html(ev: dict, club_images: dict[str, dict]) -> str:
     )
 
 
+HIGHLIGHT_WINDOW_DAYS = 7
+
+
+def pick_highlight(events: list[dict], now: datetime | None = None) -> dict | None:
+    """Veckans höjdpunkt: a SpecialEvent with its own photo if there is one this week,
+    else another SpecialEvent, else the Strava event with most sign-ups, else the next event."""
+    now = now or datetime.now(STOCKHOLM).replace(tzinfo=None)
+    cutoff = now + timedelta(days=HIGHLIGHT_WINDOW_DAYS)
+
+    def upcoming(ev: dict) -> bool:
+        try:
+            return now <= datetime.fromisoformat(ev.get("date") or "") <= cutoff
+        except ValueError:
+            return False
+
+    week = [ev for ev in events if upcoming(ev)]
+    if not week:
+        return None
+
+    def has_photo(ev: dict) -> bool:
+        return bool(ev.get("image_url")) and not _is_route_map(ev["image_url"])
+
+    def signups(ev: dict) -> int:
+        digits = re.sub(r"\D", "", str(ev.get("engagement") or ""))
+        return int(digits) if digits else 0
+
+    specials = [ev for ev in week if ev.get("source") == "special"]
+    for pool in ([ev for ev in specials if has_photo(ev)], specials):
+        if pool:
+            return pool[0]
+    strava = [ev for ev in week if ev.get("source") == "strava" and signups(ev) > 0]
+    if strava:
+        return max(strava, key=signups)
+    return week[0]
+
+
+def highlight_section_html(ev: dict | None, club_images: dict[str, dict]) -> str:
+    if not ev:
+        return ""
+    return (
+        '<section class="highlight" aria-labelledby="highlight-heading">'
+        '<h2 class="section-heading" id="highlight-heading">Veckans höjdpunkt</h2>'
+        f'{feed_card_html(ev, club_images, highlight=True)}'
+        '</section>'
+    )
+
+
 def render_html(events: list[dict], generated_at: str) -> str:
     club_images = load_club_images()
     events_section, total_count, club_count = render_events_section(
         events, card_fn=lambda ev: feed_card_html(ev, club_images)
     )
+    highlight_section = highlight_section_html(pick_highlight(events), club_images)
     events_json = json.dumps(events, ensure_ascii=False)
 
     return f"""<!DOCTYPE html>
@@ -747,6 +797,17 @@ document.addEventListener('DOMContentLoaded',function(){{
 
     .events-layout {{ padding: 3rem 2rem; max-width: 1200px; margin: 0 auto; }}
 
+    .highlight {{ margin-bottom: 3.5rem; }}
+    .section-heading {{
+      font-family: 'Archivo Black', sans-serif;
+      font-size: 20px; letter-spacing: 2px; text-transform: uppercase; color: var(--ink);
+      margin-bottom: 1.25rem;
+    }}
+    .ev-card--highlight {{ min-height: 300px; border: 2px solid var(--peach); }}
+    .ev-card--highlight .ev-media {{ flex-basis: 45%; max-width: 480px; }}
+    .ev-card--highlight .ev-body {{ padding: 2rem 2.25rem; gap: 10px; }}
+    .ev-card--highlight .ev-title {{ font-size: 26px; line-height: 1.2; }}
+    .ev-card--highlight .ev-desc {{ font-size: 15px; -webkit-line-clamp: 3; }}
     .view-tabs {{
       display: inline-flex; gap: 4px; padding: 4px; margin-bottom: 2rem;
       background: #fff; border: 1px solid #EFE4E0; border-radius: 100px;
@@ -994,6 +1055,10 @@ document.addEventListener('DOMContentLoaded',function(){{
       .ev-media {{ flex-basis: 32%; }}
       .ev-body {{ padding: 1rem 1.1rem; gap: 6px; }}
       .ev-title {{ font-size: 16px; }}
+      .ev-card--highlight {{ flex-direction: column; }}
+      .ev-card--highlight .ev-media {{ flex-basis: auto; max-width: none; height: 200px; }}
+      .ev-card--highlight .ev-body {{ padding: 1.25rem 1.25rem 1.1rem; }}
+      .ev-card--highlight .ev-title {{ font-size: 21px; }}
       footer {{ padding: 2rem 1.25rem; grid-template-columns: 1fr; gap: 1.5rem; margin: 0; border-radius: 24px 24px 0 0; }}
     }}
   </style>
@@ -1088,6 +1153,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="filters-bar" id="filters-bar"></div>
 
   <div class="events-layout">
+    {highlight_section}
     <div class="view-tabs" role="tablist" aria-label="Välj vy">
       <button class="view-tab" role="tab" id="tab-upcoming" data-view="upcoming" aria-selected="true" aria-controls="events-container">Kommande event</button>
       <button class="view-tab" role="tab" id="tab-popular" data-view="popular" aria-selected="false" aria-controls="popular-container" tabindex="-1">Mest klickade</button>
