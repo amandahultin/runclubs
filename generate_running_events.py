@@ -429,6 +429,12 @@ _CAL_SVG = '<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="
 
 SITE_EVENTS_URL = "https://runclubs.se/events"
 
+# Gillningar och klick sparas i Supabase (se supabase/event_interactions.sql).
+# Den publika nyckeln är gjord för att ligga i webbläsarkod; tabellen är låst
+# bakom RLS och nås bara via RPC-funktionerna.
+SUPABASE_URL = "https://tyhtfaqsoiudtxoqmbpx.supabase.co"
+SUPABASE_PUBLISHABLE_KEY = "sb_publishable_y7x9-6Xojr40iuuZCZuRdg_2ny_M_W-"
+
 
 def ics_start(ev: dict) -> str:
     """Start for the .ics: UTC '20261017T070000Z', or '20261017' when the run has no time."""
@@ -1346,6 +1352,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <script>
     const events = {events_json};
+    const SUPABASE_URL = '{SUPABASE_URL}';
+    const SUPABASE_KEY = '{SUPABASE_PUBLISHABLE_KEY}';
 
     let activeClubs = new Set();
     let activeWeekdays = new Set();
@@ -1580,14 +1588,90 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       document.querySelectorAll('.ev-card').forEach(c => cardObserver.observe(c));
     }}
 
-    document.addEventListener('click', e => {{
+    // ── Gilla & statistik (Supabase) ────────────────────
+    function storeGet(key, fallback) {{
+      try {{ return JSON.parse(localStorage.getItem(key)) ?? fallback; }} catch (_) {{ return fallback; }}
+    }}
+    function storeSet(key, value) {{
+      try {{ localStorage.setItem(key, JSON.stringify(value)); }} catch (_) {{}}
+    }}
+    function visitorId() {{
+      let id = storeGet('rc_visitor', null);
+      if (!id) {{
+        id = (crypto.randomUUID ? crypto.randomUUID() : Date.now().toString(36) + Math.random().toString(36).slice(2));
+        storeSet('rc_visitor', id);
+      }}
+      return id;
+    }}
+    async function rpc(name, body) {{
+      const res = await fetch(SUPABASE_URL + '/rest/v1/rpc/' + name, {{
+        method: 'POST',
+        headers: {{ 'apikey': SUPABASE_KEY, 'Content-Type': 'application/json' }},
+        body: JSON.stringify(body),
+        keepalive: true,
+      }});
+      if (!res.ok) throw new Error(name + ' ' + res.status);
+      return res.json();
+    }}
+
+    const stats = new Map();                       // event id → {{likes, clicks, likes_7d, clicks_7d}}
+    const liked = new Set(storeGet('rc_likes', [])); // gillat i den här webbläsaren
+
+    function renderEventStats(id) {{
+      const s = stats.get(id) || {{ likes: 0 }};
+      document.querySelectorAll(`.ev-card[data-id="${{id}}"] .ev-like`).forEach(btn => {{
+        btn.setAttribute('aria-pressed', liked.has(id));
+        btn.querySelector('.ev-like-count').textContent = s.likes > 0 ? s.likes : '';
+      }});
+    }}
+    function renderAllStats() {{
+      new Set([...document.querySelectorAll('.ev-card[data-id]')].map(c => c.dataset.id)).forEach(renderEventStats);
+    }}
+
+    async function loadStats() {{
+      const ids = [...new Set([...document.querySelectorAll('.ev-card[data-id]')].map(c => c.dataset.id))];
+      try {{
+        const rows = await rpc('get_event_stats', {{ p_event_ids: ids }});
+        rows.forEach(r => stats.set(r.event_id, r));
+      }} catch (_) {{ /* utan statistik visas bara de lokala gillningarna */ }}
+      renderAllStats();
+      if (activeView === 'popular') buildPopularList();
+    }}
+
+    function setStat(id, patch) {{
+      stats.set(id, Object.assign({{ likes: 0, clicks: 0, likes_7d: 0, clicks_7d: 0 }}, stats.get(id), patch));
+    }}
+
+    document.addEventListener('click', async e => {{
       const btn = e.target.closest('.ev-like');
       if (!btn) return;
-      // TODO steg 15: spara gillningen mot endpointen.
-      btn.setAttribute('aria-pressed', btn.getAttribute('aria-pressed') !== 'true');
-      btn.classList.remove('pop');
-      void btn.offsetWidth;
-      btn.classList.add('pop');
+      const id = btn.closest('.ev-card').dataset.id;
+      const nowLiked = !liked.has(id);
+      const before = Object.assign({{}}, stats.get(id));
+
+      // Optimistiskt: uppdatera direkt, rätta efter svaret.
+      nowLiked ? liked.add(id) : liked.delete(id);
+      storeSet('rc_likes', [...liked]);
+      const delta = nowLiked ? 1 : -1;
+      setStat(id, {{ likes: Math.max(0, (before.likes || 0) + delta),
+                     likes_7d: Math.max(0, (before.likes_7d || 0) + delta) }});
+      renderEventStats(id);
+      if (nowLiked) {{
+        btn.classList.remove('pop');
+        void btn.offsetWidth;
+        btn.classList.add('pop');
+      }}
+
+      try {{
+        const [row] = await rpc(nowLiked ? 'like_event' : 'unlike_event', {{ p_event_id: id, p_visitor: visitorId() }});
+        if (row) setStat(id, {{ likes: row.likes, clicks: row.clicks }});
+      }} catch (_) {{
+        nowLiked ? liked.delete(id) : liked.add(id);
+        storeSet('rc_likes', [...liked]);
+        stats.set(id, before);
+        showToast('Kunde inte spara gillningen — försök igen');
+      }}
+      renderEventStats(id);
     }});
 
     let toastTimer;
@@ -1768,6 +1852,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       }});
     }}
     focusSharedEvent();
+    renderAllStats();
+    loadStats();
   </script>
   <script src="/sticky-instagram-cta.js" defer></script>
   <script src="newsletter.js"></script>
