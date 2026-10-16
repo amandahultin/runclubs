@@ -1664,11 +1664,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     const stats = new Map();                       // event id → {{likes, clicks, likes_7d, clicks_7d}}
     const liked = new Set(storeGet('rc_likes', [])); // gillat i den här webbläsaren
 
+    // Siffran vid hjärtat = gillningar + klick vidare till passet, så att ett klick
+    // räknas som att någon gillat (samma tal som "Mest klickade" rankar på).
     function renderEventStats(id) {{
-      const s = stats.get(id) || {{ likes: 0 }};
+      const s = stats.get(id) || {{}};
+      const count = (s.likes || 0) + (s.clicks || 0);
       document.querySelectorAll(`.ev-card[data-id="${{id}}"] .ev-like`).forEach(btn => {{
         btn.setAttribute('aria-pressed', liked.has(id));
-        btn.querySelector('.ev-like-count').textContent = s.likes > 0 ? s.likes : '';
+        btn.querySelector('.ev-like-count').textContent = count > 0 ? count : '';
+        btn.title = count > 0 ? `${{s.likes || 0}} gillningar · ${{s.clicks || 0}} klick` : '';
       }});
     }}
     function renderAllStats() {{
@@ -1860,8 +1864,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       const id = link.closest('.ev-card').dataset.id;
       const s = stats.get(id) || {{}};
       setStat(id, {{ clicks: (s.clicks || 0) + 1, clicks_7d: (s.clicks_7d || 0) + 1 }});
+      renderEventStats(id);
       rpc('click_event', {{ p_event_id: id, p_visitor: visitorId() }})
-        .then(([row]) => applyServerRow(id, row))
+        .then(([row]) => {{ applyServerRow(id, row); renderEventStats(id); }})
         .catch(() => {{}});
     }}
     document.addEventListener('click', trackPassClick);
