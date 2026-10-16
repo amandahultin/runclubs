@@ -754,6 +754,8 @@ document.addEventListener('DOMContentLoaded',function(){{
 <!-- End Google Tag Manager -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Adresser som "Waernsgatan 10 416 70" ska inte bli blå telefonlänkar i iOS Safari. -->
+  <meta name="format-detection" content="telephone=no, date=no, address=no, email=no">
   <title>{page["title"]}</title>
   <meta name="description" content="{page["description"]}">
   <meta property="og:title" content="{page["og_title"]}">
@@ -1074,6 +1076,11 @@ document.addEventListener('DOMContentLoaded',function(){{
       font-size: 13px; color: var(--ink-soft);
     }}
     .ev-club {{ font-weight: 600; }}
+    /* Om iOS ändå länkar något: behåll kortets färg. */
+    a[x-apple-data-detectors] {{
+      color: inherit !important; text-decoration: none !important;
+      font: inherit !important; pointer-events: none;
+    }}
     .ev-place {{ display: inline-flex; align-items: center; gap: 4px; }}
     .ev-place svg {{ flex-shrink: 0; }}
     .ev-chips {{ display: flex; flex-wrap: wrap; gap: 6px; }}
