@@ -20,6 +20,7 @@ import logging
 import os
 import re
 import sys
+import urllib.request
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
@@ -603,12 +604,36 @@ def _known_swedish(ev: dict) -> bool:
     )
 
 
-def pick_highlight(events: list[dict], now: datetime | None = None) -> dict | None:
+def fetch_event_stats(event_ids: list[str]) -> dict[str, dict]:
+    """Likes/clicks per event from Supabase (get_event_stats). {} if it can't be reached —
+    the page still builds, the highlight just falls back to the rules without likes."""
+    if not event_ids:
+        return {}
+    req = urllib.request.Request(
+        f"{SUPABASE_URL}/rest/v1/rpc/get_event_stats",
+        data=json.dumps({"p_event_ids": event_ids[:500]}).encode(),
+        headers={"apikey": SUPABASE_PUBLISHABLE_KEY, "Content-Type": "application/json"},
+    )
+    try:
+        with urllib.request.urlopen(req, timeout=15) as res:
+            return {row["event_id"]: row for row in json.load(res)}
+    except Exception as exc:  # noqa: BLE001 — never fail the build over stats
+        log.warning("Could not fetch event stats from Supabase: %s", exc)
+        return {}
+
+
+def pick_highlight(
+    events: list[dict],
+    now: datetime | None = None,
+    stats: dict[str, dict] | None = None,
+) -> dict | None:
     """Veckans höjdpunkt: a SpecialEvent with its own photo if there is one this week,
-    else another SpecialEvent, else the Strava event with most sign-ups, else the next
-    event — the last two only among events known to be in Sweden, Stockholm and
-    Göteborg first. No highlight rather than one abroad."""
+    else another SpecialEvent, else the week's most liked event (likes in the last 7
+    days), else the Strava event with most sign-ups, else the next event — the last
+    three only among events known to be in Sweden, Stockholm and Göteborg first.
+    No highlight rather than one abroad."""
     now = now or datetime.now(STOCKHOLM).replace(tzinfo=None)
+    stats = stats or {}
     cutoff = now + timedelta(days=HIGHLIGHT_WINDOW_DAYS)
 
     def upcoming(ev: dict) -> bool:
@@ -634,6 +659,16 @@ def pick_highlight(events: list[dict], now: datetime | None = None) -> dict | No
             return pool[0]
     swedish = [ev for ev in week if _known_swedish(ev)]
     big_cities = [ev for ev in swedish if ev.get("city") in ("Stockholm", "Göteborg")]
+
+    def weekly_likes(ev: dict) -> tuple[int, int, bool]:
+        s = stats.get(event_id(ev)) or {}
+        return (s.get("likes_7d") or 0, s.get("likes") or 0, ev.get("city") in ("Stockholm", "Göteborg"))
+
+    liked = [ev for ev in swedish if weekly_likes(ev)[0] > 0]
+    if liked:
+        # max() keeps the first of equals, and the week is in date order → earliest wins ties.
+        return max(liked, key=weekly_likes)
+
     for pool in (big_cities, swedish):
         strava = [ev for ev in pool if ev.get("source") == "strava" and signups(ev) > 0]
         if strava:
@@ -696,7 +731,8 @@ def render_html(events: list[dict], generated_at: str, page: dict | None = None)
     events_section, total_count, club_count = render_events_section(
         events, card_fn=lambda ev: feed_card_html(ev, club_images)
     )
-    highlight_section = highlight_section_html(pick_highlight(events), club_images)
+    stats = fetch_event_stats([event_id(ev) for ev in events])
+    highlight_section = highlight_section_html(pick_highlight(events, stats=stats), club_images)
     events_json = json.dumps(events, ensure_ascii=False)
 
     return f"""<!DOCTYPE html>
