@@ -13,6 +13,7 @@ Usage:
 
 from __future__ import annotations
 
+import hashlib
 import html
 import json
 import logging
@@ -422,6 +423,23 @@ def _club_initial(ev: dict) -> str:
 
 _HEART_SVG = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1.1L12 21l7.8-7.5 1-1.1a5.5 5.5 0 0 0 0-7.8z"/></svg>'
 
+_SHARE_SVG = '<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12v7a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>'
+
+SITE_EVENTS_URL = "https://runclubs.se/events"
+
+
+def event_id(ev: dict) -> str:
+    """Stable per-occurrence id: same club run on the same day keeps its id across rebuilds,
+    even if the start time is moved. Used for share links, likes and clicks."""
+    key = "|".join((
+        ev.get("source") or "",
+        club_match_key(ev.get("club") or ""),
+        (ev.get("date") or "")[:10],
+        ev.get("link") or ev.get("title") or "",
+    ))
+    return hashlib.sha1(key.encode("utf-8")).hexdigest()[:10]
+
+
 MEDIA_LABELS = {"photo": "Eventfoto", "map": "Karta", "club": "Klubbkort", "initial": "Initial"}
 
 
@@ -507,8 +525,12 @@ def feed_card_html(ev: dict, club_images: dict[str, dict], highlight: bool = Fal
     special = " ev-card--special" if source == "special" else ""
     if highlight:
         special += " ev-card--highlight"
+    eid = event_id(ev)
+    # Only the list card carries the anchor id; the highlight is a second copy of the same event.
+    anchor = "" if highlight else f' id="ev-{eid}"'
+    share_url = f"{SITE_EVENTS_URL}#ev-{eid}"
     return (
-        f'<article class="ev-card{special}" data-source="{_e(source)}" data-club="{_e(club)}">'
+        f'<article class="ev-card{special}"{anchor} data-id="{eid}" data-source="{_e(source)}" data-club="{_e(club)}">'
         f'<div class="ev-media ev-media--{media_kind}">{media}'
         f'<span class="ev-media-label">{MEDIA_LABELS[media_kind]}</span></div>'
         f'<div class="ev-body">'
@@ -520,6 +542,8 @@ def feed_card_html(ev: dict, club_images: dict[str, dict], highlight: bool = Fal
         f'<div class="ev-actions">'
         f'<button type="button" class="ev-like" aria-pressed="false" aria-label="Gilla {_e(title)}">'
         f'{_HEART_SVG}<span class="ev-like-count"></span></button>'
+        f'<button type="button" class="ev-share" data-url="{_e(share_url)}" data-title="{_e(title)}" '
+        f'aria-label="Dela {_e(title)}">{_SHARE_SVG}</button>'
         f'{eng_html}{cta_html}</div>'
         f'</div>'
         f'</article>'
@@ -951,6 +975,24 @@ document.addEventListener('DOMContentLoaded',function(){{
       70% {{ transform: scale(0.92); }}
       100% {{ transform: scale(1); }}
     }}
+    .ev-share {{
+      display: inline-flex; align-items: center; justify-content: center;
+      background: none; border: none; padding: 4px; margin: -4px 0;
+      color: var(--ink-soft); cursor: pointer; border-radius: 8px;
+      transition: color 0.2s;
+    }}
+    .ev-share:hover {{ color: var(--accent-ink); }}
+    .ev-share:focus-visible {{ outline: 2px solid var(--accent-ink); outline-offset: 2px; }}
+    .ev-card.is-target {{ box-shadow: 0 0 0 3px var(--peach-deep), 0 14px 36px rgba(238,154,120,0.3); }}
+    .toast {{
+      position: fixed; left: 50%; bottom: 24px; z-index: 1100;
+      transform: translate(-50%, 20px); opacity: 0; pointer-events: none;
+      background: var(--ink); color: #fff; font-size: 14px; font-weight: 500;
+      padding: 11px 18px; border-radius: 100px;
+      box-shadow: 0 10px 30px rgba(31,27,24,0.25);
+      transition: opacity 0.25s ease, transform 0.25s ease;
+    }}
+    .toast.show {{ opacity: 1; transform: translate(-50%, 0); }}
     .ev-cta {{
       margin-left: auto;
       font-size: 12px; font-weight: 600; letter-spacing: 0.5px;
@@ -1504,7 +1546,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       activeWeekdays.forEach(d => params.append('weekday', d));
       activeClubs.forEach(c => params.append('club', c));
       const qs = params.toString();
-      history.replaceState(null, '', qs ? '?' + qs : location.pathname);
+      history.replaceState(null, '', (qs ? '?' + qs : location.pathname) + location.hash);
     }}
 
     if (document.documentElement.classList.contains('motion')) {{
@@ -1527,6 +1569,81 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       void btn.offsetWidth;
       btn.classList.add('pop');
     }});
+
+    let toastTimer;
+    function showToast(text) {{
+      let toast = document.getElementById('toast');
+      if (!toast) {{
+        toast = document.createElement('div');
+        toast.id = 'toast';
+        toast.className = 'toast';
+        toast.setAttribute('role', 'status');
+        toast.setAttribute('aria-live', 'polite');
+        document.body.appendChild(toast);
+      }}
+      toast.textContent = text;
+      toast.classList.add('show');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.remove('show'), 2400);
+    }}
+
+    async function copyText(text) {{
+      try {{
+        await navigator.clipboard.writeText(text);
+        return true;
+      }} catch (_) {{
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        ta.setAttribute('readonly', '');
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        let ok = false;
+        try {{ ok = document.execCommand('copy'); }} catch (_) {{}}
+        ta.remove();
+        return ok;
+      }}
+    }}
+
+    // Mobil: systemets delningsmeny. Desktop: kopiera länken.
+    const useNativeShare = !!navigator.share && matchMedia('(pointer: coarse)').matches;
+    document.addEventListener('click', async e => {{
+      const btn = e.target.closest('.ev-share');
+      if (!btn) return;
+      const url = btn.dataset.url;
+      if (useNativeShare) {{
+        try {{ await navigator.share({{ title: btn.dataset.title, url }}); }} catch (_) {{}}
+        return;
+      }}
+      showToast(await copyText(url) ? 'Länken är kopierad ✓' : url);
+    }});
+
+    function focusSharedEvent() {{
+      const m = location.hash.match(/^#ev-([0-9a-f]{{10}})$/);
+      if (!m) return;
+      const card = document.getElementById('ev-' + m[1]);
+      if (!card) {{
+        showToast('Det här eventet har redan varit');
+        return;
+      }}
+      if (card.hidden || activeView !== 'upcoming') {{
+        // Visa kortet även om ett filter eller en annan vy dolde det.
+        activeClubs.clear();
+        activeWeekdays.clear();
+        setView('upcoming');
+        renderFilters();
+        applyFilters();
+        syncURL();
+      }}
+      card.classList.add('is-in', 'is-target');
+      const scrollToCard = () => card.scrollIntoView({{ block: 'center', behavior: 'instant' }});
+      scrollToCard();
+      // Typsnitt och bilder kan flytta layouten — scrolla om när sidan har laddat klart.
+      if (document.readyState !== 'complete') window.addEventListener('load', scrollToCard, {{ once: true }});
+      setTimeout(() => card.classList.remove('is-target'), 4000);
+    }}
+    window.addEventListener('hashchange', focusSharedEvent);
 
     const observer = new IntersectionObserver(entries => {{
       entries.forEach(e => {{ if (e.isIntersecting) e.target.classList.add('visible'); }});
@@ -1558,6 +1675,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         if (targetPill) targetPill.classList.add('active');
       }});
     }}
+    focusSharedEvent();
   </script>
   <script src="/sticky-instagram-cta.js" defer></script>
   <script src="newsletter.js"></script>
