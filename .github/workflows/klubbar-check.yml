@@ -29,6 +29,17 @@ jobs:
           GOOGLE_SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}
           GOOGLE_SHEET_ID: ${{ secrets.EVENTS_SHEET_ID }}
         run: python generate_running_events.py /tmp/events.html 2>&1 | grep -E "WARNING|återkommande|Fetched"
+      - name: Show the newest club rows
+        env:
+          GOOGLE_SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}
+        run: |
+          python - <<'PY'
+          from events_common import fetch_klubbar
+          from club_schedule import PASS_COLUMNS
+          for r in fetch_klubbar()[-3:]:
+              cols = ["Klubbnamn", "Slug", "Region", "Status", "Träningsdag", "Tid", *PASS_COLUMNS]
+              print(r["_row"], {c: r.get(c, "<saknas>") for c in cols})
+          PY
       - name: Weekly runs per club
         run: |
           python - <<'PY'
