@@ -391,14 +391,14 @@ document.addEventListener('DOMContentLoaded',function(){{
       color: var(--accent-ink); margin-bottom: 1rem; font-weight: 400;
     }}
     .page-header h1 {{
-      font-family: 'Archivo Black', sans-serif;
-      font-size: clamp(36px, 6vw, 64px);
-      line-height: 0.95; text-transform: uppercase;
-      color: var(--accent-ink); letter-spacing: -1px; margin-bottom: 1rem;
+      font-family: 'DM Sans', sans-serif; font-weight: 600;
+      font-size: clamp(34px, 5.5vw, 58px);
+      line-height: 1.08; letter-spacing: -0.02em;
+      color: var(--accent-ink); margin-bottom: 1.25rem;
     }}
     .page-header p {{
-      font-size: 15px; color: rgba(31,27,24,0.75);
-      line-height: 1.7; max-width: 480px;
+      font-size: 16px; color: rgba(31,27,24,0.75);
+      line-height: 1.75; max-width: 520px;
     }}
 
     .stats-bar {{
@@ -408,7 +408,7 @@ document.addEventListener('DOMContentLoaded',function(){{
     }}
     .stat-item {{ display: flex; align-items: center; gap: 8px; }}
     .stat-number {{
-      font-family: 'Archivo Black', sans-serif;
+      font-family: 'DM Sans', sans-serif; font-weight: 600;
       font-size: 22px; color: var(--ink); line-height: 1;
     }}
     .stat-label {{
@@ -473,8 +473,8 @@ document.addEventListener('DOMContentLoaded',function(){{
     .view-tab[aria-selected="true"] {{ background: var(--ink); color: var(--bg); }}
     .view-tab:focus-visible {{ outline: 2px solid var(--accent-ink); outline-offset: 2px; }}
 
-    .date-group {{ margin-bottom: 3rem; }}
-    .date-heading {{ display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; }}
+    .date-group {{ margin-bottom: 4rem; }}
+    .date-heading {{ display: flex; align-items: center; gap: 1.25rem; margin-bottom: 1.75rem; }}
     .date-name {{
       font-family: 'Archivo Black', sans-serif;
       font-size: 20px; letter-spacing: 2px; text-transform: uppercase; color: var(--ink);
@@ -485,7 +485,7 @@ document.addEventListener('DOMContentLoaded',function(){{
     .events-grid {{
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 16px;
+      gap: 24px;
     }}
 
     .event-card {{
@@ -560,7 +560,7 @@ document.addEventListener('DOMContentLoaded',function(){{
     .event-date-block.no-date {{ background: linear-gradient(160deg, #F3ECE6, #E6DBD2); }}
 
     .event-day-num {{
-      font-family: 'Archivo Black', sans-serif;
+      font-family: 'DM Sans', sans-serif; font-weight: 600;
       font-size: 32px; line-height: 1; color: var(--ink);
     }}
     .event-month-abbr {{
@@ -574,8 +574,8 @@ document.addEventListener('DOMContentLoaded',function(){{
     .event-date-block.no-date .event-day-num {{ font-size: 20px; letter-spacing: 2px; }}
 
     .event-card-body {{
-      padding: 1rem 1.25rem;
-      flex: 1; display: flex; flex-direction: column; gap: 6px;
+      padding: 1.25rem 1.5rem;
+      flex: 1; display: flex; flex-direction: column; gap: 8px;
     }}
     .event-source-row {{ display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }}
     .source-badge {{
@@ -595,16 +595,15 @@ document.addEventListener('DOMContentLoaded',function(){{
       color: #aaa;
     }}
     .event-title {{
-      font-family: 'DM Sans', sans-serif; font-weight: 700;
-      font-size: 17px; text-transform: uppercase;
-      letter-spacing: 0.5px; line-height: 1.2; color: var(--ink);
+      font-family: 'DM Sans', sans-serif; font-weight: 600;
+      font-size: 18px; letter-spacing: -0.01em; line-height: 1.3; color: var(--ink);
     }}
     .event-location {{
       display: flex; align-items: center; gap: 5px;
       font-size: 12px; color: #999;
     }}
     .event-desc {{
-      font-size: 12px; color: #666; line-height: 1.55;
+      font-size: 13px; color: #666; line-height: 1.65;
       display: -webkit-box; -webkit-line-clamp: 3;
       -webkit-box-orient: vertical; overflow: hidden;
       margin-top: 2px;
