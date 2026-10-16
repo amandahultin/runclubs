@@ -359,7 +359,7 @@ def feed_card_html(ev: dict, club_images: dict[str, dict]) -> str:
     if source == "weekly_run":
         badge = '<span class="ev-badge ev-badge--weekly">Weekly run</span>'
     elif source == "special":
-        badge = '<span class="ev-badge ev-badge--special">Special Event</span>'
+        badge = '<span class="ev-badge ev-badge--event">Event</span>'
     elif source == "strava":
         badge = '<span class="ev-badge ev-badge--strava">Strava</span>'
     else:
@@ -708,7 +708,7 @@ document.addEventListener('DOMContentLoaded',function(){{
     }}
     .ev-badge--strava  {{ background: #FC5200; color: #fff; }}
     .ev-badge--weekly  {{ background: #D8F3DC; color: #1B4332; }}
-    .ev-badge--special {{ background: var(--peach); color: var(--ink); }}
+    .ev-badge--event   {{ background: var(--ink); color: #fff; }}
     .ev-when {{ font-size: 13px; font-weight: 600; color: var(--ink-soft); }}
     .ev-title {{
       font-family: 'DM Sans', sans-serif; font-weight: 600;
