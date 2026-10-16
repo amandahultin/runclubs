@@ -278,7 +278,7 @@ document.addEventListener('DOMContentLoaded',function(){{
   <meta property="og:image" content="https://runclubs.se/stockholm-run-clubs.jpeg">
   <link rel="canonical" href="https://runclubs.se/events">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:ital,wght@1,900&family=Oswald:wght@500;700&family=DM+Sans:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Oswald:wght@500;700&family=DM+Sans:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <style>
@@ -316,11 +316,16 @@ document.addEventListener('DOMContentLoaded',function(){{
       text-transform: uppercase; letter-spacing: 2px;
       color: var(--ink); text-decoration: none;
     }}
-    .run-clubs-logo {{ display: inline-flex; align-items: baseline; font-size: 36px; color: var(--ink); text-decoration: none; }}
-    .run-clubs-logo .run {{ font-family: 'Inter', sans-serif; font-weight: 900; font-style: italic; letter-spacing: -0.04em; padding-right: 2px; }}
-    .run-clubs-logo .clubs {{ font-family: 'Playfair Display', serif; font-weight: 400; letter-spacing: -0.02em; }}
-    .run-clubs-logo .suffix {{ font-family: 'Playfair Display', serif; font-size: 0.45em; font-weight: 400; text-transform: lowercase; margin-left: 2px; }}
-    .footer-brand .run-clubs-logo {{ font-size: 28px; display: block; margin-bottom: 0.75rem; }}
+    .run-clubs-logo {{
+      display: inline-flex; align-items: baseline;
+      font-family: 'Archivo Black', sans-serif; font-size: 24px; letter-spacing: -0.02em;
+      color: var(--ink); text-decoration: none;
+    }}
+    .run-clubs-logo .run {{ color: var(--ink); }}
+    .run-clubs-logo .clubs {{ color: #9A918A; }}
+    .run-clubs-logo .suffix {{ font-size: 0.5em; text-transform: lowercase; margin-left: 1px; color: #9A918A; }}
+    .nl-badge .run-clubs-logo, .nl-badge .run-clubs-logo span {{ color: inherit; font-size: 1em; }}
+    .footer-brand .run-clubs-logo {{ font-size: 26px; display: inline-flex; margin-bottom: 0.75rem; }}
     .nav-links {{ display: flex; gap: 2rem; }}
     .nav-links a {{
       font-size: 12px; letter-spacing: 0.5px; text-decoration: none;
@@ -396,6 +401,13 @@ document.addEventListener('DOMContentLoaded',function(){{
       line-height: 1.08; letter-spacing: -0.02em;
       color: var(--accent-ink); margin-bottom: 1.25rem;
     }}
+    .live-badge {{
+      display: inline-flex; align-items: center; gap: 8px; margin-top: 1.5rem;
+      padding: 7px 14px; border-radius: 100px;
+      background: rgba(255,255,255,0.7); color: var(--ink);
+      font-size: 12px; font-weight: 600; letter-spacing: 0.2px;
+    }}
+    .live-dot {{ width: 8px; height: 8px; border-radius: 50%; background: #FC5200; flex-shrink: 0; }}
     .page-header p {{
       font-size: 16px; color: rgba(31,27,24,0.75);
       line-height: 1.75; max-width: 520px;
@@ -784,8 +796,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="page-header-inner">
       <div class="breadcrumb"><a href="/">Start</a> → Running Events</div>
       <div class="page-header-tag">Alla städer</div>
-      <h1>Kommande<br>Events och Weekly runs</h1>
-      <p>Alla kommande running events från Strava och weekly runs från löpargrupper, run clubs och run crews i Stockholm, Göteborg och övriga landet.</p>
+      <h1>Kommande Events och Weekly runs</h1>
+      <p>Running events, weekly runs och social runs med run clubs och löpargrupper i Stockholm, Göteborg och övriga landet. Hitta ett pass att springa med den här veckan.</p>
+      <div class="live-badge"><span class="live-dot" aria-hidden="true"></span>Direkt från Strava · uppdateras varje dag</div>
     </div>
   </header>
 
@@ -849,7 +862,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <section class="nl-section fade-in">
     <div class="nl-body">
-      <div class="nl-badge">Prenumerera på <span class="run-clubs-logo" style="font-size:1em;color:var(--accent-ink);"><span class="run">RUN</span><span class="clubs">CLUBS</span><span class="suffix">.se</span></span> veckobrev</div>
+      <div class="nl-badge">Prenumerera på <span class="run-clubs-logo"><span class="run">RUN</span><span class="clubs">CLUBS</span><span class="suffix">.se</span></span> veckobrev</div>
       <h2 class="nl-title">Inbjudningar,<br><em>events</em> och<br>promo runs.</h2>
       <p class="nl-desc">Varje söndag får du en sammanställning av vad som händer kommande vecka — veckans pass, nyheter, intervjuer och events. Gratis så klart!</p>
       <form class="newsletter-form" data-placement="page-mid" onsubmit="return false;">
