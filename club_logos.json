@@ -1,0 +1,10 @@
+{
+  "_info": "Logotyp för klubbar som saknar klubbkort på stadssidorna. Används på eventkorten när eventet saknar eget foto/karta. Nyckel = klubbens namn (som i Strava eller WeeklyRuns), värde = bildfil i repot.",
+  "Malmö Gerillalöpare": "/malmo-gerillalopare-logo.png",
+  "Founders Running Club": "/founders-running-club-logo.jpg",
+  "Run with ASICS FrontRunner Sweden": "/asics-frontrunner-sweden-logo.png",
+  "Vitargo Runclub": "/vitargo-runclub-logo.png",
+  "Vitamin Well": "/vitamin-well-logo.png",
+  "Strawberry Run Club": "/strawberry-run-club-logo.jpg",
+  "Sandsjöbacka Trail": "/sandsjobacka-trail-logo.png"
+}
