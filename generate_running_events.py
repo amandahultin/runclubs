@@ -1523,8 +1523,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     const viewTabs = [...document.querySelectorAll('.view-tab')];
     let activeView = 'upcoming';
 
-    // Popularitet = gillningar + klick. Lika poäng → tidigast datum först.
+    // Popularitet = gillningar + klick de senaste 7 dagarna (rullande vecka), så att
+    // gammal aktivitet faller bort och återkommande weekly runs inte toppar för alltid.
+    // Varje tillfälle har dessutom eget id (datum ingår), så nästa veckas pass börjar på noll.
+    // Lika veckopoäng → flest totalt → tidigast datum.
     function popularityScore(card) {{
+      const s = stats.get(card.dataset.id);
+      return s ? s.likes_7d + s.clicks_7d : 0;
+    }}
+    function popularityTotal(card) {{
       const s = stats.get(card.dataset.id);
       return s ? s.likes + s.clicks : 0;
     }}
@@ -1532,8 +1539,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     function buildPopularList() {{
       const cards = [...upcomingContainer.querySelectorAll('[data-source]')];
       const ranked = cards
-        .map((card, i) => ({{ card, i, score: popularityScore(card) }}))
-        .sort((a, b) => b.score - a.score || a.i - b.i);
+        .map((card, i) => ({{ card, i, score: popularityScore(card), total: popularityTotal(card) }}))
+        .sort((a, b) => b.score - a.score || b.total - a.total || a.i - b.i);
       popularContainer.replaceChildren(...ranked.map(({{ card }}) => {{
         const clone = card.cloneNode(true);
         clone.hidden = card.hidden;
