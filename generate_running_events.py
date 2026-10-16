@@ -919,6 +919,17 @@ document.addEventListener('DOMContentLoaded',function(){{
     .ev-card--highlight .ev-body {{ padding: 2rem 2.25rem; gap: 10px; }}
     .ev-card--highlight .ev-title {{ font-size: 26px; line-height: 1.2; }}
     .ev-card--highlight .ev-desc {{ font-size: 15px; -webkit-line-clamp: 3; }}
+    .club-notice {{
+      display: flex; align-items: center; flex-wrap: wrap; gap: 6px 12px;
+      margin-bottom: 1.25rem; padding: 10px 16px; border-radius: 14px;
+      background: var(--peach-soft); color: var(--ink); font-size: 14px;
+    }}
+    .club-notice[hidden] {{ display: none; }}
+    .club-notice button {{
+      background: none; border: none; padding: 0; cursor: pointer;
+      font: inherit; font-weight: 600; color: var(--accent-ink);
+      text-decoration: underline; text-underline-offset: 2px;
+    }}
     .view-tabs {{
       display: inline-flex; gap: 4px; padding: 4px; margin-bottom: 2rem;
       background: #fff; border: 1px solid #EFE4E0; border-radius: 100px;
@@ -1331,6 +1342,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="filters-bar" id="filters-bar"></div>
 
   <div class="events-layout">
+    <div id="club-notice" class="club-notice" role="status" hidden></div>
     {highlight_section}
     <div class="view-tabs" role="tablist" aria-label="Välj vy">
       <button class="view-tab" role="tab" id="tab-upcoming" data-view="upcoming" aria-selected="true" aria-controls="events-container">Kommande event</button>
@@ -1461,9 +1473,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     }});
 
     function renderFilters() {{
-      const clubs = [...new Set(events.map(ev => ev.club || '').filter(Boolean))]
-        .sort((a, b) => a.localeCompare(b, 'sv'));
-      const hasOvrigt = events.some(ev => !ev.club);
       const bar = document.getElementById('filters-bar');
       if (!bar) return;
 
@@ -1471,12 +1480,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       WEEKDAYS.forEach(day => {{
         weekdayPillsHtml += `<button class="filter-pill" data-filter="weekday" data-value="${{day}}">${{day}}</button>`;
       }});
-
-      let pillsHtml = `<button class="filter-pill active" data-filter="club" data-value="all">Alla</button>`;
-      clubs.forEach(club => {{
-        pillsHtml += `<button class="filter-pill" data-filter="club" data-value="${{club.replace(/&/g,'&amp;').replace(/"/g,'&quot;')}}">${{club.replace(/&/g,'&amp;')}}</button>`;
-      }});
-      if (hasOvrigt) pillsHtml += `<button class="filter-pill" data-filter="club" data-value="__ovrigt__">Övrigt</button>`;
 
       bar.innerHTML = `
         <button class="filter-toggle" id="filter-toggle" aria-expanded="false" aria-controls="filters-inner">
@@ -1488,7 +1491,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </button>
         <div class="filters-inner" id="filters-inner">
           <div class="filter-group"><span class="filter-label">Veckodag</span>${{weekdayPillsHtml}}</div>
-          <div class="filter-group"><span class="filter-label">Klubb</span>${{pillsHtml}}</div>
           <button class="close-filters" id="close-filters">Stäng</button>
         </div>`;
 
@@ -1510,31 +1512,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             }}
             if (activeWeekdays.size === 0) {{
               bar.querySelector('[data-filter="weekday"][data-value="all"]').classList.add('active');
-            }}
-          }}
-          syncURL();
-          applyFilters();
-        }});
-      }});
-
-      bar.querySelectorAll('[data-filter="club"]').forEach(btn => {{
-        btn.addEventListener('click', function() {{
-          const val = this.dataset.value;
-          if (val === 'all') {{
-            activeClubs.clear();
-            bar.querySelectorAll('[data-filter="club"]').forEach(b => b.classList.remove('active'));
-            this.classList.add('active');
-          }} else {{
-            bar.querySelector('[data-filter="club"][data-value="all"]').classList.remove('active');
-            if (activeClubs.has(val)) {{
-              activeClubs.delete(val);
-              this.classList.remove('active');
-            }} else {{
-              activeClubs.add(val);
-              this.classList.add('active');
-            }}
-            if (activeClubs.size === 0) {{
-              bar.querySelector('[data-filter="club"][data-value="all"]').classList.add('active');
             }}
           }}
           syncURL();
@@ -1879,6 +1856,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         // Visa kortet även om ett filter eller en annan vy dolde det.
         activeClubs.clear();
         activeWeekdays.clear();
+        renderClubNotice();
         setView('upcoming');
         renderFilters();
         applyFilters();
@@ -1900,8 +1878,40 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     const _weekdayParams = new URLSearchParams(window.location.search).getAll('weekday');
     _weekdayParams.forEach(d => activeWeekdays.add(d));
+    // Klubbfiltret har inga knappar längre, men länkar med ?club= (bl.a. från ChatGPT)
+    // ska fortsätta fungera. Matcha förlåtande: "Måndagsklubben_gbg" → Måndagsklubben,
+    // och "Pace " från en okodad "Pace & People"-länk → Pace & People-klubbarna.
+    const clubKey = s => s.toLowerCase().replace(/[^0-9a-zåäöéü]/g, '');
+    function resolveClubParam(param) {{
+      const want = clubKey(param);
+      if (!want) return [];
+      const clubs = [...new Set(events.map(ev => ev.club).filter(Boolean))];
+      const exact = clubs.filter(c => clubKey(c) === want);
+      if (exact.length) return exact;
+      return clubs.filter(c => {{ const k = clubKey(c); return k.startsWith(want) || want.startsWith(k); }});
+    }}
     const _clubParams = new URLSearchParams(window.location.search).getAll('club');
-    _clubParams.forEach(c => activeClubs.add(c));
+    _clubParams.forEach(c => resolveClubParam(c).forEach(club => activeClubs.add(club)));
+
+    function renderClubNotice() {{
+      const box = document.getElementById('club-notice');
+      if (!box) return;
+      box.hidden = activeClubs.size === 0;
+      // Höjdpunkten gäller hela listan, inte den filtrerade klubben.
+      const highlight = document.querySelector('.highlight');
+      if (highlight) highlight.hidden = !box.hidden;
+      if (box.hidden) return;
+      const esc = s => s.replace(/&/g, '&amp;').replace(/</g, '&lt;');
+      box.innerHTML = `<span>Visar bara <strong>${{[...activeClubs].map(esc).join(', ')}}</strong></span>`
+        + `<button type="button" id="clear-club">Visa alla</button>`;
+      document.getElementById('clear-club').addEventListener('click', () => {{
+        activeClubs.clear();
+        renderClubNotice();
+        applyFilters();
+        syncURL();
+      }});
+    }}
+    renderClubNotice();
 
     setView(new URLSearchParams(window.location.search).get('view'));
     renderFilters();
@@ -1912,14 +1922,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       if (allWeekdayPill) allWeekdayPill.classList.remove('active');
       _weekdayParams.forEach(d => {{
         const targetPill = document.querySelector(`[data-filter="weekday"][data-value="${{d}}"]`);
-        if (targetPill) targetPill.classList.add('active');
-      }});
-    }}
-    if (_clubParams.length > 0) {{
-      const allPill = document.querySelector('[data-filter="club"][data-value="all"]');
-      if (allPill) allPill.classList.remove('active');
-      _clubParams.forEach(c => {{
-        const targetPill = document.querySelector(`[data-filter="club"][data-value="${{c}}"]`);
         if (targetPill) targetPill.classList.add('active');
       }});
     }}
