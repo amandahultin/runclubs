@@ -29,7 +29,7 @@ from pathlib import Path
 from club_schedule import (
     DAY_NAMES,
     KLUBBAR_SHEET_ID,
-    KLUBBAR_WORKSHEET,
+    KLUBBAR_WORKSHEET_ID,
     PASS_COLUMNS,
     PASS_SLOTS,
     clean,
@@ -272,7 +272,8 @@ def main() -> int:
     args = ap.parse_args()
 
     sh = _sheet_client().open_by_key(KLUBBAR_SHEET_ID)
-    ws = sh.worksheet(KLUBBAR_WORKSHEET)
+    ws = sh.get_worksheet_by_id(KLUBBAR_WORKSHEET_ID)
+    log.info("Klubbflik: %r", ws.title)
     values = ws.get_all_values()
     headers = [clean(h) for h in values[0]]
     rows = rows_from_values(values)

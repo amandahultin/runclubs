@@ -19,7 +19,8 @@ import re
 log = logging.getLogger(__name__)
 
 KLUBBAR_SHEET_ID  = "1AsJZGQ8pLDreABBPpVus94ieWjyISBaCAiI4SKeCNDo"
-KLUBBAR_WORKSHEET = "Klubbar"
+# The club tab is gid 0 — the same tab generate_club.py exports as CSV.
+KLUBBAR_WORKSHEET_ID = 0
 
 PASS_SLOTS = 3
 PASS_FIELDS = ("dag", "tid", "plats")

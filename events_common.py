@@ -18,7 +18,7 @@ from zoneinfo import ZoneInfo
 import gspread
 from google.oauth2.service_account import Credentials
 
-from club_schedule import KLUBBAR_SHEET_ID, KLUBBAR_WORKSHEET, build_weekly_records, rows_from_values
+from club_schedule import KLUBBAR_SHEET_ID, KLUBBAR_WORKSHEET_ID, build_weekly_records, rows_from_values
 
 log = logging.getLogger(__name__)
 
@@ -255,7 +255,7 @@ def fetch_klubbar() -> list[dict]:
     def _do():
         gc = _sheet_client()
         sh = gc.open_by_key(KLUBBAR_SHEET_ID)
-        return sh.worksheet(KLUBBAR_WORKSHEET).get_all_values()
+        return sh.get_worksheet_by_id(KLUBBAR_WORKSHEET_ID).get_all_values()
     rows = rows_from_values(_with_retry(_do))
     log.info("Fetched %d rows from Klubbar sheet", len(rows))
     return rows
