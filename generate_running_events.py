@@ -420,6 +420,8 @@ def _club_initial(ev: dict) -> str:
     return "•"
 
 
+_HEART_SVG = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1.1L12 21l7.8-7.5 1-1.1a5.5 5.5 0 0 0 0-7.8z"/></svg>'
+
 MEDIA_LABELS = {"photo": "Eventfoto", "map": "Karta", "club": "Klubbkort", "initial": "Initial"}
 
 
@@ -515,7 +517,10 @@ def feed_card_html(ev: dict, club_images: dict[str, dict], highlight: bool = Fal
         f'<div class="ev-meta">{meta}</div>'
         f'{chips_html}'
         f'{desc_html}'
-        f'<div class="ev-actions">{eng_html}{cta_html}</div>'
+        f'<div class="ev-actions">'
+        f'<button type="button" class="ev-like" aria-pressed="false" aria-label="Gilla {_e(title)}">'
+        f'{_HEART_SVG}<span class="ev-like-count"></span></button>'
+        f'{eng_html}{cta_html}</div>'
         f'</div>'
         f'</article>'
     )
@@ -928,6 +933,24 @@ document.addEventListener('DOMContentLoaded',function(){{
     }}
     .ev-actions > * {{ position: relative; z-index: 1; }}
     .ev-engagement {{ font-size: 12px; font-weight: 500; color: #aaa; }}
+    .ev-like {{
+      display: inline-flex; align-items: center; gap: 5px;
+      background: none; border: none; padding: 4px; margin: -4px;
+      font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 600;
+      color: var(--ink-soft); cursor: pointer; border-radius: 8px;
+      transition: color 0.2s;
+    }}
+    .ev-like:hover {{ color: var(--accent-ink); }}
+    .ev-like:focus-visible {{ outline: 2px solid var(--accent-ink); outline-offset: 2px; }}
+    .ev-like[aria-pressed="true"] {{ color: #E0533D; }}
+    .ev-like[aria-pressed="true"] svg {{ fill: currentColor; }}
+    .ev-like.pop svg {{ animation: heartPop 0.45s cubic-bezier(.3,1.6,.5,1); }}
+    @keyframes heartPop {{
+      0% {{ transform: scale(1); }}
+      40% {{ transform: scale(1.35); }}
+      70% {{ transform: scale(0.92); }}
+      100% {{ transform: scale(1); }}
+    }}
     .ev-cta {{
       margin-left: auto;
       font-size: 12px; font-weight: 600; letter-spacing: 0.5px;
@@ -1008,6 +1031,43 @@ document.addEventListener('DOMContentLoaded',function(){{
     body #ig-sticky-cta {{ background: var(--ink); }}
     body #ig-sticky-cta:hover {{ background: #3A332E; }}
 
+    /* ── Mjuk rörelse ─────────────────────────────────── */
+    .hero-blob {{
+      position: absolute; border-radius: 50%; pointer-events: none;
+      filter: blur(40px); opacity: 0.55; z-index: 0;
+    }}
+    .hero-blob--a {{ width: 320px; height: 320px; background: #FFC9AE; top: -60px; right: 8%; animation: blobDrift 18s ease-in-out infinite alternate; }}
+    .hero-blob--b {{ width: 260px; height: 260px; background: #FFE3CF; bottom: -90px; left: 30%; animation: blobDrift 22s ease-in-out infinite alternate-reverse; }}
+    @keyframes blobDrift {{
+      0%   {{ transform: translate(0, 0) scale(1); }}
+      50%  {{ transform: translate(-30px, 20px) scale(1.08); }}
+      100% {{ transform: translate(25px, -15px) scale(0.95); }}
+    }}
+    .live-dot {{ position: relative; }}
+    .live-dot::after {{
+      content: ''; position: absolute; inset: 0; border-radius: 50%;
+      background: inherit; animation: livePulse 2s ease-out infinite;
+    }}
+    @keyframes livePulse {{
+      0%   {{ transform: scale(1); opacity: 0.6; }}
+      100% {{ transform: scale(2.6); opacity: 0; }}
+    }}
+    html.motion .ev-card {{ opacity: 0; transform: translateY(14px); }}
+    html.motion .ev-card.is-in {{
+      opacity: 1; transform: none;
+      transition: opacity 0.5s ease, transform 0.5s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    }}
+    html.motion .ev-card.is-in:has(.ev-link):hover {{ transform: translateY(-3px); }}
+
+    @media (prefers-reduced-motion: reduce) {{
+      *, *::before, *::after {{
+        animation: none !important; transition: none !important; scroll-behavior: auto !important;
+      }}
+      .hero-blob {{ display: none; }}
+      .fade-in {{ opacity: 1; transform: none; }}
+      .ev-card:has(.ev-link):hover {{ transform: none; }}
+    }}
+
     .fade-in {{ opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }}
     .fade-in.visible {{ opacity: 1; transform: translateY(0); }}
 
@@ -1063,6 +1123,14 @@ document.addEventListener('DOMContentLoaded',function(){{
     }}
   </style>
 <script id="CookieDeclaration" src="https://consent.cookiebot.com/c82ce3af-bded-4069-9aea-22493d3d7e2d/cd.js" type="text/javascript" async></script>
+<script>
+  // Kort tonar in när de syns — bara om rörelse är tillåten.
+  // Hoppa över i dolda flikar/förhandsvisningar, där observern inte körs förrän sidan visas.
+  if ('IntersectionObserver' in window && document.visibilityState === 'visible'
+      && !matchMedia('(prefers-reduced-motion: reduce)').matches) {{
+    document.documentElement.classList.add('motion');
+  }}
+</script>
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
@@ -1100,6 +1168,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <main id="main-content">
 
   <header class="page-header">
+    <span class="hero-blob hero-blob--a" aria-hidden="true"></span>
+    <span class="hero-blob hero-blob--b" aria-hidden="true"></span>
     <div class="page-header-inner">
       <div class="breadcrumb"><a href="/">Start</a> → Running Events</div>
       <div class="page-header-tag">Alla städer</div>
@@ -1397,6 +1467,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       popularContainer.replaceChildren(...ranked.map(({{ card }}) => {{
         const clone = card.cloneNode(true);
         clone.hidden = card.hidden;
+        clone.classList.add('is-in');
         return clone;
       }}));
     }}
@@ -1435,6 +1506,27 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       const qs = params.toString();
       history.replaceState(null, '', qs ? '?' + qs : location.pathname);
     }}
+
+    if (document.documentElement.classList.contains('motion')) {{
+      const cardObserver = new IntersectionObserver(entries => {{
+        entries.forEach(e => {{
+          if (!e.isIntersecting) return;
+          e.target.classList.add('is-in');
+          cardObserver.unobserve(e.target);
+        }});
+      }}, {{ rootMargin: '0px 0px -40px 0px' }});
+      document.querySelectorAll('.ev-card').forEach(c => cardObserver.observe(c));
+    }}
+
+    document.addEventListener('click', e => {{
+      const btn = e.target.closest('.ev-like');
+      if (!btn) return;
+      // TODO steg 15: spara gillningen mot endpointen.
+      btn.setAttribute('aria-pressed', btn.getAttribute('aria-pressed') !== 'true');
+      btn.classList.remove('pop');
+      void btn.offsetWidth;
+      btn.classList.add('pop');
+    }});
 
     const observer = new IntersectionObserver(entries => {{
       entries.forEach(e => {{ if (e.isIntersecting) e.target.classList.add('visible'); }});
