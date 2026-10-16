@@ -18,6 +18,8 @@ from zoneinfo import ZoneInfo
 import gspread
 from google.oauth2.service_account import Credentials
 
+from club_schedule import KLUBBAR_SHEET_ID, KLUBBAR_WORKSHEET_ID, build_weekly_records, rows_from_values
+
 log = logging.getLogger(__name__)
 
 # ── Sheet config ─────────────────────────────────────────────────────────────
@@ -38,14 +40,15 @@ OVERRIDES_HEADERS = ["club", "date", "city", "action", "time", "location", "titl
 SPECIAL_HEADERS   = ["club", "title", "date", "time", "location", "city", "description", "link", "image_url"]
 
 CLUB_NAME_ALIASES = {
-    "dc runclub":              "Saucony Run Club Sverige",
-    "downtown camper run club": "Saucony Run Club Sverige",
-    "saucony run club":        "Saucony Run Club Sverige",
-    "slowrunners göteborg":    "Pace & People",
+    "dc runclub":               "Saucony & Downtown Camper",
+    "downtown camper run club": "Saucony & Downtown Camper",
+    "saucony run club":         "Saucony & Downtown Camper",
+    "saucony run club sverige": "Saucony & Downtown Camper",
+    "slowrunners göteborg":     "Pace & People",
     # Strava spells several clubs differently from the WeeklyRuns sheet. Map
     # them onto the sheet's name — the one the club's own page uses — so the
     # cards dedupe and the club filter lists each club once.
-    "saucony sverige":                           "Saucony Run Club Sverige",
+    "saucony sverige":                           "Saucony & Downtown Camper",
     "måndagsklubben_gbg":                        "Måndagsklubben",
     "göteborg running club (grc)":               "Göteborg Running Club",
     "rtc":                                       "Roberg Training Club (RTC)",
@@ -53,6 +56,12 @@ CLUB_NAME_ALIASES = {
     "nasci run club - för gravida & postpartum": "Nasci Run Club",
     "triple threshold running communion":        "Triple Threshold RC",
     "solemates run club":                        "Solemates Runclub",
+    # The club sheet (Klubbar) names a few clubs differently from the name
+    # their club page filters events on (CLUB_NAMES). Keep the page's name.
+    "mikkeller running club":                    "Mikkeller Running Club Stockholm",
+    "run collective":                            "Run Collective Stockholm",
+    "slowrunners":                               "Slowrunners Stockholm",
+    "ess running club":                          "ESS Runners Club",
 }
 
 # The Special Events sheet appends the venue to the club name
@@ -71,27 +80,103 @@ def normalize_club_name(name: str) -> str:
     return CLUB_NAME_ALIASES.get(n.lower(), n)
 
 
-def _normalize_city(text: str) -> str:
-    t = text.lower()
-    if "stockholm" in t:
-        return "Stockholm"
-    if any(k in t for k in ("göteborg", "goteborg", "gothenburg", "västra götaland")):
-        return "Göteborg"
-    if any(k in t for k in (
-        "malmö", "malmo", "malmoe", "skåne",
-        "varberg", "halmstad", "falkenberg",
-        "uppsala", "gavle", "gävle", "linkoping", "linköping",
-        "norrkoping", "norrköping",
-    )):
-        return "Övriga landet"
+# ── City resolution ──────────────────────────────────────────────────────────
+# The only place that decides which city page an event lands on. Keywords are
+# written in plain Swedish; matching folds å/ä/ö so "Varmdo" and "Värmdö" both
+# hit, and only at the start of a word so "kista" doesn't match "Pakistan".
+
+CITY_STOCKHOLM = "Stockholm"
+CITY_GOTEBORG  = "Göteborg"
+CITY_OVRIGA    = "Övriga landet"
+
+STOCKHOLM_KEYWORDS = (
+    "stockholm", "sthlm",
+    "solna", "sundbyberg", "nacka", "värmdö", "hemmesta", "gustavsberg",
+    "lidingö", "täby", "danderyd", "huddinge", "haninge", "tyresö",
+    "botkyrka", "järfälla", "sollentuna", "upplands väsby", "vallentuna",
+    "österåker", "ekerö", "södertälje", "bromma", "kista", "hammarby",
+    "södermalm", "kungsholmen", "vasastan", "östermalm", "liljeholmen",
+    "hägersten",
+)
+GOTEBORG_KEYWORDS = (
+    "göteborg", "gothenburg", "västra götaland",
+    "mölndal", "partille", "kungälv", "lerum", "härryda", "hisingen",
+    "askim", "frölunda", "torslanda", "billdal",
+)
+# Known places outside the two big cities. Not needed for the fallback (which
+# lands in Övriga landet anyway) but checked before the club's home city, so a
+# Stockholm club racing in Malmö isn't listed under Stockholm.
+OVRIGA_LANDET_KEYWORDS = (
+    "malmö", "malmoe", "skåne", "limhamn", "lund", "helsingborg",
+    "varberg", "halmstad", "falkenberg", "uppsala", "gävle",
+    "linköping", "norrköping", "jönköping", "örebro", "västerås",
+    "umeå", "luleå", "sundsvall", "karlstad", "växjö", "kalmar", "visby",
+)
+
+_FOLD = str.maketrans("åäö", "aao")
+
+
+def _fold(text: str) -> str:
+    return text.lower().translate(_FOLD)
+
+
+def _keyword_pattern(keywords: tuple[str, ...], whole_word: bool = False) -> re.Pattern:
+    alts = "|".join(re.escape(_fold(k)) for k in keywords)
+    # Whole words (plus genitive -s) for other towns, so Stockholm streets
+    # like Lundagatan or Kalmarvägen aren't read as Lund or Kalmar.
+    tail = r"s?(?![a-z0-9])" if whole_word else ""
+    return re.compile(rf"(?<![a-z0-9])(?:{alts}){tail}")
+
+
+_CITY_PATTERNS = (
+    (CITY_STOCKHOLM, _keyword_pattern(STOCKHOLM_KEYWORDS)),
+    (CITY_GOTEBORG,  _keyword_pattern(GOTEBORG_KEYWORDS)),
+    (CITY_OVRIGA,    _keyword_pattern(OVRIGA_LANDET_KEYWORDS, whole_word=True)),
+)
+
+
+def _match_city(text: str) -> str:
+    """City whose keywords appear in `text`, or "" if none do."""
+    t = _fold(text)
+    for city, pattern in _CITY_PATTERNS:
+        if pattern.search(t):
+            return city
     return ""
+
+
+def _normalize_city(text: str) -> str:
+    """Canonical city for a curated `city` column (WeeklyRuns, SpecialEvents).
+
+    Blank stays blank (the row is skipped); anything filled in that isn't
+    Stockholm or Göteborg is Övriga landet.
+    """
+    if not text.strip():
+        return ""
+    return _match_city(text) or CITY_OVRIGA
+
+
+def resolve_city(location: str, club: str, club_cities: dict[str, str] | None) -> str:
+    """City for a Strava event. Never returns "" — nothing is dropped.
+
+    Order: keywords in the location, then the club's city from WeeklyRuns,
+    then Övriga landet (logged, so missing places can be added above).
+    """
+    city = _match_city(location)
+    if city:
+        return city
+    club_key = normalize_club_name(club).lower()
+    city = (club_cities or {}).get(club_key, "")
+    if city:
+        return city
+    log.info("City fallback → Övriga landet: club=%r location=%r", club, location)
+    return CITY_OVRIGA
 
 
 def build_club_cities(weekly_records: list[dict]) -> dict[str, str]:
     """Return {club_name_lower: canonical_city} derived from the WeeklyRuns sheet.
 
-    Used as a fallback when a Strava event's location field doesn't contain a
-    recognisable city keyword.
+    Used by resolve_city() when a Strava event's location field doesn't contain
+    a recognisable city keyword.
     """
     mapping: dict[str, str] = {}
     for r in weekly_records:
@@ -165,6 +250,51 @@ def fetch_weekly_runs(sheet_id: str) -> list[dict]:
     return records
 
 
+def fetch_klubbar() -> list[dict]:
+    """Rows of the club sheet (Klubbar), keyed by header, with "_row" numbers."""
+    def _do():
+        gc = _sheet_client()
+        sh = gc.open_by_key(KLUBBAR_SHEET_ID)
+        return sh.get_worksheet_by_id(KLUBBAR_WORKSHEET_ID).get_all_values()
+    rows = rows_from_values(_with_retry(_do))
+    log.info("Fetched %d rows from Klubbar sheet", len(rows))
+    return rows
+
+
+def _link_slug(link: str) -> str:
+    path = re.sub(r"^https?://[^/]+", "", (link or "").strip()).strip("/")
+    return re.sub(r"\.html$", "", path.split("/")[-1]).casefold()
+
+
+def fetch_recurring_runs(sheet_id: str) -> list[dict]:
+    """Recurring club runs, in WeeklyRuns row shape, from the club sheet.
+
+    Until the Pass columns in Klubbar are verified, WeeklyRuns is a fallback:
+    its rows are kept for every club that has no Pass slot in Klubbar, and
+    used wholesale if Klubbar can't be read.
+    """
+    try:
+        records, _ = build_weekly_records(fetch_klubbar())
+    except (gspread.exceptions.APIError, gspread.exceptions.SpreadsheetNotFound,
+            gspread.exceptions.WorksheetNotFound) as e:
+        log.error("Kunde inte läsa Klubbar (%s) — använder bara WeeklyRuns", e)
+        return fetch_weekly_runs(sheet_id)
+
+    covered_names = {club_match_key(r["club"]) for r in records}
+    covered_slugs = {_link_slug(r["link"]) for r in records if r["link"]}
+    fallback = [
+        w for w in fetch_weekly_runs(sheet_id)
+        if club_match_key(w.get("club") or "") not in covered_names
+        and _link_slug(w.get("link") or "") not in covered_slugs
+    ]
+    if fallback:
+        log.warning("WeeklyRuns-fallback för klubbar utan pass i Klubbar: %s",
+                    ", ".join(sorted({(w.get("club") or "").strip() for w in fallback})))
+    log.info("%d återkommande pass från Klubbar, %d från WeeklyRuns-fallback",
+             len(records), len(fallback))
+    return records + fallback
+
+
 def fetch_overrides(sheet_id: str) -> dict[tuple[str, str], dict]:
     """Return a dict keyed by (club_lower, YYYY-MM-DD) → override row.
 
@@ -185,7 +315,7 @@ def fetch_overrides(sheet_id: str) -> dict[tuple[str, str], dict]:
     log.info("Fetched %d rows from Overrides sheet", len(records))
     result = {}
     for r in records:
-        club     = (r.get("club") or "").strip().lower()
+        club     = normalize_club_name(r.get("club") or "").lower()
         date_val = (r.get("date") or "").strip()
         if club and date_val:
             result[(club, date_val)] = r

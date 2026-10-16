@@ -48,12 +48,12 @@ from events_common import (
     EVENTS_SHEET_ID,
     _SV_DAYS,
     _SV_MONTHS_SHORT,
-    _normalize_city,
     _parse_date,
     build_club_cities,
     fetch_events,
-    fetch_weekly_runs,
+    fetch_recurring_runs,
     normalize_club_name,
+    resolve_city,
 )
 
 log = logging.getLogger(__name__)
@@ -191,7 +191,7 @@ def gather_events(sheet_id: str, week_start: str | None) -> list[dict]:
     log.info("Target week: %s -> %s (UTC)", start.date(), end.date())
 
     records = fetch_events(sheet_id)
-    club_cities = build_club_cities(fetch_weekly_runs(sheet_id))
+    club_cities = build_club_cities(fetch_recurring_runs(sheet_id))
     events: list[dict] = []
     seen: set[tuple] = set()
 
@@ -215,7 +215,7 @@ def gather_events(sheet_id: str, week_start: str | None) -> list[dict]:
         seen.add(key)
 
         location = (r.get("location") or "").strip()
-        city = _normalize_city(location) or club_cities.get(club.lower(), "")
+        city = resolve_city(location, club, club_cities)
 
         events.append({
             "club": club,
