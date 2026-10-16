@@ -643,7 +643,43 @@ def highlight_section_html(ev: dict | None, club_images: dict[str, dict]) -> str
     )
 
 
-def render_html(events: list[dict], generated_at: str) -> str:
+# ── Page config: /events and the city pages share this template ───────────────
+
+EVENTS_PAGE = {
+    "path":           "events",
+    "title":          "Running Events Sverige — Swedish Run Clubs",
+    "description":    "Alla kommande running events och weekly runs i Stockholm, Göteborg och övriga landet — från run clubs, grupper och communions.",
+    "og_title":       "Running Events Sverige — Swedish Run Clubs",
+    "og_description": "Alla kommande running events och weekly runs i Stockholm, Göteborg och övriga landet.",
+    "og_image":       "https://runclubs.se/stockholm-run-clubs.jpeg",
+    "breadcrumb":     '<a href="/">Start</a> → Running Events',
+    "tag":            "Alla städer",
+    "h1":             "Kommande Events och Weekly runs",
+    "intro":          "Running events, weekly runs och social runs med run clubs och löpargrupper i Stockholm, Göteborg och övriga landet. Hitta ett pass att springa med den här veckan.",
+    "city_nav_label": "Se alla händelser i din stad",
+}
+
+CITY_NAV = (
+    ("events",                       "Alla städer"),
+    ("stockholm-running-events",     "Stockholm"),
+    ("goteborg-running-events",      "Göteborg"),
+    ("ovriga-landet-running-events", "Övriga landet"),
+)
+_CITY_PIN_SVG = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>'
+
+
+def city_nav_html(active_path: str) -> str:
+    links = []
+    for path, label in CITY_NAV:
+        active = ' active" aria-current="page' if path == active_path else ""
+        icon = "" if path == "events" else _CITY_PIN_SVG
+        links.append(f'<a href="{path}" class="city-nav-btn{active}">{icon}{label}</a>')
+    return "\n      ".join(links)
+
+
+def render_html(events: list[dict], generated_at: str, page: dict | None = None) -> str:
+    page = {**EVENTS_PAGE, **(page or {})}
+    city_nav = city_nav_html(page["path"])
     club_images = load_club_images()
     events_section, total_count, club_count = render_events_section(
         events, card_fn=lambda ev: feed_card_html(ev, club_images)
@@ -670,14 +706,14 @@ document.addEventListener('DOMContentLoaded',function(){{
 <!-- End Google Tag Manager -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Running Events Sverige — Swedish Run Clubs</title>
-  <meta name="description" content="Alla kommande running events och weekly runs i Stockholm, Göteborg och övriga landet — från run clubs, grupper och communions.">
-  <meta property="og:title" content="Running Events Sverige — Swedish Run Clubs">
-  <meta property="og:description" content="Alla kommande running events och weekly runs i Stockholm, Göteborg och övriga landet.">
+  <title>{page["title"]}</title>
+  <meta name="description" content="{page["description"]}">
+  <meta property="og:title" content="{page["og_title"]}">
+  <meta property="og:description" content="{page["og_description"]}">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://runclubs.se/events">
-  <meta property="og:image" content="https://runclubs.se/stockholm-run-clubs.jpeg">
-  <link rel="canonical" href="https://runclubs.se/events">
+  <meta property="og:url" content="https://runclubs.se/{page["path"]}">
+  <meta property="og:image" content="{page["og_image"]}">
+  <link rel="canonical" href="https://runclubs.se/{page["path"]}">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Oswald:wght@500;700&family=DM+Sans:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
   <link rel="icon" href="/favicon.ico" sizes="any">
@@ -1173,6 +1209,7 @@ document.addEventListener('DOMContentLoaded',function(){{
       display: inline-flex; align-items: center; gap: 5px;
     }}
     .city-nav-btn:hover {{ border-color: var(--peach-deep); color: var(--accent-ink); }}
+    .city-nav-btn.active {{ background: var(--peach); border-color: var(--peach); color: var(--ink); pointer-events: none; }}
 
     @media (max-width: 768px) {{
       .city-nav {{ padding: 1.25rem; gap: 1rem; flex-direction: column; align-items: flex-start; }}
@@ -1253,10 +1290,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <span class="hero-blob hero-blob--a" aria-hidden="true"></span>
     <span class="hero-blob hero-blob--b" aria-hidden="true"></span>
     <div class="page-header-inner">
-      <div class="breadcrumb"><a href="/">Start</a> → Running Events</div>
-      <div class="page-header-tag">Alla städer</div>
-      <h1>Kommande Events och Weekly runs</h1>
-      <p>Running events, weekly runs och social runs med run clubs och löpargrupper i Stockholm, Göteborg och övriga landet. Hitta ett pass att springa med den här veckan.</p>
+      <div class="breadcrumb">{page["breadcrumb"]}</div>
+      <div class="page-header-tag">{page["tag"]}</div>
+      <h1>{page["h1"]}</h1>
+      <p>{page["intro"]}</p>
       <div class="live-badge"><span class="live-dot" aria-hidden="true"></span>Direkt från Strava · uppdateras varje dag</div>
     </div>
   </header>
@@ -1285,20 +1322,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 
   <div class="city-nav">
-    <span class="city-nav-label">Se alla händelser i din stad</span>
+    <span class="city-nav-label">{page["city_nav_label"]}</span>
     <div class="city-nav-buttons">
-      <a href="stockholm-running-events" class="city-nav-btn">
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-        Stockholm
-      </a>
-      <a href="goteborg-running-events" class="city-nav-btn">
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-        Göteborg
-      </a>
-      <a href="ovriga-landet-running-events" class="city-nav-btn">
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-        Övriga landet
-      </a>
+      {city_nav}
     </div>
   </div>
 
