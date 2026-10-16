@@ -302,6 +302,8 @@ def load_club_images() -> dict[str, dict]:
     images: dict[str, dict] = {}
     for old, new in _load_slug_redirects().items():
         images["redirect:" + old] = new
+    for key, src in load_club_logos().items():
+        images["logo:" + key] = {"src": src, "pos": "center", "logo": True}
     for name in CLUB_LISTING_PAGES:
         path = ROOT / name
         if not path.exists():
@@ -322,11 +324,21 @@ def load_club_images() -> dict[str, dict]:
     return images
 
 
+def load_club_logos() -> dict[str, str]:
+    """club_logos.json: logos for clubs without a card on the city pages, keyed loosely by name."""
+    path = ROOT / "club_logos.json"
+    if not path.exists():
+        return {}
+    data = json.loads(path.read_text(encoding="utf-8"))
+    return {_loose_club_key(club): src for club, src in data.items() if not club.startswith("_")}
+
+
 def club_image(ev: dict, club_images: dict[str, dict]) -> dict | None:
     slug = _page_slug(ev.get("club_page") or "")
     slug = club_images.get("redirect:" + slug, slug)
+    key = _loose_club_key(ev.get("club") or "")
     return (club_images.get("slug:" + slug) if slug else None) or \
-        club_images.get("name:" + _loose_club_key(ev.get("club") or ""))
+        club_images.get("name:" + key) or club_images.get("logo:" + key)
 
 
 # ── Distance / pace chips ─────────────────────────────────────────────────────
@@ -472,7 +484,7 @@ def pick_media(ev: dict, club_images: dict[str, dict], allow_map: bool = True) -
         return "map", f'<img src="{_e(url)}" alt="Karta över rutten" loading="lazy" decoding="async">'
     if (img := club_image(ev, club_images)):
         # Logos are shown whole on white; photos fill the panel.
-        logo = ' class="ev-logo"' if "logo" in img["src"].rsplit("/", 1)[-1].lower() else ""
+        logo = ' class="ev-logo"' if img.get("logo") or "logo" in img["src"].rsplit("/", 1)[-1].lower() else ""
         return "club", (f'<img{logo} src="{_e(img["src"])}" alt="" loading="lazy" decoding="async" '
                         f'style="object-position: {_e(img["pos"])};">')
     return "initial", f'<span class="ev-initial" aria-hidden="true">{_e(_club_initial(ev))}</span>'
@@ -996,7 +1008,7 @@ document.addEventListener('DOMContentLoaded',function(){{
       color: rgba(255,255,255,0.9); text-shadow: 0 2px 12px rgba(168,80,47,0.25);
     }}
     .ev-media:has(.ev-logo) {{ background: #fff; border-right: 1px solid #F5EBE8; }}
-    .ev-media .ev-logo {{ object-fit: contain; object-position: center !important; padding: 14px; }}
+    .ev-media .ev-logo {{ object-fit: scale-down; object-position: center !important; padding: 14px; }}
 
     .ev-body {{
       flex: 1; min-width: 0;
