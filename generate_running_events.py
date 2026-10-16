@@ -327,6 +327,39 @@ def club_image(ev: dict, club_images: dict[str, dict]) -> dict | None:
         club_images.get("name:" + _loose_club_key(ev.get("club") or ""))
 
 
+def _is_route_map(url: str) -> bool:
+    """Strava sends the route map as image_url (cloudfront …/maps/…)."""
+    return "/maps/" in url
+
+
+def _club_initial(ev: dict) -> str:
+    for ch in (ev.get("club") or ev.get("title") or ""):
+        if ch.isalnum():
+            return ch.upper()
+    return "•"
+
+
+MEDIA_LABELS = {"photo": "Eventfoto", "map": "Karta", "club": "Klubbkort", "initial": "Initial"}
+
+
+def pick_media(ev: dict, club_images: dict[str, dict], allow_map: bool = True) -> tuple[str, str]:
+    """Image chain: event photo → route map → club card → peach plate with the club's initial.
+
+    Returns (kind, inner_html). The highlight passes allow_map=False to skip the map.
+    """
+    url = ev.get("image_url") or ""
+    if url and not _is_route_map(url):
+        return "photo", f'<img src="{_e(url)}" alt="" loading="lazy" decoding="async">'
+    if url and allow_map:
+        return "map", f'<img src="{_e(url)}" alt="Karta över rutten" loading="lazy" decoding="async">'
+    if (img := club_image(ev, club_images)):
+        # Logos are shown whole on white; photos fill the panel.
+        logo = ' class="ev-logo"' if "logo" in img["src"].rsplit("/", 1)[-1].lower() else ""
+        return "club", (f'<img{logo} src="{_e(img["src"])}" alt="" loading="lazy" decoding="async" '
+                        f'style="object-position: {_e(img["pos"])};">')
+    return "initial", f'<span class="ev-initial" aria-hidden="true">{_e(_club_initial(ev))}</span>'
+
+
 def feed_card_html(ev: dict, club_images: dict[str, dict]) -> str:
     """One /events card: full-height image left, content right."""
     source = ev.get("source") or ""
@@ -346,15 +379,7 @@ def feed_card_html(ev: dict, club_images: dict[str, dict]) -> str:
         except ValueError:
             pass
 
-    if ev.get("image_url"):
-        media = f'<img src="{_e(ev["image_url"])}" alt="" loading="lazy" decoding="async">'
-    elif (img := club_image(ev, club_images)):
-        # Logos are shown whole on white; photos fill the panel.
-        logo = ' class="ev-logo"' if "logo" in img["src"].rsplit("/", 1)[-1].lower() else ""
-        media = (f'<img{logo} src="{_e(img["src"])}" alt="" loading="lazy" decoding="async" '
-                 f'style="object-position: {_e(img["pos"])};">')
-    else:
-        media = ""
+    media_kind, media = pick_media(ev, club_images)
 
     if source == "weekly_run":
         badge = '<span class="ev-badge ev-badge--weekly">Weekly run</span>'
@@ -392,10 +417,10 @@ def feed_card_html(ev: dict, club_images: dict[str, dict]) -> str:
         cta_html = ""
 
     special = " ev-card--special" if source == "special" else ""
-    no_media = " ev-media--empty" if not media else ""
     return (
         f'<article class="ev-card{special}" data-source="{_e(source)}" data-club="{_e(club)}">'
-        f'<div class="ev-media{no_media}">{media}</div>'
+        f'<div class="ev-media ev-media--{media_kind}">{media}'
+        f'<span class="ev-media-label">{MEDIA_LABELS[media_kind]}</span></div>'
         f'<div class="ev-body">'
         f'<div class="ev-top">{badge}<span class="ev-when">{when}</span></div>'
         f'<h3 class="ev-title">{title_html}</h3>'
@@ -691,6 +716,20 @@ document.addEventListener('DOMContentLoaded',function(){{
     .ev-media img {{
       position: absolute; inset: 0;
       width: 100%; height: 100%; object-fit: cover; display: block;
+    }}
+    .ev-media--initial {{
+      display: flex; align-items: center; justify-content: center;
+      background: linear-gradient(160deg, var(--peach-soft), var(--peach));
+    }}
+    .ev-initial {{
+      font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 60px; line-height: 1;
+      color: rgba(255,255,255,0.9); text-shadow: 0 2px 12px rgba(168,80,47,0.25);
+    }}
+    .ev-media-label {{
+      position: absolute; left: 8px; bottom: 8px; z-index: 1;
+      font-size: 9px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+      padding: 3px 7px; border-radius: 8px;
+      background: rgba(31,27,24,0.7); color: #fff;
     }}
     .ev-media:has(.ev-logo) {{ background: #fff; border-right: 1px solid #F5EBE8; }}
     .ev-media .ev-logo {{ object-fit: contain; object-position: center !important; padding: 14px; }}
