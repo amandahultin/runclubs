@@ -1641,6 +1641,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     function setStat(id, patch) {{
       stats.set(id, Object.assign({{ likes: 0, clicks: 0, likes_7d: 0, clicks_7d: 0 }}, stats.get(id), patch));
     }}
+    // Servern svarar med totaler; justera 7-dagarstalen lika mycket som totalerna ändrades.
+    function applyServerRow(id, row) {{
+      if (!row) return;
+      const cur = stats.get(id) || {{ likes: 0, clicks: 0, likes_7d: 0, clicks_7d: 0 }};
+      setStat(id, {{
+        likes: row.likes, clicks: row.clicks,
+        likes_7d:  Math.max(0, cur.likes_7d  + row.likes  - cur.likes),
+        clicks_7d: Math.max(0, cur.clicks_7d + row.clicks - cur.clicks),
+      }});
+    }}
 
     document.addEventListener('click', async e => {{
       const btn = e.target.closest('.ev-like');
@@ -1664,7 +1674,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       try {{
         const [row] = await rpc(nowLiked ? 'like_event' : 'unlike_event', {{ p_event_id: id, p_visitor: visitorId() }});
-        if (row) setStat(id, {{ likes: row.likes, clicks: row.clicks }});
+        applyServerRow(id, row);
       }} catch (_) {{
         nowLiked ? liked.delete(id) : liked.add(id);
         storeSet('rc_likes', [...liked]);
@@ -1794,6 +1804,21 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       a.remove();
       setTimeout(() => URL.revokeObjectURL(a.href), 10000);
     }});
+
+    // Klick vidare till passet (knappen, titeln eller kortet). keepalive gör att
+    // anropet hinner iväg även när sidan lämnas.
+    function trackPassClick(e) {{
+      const link = e.target.closest('.ev-cta, .ev-link');
+      if (!link || (e.type === 'auxclick' && e.button !== 1)) return;
+      const id = link.closest('.ev-card').dataset.id;
+      const s = stats.get(id) || {{}};
+      setStat(id, {{ clicks: (s.clicks || 0) + 1, clicks_7d: (s.clicks_7d || 0) + 1 }});
+      rpc('click_event', {{ p_event_id: id, p_visitor: visitorId() }})
+        .then(([row]) => applyServerRow(id, row))
+        .catch(() => {{}});
+    }}
+    document.addEventListener('click', trackPassClick);
+    document.addEventListener('auxclick', trackPassClick);
 
     function focusSharedEvent() {{
       const m = location.hash.match(/^#ev-([0-9a-f]{{10}})$/);
