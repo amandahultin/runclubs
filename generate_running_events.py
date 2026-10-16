@@ -13,9 +13,11 @@ Usage:
 
 from __future__ import annotations
 
+import html
 import json
 import logging
 import os
+import re
 import sys
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
@@ -39,6 +41,13 @@ from events_common import (
     sv_long_date,
     _parse_date,
     _parse_time,
+    _ARR_SVG,
+    _EXT_SVG,
+    _PIN_SVG,
+    _SV_DAYS,
+    _SV_MONTHS_SHORT,
+    _e,
+    club_match_key,
 )
 
 log = logging.getLogger(__name__)
@@ -246,8 +255,163 @@ def expand_weekly_runs(
     return events
 
 
+# ── /events feed cards ────────────────────────────────────────────────────────
+
+ROOT = Path(__file__).parent
+CLUB_LISTING_PAGES = ("stockholm.html", "goteborg.html", "ovriga-landet.html")
+
+_CLUB_CARD_START_RE = re.compile(r'<a href="(?P<href>[^"]+)" class="club-card"')
+_CARD_IMG_RE  = re.compile(r'<img src="(?P<src>[^"]+)"(?P<attrs>[^>]*)>')
+_CARD_NAME_RE = re.compile(r'<div class="card-name">(?P<name>[^<]+)</div>')
+_OBJ_POS_RE = re.compile(r"object-position:\s*([^;\"]+)")
+
+
+def _page_slug(url: str) -> str:
+    """'https://runclubs.se/bbrs.html' and '/stockholm/bbrs/' both → 'bbrs'."""
+    path = re.sub(r"^https?://[^/]+", "", url or "").split("?")[0].strip("/")
+    last = path.rsplit("/", 1)[-1]
+    return last[:-5] if last.endswith(".html") else last
+
+
+_LOOSE_DROP_RE = re.compile(r"\b(run(ning)? ?club|gbg|sthlm|göteborg|stockholm|sverige|sweden)\b")
+
+
+def _loose_club_key(name: str) -> str:
+    """Forgiving club key: 'Mile Makers Run Club' ~ 'Mile Makers', 'Pace & People GBG' ~ 'Pace & People'."""
+    k = club_match_key(html.unescape(name)).replace("&", " och ")
+    return re.sub(r"[^0-9a-zåäö]", "", _LOOSE_DROP_RE.sub(" ", k))
+
+
+def _load_slug_redirects() -> dict[str, str]:
+    """Old club URLs → current ones, from _redirects (e.g. slowrunners-goteborg → pace-people)."""
+    path = ROOT / "_redirects"
+    if not path.exists():
+        return {}
+    redirects = {}
+    for line in path.read_text(encoding="utf-8").splitlines():
+        parts = line.split()
+        if len(parts) >= 2 and not parts[0].startswith("http"):
+            redirects.setdefault(_page_slug(parts[0]), _page_slug(parts[1]))
+    return redirects
+
+
+def load_club_images() -> dict[str, dict]:
+    """Club card photos from the city listing pages, keyed by page slug and club name."""
+    images: dict[str, dict] = {}
+    for old, new in _load_slug_redirects().items():
+        images["redirect:" + old] = new
+    for name in CLUB_LISTING_PAGES:
+        path = ROOT / name
+        if not path.exists():
+            continue
+        text = path.read_text(encoding="utf-8")
+        starts = list(_CLUB_CARD_START_RE.finditer(text))
+        for i, start in enumerate(starts):
+            # Look only inside this card, so a card without a photo never borrows the next one's.
+            card = text[start.end():starts[i + 1].start() if i + 1 < len(starts) else len(text)]
+            m_img, m_name = _CARD_IMG_RE.search(card), _CARD_NAME_RE.search(card)
+            if not m_img or not m_name or m_img.start() > m_name.start():
+                continue
+            pos = _OBJ_POS_RE.search(m_img["attrs"])
+            src = m_img["src"] if m_img["src"].startswith(("http", "/")) else "/" + m_img["src"]
+            img = {"src": src, "pos": pos.group(1).strip() if pos else "center"}
+            images.setdefault("slug:" + _page_slug(start["href"]), img)
+            images.setdefault("name:" + _loose_club_key(m_name["name"].strip()), img)
+    return images
+
+
+def club_image(ev: dict, club_images: dict[str, dict]) -> dict | None:
+    slug = _page_slug(ev.get("club_page") or "")
+    slug = club_images.get("redirect:" + slug, slug)
+    return (club_images.get("slug:" + slug) if slug else None) or \
+        club_images.get("name:" + _loose_club_key(ev.get("club") or ""))
+
+
+def feed_card_html(ev: dict, club_images: dict[str, dict]) -> str:
+    """One /events card: full-height image left, content right."""
+    source = ev.get("source") or ""
+    club   = ev.get("club")   or ""
+    title  = ev.get("title")  or ""
+    link   = ev.get("link")   or ""
+
+    when = ""
+    date_str = ev.get("date") or ""
+    if date_str:
+        try:
+            d = datetime.fromisoformat(date_str)
+            js_day = (d.weekday() + 1) % 7
+            when = f"{_SV_DAYS[js_day][:3]} {d.day} {_SV_MONTHS_SHORT[d.month - 1]}"
+            if (d.hour, d.minute) != (0, 0):
+                when += f" · {d:%H:%M}"
+        except ValueError:
+            pass
+
+    if ev.get("image_url"):
+        media = f'<img src="{_e(ev["image_url"])}" alt="" loading="lazy" decoding="async">'
+    elif (img := club_image(ev, club_images)):
+        # Logos are shown whole on white; photos fill the panel.
+        logo = ' class="ev-logo"' if "logo" in img["src"].rsplit("/", 1)[-1].lower() else ""
+        media = (f'<img{logo} src="{_e(img["src"])}" alt="" loading="lazy" decoding="async" '
+                 f'style="object-position: {_e(img["pos"])};">')
+    else:
+        media = ""
+
+    if source == "weekly_run":
+        badge = '<span class="ev-badge ev-badge--weekly">Weekly run</span>'
+    elif source == "special":
+        badge = '<span class="ev-badge ev-badge--special">Special Event</span>'
+    elif source == "strava":
+        badge = '<span class="ev-badge ev-badge--strava">Strava</span>'
+    else:
+        badge = f'<span class="ev-badge">{_e(source)}</span>'
+
+    meta = f'<span class="ev-club">{_e(club)}</span>' if club else ""
+    if ev.get("location"):
+        meta += f'<span class="ev-place">{_PIN_SVG}{_e(ev["location"])}</span>'
+
+    desc_html = f'<p class="ev-desc">{_e(ev["description"])}</p>' if ev.get("description") else ""
+
+    engagement = str(ev.get("engagement") or "")
+    eng_html = (f'<span class="ev-engagement">{_e(engagement)} anmälda</span>'
+                if engagement and source == "strava" else "")
+
+    club_page = ev.get("club_page") or ""
+    for prefix in ("https://runclubs.se/", "http://runclubs.se/"):
+        if club_page.startswith(prefix):
+            club_page = club_page[len(prefix):]
+            break
+    href = (club_page or link) if source == "special" else link
+
+    if href:
+        target = ' target="_blank" rel="noopener"' if source == "strava" else ""
+        icon = _EXT_SVG if source == "strava" else _ARR_SVG
+        title_html = f'<a class="ev-link" href="{_e(href)}"{target}>{_e(title)}</a>'
+        cta_html = f'<a class="ev-cta" href="{_e(href)}"{target} tabindex="-1" aria-hidden="true">Till passet {icon}</a>'
+    else:
+        title_html = _e(title)
+        cta_html = ""
+
+    special = " ev-card--special" if source == "special" else ""
+    no_media = " ev-media--empty" if not media else ""
+    return (
+        f'<article class="ev-card{special}" data-source="{_e(source)}" data-club="{_e(club)}">'
+        f'<div class="ev-media{no_media}">{media}</div>'
+        f'<div class="ev-body">'
+        f'<div class="ev-top">{badge}<span class="ev-when">{when}</span></div>'
+        f'<h3 class="ev-title">{title_html}</h3>'
+        f'<div class="ev-meta">{meta}</div>'
+        f'{desc_html}'
+        f'<div class="ev-actions">{eng_html}{cta_html}</div>'
+        f'</div>'
+        f'</article>'
+    )
+
+
 def render_html(events: list[dict], generated_at: str) -> str:
-    events_section, total_count, club_count = render_events_section(events)
+    club_images = load_club_images()
+    events_section, total_count, club_count = render_events_section(
+        events, card_fn=lambda ev: feed_card_html(ev, club_images)
+    )
     events_json = json.dumps(events, ensure_ascii=False)
 
     return f"""<!DOCTYPE html>
@@ -492,151 +656,94 @@ document.addEventListener('DOMContentLoaded',function(){{
       font-size: 20px; letter-spacing: 2px; text-transform: uppercase; color: var(--ink);
     }}
     .date-line {{ flex: 1; height: 1px; background: #F0E0DC; }}
-    .date-count {{ font-size: 11px; letter-spacing: 1px; text-transform: uppercase; color: #ccc; font-weight: 500; }}
+    .date-count {{ white-space: nowrap; font-size: 11px; letter-spacing: 1px; text-transform: uppercase; color: #ccc; font-weight: 500; }}
 
     .events-grid {{
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(min(100%, 440px), 1fr));
       gap: 24px;
     }}
 
-    .event-card {{
+    .ev-card {{
+      position: relative;
+      display: flex; align-items: stretch;
+      min-height: 200px;
       background: #fff;
       border: 1px solid #EFE4E0;
       border-radius: 20px;
       overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
-      text-decoration: none;
       color: var(--ink);
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
     }}
-    .event-card[hidden] {{ display: none; }}
-    .event-card:hover {{
-      transform: translateY(-4px);
+    .ev-card[hidden] {{ display: none; }}
+    .ev-card:has(.ev-link):hover {{
+      transform: translateY(-3px);
       box-shadow: 0 14px 36px rgba(238,154,120,0.25);
       border-color: var(--peach-deep);
     }}
-    .event-card--no-link {{ cursor: default; }}
-    .event-card--no-link:hover {{
-      transform: none; box-shadow: none; border-color: #EFE4E0;
-    }}
+    .ev-card--special {{ border: 2px solid var(--peach); }}
 
-    .event-card--special {{
-      border: 2px solid transparent !important;
-      background: linear-gradient(#fff, #fff) padding-box,
-                  linear-gradient(135deg, #FFDAC4, #F88B69, #D4715E, #C8604A, #FFDAC4) border-box;
-      background-size: 100% 100%, 400% 400%;
-      animation: specialGradient 5s ease infinite;
-      position: relative;
-      overflow: hidden;
+    .ev-media {{
+      flex: 0 0 34%; max-width: 180px;
+      position: relative; overflow: hidden;
+      background: var(--peach-soft);
     }}
-    .event-card--special:hover {{
-      box-shadow: 0 12px 40px rgba(212,113,94,0.3), 0 0 0 1px rgba(248,139,105,0.3);
+    .ev-media img {{
+      position: absolute; inset: 0;
+      width: 100%; height: 100%; object-fit: cover; display: block;
     }}
-    @keyframes specialGradient {{
-      0%, 100% {{ background-position: 0 0, 0% 50%; }}
-      50% {{ background-position: 0 0, 100% 50%; }}
-    }}
-    .event-card--special .event-date-block {{
-      background: linear-gradient(160deg, var(--peach), var(--peach-deep));
-    }}
-    .event-card--special::after {{
-      content: '✨';
-      position: absolute;
-      top: 10px; right: 12px;
-      font-size: 18px;
-      pointer-events: none;
-      animation: sparkleFloat 2.5s ease-in-out infinite;
-      z-index: 2;
-    }}
-    @keyframes sparkleFloat {{
-      0%, 100% {{ transform: translateY(0) scale(1); opacity: 0.85; }}
-      50% {{ transform: translateY(-4px) scale(1.2); opacity: 1; }}
-    }}
-    .source-special {{ background: linear-gradient(135deg, #F88B69, #D4715E); color: #fff; }}
+    .ev-media:has(.ev-logo) {{ background: #fff; border-right: 1px solid #F5EBE8; }}
+    .ev-media .ev-logo {{ object-fit: contain; object-position: center !important; padding: 14px; }}
 
-    .event-card-image {{
-      width: 100%; height: 180px; object-fit: cover; display: block;
-    }}
-
-    .event-card-top {{ display: flex; align-items: stretch; }}
-
-    .event-date-block {{
-      min-width: 72px;
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      padding: 1.25rem 0.75rem;
-      background: linear-gradient(160deg, var(--peach-soft), var(--peach));
-      gap: 2px; flex-shrink: 0;
-    }}
-    .event-date-block.no-date {{ background: linear-gradient(160deg, #F3ECE6, #E6DBD2); }}
-
-    .event-day-num {{
-      font-family: 'DM Sans', sans-serif; font-weight: 600;
-      font-size: 32px; line-height: 1; color: var(--ink);
-    }}
-    .event-month-abbr {{
-      font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
-      color: rgba(31,27,24,0.6); font-weight: 600;
-    }}
-    .event-day-name {{
-      font-size: 9px; letter-spacing: 1px; text-transform: uppercase;
-      color: rgba(31,27,24,0.45); font-weight: 500; margin-top: 4px;
-    }}
-    .event-date-block.no-date .event-day-num {{ font-size: 20px; letter-spacing: 2px; }}
-
-    .event-card-body {{
+    .ev-body {{
+      flex: 1; min-width: 0;
       padding: 1.25rem 1.5rem;
-      flex: 1; display: flex; flex-direction: column; gap: 8px;
+      display: flex; flex-direction: column; gap: 8px;
     }}
-    .event-source-row {{ display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }}
-    .source-badge {{
-      font-size: 9px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
-      padding: 3px 8px; border-radius: 10px; flex-shrink: 0;
+    .ev-top {{ display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }}
+    .ev-badge {{
+      font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+      padding: 4px 9px; border-radius: 10px; flex-shrink: 0;
+      background: var(--ink-soft); color: #fff;
     }}
-    .source-strava    {{ background: #FC5200; color: #fff; }}
-    .source-other     {{ background: var(--ink-soft); color: #fff; }}
-    .type-badge {{
-      font-size: 9px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
-      padding: 3px 8px; border-radius: 10px; flex-shrink: 0;
-    }}
-    .type-event   {{ background: var(--peach-soft); color: var(--ink); }}
-    .type-weekly  {{ background: #D8F3DC; color: #1B4332; }}
-    .event-club {{
-      font-size: 11px; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase;
-      color: #aaa;
-    }}
-    .event-title {{
+    .ev-badge--strava  {{ background: #FC5200; color: #fff; }}
+    .ev-badge--weekly  {{ background: #D8F3DC; color: #1B4332; }}
+    .ev-badge--special {{ background: var(--peach); color: var(--ink); }}
+    .ev-when {{ font-size: 13px; font-weight: 600; color: var(--ink-soft); }}
+    .ev-title {{
       font-family: 'DM Sans', sans-serif; font-weight: 600;
       font-size: 18px; letter-spacing: -0.01em; line-height: 1.3; color: var(--ink);
     }}
-    .event-location {{
-      display: flex; align-items: center; gap: 5px;
-      font-size: 12px; color: #999;
+    .ev-link {{ color: inherit; text-decoration: none; }}
+    .ev-link::after {{ content: ''; position: absolute; inset: 0; z-index: 0; }}
+    .ev-link:focus-visible {{ outline: none; }}
+    .ev-card:has(.ev-link:focus-visible) {{ outline: 2px solid var(--accent-ink); outline-offset: 2px; }}
+    .ev-meta {{
+      display: flex; align-items: center; flex-wrap: wrap; gap: 2px 12px;
+      font-size: 13px; color: var(--ink-soft);
     }}
-    .event-desc {{
+    .ev-club {{ font-weight: 600; }}
+    .ev-place {{ display: inline-flex; align-items: center; gap: 4px; }}
+    .ev-place svg {{ flex-shrink: 0; }}
+    .ev-desc {{
       font-size: 13px; color: #666; line-height: 1.65;
-      display: -webkit-box; -webkit-line-clamp: 3;
+      display: -webkit-box; -webkit-line-clamp: 2;
       -webkit-box-orient: vertical; overflow: hidden;
-      margin-top: 2px;
     }}
-
-    .event-card-footer {{
-      padding: 0.75rem 1.25rem;
-      border-top: 1px solid #F5EBE8;
-      display: flex; justify-content: space-between; align-items: center;
+    .ev-actions {{
+      margin-top: auto; padding-top: 10px;
+      display: flex; align-items: center; justify-content: space-between; gap: 12px;
     }}
-    .event-engagement {{
-      font-size: 12px; font-weight: 500; color: #bbb;
-      display: flex; align-items: center; gap: 4px;
-    }}
-    .event-cta {{
-      font-size: 11px; font-weight: 600; letter-spacing: 1px;
-      text-transform: uppercase; color: var(--accent-ink);
-      display: flex; align-items: center; gap: 4px;
+    .ev-actions > * {{ position: relative; z-index: 1; }}
+    .ev-engagement {{ font-size: 12px; font-weight: 500; color: #aaa; }}
+    .ev-cta {{
+      margin-left: auto;
+      font-size: 12px; font-weight: 600; letter-spacing: 0.5px;
+      text-transform: uppercase; color: var(--accent-ink); text-decoration: none;
+      display: inline-flex; align-items: center; gap: 4px;
       transition: gap 0.2s;
     }}
-    .event-card:hover .event-cta {{ gap: 8px; }}
+    .ev-card:hover .ev-cta {{ gap: 8px; }}
 
     .no-events {{
       grid-column: 1 / -1; text-align: center;
@@ -752,6 +859,10 @@ document.addEventListener('DOMContentLoaded',function(){{
       .filter-group {{ width: 100%; flex-wrap: wrap; }}
       .events-layout {{ padding: 2rem 1.25rem; }}
       .events-grid {{ grid-template-columns: 1fr; }}
+      .ev-card {{ min-height: 170px; }}
+      .ev-media {{ flex-basis: 32%; }}
+      .ev-body {{ padding: 1rem 1.1rem; gap: 6px; }}
+      .ev-title {{ font-size: 16px; }}
       footer {{ padding: 2rem 1.25rem; grid-template-columns: 1fr; gap: 1.5rem; margin: 0; border-radius: 24px 24px 0 0; }}
     }}
   </style>

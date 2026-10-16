@@ -500,8 +500,12 @@ def card_html(ev: dict) -> str:
     return f'<div class="event-card event-card--no-link{special_class}" aria-label="{_e(title)}" {data}>{inner}</div>'
 
 
-def render_events_section(events: list[dict]) -> tuple[str, int, int]:
-    """Group events by date and return (static_html, total_count, club_count)."""
+def render_events_section(events: list[dict], card_fn=None) -> tuple[str, int, int]:
+    """Group events by date and return (static_html, total_count, club_count).
+
+    card_fn renders one card; defaults to card_html (used by the city pages).
+    """
+    card_fn = card_fn or card_html
     by_date: dict[str, dict] = {}
     no_date: list[dict] = []
 
@@ -526,7 +530,7 @@ def render_events_section(events: list[dict]) -> tuple[str, int, int]:
         group = by_date[key]
         count = len(group["events"])
         s     = "s" if count != 1 else ""
-        cards = "".join(card_html(ev) for ev in group["events"])
+        cards = "".join(card_fn(ev) for ev in group["events"])
         parts.append(
             f'<div class="date-group" data-date-group="{key}">'
             f'<div class="date-heading">'
@@ -541,7 +545,7 @@ def render_events_section(events: list[dict]) -> tuple[str, int, int]:
     if no_date:
         count = len(no_date)
         s     = "ar" if count != 1 else ""
-        cards = "".join(card_html(ev) for ev in no_date)
+        cards = "".join(card_fn(ev) for ev in no_date)
         parts.append(
             f'<div class="date-group" data-date-group="nodate">'
             f'<div class="date-heading">'
