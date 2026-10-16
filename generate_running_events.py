@@ -327,6 +327,87 @@ def club_image(ev: dict, club_images: dict[str, dict]) -> dict | None:
         club_images.get("name:" + _loose_club_key(ev.get("club") or ""))
 
 
+# ── Distance / pace chips ─────────────────────────────────────────────────────
+#
+# Only shown on a sure hit: one distance (or one explicit range), one pace (or
+# one range), or pace groups with their paces listed. Anything ambiguous —
+# e.g. interval sessions listing several distances — gets no chip.
+
+_NUM = r"\d{1,3}(?:[.,]\d)?"
+_DIST_RE = re.compile(
+    rf"(?<![\d:.,/])({_NUM})(?:\s*(?:[–-]|till)\s*({_NUM}))?\s*(?:km|k)\b(?!\s*/\s*h)",
+    re.IGNORECASE,
+)
+_PACE = r"\d{1,2}[:.]\d{2}"
+_PACE_RANGE = rf"(?<![\d:])({_PACE})(?:\s*[–-]\s*({_PACE}))?"
+_PACE_RES = (
+    # 5:30 min/km · 4:30/km · 6:30 minutes/km · 5:00 min per km
+    re.compile(rf"{_PACE_RANGE}\s*(?:min(?:utes?|uter)?\s*(?:/|per)\s*km|/\s*km)", re.IGNORECASE),
+    # tempo 06:00-06:30 · pace: 5:30
+    re.compile(rf"\b(?:tempo|pace)\b[:\s]*(?:ca\.?\s*|~\s*)?{_PACE_RANGE}(?![\d])", re.IGNORECASE),
+    # @ 5:30-5:45 pace
+    re.compile(rf"{_PACE_RANGE}\s*(?:pace|tempo)\b", re.IGNORECASE),
+)
+_PACE_GROUP_RE = re.compile(r"pace[\s-]?(?:groups?|grupp(?:er)?)|tempogrupp(?:er)?", re.IGNORECASE)
+_PACE_TIME_RE = re.compile(rf"(?<![\d:])({_PACE})(?![\d])")
+
+
+def _num(s: str) -> float:
+    return float(s.replace(",", "."))
+
+
+def _fmt_km(v: float) -> str:
+    return f"{v:g}".replace(".", ",")
+
+
+def _pace_secs(s: str) -> int | None:
+    m, sec = re.split(r"[:.]", s)
+    m, sec = int(m), int(sec)
+    return m * 60 + sec if 3 <= m <= 9 and sec < 60 else None
+
+
+def _fmt_pace(secs: int) -> str:
+    return f"{secs // 60}:{secs % 60:02d}"
+
+
+def parse_run_stats(text: str) -> list[str]:
+    """Chips like '10 km', '10–12 km', '5:30 min/km', 'Pace groups 5:00–6:00'."""
+    text = text or ""
+    chips: list[str] = []
+
+    distances = set()
+    for lo, hi in _DIST_RE.findall(text):
+        lo_v, hi_v = _num(lo), (_num(hi) if hi else None)
+        if not 1 <= lo_v <= 100 or (hi_v is not None and not lo_v < hi_v <= 100):
+            continue
+        distances.add((lo_v, hi_v))
+    if len(distances) == 1:
+        lo_v, hi_v = distances.pop()
+        chips.append(f"{_fmt_km(lo_v)}–{_fmt_km(hi_v)} km" if hi_v else f"{_fmt_km(lo_v)} km")
+
+    group = _PACE_GROUP_RE.search(text)
+    if group:
+        window = text[group.end():group.end() + 80]
+        times = sorted({t for t in map(_pace_secs, _PACE_TIME_RE.findall(window)) if t})
+        if len(times) >= 2:
+            chips.append(f"Pace groups {_fmt_pace(times[0])}–{_fmt_pace(times[-1])}")
+        else:
+            chips.append("Pace groups")
+        return chips
+
+    paces = set()
+    for pace_re in _PACE_RES:
+        for lo, hi in pace_re.findall(text):
+            lo_s, hi_s = _pace_secs(lo), (_pace_secs(hi) if hi else None)
+            if lo_s is None or (hi and (hi_s is None or hi_s <= lo_s)):
+                continue
+            paces.add((lo_s, hi_s))
+    if len(paces) == 1:
+        lo_s, hi_s = paces.pop()
+        chips.append(f"{_fmt_pace(lo_s)}–{_fmt_pace(hi_s)} min/km" if hi_s else f"{_fmt_pace(lo_s)} min/km")
+    return chips
+
+
 def _is_route_map(url: str) -> bool:
     """Strava sends the route map as image_url (cloudfront …/maps/…)."""
     return "/maps/" in url
@@ -395,6 +476,11 @@ def feed_card_html(ev: dict, club_images: dict[str, dict]) -> str:
         meta += f'<span class="ev-place">{_PIN_SVG}{_e(ev["location"])}</span>'
 
     desc_html = f'<p class="ev-desc">{_e(ev["description"])}</p>' if ev.get("description") else ""
+    chips = parse_run_stats(ev.get("description") or "")
+    chips_html = (
+        '<div class="ev-chips">' + "".join(f'<span class="ev-chip">{_e(c)}</span>' for c in chips) + '</div>'
+        if chips else ""
+    )
 
     engagement = str(ev.get("engagement") or "")
     eng_html = (f'<span class="ev-engagement">{_e(engagement)} anmälda</span>'
@@ -425,6 +511,7 @@ def feed_card_html(ev: dict, club_images: dict[str, dict]) -> str:
         f'<div class="ev-top">{badge}<span class="ev-when">{when}</span></div>'
         f'<h3 class="ev-title">{title_html}</h3>'
         f'<div class="ev-meta">{meta}</div>'
+        f'{chips_html}'
         f'{desc_html}'
         f'<div class="ev-actions">{eng_html}{cta_html}</div>'
         f'</div>'
@@ -764,6 +851,11 @@ document.addEventListener('DOMContentLoaded',function(){{
     .ev-club {{ font-weight: 600; }}
     .ev-place {{ display: inline-flex; align-items: center; gap: 4px; }}
     .ev-place svg {{ flex-shrink: 0; }}
+    .ev-chips {{ display: flex; flex-wrap: wrap; gap: 6px; }}
+    .ev-chip {{
+      font-size: 12px; font-weight: 600; color: var(--ink);
+      background: var(--peach-soft); border-radius: 100px; padding: 3px 10px;
+    }}
     .ev-desc {{
       font-size: 13px; color: #666; line-height: 1.65;
       display: -webkit-box; -webkit-line-clamp: 2;
