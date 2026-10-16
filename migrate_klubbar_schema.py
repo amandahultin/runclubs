@@ -233,6 +233,11 @@ def apply(sh, ws, headers: list[str], changes: list[tuple]) -> None:
         log.info("Lade till kolumnerna %s", ", ".join(missing))
 
     col_index = {h: i + 1 for i, h in enumerate(headers)}
+    # Formulas follow the spreadsheet's locale: decimal-comma locales (sv_SE)
+    # separate arguments with ";".
+    locale = sh.fetch_sheet_metadata({"fields": "properties.locale"})["properties"]["locale"]
+    sep = "," if locale.startswith(("en", "ja", "zh", "ko")) else ";"
+    log.info("Arkets locale: %s (formelavgränsare %r)", locale, sep)
     requests = []
     for col in PASS_COLUMNS:
         c = col_index[col] - 1
@@ -247,8 +252,9 @@ def apply(sh, ws, headers: list[str], changes: list[tuple]) -> None:
                 "range": rng, "fields": "userEnteredFormat.numberFormat",
                 "cell": {"userEnteredFormat": {"numberFormat": {"type": "TEXT"}}}}})
             ref = f"{_col_letter(c + 1)}2"
+            formula = f'=OR(ISBLANK({ref}),REGEXMATCH(TO_TEXT({ref}),"^([01][0-9]|2[0-3]):[0-5][0-9]$"))'
             rule = {"condition": {"type": "CUSTOM_FORMULA", "values": [{"userEnteredValue":
-                        f'=OR(ISBLANK({ref}),REGEXMATCH(TO_TEXT({ref}),"^([01][0-9]|2[0-3]):[0-5][0-9]$"))'}]},
+                        formula.replace(",", sep)}]},
                     "strict": True, "inputMessage": "Tid i formatet HH:MM, t.ex. 18:30"}
         else:
             continue
