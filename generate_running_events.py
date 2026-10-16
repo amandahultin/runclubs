@@ -28,6 +28,7 @@ from events_common import (
     EVENTS_SHEET_ID,
     LOOKAHEAD_DAYS,
     STOCKHOLM,
+    _match_city,
     _normalize_city,
     build_club_cities,
     combine_date_time,
@@ -575,9 +576,26 @@ def feed_card_html(ev: dict, club_images: dict[str, dict], highlight: bool = Fal
 HIGHLIGHT_WINDOW_DAYS = 7
 
 
+def _known_swedish(ev: dict) -> bool:
+    """Curated rows, a Swedish place in the location, or a club we list on the site.
+
+    Strava also carries clubs' runs abroad (they land in Övriga landet so nothing
+    is dropped); those must never be picked as the highlight.
+    """
+    location = ev.get("location") or ""
+    return (
+        ev.get("source") in ("special", "weekly_run")
+        or bool(_match_city(location))
+        or bool(re.search(r"\b(sverige|sweden)\b", location, re.IGNORECASE))
+        or bool(ev.get("club_page"))
+    )
+
+
 def pick_highlight(events: list[dict], now: datetime | None = None) -> dict | None:
     """Veckans höjdpunkt: a SpecialEvent with its own photo if there is one this week,
-    else another SpecialEvent, else the Strava event with most sign-ups, else the next event."""
+    else another SpecialEvent, else the Strava event with most sign-ups, else the next
+    event — the last two only among events known to be in Sweden, Stockholm and
+    Göteborg first. No highlight rather than one abroad."""
     now = now or datetime.now(STOCKHOLM).replace(tzinfo=None)
     cutoff = now + timedelta(days=HIGHLIGHT_WINDOW_DAYS)
 
@@ -602,10 +620,16 @@ def pick_highlight(events: list[dict], now: datetime | None = None) -> dict | No
     for pool in ([ev for ev in specials if has_photo(ev)], specials):
         if pool:
             return pool[0]
-    strava = [ev for ev in week if ev.get("source") == "strava" and signups(ev) > 0]
-    if strava:
-        return max(strava, key=signups)
-    return week[0]
+    swedish = [ev for ev in week if _known_swedish(ev)]
+    big_cities = [ev for ev in swedish if ev.get("city") in ("Stockholm", "Göteborg")]
+    for pool in (big_cities, swedish):
+        strava = [ev for ev in pool if ev.get("source") == "strava" and signups(ev) > 0]
+        if strava:
+            return max(strava, key=signups)
+    for pool in (big_cities, swedish):
+        if pool:
+            return pool[0]
+    return None
 
 
 def highlight_section_html(ev: dict | None, club_images: dict[str, dict]) -> str:
