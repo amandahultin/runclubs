@@ -215,7 +215,9 @@ def gather_events(sheet_id: str, week_start: str | None) -> list[dict]:
         seen.add(key)
 
         location = (r.get("location") or "").strip()
-        city = resolve_city(location, club, club_cities)
+        city = resolve_city(location, club, club_cities, title)
+        if not city:
+            continue
 
         events.append({
             "club": club,

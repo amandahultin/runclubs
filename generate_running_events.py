@@ -149,7 +149,9 @@ def prepare_events(
                 continue
 
         loc = (r.get("location") or "").strip()
-        city = resolve_city(loc, r.get("club") or "", club_cities)
+        city = resolve_city(loc, r.get("club") or "", club_cities, r.get("title") or "")
+        if not city:
+            continue
 
         club = normalize_club_name(r.get("club") or "")
         events.append({

@@ -83,7 +83,7 @@ def prepare_events(records: list[dict], club_cities: dict[str, str] | None = Non
     events: list[dict] = []
 
     for r in records:
-        city = resolve_city(r.get("location") or "", r.get("club") or "", club_cities)
+        city = resolve_city(r.get("location") or "", r.get("club") or "", club_cities, r.get("title") or "")
         if city != CITY_OVRIGA:
             continue
 

@@ -148,15 +148,49 @@ def _normalize_city(text: str) -> str:
     return _match_city(text) or CITY_OVRIGA
 
 
-def resolve_city(location: str, club: str, club_cities: dict[str, str] | None) -> str:
-    """City for a Strava event. Never returns "" — nothing is dropped.
+# Events abroad (clubs with chapters in Oslo, Copenhagen, Istanbul…) must not
+# fall through to Övriga landet. Strava locations end in the country name, and
+# titles often carry a flag emoji.
+ABROAD_KEYWORDS = (
+    "danmark", "denmark", "københavn", "kobenhavn", "copenhagen", "köpenhamn",
+    "norge", "norway", "oslo", "trondheim", "bergen",
+    "finland", "suomi", "helsingfors", "helsinki",
+    "belgië", "belgie", "belgium", "belgien",
+    "deutschland", "germany", "tyskland", "berlin",
+    "nederland", "netherlands", "amsterdam",
+    "united kingdom", "england", "london",
+    "france", "frankrike", "paris",
+    "españa", "spain", "spanien", "barcelona", "madrid",
+    "italia", "italy", "italien",
+    "türkiye", "turkey", "turkiet", "istanbul",
+    "usa", "united states", "new york",
+)
+_ABROAD_PATTERN = _keyword_pattern(ABROAD_KEYWORDS, whole_word=True)
+# A pair of regional-indicator symbols is a flag; 🇸🇪 is the only one we keep.
+_FLAG_PATTERN = re.compile("[\U0001F1E6-\U0001F1FF]{2}")
 
-    Order: keywords in the location, then the club's city from WeeklyRuns,
-    then Övriga landet (logged, so missing places can be added above).
+
+def is_abroad(location: str, title: str = "") -> bool:
+    """True when an event is clearly outside Sweden."""
+    if _ABROAD_PATTERN.search(_fold(location)):
+        return True
+    return any(flag != "🇸🇪" for flag in _FLAG_PATTERN.findall(f"{location} {title}"))
+
+
+def resolve_city(location: str, club: str, club_cities: dict[str, str] | None,
+                 title: str = "") -> str:
+    """City for a Strava event, or "" for events abroad (callers skip those).
+
+    Order: keywords in the location, then events abroad are dropped, then the
+    club's city from WeeklyRuns, then Övriga landet (logged, so missing places
+    can be added above).
     """
     city = _match_city(location)
     if city:
         return city
+    if is_abroad(location, title):
+        log.info("Dropping event abroad: club=%r location=%r title=%r", club, location, title)
+        return ""
     club_key = normalize_club_name(club).lower()
     city = (club_cities or {}).get(club_key, "")
     if city:
