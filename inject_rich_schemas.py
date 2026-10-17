@@ -442,6 +442,8 @@ CITY_FAQS = {
          "På Runclubs.se kan du filtrera Stockholms run clubs efter dag, nivå och stadsdel. Välj de kriterier som passar dig och hitta ditt crew direkt."),
         ("Kan jag ta med en vän som aldrig sprungit förut?",
          "Ja! De flesta run clubs välkomnar nybörjare och uppmuntrar till att ta med vänner. Social löpning är kärnan i run club-kulturen."),
+        ("Vad är skillnaden mellan en löparklubb och en run club?",
+         "En löparklubb är oftast en förening med medlemsavgift och tränarledd träning. En run club eller löpargrupp kräver inget medlemskap, är oftast gratis och du kan dyka upp när det passar dig. På Runclubs.se samlar vi löpargrupperna i Stockholm."),
     ],
     "goteborg": [
         ("Vad kostar det att vara med i en run club i Göteborg?",
@@ -454,6 +456,8 @@ CITY_FAQS = {
          "Runclubs.se listar alla kända run clubs i Göteborg med tider, startplatser och nivå. Bläddra bland clubs och hitta din matchning."),
         ("Finns det run clubs i Göteborg som fokuserar på tjejer?",
          "Ja, flera run clubs i Göteborg har pass riktade mot tjejer eller mixed grupper med inkluderande miljö. Se filtret på Göteborgs-sidan."),
+        ("Vad är skillnaden mellan en löparklubb och en run club?",
+         "En löparklubb är oftast en förening med medlemsavgift och tränarledd träning. En run club eller löpgrupp kräver inget medlemskap, är oftast gratis och du kan dyka upp när det passar dig. På Runclubs.se samlar vi löpargrupperna i Göteborg."),
     ],
     "ovriga-landet": [
         ("Vad kostar det att springa med en run club i övriga landet?",
