@@ -366,8 +366,8 @@ document.addEventListener('DOMContentLoaded',function(){
       .hero { min-height: 300px; padding: 2rem 1.25rem; }
       .hero h1 { font-size: 36px; }
       .featured-section { padding: 2rem 1.25rem; }
-      .featured-card { grid-template-columns: 1fr; }
-      .featured-image { height: 220px; }
+      .featured-card { grid-template-columns: minmax(0, 1fr); }
+      .featured-image { height: auto; aspect-ratio: 16 / 9; }
       .featured-body { padding: 1.5rem; }
       .featured-body h2 { font-size: 20px; }
       .articles-section { padding: 2rem 1.25rem; }
@@ -494,14 +494,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <!-- FEATURED:START -->
         <div class="featured-card fade-in">
           <div class="featured-image">
-            <picture><source srcset="/frukostcafeer-amanda.webp" type="image/webp"><img src="/frukostcafeer-amanda.jpg" alt="Amanda springer leende över Slussen en mulen morgon" loading="lazy" width="1600" height="1577" style="object-position: center 50%;"></picture>
+            <picture><source srcset="/summer-run-club-grupp.webp" type="image/webp"><img src="/summer-run-club-grupp.jpg" alt="Ett tiotal löpare från Stockholm Summer Run Club samlade på en klippa i solsken med Stockholm i bakgrunden" loading="lazy" width="819" height="670" style="object-position: center 50%;"></picture>
           </div>
           <div class="featured-body">
-            <span class="article-tag tag-mystory">My Story · Running for breakfast</span>
-            <h2><a href="/magazine/frukostcafeer-stockholm-loprunda/">Sex frukostcaféer i Stockholm värda att springa till</a></h2>
+            <span class="article-tag tag-portrait">Club Portrait · Intervju med Robin Iborn</span>
+            <h2><a href="/magazine/stockholm-summer-run-club-robin-iborn/">Stockholm Summer Run Club – tisdagslöpning från Götgatan med Robin Iborn</a></h2>
             <div class="featured-meta">Oktober 2026 · Av Amanda Hultin</div>
-            <p class="featured-excerpt">Sex Stockholmscaféer värda att springa en omväg för, och rundan dit för vart och ett av dem.</p>
-            <a href="/magazine/frukostcafeer-stockholm-loprunda/" class="read-more">Läs hela inlägget <span>→</span></a>
+            <p class="featured-excerpt">Tisdagar 18.00 från Götgatan. Fem kilometer, samtalstempo, fantastiskt sällskap och ett av Söders hetaste caféer. Jag har pratat med grundaren Robin Iborn.</p>
+            <a href="/magazine/stockholm-summer-run-club-robin-iborn/" class="read-more">Läs hela inlägget <span>→</span></a>
           </div>
         </div>
         <!-- FEATURED:END -->
@@ -524,7 +524,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
         <div class="articles-grid">
           <!-- FEED:START -->
-          <article class="diary-post fade-in" data-cats="mystory" data-featured id="frukostcafeer-stockholm-loprunda">
+          <article class="diary-post fade-in" data-cats="portrait community" data-featured id="stockholm-summer-run-club-robin-iborn">
+            <div class="diary-meta"><span class="article-tag tag-portrait">Club Portrait · Intervju med Robin Iborn</span><time datetime="2026-10-26">26 oktober 2026</time></div>
+            <h2 class="diary-title"><a href="/magazine/stockholm-summer-run-club-robin-iborn/">Stockholm Summer Run Club – tisdagslöpning från Götgatan med Robin Iborn</a></h2>
+            <a href="/magazine/stockholm-summer-run-club-robin-iborn/" class="diary-image"><picture><source srcset="/summer-run-club-grupp.webp" type="image/webp"><img src="/summer-run-club-grupp.jpg" alt="Ett tiotal löpare från Stockholm Summer Run Club samlade på en klippa i solsken med Stockholm i bakgrunden" loading="lazy" width="819" height="670" style="object-position: center 50%;"></picture></a>
+            <p class="diary-excerpt">Tisdagar 18.00 från Götgatan. Fem kilometer, samtalstempo, fantastiskt sällskap och ett av Söders hetaste caféer. Jag har pratat med grundaren Robin Iborn.</p>
+            <a href="/magazine/stockholm-summer-run-club-robin-iborn/" class="diary-more">Läs hela inlägget <span>→</span></a>
+          </article>
+
+          <article class="diary-post fade-in" data-cats="mystory" id="frukostcafeer-stockholm-loprunda">
             <div class="diary-meta"><span class="article-tag tag-mystory">My Story · Running for breakfast</span><time datetime="2026-10-26">26 oktober 2026</time></div>
             <h2 class="diary-title"><a href="/magazine/frukostcafeer-stockholm-loprunda/">Sex frukostcaféer i Stockholm värda att springa till</a></h2>
             <a href="/magazine/frukostcafeer-stockholm-loprunda/" class="diary-image"><picture><source srcset="/frukostcafeer-amanda.webp" type="image/webp"><img src="/frukostcafeer-amanda.jpg" alt="Amanda springer leende över Slussen en mulen morgon" loading="lazy" width="1600" height="1577" style="object-position: center 50%;"></picture></a>
@@ -772,7 +780,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </div>
           </a>
 
-          <p class="feed-links"><a href="/magazine/arkiv/">Arkiv</a> · Taggar: <a href="/magazine/tagg/crew/">Find Your Crew</a> · <a href="/magazine/tagg/nextup/">Next Up</a> · <a href="/magazine/tagg/news/">Running News</a> · <a href="/magazine/tagg/mystory/">My Story</a> · <a href="/magazine/tagg/community/">Community</a></p>
+          <p class="feed-links"><a href="/magazine/arkiv/">Arkiv</a> · Taggar: <a href="/magazine/tagg/crew/">Find Your Crew</a> · <a href="/magazine/tagg/nextup/">Next Up</a> · <a href="/magazine/tagg/news/">Running News</a> · <a href="/magazine/tagg/mystory/">My Story</a> · <a href="/magazine/tagg/community/">Community</a> · <a href="/magazine/tagg/portrait/">Club Portrait</a></p>
           <!-- FEED:END -->
         </div>
       </div>

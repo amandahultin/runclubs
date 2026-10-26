@@ -16,7 +16,8 @@ this script builds:
 Usage:  python3 scripts/build_magazine.py
 
 Post format (front matter keys, one per line, `key: value`):
-  title, h1 (optional, e.g. with &shy;), date (YYYY-MM-DD), tags (comma separated,
+  title, h1 (optional, e.g. with &shy;), date (YYYY-MM-DD), time (HH:MM, only
+  orders posts from the same day), tags (comma separated,
   first is the main one), kicker, description, excerpt, subtitle, crumb,
   image + image_alt (hero), card_image + card_image_alt (feed card + og:image),
   feed (full | excerpt), outro, draft (true to skip),
@@ -181,7 +182,7 @@ def load_entries():
         e["kind"] = "legacy"
         e["tags"] = [e["cat"]]
     entries = posts + [e for e in legacy if e["url"] not in {p["url"] for p in posts}]
-    return sorted(entries, key=lambda e: e["date"], reverse=True)
+    return sorted(entries, key=lambda e: (e["date"], e.get("time", "")), reverse=True)
 
 
 def tag_label(e):
@@ -438,7 +439,10 @@ def stubs_and_sitemaps(posts):
     n = news.read_text()
     for e in posts:
         s = e["slug"]
-        write(ROOT / f"{s}.html", f'''<!DOCTYPE html>
+        stub = ROOT / f"{s}.html"
+        if stub.exists() and f"url=/magazine/{s}/" not in stub.read_text():
+            raise SystemExit(f"{s}.html finns redan och är en annan sida, byt slug på inlägget")
+        write(stub, f'''<!DOCTYPE html>
 <html lang="sv">
 <head>
 <meta charset="UTF-8">
