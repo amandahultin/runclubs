@@ -1,0 +1,53 @@
+name: Build magazine
+
+# Bygger dagboksflödet, inläggssidor, taggsidor och arkiv när ett inlägg
+# i magazine/posts/ läggs till eller ändras.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'magazine/posts/**'
+      - 'magazine/posts-legacy.json'
+      - 'templates/magazine_post.html'
+      - 'scripts/build_magazine.py'
+  workflow_dispatch:        # allow manual trigger from GitHub UI
+
+permissions:
+  contents: write
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Pillow (image sizes)
+        run: pip install pillow
+
+      - name: Build magazine and sitemap
+        run: |
+          python3 scripts/build_magazine.py
+          python3 generate_sitemap.py
+
+      - name: Commit and push if anything changed
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          stubs=$(for f in magazine/posts/*.md; do basename "$f" .md; done | sed 's/$/.html/')
+          git add magazine/ magazine.html _redirects news-sitemap.xml sitemap.xml $stubs
+          if git diff --staged --quiet; then
+            echo "Nothing to commit — magazine already up to date."
+          else
+            git commit -m "Build magazine $(date -u +%Y-%m-%d) [skip ci]"
+            git pull --rebase --autostash origin main
+            git push
+          fi
