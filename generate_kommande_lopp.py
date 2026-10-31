@@ -1,11 +1,11 @@
-"""Generate kommande-lopp.html from the races Google Sheet.
+"""Generate loppkalender.html from the races Google Sheet.
 
 Reads race data from the first tab of the Google Sheet populated by the
 runclubs-races-scraper, filters to 10 km+, and renders a self-contained
 HTML page matching the runclubs.se design system.
 
 Usage:
-    python generate_kommande_lopp.py              # writes kommande-lopp.html
+    python generate_kommande_lopp.py              # writes loppkalender.html
     python generate_kommande_lopp.py path/to/out.html
 """
 
@@ -16,7 +16,7 @@ import logging
 import os
 import re
 import sys
-from datetime import date, datetime, timezone
+from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 
 import gspread
@@ -195,10 +195,98 @@ def prepare_races(records: list[dict]) -> list[dict]:
     return races
 
 
+# ── Structured data ───────────────────────────────────────────────────────────
+
+# Google reads the races off the page as SportsEvent. The sheet reaches a year
+# ahead, so only the nearest ones are marked up — every entry adds weight to a
+# page that already inlines its whole dataset.
+_SCHEMA_WINDOW_DAYS = 183
+_SCHEMA_MAX_RACES   = 60
+
+CITY_GEO = {
+    "Stockholm": {"@type": "GeoCoordinates", "latitude": 59.3293, "longitude": 18.0686},
+    "Göteborg":  {"@type": "GeoCoordinates", "latitude": 57.7089, "longitude": 11.9746},
+    "Malmö":     {"@type": "GeoCoordinates", "latitude": 55.6049, "longitude": 13.0038},
+}
+
+
+def _schema_place(city: str) -> dict:
+    place: dict = {
+        "@type": "Place",
+        "name":  city,
+        "address": {
+            "@type":           "PostalAddress",
+            "addressLocality": city,
+            "addressCountry":  "SE",
+        },
+    }
+    if city in CITY_GEO:
+        place["geo"] = CITY_GEO[city]
+    return place
+
+
+def build_sports_events(races: list[dict]) -> list[dict]:
+    """Mark the nearest races up as SportsEvent.
+
+    Same shape inject_rich_schemas.py uses for /events, so both pages describe
+    a running event to Google the same way. Expects races date-sorted, which is
+    how prepare_races leaves them.
+    """
+    today  = date.today()
+    cutoff = today + timedelta(days=_SCHEMA_WINDOW_DAYS)
+    events: list[dict] = []
+
+    for r in races:
+        try:
+            race_date = datetime.strptime(r["date"], "%Y-%m-%d").date()
+        except ValueError:
+            continue
+        if race_date < today:
+            continue
+        if race_date > cutoff:
+            break
+
+        city     = (r.get("city") or "").strip()
+        distance = (r.get("distance") or "").strip()
+
+        # Search Console flags SportsEvent without a description, and the sheet
+        # has none — so build one from the fields it does carry.
+        description = f"{r['name']} — löptävling"
+        if distance:
+            description += f" på {distance}"
+        if city:
+            description += f" i {city}"
+
+        event: dict = {
+            "@type":               "SportsEvent",
+            "name":                r["name"],
+            "startDate":           r["date"],
+            "eventStatus":         "https://schema.org/EventScheduled",
+            "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+            "location":            _schema_place(city or (r.get("region") or "")),
+            "sport":               "Running",
+            "inLanguage":          "sv",
+            "description":         description + ".",
+        }
+        if r.get("link"):
+            event["url"] = r["link"]
+
+        events.append(event)
+        if len(events) >= _SCHEMA_MAX_RACES:
+            break
+
+    log.info("%d races marked up as SportsEvent", len(events))
+    return events
+
+
 # ── HTML generation ───────────────────────────────────────────────────────────
 
 def render_html(races: list[dict], generated_at: str) -> str:
-    races_json = json.dumps(races, ensure_ascii=False)
+    races_json  = json.dumps(races, ensure_ascii=False)
+    schema_json = json.dumps(
+        {"@context": "https://schema.org", "@graph": build_sports_events(races)},
+        ensure_ascii=False,
+    ).replace("</", r"<\/")
 
     return f"""<!DOCTYPE html>
 <html lang="sv">
@@ -593,6 +681,7 @@ document.addEventListener('DOMContentLoaded',function(){{
     }}
   </style>
 <script id="CookieDeclaration" src="https://consent.cookiebot.com/c82ce3af-bded-4069-9aea-22493d3d7e2d/cd.js" type="text/javascript" async></script>
+  <script type="application/ld+json">{schema_json}</script>
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
@@ -770,6 +859,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       return new Date(y, m - 1, d);
     }}
 
+    // The page is rebuilt weekly, so races run since the last build are dropped
+    // here too — otherwise they sit at the top of the calendar until Monday.
+    const TODAY = (() => {{
+      const d = new Date();
+      const p = n => String(n).padStart(2, '0');
+      return `${{d.getFullYear()}}-${{p(d.getMonth() + 1)}}-${{p(d.getDate())}}`;
+    }})();
+
     // ─── STATE ───────────────────────────────────────────────────────────────────
     let activeRegion = 'all';
     let activeDist   = 'all';
@@ -826,6 +923,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       container.innerHTML = '';
 
       const filtered = races.filter(r => {{
+        if (r.date < TODAY) return false;
         const regionOk = activeRegion === 'all' || r.region === activeRegion;
         const distOk   = activeDist === 'all'   || (Array.isArray(r.dist_cat) ? r.dist_cat.includes(activeDist) : r.dist_cat === activeDist);
         return regionOk && distOk;
