@@ -27,6 +27,7 @@ from events_common import (
     STOCKHOLM_KEYWORDS,
     _fold,
     _keyword_pattern,
+    _with_retry,
     sv_long_date,
 )
 
@@ -155,10 +156,14 @@ def _sheet_client() -> gspread.Client:
 
 
 def fetch_races(sheet_id: str) -> list[dict]:
-    gc = _sheet_client()
-    sh = gc.open_by_key(sheet_id)
-    ws = sh.get_worksheet_by_id(114178703)
-    records = ws.get_all_records()
+    # Backoff on 429/5xx, shared with the events pipeline. The weekly run is the
+    # only chance this page gets at fresh data, so a rate limit shouldn't fell it.
+    def _do():
+        gc = _sheet_client()
+        sh = gc.open_by_key(sheet_id)
+        ws = sh.get_worksheet_by_id(114178703)
+        return ws.get_all_records()
+    records = _with_retry(_do)
     log.info("Fetched %d rows from sheet", len(records))
     return records
 
