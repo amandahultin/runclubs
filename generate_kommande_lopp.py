@@ -22,7 +22,13 @@ from pathlib import Path
 import gspread
 from google.oauth2.service_account import Credentials
 
-from events_common import sv_long_date
+from events_common import (
+    GOTEBORG_KEYWORDS,
+    STOCKHOLM_KEYWORDS,
+    _fold,
+    _keyword_pattern,
+    sv_long_date,
+)
 
 log = logging.getLogger(__name__)
 
@@ -36,12 +42,27 @@ _DIST_BUCKETS = [
     ("Ultra",      43.6, 9999.0),
 ]
 
-# County → display region
-_COUNTY_REGION = {
-    "stockholms":       "Stockholm",
-    "västra götalands": "Göteborg",
-    "skåne":            "Malmö",
-}
+# Stockholm and Göteborg share their locality lists with the events pipeline, so
+# both pages agree on what the two cities cover. events_common has no Malmö
+# region — it files Skåne under Övriga landet — so that list lives here.
+_GOTEBORG_EXTRA = (
+    "skatås", "mölnlycke", "sävedalen", "landvetter", "kållered",
+    "lindome", "majorna", "angered", "öjersjö", "delsjön",
+)
+_MALMO_KEYWORDS = (
+    "malmö", "malmoe", "lund", "burlöv", "arlöv", "åkarp", "lomma",
+    "staffanstorp", "vellinge", "svedala", "kävlinge", "oxie",
+    "limhamn", "hyllie", "husie", "bunkeflo",
+)
+
+# "västra götaland" is dropped from the Göteborg list: it names the county, and
+# matching it would file Strömstad and Dals Rostock as Göteborg races. Malmö
+# matches whole words only, or "lund" would hit Lundagatan.
+_P_STOCKHOLM = _keyword_pattern(STOCKHOLM_KEYWORDS)
+_P_GOTEBORG  = _keyword_pattern(
+    tuple(k for k in GOTEBORG_KEYWORDS if k != "västra götaland") + _GOTEBORG_EXTRA
+)
+_P_MALMO     = _keyword_pattern(_MALMO_KEYWORDS, whole_word=True)
 
 
 # ── Helpers ───────────────────────────────────────────────────────────────────
@@ -94,23 +115,28 @@ def _dist_category(km: float) -> str | None:
 
 
 def _map_region(row: dict) -> str:
-    city   = (row.get("city")   or "").strip().lower()
+    city   = _fold((row.get("city") or "").strip())
     county = (row.get("county") or "").strip().lower()
     region = (row.get("region") or "").strip()
 
-    # City name (col C) is the primary signal
-    if "stockholm" in city:
+    # City name (col C) is the primary signal, matched against the locality
+    # lists so the surroundings count too — Mölndal and Skatås are Göteborg.
+    if _P_STOCKHOLM.search(city):
         return "Stockholm"
-    if "göteborg" in city or "gothenburg" in city:
+    if _P_GOTEBORG.search(city):
         return "Göteborg"
-    if "malmö" in city:
+    if _P_MALMO.search(city):
         return "Malmö"
 
     # Pre-computed region (col G) catches neighbourhood names inside the big three
     if region in ("Stockholm", "Göteborg", "Malmö"):
         return region
 
-    # Stockholm county (col D) as last-resort for suburbs without city name
+    # Stockholm county (col D) as last resort for suburbs the city name misses
+    # (Djurgården, Söder, Trångsund). Deliberately no equivalent for Västra
+    # Götaland or Skåne: that county is in effect Greater Stockholm, while those
+    # two reach far past their city — Strömstad, Båstad — so there the locality
+    # lists above are the whole rule.
     if "stockholms" in county:
         return "Stockholm"
 
